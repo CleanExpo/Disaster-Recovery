@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import logger from '@/lib/logger';
+import { generateAccessToken, generateRefreshToken, UserRole, getRolePermissions } from '@/lib/jwt-auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -102,6 +103,17 @@ export async function POST(request: NextRequest) {
       }
     });
 
+    // Generate JWT tokens
+    const userPayload = {
+      id: contractor.id,
+      email: contractor.email,
+      name: contractor.username,
+      role: UserRole.CONTRACTOR,
+      permissions: getRolePermissions(UserRole.CONTRACTOR),
+    };
+    const accessToken = await generateAccessToken(userPayload);
+    const refreshToken = await generateRefreshToken(contractor.id);
+
     // Return contractor data (excluding sensitive information)
     const response = {
       id: contractor.id,
@@ -116,7 +128,11 @@ export async function POST(request: NextRequest) {
         tier: contractor.subscription.tier,
         status: contractor.subscription.status
       } : null,
-      role: 'contractor'
+      role: 'contractor',
+      tokens: {
+        access: accessToken,
+        refresh: refreshToken,
+      },
     };
 
     return NextResponse.json(response);

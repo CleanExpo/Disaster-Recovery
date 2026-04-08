@@ -190,7 +190,36 @@ function PaymentSuccessPageContent() {
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <button className="flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 py-3 px-6 min-h-[44px] rounded-lg hover:bg-gray-200 transition">
+            <button
+              onClick={() => {
+                // Generate a printable receipt view
+                const w = window.open('', '_blank');
+                if (!w) return;
+                w.document.write(`
+                  <html><head><title>NRPG Payment Receipt</title>
+                  <style>body{font-family:Arial,sans-serif;max-width:600px;margin:40px auto;padding:20px;}
+                  h1{font-size:20px;border-bottom:2px solid #000;padding-bottom:10px;}
+                  table{width:100%;border-collapse:collapse;margin:20px 0;}
+                  td{padding:8px;border-bottom:1px solid #eee;}
+                  .total{font-weight:bold;font-size:18px;border-top:2px solid #000;}
+                  .footer{color:#666;font-size:12px;margin-top:40px;}</style></head>
+                  <body>
+                  <h1>National Recovery Partners Group — Payment Receipt</h1>
+                  <p><strong>Date:</strong> ${new Date().toLocaleDateString('en-AU')}</p>
+                  <p><strong>ABN:</strong> 47 674 581 410</p>
+                  <table>
+                  <tr><td>Application Fee</td><td style="text-align:right">$275.00</td></tr>
+                  <tr><td>Joining Fee (Contractor Entitlement)</td><td style="text-align:right">$2,200.00</td></tr>
+                  <tr class="total"><td>Total Paid (AUD)</td><td style="text-align:right">$2,475.00</td></tr>
+                  </table>
+                  <p class="footer">This receipt was generated from disasterrecovery.com.au. For queries, visit <a href="https://disasterrecovery.com.au/contact">our contact page</a>.</p>
+                  </body></html>
+                `);
+                w.document.close();
+                w.print();
+              }}
+              className="flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 py-3 px-6 min-h-[44px] rounded-lg hover:bg-gray-200 transition"
+            >
               <Download className="w-5 h-5" />
               <span>Download Receipt</span>
             </button>

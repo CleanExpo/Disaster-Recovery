@@ -6,6 +6,7 @@ import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { setContractorAuth } from '@/lib/contractor-auth';
 import { 
   Building2, 
   Lock, 
@@ -60,78 +61,32 @@ function ContractorLoginPageOriginal() {
     setIsLoading(true);
     setError('');
 
-    // Simulate loading animation
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
     try {
-      // Enhanced demo credentials with role-based access
-      const validCredentials = [
-        { username: 'demo', password: 'Demo123!', role: 'contractor', tier: 'premium' },
-        { username: 'admin', password: 'Admin123!', role: 'admin', tier: 'enterprise' },
-        { username: 'tech', password: 'Tech123!', role: 'technician', tier: 'standard' }
-      ];
-
-      const user = validCredentials.find(
-        cred => cred.username === formData.username && cred.password === formData.password
-      );
-
-      if (user) {
-        // Store enhanced session with more details
-        const sessionData = {
-          id: `${user.role}-${Date.now()}`,
-          username: user.username,
-          companyName: `${user.username.charAt(0).toUpperCase() + user.username.slice(1)} Restoration Services`,
-          email: `${user.username}@nrp-crm.com`,
-          role: user.role,
-          tier: user.tier,
-          isDemo: true,
-          loginTime: new Date().toISOString(),
-          permissions: getPermissionsByRole(user.role),
-          theme: 'dark'
-        };
-        
-        localStorage.setItem('contractorAuth', JSON.stringify(sessionData));
-        if (rememberMe) {
-          localStorage.setItem('rememberedUser', formData.username);
-        }
-        
-        // Navigate to dashboard
-        router.push('/contractor/dashboard');
-        return;
-      }
-
-      // Fallback to API authentication
       const response = await fetch('/api/contractor/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('contractorAuth', JSON.stringify(data));
-        router.push('/contractor/dashboard');
+        setContractorAuth(data);
+        if (rememberMe) {
+          localStorage.setItem('rememberedUser', formData.username);
+        }
+        router.push('/contractor/portal');
       } else {
-        throw new Error('Invalid credentials');
+        const errData = await response.json().catch(() => null);
+        setError(errData?.error || 'Invalid username or password.');
+        const form = document.getElementById('login-form');
+        form?.classList.add('shake');
+        setTimeout(() => form?.classList.remove('shake'), 500);
       }
-    } catch (err) {
-      setError('Invalid username or password. Try demo/Demo123!');
-      // Shake animation on error
-      const form = document.getElementById('login-form');
-      form?.classList.add('shake');
-      setTimeout(() => form?.classList.remove('shake'), 500);
+    } catch {
+      setError('Connection error. Please try again.');
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const getPermissionsByRole = (role: string) => {
-    const permissions: Record<string, string[]> = {
-      admin: ['all'],
-      contractor: ['jobs.view', 'jobs.edit', 'invoices.view', 'invoices.create', 'reports.view'],
-      technician: ['jobs.view', 'jobs.update', 'equipment.view']
-    };
-    return permissions[role] || [];
   };
 
   const handleSSOLogin = (provider: string) => {
@@ -346,13 +301,11 @@ function ContractorLoginPageOriginal() {
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
                 </button>
 
-                {/* Demo credentials hint */}
+                {/* Apply CTA */}
                 <div className="text-center">
-                  <p className="text-xs text-gray-200 mb-2">Demo Credentials:</p>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg backdrop-blur-sm">
-                    <Sparkles className="h-3 w-3 text-blue-500" />
-                    <code className="text-xs text-gray-300">demo / Demo123!</code>
-                  </div>
+                  <p className="text-xs text-gray-300">
+                    New to NRPG? <Link href="/contractor/apply" className="text-blue-400 hover:underline">Apply to join</Link>
+                  </p>
                 </div>
               </form>
             ) : (
