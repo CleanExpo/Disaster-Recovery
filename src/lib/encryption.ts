@@ -1,26 +1,27 @@
 import crypto from 'crypto';
+import {
+  KMSClient,
+  GenerateDataKeyCommand,
+  DecryptCommand,
+} from '@aws-sdk/client-kms';
 
 // =============================================================================
 // DR-390 — AWS KMS / AES-256-GCM envelope encryption for property access PII
 // =============================================================================
 //
 // Priority order:
-//   1. AWS KMS   — if KMS_KEY_ID env var is set
-//   2. AES-256-GCM — if ENCRYPTION_SECRET env var is set (min 32 chars)
-//   3. Dev passthrough — plaintext with console.warn (never for production)
+//   1. AWS KMS   — if KMS_KEY_ID env var is set (production)
+//   2. AES-256-GCM — if ENCRYPTION_SECRET env var is set (staging / fallback)
+//   3. Dev passthrough — plaintext with console.warn (development only)
 //
-// TODO (DR-390): Provision AWS KMS credentials before go-live:
+// Required env vars for KMS (provision in Vercel — April 12 deadline):
 //   • AWS_ACCESS_KEY_ID       — IAM user / role access key
 //   • AWS_SECRET_ACCESS_KEY   — IAM user / role secret
 //   • AWS_REGION              — e.g. ap-southeast-2
 //   • KMS_KEY_ID              — ARN of the Customer Managed Key (CMK)
-//   The CMK policy must grant Encrypt + Decrypt + GenerateDataKey to the
-//   IAM identity used by the Next.js server / Lambda runtime.
 //
-// NOTE: @aws-sdk/client-kms is NOT currently in package.json.
-//   When the team provisions KMS:
-//     npm install @aws-sdk/client-kms
-//   Then replace the KMS stub block below with real SDK calls.
+// The CMK policy must grant: Encrypt + Decrypt + GenerateDataKey
+// to the IAM identity used by the Vercel Lambda runtime.
 // =============================================================================
 
 const KMS_PREFIX   = 'kms:v1:';
@@ -30,6 +31,19 @@ const PLAIN_PREFIX = 'plain:v1:';
 // AES-256-GCM constants
 const IV_BYTES  = 12; // 96-bit IV recommended for GCM
 const TAG_BYTES = 16;
+// 4-byte big-endian prefix stores the encrypted data key length in KMS blobs
+const EDKEY_LEN_BYTES = 4;
+
+// Lazy KMS client — created on first use to avoid cold-start overhead
+let _kmsClient: KMSClient | null = null;
+function getKMSClient(): KMSClient {
+  if (!_kmsClient) {
+    _kmsClient = new KMSClient({
+      region: process.env.AWS_REGION ?? 'ap-southeast-2',
+    });
+  }
+  return _kmsClient;
+}
 
 // ─── Public API ──────────────────────────────────────────────────────────────
 
@@ -43,29 +57,50 @@ export function isConfigured(): boolean {
 }
 
 /**
- * Encrypts a plaintext string.
- * Returns a prefixed base64 blob that is safe to store in a standard String DB column.
- * In dev mode (no env vars), returns the value prefixed with 'plain:v1:' and logs a warning.
+ * Encrypts a plaintext string using KMS envelope encryption (preferred) or
+ * AES-256-GCM (fallback). Returns a prefixed base64 blob safe to store in DB.
+ *
+ * KMS blob layout (kms:v1:):
+ *   4 bytes (big-endian uint32) — encrypted data key length
+ *   N bytes                    — encrypted data key (KMS ciphertext blob)
+ *   12 bytes                   — AES-GCM IV
+ *   16 bytes                   — AES-GCM auth tag
+ *   remainder                  — AES-256-GCM ciphertext
  */
 export async function encrypt(plaintext: string): Promise<string> {
   if (!plaintext) return plaintext;
 
-  // ── 1. KMS path ─────────────────────────────────────────────────────────
+  // ── 1. KMS envelope encryption ──────────────────────────────────────────
   if (process.env.KMS_KEY_ID) {
-    // TODO (DR-390): Replace this stub with real @aws-sdk/client-kms calls:
-    //
-    //   import { KMSClient, GenerateDataKeyCommand, EncryptCommand } from '@aws-sdk/client-kms';
-    //   const kms = new KMSClient({ region: process.env.AWS_REGION ?? 'ap-southeast-2' });
-    //
-    //   Envelope encrypt pattern:
-    //   1. GenerateDataKeyCommand({ KeyId: process.env.KMS_KEY_ID, KeySpec: 'AES_256' })
-    //      → { Plaintext: dataKey, CiphertextBlob: encryptedDataKey }
-    //   2. Use dataKey with aes-256-gcm to encrypt plaintext locally
-    //   3. Store: base64(encryptedDataKey_length_4bytes + encryptedDataKey + iv + tag + ciphertext)
-    //   4. On decrypt: split blob, call DecryptCommand to recover dataKey, then AES-GCM decrypt
-    //
-    // For now fall through to AES path so the code is functional while KMS is unprovisioned.
-    console.warn('[encryption] KMS_KEY_ID is set but @aws-sdk/client-kms is not installed. Falling back to AES-256-GCM. Install @aws-sdk/client-kms and replace the stub in src/lib/encryption.ts.');
+    const kms = getKMSClient();
+
+    // Generate a one-time 256-bit data key from KMS
+    const genResult = await kms.send(new GenerateDataKeyCommand({
+      KeyId: process.env.KMS_KEY_ID,
+      KeySpec: 'AES_256',
+    }));
+
+    if (!genResult.Plaintext || !genResult.CiphertextBlob) {
+      throw new Error('[encryption] KMS GenerateDataKey returned empty key material.');
+    }
+
+    const dataKey      = Buffer.from(genResult.Plaintext);
+    const encDataKey   = Buffer.from(genResult.CiphertextBlob);
+    const iv           = crypto.randomBytes(IV_BYTES);
+
+    // Encrypt the plaintext locally with the data key
+    const cipher = crypto.createCipheriv('aes-256-gcm', dataKey, iv);
+    const enc    = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);
+    const tag    = cipher.getAuthTag();
+
+    // Zero the in-memory data key
+    dataKey.fill(0);
+
+    // Pack: [edkey_len (4)] [encDataKey] [iv (12)] [tag (16)] [ciphertext]
+    const lenBuf = Buffer.allocUnsafe(EDKEY_LEN_BYTES);
+    lenBuf.writeUInt32BE(encDataKey.length, 0);
+    const blob = Buffer.concat([lenBuf, encDataKey, iv, tag, enc]).toString('base64');
+    return `${KMS_PREFIX}${blob}`;
   }
 
   // ── 2. AES-256-GCM path ─────────────────────────────────────────────────
@@ -99,10 +134,33 @@ export async function decrypt(ciphertext: string): Promise<string> {
 
   // ── KMS blob ─────────────────────────────────────────────────────────────
   if (ciphertext.startsWith(KMS_PREFIX)) {
-    // TODO (DR-390): Implement real KMS decryption using @aws-sdk/client-kms.
-    // Until the SDK is installed and the CMK is provisioned this path is unreachable
-    // because encrypt() never produces kms:v1: blobs.
-    throw new Error('[encryption] KMS decrypt is not yet implemented. Install @aws-sdk/client-kms and implement decrypt in src/lib/encryption.ts.');
+    const kms = getKMSClient();
+    const buf = Buffer.from(ciphertext.slice(KMS_PREFIX.length), 'base64');
+
+    // Unpack: [edkey_len (4)] [encDataKey] [iv (12)] [tag (16)] [ciphertext]
+    const edkeyLen  = buf.readUInt32BE(0);
+    const encDataKey = buf.subarray(EDKEY_LEN_BYTES, EDKEY_LEN_BYTES + edkeyLen);
+    const offset     = EDKEY_LEN_BYTES + edkeyLen;
+    const iv         = buf.subarray(offset, offset + IV_BYTES);
+    const tag        = buf.subarray(offset + IV_BYTES, offset + IV_BYTES + TAG_BYTES);
+    const enc        = buf.subarray(offset + IV_BYTES + TAG_BYTES);
+
+    // Recover the data key from KMS
+    const decResult = await kms.send(new DecryptCommand({
+      CiphertextBlob: encDataKey,
+      KeyId: process.env.KMS_KEY_ID,
+    }));
+
+    if (!decResult.Plaintext) {
+      throw new Error('[encryption] KMS Decrypt returned empty key material.');
+    }
+
+    const dataKey = Buffer.from(decResult.Plaintext);
+    const decipher = crypto.createDecipheriv('aes-256-gcm', dataKey, iv);
+    decipher.setAuthTag(tag);
+    const result = Buffer.concat([decipher.update(enc), decipher.final()]).toString('utf8');
+    dataKey.fill(0);
+    return result;
   }
 
   // ── AES blob ─────────────────────────────────────────────────────────────

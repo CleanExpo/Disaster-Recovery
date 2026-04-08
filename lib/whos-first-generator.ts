@@ -374,7 +374,7 @@ export class WhosFirstGenerator {
       title: `${locationText} Family Saves $45,000 by Calling Us First`,
       situation: `A ${this.formatString(variation)} incident occurred in a family home. The homeowner almost called their insurance company first, but remembered our "Who's First?" message.`,
       action: `They called Disaster Recovery immediately. We arrived within 45 minutes, documented everything, stopped damage spread, and coordinated the entire restoration while maximising their insurance claim.`,
-      result: `Insurance covered 95% of costs (industry average: 60%). Total savings: $45,000. Time to resolution: 3 weeks (industry average: 8 weeks). Zero secondary damage.`,
+      result: `Insurance covered the cost of restoration. Secondary damage prevented through early intervention. Time to resolution: 3 weeks. Policyholders who engage restoration specialists early consistently achieve faster resolutions and better outcomes than those who manage the process alone.`,
     };
   }
 
