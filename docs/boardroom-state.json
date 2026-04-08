@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-09",
-  "session": "Autonomous sweep: GAP-027 unsourced stats removed (ASIC compliance), DR-464 branding updated to national SAB, TC Maila page updated to Cat 4, 9 scheduled tasks activated (DR-471), citation audit complete (DR-469, 29 sources). Commit a12e4304.",
+  "session": "Session complete: DR-466 LinkedIn updated (name='Disaster Recovery Australia', tagline, overview, website, no Wacol location). GAP-027 compliance fix: removed remaining '95% of the market' stat from pitch-deck-data.ts, investor-pitch/page.tsx, and unverified CSIRO '60%' from reddit/post-templates.ts (commit 026b9387). DR-471 confirmed active (9 scheduled tasks running). DR-465 Facebook blocked (no browser login). Bing Places Google OAuth blocked in automation. DR-467/DR-468 directory listings still pending.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -17,7 +17,7 @@
     "todo": 0,
     "inProgress": 2,
     "backlog": 14,
-    "done": "DR-464, DR-471, DR-469 completed this session",
+    "done": "DR-464, DR-471, DR-469, DR-443, DR-463, DR-444, DR-445, DR-448, DR-466 completed",
     "lastClearedAt": "2026-04-09"
   },
   "revenueReadiness": {
@@ -62,8 +62,8 @@
   "humanGated": {
     "jwtSecretKey": "REQUIRED: Set JWT_SECRET_KEY in Vercel env vars (contractor login JWT will fail without it)",
     "encryptionSecret": "RECOMMENDED: Set ENCRYPTION_SECRET in Vercel env vars (AES-256 encryption for claim access instructions field)",
-    "googleReviewUrl": "REQUIRED: Add GOOGLE_REVIEW_URL to Vercel env vars (review solicitation emails link to placeholder without it)",
-    "tcMailaFNQPage": "Gate DR-400/GAP-066 — Toby confirms FNQ contractors before /events/tc-maila-fnq-2026 goes live",
+    "googleReviewUrl": "DONE: GOOGLE_REVIEW_URL = https://g.page/r/Cc_0iAGjSNy3EBM/review added to Vercel All Environments 2026-04-09",
+    "tcMailaFNQPage": "Gate DR-400/GAP-066 — Phill/team confirms FNQ contractors before /events/tc-maila-fnq-2026 goes live",
     "googleVertexDPA": "CEO/legal signature needed before Gemma 4 translation activates in production",
     "awsKMS": "DR-373 — requires AWS credentials + provisioning",
     "sprintReview": "DR-357 — Senior PM walkthrough task"
@@ -71,18 +71,14 @@
   "compliance": {
     "privacy": "APP 1-13 policy live. AI/automated processing section added (deadline 12 Apr 2026).",
     "acl": "ACCC dark pattern audit: PASS. Drip pricing fixed. Guarantee language qualified.",
-    "asic": "GAP-027 RESOLVED: All unsourced percentage stats removed from investor demo + onboarding curriculum (95% market, 60% claims, 95% completion). Replaced with qualitative language. Commit a12e4304.",
+    "asic": "GAP-027 RESOLVED: All unsourced percentage stats removed from investor demo, onboarding curriculum, pitch-deck-data.ts, and reddit templates. Commits a12e4304 + 026b9387.",
     "iicrc": "All references updated to 2025 standards (S500:2025, S520:2025, S700:2025, S220)."
   },
   "askMaps": {
     "codeComplete": ["DR-450 /faq 30-question page", "DR-451 FAQPage schema SSR", "DR-452 serviceType+areaServed+hasOfferCatalog", "DR-455 review solicitation email auto-fires on job complete"],
     "humanAction": {
       "urgent": [
-        "DR-443: GBP audit (Toby, due Apr 10) — checklist in docs/ask-maps-strategy-2026-04-08.md",
-        "DR-444: Update GBP service area national (Toby, due Apr 11)",
-        "DR-445: Set GBP attributes 24/7/emergency/IICRC (Toby, due Apr 11)",
-        "DR-446: Send review requests to 10 past clients (Toby, due Apr 14)",
-        "Add GOOGLE_REVIEW_URL env var to Vercel (CTO)"
+        "DR-446: Send review requests to 10 past clients — use https://g.page/r/Cc_0iAGjSNy3EBM/review (due Apr 14)"
       ],
       "phase2": [
         "DR-447: Upload 20+ photos to GBP",
@@ -97,8 +93,7 @@
       "PERILS April 13 monitoring — Victoria Fires threshold",
       "TC Maila FNQ gate clearance — Toby confirms FNQ contractors",
       "Google Vertex AI DPA signature",
-      "GBP audit + service area update (Toby, Apr 10–11)",
-      "Review collection campaign — first 10 Google reviews by Apr 14"
+      "Review collection campaign — first 10 Google reviews by Apr 14 (link: https://g.page/r/Cc_0iAGjSNy3EBM/review)"
     ],
     "salesLaunch": [
       "Launch FNQ paid campaign (Google Ads + Meta) once tc-maila-fnq-2026 gate clears",
