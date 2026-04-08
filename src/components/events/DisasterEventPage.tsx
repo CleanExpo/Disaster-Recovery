@@ -55,6 +55,9 @@ export interface DisasterEventPageProps {
   // Optional — shows ESHA urgency banner
   eshaDeadline?: string
   eshaLGAs?: string[]
+
+  // Optional — displays a severity/status note in the hero (e.g. "Category 5 — 215 km/h sustained winds")
+  alertNote?: string
 }
 
 const EVENT_TYPE_LABELS: Record<EventType, string> = {
@@ -150,6 +153,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
     governmentApplicationUrl,
     governmentApplicationLabel,
     eshaDeadline,
+    alertNote,
     slug,
   } = props
 
@@ -195,11 +199,16 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
         {/* Hero Section */}
         <section className="bg-slate-900 text-white py-16 md:py-24">
           <div className="container mx-auto px-6 max-w-5xl">
-            <div className="mb-4">
+            <div className="mb-4 flex flex-wrap items-center gap-3">
               <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${phaseConfig.badgeColour}`}>
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 {phaseConfig.label}
               </span>
+              {alertNote && (
+                <span className="text-sm font-semibold text-amber-300">
+                  {alertNote}
+                </span>
+              )}
             </div>
             <h1 className="font-display text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
               {eventLabel} {eventName}
