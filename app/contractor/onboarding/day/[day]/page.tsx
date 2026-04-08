@@ -3,8 +3,9 @@
 
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { contractorFetch } from '@/lib/contractor-auth';
 import { 
   ArrowLeft, Play, Pause, CheckCircle, Clock, Download, Upload, 
   BookOpen, Video, Headphones, FileText, ChevronRight, X, 
@@ -56,12 +57,30 @@ function DayTrainingPageOriginal() {
     if (savedProgress) {
       setProgress(JSON.parse(savedProgress));
     }
+    // Mark day as started in DB (fire-and-forget)
+    contractorFetch('/api/contractor/onboarding/progress', {
+      method: 'PATCH',
+      body: JSON.stringify({ day, action: 'start' }),
+    }).catch(() => {});
   }, [day]);
 
   const saveProgress = (newProgress: LearningProgress) => {
     setProgress(newProgress);
     localStorage.setItem(`day_${day}_progress`, JSON.stringify(newProgress));
   };
+
+  const handleCompleteDay = useCallback(async () => {
+    // Persist completion to DB, then navigate back
+    try {
+      await contractorFetch('/api/contractor/onboarding/progress', {
+        method: 'PATCH',
+        body: JSON.stringify({ day, action: 'complete' }),
+      });
+    } catch {
+      // Non-fatal — localStorage already tracks completion
+    }
+    router.push('/contractor/onboarding');
+  }, [day, router]);
 
   const handleVideoProgress = (videoTitle: string, percentage: number) => {
     const newProgress = {
@@ -612,7 +631,7 @@ function DayTrainingPageOriginal() {
                     <p className="font-semibold text-green-900">Module Complete!</p>
                   </div>
                   <button
-                    onClick={() => router.push('/contractor/onboarding')}
+                    onClick={handleCompleteDay}
                     className="mt-3 w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition"
                   >
                     Continue to Next Day

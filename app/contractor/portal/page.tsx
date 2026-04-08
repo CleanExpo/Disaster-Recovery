@@ -5,6 +5,7 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { contractorFetch, contractorLogout, getContractorProfile } from '@/lib/contractor-auth';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -58,95 +59,102 @@ function ContractorPortalPageOriginal() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('available');
 
+  const [dashboardStats, setDashboardStats] = useState<{
+    activeJobs: number; completedThisMonth: number; earningsThisMonth: number;
+  }>({ activeJobs: 0, completedThisMonth: 0, earningsThisMonth: 0 });
+
   useEffect(() => {
-    // Check authentication
-    const auth = localStorage.getItem('contractorAuth');
-    if (!auth) {
+    const profile = getContractorProfile();
+    if (!profile) {
       router.push('/contractor/login');
       return;
     }
-    
-    const contractorData = JSON.parse(auth);
-    setContractor(contractorData);
-    
-    // Load mock jobs
+    setContractor(profile);
     loadJobs();
+    loadDashboard();
   }, []);
 
-  const loadJobs = () => {
-    // Mock jobs data
-    const mockJobs: Job[] = [
-      {
-        id: 'JOB-001',
-        claimId: 'CLM-2025-001',
-        status: 'new',
-        urgency: 'emergency',
-        client: {
-          name: 'Sarah Johnson',
-          phone: '0423 456 789',
-          address: '45 River Street',
-          suburb: 'Brisbane CBD'
-        },
-        damage: {
-          types: ['Water/Flood Damage', 'Mould Growth'],
-          description: 'Burst pipe in bathroom, water damage to 3 rooms'
-        },
-        fee: 2750,
-        submittedAt: new Date(Date.now() - 10 * 60000).toISOString(),
-        deadline: new Date(Date.now() + 50 * 60000).toISOString()
-      },
-      {
-        id: 'JOB-002',
-        claimId: 'CLM-2025-002',
-        status: 'new',
-        urgency: 'urgent',
-        client: {
-          name: 'Michael Chen',
-          phone: '0412 789 456',
-          address: '123 Queen Street',
-          suburb: 'South Brisbane'
-        },
-        damage: {
-          types: ['Fire/Smoke Damage'],
-          description: 'Kitchen fire, smoke damage throughout property'
-        },
-        fee: 2750,
-        submittedAt: new Date(Date.now() - 30 * 60000).toISOString(),
-        deadline: new Date(Date.now() + 30 * 60000).toISOString()
-      },
-      {
-        id: 'JOB-003',
-        claimId: 'CLM-2025-003',
-        status: 'accepted',
-        urgency: 'standard',
-        client: {
-          name: 'Emma Wilson',
-          phone: '0498 765 432',
-          address: '78 Park Avenue',
-          suburb: 'Toowong'
-        },
-        damage: {
-          types: ['Storm/Wind Damage'],
-          description: 'Roof damage from recent storms, water ingress'
-        },
-        fee: 2750,
-        submittedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
-        deadline: new Date(Date.now() + 22 * 3600000).toISOString()
+  const loadJobs = async () => {
+    try {
+      const res = await contractorFetch('/api/contractor/jobs');
+      if (res.ok) {
+        const data = await res.json();
+        const apiJobs = (data.jobs ?? data.data ?? []).map((j: any): Job => ({
+          id: j.id ?? j.jobId ?? '',
+          claimId: j.claimId ?? j.claim?.id ?? '',
+          status: mapStatus(j.status),
+          urgency: mapUrgency(j.urgency ?? j.priority),
+          client: {
+            name: j.customer?.name ?? j.client?.name ?? 'Client',
+            phone: j.customer?.phone ?? j.client?.phone ?? '',
+            address: j.customer?.address ?? j.client?.address ?? j.address ?? '',
+            suburb: j.customer?.suburb ?? j.client?.suburb ?? j.suburb ?? '',
+          },
+          damage: {
+            types: j.service?.types ?? j.damage?.types ?? [j.serviceType ?? 'Restoration'],
+            description: j.notes ?? j.damage?.description ?? j.description ?? '',
+          },
+          fee: j.fee ?? j.amount ?? 2750,
+          submittedAt: j.createdAt ?? j.submittedAt ?? new Date().toISOString(),
+          deadline: j.deadline ?? j.dueDate ?? new Date(Date.now() + 24 * 3600000).toISOString(),
+        }));
+        setJobs(apiJobs);
       }
-    ];
-    
-    setJobs(mockJobs);
-    setLoading(false);
+    } catch {
+      // API may 401 if JWT_SECRET_KEY not set — show empty state
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadDashboard = async () => {
+    try {
+      const res = await contractorFetch('/api/contractor/dashboard');
+      if (res.ok) {
+        const data = await res.json();
+        setDashboardStats({
+          activeJobs: data.overview?.activeJobs ?? 0,
+          completedThisMonth: data.overview?.completedThisMonth ?? 0,
+          earningsThisMonth: data.earnings?.thisMonth ?? 0,
+        });
+      }
+    } catch {
+      // Graceful fallback — stats stay at 0
+    }
+  };
+
+  const mapStatus = (s: string): Job['status'] => {
+    const lower = (s ?? '').toLowerCase();
+    if (lower === 'pending' || lower === 'new' || lower === 'available') return 'new';
+    if (lower === 'assigned' || lower === 'accepted' || lower === 'in_progress') return 'accepted';
+    if (lower === 'completed' || lower === 'done') return 'completed';
+    return 'new';
+  };
+
+  const mapUrgency = (u: string): Job['urgency'] => {
+    const lower = (u ?? '').toLowerCase();
+    if (lower === 'emergency' || lower === 'critical') return 'emergency';
+    if (lower === 'urgent' || lower === 'high') return 'urgent';
+    return 'standard';
   };
 
   const acceptJob = async (jobId: string) => {
-    // Update job status
-    setJobs(prev => prev.map(job => 
-      job.id === jobId ? { ...job, status: 'accepted' as const } : job
-    ));
-    
-    // Show success message
-    alert(`Job ${jobId} accepted! Please contact the client within 60 minutes.`);
+    try {
+      const res = await contractorFetch('/api/contractor/jobs', {
+        method: 'POST',
+        body: JSON.stringify({ jobId, action: 'accept' }),
+      });
+      if (res.ok) {
+        setJobs(prev => prev.map(job =>
+          job.id === jobId ? { ...job, status: 'accepted' as const } : job
+        ));
+      }
+    } catch {
+      // Fallback: update locally anyway for UX
+      setJobs(prev => prev.map(job =>
+        job.id === jobId ? { ...job, status: 'accepted' as const } : job
+      ));
+    }
   };
 
   const getTimeRemaining = (deadline: string) => {
@@ -174,8 +182,7 @@ function ContractorPortalPageOriginal() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('contractorAuth');
-    router.push('/contractor/login');
+    contractorLogout();
   };
 
   if (loading) {
@@ -265,7 +272,7 @@ function ContractorPortalPageOriginal() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-700">Earnings</p>
-                  <p className="text-2xl font-bold">${(jobs.filter(j => j.status === 'accepted' || j.status === 'completed').length * 2750).toLocaleString()}</p>
+                  <p className="text-2xl font-bold">${dashboardStats.earningsThisMonth.toLocaleString()}</p>
                 </div>
                 <DollarSign className="h-8 w-8 text-green-600" />
               </div>

@@ -5,6 +5,7 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { contractorFetch, getContractorProfile } from '@/lib/contractor-auth';
 import { ChevronRight, Lock, CheckCircle, Clock, AlertCircle, BookOpen, Video, Headphones, FileText, Award } from 'lucide-react';
 import { ONBOARDING_PROGRAM } from '@/lib/onboarding/14-day-program';
 import { ModuleProgress, calculateModuleCompletion, canProgressToNextDay } from '@/lib/onboarding/14-day-program';
@@ -32,28 +33,78 @@ function ContractorOnboardingPageOriginal() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load onboarding state from localStorage or API
     const loadOnboardingState = async () => {
+      const profile = getContractorProfile();
+      const contractorId = (profile?.id as string) ?? '';
+
+      // Try loading from DB first
+      try {
+        const res = await contractorFetch('/api/contractor/onboarding/progress');
+        if (res.ok) {
+          const data = await res.json();
+          const completedDays = (data.modules ?? [])
+            .filter((m: any) => m.completed)
+            .map((m: any) => {
+              const match = m.moduleName?.match(/Day (\d+)/);
+              return match ? parseInt(match[1], 10) : 0;
+            })
+            .filter((d: number) => d > 0);
+
+          const moduleProgressMap: Record<number, ModuleProgress> = {};
+          for (const m of data.modules ?? []) {
+            const match = m.moduleName?.match(/Day (\d+)/);
+            if (match) {
+              const dayNum = parseInt(match[1], 10);
+              moduleProgressMap[dayNum] = {
+                day: dayNum,
+                videosWatched: new Map(m.completed ? [['all', 100]] : []),
+                readingsCompleted: m.completed ? ['all'] : [],
+                assignmentsSubmitted: m.completed ? ['all'] : [],
+                documentsUploaded: [],
+                quizScores: new Map(m.score != null ? [['quiz', m.score]] : []),
+                status: m.completed ? 'completed' : 'available',
+                completedAt: m.completedAt ? new Date(m.completedAt) : undefined,
+              };
+            }
+          }
+
+          const state: OnboardingState = {
+            contractorId,
+            applicationStatus: data.currentStep > 0 ? 'in_progress' : 'payment_received',
+            paymentStatus: { applicationFee: true, joiningFee: true, firstSubscription: false },
+            startDate: data.startedAt ?? new Date().toISOString(),
+            currentDay: data.currentStep || 1,
+            completedDays,
+            moduleProgress: moduleProgressMap,
+            competencyScores: {},
+          };
+          setOnboardingState(state);
+          setSelectedDay(state.currentDay);
+          // Write-through to localStorage for offline resilience
+          localStorage.setItem('contractor_onboarding_state', JSON.stringify(state));
+          setLoading(false);
+          return;
+        }
+      } catch {
+        // API unavailable — fall through to localStorage
+      }
+
+      // Fallback: load from localStorage
       const savedState = localStorage.getItem('contractor_onboarding_state');
       if (savedState) {
         const state = JSON.parse(savedState);
         setOnboardingState(state);
         setSelectedDay(state.currentDay);
       } else {
-        // Initialize new onboarding
         const newState: OnboardingState = {
-          contractorId: `CTR-${Date.now()}`,
+          contractorId,
           applicationStatus: 'pending_payment',
-          paymentStatus: {
-            applicationFee: false,
-            joiningFee: false,
-            firstSubscription: false
-          },
+          paymentStatus: { applicationFee: false, joiningFee: false, firstSubscription: false },
           startDate: new Date().toISOString(),
           currentDay: 1,
           completedDays: [],
           moduleProgress: {},
-          competencyScores: {}
+          competencyScores: {},
         };
         setOnboardingState(newState);
         localStorage.setItem('contractor_onboarding_state', JSON.stringify(newState));
