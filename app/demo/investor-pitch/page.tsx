@@ -30,13 +30,13 @@ const slides = [
     subtitle: "A Broken $4.2 Billion Market",
     content: [
       "• 23.7 million Australian properties at flood risk",
-      "• 95% of market controlled by admin companies taking huge cuts",
+      "• Market dominated by admin companies taking huge cuts",
       "• Average claim resolution: 6-12 months",
       "• 115,350 fragmented contractors with no unity",
       "• Only 2% digital penetration in the industry"
     ],
     background: "linear-gradient(135deg, #dc2626 0%, #ea580c 100%)",
-    narration: "Australia faces a massive problem. With 23.7 million properties at flood risk and disasters increasing 35% since the 1990s, the industry is broken. Admin companies control 95% of the market, taking huge cuts while contractors struggle and customers wait months for help."
+    narration: "Australia faces a massive problem. With 23.7 million properties at flood risk and disasters increasing 35% since the 1990s, the industry is broken. Admin companies dominate the market, taking huge cuts while contractors struggle and customers wait months for help."
   },
   {
     id: 3,
