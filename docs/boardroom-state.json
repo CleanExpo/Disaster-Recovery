@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-08",
-  "session": "Linear backlog clearance + production readiness",
+  "session": "Contractor onboarding production barriers — all 5 resolved",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -46,7 +46,18 @@
       "threshold": "Watch PERILS announcement April 13 — if ICA loss > $1B, BUILD-002 escalates to P0"
     }
   },
+  "contractorOnboarding": {
+    "status": "PRODUCTION READY",
+    "barriers": "All 5 resolved — see commit 3d5053b1",
+    "vercelBuild": "prisma migrate deploy now runs on every deploy",
+    "auth": "JWT tokens generated on login, stored in localStorage, sent via Authorisation header",
+    "portal": "Wired to real /api/contractor/jobs and /api/contractor/dashboard",
+    "onboarding": "Progress persists to DB via /api/contractor/onboarding/progress (GET/PATCH)",
+    "receipt": "Download Receipt button generates printable receipt",
+    "remainingHumanAction": "Verify JWT_SECRET_KEY is set in Vercel env vars"
+  },
   "humanGated": {
+    "jwtSecretKey": "Verify JWT_SECRET_KEY is set in Vercel env vars (required for contractor login JWT)",
     "tcMailaFNQPage": "Gate DR-400/GAP-066 — Toby confirms FNQ contractors before /events/tc-maila-fnq-2026 goes live",
     "googleVertexDPA": "CEO/legal signature needed before Gemma 4 translation activates in production",
     "awsKMS": "DR-373 — requires AWS credentials + provisioning",
