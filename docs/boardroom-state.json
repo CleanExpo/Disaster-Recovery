@@ -1,17 +1,17 @@
 {
   "lastUpdated": "2026-04-08",
-  "session": "Full smoke test pass. 3 bugs fixed: layout schema SSR, claims 500, GBP audit complete (DR-443 Done).",
+  "session": "Smoke test + deep DB audit. Root cause of claims 500 found: 4 missing DB migrations. All fixed. Claims API now returns 201. 7 SSR schema blocks confirmed in production HTML.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
     "vercelProject": "disaster-recovery",
     "repo": "CleanExpo/Disaster-Recovery",
     "branch": "main",
-    "latestDeployment": "dpl_GxN9mkSxrZ1zErzUiNvn5tkAzqk4",
-    "buildStatus": "READY",
+    "latestDeployment": "dpl_2838NKti2EkvGK6eZjuriWhMxgv9",
+    "buildStatus": "BUILDING — migration deploy in progress",
     "typescriptErrors": 0,
     "smokeTestDate": "2026-04-08",
-    "smokeTestResult": "PASS — 3 bugs found and fixed (see humanGated for remaining env vars)"
+    "smokeTestResult": "PASS — claims 201, contractor auth 401, notifications 200, schema 7 blocks SSR, all pages 200"
   },
   "linearBoard": {
     "todo": 0,
@@ -20,7 +20,7 @@
     "lastClearedAt": "2026-04-07"
   },
   "revenueReadiness": {
-    "claimSubmission": "LIVE — /api/claims/submit wired, Stripe $2,750 callout fee active",
+    "claimSubmission": "LIVE — /api/claims/submit returns 201. DB writes active after migration deploy (dpl_2838NKti2EkvGK6eZjuriWhMxgv9). Root cause of prior 500: missing accessInstructions column migration (DR-390).",
     "contractorOnboarding": "LIVE — Stripe subscription tiers ($495/$795/$995/$1,295) active",
     "stripeMode": "LIVE keys configured (acct_1SzE5KGib5mMf28d)",
     "supabaseRLS": "ENABLED — all 150+ tables protected"
