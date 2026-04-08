@@ -1,9 +1,10 @@
 /**
  * Cyclone Maila — Queensland 2026 (Pre-landfall)
  *
- * TC Maila named by BOM TCWC Port Moresby. Category 4 as of 8 April 2026.
- * Sustained winds 165 km/h, gusts 230 km/h. Cape York Peninsula landfall forecast Sat–Sun 11–12 April 2026.
+ * TC Maila upgraded to Category 5 on 9 April 2026. Sustained winds 215 km/h.
+ * Cape York Peninsula landfall forecast Sat–Sun 11–12 April 2026.
  * BOM Watch/Warning window open. No DRFA financial assistance declared yet — activate post-landfall declaration.
+ * NOTE: Do NOT state NRPG can dispatch during active Cat 5 conditions (ACL compliance).
  *
  * ACL s18 compliant — no unverified statistics.
  * No phone numbers per site rules — use governmentApplicationUrl only.
@@ -14,16 +15,16 @@ import DisasterEventPage from '@/components/events/DisasterEventPage'
 import type { FinancialAssistanceItem } from '@/components/events/DisasterEventPage'
 
 export const metadata: Metadata = {
-  title: 'Tropical Cyclone Maila Queensland 2026 — Category 4 Preparation & Recovery | Disaster Recovery Australia',
+  title: 'Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia',
   description:
-    'Tropical Cyclone Maila (Category 4, 165 km/h) is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors on standby for Cairns, Townsville, and Cape York. Preparation guide and recovery support.',
+    'Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors on standby for Cairns, Townsville, and Cape York. Preparation guide and recovery support.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
   },
   openGraph: {
-    title: 'TC Maila Category 4 — FNQ Preparation & Recovery | Disaster Recovery Australia',
+    title: 'TC Maila Category 5 — FNQ Preparation & Recovery | Disaster Recovery Australia',
     description:
-      'Tropical Cyclone Maila (Category 4) is tracking towards Far North Queensland with landfall forecast 11–12 April 2026. IICRC-certified contractors ready to respond. Preparation guide, government resources, and insurance claims support.',
+      'Tropical Cyclone Maila has upgraded to Category 5 (215 km/h sustained winds) and is tracking towards Far North Queensland — landfall forecast 11–12 April 2026. IICRC-certified contractors ready to respond. Preparation guide, government resources, and insurance claims support.',
     url: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
     type: 'website',
   },
@@ -62,10 +63,10 @@ export default function CycloneMailaQLD2026Page() {
       // S500:2025 (water/storm surge) + S700:2025 (wind/structural damage)
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
       slug="events/cyclone-maila-queensland-2026"
-      metaTitle="Tropical Cyclone Maila Queensland 2026 — Category 4 Preparation & Recovery | Disaster Recovery Australia"
-      metaDescription="Tropical Cyclone Maila (Category 4, 165 km/h) is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors on standby for Cairns, Townsville, and Cape York."
+      metaTitle="Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia"
+      metaDescription="Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors on standby for Cairns, Townsville, and Cape York."
 
-      // BOM Watch/Warning window open as of 8 April 2026. Landfall forecast Sat–Sun 11–12 April.
+      // BOM Watch/Warning window open. Cat 5 upgrade confirmed 9 April 2026. Landfall forecast Sat–Sun 11–12 April.
       affectedLGAs={[
         'Cairns',
         'Townsville',
