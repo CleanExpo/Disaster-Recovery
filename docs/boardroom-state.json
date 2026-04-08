@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-08",
-  "session": "Smoke test + deep DB audit. Root cause of claims 500 found: 4 missing DB migrations. All fixed. Claims API now returns 201. 7 SSR schema blocks confirmed in production HTML.",
+  "session": "Full smoke test PASS. Root cause of claims 500 found and fixed: 4 missing DB migrations (accessInstructions col + ClaimNotification + PushToken + job_outcome_logs). Real DB writes confirmed (cuid IDs). All endpoints green.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -8,10 +8,10 @@
     "repo": "CleanExpo/Disaster-Recovery",
     "branch": "main",
     "latestDeployment": "dpl_2838NKti2EkvGK6eZjuriWhMxgv9",
-    "buildStatus": "BUILDING — migration deploy in progress",
+    "buildStatus": "READY",
     "typescriptErrors": 0,
     "smokeTestDate": "2026-04-08",
-    "smokeTestResult": "PASS — claims 201, contractor auth 401, notifications 200, schema 7 blocks SSR, all pages 200"
+    "smokeTestResult": "PASS — claims 201 real cuid DB write confirmed, contractor auth 401, notifications 200, schema 7 blocks SSR, tracking 200, all event/contractor pages 200"
   },
   "linearBoard": {
     "todo": 0,
@@ -20,7 +20,7 @@
     "lastClearedAt": "2026-04-07"
   },
   "revenueReadiness": {
-    "claimSubmission": "LIVE — /api/claims/submit returns 201. DB writes active after migration deploy (dpl_2838NKti2EkvGK6eZjuriWhMxgv9). Root cause of prior 500: missing accessInstructions column migration (DR-390).",
+    "claimSubmission": "LIVE — /api/claims/submit returns 201 with real DB cuid. Verified 2026-04-08. Root cause of prior 500 (missing accessInstructions column) fixed in migration 20260408000000.",
     "contractorOnboarding": "LIVE — Stripe subscription tiers ($495/$795/$995/$1,295) active",
     "stripeMode": "LIVE keys configured (acct_1SzE5KGib5mMf28d)",
     "supabaseRLS": "ENABLED — all 150+ tables protected"
