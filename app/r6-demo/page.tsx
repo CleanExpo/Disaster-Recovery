@@ -324,7 +324,7 @@ function R6DemoPageOriginal() {
         <div className="r6-container">
           <div className="r6-text-center">
             <p className="r6-text-light" style={{ opacity: 0.8 }}>
-              © 2025 Disaster Recovery Queensland. All rights reserved.
+              © 2025 Disaster Recovery Australia. All rights reserved.
             </p>
             <p className="r6-text-light r6-text-sm r6-mt-2" style={{ opacity: 0.6 }}>
               IICRC Certified | Insurance Approved | 24/7 Emergency Service

@@ -75,7 +75,7 @@ const professionalSlides = [
     content: {
       headline: "Current System Failures",
       problems: [
-        { issue: "Admin Control", stat: "95%", description: "Market controlled by middlemen taking huge cuts" },
+        { issue: "Admin Control", stat: "Major", description: "Market controlled by middlemen taking huge cuts" },
         { issue: "Resolution Time", stat: "6-12mo", description: "Average claim resolution period" },
         { issue: "Fragmentation", stat: "115,350", description: "Contractors with no unified platform" },
         { issue: "Digital Gap", stat: "2%", description: "Industry digital adoption rate" }
@@ -86,7 +86,7 @@ const professionalSlides = [
     background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
     animation: "fadeScale",
     duration: 11000,
-    narration: "The Australian restoration industry is fundamentally broken. Admin companies control 95% of the market, taking massive cuts while customers wait 6 to 12 months for resolution. With 115,350 fragmented contractors and only 2% digital adoption, the industry desperately needs disruption. This inefficiency costs insurers billions and leaves communities devastated.",
+    narration: "The Australian restoration industry is fundamentally broken. Admin companies dominate the market, taking massive cuts while customers wait 6 to 12 months for resolution. With 115,350 fragmented contractors and only 2% digital adoption, the industry desperately needs disruption. This inefficiency costs insurers billions and leaves communities devastated.",
     speakerNotes: "Paint a vivid picture of the problem. Use specific examples if asked - mention recent floods, bushfires. This slide sets up the need for our solution."
   },
   {

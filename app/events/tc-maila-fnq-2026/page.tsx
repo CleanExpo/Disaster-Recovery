@@ -82,7 +82,7 @@ export default function TCMailaFNQ2026Page() {
       // no classifications or frameworks reproduced from the standards themselves.
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
 
-      // Slug for LocalBusiness schema @id
+      // Slug for ProfessionalService schema @id
       slug="events/tc-maila-fnq-2026"
 
       // SEO

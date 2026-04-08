@@ -120,7 +120,7 @@ const day1: DayContent = {
       id: "D1-LO1",
       title: "Identify Australian Disaster Types",
       description: "Recognise and categorise all major disaster types affecting Australian properties",
-      measurableOutcome: "Correctly identify 15+ disaster types with 95% accuracy",
+      measurableOutcome: "Correctly identify 15+ disaster types with high accuracy",
       assessmentCriteria: "Written assessment and visual identification test"
     },
     {
@@ -159,7 +159,7 @@ Australia faces a unique and challenging disaster profile due to its geographic 
 
 **Major Disaster Categories:**
 
-1. **Water Damage Events (60% of all claims)**
+1. **Water Damage Events (the most common category of claims)**
    - Flash Flooding: The 2022 Eastern Australia floods affected 3.5 million people with damages exceeding $4.8 billion
    - Storm Damage: Severe weather systems cause $1.4 billion in annual insurance claims
    - Burst Pipes: Internal water damage affects 1 in 4 Australian homes annually
@@ -221,7 +221,7 @@ The 24-48 hour window after a disaster is critical. Water damage becomes structu
       `,
       keyPoints: [
         "Australia faces $4.2 billion in annual disaster recovery needs",
-        "Water damage represents 60% of all insurance claims",
+        "Water damage is the most common category of insurance claims in Australia",
         "Climate change is accelerating disaster frequency by 3x",
         "24-48 hour response window is critical for mitigation",
         "Regional differences require specialised knowledge and approaches",
@@ -235,10 +235,10 @@ The 24-48 hour window after a disaster is critical. Water damage becomes structu
       ],
       assessmentQuestions: [
         {
-          question: "What percentage of disaster recovery claims are water-related in Australia?",
-          options: ["40%", "50%", "60%", "70%"],
-          correctAnswer: "60%",
-          explanation: "Water damage, including floods, storms, and burst pipes, represents 60% of all disaster recovery insurance claims in Australia, making it the most common category requiring restoration services.",
+          question: "What is the most common category of disaster recovery claims in Australia?",
+          options: ["Fire damage", "Water damage", "Mould remediation", "Storm damage"],
+          correctAnswer: "Water damage",
+          explanation: "Water damage — including floods, storms, and burst pipes — is the most common category of disaster recovery insurance claims in Australia, requiring the widest range of restoration services.",
           difficulty: 'basic'
         },
         {
@@ -1152,7 +1152,7 @@ const day2: DayContent = {
   day: 2,
   title: "Water Damage Restoration Mastery",
   subtitle: "Science, Process, and Practical Application",
-  overview: `Water damage represents 60% of all restoration work in Australia. Today you'll master the scientific principles, assessment techniques, and restoration procedures that form the foundation of professional water damage restoration. From burst pipes to catastrophic flooding, you'll learn to approach every water loss with confidence and competence.`,
+  overview: `Water damage is the most common category of restoration work in Australia. Today you'll master the scientific principles, assessment techniques, and restoration procedures that form the foundation of professional water damage restoration. From burst pipes to catastrophic flooding, you'll learn to approach every water loss with confidence and competence.`,
   duration: "8 hours",
   difficulty: 'beginner',
   prerequisites: [1],

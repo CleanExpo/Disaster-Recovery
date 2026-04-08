@@ -1,9 +1,9 @@
 /**
  * Cyclone Maila — Queensland 2026 (Pre-landfall)
  *
- * TC Maila named by BOM TCWC Port Moresby. Active system as at 6 April 2026.
- * No BOM Watch/Warning issued for QLD as of 6 April 2026.
- * No DRFA financial assistance declared yet.
+ * TC Maila named by BOM TCWC Port Moresby. Category 4 as of 8 April 2026.
+ * Sustained winds 165 km/h, gusts 230 km/h. Cape York Peninsula landfall forecast Sat–Sun 11–12 April 2026.
+ * BOM Watch/Warning window open. No DRFA financial assistance declared yet.
  *
  * ACL s18 compliant — no unverified statistics.
  */
@@ -41,7 +41,7 @@ export default function CycloneMailaQLD2026Page() {
       metaTitle="Cyclone Maila Queensland 2026 — Disaster Preparation & Recovery | Disaster Recovery Australia"
       metaDescription="Tropical Cyclone Maila is forecast to approach Far North Queensland. IICRC-certified restoration contractors on standby. Preparation guide and recovery support."
 
-      // No BOM Watch/Warning issued as of 6 April 2026.
+      // TC Maila upgraded to Category 4 as of 8 April 2026. BOM Watch/Warning window open.
       affectedLGAs={[]}
       remoteLGAs={[]}
 

@@ -43,7 +43,7 @@ const AUDIT_RESULTS_MOCK: AuditItem[] = [
   { category: 'Microsoft Services', item: 'Windows App Manifest', status: 'pass', severity: 'low', details: 'PWA manifest configured for Windows' },
   { category: 'SEO', item: 'SEMrush Integration', status: 'pass', severity: 'high', details: 'SEMrush API integration configured for keyword tracking' },
   { category: 'SEO', item: 'Meta Tags', status: 'pass', severity: 'critical', details: 'All pages have unique title and description tags' },
-  { category: 'SEO', item: 'Structured Data', status: 'pass', severity: 'high', details: 'Schema.org LocalBusiness markup implemented' },
+  { category: 'SEO', item: 'Structured Data', status: 'pass', severity: 'high', details: 'Schema.org ProfessionalService markup implemented' },
   { category: 'SEO', item: 'Sitemap.xml', status: 'pass', severity: 'high', details: 'Dynamic sitemap generation implemented' },
   { category: 'SEO', item: 'Robots.txt', status: 'pass', severity: 'medium', details: 'Robots.txt file properly configured' },
   { category: 'SEO', item: 'Canonical URLs', status: 'pass', severity: 'high', details: 'Canonical tags implemented on all pages' },

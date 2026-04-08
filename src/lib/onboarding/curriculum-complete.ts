@@ -98,7 +98,7 @@ Australia is one of the most disaster-prone countries globally, with a unique co
 
 ### Major Disaster Categories in Australia
 
-**1. Water-Related Disasters (60% of all claims)**
+**1. Water-Related Disasters (the most common category of claims)**
 - **Flash Flooding**: Sudden, intense rainfall events affecting urban and rural areas
   - Brisbane 2011: $2.3 billion in insured losses
   - Sydney 2022: $3.35 billion in damages across NSW/QLD
@@ -224,13 +224,13 @@ As an NRPG contractor, you are part of a critical infrastructure network:
 
 **NRPG Quality Framework:**
 - Minimum 4.8/5.0 customer satisfaction rating
-- 95% job completion rate within agreed timelines  
+- Target: all jobs completed within agreed timelines
 - Zero safety incidents or regulatory violations
 - Ongoing professional development and certification maintenance
         `,
         keyPoints: [
           "Australia experiences $4.2B annually in disaster recovery needs",
-          "Water damage represents 60% of all disaster claims",
+          "Water damage is the most common category of disaster claims in Australia",
           "Response time is critical - 24-48 hours prevents secondary damage",
           "Regional patterns require specialised knowledge and preparation",
           "IICRC standards are mandatory for all restoration work",
@@ -238,10 +238,10 @@ As an NRPG contractor, you are part of a critical infrastructure network:
         ],
         assessmentQuestions: [
           {
-            question: "What percentage of disaster recovery claims in Australia are water-related?",
-            options: ["45%", "60%", "75%", "80%"],
-            correctAnswer: "60%",
-            explanation: "Water-related disasters account for 60% of all claims, including floods, storms, and plumbing failures."
+            question: "What is the most common category of disaster recovery claims in Australia?",
+            options: ["Fire damage", "Water damage", "Mould remediation", "Storm damage"],
+            correctAnswer: "Water damage",
+            explanation: "Water-related disasters — including floods, storms, and plumbing failures — are the most common category of disaster recovery claims in Australia."
           },
           {
             question: "What is the critical response window to prevent secondary damage from water events?",
@@ -706,7 +706,7 @@ This foundation of professional standards and ethics will guide every decision y
     day: 2,
     title: "Water Damage Restoration Mastery",
     subtitle: "Comprehensive Water Damage Assessment, Mitigation, and Restoration",
-    overview: "Water damage represents 60% of all disaster recovery work in Australia. Today you'll master the complete water damage restoration process from emergency response through final restoration, including the critical science of psychrometry, advanced drying techniques, and contamination management. This knowledge forms the foundation for most of your NRPG contractor work.",
+    overview: "Water damage is the most common category of disaster recovery work in Australia. Today you'll master the complete water damage restoration process from emergency response through final restoration, including the critical science of psychrometry, advanced drying techniques, and contamination management. This knowledge forms the foundation for most of your NRPG contractor work.",
     learningObjectives: [
       {
         id: "day2-obj1",
