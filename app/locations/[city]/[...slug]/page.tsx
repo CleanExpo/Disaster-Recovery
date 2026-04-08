@@ -24,7 +24,7 @@ function buildFAQSchema(faqs: { question: string; answer: string }[]) {
   };
 }
 
-// Build LocalBusiness JSON-LD for suburb-service pages
+// Build ProfessionalService JSON-LD for suburb-service pages
 function buildLocalBusinessSchema(
   city: string,
   cityTitle: string,
