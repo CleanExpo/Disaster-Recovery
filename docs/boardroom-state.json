@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-09",
-  "session": "Session 2 complete: DR-400/GAP-066 CLEARED — tc-maila-fnq-2026 published (gate confirmed by Phill, commit a770fcf8). Events index: FNQ page added as primary Cat 4 entry. docs/review-request-templates.md created (DR-446). DR-449 closed — SAB listing has no Q&A tab. GBP: 49 existing reviews (GAP-074 outdated). DR-465 Facebook blocked (not logged in). DR-467 Bing Places Google OAuth in sandboxed iframe — cannot automate. DR-468 ZoomInfo/RocketReach auto-updating from LinkedIn (4-8 weeks). Linear updated: DR-449, DR-446, DR-465, DR-467, DR-468 all have manual steps documented.",
+  "session": "Session 3 complete: GBP phone 1300 309 361 REMOVED — pending Google review (up to 30 days). Bing Places confirmed GBP-synced — edits must go via GBP. GBP description already clean (no QLD/Brisbane references). Facebook DR-465 blocked (password login required — manual action for Phill). Apple Business Connect DR-467 blocked (Apple ID required — manual action). ZoomInfo DR-468 no company profile found — auto-syncs from LinkedIn. DR-449 closed — SAB has no Q&A tab. All browser tasks attempted; manual-only tasks documented.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -95,9 +95,9 @@
       "PERILS April 13 monitoring — Victoria Fires threshold",
       "Google Vertex AI DPA signature",
       "Review collection campaign — use docs/review-request-templates.md, send to 10+ past clients (due Apr 14)",
-      "GBP phone removal — search 'Disaster Recovery Australia' in Google, click Edit profile → Contact → remove 1300 309 361",
-      "Facebook page — log in as admin, remove Wacol address and phone (DR-465)",
-      "Bing Places — go to bingplaces.com, click Continue with Google (session active), update listing (DR-467)",
+      "GBP phone removal — SUBMITTED 2026-04-09 (pending Google review, up to 30 days)",
+      "Facebook page — log in as admin, remove Wacol address and phone (DR-465) — MANUAL: requires Phill login",
+      "Apple Business Connect — log in with Apple ID at businessconnect.apple.com, claim listing (DR-467) — MANUAL: requires Apple ID",
       "DR-447: Upload 20+ job site photos to GBP"
     ],
     "salesLaunch": [
