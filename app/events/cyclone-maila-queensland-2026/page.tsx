@@ -62,6 +62,7 @@ export default function CycloneMailaQLD2026Page() {
       year={2026}
       // S500:2025 (water/storm surge) + S700:2025 (wind/structural damage)
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
+      alertNote="Category 5 — Sustained winds 215 km/h. Landfall forecast 11–12 April 2026."
       slug="events/cyclone-maila-queensland-2026"
       metaTitle="Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia"
       metaDescription="Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors on standby for Cairns, Townsville, and Cape York."
