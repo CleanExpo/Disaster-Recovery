@@ -43,7 +43,7 @@ If you live anywhere in Australia — from Cairns to Perth, Darwin to Hobart —
 
 ## Why Professional Restoration Matters
 
-Water damage doesn't wait. Within 24-48 hours of water intrusion, mould growth begins. By 72 hours, structural damage becomes significantly more expensive to repair. This is backed by CSIRO research showing properties restored within 48 hours had 60% less structural damage.
+Water damage doesn't wait. Within 24-48 hours of water intrusion, mould growth begins. By 72 hours, structural damage becomes significantly more expensive to repair. Early professional intervention dramatically reduces structural damage costs — the sooner restoration begins, the better the outcome.
 
 {{FACTS}}
 

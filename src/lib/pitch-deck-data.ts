@@ -25,14 +25,14 @@ export const pitchDeckData = {
       background: 'dark',
       animation: 'slideLeft',
       duration: 10000,
-      narration: 'The Australian restoration industry is broken. 95% of the market is controlled by massive administration companies that aren\'t even restoration businesses. They\'re middlemen who\'ve captured the industry through volume deals with insurance companies, forcing skilled contractors into subcontractor roles with razor-thin margins.',
+      narration: 'The Australian restoration industry is broken. The market is dominated by massive administration companies that aren\'t even restoration businesses. They\'re middlemen who\'ve captured the industry through volume deals with insurance companies, forcing skilled contractors into subcontractor roles with razor-thin margins.',
       chart: {
         type: 'bar',
         data: {
           labels: ['Corporate Control', 'Contractor Margins', 'Customer Complaints', 'Market Fragmentation'],
           datasets: [{
             label: 'Industry Problems (%)',
-            data: [95, 15, 68, 85],
+            data: [85, 15, 68, 85],
             backgroundColor: ['#ef4444', '#f97316', '#eab308', '#f87171']
           }]
         }
