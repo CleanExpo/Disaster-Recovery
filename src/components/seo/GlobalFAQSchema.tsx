@@ -18,6 +18,7 @@ const PAGES_WITH_OWN_FAQ = [
   '/guides/water-damage',
   '/guides/fire-damage',
   '/guides/storm-damage',
+  '/faq',
   '/guides/mould',
   '/guides/insurance/should-i-take-a-payout',
   '/guides/insurance/insurance-approved-contractors',

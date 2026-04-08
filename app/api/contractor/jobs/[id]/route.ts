@@ -13,6 +13,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { handleAPIError, successResponse, APIError } from '@/lib/api-error-handler';
 import { prisma } from '@/lib/prisma';
+import { sendEmail, emailTemplates } from '@/lib/email';
 import { z } from 'zod';
 
 const jobUpdateSchema = z.object({
@@ -159,6 +160,21 @@ export async function PATCH(
       });
     }
     // ----------------------------------------------------------------------
+
+    // DR-455: fire review solicitation email when job completes (non-fatal)
+    if (validatedData.status === 'completed' && existing.customerEmail) {
+      const GOOGLE_REVIEW_URL =
+        process.env.GOOGLE_REVIEW_URL ||
+        'https://g.page/r/disasterrecovery-au/review';
+      sendEmail(
+        existing.customerEmail,
+        emailTemplates.reviewSolicitation(
+          existing.customerName,
+          existing.serviceType,
+          GOOGLE_REVIEW_URL,
+        ),
+      ).catch(() => {/* non-fatal */});
+    }
 
     return successResponse({
       message: `Job ${params.id} updated successfully`,

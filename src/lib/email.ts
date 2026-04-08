@@ -361,7 +361,67 @@ export const emailTemplates = {
           <p>Support: partners@disasterrecovery.com.au</p>
         </div>
       </div>
-    ` }) };
+    ` }),
+
+  // DR-455: Post-claim review solicitation — sent when job status transitions to 'completed'
+  reviewSolicitation: (customerName: string, serviceType: string, googleReviewUrl: string) => ({
+    subject: 'How did your restoration go? We\'d love your feedback',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+        <div style="background: #0f172a; padding: 32px; text-align: center;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 22px;">Disaster Recovery Australia</h1>
+          <p style="color: #94a3b8; margin: 8px 0 0;">National Recovery Partners Group</p>
+        </div>
+
+        <div style="padding: 32px;">
+          <p style="font-size: 16px; color: #1e293b;">Hi ${customerName},</p>
+
+          <p style="font-size: 16px; color: #475569; line-height: 1.6;">
+            Your recent ${serviceType} job has been marked complete. We hope the restoration
+            went smoothly and your property is back to normal.
+          </p>
+
+          <p style="font-size: 16px; color: #475569; line-height: 1.6;">
+            If you're satisfied with the service, we'd be grateful if you could leave a quick
+            Google review. It helps other Australians in similar situations find certified restoration help —
+            and it takes less than 2 minutes.
+          </p>
+
+          <div style="background: #fffbeb; border: 1px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 24px 0;">
+            <p style="color: #92400e; font-size: 14px; margin: 0 0 8px;">
+              <strong>Tips for a helpful review:</strong>
+            </p>
+            <ul style="color: #92400e; font-size: 14px; margin: 0; padding-left: 20px; line-height: 2;">
+              <li>Mention the type of damage you had (e.g. water damage, storm damage, mould)</li>
+              <li>Note your location (suburb or city)</li>
+              <li>Share how quickly the contractor responded</li>
+              <li>Mention whether the insurer accepted the documentation</li>
+            </ul>
+          </div>
+
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="${googleReviewUrl}"
+               style="display: inline-block; background: #4285f4; color: white; padding: 14px 32px;
+                      text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
+              Leave a Google Review
+            </a>
+          </div>
+
+          <p style="color: #94a3b8; font-size: 13px; line-height: 1.6;">
+            If anything about your experience was not up to standard, please contact us at
+            <a href="${SITE_URL}/contact" style="color: #0052CC;">disasterrecovery.com.au/contact</a>
+            and we will make it right.
+          </p>
+        </div>
+
+        <div style="background: #f8fafc; padding: 20px; text-align: center; color: #94a3b8; font-size: 12px;">
+          <p>Disaster Recovery Australia — operated by National Recovery Partners Group</p>
+          <p>ABN 47 674 581 410 | <a href="${SITE_URL}" style="color: #64748b;">disasterrecovery.com.au</a></p>
+        </div>
+      </div>
+    `,
+  }),
+};
 
 // Send email function
 export async function sendEmail(to: string | string[], template: { subject: string; html: string; text?: string }) {
