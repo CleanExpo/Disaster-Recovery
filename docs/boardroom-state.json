@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-09",
-  "session": "Session complete: DR-462 Boardroom 27 marked Done. TC Maila live page (cyclone-maila-queensland-2026) updated: Cat 4 LGAs added (Cairns/Townsville/Cape York/Mareeba/Tablelands/Daintree/Cooktown/Douglas), S700:2025 added, phone removed, QLD Hardship + SES assistance added (commits b8bf3af1+1c4b429a). Events index listing updated to Cat 4 red badge. DR-466 LinkedIn done, GAP-027 compliance fix (commits a12e4304+026b9387). DR-471 confirmed active (9 scheduled tasks). DR-465 Facebook blocked. Bing Places Google OAuth blocked. DR-467/DR-468 directory listings pending human action.",
+  "session": "Session 2 complete: DR-400/GAP-066 CLEARED — tc-maila-fnq-2026 published (gate confirmed by Phill, commit a770fcf8). Events index: FNQ page added as primary Cat 4 entry. docs/review-request-templates.md created (DR-446). DR-449 closed — SAB listing has no Q&A tab. GBP: 49 existing reviews (GAP-074 outdated). DR-465 Facebook blocked (not logged in). DR-467 Bing Places Google OAuth in sandboxed iframe — cannot automate. DR-468 ZoomInfo/RocketReach auto-updating from LinkedIn (4-8 weeks). Linear updated: DR-449, DR-446, DR-465, DR-467, DR-468 all have manual steps documented.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -32,7 +32,7 @@
       "liveUrl": "/events/cyclone-maila-queensland-2026",
       "livePageUpdated": "2026-04-09 — Cat 4 LGAs, S700, QLD assistance, phone removed (commit b8bf3af1)",
       "stagedUrl": "/events/tc-maila-fnq-2026",
-      "stagedGate": "DR-400/GAP-066 — Phill/team must confirm active contractors in Cairns/Townsville/Cape York before publishing",
+      "stagedGate": "CLEARED 2026-04-09 — page now LIVE and indexed",
       "forecastLandfall": "2026-04-11 to 2026-04-12 (FNQ Cape York Peninsula)"
     },
     "cycloneNarelle": {
@@ -65,7 +65,7 @@
     "jwtSecretKey": "REQUIRED: Set JWT_SECRET_KEY in Vercel env vars (contractor login JWT will fail without it)",
     "encryptionSecret": "RECOMMENDED: Set ENCRYPTION_SECRET in Vercel env vars (AES-256 encryption for claim access instructions field)",
     "googleReviewUrl": "DONE: GOOGLE_REVIEW_URL = https://g.page/r/Cc_0iAGjSNy3EBM/review added to Vercel All Environments 2026-04-09",
-    "tcMailaFNQPage": "Gate DR-400/GAP-066 — Phill/team confirms FNQ contractors before /events/tc-maila-fnq-2026 goes live",
+    "tcMailaFNQPage": "CLEARED 2026-04-09 — /events/tc-maila-fnq-2026 is LIVE and indexed. Contractors confirmed in Cairns/Townsville/Cape York.",
     "googleVertexDPA": "CEO/legal signature needed before Gemma 4 translation activates in production",
     "awsKMS": "DR-373 — requires AWS credentials + provisioning",
     "sprintReview": "DR-357 — Senior PM walkthrough task"
@@ -88,17 +88,20 @@
         "DR-449: Seed 20 Q&A on GBP (scripts in strategy doc)"
       ]
     },
-    "criticalGap": "GAP-074 — ZERO Google reviews. Platform invisible in Ask Maps until reviews exist."
+    "criticalGap": "GAP-074 OUTDATED — GBP listing has 49 existing reviews (4.7 rating). Q&A seeding (DR-449) not possible for SAB listing type — closed."
   },
   "nextActions": {
     "immediate": [
       "PERILS April 13 monitoring — Victoria Fires threshold",
-      "TC Maila FNQ gate clearance — Toby confirms FNQ contractors",
       "Google Vertex AI DPA signature",
-      "Review collection campaign — first 10 Google reviews by Apr 14 (link: https://g.page/r/Cc_0iAGjSNy3EBM/review)"
+      "Review collection campaign — use docs/review-request-templates.md, send to 10+ past clients (due Apr 14)",
+      "GBP phone removal — search 'Disaster Recovery Australia' in Google, click Edit profile → Contact → remove 1300 309 361",
+      "Facebook page — log in as admin, remove Wacol address and phone (DR-465)",
+      "Bing Places — go to bingplaces.com, click Continue with Google (session active), update listing (DR-467)",
+      "DR-447: Upload 20+ job site photos to GBP"
     ],
     "salesLaunch": [
-      "Launch FNQ paid campaign (Google Ads + Meta) once tc-maila-fnq-2026 gate clears",
+      "TC Maila FNQ page NOW LIVE — launch FNQ paid campaign (Google Ads + Meta) immediately",
       "Onboard first 3–5 NRPG member companies for soft launch revenue"
     ]
   }
