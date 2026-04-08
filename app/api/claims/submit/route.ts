@@ -209,11 +209,12 @@ export async function POST(request: NextRequest) {
     const createdAtIso = new Date().toISOString();
     let trackClaim: TrackClaimPayload | null = null;
 
-    // DR-390: Warn in non-development environments if encryption is not configured.
-    // TODO (DR-390): Ensure KMS_KEY_ID or ENCRYPTION_SECRET is set in Vercel env vars
-    //                before go-live. Remove the NODE_ENV guard once provisioned.
-    if (!isConfigured() && process.env.NODE_ENV !== 'development') {
-      console.error('[security] DR-390: Property access encryption is not configured (no KMS_KEY_ID or ENCRYPTION_SECRET). Claim submission blocked in non-dev environment.');
+    // DR-390: Only block if access instructions are provided and encryption is not configured.
+    // Claims without access instructions do not require encryption and proceed normally.
+    // TODO (DR-390): Set KMS_KEY_ID or ENCRYPTION_SECRET in Vercel env vars to enable
+    //                encrypted access instruction storage.
+    if (body.accessInstructions && !isConfigured() && process.env.NODE_ENV !== 'development') {
+      console.error('[security] DR-390: Property access encryption is not configured (no KMS_KEY_ID or ENCRYPTION_SECRET). Cannot store access instructions without encryption in production.');
       return NextResponse.json({
         success: false,
         error: 'Server configuration error',
