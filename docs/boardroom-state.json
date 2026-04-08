@@ -44,9 +44,10 @@
       "liveUrl": "/events/ex-cyclone-alfred-recovery"
     },
     "victoriaFires": {
-      "status": "ACTIVE — PERILS threshold monitoring",
+      "status": "ICA CATASTROPHE — PERILS update due April 13",
       "liveUrl": "/events/victoria-bushfires-2026",
-      "threshold": "Watch PERILS announcement April 13 — if ICA loss > $1B, BUILD-002 escalates to P0"
+      "perialsInitial": "AU$786M initial estimate (Jan 7-13 event, ~400,000 ha). ICA Insurance Catastrophe declared.",
+      "threshold": "PERILS updated estimate due April 13. If revised > $1B, BUILD-002 escalates to P0. Initial $786M = BELOW threshold but close — monitor carefully."
     }
   },
   "contractorOnboarding": {
