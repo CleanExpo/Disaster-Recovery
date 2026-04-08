@@ -1,15 +1,17 @@
 {
   "lastUpdated": "2026-04-08",
-  "session": "Ask Maps foundation — DR-450/451/452/455 done. 15 GBP tasks remain (human-action).",
+  "session": "Full smoke test pass. 3 bugs fixed: layout schema SSR, claims 500, GBP audit complete (DR-443 Done).",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
     "vercelProject": "disaster-recovery",
     "repo": "CleanExpo/Disaster-Recovery",
     "branch": "main",
-    "latestDeployment": "dpl_FiP6uGU8JHm3VFVoxi6YkR1gS2Dz",
+    "latestDeployment": "dpl_GxN9mkSxrZ1zErzUiNvn5tkAzqk4",
     "buildStatus": "READY",
-    "typescriptErrors": 0
+    "typescriptErrors": 0,
+    "smokeTestDate": "2026-04-08",
+    "smokeTestResult": "PASS — 3 bugs found and fixed (see humanGated for remaining env vars)"
   },
   "linearBoard": {
     "todo": 0,
@@ -57,7 +59,9 @@
     "remainingHumanAction": "Verify JWT_SECRET_KEY is set in Vercel env vars"
   },
   "humanGated": {
-    "jwtSecretKey": "Verify JWT_SECRET_KEY is set in Vercel env vars (required for contractor login JWT)",
+    "jwtSecretKey": "REQUIRED: Set JWT_SECRET_KEY in Vercel env vars (contractor login JWT will fail without it)",
+    "encryptionSecret": "RECOMMENDED: Set ENCRYPTION_SECRET in Vercel env vars (AES-256 encryption for claim access instructions field)",
+    "googleReviewUrl": "REQUIRED: Add GOOGLE_REVIEW_URL to Vercel env vars (review solicitation emails link to placeholder without it)",
     "tcMailaFNQPage": "Gate DR-400/GAP-066 — Toby confirms FNQ contractors before /events/tc-maila-fnq-2026 goes live",
     "googleVertexDPA": "CEO/legal signature needed before Gemma 4 translation activates in production",
     "awsKMS": "DR-373 — requires AWS credentials + provisioning",
