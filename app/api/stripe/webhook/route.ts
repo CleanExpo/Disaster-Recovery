@@ -235,7 +235,87 @@ async function handleWebhook(req: NextRequest) {
                 status: 'failed'
               }
             });
+
+            // Notify contractor of failed payment via email
+            const contractor = await prisma.contractor.findUnique({
+              where: { id: contractorId },
+              select: { email: true, username: true }
+            });
+            if (contractor?.email) {
+              const failureReason = paymentIntent.last_payment_error?.message || 'Payment declined';
+              sendEmail(
+                contractor.email,
+                {
+                  subject: 'Payment Failed — NRPG Onboarding',
+                  html: `<p>Hi ${contractor.username ?? 'Contractor'},</p>
+<p>Your onboarding payment could not be processed. Reason: ${failureReason}</p>
+<p>Please visit <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au'}/contractor/onboarding">your onboarding page</a> to retry the payment.</p>
+<p>If you continue to have issues, please contact us at <a href="https://disasterrecovery.com.au/contact">disasterrecovery.com.au/contact</a>.</p>
+<p>— National Recovery Partners Group</p>`
+                }
+              ).catch(() => {
+                // Non-fatal — email is informational
+              });
+            }
           }
+        }
+        break;
+      }
+
+      case 'customer.subscription.created': {
+        const subscription = event.data.object as Stripe.Subscription;
+        const contractorId = subscription.metadata?.contractorId;
+
+        if (contractorId) {
+          // Activate contractor subscription in the database
+          await prisma.contractorSubscription.updateMany({
+            where: { contractorId },
+            data: {
+              status: 'ACTIVE',
+              startDate: new Date(subscription.current_period_start * 1000),
+              nextBillingDate: new Date(subscription.current_period_end * 1000)
+            }
+          });
+
+          // Update contractor status to approved if not already
+          await prisma.contractor.update({
+            where: { id: contractorId },
+            data: {
+              status: 'APPROVED',
+              approvedAt: new Date()
+            }
+          }).catch(() => {
+            // Non-fatal — contractor may already be approved
+          });
+        }
+        break;
+      }
+
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object as Stripe.Subscription;
+        const contractorId = subscription.metadata?.contractorId;
+
+        if (contractorId) {
+          // Deactivate contractor subscription
+          await prisma.contractorSubscription.updateMany({
+            where: { contractorId },
+            data: {
+              status: 'CANCELLED',
+              cancelledAt: new Date(),
+              endDate: new Date(subscription.current_period_end * 1000)
+            }
+          });
+
+          // Suspend contractor account as subscription has been cancelled
+          await prisma.contractor.update({
+            where: { id: contractorId },
+            data: {
+              status: 'SUSPENDED',
+              suspendedAt: new Date()
+            }
+          }).catch(() => {
+            // Non-fatal
+          });
         }
         break;
       }
