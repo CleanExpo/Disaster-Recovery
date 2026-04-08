@@ -36,7 +36,7 @@ import path from 'node:path';
 
 // Fixed platform fee (optional at submission stage)
 const PLATFORM_FEE = 2750.00;
-const FALLBACK_REPORT_PATH = path.join(process.cwd(), '.reports', 'claim-fallback-submissions.jsonl');
+const FALLBACK_REPORT_PATH = path.join('/tmp', 'claim-fallback-submissions.jsonl');
 
 type TrackClaimPayload = {
   id: string;
@@ -258,8 +258,13 @@ export async function POST(request: NextRequest) {
     } catch (dbError) {
       const fallbackId = `local-${Date.now().toString(36)}`;
       trackClaim = buildTrackClaimFromInput(fallbackId, body, createdAtIso, paymentConfirmed);
-      await writeFallbackClaim(trackClaim);
-      console.error('Claim stored in fallback file because DB write failed:', dbError);
+      try {
+        await writeFallbackClaim(trackClaim);
+      } catch (fsError) {
+        // Vercel serverless filesystem is read-only — log but don't propagate
+        console.error('Fallback file write failed (read-only serverless filesystem):', fsError);
+      }
+      console.error('Claim DB write failed, continuing with in-memory fallback ID:', dbError);
     }
 
     // Send Claim Support Pack email (non-blocking — failures don't block the claim)
