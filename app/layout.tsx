@@ -283,16 +283,58 @@ export default function RootLayout({
                 "opens": "00:00",
                 "closes": "23:59"
               },
+              "serviceType": [
+                "Water Damage Restoration",
+                "Fire Damage Restoration",
+                "Storm Damage Restoration",
+                "Flood Recovery",
+                "Mould Remediation",
+                "Smoke Damage Restoration",
+                "Biohazard Cleanup",
+                "Emergency Make-Safe",
+                "Sewage Cleanup",
+                "Contents Restoration",
+                "Structural Drying",
+                "Insurance Claim Documentation"
+              ],
               "areaServed": [
-                { "@type": "State", "name": "New South Wales" },
-                { "@type": "State", "name": "Victoria" },
-                { "@type": "State", "name": "Queensland" },
-                { "@type": "State", "name": "Western Australia" },
-                { "@type": "State", "name": "South Australia" },
-                { "@type": "State", "name": "Tasmania" },
-                { "@type": "State", "name": "Northern Territory" },
-                { "@type": "State", "name": "Australian Capital Territory" }
-              ]
+                { "@type": "State", "name": "New South Wales", "sameAs": "https://en.wikipedia.org/wiki/New_South_Wales" },
+                { "@type": "State", "name": "Victoria", "sameAs": "https://en.wikipedia.org/wiki/Victoria_(Australia)" },
+                { "@type": "State", "name": "Queensland", "sameAs": "https://en.wikipedia.org/wiki/Queensland" },
+                { "@type": "State", "name": "Western Australia", "sameAs": "https://en.wikipedia.org/wiki/Western_Australia" },
+                { "@type": "State", "name": "South Australia", "sameAs": "https://en.wikipedia.org/wiki/South_Australia" },
+                { "@type": "State", "name": "Tasmania", "sameAs": "https://en.wikipedia.org/wiki/Tasmania" },
+                { "@type": "State", "name": "Northern Territory", "sameAs": "https://en.wikipedia.org/wiki/Northern_Territory" },
+                { "@type": "State", "name": "Australian Capital Territory", "sameAs": "https://en.wikipedia.org/wiki/Australian_Capital_Territory" },
+                { "@type": "City", "name": "Sydney", "containedInPlace": { "@type": "State", "name": "New South Wales" } },
+                { "@type": "City", "name": "Melbourne", "containedInPlace": { "@type": "State", "name": "Victoria" } },
+                { "@type": "City", "name": "Brisbane", "containedInPlace": { "@type": "State", "name": "Queensland" } },
+                { "@type": "City", "name": "Perth", "containedInPlace": { "@type": "State", "name": "Western Australia" } },
+                { "@type": "City", "name": "Adelaide", "containedInPlace": { "@type": "State", "name": "South Australia" } },
+                { "@type": "City", "name": "Cairns", "containedInPlace": { "@type": "State", "name": "Queensland" } },
+                { "@type": "City", "name": "Townsville", "containedInPlace": { "@type": "State", "name": "Queensland" } },
+                { "@type": "City", "name": "Gold Coast", "containedInPlace": { "@type": "State", "name": "Queensland" } },
+                { "@type": "City", "name": "Sunshine Coast", "containedInPlace": { "@type": "State", "name": "Queensland" } },
+                { "@type": "City", "name": "Newcastle", "containedInPlace": { "@type": "State", "name": "New South Wales" } },
+                { "@type": "City", "name": "Wollongong", "containedInPlace": { "@type": "State", "name": "New South Wales" } },
+                { "@type": "City", "name": "Geelong", "containedInPlace": { "@type": "State", "name": "Victoria" } },
+                { "@type": "City", "name": "Ballarat", "containedInPlace": { "@type": "State", "name": "Victoria" } },
+                { "@type": "City", "name": "Darwin", "containedInPlace": { "@type": "State", "name": "Northern Territory" } },
+                { "@type": "City", "name": "Hobart", "containedInPlace": { "@type": "State", "name": "Tasmania" } },
+                { "@type": "City", "name": "Canberra", "containedInPlace": { "@type": "State", "name": "Australian Capital Territory" } }
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Disaster Restoration Services",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Water Damage Restoration", "description": "24/7 emergency water extraction, structural drying, and moisture remediation following Category 1, 2, or 3 water damage events. Follows IICRC S500:2025." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fire & Smoke Damage Restoration", "description": "Make-safe, soot removal, odour elimination, contents pack-out, and full structural reinstatement following fire damage. Follows IICRC S700:2025." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Storm Damage Restoration", "description": "Emergency make-safe, roof tarping, water intrusion control, and reinstatement following cyclone, storm, or hail damage." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flood Recovery", "description": "Category 3 flood water extraction, contamination remediation, structural drying, and insurance documentation for ICA CAT flood events." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mould Remediation", "description": "Air quality assessment, containment, HEPA filtration, antimicrobial treatment, and clearance testing. Follows IICRC S520:2025." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Make-Safe", "description": "Immediate stabilisation to prevent further loss — board-up, tarpaulin, electrical isolation, and structural shoring. 24/7 callout." } }
+                ]
+              }
             })
           }}
         />
