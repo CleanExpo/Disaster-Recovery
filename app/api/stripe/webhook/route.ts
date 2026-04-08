@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import Stripe from 'stripe';
 import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
 import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
+import { sendEmail, emailTemplates } from '@/lib/email';
 
 async function handleWebhook(req: NextRequest) {
   const body = await req.text();
@@ -185,6 +186,21 @@ async function handleWebhook(req: NextRequest) {
             );
           }
           await Promise.all(modulePromises);
+
+          // 5. Fire-and-forget payment confirmation email
+          const contractor = await prisma.contractor.findUnique({
+            where: { id: contractorId },
+            select: { email: true, username: true }
+          });
+          if (contractor?.email) {
+            const displayName = contractor.username ?? 'Contractor';
+            sendEmail(
+              contractor.email,
+              emailTemplates.contractorPaymentConfirmed(displayName, contractorId)
+            ).catch(() => {
+              // Non-fatal — email is informational
+            });
+          }
         }
         break;
       }

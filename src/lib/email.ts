@@ -170,6 +170,104 @@ export const emailTemplates = {
       </div>
     ` }),
 
+  contractorWelcome: (name: string, applicationId: string) => ({
+    subject: 'Application Received — Welcome to National Recovery Partners Group',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+        <div style="background: #0f172a; padding: 32px; text-align: center;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 22px;">National Recovery Partners Group</h1>
+          <p style="color: #94a3b8; margin: 8px 0 0;">Contractor Network — Australia & New Zealand</p>
+        </div>
+
+        <div style="padding: 32px;">
+          <p style="font-size: 16px; color: #1e293b;">Hi ${name},</p>
+
+          <p style="font-size: 16px; color: #475569; line-height: 1.6;">
+            Thank you for applying to join the NRPG contractor network. Your application has been received
+            and your contractor profile has been created.
+          </p>
+
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 16px; border-radius: 4px; margin: 24px 0;">
+            <p style="color: #15803d; margin: 0; font-weight: bold;">Application Reference: ${applicationId}</p>
+          </div>
+
+          <h3 style="color: #1e293b;">What Happens Next</h3>
+          <ol style="color: #475569; line-height: 2;">
+            <li><strong>Complete your onboarding payment</strong> — $275 application fee + $2,200 contractor entitlement ($2,475 total)</li>
+            <li><strong>Begin your 14-day training program</strong> — daily modules covering insurance, IICRC standards, and claims procedures</li>
+            <li><strong>Submit required documentation</strong> — licences, insurance certificates, and IICRC certifications</li>
+            <li><strong>Start receiving leads</strong> — once certified, you will receive insurance claim referrals in your service area</li>
+          </ol>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 24px 0;">
+            <p style="color: #64748b; font-size: 14px; margin: 0 0 8px;">
+              <strong>Subscription reminder:</strong> Month 1 is free while you complete training.
+              Month 2 is charged at 60% off. Full rate from month 4.
+            </p>
+          </div>
+
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="${SITE_URL}/contractor/onboarding"
+               style="display: inline-block; background: #0f172a; color: white; padding: 14px 32px;
+                      text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
+              Continue to Payment &amp; Onboarding
+            </a>
+          </div>
+
+          <p style="color: #94a3b8; font-size: 13px; line-height: 1.6;">
+            If you have questions, please use the contact form at
+            <a href="${SITE_URL}/contact" style="color: #0052CC;">${SITE_URL}/contact</a>.
+            Our team reviews applications within 1–2 business days.
+          </p>
+        </div>
+
+        <div style="background: #f8fafc; padding: 20px; text-align: center; color: #94a3b8; font-size: 12px;">
+          <p>National Recovery Partners Group | ABN 47 674 581 410</p>
+          <p><a href="${SITE_URL}" style="color: #64748b;">disasterrecovery.com.au</a></p>
+        </div>
+      </div>
+    `,
+  }),
+
+  contractorPaymentConfirmed: (name: string, applicationId: string) => ({
+    subject: 'Payment Confirmed — Your NRPG Onboarding Has Begun',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+        <div style="background: #0f172a; padding: 32px; text-align: center;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 22px;">Payment Confirmed</h1>
+          <p style="color: #94a3b8; margin: 8px 0 0;">National Recovery Partners Group</p>
+        </div>
+
+        <div style="padding: 32px;">
+          <p style="font-size: 16px; color: #1e293b;">Hi ${name},</p>
+
+          <p style="font-size: 16px; color: #475569; line-height: 1.6;">
+            Your payment of <strong>$2,475.00 AUD</strong> has been confirmed. Your 14-day onboarding program is now active.
+          </p>
+
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 16px; border-radius: 4px; margin: 24px 0;">
+            <p style="color: #15803d; margin: 0;"><strong>Application Reference:</strong> ${applicationId}</p>
+            <p style="color: #15803d; margin: 8px 0 0;"><strong>Amount Paid:</strong> $2,475.00 AUD</p>
+            <p style="color: #15803d; margin: 8px 0 0;"><strong>Onboarding Status:</strong> Active — Day 1 unlocked</p>
+          </div>
+
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="${SITE_URL}/contractor/onboarding"
+               style="display: inline-block; background: #16a34a; color: white; padding: 14px 32px;
+                      text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
+              Start Day 1 Training
+            </a>
+          </div>
+        </div>
+
+        <div style="background: #f8fafc; padding: 20px; text-align: center; color: #94a3b8; font-size: 12px;">
+          <p>National Recovery Partners Group | ABN 47 674 581 410</p>
+          <p><a href="${SITE_URL}" style="color: #64748b;">disasterrecovery.com.au</a></p>
+        </div>
+      </div>
+    `,
+  }),
+
   partnerLeadAssignment: (partnerData: any, leadData: any) => ({
     subject: `New $${leadData.leadValue} Lead Assignment - ${leadData.suburb}`,
     html: `
