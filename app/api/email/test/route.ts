@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyEmailConfig, sendEmail } from '@/lib/email';
+import { sendEmail } from '@/lib/email';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 
 export async function POST(request: NextRequest) {
@@ -11,15 +11,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: false,
         message: 'Admin authentication required' }, { status: 401 });
-    }
-    
-    // Verify email configuration
-    const configValid = await verifyEmailConfig();
-    
-    if (!configValid) {
-      return NextResponse.json({
-        success: false,
-        message: 'Email configuration is not valid. Please check SMTP settings.' }, { status: 500 });
     }
     
     // Parse request body
@@ -70,18 +61,16 @@ export async function POST(request: NextRequest) {
         </div>
       ` };
     
-    const result = await sendEmail(recipientEmail, testEmail);
-    
-    if (result.success) {
+    const sent = await sendEmail(recipientEmail, testEmail);
+
+    if (sent) {
       return NextResponse.json({
         success: true,
-        message: 'Test email sent successfully',
-        messageId: result.messageId }, { status: 200 });
+        message: 'Test email sent successfully' }, { status: 200 });
     } else {
       return NextResponse.json({
         success: false,
-        message: 'Failed to send test email',
-        error: result.error }, { status: 500 });
+        message: 'Failed to send test email — check RESEND_API_KEY in environment' }, { status: 500 });
     }
     
   } catch (error) {
@@ -105,18 +94,17 @@ export async function GET(request: NextRequest) {
         message: 'Admin authentication required' }, { status: 401 });
     }
     
-    // Check email configuration status
-    const configValid = await verifyEmailConfig();
-    
+    const configured = !!process.env.RESEND_API_KEY;
     return NextResponse.json({
       success: true,
-      configured: configValid,
+      configured,
       settings: {
-        host: process.env.SMTP_HOST || 'smtp.gmail.com',
-        port: process.env.SMTP_PORT || '587',
-        secure: process.env.SMTP_SECURE === 'true',
-        from: process.env.EMAIL_FROM || 'noreply@disasterrecovery.com.au',
-        userConfigured: !!process.env.SMTP_USER } }, { status: 200 });
+        provider: 'Resend',
+        from: process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev',
+        fromName: process.env.RESEND_FROM_NAME ?? 'Disaster Recovery',
+        keyConfigured: configured,
+      },
+    }, { status: 200 });
     
   } catch (error) {
     console.error('Email config check error:', error);

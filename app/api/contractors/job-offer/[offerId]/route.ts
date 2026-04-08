@@ -21,6 +21,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { findNextContractor, OFFER_TIMEOUT_MINUTES } from '@/lib/contractor-matching';
+import { sendEmail, emailTemplates } from '@/lib/email';
 
 interface OfferActionBody {
   action: 'accept' | 'decline';
@@ -43,7 +44,11 @@ export async function PATCH(
             serviceType: true,
             coordinates: true,
             status: true,
+            suburb: true,
           },
+        },
+        contractor: {
+          select: { email: true, username: true },
         },
       },
     });
@@ -133,6 +138,14 @@ export async function PATCH(
         data: { status: 'expired' },
       });
 
+      // Notify contractor of acceptance
+      const ctEmail = offer.contractor?.email;
+      const ctName = offer.contractor?.username ?? 'Contractor';
+      const suburb = offer.job.suburb ?? 'your area';
+      if (ctEmail) {
+        sendEmail(ctEmail, emailTemplates.jobOfferAccepted(ctName, offerId, offer.job.serviceType, suburb)).catch(() => {});
+      }
+
       return NextResponse.json({
         success: true,
         message: 'Job accepted successfully',
@@ -146,6 +159,14 @@ export async function PATCH(
       where: { id: offerId },
       data: { status: 'declined' },
     });
+
+    // Notify contractor of declination
+    const dctEmail = offer.contractor?.email;
+    const dctName = offer.contractor?.username ?? 'Contractor';
+    const dSuburb = offer.job.suburb ?? 'your area';
+    if (dctEmail) {
+      sendEmail(dctEmail, emailTemplates.jobOfferDeclined(dctName, offer.job.serviceType, dSuburb)).catch(() => {});
+    }
 
     // Determine job location for cascade
     const coords = offer.job.coordinates as { lat?: number; lng?: number } | null;

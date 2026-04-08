@@ -10,6 +10,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { findNextContractor, OFFER_TIMEOUT_MINUTES } from '@/lib/contractor-matching';
+import { sendEmail, emailTemplates } from '@/lib/email';
 
 interface DistributeJobBody {
   jobId: string;
@@ -79,6 +80,24 @@ export async function POST(request: NextRequest) {
         },
       },
     });
+
+    // Send job offer email to contractor
+    if (contractor?.email) {
+      const suburb = (job as Record<string, unknown>).suburb as string | undefined ?? 'your area';
+      sendEmail(
+        contractor.email,
+        emailTemplates.jobOfferNew(
+          contractor.username ?? 'Contractor',
+          offer.id,
+          {
+            serviceType: jobType,
+            suburb,
+            expiresAt,
+            requiresLiabilityAck: match.requiresLiabilityAck,
+          }
+        )
+      ).catch(() => {});
+    }
 
     return NextResponse.json({
       success: true,
