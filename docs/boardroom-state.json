@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-04-08",
-  "session": "Full smoke test PASS. Root cause of claims 500 found and fixed: 4 missing DB migrations (accessInstructions col + ClaimNotification + PushToken + job_outcome_logs). Real DB writes confirmed (cuid IDs). All endpoints green.",
+  "lastUpdated": "2026-04-09",
+  "session": "Autonomous sweep: GAP-027 unsourced stats removed (ASIC compliance), DR-464 branding updated to national SAB, TC Maila page updated to Cat 4, 9 scheduled tasks activated (DR-471), citation audit complete (DR-469, 29 sources). Commit a12e4304.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -15,9 +15,10 @@
   },
   "linearBoard": {
     "todo": 0,
-    "inProgress": 0,
-    "backlog": 0,
-    "lastClearedAt": "2026-04-07"
+    "inProgress": 2,
+    "backlog": 14,
+    "done": "DR-464, DR-471, DR-469 completed this session",
+    "lastClearedAt": "2026-04-09"
   },
   "revenueReadiness": {
     "claimSubmission": "LIVE — /api/claims/submit returns 201 with real DB cuid. Verified 2026-04-08. Root cause of prior 500 (missing accessInstructions column) fixed in migration 20260408000000.",
@@ -27,7 +28,7 @@
   },
   "activeEvents": {
     "tcMaila": {
-      "status": "PRE-LANDFALL",
+      "status": "CATEGORY 4 — PRE-LANDFALL",
       "liveUrl": "/events/cyclone-maila-queensland-2026",
       "stagedUrl": "/events/tc-maila-fnq-2026",
       "stagedGate": "DR-400/GAP-066 — Toby must confirm active contractors in Cairns/Townsville/Cape York",
@@ -70,7 +71,7 @@
   "compliance": {
     "privacy": "APP 1-13 policy live. AI/automated processing section added (deadline 12 Apr 2026).",
     "acl": "ACCC dark pattern audit: PASS. Drip pricing fixed. Guarantee language qualified.",
-    "asic": "Unsourced percentage stats removed (95%, 70%, 60% claims).",
+    "asic": "GAP-027 RESOLVED: All unsourced percentage stats removed from investor demo + onboarding curriculum (95% market, 60% claims, 95% completion). Replaced with qualitative language. Commit a12e4304.",
     "iicrc": "All references updated to 2025 standards (S500:2025, S520:2025, S700:2025, S220)."
   },
   "askMaps": {
