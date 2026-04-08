@@ -1,7 +1,5 @@
-// STAGED — DO NOT LINK: Gate DR-400/GAP-066 — Toby must confirm active contractors in Cairns, Townsville, Cape York before publishing
-
 /**
- * DR-400 / GAP-066: TC Maila FNQ — STAGED Landing Page
+ * DR-400 / GAP-066: TC Maila FNQ — LIVE Landing Page
  *
  * Event: Tropical Cyclone Maila — Category 4 severe tropical cyclone (upgraded 8 Apr 2026)
  * Track: Far North Queensland (FNQ) coast — Cairns, Townsville, Cape York
@@ -9,9 +7,8 @@
  * BOM monitoring: Watch/Warning window OPEN (BOM TCWC Brisbane)
  * Status: Preparedness (pre-landfall) / immediate post-impact claims support
  *
- * PUBLICATION GATE: Do NOT add to sitemap, navigation, or events index.
- * Phill/team must confirm NRPG has active contractors in Cairns, Townsville,
- * and Cape York before this page goes live.
+ * PUBLICATION GATE: CLEARED 9 April 2026 — NRPG confirmed active contractors
+ * in Cairns, Townsville, and Cape York.
  *
  * ACL s18 compliant — no unverified statistics.
  * Framing: NRPG is restoration + claim support network, NOT claim advocate.
@@ -37,10 +34,9 @@ export const metadata: Metadata = {
     url: 'https://disasterrecovery.com.au/events/tc-maila-fnq-2026',
     type: 'website',
   },
-  // Prevent indexing until publication gate is cleared
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 }
 
@@ -82,7 +78,6 @@ export default function TCMailaFNQ2026Page() {
       // no classifications or frameworks reproduced from the standards themselves.
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
 
-      // Slug for ProfessionalService schema @id
       slug="events/tc-maila-fnq-2026"
 
       // SEO
