@@ -3,14 +3,14 @@
 /**
  * DR-400 / GAP-066: TC Maila FNQ — STAGED Landing Page
  *
- * Event: Tropical Cyclone Maila — Category 3 severe tropical cyclone
+ * Event: Tropical Cyclone Maila — Category 4 severe tropical cyclone (upgraded 8 Apr 2026)
  * Track: Far North Queensland (FNQ) coast — Cairns, Townsville, Cape York
- * Forecast period: Weekend 11–12 April 2026
- * BOM monitoring: Active system (BOM TCWC Brisbane)
+ * Sustained winds: 165 km/h, gusts 230 km/h. Forecast landfall: 11–12 April 2026.
+ * BOM monitoring: Watch/Warning window OPEN (BOM TCWC Brisbane)
  * Status: Preparedness (pre-landfall) / immediate post-impact claims support
  *
  * PUBLICATION GATE: Do NOT add to sitemap, navigation, or events index.
- * Toby must confirm NRPG has active contractors in Cairns, Townsville,
+ * Phill/team must confirm NRPG has active contractors in Cairns, Townsville,
  * and Cape York before this page goes live.
  *
  * ACL s18 compliant — no unverified statistics.
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Tropical Cyclone Maila — FNQ Claims Support | Disaster Recovery Australia',
     description:
-      'TC Maila (Category 3) is tracking towards Far North Queensland. IICRC-certified contractors on standby for Cairns, Townsville, and Cape York. Prepare now — claims support ready for post-impact.',
+      'TC Maila (Category 4) is tracking towards Far North Queensland. IICRC-certified contractors on standby for Cairns, Townsville, and Cape York. Prepare now — claims support ready for post-impact.',
     url: 'https://disasterrecovery.com.au/events/tc-maila-fnq-2026',
     type: 'website',
   },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 /**
  * QLD Personal Hardship Assistance — referenced as preparedness notice.
  * Program activates post-disaster declaration by QLD Government.
- * No amounts listed — not yet declared as of staging date (7 April 2026).
+ * No amounts listed — not yet declared as of 9 April 2026. Activate post-landfall declaration.
  */
 const financialAssistanceItems: FinancialAssistanceItem[] = [
   {
@@ -87,7 +87,7 @@ export default function TCMailaFNQ2026Page() {
 
       // SEO
       metaTitle="Tropical Cyclone Maila — FNQ Claims Support | Disaster Recovery Australia"
-      metaDescription="Tropical Cyclone Maila (Category 3) is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified contractors on standby for Cairns, Townsville, and Cape York. Wind damage, storm surge, flash flooding, water extraction, and structural assessment."
+      metaDescription="Tropical Cyclone Maila (Category 4) is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified contractors on standby for Cairns, Townsville, and Cape York. Wind damage, storm surge, flash flooding, water extraction, and structural assessment."
 
       // Affected areas — primary FNQ landfall zone per BOM forecast track
       affectedLGAs={[
