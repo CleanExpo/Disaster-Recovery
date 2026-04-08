@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Disaster Recovery Australia',
@@ -212,8 +211,8 @@ const FAQ_CATEGORIES = [
 export default function FAQIndexPage() {
   return (
     <>
-      <Script
-        id="faq-page-schema"
+      {/* Raw <script> ensures JSON-LD is in SSR HTML for Googlebot / Gemini crawling */}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
