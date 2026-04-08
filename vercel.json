@@ -39,6 +39,10 @@
     {
       "path": "/api/cron/gbp-poster",
       "schedule": "0 19 * * 0"
+    },
+    {
+      "path": "/api/cron/expire-job-offers",
+      "schedule": "*/5 * * * *"
     }
   ],
   "rewrites": [
