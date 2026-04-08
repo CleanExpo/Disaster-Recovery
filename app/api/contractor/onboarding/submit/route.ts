@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { sendEmail, emailTemplates } from '@/lib/email';
 import crypto from 'crypto';
 
 const PAYMENT_AMOUNT_AUD = 2475;
@@ -70,6 +71,13 @@ export async function POST(request: Request) {
       }
 
       contractorId = contractor.id;
+
+      // Fire-and-forget welcome email — non-fatal if SMTP not configured
+      if (email && contactName) {
+        sendEmail(email, emailTemplates.contractorWelcome(contactName, record.id)).catch(() => {
+          // Silently swallow — email is informational, not critical path
+        });
+      }
     }
 
     return NextResponse.json(
