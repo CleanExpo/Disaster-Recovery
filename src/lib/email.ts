@@ -260,7 +260,7 @@ export const emailTemplates = {
     `),
   }),
 
-  jobOfferAccepted: (name: string, offerId: string, serviceType: string, suburb: string) => ({
+  jobOfferAccepted: (name: string, _offerId: string, serviceType: string, suburb: string) => ({
     subject: `Job Confirmed — ${serviceType} in ${suburb}`,
     html: wrap(`
       <h2>Job Accepted</h2>
@@ -270,7 +270,7 @@ export const emailTemplates = {
         <strong>Location:</strong> ${suburb}
       </div>
       <p>Please contact the property owner promptly to confirm your arrival time.</p>
-      <a class="btn" href="${SITE_URL}/contractor/jobs/${offerId}">View Job Details</a>
+      <a class="btn" href="${SITE_URL}/contractor-portal/jobs">View My Jobs</a>
     `),
   }),
 
