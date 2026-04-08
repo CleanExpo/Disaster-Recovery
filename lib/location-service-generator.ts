@@ -629,7 +629,6 @@ export class LocationServiceGenerator {
       name: `Disaster Recovery ${location.city}`,
       description: `Professional ${service.type} services in ${suburb || location.city}, ${location.state}`,
       url: `https://disasterrecovery.com.au`,
-      telephone: '1800000000',
       address: {
         '@type': 'PostalAddress',
         addressLocality: suburb || location.city,
