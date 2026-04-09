@@ -11,14 +11,15 @@ import { Document } from '@langchain/core/documents'
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 import { OpenAI } from 'openai'
 import { getElysiaConfig } from '@/lib/config/elysia-config'
-import { 
-  RAGQuerySchema, 
-  RAGResponseSchema, 
+import {
+  RAGQuerySchema,
+  RAGResponseSchema,
   RAGSourceSchema,
   DocumentSchema,
   type RAGQuery,
   type RAGResponse,
-  type RAGSource
+  type RAGSource,
+  type Document as RAGDocument
 } from './types'
 
 // Initialize configuration
@@ -370,7 +371,7 @@ export const RAGEngine = new Elysia({ name: 'rag-engine' })
   })
   .post('/query', async ({ body, ragService }) => {
     try {
-      const result = await ragService.query(body)
+      const result = await ragService.query(body as RAGQuery)
       return {
         success: true,
         data: result,
@@ -418,7 +419,8 @@ export const RAGEngine = new Elysia({ name: 'rag-engine' })
   })
   .post('/documents', async ({ body, ragService }) => {
     try {
-      const documents = body.documents.map(doc => new Document({
+      const typedBody = body as { documents: RAGDocument[] }
+      const documents = typedBody.documents.map(doc => new Document({
         pageContent: doc.content,
         metadata: doc.metadata
       }))
