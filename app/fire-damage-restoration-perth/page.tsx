@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does WA home insurance cover bushfire damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes — the fire provision in standard WA policies covers direct bushfire damage to building and contents. Ember attack is covered under the fire peril. Document all visible damage — ember entry points, heat damage to roof cavities, and any structural charring — before any emergency work begins.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I claim for smoke damage from a nearby Perth bushfire?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes — smoke damage without direct fire contact is covered under the fire and smoke provisions of most standard policies. Document the smoke source — BOM records and media coverage confirm the event date and proximity. Photograph all affected surfaces including roof spaces and HVAC intake vents.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does fire damage restoration take in Perth?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Minor smoke and soot damage: 1–2 weeks. Moderate structural fire damage: 4–8 weeks. Major or total loss: 3–12 months. Timeline depends on structural scope and insurer approval. NRPG provides a project timeline as part of the initial S700:2025 assessment scope.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why use IICRC S700:2025 certified contractors for Perth fire damage?',
+      acceptedAnswer: { '@type': 'Answer', text: "S700:2025 governs restoration methodology — thermal fogging for odour, HEPA filtration for smoke particulates, and specific protocols suited to Perth's dry Mediterranean climate. Insurers require S700 documentation for claim sign-off. Non-certified contractors cannot produce the scope documentation needed for insurer approval." },
+    },
+  ],
+};
+
 export default function FireDamageRestorationPerthPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="fdrperth-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="fdrperth-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="fdrperth-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Perth"
