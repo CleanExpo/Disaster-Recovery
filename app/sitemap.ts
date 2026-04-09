@@ -206,6 +206,7 @@ const PRIORITY_MAP: Record<string, number> = {
   '/fire-damage-restoration-geelong': 0.75,
   '/storm-damage-restoration-sunshine-coast': 0.85,
   '/flood-damage-restoration-canberra': 0.7,
+  '/fire-damage-restoration-canberra': 0.75,
   '/guides/cost-guides/how-much-storm-damage-restoration-cost': 0.85,
   '/guides/cost-guides/how-much-fire-damage-restoration-cost': 0.85,
   '/events': 0.7,
