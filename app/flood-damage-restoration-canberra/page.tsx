@@ -88,7 +88,7 @@ export default function FloodDamageRestorationCanberraPage() {
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
-          { label: 'Flood Damage', href: '/services/flood-damage' },
+          { label: 'Flood Damage', href: '/services/water-damage' },
           { label: 'Canberra' },
         ]}
         sections={[

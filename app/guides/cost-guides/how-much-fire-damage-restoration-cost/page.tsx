@@ -351,7 +351,7 @@ export default function HowMuchFireDamageRestorationCostPage() {
         },
         {
           title: 'Smoke Damage Restoration Guide',
-          href: '/guides/smoke-damage',
+          href: '/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard',
           description: 'How IICRC S700-certified contractors remove smoke, soot, and odour after a fire.',
         },
         {

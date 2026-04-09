@@ -301,8 +301,8 @@ export default function StormDamageRestorationGoldCoastPage() {
         ]}
         relatedGuides={[
           { title: 'Storm Damage Restoration Cost Guide Australia 2026', href: '/guides/cost-guides/how-much-storm-damage-restoration-cost', description: 'Detailed cost breakdown for storm damage repair by severity and damage type.' },
-          { title: 'How to Document Storm Damage for Insurance', href: '/guides/insurance/document-storm-damage-insurance', description: 'Step-by-step guide to documenting storm damage for a successful insurance claim.' },
-          { title: 'Emergency Roof Tarping and Make-Safe Guide', href: '/guides/services/emergency-roof-tarping-make-safe', description: 'What emergency make-safe involves and why it must happen within hours of a storm event.' },
+          { title: 'How to Document Storm Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', description: 'Step-by-step guide to documenting storm damage for a successful insurance claim.' },
+          { title: 'Emergency Roof Tarping and Make-Safe Guide', href: '/guides/emergency/emergency-board-up-storm-damage', description: 'What emergency make-safe involves and why it must happen within hours of a storm event.' },
           { title: 'What Does Disaster Recovery Include?', href: '/guides/services/what-disaster-recovery-includes', description: 'Full breakdown of what our restoration service covers from make-safe to rebuild.' },
         ]}
         cta={{ text: 'Get Emergency Help Now', href: '/claim' }}
