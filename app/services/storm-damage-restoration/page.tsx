@@ -628,7 +628,7 @@ export default function StormDamageRestorationPage() {
           },
           {
             title: 'Storm Damage Cost Guide',
-            href: '/cost/storm-damage',
+            href: '/guides/cost-guides/how-much-storm-damage-restoration-cost',
             description:
               'Indicative pricing for common storm damage repairs including roof replacement, water damage drying and structural works.',
           },

@@ -745,7 +745,7 @@ export default function BushfireDamageRestorationPage() {
           },
           {
             title: 'Bushfire Damage Cost Guide',
-            href: '/cost/fire-damage',
+            href: '/guides/cost-guides/how-much-fire-damage-restoration-cost',
             description:
               'Indicative pricing for bushfire damage restoration including smoke cleanup, structural repairs, asbestos removal and full rebuild costs.',
           },
