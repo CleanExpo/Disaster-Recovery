@@ -5,6 +5,53 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What should I do immediately after a fire in my home?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Do not re-enter until emergency services confirm the structure is safe. Contact your insurer to lodge your claim. Photograph all visible damage before any cleanup begins. Do not attempt to clean soot yourself — disturbing soot residue can embed it further and complicate the restoration scope.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does home insurance cover fire and smoke damage in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes — fire and smoke damage is one of the most commonly covered perils under Australian home insurance policies. This typically includes structural fire damage, smoke odour treatment, soot removal, and contents replacement. Lodge your claim promptly and request an IICRC-certified assessor.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is smoke odour removed after a fire?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Professional smoke odour remediation uses a combination of thermal fogging, ozone treatment, hydroxyl generation, and HEPA filtration. IICRC-certified technicians assess which method is appropriate based on the fire type, building materials, and affected surfaces. Surface cleaning alone is insufficient for embedded smoke particles.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is soot dangerous to health?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Soot contains fine particulate matter, volatile organic compounds (VOCs), and potentially carcinogenic residues depending on what burned. Exposure causes respiratory irritation and long-term health risks. IICRC-certified contractors use PPE and HEPA-filtered equipment for safe removal.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does fire damage restoration take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For moderate fire damage, content cleaning and smoke odour treatment typically takes 1–2 weeks. Structural repairs including wall replacement, flooring, and painting take 4–12 weeks. Extensive losses requiring structural rebuilding may take 3–6 months, subject to insurer approval timelines.',
+      },
+    },
+  ],
+}
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -64,6 +111,9 @@ export const metadata: Metadata = {
 export default function FireDamagePage() {
   return (
     <>
+    <Script id="fire-damage-faq-schema" type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
     <Script id="fire-damage-schema" type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
     />
