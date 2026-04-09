@@ -167,6 +167,8 @@ const PRIORITY_MAP: Record<string, number> = {
   '/storm-damage-restoration-adelaide': 0.85,
   '/water-damage-restoration-gold-coast': 0.9,
   '/flood-damage-restoration-gold-coast': 0.9,
+  '/water-damage-restoration-sunshine-coast': 0.9,
+  '/mould-remediation-adelaide': 0.85,
   '/guides/cost-guides/how-much-storm-damage-restoration-cost': 0.85,
   '/guides/cost-guides/how-much-fire-damage-restoration-cost': 0.85,
   '/events': 0.7,
