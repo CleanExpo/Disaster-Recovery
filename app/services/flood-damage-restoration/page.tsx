@@ -645,7 +645,7 @@ export default function FloodDamageRestorationPage() {
           },
           {
             title: 'Flood Damage Cost Guide',
-            href: '/cost/flood-damage',
+            href: '/guides/cost-guides/how-much-flood-damage-restoration-cost',
             description:
               'Understand flood damage restoration costs across Australia. Pricing by category, property size and region.',
           },
