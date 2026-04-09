@@ -19,7 +19,8 @@
   },
   "regions": ["syd1"],
   "github": {
-    "enabled": false
+    "enabled": false,
+    "silent": true
   },
   "functions": {
     "app/api/cron/reddit-orchestrator/route.ts": {

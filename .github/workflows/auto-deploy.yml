@@ -149,3 +149,39 @@ jobs:
             description: status === 'success' ? 'Deploy + smoke tests passed' : 'Deploy or smoke tests failed',
             context: 'vercel/gated-deployment'
           })
+
+  # ── Gate 5: Auto-rollback if smoke test failed ──
+  rollback-on-failure:
+    needs: [deploy, smoke-test]
+    if: failure() && needs.deploy.result == 'success' && needs.smoke-test.result == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+
+    - name: Auto-rollback to previous deployment
+      run: |
+        echo "Smoke test failed — initiating automatic rollback..."
+        vercel rollback --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
+
+    - name: Verify rollback
+      run: |
+        sleep 20
+        STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://disasterrecovery.com.au)
+        echo "HTTP Status after rollback: $STATUS"
+        if [ "$STATUS" != "200" ]; then
+          echo "::error::Rollback smoke test failed — manual intervention required"
+          exit 1
+        fi
+        echo "Rollback successful — site returning HTTP 200"
+
+    - name: Comment on commit (rollback)
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.repos.createCommitComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            commit_sha: context.sha,
+            body: '⚠️ Smoke test failed after deploy. Automatic rollback to previous deployment was triggered and verified.'
+          })
