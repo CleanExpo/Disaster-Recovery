@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,11 +10,60 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/cost-guides/how-much-water-damage-restoration-cost' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does water damage restoration typically cost in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration in Australia typically ranges from $2,000 for minor Class 1 damage (a single room with surface water) to $15,000 or more for Class 4 specialty drying involving hardwood floors, plaster, or concrete. The exact cost depends on damage class, water category (clean, grey, or black water), affected area size, materials involved, and response time. Commercial properties and multi-storey buildings are generally at the higher end.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover water damage restoration costs?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, appliance failures, and storm damage. Gradual damage from slow leaks or lack of maintenance is typically excluded. Check your Product Disclosure Statement (PDS) for specifics. We bill you directly and provide full claims documentation \u2014 photos, moisture readings, scope of works, and itemised invoices \u2014 so you can submit to your insurer for reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does water damage restoration cost so much?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration involves specialist IICRC-certified technicians, commercial-grade extraction and drying equipment (air movers, dehumidifiers, injection drying systems), antimicrobial treatments, moisture monitoring over multiple days, and often material removal and disposal. Category 2 and 3 water (grey and black water) requires additional decontamination and PPE. The cost reflects the technical expertise, equipment, and time required to properly dry a structure and prevent secondary damage like mould.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does water damage restoration take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Drying time depends on the damage class. Class 1 damage typically dries in 2\u20133 days. Class 2 takes 3\u20135 days. Class 3 requires 5\u20137 days. Class 4 specialty drying can take 7\u201314 days or longer. These timeframes assume professional equipment is deployed promptly. Delays in starting restoration increase both drying time and total cost, as water continues to migrate and degrade materials.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are payment plans available for water damage restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au) to help manage the cost of restoration while you await your insurance reimbursement. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works. Your contractor then provides a formal contract with transparent pricing for the full scope of restoration.',
+      },
+    },
+  ],
+};
+
 export default function HowMuchWaterDamageRestorationCostPage() {
   return (
-    <AgGuidePageTemplate
-      category="Cost Guides"
-      title="Water Damage Restoration Cost Guide Australia 2026"
+    <>
+      <Script id="costwater-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
+        category="Cost Guides"
+        title="Water Damage Restoration Cost Guide Australia 2026"
       subtitle="Expert answers and solutions for"
       gradient="linear-gradient(135deg, #14532D 0%, #15803D 100%)"
       icon={<DollarSign className="h-10 w-10" />}
@@ -213,5 +263,6 @@ export default function HowMuchWaterDamageRestorationCostPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

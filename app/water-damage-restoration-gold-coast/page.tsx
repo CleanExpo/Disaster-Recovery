@@ -55,11 +55,67 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly should I act after water damage on the Gold Coast?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Within 24\u201348 hours. Gold Coast\u2019s subtropical humidity means mould can establish within 48 hours of water damage occurring. The longer water sits in wall cavities or subfloor, the more extensive \u2014 and expensive \u2014 the damage becomes. Lodge your claim at disasterrecovery.com.au/claim for 60-minute emergency response.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is water damage from Ex-TC Alfred still covered by insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Yes \u2014 most policies don\u2019t have time limits for lodging claims after a disaster event if you can prove the damage occurred during the event. If your Alfred claim was underpaid or you\u2019ve discovered secondary damage (mould, structural), you can lodge a supplementary claim or dispute the original settlement through AFCA.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the IICRC S500:2025 standard and why does it matter?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ANSI/IICRC S500:2025 is the industry standard for water damage restoration in Australia. Insurers require drying documentation (psychrometric logs, moisture readings) that only IICRC-certified contractors can produce. Restoration by a non-certified contractor may void your claim or leave you unable to prove the work was done to standard.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I know if my Gold Coast property has hidden moisture after flooding?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Look for musty smells, condensation on internal windows, soft or bubbling plasterboard, and discolouration in corners or behind furniture. NRPG technicians use thermal imaging cameras and calibrated moisture meters to detect moisture trapped inside walls and subfloor \u2014 areas that are wet even when surfaces appear dry.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover water damage in Gold Coast canal properties?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Canal properties face two distinct water risk types: storm water ingress (typically covered) and flooding from rising water bodies (requires specific flood cover, often excluded from standard policies). Check your PDS carefully. NRPG helps identify the correct peril category and ensure your claim is lodged in the most favourable way under your policy.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does water damage restoration cost on the Gold Coast?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration on the Gold Coast ranges from $3,000 for a small burst pipe loss to $60,000 or more for combined flooding and structural damage. The Disaster Recovery platform charges a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin work. This covers emergency extraction and the first phase of structural drying.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationGoldCoastPage() {
   return (
     <>
       <Script id="wdrgc-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="wdrgc-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="wdrgc-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Gold Coast"

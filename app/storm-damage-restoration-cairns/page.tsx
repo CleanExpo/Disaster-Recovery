@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is storm damage in Cairns covered differently from cyclone damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 cyclone events use ARPC Cyclone Pool provisions; non-cyclone storm events use standard storm provisions under your home insurance policy. NRPG ensures correct peril classification for each event, which affects how your claim is processed and what excess applies.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the most common storm damage in Cairns?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Roof sheeting displacement from wind uplift \u2014 Cairns\u2019 cyclone-rated construction uses specific fastening systems but non-conforming or older properties are vulnerable. Also common: guttering failure from debris load, and water ingress through roof-wall junctions during intense rainfall events.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can Cairns storm damage escalate to mould?',
+      acceptedAnswer: { '@type': 'Answer', text: 'In Cairns\u2019 tropical climate \u2014 30\u00b0C+ with 70\u201385% humidity \u2014 mould establishes within 24 hours of unaddressed water ingress. Lodge immediately for same-day emergency make-safe and water extraction. IICRC-certified structural drying prevents secondary mould damage from compounding the original claim.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does emergency make-safe in Cairns require ARPC Cyclone Pool approval?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Emergency make-safe to prevent ongoing damage is generally approved immediately by FNQ insurers as it limits the total claim value. NRPG provides same-day make-safe with full documentation for insurer sign-off. For cyclone events, make-safe costs are captured under the ARPC Cyclone Pool provision.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationCairnsPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="sdrcns-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrcns-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrcns-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Cairns"

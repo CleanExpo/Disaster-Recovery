@@ -49,11 +49,39 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is Mackay affected by TC Maila?',
+      acceptedAnswer: { '@type': 'Answer', text: "TC Maila\u2019s projected southern range includes the Mackay corridor. BOM is forecasting tropical cyclone conditions potentially extending to Mackay and the Whitsundays in the 12\u201315 April 2026 window. The primary impact is forecast for FNQ, but NQ and CQ properties should prepare. Lodge your claim at disasterrecovery.com.au/claim to be ready for post-clearance response." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the ARPC Cyclone Pool apply to Mackay?',
+      acceptedAnswer: { '@type': 'Answer', text: "Properties in Mackay and the Whitsundays are covered under the ARPC Cyclone Reinsurance Pool for standard home and small business policies. Lodge as \u2018cyclone damage\u2019 and \u2018water ingress\u2019 to ensure correct pool classification. NRPG provides full claims documentation packs for ARPC pool lodgement." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can NRPG reach Whitsunday Island properties?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Response to Whitsunday Island properties is coordinated via marine transport (Shute Harbour or Abel Point Marina) post-clearance. Lodge your claim early \u2014 island response requires additional logistics coordination and is sequenced after mainland clearance is confirmed.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What cyclone preparation should Mackay homeowners do now?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Before TC Maila: secure loose outdoor items, check gutters and downpipes are clear, identify your emergency shelter. After TC Maila passes and the all-clear is issued: photograph all damage before touching anything, then lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch.' },
+    },
+  ],
+};
+
 export default function CycloneDamageRestorationMackayPage() {
   return (
     <>
       <Script id="cdrm-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="cdrm-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="cdrm-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Mackay"

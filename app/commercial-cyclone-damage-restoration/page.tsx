@@ -44,11 +44,39 @@ const serviceSchema = {
   description: 'Commercial cyclone damage restoration across FNQ: strata and multi-dwelling properties, business interruption documentation, IICRC-certified scope assessment, and full insurance claim documentation for commercial, retail, hospitality, and industrial properties.',
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does commercial insurance cover all cyclone damage?',
+      acceptedAnswer: { '@type': 'Answer', text: "Most commercial policies cover direct cyclone wind damage and associated water ingress. Business interruption is covered only if you have a BI extension \u2014 check your policy schedule. Strata properties typically have building cover through the owners corporation policy, but lot-specific contents and fit-out require individual cover. Lodge as \u2018cyclone damage\u2019 and \u2018water ingress\u2019 separately from any BI claim." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How are strata cyclone claims handled?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Strata cyclone claims involve the owners corporation (body corporate) insurance for common areas and the building structure, plus individual lot owner policies for fit-out and contents. NRPG provides separate documentation packs for the owners corporation and for individual lot owners. We coordinate directly with the strata manager and relevant insurers to streamline the process.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can NRPG respond to large-scale commercial losses?',
+      acceptedAnswer: { '@type': 'Answer', text: "Yes. NRPG\u2019s network includes contractors with commercial restoration capacity for multi-storey buildings, large-footprint industrial properties, and hospitality venues. Project management is provided for losses requiring multi-trade coordination across structural, water, and mould remediation scopes." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG mobilise for commercial cyclone damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Within 60 minutes of emergency services issuing the all-clear for the affected area. Commercial properties are prioritised for emergency make-safe to allow the earliest possible re-opening. Lodge your commercial claim at disasterrecovery.com.au/claim to be first in the queue post-clearance.' },
+    },
+  ],
+};
+
 export default function CommercialCycloneDamageRestorationPage() {
   return (
     <>
       <Script id="ccdr-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="ccdr-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="ccdr-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Commercial Restoration"
         title="Commercial Cyclone Damage Restoration"

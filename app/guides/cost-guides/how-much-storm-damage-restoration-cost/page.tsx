@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,11 +15,60 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does storm damage restoration cost in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Storm damage restoration costs in Australia range from $1,500 for basic emergency make-safe (tarping and boarding) up to $150,000 or more for cyclone-specific structural restoration. Common mid-range events \u2014 roof repair, hail damage, broken glazing, and interior water damage from storm ingress \u2014 typically total $10,000\u2013$40,000 for a residential property. The exact cost depends on storm severity, building materials, your location, and the scope of damage across the building.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover storm damage restoration costs in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Damage caused by storm wind, hail, lightning, and falling trees is covered under virtually all Australian home building insurance policies. Flood damage (rising water from external sources) requires a separate flood extension. Emergency make-safe costs are typically included in the initial claim. We bill you directly and provide full IICRC-standard documentation \u2014 photos, scope of works, and itemised invoices \u2014 so you can submit to your insurer for reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between storm damage and flood damage for insurance purposes?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Under Australian insurance law and the Insurance Council of Australia definition, \u201cflood\u201d refers to the covering of normally dry land by water from an overflowing watercourse, lake, reservoir, or tidal surge. \u201cStorm damage\u201d refers to damage caused directly by wind, hail, lightning, or rain during a storm event \u2014 including water that enters through a damaged roof or broken window. Lodging your claim under the correct peril is important: storm damage is a standard cover, whereas flood often requires a policy extension.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does hail damage roof repair cost in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Hail damage roof and cladding repair costs typically range from $5,000 to $40,000 for a residential property, depending on roof area, material type, and hail size. Large hail (5 cm+) can compromise the full roof surface and require complete replacement of metal sheeting or tile battens. A professional scope by an IICRC-certified contractor will identify all damaged areas \u2014 including those not visible from ground level \u2014 ensuring your insurance claim captures the full extent of damage.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly should I act after storm damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'As quickly as possible. Emergency make-safe (tarping, boarding broken windows) should be arranged within 24\u201348 hours to prevent further water ingress, structural deterioration, and security risks. Documenting the damage with photos and video before any cleanup or repairs is essential for your insurance claim. The sooner you engage an IICRC-certified contractor, the sooner a proper scope can be completed \u2014 which reduces the risk of additional damage and gives your insurer a strong documentation package.',
+      },
+    },
+  ],
+};
+
 export default function HowMuchStormDamageRestorationCostPage() {
   return (
-    <AgGuidePageTemplate
-      category="Cost Guides"
-      title="Storm Damage Restoration Cost Guide Australia 2026"
+    <>
+      <Script id="coststorm-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
+        category="Cost Guides"
+        title="Storm Damage Restoration Cost Guide Australia 2026"
       subtitle="Expert answers and solutions for"
       gradient="linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)"
       icon={<DollarSign className="h-10 w-10" />}
@@ -300,5 +350,6 @@ export default function HowMuchStormDamageRestorationCostPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

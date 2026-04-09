@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does Sydney home insurance cover hail damage to roof tiles?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 hail impact damage to roof tiles, terracotta or concrete, is covered under the storm damage provision of most standard Australian home insurance policies. Lodge the claim describing "hail damage" and "storm damage" specifically. Request an IICRC-certified roof inspection before signing off on the insurer\u2019s scope \u2014 many hail impacts create fractures that cause leaks in subsequent rain events.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly should I act after storm damage to my Sydney property?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Immediately \u2014 if there is a structural breach (damaged roof, broken windows), water ingress will continue with every subsequent rain event, escalating the damage and complicating the claim. Lodge at disasterrecovery.com.au/claim for 60-minute emergency make-safe (tarping and temporary boarding) to stop further damage while the formal repair scope is assessed.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the most common storm damage claim dispute in Sydney?',
+      acceptedAnswer: { '@type': 'Answer', text: "The most common dispute involves incomplete scope \u2014 the insurer\u2019s assessor documents only the most visible damage, missing hairline tile fractures, internal wall moisture, or gutter/downpipe damage that is not visible from the ground. NRPG\u2019s IICRC-certified scope documentation captures the full extent of damage, including thermal imaging for internal moisture resulting from breached building elements." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can NRPG help if my Sydney insurer underpaid my storm claim?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. If your storm damage claim was settled and you have discovered additional damage or believe the scope was incomplete, NRPG can provide an independent IICRC-certified reassessment and full documentation for supplementary lodgement or AFCA dispute. Contact NRPG at disasterrecovery.com.au/claim.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationSydneyPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="sdrsyd-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrsyd-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrsyd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Sydney"

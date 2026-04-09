@@ -49,11 +49,39 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is Townsville in the TC Maila impact zone?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 BOM is forecasting TC Maila impacts across the NQ coast including the Townsville corridor in the 11\u201314 April window. NRPG contractors are pre-positioned for immediate dispatch post-clearance. Lodge your claim now at disasterrecovery.com.au/claim.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the ARPC Cyclone Pool affect my Townsville claim?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Properties in NQ are covered under the ARPC Cyclone Reinsurance Pool. Your insurer processes the claim on behalf of the pool. This does not change your entitlements \u2014 you can still dispute underpayment through AFCA. NRPG provides full documentation packs to support claim lodgement.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG respond to cyclone damage in Townsville?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Within 60 minutes of emergency services confirming area clearance. Lodge your claim at disasterrecovery.com.au/claim \u2014 we queue the assignment and dispatch the moment the all-clear is issued for your suburb.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What cyclone damage is covered by home insurance?',
+      acceptedAnswer: { '@type': 'Answer', text: "Cyclone wind damage and associated water ingress are covered by most standard policies in NQ. Storm surge flooding is assessed separately. Lodge as \u2018cyclone damage\u2019 and \u2018water ingress\u2019 \u2014 not just \u2018flood\u2019 \u2014 to maximise your coverage position under most PDS terms." },
+    },
+  ],
+};
+
 export default function CycloneDamageRestorationTownsvillePage() {
   return (
     <>
       <Script id="cdrtv-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="cdrtv-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="cdrtv-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Townsville"

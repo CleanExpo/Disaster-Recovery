@@ -45,12 +45,68 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does water damage restoration cost in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration in Melbourne typically ranges from $2,200 for minor Class 1 damage to $15,000 or more for Class 4 specialty drying. Inner-city properties may incur 10\u201315% higher costs due to access constraints. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can you respond to water damage in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors across Melbourne metro respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim for instant contractor matching. The service operates 24 hours a day, 7 days a week, including public holidays.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover water damage in Melbourne apartments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most home and contents insurance policies cover sudden water damage from burst pipes, appliance failures, and storms. Building defects in newer apartments may be covered under the builder warranty or body corporate insurance. We bill you directly so work begins immediately, and provide full claims documentation to support your insurance reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What Melbourne suburbs do you cover?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our contractor network covers every suburb across Greater Melbourne \u2014 from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does water damage restoration take in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Drying time depends on damage class. Class 1 damage dries in 2\u20133 days. Class 2 takes 3\u20135 days. Class 3 requires 5\u20137 days. Class 4 specialty drying can take 7\u201314 days. Melbourne winter humidity can extend drying times by 1\u20132 days compared to drier months. IICRC-certified technicians monitor daily moisture readings to confirm the structure reaches dry standard.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to move out during water damage restoration in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For Class 1 and most Class 2 damage, you can remain in the property while drying equipment operates. Class 3 and Category 3 (contaminated) water damage may require temporary relocation for health and safety reasons. Your contractor will advise during the initial make-safe assessment. If relocation is needed, the cost may be claimable under the temporary accommodation provisions in your insurance policy.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationMelbournePage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="wdrm-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="wdrm-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="wdrmelb-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Melbourne"

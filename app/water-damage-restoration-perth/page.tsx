@@ -70,6 +70,45 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly does water damage need to be treated in Perth?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Within 24\u201348 hours. Perth\u2019s summer heat (35\u00b0C+) and low humidity accelerate surface drying but can trap moisture in wall cavities and subfloor, creating hidden mould growth. In winter, cool and wet conditions slow structural drying and extend the window for mould establishment. Lodge immediately for 60-minute emergency response \u2014 early treatment prevents the damage from escalating.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is water damage from Perth storms covered by home insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Yes \u2014 storm water ingress through damaged building elements (failed roof, broken windows, breached walls) is covered under the storm damage provision of most standard home insurance policies in WA. Overland flow flooding from external sources requires a specific flood extension. Lodge as \u2018storm water ingress\u2019 to ensure the correct peril is applied.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the ARPC Cyclone Pool apply to Perth properties?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The ARPC Cyclone Pool applies to WA properties north of the Tropic of Capricorn. Greater Perth metropolitan properties are not within the pool zone, but are covered by standard home insurance policies for cyclone-related damage. For Pilbara and Kimberley properties, the pool applies \u2014 lodge as "cyclone damage" and "water ingress".',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between the water damage and flood damage pages for Perth?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage covers sudden internal water loss (burst pipes, appliance overflow) and storm water ingress through breached building elements. Our flood damage page covers external flood inundation from rivers or overland flow. Both require IICRC-certified restoration \u2014 the policy peril classification determines which coverage applies. NRPG helps identify the correct category for your Perth claim.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationPerthPage() {
   return (
     <>
@@ -82,6 +121,11 @@ export default function WaterDamageRestorationPerthPage() {
         id="wdrperth-service"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="wdrperth-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Water Damage"

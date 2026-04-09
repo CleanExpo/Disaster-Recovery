@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does Melbourne home insurance cover hail damage to terracotta tiles?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 hail impact damage to terracotta roof tiles is covered under the storm damage provision of most standard Australian home insurance policies. The challenge is proving the damage occurred during the specific storm event. NRPG\u2019s IICRC-certified scope assessment documents the damage with thermal imaging and calibrated moisture readings, providing the evidence base the insurer needs for sign-off.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I know if my Melbourne property has hail damage after a storm?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Check (safely from ground level) for: visible fractured or displaced tiles; soft spots in gutters and downpipes; cracked skylights or damaged flashings; dents in metal fascia or HVAC condensers. Inside, check ceilings for moisture stains in the days after the storm. NRPG provides a full IICRC-certified roof inspection to identify all hail impacts before scope is lodged.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the storm damage excess on Melbourne home insurance?',
+      acceptedAnswer: { '@type': 'Answer', text: "Most standard Victorian policies have a storm damage excess of $250\u2013$1,000 for the building component, with a separate higher excess for flood. Some policies have a separate \u2018storm\u2019 excess applied specifically to roof damage. Check your PDS. NRPG does not provide policy advice but can help ensure the full damage scope is documented so the claim exceeds the excess threshold." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can NRPG help with a disputed Melbourne storm claim?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. If your Melbourne storm damage claim was declined or underpaid, NRPG provides an independent IICRC-certified scope reassessment with thermal imaging evidence. This documentation supports AFCA dispute lodgement. Contact NRPG at disasterrecovery.com.au/claim.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationMelbournePage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="sdrmelb-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrmelb-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrmelb-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Melbourne"

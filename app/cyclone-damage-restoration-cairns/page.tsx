@@ -53,11 +53,49 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly will NRPG contractors reach my Cairns property after TC Maila?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors are pre-positioned across FNQ. Response occurs within 60 minutes of emergency services issuing the all-clear for your area. Lodge your claim at disasterrecovery.com.au/claim now \u2014 we queue assignments and dispatch the moment clearance is confirmed.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is cyclone damage covered by home insurance in FNQ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 most Australian home insurance policies cover cyclone wind damage and associated water ingress. FNQ policies are subject to the ARPC Cyclone Reinsurance Pool, which your insurer participates in. Lodge your claim as \u201ccyclone damage\u201d and \u201cwater ingress\u201d separately. NRPG provides full claims documentation packs.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the ARPC Cyclone Pool and how does it affect my claim?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The Australian Reinsurance Pool Corporation (ARPC) Cyclone Pool is a government backstop for cyclone losses in northern Australia. Your insurer holds reinsurance through the pool and manages your claim on its behalf. This does not change your rights as a policyholder \u2014 you can still dispute underpayment through AFCA.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I stay in my Cairns home after cyclone damage?',
+      acceptedAnswer: { '@type': 'Answer', text: "This depends on structural safety assessments. Queensland Building and Construction Commission (QBCC) inspectors and SES assess structural integrity after major events. If your property is deemed uninhabitable, your insurer\u2019s Additional Living Expenses (ALE) benefit covers temporary accommodation \u2014 keep all receipts." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I prevent mould after cyclone water damage in Cairns?',
+      acceptedAnswer: { '@type': 'Answer', text: "Cairns\u2019 tropical climate (30\u00b0C+ and high humidity) means mould begins growing within 24\u201348 hours of water damage. IICRC-certified contractors use commercial dehumidifiers, air movers, and HEPA filtration to achieve structural drying targets. Do not use household bleach \u2014 it does not eliminate mould at the root. Lodge immediately for fastest response." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What documents do I need for a cyclone insurance claim?',
+      acceptedAnswer: { '@type': 'Answer', text: 'You need: timestamped photographs of all damage, your policy number and PDS, purchase receipts or valuations for damaged contents, receipts for any emergency repairs already done, and a detailed scope of works from an IICRC-certified contractor. NRPG provides a full documentation pack as part of the restoration service.' },
+    },
+  ],
+};
+
 export default function CycloneDamageRestorationCairnsPage() {
   return (
     <>
       <Script id="cdrc-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="cdrc-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="cdrc-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Cairns"

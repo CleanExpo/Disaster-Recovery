@@ -45,12 +45,68 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does water damage restoration cost in Sydney?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration in Sydney typically ranges from $2,200 for minor Class 1 damage (single room, hard surfaces) to $16,000 or more for Class 4 specialty drying of hardwood floors and heritage materials. Sydney costs reflect higher labour rates and logistical complexity in high-density areas. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can a water damage restoration contractor respond in Sydney?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors across Sydney metro respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover water damage restoration in Sydney?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, appliance failures, and storm damage. Flood cover is typically a separate add-on. We bill you directly so work begins immediately, and provide full claims documentation \u2014 timestamped photos, moisture readings, scope of works, and daily drying logs \u2014 to support your insurance reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What suburbs in Sydney do you cover for water damage restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our contractor network covers every suburb across Greater Sydney \u2014 from the Northern Beaches to Sutherland Shire, from the Eastern Suburbs to the Blue Mountains fringe. This includes Sydney CBD, Parramatta, Blacktown, Penrith, Liverpool, Chatswood, Hornsby, Manly, Bondi, Hurstville, and all suburbs in between.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I do immediately after water damage in my Sydney property?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Stop the water source if safe (turn off mains or isolate the burst pipe). Move valuables to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Lodge your claim at disasterrecovery.com.au/claim for a 60-minute emergency response. Mould can begin growing within 24 to 48 hours in Sydney humidity, so fast action is critical.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are your Sydney water damage contractors IICRC certified?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Every contractor in the NRPG network maintains current IICRC Water Restoration Technician (WRT) certification, carries minimum $20 million public liability insurance, and has been vetted for quality and reliability. IICRC certification ensures contractors follow ANSI/IICRC S500:2025 standards for water damage restoration.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationSydneyPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="wdrs-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="wdrs-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="wdrsyd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Sydney"

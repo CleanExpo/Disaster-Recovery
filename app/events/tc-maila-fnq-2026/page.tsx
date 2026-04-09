@@ -87,6 +87,53 @@ const serviceSchema = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is TC Maila still dangerous?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. TC Maila remains a Category 5 severe tropical cyclone until landfall, with sustained winds of 215 km/h. BOM issues official all-clears for each affected area \u2014 do not leave shelter or enter a damaged property until the BOM/Queensland Police all-clear is confirmed for your specific postcode.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What postcodes does NRPG cover for TC Maila?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG covers the full FNQ impact corridor including postcodes 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast), 4878 (Palm Cove), and 4879 (Trinity Beach). Lodge at disasterrecovery.com.au/claim for contractor matching across all FNQ postcodes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the ARPC Cyclone Pool affect my claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "The Australian Reinsurance Pool Corporation (ARPC) Cyclone Pool is a government reinsurance backstop for FNQ cyclone losses. Your insurer manages your claim on the pool\u2019s behalf \u2014 this does not change your rights as a policyholder. If your claim is underpaid or disputed, escalation to AFCA (Australian Financial Complaints Authority) remains available at no cost to you.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I claim for both Alfred and TC Maila damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. If your property sustained damage during Ex-TC Alfred (March 2026) and now sustains additional TC Maila damage, you must document and lodge each event separately. NRPG manages both claims with clearly delineated documentation packs. Lodge at disasterrecovery.com.au/claim and note prior Alfred damage in your submission.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly will NRPG respond after TC Maila?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors are pre-positioned across FNQ and will respond within 60 minutes of emergency services issuing the all-clear for your area. Lodge your claim now at disasterrecovery.com.au/claim to be first in the dispatch queue \u2014 assignments are queued and contractors are deployed the moment post-clearance conditions allow.',
+      },
+    },
+  ],
+};
+
 export default function TCMailaFNQ2026Page() {
   return (
     <>
@@ -99,6 +146,11 @@ export default function TCMailaFNQ2026Page() {
         id="tcmaila-service"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="tcmaila-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Emergency Response"

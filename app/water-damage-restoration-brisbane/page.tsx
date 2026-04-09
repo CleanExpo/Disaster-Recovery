@@ -54,11 +54,67 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly should water damage be treated in Brisbane?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Within 24\u201348 hours. Brisbane\u2019s subtropical climate means mould establishes rapidly in water-affected materials. The longer water remains in wall cavities and subfloor, the more extensive and costly the damage becomes. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my Alfred flood damage still claimable in 2026?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes \u2014 most insurers do not have strict time limits if you can demonstrate the damage occurred during the Alfred event. If your claim was underpaid or you have secondary damage (mould, structural), you can lodge a supplementary claim or escalate to AFCA. NRPG provides full documentation to support late or supplementary lodgements.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between water damage and flood damage for Brisbane claims?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage covers sudden water loss from internal sources (burst pipes, appliance overflow) and storm water entering through breached building elements. Flood damage specifically refers to inundation from external water bodies (rivers, overland flow). Most standard policies cover the former; flood often requires a specific extension. NRPG helps categorise your damage correctly to maximise claim outcomes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I know if my Brisbane property still has hidden moisture?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Signs include musty odour, soft or bubbling plasterboard, condensation on windows, and mould appearing weeks after apparent drying. NRPG technicians use thermal imaging cameras and calibrated moisture meters to detect moisture in wall cavities and subfloor that dried surfaces conceal.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does IICRC S500:2025 mean for my water damage claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ANSI/IICRC S500:2025 is the Australian standard for water damage restoration. It governs how extraction, drying, and documentation must be performed. Insurers require psychrometric drying logs that only IICRC-certified contractors can produce. Non-certified work may leave you unable to substantiate the restoration for claim sign-off.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does water damage restoration cost in Brisbane?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration in Brisbane ranges from $3,000 for minor burst pipe losses to $60,000+ for cyclone flooding inundation. The Disaster Recovery platform charges a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency works.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationBrisbanePage() {
   return (
     <>
       <Script id="wdrbne-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="wdrbne-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="wdrbne-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Brisbane"

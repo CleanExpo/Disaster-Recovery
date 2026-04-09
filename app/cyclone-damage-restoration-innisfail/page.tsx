@@ -49,11 +49,39 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is Innisfail in the TC Maila impact zone?',
+      acceptedAnswer: { '@type': 'Answer', text: "Yes \u2014 the Innisfail and Cassowary Coast corridor is within TC Maila\u2019s projected impact track. BOM is forecasting tropical cyclone conditions for postcode 4860 in the 11\u201314 April window. NRPG contractors are pre-positioned in the Innisfail region for immediate post-clearance response. Lodge your claim now at disasterrecovery.com.au/claim." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the wettest place in Australia and why does it matter for cyclone damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Tully, in the Innisfail corridor, averages over 4,200 mm of annual rainfall \u2014 the highest of any Australian town. During cyclone events, rainfall can exceed 600 mm in 24 hours. This means water damage escalates faster in the Cassowary Coast than anywhere else in Australia. IICRC-certified structural drying must begin within 24 hours to prevent catastrophic mould growth.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I lodge a cyclone claim for an Innisfail property?',
+      acceptedAnswer: { '@type': 'Answer', text: "Lodge at disasterrecovery.com.au/claim once emergency services confirm it is safe to assess. The ARPC Cyclone Reinsurance Pool applies to FNQ postcodes including 4860. Lodge as \u2018cyclone damage\u2019 and \u2018water ingress\u2019 separately. Photograph all damage before any cleanup. NRPG provides full IICRC-certified documentation packs." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can NRPG reach Mission Beach and Cardwell after TC Maila?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Response to Mission Beach, Cardwell, and southern Cassowary Coast communities depends on road clearance on the Bruce Highway. NRPG pre-positions contractors in the region before major events to minimise the access delay. Lodge early to be first in the post-clearance dispatch queue.' },
+    },
+  ],
+};
+
 export default function CycloneDamageRestorationInnisfailPage() {
   return (
     <>
       <Script id="cdri-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="cdri-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="cdri-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Innisfail"

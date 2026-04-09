@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does Perth home insurance cover hail damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 hail damage to roofs, skylights, gutters, and external structures is covered under the storm provision of most standard WA home insurance policies. Lodge the claim describing "hail damage" and "storm damage" specifically. Request an IICRC-certified roof inspection before lodging to capture the full scope \u2014 many hail impacts create hairline fractures that are not visible from the ground.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the ARPC Cyclone Pool apply to Perth?',
+      acceptedAnswer: { '@type': 'Answer', text: 'No. The ARPC Cyclone Reinsurance Pool covers WA properties north of the Tropic of Capricorn \u2014 the Perth metropolitan area is not within the pool zone. Perth storm damage claims are processed under standard storm provisions of your home insurance policy. If an ex-tropical cyclone system reaches Perth, it is typically re-classified as a severe storm event by that latitude, and pool provisions do not apply.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are the most common storm damage claims in Perth?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The most common Perth storm damage claims involve: roof tile displacement and cracking from downburst winds; fence collapse (particularly Colorbond fencing) from squall conditions; swimming pool pump and equipment damage from wind-driven debris; and broken skylights from hail impact. Fremantle Doctor-driven squalls cause a high volume of fence and pergola claims across coastal suburbs.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG respond to storm damage in Perth?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG targets a 60-minute response for emergency make-safe across the Perth metropolitan area. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch. Hills properties (Kalamunda, Mundaring) may require 60\u201390 minutes depending on traffic and access.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationPerthPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="sdrperth-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrperth-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrperth-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Perth"
