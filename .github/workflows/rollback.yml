@@ -1,0 +1,51 @@
+name: Emergency Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_url:
+        description: 'Vercel deployment URL to rollback to (e.g., disaster-recovery-abc123-unite-group.vercel.app)'
+        required: false
+        type: string
+      confirm:
+        description: 'Type ROLLBACK to confirm'
+        required: true
+        type: string
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'ROLLBACK'
+    steps:
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+
+    - name: List recent deployments
+      run: |
+        echo "Recent production deployments:"
+        vercel ls --prod --token=${{ secrets.VERCEL_TOKEN }} | head -10
+
+    - name: Rollback to previous deployment
+      run: |
+        if [ -n "${{ github.event.inputs.deployment_url }}" ]; then
+          echo "Rolling back to specific deployment: ${{ github.event.inputs.deployment_url }}"
+          vercel promote ${{ github.event.inputs.deployment_url }} --token=${{ secrets.VERCEL_TOKEN }}
+        else
+          echo "Rolling back to previous production deployment..."
+          vercel rollback --token=${{ secrets.VERCEL_TOKEN }}
+        fi
+
+    - name: Verify rollback
+      run: |
+        sleep 15
+        STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://disasterrecovery.com.au)
+        if [ "$STATUS" = "200" ]; then
+          echo "✅ Rollback successful — site returning HTTP 200"
+        else
+          echo "⚠️ Site returning HTTP $STATUS after rollback"
+          exit 1
+        fi
