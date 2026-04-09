@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Scale } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -14,9 +15,70 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do I have to pay to lodge an AFCA complaint?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. AFCA is free for complainants. There are no fees to lodge a complaint, no ongoing charges, and no cost recovery if the complaint is unsuccessful. Insurers pay a fee to AFCA \u2014 not consumers.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I have to try my insurer\u2019s IDR process before going to AFCA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Generally yes. AFCA requires that you give your insurer a reasonable opportunity to resolve the dispute through their Internal Dispute Resolution (IDR) process before you lodge with AFCA. Under the General Insurance Code of Practice, your insurer must provide a final IDR response within 30 calendar days of your complaint. You can go directly to AFCA if the insurer does not respond within that timeframe.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does the AFCA process take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Timeframes vary depending on complexity. AFCA aims to resolve straightforward complaints within 30\u201360 days. Complex property insurance disputes involving expert evidence, large amounts, or policy interpretation questions can take six to twelve months. AFCA publishes average handling times for different complaint types in its annual review.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the maximum amount AFCA can award for a property insurance dispute?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For property damage claims by individuals, AFCA can currently award up to $1,085,000. This limit is reviewed periodically. For non-financial loss (distress and inconvenience), the compensation cap is $5,500. These figures reflect AFCA\u2019s published monetary limits and are subject to change.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can my insurer refuse to comply with an AFCA decision?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. AFCA decisions that you accept are binding on the insurer. The insurer cannot refuse to comply. If an insurer does not comply with an AFCA determination, AFCA can refer the matter to ASIC and take enforcement action. You retain the right to not accept an AFCA determination and to pursue the matter through the courts instead.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I go to court instead of using AFCA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. AFCA is a voluntary external dispute resolution scheme \u2014 it does not prevent you from pursuing legal action. However, courts are typically slower, more expensive, and require legal representation. For most property insurance disputes within AFCA\u2019s monetary limits, AFCA is the more practical avenue.',
+      },
+    },
+  ],
+};
+
 export default function AFCAComplaintGuidePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="afca-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="How to Lodge an AFCA Complaint Against Your Insurer"
       subtitle="Step by step: internal dispute resolution first, then AFCA — what you need, timeframes, and what AFCA can order"
@@ -413,5 +475,6 @@ export default function AFCAComplaintGuidePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

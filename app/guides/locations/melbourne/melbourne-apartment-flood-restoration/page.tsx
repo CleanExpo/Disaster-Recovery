@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/melbourne/melbourne-apartment-flood-restoration' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can a restoration contractor respond to apartment flooding in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors provide a 60-minute emergency response across greater Melbourne, 24/7. For apartment flooding, the initial response focuses on water source isolation (working with building management to shut down risers if needed), emergency water extraction on all affected levels, and deployment of drying equipment. Every hour of delay increases the risk of mould growth and structural damage, particularly in Melbourne\u2019s variable humidity conditions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who pays for water damage in a Melbourne apartment \u2014 the owners corporation or the lot owner?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on the source and location of the damage. If the source is common property (a shared plumbing riser, roof, or stormwater system), the owners corporation\u2019s strata policy covers common property damage, and individual lot owners claim their internal damage under their own policies. If the source is within a lot (washing machine, dishwasher), the lot owner\u2019s policy covers their unit. Professional documentation clearly separating common property and lot property damage is essential for resolving these claims.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I stay in my apartment during flood restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For minor flooding limited to one or two rooms, residents can usually stay while drying equipment operates \u2014 though equipment generates continuous noise and warmth. For extensive flooding affecting multiple rooms, ceiling damage, electrical safety concerns, or if mould contamination is present, temporary relocation is recommended. Most building and contents insurance policies include temporary accommodation cover. The contractor advises based on the specific circumstances of your unit.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does apartment flood restoration take in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Structural drying in a typical Melbourne apartment takes 3\u20137 days depending on the extent of damage, materials affected, and the number of levels involved. Multi-level events with screed saturation and wall cavity moisture can take 10\u201314 days for full drying. Melbourne\u2019s winter humidity (average 65\u201375%) extends drying times compared to summer. Full restoration including flooring replacement, repainting, and cabinetry repair can take 4\u20138 weeks after drying is complete.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for apartment flood damage in Melbourne?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We bill you directly \u2014 the lot owner, owners corporation, or strata manager \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided, separated by common property and lot property ownership, to support all parties\u2019 insurance claims for reimbursement. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+  ],
+};
+
 export default function MelbourneApartmentFloodRestorationPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="melbflat-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Melbourne Apartment Flood Damage Restoration"
       subtitle="Expert guide to restoring flood-damaged apartments in Melbourne — from Docklands penthouses to Southbank studios, covering strata complexities, multi-level damage, and Melbourne&rsquo;s variable weather risks"
@@ -165,5 +219,6 @@ export default function MelbourneApartmentFloodRestorationPage() {
         },
       ]}
     />
+    </>
   );
 }

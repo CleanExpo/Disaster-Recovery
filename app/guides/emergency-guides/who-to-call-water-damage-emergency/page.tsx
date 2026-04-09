@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency-guides/who-to-call-water-damage-emergency' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Who should I call first for emergency water damage in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If there is immediate danger (rising floodwater, structural collapse, gas smell, electrocution risk), call 000 first. For storm and flood assistance that is not life-threatening, call the SES on 132 500. For burst pipes, call a licensed plumber to stop the water source. Then contact a professional restoration company to begin water extraction and drying \u2014 Disaster Recovery connects you with IICRC-certified contractors through our online claim platform.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to wait for my insurer before starting cleanup?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Most Australian insurance policies require you to take reasonable steps to mitigate further damage. Delaying extraction and drying can significantly increase damage and costs. Lodge your claim with your insurer as soon as practical, but do not delay emergency make-safe works. We bill you directly so work begins immediately, and we provide full documentation to support your insurance reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can a restoration company respond to water damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Through Disaster Recovery, IICRC-certified contractors are typically matched and dispatched within hours of claim submission. Response times vary by location \u2014 metropolitan areas generally have faster response than regional or remote locations. The critical target is to begin water extraction within the first 6 hours and have drying equipment operational within 24 hours to prevent mould growth.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does emergency make-safe include for water damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Emergency make-safe includes water extraction using commercial pumps and wet vacuums, deployment of air movers and dehumidifiers for structural drying, moisture mapping to determine the full extent of damage, antimicrobial treatment where required, and comprehensive photo and written documentation. Through the Disaster Recovery platform, this is covered by your $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What information do I need when calling about water damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Have the following ready: the water source (burst pipe, appliance, storm, sewage), number of rooms affected and which levels of the building, whether water is still flowing, property type (house, apartment, commercial), access details (address, unit number, parking, who will be on-site), and your insurance policy number if available. This helps your contractor arrive with the right equipment and crew.',
+      },
+    },
+  ],
+};
+
 export default function WhoToCallWaterDamageEmergencyPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="whocall-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency Guides"
       title="Emergency Water Damage: Who to Call First"
       subtitle="Expert answers and solutions for"
@@ -218,5 +272,6 @@ export default function WhoToCallWaterDamageEmergencyPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

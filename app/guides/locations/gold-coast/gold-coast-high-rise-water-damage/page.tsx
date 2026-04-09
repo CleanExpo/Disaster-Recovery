@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/gold-coast/gold-coast-high-rise-water-damage' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Who is responsible for water damage in a Gold Coast high-rise \u2014 the body corporate or the lot owner?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Responsibility depends on the water source and the damage location. If the source is common property (a shared plumbing riser, fire sprinkler, or roof leak), the body corporate policy covers the common property damage, and individual lot owners claim internal damage under their own policies. If the source is within a lot (washing machine, dishwasher), the lot owner\u2019s policy covers their unit, and affected neighbours claim under their own policies. Professional documentation clearly delineating common property vs lot property damage is essential for resolving multi-party claims.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does water damage restoration work across multiple units in a high-rise?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Multi-unit restoration requires a coordinated approach. A single contractor manages the entire affected area \u2014 all units and common property \u2014 as one restoration program. Drying equipment is deployed on every affected level simultaneously, because one unit cannot dry effectively if the unit above is still wet. The contractor coordinates access with all owners and tenants, monitors moisture levels daily on each level, and provides documentation separated by ownership for insurance purposes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does salt air really affect plumbing in Gold Coast towers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, significantly. Salt-laden coastal air accelerates corrosion of copper pipes, galvanised steel risers, and metal fittings in buildings within 1 km of the coastline. Pipes that would last 30\u201340 years inland may fail within 15\u201320 years on the Gold Coast. Towers built in the 1980s and 1990s across Surfers Paradise, Broadbeach, and Main Beach are now experiencing increasing rates of pipe failure. Body corporates should factor plumbing lifecycle into their sinking fund planning.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can residents stay in their apartments during high-rise water damage restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on the extent of damage. If only the flooring and lower walls are affected, residents can often remain while drying equipment operates \u2014 though the equipment does generate noise and warmth. If ceiling damage, electrical safety concerns, or mould contamination are present, temporary relocation is recommended. The contractor advises each affected unit individually. Building and contents insurance policies often include temporary accommodation cover for displaced residents.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for multi-unit high-rise water damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We bill you directly \u2014 the body corporate, strata manager, or individual lot owner depending on who engages the service \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided, separated by common property and lot property ownership, to support all parties\u2019 insurance claims for reimbursement. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+  ],
+};
+
 export default function GoldCoastHighRiseWaterDamagePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="gchrise-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Gold Coast High Rise Water Damage Specialists"
       subtitle="Specialist guide to managing water damage in Gold Coast high-rise towers — from Surfers Paradise to Broadbeach, covering strata complexities, salt corrosion, and multi-unit cascading damage"
@@ -165,5 +219,6 @@ export default function GoldCoastHighRiseWaterDamagePage() {
         },
       ]}
     />
+    </>
   );
 }

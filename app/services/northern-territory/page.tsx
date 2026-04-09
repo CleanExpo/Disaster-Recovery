@@ -26,6 +26,37 @@ export const metadata: Metadata = {
   },
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you cover remote areas of the Northern Territory?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our primary contractor coverage is in Darwin, Palmerston, Katherine and Alice Springs. For remote and very remote NT communities, coverage depends on the nature and scale of the event. For declared disaster events, we can often deploy to remote locations \u2014 contact us to discuss your specific location and requirements.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the NT tropical climate affect restoration timelines?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The Top End\u2019s high heat and humidity means mould can establish within 24\u201348 hours of a water intrusion event. This makes rapid response critical. Our NT contractors use industrial drying equipment calibrated for tropical conditions, and mould assessment is standard practice for all water damage jobs in the Territory.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if my NT cyclone claim has been delayed or disputed?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Cyclone claims in the NT are sometimes affected by the ARPC Cyclone Reinsurance Pool, which can add complexity to how your insurer processes the claim. If your claim has stalled or been underpaid, NRPG can coordinate independent IICRC-certified assessment and escalate with your insurer. You can also escalate to AFCA at no cost if the insurer fails to resolve the dispute.',
+      },
+    },
+  ],
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -62,6 +93,11 @@ export default function NorthernTerritoryServicesPage() {
         id="nt-localbusiness"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="svcnt-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Northern Territory"

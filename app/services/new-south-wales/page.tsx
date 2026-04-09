@@ -21,6 +21,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you cover the Northern Rivers flood-affected areas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our contractor network covers all Northern Rivers LGAs including Lismore, Ballina, Byron Bay, Richmond Valley and Tweed. These areas are priority coverage zones given their ongoing flood risk profile.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does NSW disaster financial assistance work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The NSW Government activates disaster welfare assistance and recovery grants when LGAs are declared following major events. Eligible residents may access personal hardship assistance, essential services support and structural repair grants. Check current declared areas at service.nsw.gov.au.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the typical response time for emergency water damage in Sydney?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Response times vary by contractor availability and location. Our network maintains contractors positioned across Sydney metro, with priority deployment to emergency water damage calls. Contact us via the claim form for the fastest connection to an available certified contractor.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you handle large commercial flood events in NSW?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our commercial services team handles large-scale flood recovery for offices, retail centres, warehouses, strata complexes and industrial facilities across NSW. We scale contractor deployment to meet the scope of the loss.',
+      },
+    },
+  ],
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -57,6 +96,11 @@ export default function NewSouthWalesServicesPage() {
         id="nsw-localbusiness"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="svcnsw-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="New South Wales"

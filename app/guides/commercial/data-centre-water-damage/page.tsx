@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,43 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/data-centre-water-damage' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can a restoration contractor respond to a data centre water emergency?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG\u2019s network provides a 60-minute emergency response across major Australian cities, 24/7. For data centre emergencies, initial phone consultation often begins within minutes of lodging your claim online, allowing your on-site team to begin containment actions immediately while the contractor mobilises.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can server equipment be restored after water damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'In many cases, yes. Equipment that has sustained water contact can be restored through specialist electronic drying, ultrasonic cleaning, and anti-corrosion treatment. The key factors are speed of response (the faster water is removed, the better the outcome), the type of water involved (clean water from cooling systems is more recoverable than contaminated water), and whether power was isolated before water reached energised components.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What documentation is provided for data centre insurance claims?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Full claims documentation includes timestamped incident photography, environmental monitoring data (temperature, humidity, moisture readings), equipment inventory and damage assessments, scope of works with line-item costings, restoration verification reports, and a complete audit trail of all actions taken. This documentation supports both your insurance claim and any compliance or regulatory reporting requirements.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for commercial data centre restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the data centre operator or property owner \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. We provide full claims documentation so you can claim reimbursement from your insurer. Payment plans are available through Blue Fire Finance for high-value restorations." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will the restoration team work around our operational requirements?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Experienced data centre restoration contractors understand that uptime is critical. Work is phased to keep maximum capacity online, coordinated with your operations team for workload migration where needed, and scheduled around maintenance windows for non-emergency tasks. The goal is always to restore the affected area with minimum disruption to live services.' },
+    },
+  ],
+};
+
 export default function DataCentreWaterDamagePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="datctr-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Commercial"
       title="Data Centre Water Damage Recovery Services"
       subtitle="Expert answers and solutions for"
@@ -191,5 +226,6 @@ export default function DataCentreWaterDamagePage() {
         },
       ]}
     />
+    </>
   );
 }

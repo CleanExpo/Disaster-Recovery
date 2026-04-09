@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/emergency-board-up-storm-damage' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does emergency board-up include after storm damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Emergency board-up involves securing all openings in the building envelope that have been compromised by storm damage. This includes boarding broken windows and damaged doors with structural-grade plywood, tarping damaged roof sections with heavy-duty tarpaulins secured by battens, temporary bracing of compromised structural elements, and clearing hazardous debris. The goal is to prevent further weather exposure, water ingress, and unauthorised entry until permanent repairs are completed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need my insurer\u2019s approval before getting emergency board-up?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Under Australian insurance law, you have a duty to take reasonable steps to mitigate further damage. Emergency board-up is a clear example of this obligation. Through Disaster Recovery, we bill you directly so board-up work begins immediately without waiting for insurer approval. Full claims documentation is provided \u2014 your contractor photographs the damage before and during board-up, giving your insurer the evidence they need to process your reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can a board-up crew be dispatched after a storm?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Through Disaster Recovery, your claim is processed 24/7 and contractor matching begins immediately upon submission. Response times vary based on location and demand \u2014 during major storm events, multiple properties may need assistance simultaneously. Metropolitan areas typically see faster response than regional locations. Submit your claim as early as possible, even during the storm event, to secure your place in the queue.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between board-up and temporary tarping?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Temporary tarping covers damaged roof sections with heavy-duty tarpaulins to prevent rain ingress and is suitable when walls, windows, and doors remain intact. Board-up involves securing broken or missing windows, doors, and wall openings with structural-grade plywood to provide both weather protection and security. Severe storms may require both \u2014 tarping for the roof and boarding for damaged openings. Your contractor will assess the full scope on arrival.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I photograph before the property is boarded up?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Document all external damage (broken windows, damaged doors, roof sections, displaced materials) and any internal damage from water ingress (wet floors, damaged contents, waterlines on walls). Use wide-angle shots for context and close-ups for detail. Photograph the cause if visible \u2014 fallen tree, hail damage, or impact debris. Write down the time of the storm, when you found the damage, and what steps you took. This evidence is critical because once the property is boarded up, the original damage is concealed.',
+      },
+    },
+  ],
+};
+
 export default function EmergencyBoardUpStormDamagePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="boardup-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency"
       title="Emergency Board Up Services After Storm Damage"
       subtitle="Expert answers and solutions for"
@@ -269,5 +323,6 @@ export default function EmergencyBoardUpStormDamagePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

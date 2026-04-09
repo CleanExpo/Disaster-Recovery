@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Layers } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -13,9 +14,43 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does IICRC S220 cover?',
+      acceptedAnswer: { '@type': 'Answer', text: 'IICRC S220 is the Standard for Professional Onsite Textile Services. It covers the assessment, cleaning and restoration of floor coverings \u2014 including carpet, hardwood and engineered timber, vinyl and LVT, ceramic and porcelain tile, and natural stone \u2014 following damage events such as water intrusion, mould growth, or fire and smoke. It is currently under its second public review (closing 19 April 2026), making it one of the most actively maintained standards in the restoration field.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can water-damaged timber floors be restored rather than replaced?',
+      acceptedAnswer: { '@type': 'Answer', text: "In many cases, yes \u2014 but the outcome depends on how quickly the floor is treated, the source and extent of water, and how drying is managed. Timber floors that have begun cupping can often be restored with controlled drying, but the process requires patience and monitoring. Over-drying causes crowning, which can be as damaging as the original water event. A certified contractor will assess the floor, map moisture readings, and manage the drying process to give the best chance of restoration. Whether restoration or replacement is warranted requires direct professional assessment." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does my carpet need to be replaced if the water damage looks minor?',
+      acceptedAnswer: { '@type': 'Answer', text: "Surface appearance is not a reliable indicator of carpet condition after a water event. Moisture in carpet pile and underlay creates conditions for rapid mould growth \u2014 often within 24 to 48 hours of exposure \u2014 even when the carpet surface dries quickly. The underlay beneath carpet almost always requires replacement regardless of the carpet\u2019s condition, because it retains moisture and cannot be effectively dried in place. Contaminated water sources (sewage, stormwater) require replacement of carpet regardless of visible damage. Your contractor can explain the basis for their recommendation for your specific situation." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is subfloor damage and why does it matter for my insurance claim?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Subfloor damage refers to moisture or structural damage that occurs beneath the surface floor covering \u2014 in the plywood, particleboard, concrete, or timber substrate that the floor covering sits on. Subfloor damage frequently accompanies surface floor covering damage but is not visible without moisture testing. If subfloor damage is not documented and included in the initial claim scope, it may not be covered when it manifests later as secondary damage (swelling, movement, mould). A certified floor covering restorer will assess and document the subfloor as a separate item in the scope of works.' },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I use the Disaster Recovery platform if my insurer has already appointed a contractor?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes. You can request an independent assessment through Disaster Recovery even if your insurer has already appointed a repairer. An independent scope of works gives you an objective basis for reviewing whether the insurer-appointed contractor\u2019s scope captures the full extent of damage \u2014 particularly for subfloor and floor covering items that are commonly missed. If you believe the appointed contractor\u2019s scope is incomplete, documentation from an independent certified restorer provides the evidence base for a dispute through AFCA." },
+    },
+  ],
+};
+
 export default function S220FloorCoveringRestorationPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="s220floor-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="IICRC Standards"
       title="IICRC S220 Floor Covering Restoration"
       subtitle="What Certified Contractors Do Differently"
@@ -381,5 +416,6 @@ export default function S220FloorCoveringRestorationPage() {
       ]}
       cta={{ text: 'Get Help With Your Claim', href: '/claim' }}
     />
+    </>
   );
 }

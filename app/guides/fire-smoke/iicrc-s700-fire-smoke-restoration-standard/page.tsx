@@ -15,6 +15,7 @@
  */
 
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Flame } from 'lucide-react'
 import { AgGuidePageTemplate } from '@/components/antigravity'
 import { NAP } from '@/lib/constants'
@@ -45,9 +46,43 @@ export const metadata: Metadata = {
   },
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is ANSI/IICRC S700:2025?',
+      acceptedAnswer: { '@type': 'Answer', text: 'ANSI/IICRC S700:2025 is the current Standard for Professional Fire and Smoke Damage Restoration, published by the IICRC. It is the benchmark certification standard for fire and smoke restoration contractors in Australia. For the full standard, visit iicrc.org.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does it matter whether my contractor is IICRC-certified for fire restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: 'ANSI/IICRC S700:2025 defines the professional standard for fire and smoke restoration \u2014 including how to assess smoke infiltration beyond the burn area, how to clean different types of fire residue, and what documentation your insurance claim requires. A contractor without this certification may not have the specialist training to identify or treat all affected areas correctly.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I do if smoke odour returns after restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Returning smoke odour typically indicates incomplete decontamination \u2014 untreated HVAC systems, wall cavities, or structural framing that was not sealed. Contact your insurer to raise a formal complaint. If the insurer does not resolve it within 30 days, you can escalate to AFCA. An independent ANSI/IICRC S700:2025 assessment documents whether the original work was completed to standard.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover smoke damage in rooms not directly burned?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Smoke travels through HVAC systems, wall cavities, and roof spaces \u2014 contaminating rooms far from the fire origin. This is a covered loss under most building policies. An ANSI/IICRC S700:2025-certified assessment documents smoke infiltration across the whole property, not just the burned area, which supports your claim for the full scope of damage.' },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I get an independent fire restoration assessment if I\u2019m not happy with my insurer\u2019s work?",
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. An independent ANSI/IICRC S700:2025-certified contractor can assess whether your property was restored to the current professional standard. This independent documentation is the primary evidence in AFCA disputes and insurer internal reviews. Start your request through our claim form.' },
+    },
+  ],
+};
+
 export default function FireSmokeRestorationWhatToExpectPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="s700-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Fire & Smoke"
       title="Fire & Smoke Damage Restoration — What to Expect"
       subtitle="What professional fire and smoke restoration involves, what your certified contractor should document, and what questions to ask if restoration work falls short."
@@ -210,5 +245,6 @@ export default function FireSmokeRestorationWhatToExpectPage() {
         { title: 'Why Hire an IICRC-Certified Professional', href: '/guides/certifications/why-hire-iicrc-certified' },
       ]}
     />
+    </>
   )
 }

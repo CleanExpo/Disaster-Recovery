@@ -13,6 +13,7 @@
  */
 
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Droplets } from 'lucide-react'
 import { AgGuidePageTemplate } from '@/components/antigravity'
 import { NAP } from '@/lib/constants'
@@ -43,9 +44,43 @@ export const metadata: Metadata = {
   },
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is ANSI/IICRC S500:2025?',
+      acceptedAnswer: { '@type': 'Answer', text: 'ANSI/IICRC S500:2025 is the current Standard for Professional Water Damage Restoration, published by the IICRC. It is the professional benchmark certification standard for water damage restoration contractors in Australia. For the full standard, visit iicrc.org.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I know if my water damage was dried properly?',
+      acceptedAnswer: { '@type': 'Answer', text: 'A properly completed ANSI/IICRC S500:2025 job produces daily moisture reading records showing drying progress and a final report confirming materials reached drying goals. If the contractor cannot provide these documents, the documentation standard was not met. An independent moisture assessment can determine current moisture levels in affected materials.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why is mould appearing after my water damage claim was closed?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Mould after a closed claim typically indicates structural materials were not dried to the required standard before the claim was closed. This is secondary damage \u2014 the insurer is responsible for the quality of work performed by their preferred contractors. An independent ANSI/IICRC S500:2025 assessment documents the connection between the original incident and the mould growth.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover sewage or floodwater damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Coverage depends on your specific policy. Sewage backup and flooding from external water sources may require specific endorsements on your policy. An IICRC-certified assessment documents the source and extent of the damage, which is the required evidence for any insurance claim regardless of coverage type.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long should water damage restoration take?',
+      acceptedAnswer: { '@type': 'Answer', text: "Professional structural drying under ANSI/IICRC S500:2025 protocols typically takes 3\u20135 days for smaller jobs. Jobs with saturated insulation, concrete slabs, or hardwood floors may take 7\u201314 days or longer. The timeline should be driven by daily moisture readings showing when materials reach drying goals \u2014 not by a fixed number of equipment-days." },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationWhatToExpectPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="s500-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Water Damage"
       title="Water Damage Restoration — What to Expect"
       subtitle="What professional water damage restoration involves, what your certified contractor should document, and what questions to ask if drying was not completed properly."
@@ -211,5 +246,6 @@ export default function WaterDamageRestorationWhatToExpectPage() {
         { title: 'Why Hire an IICRC-Certified Professional', href: '/guides/certifications/why-hire-iicrc-certified' },
       ]}
     />
+    </>
   )
 }

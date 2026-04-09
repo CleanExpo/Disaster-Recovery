@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,43 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/office-water-damage-business-interruption' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How long does it take to restore a water-damaged office?',
+      acceptedAnswer: { '@type': 'Answer', text: "The timeline depends on the severity and extent of the damage. Minor water events (single room, clean water) can be dried and restored within 3\u20135 days. Significant events affecting multiple floors with contaminated water typically take 2\u20134 weeks for full restoration. Phased restoration allows your team to reoccupy completed areas progressively, reducing total business interruption." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can we continue working in the office during restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: "In many cases, yes \u2014 through phased restoration. Unaffected areas can remain operational while damaged zones are contained, dried, and restored. The contractor establishes containment barriers (plastic sheeting, negative air pressure) to separate the work zone from occupied areas. However, if electrical safety or contamination concerns exist, full evacuation of affected floors may be necessary until those issues are resolved." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do we claim for business interruption losses?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Business interruption claims require detailed documentation: pre-loss financial records (12 months minimum), an incident timeline, evidence of lost revenue, records of additional expenses incurred to maintain operations, and proof that you took reasonable steps to minimise the interruption. Your restoration contractor provides daily progress reports and moisture readings that demonstrate the duration of the disruption. We recommend appointing a documentation coordinator from day one.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who pays for the restoration \u2014 us or the building owner?',
+      acceptedAnswer: { '@type': 'Answer', text: "This depends on the cause of the water damage and the lease terms. Generally, structural and building services (pipes, roof, common areas) are the building owner\u2019s responsibility, while tenant fitout damage is the tenant\u2019s responsibility. Our contractors bill you directly so work begins immediately without waiting for liability determinations. We provide full claims documentation to support whoever ultimately lodges the insurance claim." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens in a multi-tenancy building where multiple floors are affected?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Multi-tenancy water events require coordination between tenants, the building manager, and multiple insurers. Our contractors work with all parties to ensure a unified restoration approach. Each affected tenancy receives its own scope of works and documentation for their respective insurance claims. The building manager receives documentation for any common area or building services damage. This coordinated approach avoids conflicting repair works and ensures nothing falls through the gaps.' },
+    },
+  ],
+};
+
 export default function OfficeWaterDamageBusinessInterruptionPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="officebi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Commercial"
       title="Office Water Damage: Minimising Business Interruption"
       subtitle="Expert answers and solutions for"
@@ -205,5 +240,6 @@ export default function OfficeWaterDamageBusinessInterruptionPage() {
         },
       ]}
     />
+    </>
   );
 }

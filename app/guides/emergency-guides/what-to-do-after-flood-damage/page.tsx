@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency-guides/what-to-do-after-flood-damage' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What should I do first after my house floods?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ensure your safety first \u2014 do not enter floodwater above ankle height, and turn off power at the switchboard only if you can reach it safely without standing in water. Once safe, document all damage with photos and video before moving anything, then contact your insurer to lodge a claim. Begin removing standing water if you can do so safely, and contact a professional restoration company to start extraction and drying within the critical first 24 hours.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly does mould grow after flooding in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mould can begin colonising within 24 to 48 hours after flooding, particularly in warm, humid conditions common across Queensland, northern NSW, the Northern Territory, and during summer months nationwide. This is why the IICRC S500:2025 standard emphasises rapid water extraction and structural drying. If mould is already visible or you detect a musty odour, a separate mould remediation scope under IICRC S520:2025 will be required.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Should I throw away everything that got wet in a flood?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Non-porous materials like tiles, concrete, metal, glass, and solid timber can usually be cleaned and restored. Carpet affected by clean water may be salvageable if professionally cleaned within 24 hours. However, carpet underlay, particle board, saturated insulation, and any porous material affected by sewage or floodwater (Category 3) should be discarded. A qualified IICRC-certified technician can assess which items to save and which to remove. Always photograph items before disposal for your insurance claim.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does my insurance cover flood damage restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home and contents insurance policies cover sudden water damage from burst pipes, storms, and appliance failures. Flood cover (riverine flooding) is included in many policies but check your Product Disclosure Statement (PDS) as some policies exclude it or have specific conditions. We bill you directly so work can begin immediately \u2014 no waiting for insurer approval. We provide full documentation including photos, moisture readings, and itemised invoices to support your reimbursement claim.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I stay in my home during flood damage restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on the extent of damage and the water category. For minor clean water damage (Category 1) confined to one area, you may be able to remain in the home while drying equipment operates. For extensive damage, Category 3 water (sewage or floodwater), or if mould remediation is required, you may need to relocate temporarily. Your IICRC-certified contractor will advise on habitability. Many insurance policies include temporary accommodation provisions \u2014 check your PDS for details.',
+      },
+    },
+  ],
+};
+
 export default function WhatToDoAfterFloodDamagePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="afterflood-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency Guides"
       title="Immediate Steps After Flood Damage: Emergency Guide"
       subtitle="Expert answers and solutions for"
@@ -218,5 +272,6 @@ export default function WhatToDoAfterFloodDamagePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

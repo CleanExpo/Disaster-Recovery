@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/sydney/sydney-cbd-emergency-water-extraction' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can emergency water extraction start in Sydney CBD?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors provide a 60-minute emergency response across Sydney CBD, 24/7. The contractor coordinates with building management for loading dock and goods lift access to begin extraction as quickly as possible. After-hours response includes security coordination and building management notification. In CBD high-rises, extraction equipment can typically be operational on the affected floor within 90 minutes of the initial call.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can water extraction be done after hours to avoid disrupting our CBD office?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Many Sydney CBD tenancies specifically request after-hours water extraction and restoration to minimise business disruption. The initial emergency extraction should begin immediately regardless of the time \u2014 every hour of delay increases damage. Subsequent drying equipment runs continuously but quietly. Demolition, material removal, and restoration work can be scheduled for evenings and weekends in coordination with building management after-hours access procedures.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What about heritage buildings in the Sydney CBD?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sydney CBD heritage buildings \u2014 the QVB, Martin Place GPO, Customs House, and numerous sandstone commercial buildings \u2014 require specialist restoration that complies with the NSW Heritage Act 1977 and individual conservation management plans. Emergency water extraction proceeds immediately, with heritage-sensitive restoration methods used for subsequent repair work. Original sandstone, cedar joinery, marble, terrazzo, and decorative plasterwork are restored using heritage-appropriate techniques and materials.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for CBD water extraction?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We bill you directly \u2014 the tenant, building owner, or body corporate \u2014 so work begins immediately without waiting for insurer approval. After make-safe and initial extraction, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, fitout damage, contents and IT losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if the water has reached the basement car park and server room?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Basement flooding in CBD buildings is a critical event that requires immediate response. Submersible pumps extract standing water from car parks, with pumping capacity scaled to the volume. Server rooms and communications risers require immediate power isolation, followed by specialist IT equipment assessment. The contractor coordinates with the building\u2019s fire and electrical contractors to ensure life safety systems are maintained or safely managed during the response. Full documentation supports claims for building damage, vehicle damage (from car park flooding), and IT/communications losses.',
+      },
+    },
+  ],
+};
+
 export default function SydneyCbdEmergencyWaterExtractionPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="sydcbd-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Sydney CBD Emergency Water Extraction - 24/7 Service"
       subtitle="Expert guide to emergency water extraction in Sydney&rsquo;s central business district — covering high-rise office towers, underground car parks, heritage buildings, and the unique access challenges of Australia&rsquo;s largest CBD"
@@ -165,5 +219,6 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
         },
       ]}
     />
+    </>
   );
 }

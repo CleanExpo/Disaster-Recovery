@@ -21,6 +21,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you cover regional and remote areas of Queensland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our contractor network includes certified professionals across metropolitan, regional and remote Queensland. Response times vary by location but we maintain coverage across all DRFA-declared LGAs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does DRFA financial assistance work in Queensland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The Disaster Recovery Funding Arrangements (DRFA) is activated by the Queensland Government when a local government area is declared following a disaster. Eligible homeowners, tenants and primary producers can apply for grants to cover essential repairs. The Queensland Reconstruction Authority (QRA) publishes the current list of declared LGAs and available assistance at qld.gov.au/drfa.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you help with insurance claims for cyclone damage in Queensland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our IICRC-certified contractors provide detailed scope of works, moisture mapping, photographic documentation and all reports required by insurers for cyclone damage claims. We work with all major insurers operating in Queensland.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What IICRC standards do your Queensland contractors follow?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our contractors follow IICRC S500:2025 (Water Damage Restoration), IICRC S520:2025 (Mould Remediation), and IICRC S770 (Storm and Storm Surge Damage) standards, as applicable to the loss type.',
+      },
+    },
+  ],
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -57,6 +96,11 @@ export default function QueenslandServicesPage() {
         id="qld-localbusiness"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="svcqld-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Queensland"

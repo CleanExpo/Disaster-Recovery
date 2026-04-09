@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,43 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/restaurant-fire-damage-restoration' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How long does it take to restore a restaurant after a kitchen fire?',
+      acceptedAnswer: { '@type': 'Answer', text: "Minor fires (contained to a single appliance, no structural damage) can typically be restored in 1\u20132 weeks. Significant kitchen fires with exhaust system involvement, structural damage, and equipment replacement typically take 4\u20138 weeks. The timeline depends on the extent of structural damage, lead times for replacement equipment, and health authority inspection scheduling. Phased restoration can sometimes allow partial trading from the dining room while the kitchen is being rebuilt." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do we need health authority approval before reopening?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. After a fire event, most Australian local councils require a pre-opening inspection by an environmental health officer (EHO) before you can resume trading. This verifies that all food contact surfaces are clean and safe, equipment is compliant, the kitchen meets food safety standards, and structural repairs comply with the Building Code. Schedule the inspection early \u2014 wait times vary by council.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can commercial kitchen equipment be restored after a fire?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Stainless steel benches, shelving, and sinks can often be professionally cleaned and restored. Cooking equipment (ovens, fryers, cooktops) that sustained direct fire or extreme heat damage typically requires manufacturer inspection and recertification, or replacement. Refrigeration with smoke-contaminated insulation usually requires panel replacement. Each piece is assessed individually \u2014 the contractor provides a detailed inventory with status (restorable, repairable, or write-off) for your insurance claim.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for restaurant fire restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the restaurant owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide full claims documentation (photos, scope of works, equipment inventory, progress reports) to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What about lost food stock \u2014 is that covered by insurance?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes, food stock loss is typically covered under your business contents insurance. All food products in the premises are usually condemned after a fire event due to smoke contamination, fire suppression chemical exposure, and temperature abuse (refrigeration failure). Document all stock with photographs, supplier invoices, and estimated replacement values. Your stock inventory forms part of the contents claim that we help you document.' },
+    },
+  ],
+};
+
 export default function RestaurantFireDamageRestorationPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="restaurant-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Commercial"
       title="Restaurant Kitchen Fire Damage Restoration"
       subtitle="Expert answers and solutions for"
@@ -208,5 +243,6 @@ export default function RestaurantFireDamageRestorationPage() {
         },
       ]}
     />
+    </>
   );
 }
