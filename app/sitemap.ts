@@ -172,6 +172,8 @@ const PRIORITY_MAP: Record<string, number> = {
   '/mould-remediation-darwin': 0.9,
   '/storm-damage-restoration-townsville': 0.9,
   '/storm-damage-restoration-hobart': 0.75,
+  '/fire-damage-restoration-adelaide': 0.85,
+  '/fire-damage-restoration-cairns': 0.9,
   '/guides/cost-guides/how-much-storm-damage-restoration-cost': 0.85,
   '/guides/cost-guides/how-much-fire-damage-restoration-cost': 0.85,
   '/events': 0.7,
