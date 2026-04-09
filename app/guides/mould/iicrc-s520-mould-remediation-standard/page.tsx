@@ -14,6 +14,7 @@
  */
 
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Wind } from 'lucide-react'
 import { AgGuidePageTemplate } from '@/components/antigravity'
 import { NAP } from '@/lib/constants'
@@ -45,8 +46,61 @@ export const metadata: Metadata = {
 }
 
 export default function MouldRemediationWhatToExpectPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is ANSI/IICRC S520:2025?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'ANSI/IICRC S520:2025 is the current Standard for Professional Mould Remediation, published by the IICRC. It is the professional benchmark certification standard for mould remediation contractors in Australia. For the full standard, visit iicrc.org.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I know if my mould was remediated properly?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A properly completed ANSI/IICRC S520:2025 job produces a clearance testing report \u2014 independent air and surface sampling taken after remediation confirming the property has returned to normal air quality. If the contractor cannot provide a clearance report, the job documentation standard was not met. An independent assessment can determine current mould conditions.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is mould appearing after my water damage claim was closed?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Mould appearing after a closed claim typically indicates structural materials were not dried to the required standard before the claim was closed. This is secondary damage \u2014 the insurer is responsible for the quality of work performed by their preferred contractors. An independent ANSI/IICRC S520:2025 assessment documents the connection between the original incident and the mould growth.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover mould remediation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Coverage depends on the cause. Mould resulting from a sudden and accidental covered event \u2014 a burst pipe, storm flooding, or roof damage \u2014 is typically covered. Mould from gradual leaks or maintenance failures is typically excluded. Secondary mould damage caused by an insurer\u2019s contractor failing to dry adequately may be covered under the insurer\u2019s obligation for quality of managed repairs.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I clean mould myself with bleach?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Surface bleach cleaning is not professional mould remediation and does not meet ANSI/IICRC S520:2025 requirements. It addresses visible surface mould only and does not remove mould growing into porous materials. Dry brushing or cleaning without containment spreads spores to clean areas. If mould has developed following a water damage or flood event, an independent certified assessment is required to document the extent for an insurance claim.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="s520-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Mould Remediation"
       title="Mould Remediation — What to Expect"
       subtitle="What professional mould remediation involves, what your certified contractor should document, and what questions to ask if remediation was not completed properly."
@@ -213,5 +267,6 @@ export default function MouldRemediationWhatToExpectPage() {
         { title: 'Why Hire an IICRC-Certified Professional', href: '/guides/certifications/why-hire-iicrc-certified' },
       ]}
     />
+    </>
   )
 }

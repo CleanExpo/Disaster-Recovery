@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Bug } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,8 +15,61 @@ export const metadata: Metadata = {
 };
 
 export default function WhyMouldReturnsPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Why does mould keep coming back after I clean it?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Surface cleaning removes visible mould but leaves the root system (hyphae) embedded in porous materials like plasterboard, timber, and grout. As long as moisture conditions remain favourable, those embedded hyphae regrow \u2014 often within weeks or months. Additionally, the moisture source that caused the mould in the first place (roof leak, condensation, plumbing leak, rising damp) must be identified and rectified. Without addressing both the embedded hyphae and the moisture source, mould will return.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does bleach kill mould permanently?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Bleach kills surface mould spores on non-porous surfaces (tiles, glass, metal) but is largely ineffective on porous building materials. On plasterboard or timber, bleach kills surface growth but the water component can actually add moisture to the substrate, potentially promoting deeper hyphae growth. For established mould on porous materials, physical removal of the affected material \u2014 not chemical treatment alone \u2014 is required under the IICRC S520:2025 remediation standard.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the IICRC S520:2025 mould remediation standard?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The IICRC S520:2025 (adopted in Australia as AS-IICRC S520:2025) is the recognised standard for professional mould remediation. It sets out requirements for condition assessment, containment, source removal of affected materials, antimicrobial treatment, moisture rectification, and post-remediation verification. The standard explicitly requires that the moisture source be identified and addressed \u2014 without this, the remediation is considered incomplete. Disaster Recovery connects you with IICRC-certified contractors who follow this standard.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do professionals find hidden moisture causing mould?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'IICRC-certified mould remediators use specialised equipment including pin and pinless moisture meters to measure moisture content in building materials, thermal imaging cameras to detect temperature anomalies that indicate hidden moisture, and hygrometers to measure relative humidity. They inspect accessible cavities (roof spaces, subfloors, wall cavities) and may use borescopes to examine concealed areas. Common hidden sources include slow plumbing leaks, roof flashing failures, rising damp, and chronic condensation.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is mould remediation covered by insurance in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'It depends on the cause. Mould resulting from a sudden, insured event (such as a burst pipe or storm damage) is generally covered under home insurance. Mould caused by gradual deterioration, poor maintenance, or chronic condensation is typically excluded. Through Disaster Recovery, we bill you directly so remediation begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance for costs not covered by insurance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="mouldreturn-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Mould"
       title="Why Mould Returns Within 6 Months - VBA Research Shows 92% Have Water Defects"
       subtitle="Victorian Building Authority research reveals 92% of insurance claims have water-related defects. One in three Australian homes affected by mould. Learn the 7 reasons professional remediation fails."
@@ -314,5 +368,6 @@ export default function WhyMouldReturnsPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

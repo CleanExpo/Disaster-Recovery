@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,8 +15,61 @@ export const metadata: Metadata = {
 };
 
 export default function RealEmergencyResponseCostsPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the total upfront cost for emergency disaster response through Disaster Recovery?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The total initial commitment is $2,750, consisting of a $550 platform fee (claim lodgement, contractor matching, documentation support) and a $2,200 contractor credit (emergency make-safe, assessment, and urgent works). This price is the same 24/7 \u2014 no after-hours or weekend surcharges. If the restoration requires works beyond the initial credit, your contractor provides a formal contract with transparent pricing before any additional work proceeds.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Disaster Recovery charge extra for after-hours or public holiday callouts?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The Disaster Recovery platform charges the same $2,750 initial commitment regardless of when you lodge your claim \u2014 2 a.m. on a Sunday, Christmas Day, or any public holiday. Many competitors charge 50% to 100% premiums for out-of-hours callouts. Our pricing is consistent because emergencies do not have business hours.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I pay for restoration if I am waiting for my insurance reimbursement?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. We provide full claims documentation \u2014 photos, moisture logs, scope of works, progress reports \u2014 to support your insurance reimbursement. If you need to manage cash flow while waiting, payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is fast response cheaper than waiting?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Every hour of delay after water, fire, or storm damage allows damage to spread \u2014 moisture migrates behind walls and under floors, mould begins growing within 24 to 48 hours, and smoke residue embeds deeper into porous materials. A burst pipe addressed within 2 hours may require drying one room. The same burst pipe left 24 hours may require three rooms of drying, plasterboard removal, and mould treatment. Fast response consistently results in lower total restoration costs.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if the restoration costs more than the initial $2,750?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'After the emergency make-safe, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. This includes a line-item breakdown of all additional work, materials, and costs. No additional work proceeds without your written approval. Full documentation is provided for every phase to support your insurance reimbursement claim for the total restoration cost.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="emergresp-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Pricing"
       title="Real Emergency Response Costs — What You'll Actually Pay"
       subtitle="Emergency disaster response pricing in Australia — what drives costs, what after-hours callouts really cost, and how the DR platform model keeps pricing transparent."
@@ -221,5 +275,6 @@ export default function RealEmergencyResponseCostsPage() {
         },
       ]}
     />
+    </>
   );
 }

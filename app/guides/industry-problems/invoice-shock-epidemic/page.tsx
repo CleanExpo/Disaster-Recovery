@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Factory } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -13,8 +14,61 @@ export const metadata: Metadata = {
 };
 
 export default function InvoiceShockEpidemicPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is invoice shock in the restoration industry?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Invoice shock occurs when a property owner receives a final restoration bill dramatically higher than expected \u2014 sometimes 2 to 5 times the verbal estimate. It typically involves inflated equipment charges, unbilled scope additions, vague line items, and exploitation of the emergency situation. NSW Fair Trading has documented cases with consumer detriment exceeding $50,000 per incident.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How can I avoid invoice shock from a disaster restoration contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Demand a written scope before authorising work, ensure make-safe and full restoration are quoted separately, check IICRC certification, request daily moisture reports, and know your consumer rights under Australian Consumer Law. Through Disaster Recovery, pricing is transparent \u2014 $2,750 initial commitment with a formal contract provided after make-safe.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if I receive an inflated restoration invoice?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Request an itemised breakdown of all charges, get an independent IICRC certified assessment, lodge a complaint with your state Fair Trading body, and contact AFCA if the dispute involves your insurer. You are entitled to a detailed explanation of every charge.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why do some restoration companies inflate their invoices?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The power imbalance in emergency situations allows unscrupulous operators to exploit distressed property owners. Common tactics include low phone quotes that balloon on-site, billing for equipment never deployed, charging inflated overtime rates, and using vague line items that cannot be independently verified.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does Disaster Recovery prevent invoice shock?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Disaster Recovery publishes clear upfront pricing ($2,750 initial commitment), requires IICRC certification for all contractors, provides a formal contract with terms and conditions after make-safe, and delivers full claims documentation. We bill you directly with complete transparency \u2014 no hidden charges, no scope creep without approval.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="invoiceshk-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Industry Problems"
       title="Invoice Shock Epidemic - NSW Fair Trading Warns of Contractor Exploitation"
       subtitle="NSW Fair Trading reports 45+ complaints against single traders. ACCC investigating emergency pricing exploitation. Learn how to protect yourself from invoice shock tactics."
@@ -234,5 +288,6 @@ export default function InvoiceShockEpidemicPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

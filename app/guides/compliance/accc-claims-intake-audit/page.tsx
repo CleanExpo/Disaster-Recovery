@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { ShieldCheck } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -15,8 +16,53 @@ export const metadata: Metadata = {
 };
 
 export default function ACCCClaimsIntakeAuditPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I report a dark pattern used by an insurance or claims platform to the ACCC?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. The ACCC accepts reports of misleading or deceptive conduct and unfair practices at accc.gov.au. You can report a specific platform, describe the conduct you experienced, and the ACCC may use the information to inform enforcement priorities. If your concern relates to the conduct of an insurer specifically \u2014 including how your claim was handled \u2014 AFCA (the Australian Financial Complaints Authority) is the relevant external dispute resolution body, accessible at afca.org.au.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between a dark pattern and normal sales persuasion?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Australian consumer law does not prohibit persuasion \u2014 it prohibits misleading or deceptive conduct and (where proposed legislation passes) unfair trading practices. A company can lawfully highlight the benefits of its service, promote urgency where that urgency is genuine, and design interfaces that draw attention to particular options. What it cannot do is create a false impression, use interface design to trick consumers into choices they would not otherwise make, or exploit the vulnerability of consumers under stress. The test under ACL s18 is whether the overall conduct is misleading or likely to mislead \u2014 not whether any individual element is technically true.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does the Privacy Act protect me against pre-ticked consent boxes on claims forms?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Australian Privacy Principle 3 (APP 3) requires that an organisation collecting sensitive information \u2014 which includes insurance claim details and financial information \u2014 must do so with the individual\u2019s consent, and that consent must be voluntary and informed. A pre-ticked checkbox does not constitute voluntary, informed consent under APP 3. If you believe a platform collected or disclosed your personal information without valid consent, you can lodge a complaint with the OAIC.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I check before submitting a claim through an online restoration or claims platform?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Before submitting a claim or engaging a claims referral service online, verify the following: (1) Is the total price \u2014 including any platform or facilitation fee \u2014 disclosed before you enter your personal details? (2) Are all consent checkboxes unchecked by default? (3) Is the platform\u2019s role clearly described \u2014 are they matching you with a contractor, managing your claim, or acting as your advocate? (4) Is there a clear privacy collection notice identifying who collects your information and how to access it? (5) Are there any ongoing fee commitments or subscription arrangements being created by this submission? If any of these are unclear, do not submit until you have a satisfactory answer.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="acccaudit-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Compliance"
       title="Dark Patterns in Insurance Claims"
       subtitle="What the ACCC is targeting, your rights under ACL, and how to identify unfair practices in claims platforms"
@@ -401,5 +447,6 @@ export default function ACCCClaimsIntakeAuditPage() {
       ]}
       cta={{ text: 'Lodge a Claim', href: '/claim' }}
     />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { AgGuidePageTemplate } from '@/components/antigravity';
@@ -23,8 +24,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function HowLongFireDamageRestorationPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How long does fire damage restoration take for a house?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Minor fire damage (contained to one room, limited smoke spread) typically takes 1 to 3 weeks. Moderate damage (multiple rooms, significant smoke, some structural repair) takes 4 to 8 weeks. Severe fire damage (major structural damage, roof involvement, full rebuild) takes 3 to 6 months or more. Timelines depend on severity, whether asbestos is present, building approval requirements, material availability, and whether fire investigation delays access.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What are the phases of fire damage restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Fire restoration follows five main phases: (1) Emergency make-safe \u2014 board-up, tarping, utility disconnection, structural shoring. (2) Contents pack-out \u2014 salvageable items inventoried, packed, and transported for specialist cleaning. (3) Soot and smoke removal \u2014 methodical cleaning of all surfaces using type-specific methods. (4) Odour elimination \u2014 thermal fogging, ozone, or hydroxyl treatment to eliminate embedded smoke odour. (5) Structural repair and rebuild \u2014 from minor patching to full structural reconstruction.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why does fire restoration take so long?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Fire damage is uniquely complex because it involves multiple damage types simultaneously \u2014 fire, smoke, soot, water (from firefighting), potential asbestos, and potential structural compromise. Each requires its own remediation process, and many steps must be completed in sequence. Smoke residue migrates throughout the entire property (not just fire-affected rooms), so cleaning scope is extensive. Structural rebuilds may also require engineering assessments and council approvals.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I live in my house during fire damage restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For minor fire damage confined to one area, it may be possible to remain in the property during restoration, provided the affected area can be effectively contained and air quality in occupied areas is safe. For moderate to severe fire damage, temporary relocation is typically necessary for health and safety \u2014 smoke residue, soot particles, and deodourisation chemicals create an environment that is not suitable for occupation. Most home insurance policies include temporary accommodation cover.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need to wait for insurance approval before fire restoration starts?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. We bill you directly, so work begins immediately without waiting for insurer approval. This is critical for fire restoration because soot corrosion can permanently damage metals, electronics, and finishes within 72 hours, and water from firefighting creates mould risk within 24 to 48 hours. Every day of delay increases the scope and cost. We provide full claims documentation so you can claim reimbursement from your insurer.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="hoflongfire-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Guides"
       title="Fire Damage Restoration Timeline: What to Expect"
       subtitle="Fire damage restoration is one of the most complex and time-consuming restoration projects. Knowing the typical timelines, understanding what happens at each phase, and knowing what you can do to keep things moving helps you plan and reduces the stress of an already difficult situation."
@@ -287,5 +341,6 @@ export default function HowLongFireDamageRestorationPage() {
         },
       ]}
     />
+    </>
   );
 }

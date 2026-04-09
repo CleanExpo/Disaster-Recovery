@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function EasterWeekendEmergencyRestorationPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I get emergency restoration on Good Friday or Easter Monday?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Disaster Recovery operates every day of the year, including all Easter public holidays. Lodge your claim online at disasterrecovery.com.au/claim and you will be matched with an IICRC certified contractor in your area. There are no public holiday surcharges on the platform fee.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is the Easter long weekend a high-risk period for property damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Easter falls during late-season severe weather in QLD and NSW, with storms, heavy rainfall, and hail common in March and April. The four-day weekend means damage that occurs on Good Friday may go unaddressed until Tuesday if you cannot find a 24/7 service \u2014 allowing water damage, mould growth, and secondary deterioration to escalate significantly.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need to wait for my insurer to approve restoration over Easter?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Most insurance call centres run skeleton staff or close entirely over the Easter long weekend. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your reimbursement once your insurer is available.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What types of storm damage are common over Easter in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Common Easter storm damage includes roof penetration from hail or wind, flash flooding and overland flow, wind-driven rain ingress through seals and junctions, and structural damage from fallen trees. Late-season supercell thunderstorms in Queensland and northern NSW are the primary driver of Easter weekend property damage.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does Easter weekend emergency restoration cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The initial commitment through Disaster Recovery is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no public holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="easterfld-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency"
       title="Easter Long Weekend Emergency Restoration"
       subtitle="The Easter long weekend is one of Australia's highest-risk periods for storm and water damage. Four consecutive days without normal services, combined with late-season severe weather across QLD and NSW, make Easter a prime time for property emergencies."
@@ -198,5 +252,6 @@ export default function EasterWeekendEmergencyRestorationPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

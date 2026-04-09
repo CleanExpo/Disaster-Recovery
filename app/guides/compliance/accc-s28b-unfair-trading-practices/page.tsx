@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { ShieldAlert } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
@@ -15,8 +16,61 @@ export const metadata: Metadata = {
 };
 
 export default function AcccS28BUnfairTradingPracticesPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Has section 28B of the Australian Consumer Law been passed?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'As at April 2026, the s28B amendment is a draft bill that the government has indicated it expects to pass during 2026. It has not yet been enacted. You should check the ACCC website and legislation.gov.au for the current legislative status before relying on these provisions.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between unfair trading practices and misleading conduct?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Misleading conduct (s18 ACL) requires that the conduct create a false impression about something \u2014 a statement or representation that is untrue or likely to deceive. Unfair trading practices under s28B target manipulative or exploitative conduct that harms consumers without necessarily involving a false statement: things like manufactured urgency, dark pattern design, and exploitation of vulnerability. There is overlap, but s28B is intended to catch cases where s18 falls short.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I sue a company for unfair trading practices under s28B?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The ACCC is the primary enforcement body under the s28B proposal. Individual consumers may be able to bring private actions under the ACL depending on how the final legislation is structured \u2014 but for insurance disputes specifically, AFCA is the more direct pathway for individual remedies. Consult a solicitor if you need advice on your specific circumstances.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does s28B apply to insurers?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Insurers are businesses engaged in trade or commerce and are subject to the Australian Consumer Law. The insurance sector is also subject to the General Insurance Code of Practice and AFCA oversight. Section 28B, if enacted, would apply in parallel with those frameworks \u2014 not instead of them.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if an insurer or contractor used high-pressure tactics on me after a disaster?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Document the conduct in writing immediately \u2014 what was said, when, and by whom. If it involved an insurer, lodge a complaint through the insurer\u2019s internal dispute resolution process and escalate to AFCA if unresolved. If it involved a contractor, you can report to the ACCC and your state fair trading office. If you suffered financial harm, consult a solicitor or community legal service about your options.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="acccs28b-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Compliance"
       title="ACCC Section 28B: Unfair Trading Practices"
       subtitle="What the proposed ACL amendment covers, how it differs from existing protections, and what it means for insurance claimants"
@@ -311,5 +365,6 @@ export default function AcccS28BUnfairTradingPracticesPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }
