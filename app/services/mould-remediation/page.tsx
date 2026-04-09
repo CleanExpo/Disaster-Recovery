@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Script from 'next/script'
 import { AntigravityServicePageTemplate } from '@/components/antigravity'
 import { mouldRemediationData } from '@/components/antigravity'
 import Image from 'next/image'
@@ -89,8 +90,12 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ])
 
 export default function MouldRemediationPage() {
+  const mouldFaqSchema = generateFAQSchema(mouldFAQs)
   return (
     <>
+      <Script id="mould-faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mouldFaqSchema) }} />
+      <Script id="mould-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mouldServiceSchema) }} />
+      <Script id="mould-breadcrumb-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AntigravityServicePageTemplate data={mouldRemediationData} heroImage="/images/generated/disaster-recovery/hero-mould-remediation.webp" />
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-2xl font-bold text-white mb-8">Mould Remediation Services</h2>
