@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Scale } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
@@ -22,8 +23,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function Section54ContractorRightsPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can my insurer refuse my claim because I used my own contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Under Section 54 of the Insurance Contracts Act 1984, your insurer cannot refuse or reduce your claim solely because you chose to use an independent contractor instead of their panel. The insurer can require that the contractor is suitably qualified (e.g., IICRC-certified, properly licensed), but they cannot mandate that you use a specific company. If the work is performed competently and properly documented, your claim must be processed.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does Section 54 of the Insurance Contracts Act actually say?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Section 54 prevents insurers from refusing to pay a claim based on acts or omissions by the insured that occurred after the policy was entered into, provided those acts did not cause or contribute to the loss. In practical terms, choosing your own contractor is an act that occurs after the loss event. Since your choice of contractor did not cause the property damage, the insurer cannot rely on that choice to deny the claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What if my policy specifically says I must use the insurer\u2019s preferred contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Many policies contain such clauses. However, Section 54 overrides these terms. The insurer cannot rely on a \u201cpreferred contractor\u201d clause to deny your claim if your non-compliance (using your own contractor) did not cause or contribute to the loss. The damage was caused by the insured event \u2014 not by who you chose to fix it. If the insurer threatens to deny your claim on this basis, cite Section 54 in writing and escalate to AFCA if necessary.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can the insurer pay less because my contractor charges more than their panel?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The insurer is entitled to pay a \u201creasonable\u201d cost for the restoration work. However, \u201creasonable\u201d is determined by market rates for qualified tradespeople \u2014 not the discounted rates insurers negotiate with panel contractors. If your contractor\u2019s pricing reflects genuine market rates for IICRC-certified, properly licensed restoration work, the insurer should not substitute their below-market panel rate. If they do, this can be challenged through IDR and AFCA.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need to get insurer approval before starting emergency work?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For genuine emergencies \u2014 active water ingress, contamination hazards, fire damage requiring board-up \u2014 you do not need to wait for insurer approval. Section 54 protects your right to take reasonable steps to mitigate further damage. You should notify the insurer as soon as practicable, but stopping the damage from worsening takes priority. Disaster Recovery contractors begin work immediately and provide full documentation to support the emergency response portion of your claim.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="s54-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Section 54 — Your Right to Choose Your Own Contractor"
       subtitle="Section 54 of the Insurance Contracts Act 1984 protects your right to choose a qualified contractor for emergency restoration work. Your insurer cannot refuse your claim simply because you did not use their panel."
@@ -234,5 +288,6 @@ export default function Section54ContractorRightsPage() {
         },
       ]}
     />
+    </>
   );
 }

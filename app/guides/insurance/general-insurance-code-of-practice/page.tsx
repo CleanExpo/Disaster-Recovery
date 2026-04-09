@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { BookOpen } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
@@ -15,8 +16,69 @@ export const metadata: Metadata = {
 };
 
 export default function GeneralInsuranceCodeOfPracticePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is every Australian insurer bound by the General Insurance Code of Practice?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The Code is binding on ICA member insurers who have subscribed to it. Most major Australian general insurers are subscribers. You can check whether your insurer is a Code subscriber on the Insurance Council of Australia website at insurancecouncil.com.au. Foreign insurers, smaller niche providers, and some Lloyd\u2019s syndicates may not be subscribers.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does my insurer have to decide my claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For straightforward claims where all required documentation has been provided, the Code requires a decision within 10 business days. Where additional investigation is required, the insurer must keep you updated at least every 20 business days. If your claim is complex (for example, involving a total loss or disputed scope), the timeframe may be longer \u2014 but the insurer must still provide regular updates and not simply go silent.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the IDR timeframe for insurance complaints?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'When you lodge a formal complaint through the insurer\u2019s internal dispute resolution process, the insurer has 30 calendar days to provide a written response. If the insurer needs more time due to complexity, it must notify you, give reasons, and advise you of your right to escalate to AFCA. If you have not received a response within 30 days, you can go to AFCA without waiting further.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What can I do if my insurer is ignoring my claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Write formally to the insurer \u2014 email is sufficient \u2014 citing the Code obligation to update you within 20 business days and requesting an update by a specific date. If there is no satisfactory response, lodge a formal complaint through the insurer\u2019s IDR process. If that does not resolve matters within 30 days, escalate to AFCA. Document every step.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can AFCA help if my insurer underpaid my claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. AFCA can consider disputes about claim quantum \u2014 whether the amount paid was correct under the policy terms. Bring your own independent assessment of the loss or repair cost as evidence. AFCA can order the insurer to increase the payment if it finds the original assessment was wrong. AFCA can also award compensation for distress and inconvenience caused by poor handling.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What are vulnerable customer protections in insurance?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Part 9 of the General Insurance Code of Practice requires insurers to identify and respond appropriately to customers in vulnerable circumstances \u2014 including people in the immediate aftermath of a disaster. Obligations include adjusting communication approaches, allowing support persons, avoiding pressure tactics, and providing referrals to support services. A failure to meet these obligations is a ground for complaint under the Code and an AFCA dispute.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="gicop-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="General Insurance Code of Practice — Policyholder Rights"
       subtitle="What ICA member insurers are required to do, key claim timeframes, vulnerable customer protections, and the AFCA escalation pathway"
@@ -355,5 +417,6 @@ export default function GeneralInsuranceCodeOfPracticePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

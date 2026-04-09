@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
@@ -22,8 +23,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function InsuranceApprovedContractorsPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Am I required to use my insurer\u2019s panel contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Under Section 54 of the Insurance Contracts Act 1984, your insurer cannot refuse or reduce your claim solely because you chose an independent contractor. You have the legal right to engage any qualified, licensed restoration professional. The insurer can require that the contractor meets certain standards (such as IICRC certification), but they cannot mandate that you use a specific company.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will my insurer still pay my claim if I use my own contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Your insurer is obligated to process your claim based on the policy terms \u2014 the insured event (the damage), your coverage, and the evidence provided. If your independent contractor provides comprehensive documentation (scope of works, photos, moisture data, reports), your insurer has no legitimate basis to reject the claim simply because you chose your own contractor.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is the panel contractor\u2019s quote so much cheaper than independent quotes?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Panel contractors work at rates negotiated by the insurer, typically 20\u201340% below market rates. These rates are often achieved by using the cheapest materials, minimal investigation (no moisture mapping or thermal imaging), and a narrow scope that only addresses visible damage. Independent contractors price based on the actual scope of work required, including investigation of concealed damage \u2014 which is why their quotes are typically higher but more accurate.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What if my insurer pressures me to use their contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Document the pressure in writing (email is ideal). Politely but firmly state that you are exercising your right under Section 54 of the Insurance Contracts Act to choose your own qualified contractor. If the pressure continues, lodge a complaint through the insurer\u2019s internal dispute resolution process. If that does not resolve it, escalate to AFCA (Australian Financial Complaints Authority) at afca.org.au.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does Disaster Recovery handle the insurance claim documentation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Disaster Recovery contractors provide full claims documentation including photographic evidence, moisture mapping data, thermal imaging reports, detailed scope of works, daily progress reports, and a comprehensive final report. This documentation is provided directly to you \u2014 the property owner \u2014 so you can submit it to your insurer to support your claim for reimbursement. We bill you directly, and you claim back from your insurer.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="approvedctrs-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Insurance Approved Contractors — What It Really Means"
       subtitle="Your insurer may recommend their own contractors, but you are not obligated to use them. Understanding what 'insurance approved' actually means — and your legal right to choose — can save you thousands and months of frustration."
@@ -226,5 +280,6 @@ export default function InsuranceApprovedContractorsPage() {
         },
       ]}
     />
+    </>
   );
 }

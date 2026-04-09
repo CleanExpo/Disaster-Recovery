@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function CanberraGovernmentRestorationPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Do restoration contractors need security clearances for government buildings in Canberra?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Many Commonwealth buildings require contractors to hold security clearances. The clearance level depends on the facility \u2014 Baseline clearance is common for standard department offices, while defence and intelligence facilities may require Negative Vetting 1 or 2. For emergency make-safe works, contractors can often operate under escorted access while formal clearance processes are initiated. NRPG matches you with contractors who have existing clearances where possible.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can heritage government buildings be restored after water or storm damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Heritage buildings require specialist restoration that complies with the building\u2019s Conservation Management Plan, the EPBC Act, and the ACT Heritage Act. Emergency works (water extraction, tarping, containment) proceed immediately under emergency exemptions. Subsequent restoration uses heritage-appropriate materials and techniques, documented for the building\u2019s heritage record. IICRC-certified contractors experienced in heritage work balance damage remediation with fabric preservation.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How are government building restorations billed?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly \u2014 the department, agency, or property manager \u2014 so work begins immediately without waiting for insurer or departmental procurement approval for emergency works. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support Comcover claims, private insurance, or departmental procurement acquittal. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does Canberra\u2019s climate affect building damage risk?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Canberra experiences one of Australia\u2019s widest temperature ranges \u2014 summer highs above 35\u00b0C and winter lows below \u22125\u00b0C. This extreme thermal cycling causes pipe bursts (especially June\u2013August), membrane cracking, and sealant failure. Severe hailstorms (like the January 2020 supercell that caused $1.1 billion in losses) pose catastrophic roof damage risk. Government buildings with large roof areas, skylights, and ageing infrastructure are particularly vulnerable.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if water damage affects sensitive government archives or collections?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Water damage to archives, documents, or cultural collections requires specialist treatment. Wet paper documents are stabilised by freezing within 48 hours to prevent mould and further deterioration, then restored using freeze-drying and vacuum techniques. The contractor coordinates with archival and conservation staff to prioritise materials, document the extent of damage, and maintain chain-of-custody records. Full claims documentation is provided for insurance or departmental reporting.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="canbgov-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Canberra Government Building Restoration Services"
       subtitle="Specialist guide to disaster restoration for government and institutional buildings in Canberra — covering security clearance requirements, heritage considerations, and extreme climate challenges"
@@ -162,5 +216,6 @@ export default function CanberraGovernmentRestorationPage() {
         },
       ]}
     />
+    </>
   );
 }

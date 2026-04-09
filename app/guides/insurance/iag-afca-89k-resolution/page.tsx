@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Scale } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,8 +15,61 @@ export const metadata: Metadata = {
 };
 
 export default function IagAfcaResolutionPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Do I have to go through my insurer\u2019s IDR process before contacting AFCA?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. AFCA requires you to give your insurer the opportunity to resolve the dispute through its Internal Dispute Resolution process first. Under the General Insurance Code of Practice, the insurer must respond within 15 business days. If you are unsatisfied with the outcome, or the insurer does not respond in time, you can then lodge with AFCA.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much can AFCA award in a property damage dispute?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For general insurance claims, AFCA can award up to $1,085,000 for the claim itself (as per AFCA\u2019s published monetary limits). AFCA can also order compensation for non-financial loss \u2014 such as stress and inconvenience caused by insurer misconduct \u2014 of up to $5,500. These limits apply to all AFCA member insurers, including IAG brands.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is an AFCA determination binding on my insurer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, if you accept the determination. AFCA determinations are binding on the insurer \u2014 they must comply within the timeframe specified. If the insurer fails to comply, AFCA can refer the matter to ASIC. As a complainant, the determination is not binding on you \u2014 you may still pursue other avenues if you choose not to accept it.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What kinds of insurer conduct does AFCA consider unreasonable?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'AFCA considers a range of conduct including: unjustified claim declines, unreasonable delays in assessing or paying claims, failing to communicate in a transparent way, appointing biased or unqualified assessors, ignoring independent evidence provided by the policyholder, and applying policy exclusions in a way that is inconsistent with the Insurance Contracts Act 1984.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use a professional restoration report as evidence in my AFCA complaint?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. An independent scope of works and documented assessment from a qualified restoration contractor \u2014 including moisture readings, thermal imaging, and itemised repair costs \u2014 constitutes expert evidence that AFCA decision-makers consider alongside the insurer\u2019s own assessment. Independent expert evidence that contradicts the insurer\u2019s position can be decisive.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="iagafca-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="IAG & AFCA: How Property Damage Disputes Get Resolved"
       subtitle="Understanding AFCA determinations for disputes with major insurers"
@@ -308,5 +362,6 @@ export default function IagAfcaResolutionPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

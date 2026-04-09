@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Users } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
@@ -22,8 +23,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function LossAssessorVsContractorPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the difference between a loss assessor and a loss adjuster?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A loss assessor works for you \u2014 the policyholder. You hire them to represent your interests, prepare your claim, and negotiate with the insurer. A loss adjuster works for the insurer. The insurer appoints them to investigate the claim and recommend a settlement amount. They sit on opposite sides of the negotiation. When your insurer sends someone to \u201cassess your claim\u201d, that person is a loss adjuster acting in the insurer\u2019s interest.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need a loss assessor for a standard water damage claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In most cases, no. For straightforward residential water damage claims \u2014 burst pipe, leaking appliance, roof leak \u2014 a qualified restoration contractor who provides comprehensive documentation (moisture mapping, thermal imaging, detailed scope of works, progress reports) gives your insurer everything they need to process the claim. A loss assessor is typically only necessary when the claim is disputed, the settlement offer is significantly below the actual cost, or the claim is complex (over $100,000, business interruption, multiple damage types).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does a loss assessor charge?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Loss assessors in Australia typically charge 5\u201315% of the claim value, or a fixed fee for smaller claims. This cost is generally not recoverable from the insurer \u2014 it comes out of your settlement. For a $50,000 claim, that is $2,500\u2013$7,500 in assessor fees. This is why it is important to assess whether the additional recovery a loss assessor can achieve will exceed their fees.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use both a loss assessor and my own contractor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, absolutely. The two roles are complementary. The contractor performs the physical restoration and provides technical documentation. The loss assessor uses that documentation \u2014 along with their own assessment \u2014 to negotiate the best possible settlement with your insurer. For large or disputed claims, this combination can be very effective.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does Disaster Recovery handle insurance claims without a loss assessor?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Disaster Recovery contractors provide full claims documentation including pre-work photographic evidence, moisture mapping data, thermal imaging reports, detailed scope of works with line-item costings, daily progress reports, and a comprehensive completion report. We bill you directly, and you submit this documentation to your insurer to claim reimbursement. This documentation package is designed to meet insurer requirements without needing a loss assessor for standard claims. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au) if needed while your claim is processed.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="lossassess-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Loss Assessor vs Restoration Contractor — Who Does What"
       subtitle="A loss assessor negotiates your claim. A restoration contractor fixes the damage. Understanding when you need one, the other, or both can save you significant money and time."
@@ -232,5 +286,6 @@ export default function LossAssessorVsContractorPage() {
         },
       ]}
     />
+    </>
   );
 }

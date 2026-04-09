@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -15,8 +16,61 @@ export const metadata: Metadata = {
 };
 
 export default function AsicInsuranceEnforcementAustraliaPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What did the 2021 Financial Sector Reform Act change for insurance claims?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The Financial Sector Reform (Hayne Royal Commission Response) Act 2021 made insurance claims handling and settling a financial service under the Corporations Act 2001, effective from 1 January 2022. This means insurers are now subject to ASIC oversight and AFS licence obligations when handling claims \u2014 they must act efficiently, honestly, and fairly, and ASIC can take enforcement action if they do not.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can ASIC help me resolve my individual insurance claim dispute?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. ASIC is a regulatory body that supervises industry-wide conduct \u2014 it does not resolve individual claim disputes. For your individual dispute, the correct pathway is your insurer\u2019s Internal Dispute Resolution process first, then AFCA if you remain unsatisfied. You can separately report systemic conduct concerns to ASIC at asic.gov.au.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the duty of utmost good faith and how does it protect me?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The duty of utmost good faith is a statutory obligation under the Insurance Contracts Act 1984 that applies to both the insurer and the insured. For insurers, it means acting honestly, not misleading policyholders, and not taking advantage of the policyholder\u2019s weaker position in the claims process. A breach of this duty by the insurer can be raised in your AFCA complaint and may entitle you to remedies beyond simply having the claim paid.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the General Insurance Code of Practice and does my insurer have to follow it?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The General Insurance Code of Practice is a voluntary industry code administered by the Insurance Council of Australia, but most major Australian general insurers are signatories. It sets minimum standards for claims communication, response timeframes, and the treatment of customers in hardship. Breaches of the Code can be raised in IDR and AFCA complaints, and AFCA applies the Code as a relevant industry standard when making determinations.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if I think my insurer is handling my claim poorly?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'First, document everything \u2014 keep copies of all correspondence, maintain a timeline of events, and obtain a professional, independent assessment of the damage if possible. Then escalate formally through the insurer\u2019s Internal Dispute Resolution process in writing. If unresolved, lodge with AFCA. For patterns of conduct that go beyond your own claim, you can also report to ASIC. Professional restoration documentation from a qualified contractor can significantly strengthen your position at every stage.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="asicenf-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="ASIC Insurance Enforcement in Australia"
       subtitle="What ASIC&apos;s oversight of general insurers means for policyholders"
@@ -304,5 +358,6 @@ export default function AsicInsuranceEnforcementAustraliaPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

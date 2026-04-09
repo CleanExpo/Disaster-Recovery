@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { TrendingUp } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -15,8 +16,61 @@ export const metadata: Metadata = {
 };
 
 export default function InsuranceAffordabilityAustraliaPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is under-insurance and how common is it in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Under-insurance occurs when the sum insured on your home or contents policy is lower than the actual cost to replace or rebuild after a loss. Both the Insurance Council of Australia and AFCA have publicly identified under-insurance as a widespread and systemic issue among Australian homeowners \u2014 particularly after major natural disaster events, when many policyholders discover the gap between their cover and their actual costs for the first time.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why are my home insurance premiums going up every year?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Australian home insurance premiums are rising due to a combination of factors: increased frequency and severity of natural disasters (linked to climate change), higher global reinsurance costs, rising construction and labour costs, and higher material prices. These are structural factors affecting the whole market, not just your individual policy. The Insurance Council of Australia has documented the impact of catastrophe losses on the broader industry.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if my insurance payout doesn\u2019t cover the full cost of rebuilding?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'If your sum insured is lower than the actual rebuild cost, your insurer pays up to the policy limit and you are responsible for the shortfall. Practical steps include: obtaining an independent scope of works to understand the full gap, prioritising the most critical work first, asking your insurer about hardship provisions, and exploring finance options to bridge the shortfall. If your insurer handles the claim poorly, AFCA is available for dispute resolution.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I find out if my home is under-insured?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Use a building cost calculator (available through the Insurance Council of Australia and most major insurers) to estimate the current rebuild cost for your property \u2014 this should include demolition, rebuild, professional fees, and council requirements. Compare that figure to your current sum insured. If your sum insured is lower, you may need to increase your cover. For older, heritage, or unusual properties, consider a professional valuation.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can Disaster Recovery help if my insurance only partially covers my damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Through the Disaster Recovery platform, you are connected directly with vetted, IICRC-certified restoration contractors who provide transparent, itemised scopes of works. This gives you full visibility of what the complete restoration will cost, independent of your insurer\u2019s assessment. You can use this to prioritise work within your available coverage, support any dispute through AFCA, or explore finance options to bridge a shortfall.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="insafford-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Insurance Affordability in Australia"
       subtitle="Rising premiums, under-insurance risk, and what to do when coverage falls short"
@@ -312,5 +366,6 @@ export default function InsuranceAffordabilityAustraliaPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

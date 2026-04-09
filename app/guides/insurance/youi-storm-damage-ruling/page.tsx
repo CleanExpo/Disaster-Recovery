@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Scale } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,8 +15,61 @@ export const metadata: Metadata = {
 };
 
 export default function YouiStormDamageRulingPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can an insurer deny a storm damage claim by saying the damage was pre-existing?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, insurers can raise this argument \u2014 but the burden of proof is on the insurer to demonstrate that the pre-existing condition, not the storm, was the proximate cause of the damage. Vague assertions of wear and tear without evidence are frequently overturned by AFCA. An independent assessment from a qualified contractor, combined with photographic evidence and weather bureau data, can directly challenge this argument.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does it mean that ambiguous policy wording is construed in favour of the insured?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'It means that if an exclusion clause or coverage term can be read in more than one reasonable way, the interpretation that gives you cover is preferred over the interpretation that denies cover. Insurers write their policies \u2014 they are responsible for making exclusions clear and unambiguous. If you believe an exclusion is being applied in a way that is not the plain meaning of the words, this principle supports your position in a dispute.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does an AFCA storm damage complaint take to resolve?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'AFCA timeframes vary depending on the complexity of the dispute and whether it can be resolved through conciliation. Simple complaints are often resolved within weeks. More complex disputes involving detailed factual or legal questions can take several months. AFCA publishes indicative timeframes on its website. There is no cost to the consumer for using AFCA.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need a lawyer to use AFCA?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. AFCA is specifically designed to be accessible to consumers without legal representation. The process is conducted in writing, and AFCA assessors are experienced in insurance disputes. Having thorough documentation \u2014 photos, an independent contractor assessment, weather data, and the insurer\u2019s written denial with stated reasons \u2014 is more important than legal representation in most AFCA storm damage disputes.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the General Insurance Code of Practice and how does it protect me?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The General Insurance Code of Practice is a voluntary industry code administered by the Insurance Council of Australia (ICA) that sets minimum standards for how general insurers must treat their customers. It covers claims handling obligations, timeframes for responding to claims and complaints, and requirements for communicating decisions in writing with reasons. Breaches of the Code can be pursued through the Code Governance Committee and through AFCA.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="youi-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Youi Storm Damage Ruling: What It Means for Your Rights"
       subtitle="Understanding Australian dispute decisions and policyholder protections covering"
@@ -305,5 +359,6 @@ export default function YouiStormDamageRulingPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

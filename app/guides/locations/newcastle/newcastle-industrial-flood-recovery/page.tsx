@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function NewcastleIndustrialFloodRecoveryPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How quickly can industrial flood recovery begin in Newcastle?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'NRPG contractors provide a 60-minute emergency response across greater Newcastle, 24/7. For industrial facilities, the initial response focuses on safety assessment, hazard identification, and emergency water removal. If the facility is in a flood-affected access area (Kooragang Island, Hexham corridor), the contractor coordinates with SES and emergency services for site access as soon as conditions allow. Work begins immediately without waiting for insurer approval.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can flood-damaged industrial equipment be salvaged?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'It depends on the equipment type, flood duration, and water contamination level. Sealed or stainless steel equipment can often be restored through professional cleaning and recalibration. Motors, pumps, and hydraulic systems typically require specialist strip-down and repair. Electronic controls, PLC units, and precision instruments submerged in contaminated floodwater are usually uneconomic to repair. The contractor provides detailed equipment assessment and documentation for each item to support the insurance claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What about asbestos in flood-damaged industrial buildings in Newcastle?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Many Newcastle industrial facilities built before 1990 contain asbestos materials. Floodwater that disturbs asbestos-containing materials creates an immediate health hazard. The contractor conducts asbestos assessment before any demolition or disturbance begins, and licensed asbestos removalists handle all ACM under SafeWork NSW requirements. Asbestos management documentation is included in the claims package.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does industrial flood recovery take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Timelines depend on flood depth, contamination level, facility size, and equipment complexity. A light industrial warehouse with minor flooding may be restored in 1\u20132 weeks. A heavy industrial facility with deep flooding, chemical contamination, and extensive equipment damage can take 4\u201312 weeks for full recovery. The contractor provides an estimated timeline from day one and coordinates with your operations team to prioritise critical production areas.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is billing handled for industrial flood recovery in Newcastle?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly \u2014 the facility owner or operator \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, equipment losses, stock losses, hazardous material management, environmental compliance, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="newcind-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Newcastle Industrial Flood Recovery Services"
       subtitle="Specialist guide to recovering industrial facilities after flooding in Newcastle — from the Hunter River flood plain to the port precinct, Kooragang Island, and the steel and manufacturing heartland"
@@ -173,5 +227,6 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
         },
       ]}
     />
+    </>
   );
 }

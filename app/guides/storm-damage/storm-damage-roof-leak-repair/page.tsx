@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { CloudLightning } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function StormDamageRoofLeakRepairPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How quickly should I get a storm-damaged roof repaired?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Emergency tarping should happen within hours of the damage occurring \u2014 every hour of delay increases interior water damage, raises restoration costs, and accelerates mould growth (which can begin within 24\u201348 hours in Australian humidity). Permanent roof repair can follow within days to weeks depending on material availability and contractor scheduling, but the make-safe tarping must happen immediately.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover emergency roof tarping?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Most Australian home insurance policies cover emergency make-safe work under the reasonable steps to prevent further damage clause. You do not need insurer approval before authorising emergency tarping \u2014 in fact, failing to prevent further damage could affect your claim. Keep all receipts and ensure your contractor provides full documentation including photos and a scope of works.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I claim for both roof repair and interior water damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Storm damage claims typically cover both the roof repair (the source) and the resulting interior damage (water-damaged ceilings, walls, flooring, and contents). These are treated as a single event. Having professional documentation \u2014 moisture readings, drying logs, and a detailed scope of works \u2014 helps demonstrate the full extent of damage and supports a complete claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I know if my roof damage is from the storm or pre-existing wear?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Insurers distinguish between storm damage (covered) and maintenance issues (not covered). Cracked tiles from hail impact, lifted sheets from wind, and torn flashing from debris are storm damage. Gradual deterioration, rust, moss growth, and worn sealant are maintenance. A professional roof inspection with timestamped photos taken immediately after the storm event establishes that the damage is storm-related, which strengthens your claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if water is coming through my ceiling right now?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Place buckets or containers under active drips. If the ceiling is bulging or sagging, stay clear \u2014 saturated plasterboard can collapse without warning. Do not attempt to climb onto the roof. Turn off electricity to affected areas if water is near light fittings or power points. Then lodge a claim at disasterrecovery.com.au/claim for a 60-minute emergency response from an IICRC-certified contractor who will perform emergency tarping and water extraction.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="stormroof-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Storm Damage"
       title="Emergency Storm Damage Roof Leak Repairs"
       subtitle="When a storm damages your roof, water can enter your property within minutes. Understanding the types of damage, emergency response options, and insurance process helps you act fast and protect your home."
@@ -228,5 +282,6 @@ export default function StormDamageRoofLeakRepairPage() {
         },
       ]}
     />
+    </>
   );
 }

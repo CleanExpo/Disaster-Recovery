@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function SunshineCoastHotelRestorationPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How quickly can hotel restoration begin on the Sunshine Coast?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'NRPG contractors provide a 60-minute emergency response across the Sunshine Coast, 24/7, from Caloundra to Noosa. For hotels and resorts, the initial response focuses on water extraction, containment of affected areas, and tarping of roof damage to prevent further water ingress. Work begins immediately without waiting for insurer approval \u2014 every hour of delay means more rooms offline and more lost revenue.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can a hotel keep operating during water damage restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In most cases, yes. Restoration is configured to allow unaffected wings, floors, and facilities to continue operating. Containment barriers separate affected areas from guest corridors. Noisy work is scheduled for overnight or low-occupancy periods. Common areas (lobby, restaurant, pool) are prioritised for rapid restoration. The contractor develops the restoration schedule in coordination with hotel management to minimise guest disruption and revenue loss.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does hotel insurance cover storm damage and business interruption on the Sunshine Coast?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most commercial hospitality insurance policies cover storm damage to the building structure, contents, and FF&E (furniture, fixtures, and equipment). Business interruption cover \u2014 compensating for lost revenue during restoration \u2014 is a separate but commonly held component of hospitality policies. The contractor provides detailed documentation covering both the physical damage and the business interruption (room-nights lost, cancelled bookings, relocated guests) to support your claim for reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does hotel restoration typically take after storm damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Timelines depend on the damage extent. A localised event (burst pipe affecting one floor, 8\u201310 rooms) can be dried and restored within 1\u20132 weeks. Major storm damage affecting the building envelope, multiple wings, and common areas can take 4\u20138 weeks for full restoration. The contractor provides a phased timeline from day one, with the highest-revenue rooms and public areas prioritised for earliest return to service.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is billing handled for hotel and resort restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly \u2014 the hotel owner, management company, or body corporate \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, FF&E losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="schotel-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Sunshine Coast Hotel Water Damage Restoration"
       subtitle="Specialist guide to restoring Sunshine Coast hotels, resorts, and tourism accommodation after water and storm damage — minimising guest disruption across Noosa, Maroochydore, and Mooloolaba"
@@ -165,5 +219,6 @@ export default function SunshineCoastHotelRestorationPage() {
         },
       ]}
     />
+    </>
   );
 }

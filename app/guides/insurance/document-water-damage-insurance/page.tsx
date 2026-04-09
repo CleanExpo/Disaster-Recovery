@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function DocumentWaterDamageInsurancePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What photos do I need for a water damage insurance claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Take wide-angle shots of each affected room plus close-ups of specific damage. Include a ruler or common object for scale. Photograph water lines on walls with a tape measure, serial numbers on damaged appliances, and the water source if visible. Ensure timestamps are enabled on your phone. Store unedited originals and back up to cloud storage immediately.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How soon do I need to lodge a water damage claim with my insurer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Lodge your claim within 24\u201348 hours of discovering the damage. Most home and contents policies require prompt notification. Contact your insurer by phone or their online portal, provide your policy number, a brief description, and your initial photos. Under the General Insurance Code of Practice, your insurer must respond within 10 business days of receiving all requested information.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I start water damage restoration before my insurance claim is approved?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, and in many cases you should. Make-safe works such as water extraction, removing saturated materials and starting dehumidification prevent secondary damage like mould growth. Most insurance policies expect you to take reasonable steps to mitigate further damage. Through the Disaster Recovery platform, we bill you directly so work begins immediately \u2014 your contractor provides full documentation for your reimbursement claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What documentation does my insurer need for a water damage claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Insurers typically require timestamped photographs of all damage, an itemised inventory of damaged contents with estimated values, proof of the water source, a professional scope of works from the restoration contractor, moisture readings, and a completion report. Our IICRC-certified contractors provide all of this as standard \u2014 scope of works, moisture mapping, thermal imaging, progress photos and a final completion report.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does a water damage insurance claim take in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Under the General Insurance Code of Practice, your insurer must decide on your claim within 10 business days of receiving all required information. However, complex claims involving structural damage, large-scale flooding or disputes over the cause of loss can take longer. Having thorough documentation from the outset \u2014 photos, moisture readings, a professional scope of works \u2014 significantly reduces delays.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="docwatins-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Documenting Water Damage for Insurance Claims"
       subtitle="Expert answers and solutions for"
@@ -259,5 +313,6 @@ export default function DocumentWaterDamageInsurancePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }
