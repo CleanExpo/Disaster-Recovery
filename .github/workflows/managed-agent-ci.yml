@@ -1,0 +1,78 @@
+# .github/workflows/managed-agent-ci.yml
+#
+# Managed Agent CI/CD Pipeline
+#
+# Triggers a DR pipeline session via Anthropic Managed Agents on every PR to
+# the main or staging branches.
+#
+# IMPORTANT — Research Preview requirement:
+#   The Anthropic Managed Agents API is currently in Research Preview.
+#   Before this workflow has full effect, the ANTHROPIC_API_KEY secret must
+#   belong to an account with Research Preview access.
+#   Request access at: https://www.anthropic.com/contact-sales
+#
+#   If access is not yet granted, the trigger-pipeline.ts script will detect
+#   the 403/404 response and post an informational comment to the PR instead
+#   of failing the check.
+#
+# Required GitHub Secrets:
+#   ANTHROPIC_API_KEY   — Anthropic API key (Research Preview enabled)
+#   VERCEL_TOKEN        — Vercel personal access token
+#   VERCEL_ORG_ID       — Vercel team/org ID (e.g. team_xxx)
+#   VERCEL_PROJECT_ID   — Vercel project ID for disaster-recovery
+#   DATABASE_URL        — Postgres connection string (for migration step)
+#
+# GITHUB_TOKEN is provided automatically by GitHub Actions.
+
+name: Managed Agent CI Pipeline
+
+on:
+  pull_request:
+    branches: [main, staging]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  managed-agent-pipeline:
+    name: Run CI/CD Pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      # Allow posting comments to the PR
+      pull-requests: write
+      # Allow reading repo contents
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch the PR head commit (not the merge commit) so the agent sees
+          # the exact branch state being reviewed
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Trigger Managed Agent Pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+          PR_BRANCH: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          REPO: ${{ github.repository }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          # Override pipeline timeout for the 30-minute job window
+          # (25 min gives the pipeline time to complete before the job is killed)
+          PIPELINE_TIMEOUT_MS: '1500000'
+        run: npx tsx scripts/ci/trigger-pipeline.ts
