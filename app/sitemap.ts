@@ -186,6 +186,8 @@ const PRIORITY_MAP: Record<string, number> = {
   '/fire-damage-restoration-townsville': 0.85,
   '/flood-damage-restoration-newcastle': 0.8,
   '/flood-damage-restoration-wollongong': 0.8,
+  '/mould-remediation-newcastle': 0.75,
+  '/mould-remediation-wollongong': 0.75,
   '/guides/cost-guides/how-much-storm-damage-restoration-cost': 0.85,
   '/guides/cost-guides/how-much-fire-damage-restoration-cost': 0.85,
   '/events': 0.7,
