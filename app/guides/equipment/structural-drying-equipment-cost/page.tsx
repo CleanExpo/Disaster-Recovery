@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Settings } from 'lucide-react';
 import Link from 'next/link';
 import { AgGuidePageTemplate } from '@/components/antigravity';
@@ -23,8 +24,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function StructuralDryingEquipmentCostPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does professional structural drying cost in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For a typical residential water damage event affecting two to three rooms, total equipment charges over a 3-to-5-day drying period range from $1,500 to $4,000, depending on equipment types and quantities. Total project cost (including labour, monitoring, consumables, and documentation) typically ranges from $2,200 to $8,000. Larger or more complex events \u2014 multiple rooms, Category 3 water, or concealed cavity drying \u2014 can exceed $15,000.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I hire drying equipment myself instead of using a professional?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You can hire basic air movers and dehumidifiers from equipment hire companies, but household and hire-shop equipment does not match commercial capacity and cannot address concealed moisture in wall cavities, subfloors, or ceiling spaces. Without professional moisture monitoring and psychrometric calculations, DIY drying frequently leaves residual moisture that leads to mould growth within days \u2014 and the remediation cost for secondary mould damage routinely exceeds what professional drying would have cost.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does professional structural drying take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most residential water damage events require 3 to 5 days of professional drying with commercial equipment. Severe flooding, concrete slab saturation, or subfloor drying can take 7 to 14 days. Drying duration depends on the volume of water, affected materials, ambient conditions, and equipment deployed. Drying is complete when calibrated moisture meter readings confirm all affected materials have returned to their verified dry standard \u2014 not when surfaces feel dry to touch.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is injection drying and when is it used?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Injection drying directs warm, dry air through small holes into enclosed spaces \u2014 wall cavities, under floor coverings, or into ceiling voids \u2014 to dry concealed areas without requiring full demolition. It is used when materials can be saved in place, such as hardwood floors, solid timber framing, and plaster walls. Injection drying often saves 40 to 60% of total project cost compared to removal and replacement, though it is not appropriate for Category 3 (contaminated) water where porous materials must be removed.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I know the drying is actually complete?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional drying is verified using calibrated pin-type and pinless moisture meters. Readings are taken daily at multiple points across all affected materials. Drying is complete when moisture content returns to the material\u2019s dry standard \u2014 typically 12 to 15% for timber. These readings are documented in daily moisture logs that form part of your claims documentation. A property should never be declared \u201cdry\u201d based on visual inspection or touch alone.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="dryequip-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Equipment"
       title="Structural Drying Equipment: Rental vs Professional Service"
       subtitle="Professional structural drying uses commercial-grade equipment that operates on different principles to household fans and dehumidifiers. Understanding the equipment — and what it costs — helps you evaluate quotes and make informed decisions."
@@ -263,5 +317,6 @@ export default function StructuralDryingEquipmentCostPage() {
         },
       ]}
     />
+    </>
   );
 }

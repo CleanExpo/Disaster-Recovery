@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Wrench } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function ContentsPackOutStoragePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is a contents pack-out during property restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A contents pack-out is the professional process of removing, inventorying, photographing, packing, and securely storing your personal belongings and furniture while your property undergoes restoration. Every item is catalogued with a unique tracking number and stored in a climate-controlled facility. Items may undergo specialist cleaning (ozone treatment, ultrasonic cleaning, freeze-drying) during storage. Contents are returned and placed in their original rooms once restoration is complete.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover contents pack-out and storage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home and contents insurance policies cover pack-out and storage as a necessary component of the restoration process. The pack-out inventory and documentation serve as evidence for your contents claim. We bill you directly so pack-out work begins immediately without waiting for insurer approval, and provide full documentation to support your reimbursement claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long are my belongings stored during restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Storage duration depends on the restoration timeline. A typical residential water damage restoration takes 1 to 3 weeks from drying through to rebuild completion. Fire and smoke restoration may take 3 to 8 weeks. Major structural restoration can take several months. Your contractor provides estimated timeframes in the formal contract issued after make-safe. Contents are stored in secure, climate-controlled facilities throughout.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I choose which items are packed out?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. You can request a full pack-out (all contents removed), partial pack-out (specific rooms or categories), or on-site manipulation (furniture moved within the property). Your contractor recommends the approach based on damage type and restoration requirements, but you make the final decision. High-value or sentimental items can be prioritised for immediate removal if the property is at risk of further damage.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I know my belongings are safe in storage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional pack-out uses secure, climate-controlled storage facilities with controlled access. Every item is inventoried with photographs, assigned a unique tracking number, and its location in the facility is recorded. Chain of custody documentation tracks items from your property to transport to storage and back. Climate control prevents mould growth, warping, and corrosion that uncontrolled storage environments can cause.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="packout-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Services"
       title="Contents Pack-Out & Storage During Restoration"
       subtitle="Protecting your belongings during property restoration — what pack-out involves, when it is necessary, and how the process works from inventory through to return."
@@ -220,5 +274,6 @@ export default function ContentsPackOutStoragePage() {
         },
       ]}
     />
+    </>
   );
 }

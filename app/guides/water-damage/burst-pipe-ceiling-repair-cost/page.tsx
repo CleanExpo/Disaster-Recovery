@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Droplets } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function BurstPipeCeilingRepairCostPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does it cost to repair a ceiling after a burst pipe?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Typical costs range from $2,200\u2013$5,000 for minor damage (1\u20132 rooms, caught quickly) to $12,000\u2013$30,000+ for severe damage (multiple rooms, extended water exposure, ceiling collapse). Costs include water extraction, structural drying, plasterboard replacement, antimicrobial treatment, and repainting. Plumbing repair is separate, typically $300\u2013$1,500. A professional assessment with moisture mapping determines the exact scope \u2014 do not accept a quote based on visual inspection alone.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will my insurance cover burst pipe ceiling damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home insurance policies cover sudden and accidental burst pipe damage, including resulting ceiling, wall, flooring, and contents damage. Gradual leaks and poor maintenance are typically excluded. Check your Product Disclosure Statement for specific terms. NRPG contractors bill you directly so work begins immediately, and provide full claims documentation \u2014 photos, moisture logs, and scope of works \u2014 to support your insurance reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does it take to dry a ceiling after a burst pipe?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional structural drying typically takes 3\u20137 days using commercial-grade LGR dehumidifiers and air movers. The exact duration depends on the volume of water, materials affected (plasterboard dries faster than timber framing), and ambient conditions. Drying must be verified with moisture meter readings \u2014 not estimated by time alone. IICRC-certified technicians monitor readings daily to confirm the structure reaches its dry standard before any reconstruction begins.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Should I try to drain a bulging ceiling myself?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. A saturated plasterboard ceiling can hold over 100 litres of water per sheet. Puncturing it without professional equipment and containment can cause uncontrolled collapse, flooding the room below and potentially causing injury. Stay clear of bulging or sagging ceilings and call a professional immediately. IICRC-certified technicians use controlled drainage techniques with protective sheeting and extraction equipment to manage the water safely.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can burst pipe ceiling damage cause mould?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes \u2014 mould can begin colonising within 24\u201348 hours of water exposure in Australian conditions. Ceiling cavities are particularly high-risk because they are warm, humid, and poorly ventilated. If the burst pipe is not addressed quickly and the structure is not professionally dried, mould growth on framing, insulation, and the back of plasterboard is very likely. Antimicrobial treatment during the restoration process prevents colonisation.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="burstpipe-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Water Damage"
       title="Burst Pipe Ceiling Damage: Repair Costs & Process"
       subtitle="A burst pipe in the ceiling can cause thousands of dollars in damage within hours. Understanding the risks, typical costs, and professional restoration process helps you act fast and minimise the impact."
@@ -216,5 +270,6 @@ export default function BurstPipeCeilingRepairCostPage() {
         },
       ]}
     />
+    </>
   );
 }

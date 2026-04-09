@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { BookOpen } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function WhenToCallDisasterRestorationPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I clean up water damage myself instead of calling a professional?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Small spills of clean water (Category 1) under 2 square metres, on hard flooring, caught within an hour, with no wall or ceiling involvement can often be handled yourself. Anything beyond that \u2014 contaminated water, carpet saturation, multiple rooms, wall involvement, or fire/smoke damage \u2014 requires professional restoration with commercial equipment and IICRC protocols.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How quickly do I need to start professional water damage restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Ideally within 6 hours. Water extraction should begin as soon as possible, with structural drying equipment running within 24 hours. Mould can begin growing within 24 to 48 hours in Australian conditions. Every hour of delay increases restoration costs and the likelihood of secondary damage.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if I wait too long to call a professional restorer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Delayed response leads to escalating damage: mould growth within 24\u201348 hours, timber swelling and delamination within 48\u201372 hours, and potential structural compromise over longer periods. A job that costs $3,000 with same-day intervention can easily become $10,000 or more if left for 72 hours.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need professional help for a small amount of visible mould?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Visible mould \u2014 even a small patch \u2014 indicates an established colony that is typically larger than what you can see. Mould behind walls, under flooring, or in HVAC systems requires professional assessment and IICRC S520:2025 protocol remediation. DIY surface cleaning does not address the root cause and the mould will return.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does the Disaster Recovery platform connect me with a restorer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Lodge your claim online at disasterrecovery.com.au/claim with your damage details and photos. The platform matches you with an IICRC certified contractor in your area within 60 minutes. We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="whencall-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Guides"
       title="When to Call Professional Disaster Restoration Services"
       subtitle="Not every water leak requires a professional restoration crew — but the consequences of misjudging that threshold can be severe. This guide explains when DIY is appropriate and when you need IICRC certified professionals."
@@ -241,5 +295,6 @@ export default function WhenToCallDisasterRestorationPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { BookOpen } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function BestRestorationCompanyAustraliaPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What certifications should a restoration company have in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'At minimum, look for IICRC (Institute of Inspection, Cleaning and Restoration Certification) firm registration and individual technician certifications such as WRT (Water Restoration Technician), FSRT (Fire and Smoke Restoration Technician), and AMRT (Applied Microbial Remediation Technician). The company should also hold a valid ABN, public liability insurance of at least $10 million, and professional indemnity cover.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How quickly should a restoration company respond to an emergency?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In metropolitan areas, a 2\u20134 hour on-site response is the industry standard for genuine emergencies such as active water leaks, fire damage or sewage overflows. Regional response times may be longer depending on distance, but a reputable company will commit to a specific timeframe in writing before you engage them.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does Disaster Recovery vet its contractor network?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Every contractor on the Disaster Recovery platform must hold current IICRC certification, carry public liability and professional indemnity insurance, provide proof of an active ABN, and demonstrate relevant experience. Contractors are matched to jobs based on certification scope, location, equipment availability and track record.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does disaster restoration typically cost in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Costs vary significantly depending on the damage type, extent and property size. A minor water leak in a single room may cost a few thousand dollars; a whole-house fire restoration can run to tens of thousands. We bill you directly with a transparent, written scope of works, and payment plans are available through Blue Fire Finance (bluefirefinance.com.au). Full documentation is provided to support your insurance reimbursement claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I choose my own restoration company or do I have to use my insurer\u2019s preferred supplier?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Under Australian insurance law, you are not obligated to use your insurer\u2019s preferred supplier. You have the right to choose your own contractor. Using the Disaster Recovery platform, you are matched with an IICRC-certified contractor and we provide all the documentation your insurer needs to process your reimbursement claim. You control the process from start to finish.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="bestco-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Guides"
       title="Best Restoration Companies in Australia: How to Choose"
       subtitle="Expert answers and solutions for"
@@ -249,5 +303,6 @@ export default function BestRestorationCompanyAustraliaPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

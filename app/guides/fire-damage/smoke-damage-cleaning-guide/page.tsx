@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Flame } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function SmokeDamageCleaningGuidePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How long does professional smoke damage cleaning take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The duration depends on the size of the affected area and the type of smoke residue. A single room with dry soot may take 1\u20132 days. A full house with synthetic residue, odour treatment and contents cleaning can take 1\u20133 weeks. Your IICRC-certified contractor will provide a detailed scope and timeline before work begins.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I stay in my house during smoke damage restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In most cases, no. Smoke residue contains harmful compounds, and treatments such as ozone generation and thermal fogging require the property to be vacated. Your contractor will advise when it is safe to return, typically after air quality testing confirms particulate levels are within safe limits.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will smoke smell go away on its own without professional cleaning?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Smoke odour is caused by microscopic particles embedded in porous materials \u2014 walls, carpet, timber, soft furnishings and even inside wall cavities. Without professional thermal fogging, ozone treatment or hydroxyl generation, the smell will persist for months or years and often worsens in warm or humid weather.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does smoke damage cleaning cost in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Costs vary depending on the extent of damage, residue type and property size. Minor kitchen fire cleanup may start from a few thousand dollars, while whole-house restoration after a structural fire can run to tens of thousands. We bill you directly with a transparent scope of works, and payment plans are available through Blue Fire Finance (bluefirefinance.com.au). Full documentation is provided for your insurance claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Should I try to clean smoke damage myself before the professionals arrive?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Avoid cleaning until a professional has assessed the residue type. The single most common mistake is wiping soot with a wet cloth, which permanently smears residue into surfaces. If you must act, only use dry chemical sponges on hard surfaces, wear a P2/N95 respirator, and do not turn on the HVAC system. Photograph everything before touching it for your insurance records.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="smokeclean-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Fire Damage"
       title="Smoke Damage Cleaning After House Fire"
       subtitle="Expert answers and solutions for"
@@ -255,5 +309,6 @@ export default function SmokeDamageCleaningGuidePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

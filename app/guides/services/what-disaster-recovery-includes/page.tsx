@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Wrench } from 'lucide-react';
 import Link from 'next/link';
 import { AgGuidePageTemplate } from '@/components/antigravity';
@@ -11,8 +12,61 @@ export const metadata: Metadata = {
 };
 
 export default function WhatDisasterRecoveryIncludesPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What does the $550 platform fee cover?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The $550 platform fee covers claim lodgement, instant matching with an IICRC-certified contractor within your selected radius (20 to 100 km), documentation support throughout the restoration, and ongoing case coordination. It is a one-time fee with no after-hours or weekend surcharges.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does the $2,200 contractor credit cover?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The $2,200 contractor credit goes directly to your matched IICRC-certified contractor and covers the emergency make-safe, initial damage assessment (using moisture meters, thermal imaging, and professional inspection), and commencement of urgent works. There is no additional callout or assessment fee on top of this credit.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if my restoration costs more than $2,750?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'After the emergency make-safe phase, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. This includes a line-item breakdown of all work, materials, equipment, and costs. No additional work proceeds without your written approval. Full documentation is provided for every phase to support your insurance reimbursement claim for the total cost.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does payment work if I am claiming on insurance?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You pay the contractor and we provide full claims documentation \u2014 photos, moisture logs, scope of works, progress reports \u2014 so you can claim reimbursement from your insurer with complete evidence. If you need to manage cash flow while waiting, payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What documentation will I receive for my insurance claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You receive a complete documentation package including before/during/after photographs, daily moisture readings and logs, thermal imaging reports, detailed scope of works, air quality results (if applicable), contents inventory (if pack-out occurred), and daily progress reports. This professional-grade documentation is provided as standard \u2014 not an optional extra \u2014 and gives your insurer everything they need to process your reimbursement.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="whatdr-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Services"
       title="What the Disaster Recovery Platform Includes"
       subtitle="The full service breakdown — what the platform fee covers, what the contractor credit covers, what happens after the initial commitment, and your payment options."
@@ -224,5 +278,6 @@ export default function WhatDisasterRecoveryIncludesPage() {
         },
       ]}
     />
+    </>
   );
 }

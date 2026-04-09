@@ -16,6 +16,7 @@
  */
 
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Layers } from 'lucide-react'
 import { AgGuidePageTemplate } from '@/components/antigravity'
 import { NAP } from '@/lib/constants'
@@ -48,8 +49,61 @@ export const metadata: Metadata = {
 }
 
 export default function FloorCoveringInspectionWhatToExpectPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is ANSI/IICRC S220?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'ANSI/IICRC S220 is the Standard for the Inspection of Flooring Systems, published by the IICRC. It is the professional benchmark for certified floor covering inspection \u2014 including assessment of water-damaged flooring, restoration versus replacement decisions, and documentation standards for insurance claims. The standard is currently under public review with the next edition expected in 2026. For more information, visit iicrc.org.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I know if my floor assessment was done properly?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A proper ANSI/IICRC S220 floor inspection produces written moisture readings taken in the flooring material and the subfloor, a scope of works documenting the basis for any restoration or replacement recommendation, and photographic evidence. If the contractor made a decision without moisture meter readings or without inspecting the subfloor beneath the affected area, the assessment documentation standard was not met.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can hardwood floors be saved after flooding?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Hardwood floors may be restorable if drying commences promptly, the subfloor is dry, and moisture content can be returned to acceptable ranges without permanent distortion. Extended water exposure, contaminated water sources, or significant structural movement (cupping, buckling) typically requires replacement. The correct answer depends on an objective assessment by a certified technician \u2014 not a presumption in either direction.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover flooring replacement after water damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Coverage depends on the cause and your policy. Flooring damaged by a sudden and accidental covered event (burst pipe, storm flooding) is typically covered. The insurer may try to dry and retain flooring rather than replace it \u2014 a certified assessment determines whether drying is appropriate or replacement is required. If the insurer\u2019s decision is disputed, an independent ANSI/IICRC S220 assessment provides the documentation for a formal claim review.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Am I entitled to have my entire floor replaced if only part of it was damaged?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'If matching replacement product is not available, AFCA has ruled in policyholders\u2019 favour for replacement of the full floor run within the affected room or space. The key evidence is independent documentation that a match is not available. An ANSI/IICRC S220 assessment includes a matching assessment as part of the scope of works.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="s220inspect-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Floor Coverings"
       title="Floor Covering Inspection — What to Expect"
       subtitle="What professional floor covering inspection involves after water or flood damage, what your certified contractor should document, and how restoration versus replacement decisions are properly made."
@@ -269,5 +323,6 @@ export default function FloorCoveringInspectionWhatToExpectPage() {
         { title: 'Why Hire an IICRC-Certified Professional', href: '/guides/certifications/why-hire-iicrc-certified' },
       ]}
     />
+    </>
   )
 }

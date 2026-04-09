@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function NewYearsEveDisasterRecoveryPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I get emergency restoration on New Year\u2019s Eve or New Year\u2019s Day?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Disaster Recovery operates 24/7, 365 days a year, including New Year\u2019s Eve and New Year\u2019s Day. Lodge your claim online at disasterrecovery.com.au/claim and contractor matching begins immediately \u2014 even at midnight. There are no holiday surcharges on the platform fee.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What are the most common types of property damage on New Year\u2019s Eve?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The most common incidents are firework-related fires (embers on roofs, decks, and dry vegetation), kitchen fires from unattended cooking, water damage from overflowing fixtures and blocked drains during parties, burst pipes from summer heat, and accidental structural damage during celebrations.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if fireworks cause a fire on my property?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Evacuate everyone immediately and call 000. Do not re-enter the property until the fire service clears it. Once safe, photograph all damage and lodge your claim at disasterrecovery.com.au/claim for IICRC certified fire damage restoration \u2014 available overnight on New Year\u2019s Eve.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need insurer approval before starting restoration on New Year\u2019s Day?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Most insurers run skeleton staff over the New Year period. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement once your insurer is back to normal operations.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does New Year\u2019s Eve emergency restoration cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="nyeflood-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency"
       title="New Year's Eve Disaster Recovery Services"
       subtitle="New Year's Eve celebrations bring unique risks — firework-related fires, party-related water damage, and overnight incidents when most services are closed. Our IICRC certified contractors respond through the night, no surcharges."
@@ -208,5 +262,6 @@ export default function NewYearsEveDisasterRecoveryPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

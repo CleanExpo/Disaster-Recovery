@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,8 +15,61 @@ export const metadata: Metadata = {
 };
 
 export default function ProfessionalResponsePricingBreakdownPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does professional disaster response cost in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional disaster response in Australia typically starts from $2,200 for the restoration phase, with most residential projects ranging from $2,200 to $15,000 for water damage, $3,000 to $50,000+ for fire and smoke, and $2,500 to $20,000+ for mould remediation. The Disaster Recovery platform has a transparent initial commitment of $2,750 ($550 platform fee + $2,200 contractor credit) which covers emergency make-safe, initial assessment, and commencement of urgent works.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Disaster Recovery charge extra for after-hours or weekend callouts?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The Disaster Recovery platform operates 24/7 with no after-hours or weekend surcharges. The $2,750 initial commitment ($550 platform fee + $2,200 contractor credit) is the same regardless of when you lodge your claim. Many competitors charge 50% to 100% premiums for out-of-hours callouts \u2014 always ask before engaging any restoration company.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does the $550 platform fee cover?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The $550 platform fee covers claim lodgement, instant matching with an IICRC-certified contractor within your selected radius (20 to 100 km), documentation support throughout the restoration process, and ongoing case coordination. It is a one-time fee paid to the Disaster Recovery platform.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if restoration costs exceed the initial $2,750?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'After the emergency make-safe phase, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. Any works beyond the initial $2,200 contractor credit are quoted transparently before proceeding \u2014 you approve all additional costs in writing. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is professional restoration covered by insurance?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home and contents insurance policies cover professional restoration for sudden and accidental damage such as burst pipes, storms, fire, and appliance leaks. We bill you directly so work begins immediately without waiting for insurer approval. We provide full claims documentation \u2014 photos, moisture logs, scope of works, and progress reports \u2014 so you can claim reimbursement from your insurer with complete evidence.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="propricing-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Pricing"
       title="Professional Disaster Response Pricing Breakdown"
       subtitle="What professional disaster response actually costs in Australia — from emergency extraction to structural drying and decontamination. No hidden fees, no surprises."
@@ -225,5 +279,6 @@ export default function ProfessionalResponsePricingBreakdownPage() {
         },
       ]}
     />
+    </>
   );
 }

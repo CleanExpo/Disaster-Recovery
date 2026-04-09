@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function ChristmasEmergencyWaterDamagePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I get emergency water damage restoration on Christmas Day in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Disaster Recovery operates 365 days a year, including Christmas Day. Submit your claim online at disasterrecovery.com.au/claim and you will be matched with an IICRC certified contractor in your area. There are no holiday surcharges on the platform fee.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is water damage more common over the Christmas period?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Christmas gatherings put extra strain on household plumbing \u2014 more showers, dishwasher cycles, and laundry loads. Summer heat causes thermal expansion in pipes. Many homes also sit empty while owners travel, allowing small leaks to become major floods before anyone notices.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need to wait for my insurer before starting emergency restoration over Christmas?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Most insurance policies require you to take reasonable steps to mitigate further damage (your duty to mitigate). Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does Christmas Day emergency water damage restoration cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The initial commitment through Disaster Recovery is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) \u2014 the same price year-round with no holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do immediately if I discover water damage on Christmas Day?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Turn off the water mains to stop the source, switch off electricity in affected areas if safe to do so, move valuables to dry areas, and photograph all damage for insurance purposes. Then lodge your claim at disasterrecovery.com.au/claim for immediate contractor matching \u2014 available 24/7 including Christmas Day.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="xmasflood-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency"
       title="Christmas Day Water Damage Emergency Services"
       subtitle="Christmas gatherings put extraordinary strain on household plumbing. When a pipe bursts or a dishwasher overflows on December 25, our IICRC certified contractors are standing by — no holiday surcharges, no voicemail."
@@ -189,5 +243,6 @@ export default function ChristmasEmergencyWaterDamagePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

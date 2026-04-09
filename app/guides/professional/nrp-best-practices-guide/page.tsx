@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Users } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -13,8 +14,61 @@ export const metadata: Metadata = {
 };
 
 export default function NRPBestPracticesGuidePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What certifications do I need to join the NRPG network?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'At minimum, you need a current IICRC certification relevant to the services you offer \u2014 WRT for water damage, FSRT for fire and smoke, or AMRT for mould remediation. You must also carry a minimum of $20 million public liability insurance and hold all relevant trade licences for your state or territory. Certification currency is verified during onboarding and audited quarterly.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does the billing process work for NRPG contractors?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'NRPG contractors bill the client (property owner) directly. Work begins immediately without waiting for insurer approval. You provide full claims documentation \u2014 photos, moisture logs, scope of works, and treatment records \u2014 so the client has everything their insurer needs for reimbursement. After the make-safe phase, you provide the client with a formal contract including terms and conditions for the full restoration scope. If clients need payment flexibility, direct them to Blue Fire Finance (bluefirefinance.com.au).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if my IICRC certification lapses?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Your NRPG profile is immediately suspended and you will not receive new job allocations until proof of renewed certification is provided. IICRC certifications require renewal every 3\u20135 years depending on the specific qualification. We recommend setting renewal reminders at least 3 months before expiry to avoid any gap in your availability on the platform.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What documentation is required for every NRPG job?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Every job requires: timestamped before-and-after photos, initial moisture readings with a documented moisture map, daily drying logs with psychrometric data, treatment records (antimicrobial applications, containment setup), equipment placement records, and a completion report confirming dry standard was achieved. This documentation package supports the client\u2019s insurance claim and is subject to random quarterly audits by NRPG.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is contractor performance measured in the NRPG network?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Performance is measured across five key benchmarks: response time (target 60 minutes), documentation completeness (minimum 90%), dry standard verification, client satisfaction score (minimum 4.0/5.0 over rolling 10-job window), and callback rate (target below 2%). High-performing contractors (4.8+ satisfaction, sub-45-minute response) receive priority job allocation. Contractors falling below benchmarks receive a performance review and support to improve.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="nrpbest-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Professional"
       title="NRPG Best Practices Guide - Professional Standards for Disaster Recovery"
       subtitle="Comprehensive guide to National Restoration Professionals Group best practices, mandatory procedures, and professional standards for emergency response and disaster recovery contractors."
@@ -230,5 +284,6 @@ export default function NRPBestPracticesGuidePage() {
         },
       ]}
     />
+    </>
   );
 }

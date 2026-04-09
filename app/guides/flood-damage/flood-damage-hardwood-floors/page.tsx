@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Waves } from 'lucide-react';
 import Link from 'next/link';
 import { AgGuidePageTemplate } from '@/components/antigravity';
@@ -23,8 +24,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function FloodDamageHardwoodFloorsPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can flood-damaged hardwood floors be saved?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In many cases, yes. The viability depends on the water category (clean vs contaminated), duration of exposure, timber species and thickness, fixing method, subfloor condition, and whether mould has developed. Category 1 and 2 water with exposure under 48 hours has the highest restoration success rate. Dense Australian hardwoods like Spotted Gum and Blackbutt are more resilient than softer or imported species. A professional assessment within the first 24 hours gives the best chance of saving the floor.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does it take to dry flood-damaged hardwood floors?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional drying of hardwood floors typically takes 5 to 14 days using injection drying mats, air movers, and commercial dehumidifiers. After drying, a further 2 to 4 week equalisation period is needed before sanding. Drying must be controlled and gradual \u2014 rapid drying causes cracking and splitting. The total timeline from flood to refinished floor is typically 4 to 8 weeks, depending on severity.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What causes cupping in hardwood floors after water damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Cupping occurs when the bottom of each floorboard absorbs more moisture than the top surface. The edges of the board swell and rise higher than the centre, creating a concave profile. Cupping is the most common early sign of water damage and typically appears within 24 to 72 hours of exposure. It is often reversible with controlled professional drying \u2014 but only if drying is begun quickly and managed correctly to avoid cracking or crowning.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why should I not sand cupped hardwood floors immediately?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sanding cupped floors before the timber has fully dried and equalised removes material from the raised edges. When the boards eventually dry and flatten, the sanded edges are now lower than the centre \u2014 creating permanent crowning that cannot be fixed without replacing the boards. Professional restorers always wait until moisture readings confirm the timber has stabilised before sanding. This equalisation period is typically 2 to 4 weeks after drying is complete.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover hardwood floor restoration after flooding?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home insurance policies cover hardwood floor restoration for sudden water damage events such as burst pipes, appliance leaks, and storm damage. Flood damage requires separate flood cover. Your insurer will require documentation showing the damage, the restoration process, moisture readings, and a scope of works. We provide full claims documentation to support your reimbursement, and work begins immediately without waiting for insurer approval.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="floodfloors-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Flood Damage"
       title="Restoring Flood Damaged Hardwood Floors"
       subtitle="Hardwood floors are one of the most valuable features of an Australian home — and one of the most vulnerable to water damage. Understanding how water affects timber, when floors can be saved, and when replacement is necessary helps you make the right decision for your property and your insurance claim."
@@ -259,5 +313,6 @@ export default function FloodDamageHardwoodFloorsPage() {
         },
       ]}
     />
+    </>
   );
 }
