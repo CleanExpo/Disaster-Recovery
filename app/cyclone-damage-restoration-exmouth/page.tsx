@@ -61,12 +61,12 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What financial assistance is available for Cyclone Narelle damage in Exmouth?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The WA Premier\u2019s Disaster Relief Payment provides: $4,000 for destroyed or severely damaged properties; $2,000 for major damage. Additional support is available through DRFA Community Recovery Support. Call the WA Government recovery hotline on 1800 032 965. NRPG provides documentation support to assist grant applications.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'The Australian Government Disaster Recovery Payment (AGDRP) was activated on 10 April 2026 for eligible Exmouth LGA communities including Learmonth and North West Cape. The AGDRP provides $1,000 per eligible adult and $400 per eligible child. Claim via myGov at servicesaustralia.gov.au or call the Emergency Info Line on 180 22 66. The WA Premier\u2019s Disaster Relief Payment also provides $4,000 for owner-occupiers with destroyed or severely damaged properties and $2,000 for tenants, available via DFES SmartyGrants. WA Recovery hotline: 1800 032 965. Check eligibility and current activation status at official sources before applying.' },
     },
     {
       '@type': 'Question',
       name: 'Does ARPC cover Exmouth cyclone claims?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 Exmouth (21.9\u00b0S) is north of the Tropic of Capricorn (23.5\u00b0S). All home building policies covering properties north of the Tropic in WA have cyclone coverage processed through the ARPC Cyclone Reinsurance Pool. Lodge your claim as \u2018cyclone\u2019 to ensure correct ARPC pool processing.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 Exmouth (21.9\u00b0S) is north of the Tropic of Capricorn (23.5\u00b0S). All home building policies covering properties north of the Tropic in WA have cyclone coverage processed through the ARPC Cyclone Reinsurance Pool. Cyclone Narelle has been confirmed as an ARPC Declared Cyclone Event. Lodge your claim as \u2018cyclone\u2019 to ensure correct ARPC pool processing.' },
     },
     {
       '@type': 'Question',
@@ -88,7 +88,7 @@ export default function CycloneDamageRestorationExmouthPage() {
         subtitle="IICRC-certified contractors responding to Cyclone Narelle across Exmouth and the North West Cape. DRFA declared zone — pre-positioned contractors for immediate post-clearance response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-10"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -116,6 +116,71 @@ export default function CycloneDamageRestorationExmouthPage() {
             ),
           },
           {
+            heading: 'Government Assistance \u2014 Cyclone Narelle (Activated 10 April 2026)',
+            body: (
+              <>
+                <p>
+                  <strong>Australian Government Disaster Recovery Payment (AGDRP)</strong> has been activated
+                  for eligible Exmouth LGA communities as of 10 April 2026, 2pm AWST.
+                </p>
+                <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '0.5rem', padding: '1rem', margin: '1rem 0' }}>
+                  <p style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+                    AGDRP Payment Amounts
+                  </p>
+                  <ul style={{ paddingLeft: '1.5rem', margin: 0 }}>
+                    <li style={{ marginBottom: '0.375rem' }}><strong>$1,000</strong> per eligible adult</li>
+                    <li><strong>$400</strong> per eligible child</li>
+                  </ul>
+                </div>
+                <p style={{ marginTop: '0.75rem' }}>
+                  <strong>Eligible communities in the Exmouth LGA:</strong> Learmonth, North West Cape.
+                </p>
+                <p style={{ marginTop: '0.75rem' }}>
+                  <strong>How to claim:</strong> Claim via{' '}
+                  <a href="https://www.servicesaustralia.gov.au" target="_blank" rel="noopener noreferrer">
+                    myGov / Services Australia
+                  </a>{' '}
+                  or call the Emergency Info Line on <strong>180 22 66</strong>.
+                  Additional information:{' '}
+                  <a href="https://nema.gov.au/our-work/disaster-recovery/disaster-recovery-payments" target="_blank" rel="noopener noreferrer">
+                    nema.gov.au
+                  </a>.
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  <strong>WA Premier&apos;s Disaster Relief Payment</strong> is also available for
+                  owner-occupiers and tenants with eligible damage:
+                </p>
+                <ul style={{ paddingLeft: '1.5rem', marginTop: '0.5rem' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <strong>$4,000</strong> for owner-occupiers with destroyed or severely damaged properties
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <strong>$2,000</strong> for eligible tenants
+                  </li>
+                  <li>
+                    Apply via DFES SmartyGrants &mdash; WA Disaster Relief Hotline:{' '}
+                    <strong>1800 032 965</strong>
+                  </li>
+                </ul>
+                <p style={{ marginTop: '1rem' }}>
+                  <strong>ARPC Declared Cyclone Event:</strong> Cyclone Narelle has been confirmed as a
+                  declared event under the ARPC Cyclone Reinsurance Pool. Lodge your insurance claim as
+                  &lsquo;cyclone&rsquo; to ensure correct ARPC pool processing.
+                </p>
+                <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#4B5563' }}>
+                  Check eligibility and current activation status at official sources before applying:{' '}
+                  <a href="https://www.servicesaustralia.gov.au" target="_blank" rel="noopener noreferrer">servicesaustralia.gov.au</a>,{' '}
+                  <a href="https://nema.gov.au/our-work/disaster-recovery/disaster-recovery-payments" target="_blank" rel="noopener noreferrer">nema.gov.au</a>,{' '}
+                  <a href="https://www.disaster.wa.gov.au" target="_blank" rel="noopener noreferrer">disaster.wa.gov.au</a>.
+                </p>
+                <p style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: '#6B7280' }}>
+                  NRPG collects your contact and property details to coordinate contractor matching.
+                  See our <a href="/privacy-policy">Privacy Policy</a>.
+                </p>
+              </>
+            ),
+          },
+          {
             heading: 'What Cyclone Narelle Did to Exmouth Properties',
             body: (
               <>
@@ -126,12 +191,12 @@ export default function CycloneDamageRestorationExmouthPage() {
                 </p>
                 <ul style={{ paddingLeft: '1.5rem', marginTop: '0.75rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>NRPG is attending all 6 DRFA-declared shires</strong> — Exmouth lodgements
+                    <strong>NRPG is coordinating availability across all 6 DRFA-declared shires</strong> — Exmouth lodgements
                     are in the priority dispatch queue.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Financial assistance available:</strong> $4,000 for destroyed/severely damaged
-                    properties; $2,000 for major damage. Hotline: 1800 032 965.
+                    <strong>Financial assistance available:</strong> AGDRP ($1,000/adult, $400/child via myGov) plus
+                    WA Premier&apos;s Relief ($4,000 owner-occupiers / $2,000 tenants). Hotline: 1800 032 965.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Lodge now to secure your position</strong> — DRFA-declared events generate
@@ -168,7 +233,7 @@ export default function CycloneDamageRestorationExmouthPage() {
             ),
           },
           {
-            heading: 'WA Government Assistance — Cyclone Narelle',
+            heading: 'WA Government Assistance \u2014 Cyclone Narelle',
             body: (
               <>
                 <p>
@@ -177,8 +242,8 @@ export default function CycloneDamageRestorationExmouthPage() {
                 </p>
                 <ul style={{ paddingLeft: '1.5rem', marginTop: '0.75rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>WA Premier&apos;s Disaster Relief Payment:</strong> $4,000 for destroyed or
-                    severely damaged properties; $2,000 for major damage.
+                    <strong>WA Premier&apos;s Disaster Relief Payment:</strong> $4,000 for owner-occupiers with
+                    destroyed or severely damaged properties; $2,000 for eligible tenants. Apply via DFES SmartyGrants.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>DRFA Community Recovery Support:</strong> Additional recovery grants
@@ -205,11 +270,11 @@ export default function CycloneDamageRestorationExmouthPage() {
           },
           {
             question: 'What financial assistance is available for Cyclone Narelle damage in Exmouth?',
-            answer: 'The WA Premier\u2019s Disaster Relief Payment provides: $4,000 for destroyed or severely damaged properties; $2,000 for major damage. Additional support is available through DRFA Community Recovery Support. Call the WA Government recovery hotline on 1800 032 965. NRPG provides documentation support to assist grant applications.',
+            answer: 'The Australian Government Disaster Recovery Payment (AGDRP) was activated on 10 April 2026 for eligible Exmouth LGA communities including Learmonth and North West Cape. The AGDRP provides $1,000 per eligible adult and $400 per eligible child. Claim via myGov at servicesaustralia.gov.au or call 180 22 66. The WA Premier\u2019s Disaster Relief Payment provides $4,000 for owner-occupiers with destroyed or severely damaged properties and $2,000 for tenants, available via DFES SmartyGrants. WA Recovery hotline: 1800 032 965. Check eligibility at official sources before applying.',
           },
           {
             question: 'Does ARPC cover Exmouth cyclone claims?',
-            answer: 'Yes \u2014 Exmouth (21.9\u00b0S) is north of the Tropic of Capricorn (23.5\u00b0S). All home building policies covering properties north of the Tropic in WA have cyclone coverage processed through the ARPC Cyclone Reinsurance Pool. Lodge your claim as \u2018cyclone\u2019 to ensure correct ARPC pool processing.',
+            answer: 'Yes \u2014 Exmouth (21.9\u00b0S) is north of the Tropic of Capricorn (23.5\u00b0S). All home building policies covering properties north of the Tropic in WA have cyclone coverage processed through the ARPC Cyclone Reinsurance Pool. Cyclone Narelle has been confirmed as an ARPC Declared Cyclone Event. Lodge your claim as \u2018cyclone\u2019 to ensure correct ARPC pool processing.',
           },
           {
             question: 'How remote is Exmouth and how does this affect restoration response time?',
