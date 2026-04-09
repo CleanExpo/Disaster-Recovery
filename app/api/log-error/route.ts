@@ -4,78 +4,72 @@ import { prisma } from '@/lib/prisma';
 
 export async function POST(req: NextRequest) {
   try {
-    // TODO: Implement when errorLog and auditLog models are added
-    return NextResponse.json(
-      { error: 'Error logging not yet implemented' },
-      { status: 501 }
-    );
-
-    /* Commented out until models are added:
     const session = await getServerSession();
-    const { 
-      message, 
-      stack, 
-      componentStack, 
-      url, 
-      userAgent, 
-      timestamp,
-      severity = 'ERROR',
-      source = 'frontend'
-    } = await req.json();
+    const body = await req.json();
 
-    if (!message) {
+    const {
+      message,
+      stack,
+      level = 'error',
+      source = 'frontend',
+      metadata,
+    } = body;
+
+    if (!message || typeof message !== 'string') {
       return NextResponse.json(
         { error: 'Missing required field: message' },
         { status: 400 }
       );
     }
 
-    // Create error log entry
+    const validLevels = ['error', 'warning', 'info'];
+    const sanitisedLevel = validLevels.includes(level) ? level : 'error';
+
+    const ipAddress =
+      req.headers.get('x-forwarded-for') ||
+      req.headers.get('x-real-ip') ||
+      'unknown';
+    const userAgent = req.headers.get('user-agent') || 'unknown';
+
     const errorLog = await prisma.errorLog.create({
       data: {
-        message,
-        stack,
-        componentStack,
-        url,
-        userAgent: userAgent || req.headers.get('user-agent') || 'unknown',
-        timestamp: timestamp ? new Date(timestamp) : new Date(),
-        severity,
-        source,
-        userId: session?.user?.email || null,
-        ipAddress: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
-        resolved: false
-      }
+        level: sanitisedLevel,
+        message: message.slice(0, 2000),
+        stack: stack ? String(stack).slice(0, 5000) : null,
+        metadata: metadata ? JSON.stringify(metadata).slice(0, 5000) : null,
+        source: source ? String(source).slice(0, 100) : 'frontend',
+        userId: session?.user?.email ?? null,
+        ipAddress,
+        userAgent: userAgent.slice(0, 500),
+      },
     });
 
-    // For critical errors, also create audit log
-    if (severity === 'CRITICAL' || severity === 'ERROR') {
+    if (sanitisedLevel === 'error') {
       await prisma.auditLog.create({
         data: {
           action: 'ERROR_LOGGED',
           resource: 'application',
+          resourceId: errorLog.id,
           details: JSON.stringify({
             errorId: errorLog.id,
-            message,
-            url,
-            source
+            message: message.slice(0, 500),
+            source,
           }),
-          severity: 'ERROR',
-          userId: session?.user?.email || 'anonymous',
-          ipAddress: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
-          userAgent: req.headers.get('user-agent') || 'unknown',
-          timestamp: new Date()
-        }
+          userId: session?.user?.email ?? null,
+          ipAddress,
+          userAgent: userAgent.slice(0, 500),
+        },
       });
     }
 
     return NextResponse.json({
       success: true,
       errorId: errorLog.id,
-      message: 'Error logged successfully'
     });
-    */
-  } catch (error) {
-    console.error('Error logging application error:', error);
+  } catch (error: unknown) {
+    const errMessage =
+      error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error logging application error:', errMessage);
     return NextResponse.json(
       { error: 'Internal server error while logging error' },
       { status: 500 }
@@ -85,15 +79,8 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    // TODO: Implement when errorLog model is added
-    return NextResponse.json(
-      { error: 'Error logs not yet implemented' },
-      { status: 501 }
-    );
-
-    /* Commented out until model is added:
     const session = await getServerSession();
-    
+
     if (!session?.user) {
       return NextResponse.json(
         { error: 'Not authenticated' },
@@ -102,32 +89,34 @@ export async function GET(req: NextRequest) {
     }
 
     const { searchParams } = new URL(req.url);
-    const limit = parseInt(searchParams.get('limit') || '50');
-    const offset = parseInt(searchParams.get('offset') || '0');
-    const severity = searchParams.get('severity');
-    const resolved = searchParams.get('resolved');
+    const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10), 200);
+    const offset = Math.max(parseInt(searchParams.get('offset') || '0', 10), 0);
+    const level = searchParams.get('level');
 
-    const whereClause: any = {};
-    if (severity) whereClause.severity = severity;
-    if (resolved !== null) whereClause.resolved = resolved === 'true';
+    const whereClause: Record<string, string> = {};
+    if (level && ['error', 'warning', 'info'].includes(level)) {
+      whereClause.level = level;
+    }
 
-    const errors = await prisma.errorLog.findMany({
-      where: whereClause,
-      orderBy: { timestamp: 'desc' },
-      take: limit,
-      skip: offset
-    });
-
-    const totalCount = await prisma.errorLog.count({ where: whereClause });
+    const [errors, totalCount] = await Promise.all([
+      prisma.errorLog.findMany({
+        where: whereClause,
+        orderBy: { createdAt: 'desc' },
+        take: limit,
+        skip: offset,
+      }),
+      prisma.errorLog.count({ where: whereClause }),
+    ]);
 
     return NextResponse.json({
       errors,
       totalCount,
-      hasMore: offset + limit < totalCount
+      hasMore: offset + limit < totalCount,
     });
-    */
-  } catch (error) {
-    console.error('Error fetching error logs:', error);
+  } catch (error: unknown) {
+    const errMessage =
+      error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error fetching error logs:', errMessage);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

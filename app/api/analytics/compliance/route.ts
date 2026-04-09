@@ -45,15 +45,32 @@ export async function GET(req: NextRequest) {
       }
     });
 
-    // Count contractors with certifications (using relation)
+    // Count contractors with at least one verified certification
     const certifiedContractors = await prisma.contractor.count({
       where: {
-        status: 'APPROVED'
-      }
+        status: 'APPROVED',
+        certifications: {
+          some: {
+            status: 'VERIFIED',
+          },
+        },
+      },
     });
 
-    // For now, use same count as certified (TODO: fix when certifications field is properly typed)
-    const iicrcCertified = certifiedContractors;
+    // Count contractors with verified IICRC certifications specifically
+    const iicrcCertified = await prisma.contractor.count({
+      where: {
+        status: 'APPROVED',
+        certifications: {
+          some: {
+            status: 'VERIFIED',
+            certificationType: {
+              startsWith: 'IICRC',
+            },
+          },
+        },
+      },
+    });
 
     // Training compliance
     const completedTraining = await prisma.contractor.count({
@@ -65,10 +82,30 @@ export async function GET(req: NextRequest) {
       }
     });
 
-    // Insurance compliance - TODO: Fix when insurance relation is properly implemented
-    const insuredContractors = totalContractors; // Placeholder
+    // Insurance compliance — count contractors with at least one active policy
+    const insuredContractors = await prisma.contractor.count({
+      where: {
+        status: 'APPROVED',
+        insurance: {
+          some: {
+            status: 'ACTIVE',
+            expiryDate: { gt: now },
+          },
+        },
+      },
+    });
 
-    const expiringSoon = 0; // Placeholder
+    // Insurance expiring within 30 days
+    const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const expiringSoon = await prisma.contractorInsurance.count({
+      where: {
+        status: 'ACTIVE',
+        expiryDate: {
+          gt: now,
+          lte: thirtyDaysFromNow,
+        },
+      },
+    });
 
     // Document compliance - TODO: Implement when document tracking is added
     const documentsSubmitted = 0; // Placeholder
@@ -169,7 +206,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-function calculateContractorComplianceScore(contractor: any, now: Date): number {
+function calculateContractorComplianceScore(contractor: { onboardingStep: number | null }, now: Date): number {
   let score = 0;
   let maxScore = 1;
 
