@@ -34,6 +34,53 @@ export const metadata: Metadata = {
   },
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is an AI claims platform and how does it affect my payout?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'AI claims platforms (such as handdii and HOMEE) are software systems used by insurers to triage, scope, and process property damage claims using data models rather than on-site human assessment. They are designed to reduce insurer handling costs and increase processing speed. The risk for policyholders is that AI-generated scopes may miss non-visible damage — subfloor moisture, wall cavity saturation, HVAC contamination — that an on-site IICRC-certified assessor would identify and document. Items not in the scope are not paid.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I request a human assessment even if my insurer uses an AI platform?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. You have the right under the General Insurance Code of Practice to request an explanation of how your claim was assessed. You also have the right to obtain an independent assessment of your damage at any time. An independent IICRC-certified assessment from an NRPG contractor can be submitted to your insurer through their internal dispute resolution process, or to AFCA if the insurer does not resolve the dispute.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does NRPG fight my insurance claim for me?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. NRPG is a restoration specialist network, not an insurance lawyer or claim advocate. Our role is to assess and restore your property to its pre-loss condition using IICRC-certified methods. We produce an independent, IICRC-standard scope of works that documents the full extent of your damage. That documentation is what you use to support your claim or dispute — the outcome of your insurance claim is between you and your insurer.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is AFCA and how do I escalate a disputed claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "AFCA (Australian Financial Complaints Authority) is the independent external dispute resolution body for Australian financial services, including insurance. If your insurer does not resolve your dispute through its internal process within 30 days, you can lodge a complaint with AFCA at no cost via afca.org.au. AFCA can require insurers to pay additional amounts, reopen closed claims, or arrange independent re-assessment. Complaints must generally be lodged within 2 years of the insurer's final decision.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does IICRC-certified mean and why does it matter for my claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IICRC (Institute of Inspection, Cleaning and Restoration Certification) is the international standard-setting body for the restoration industry. IICRC S500:2025 governs water damage restoration, S520:2025 governs mould remediation, and S700:2025 governs fire and smoke damage restoration. When an NRPG contractor produces a scope of works to IICRC standard, that documentation is auditable — your insurer, an AFCA adjudicator, or an independent expert can verify that the scope reflects the relevant standard, not an arbitrary estimate.',
+      },
+    },
+  ],
+}
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -71,6 +118,11 @@ export default function HumanAdvocateVsAiClaimsPage() {
         id="ai-claims-article-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Script
+        id="humanai-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Insurance Claims"
