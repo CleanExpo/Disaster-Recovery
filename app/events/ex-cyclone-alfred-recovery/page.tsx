@@ -2,11 +2,13 @@
  * Ex-TC Alfred Recovery — Claim Disputes & Contractor Quality Guide
  *
  * BUILD-008 / DR-401: Ex-TC Alfred recovery-phase advocacy content.
- * 132,000+ ICA claims lodged. $1.5B+ insured losses. ICA Catastrophe declared.
+ * 132,000+ ICA claims lodged. AU$1.877B insured losses (PERILS FINAL — 13 Apr 2026). ICA Catastrophe declared.
+ * Largest insured cyclone loss on as-if-today basis since Cyclone Debbie (March 2017).
  *
  * Proof points (verified):
  * - IAG $89,000 ombudsman case: AFCA published case study
  * - Youi $115,765 storm damage ruling: April 2026 court decision (Federal Circuit Court)
+ * - PERILS AU$1.877B final loss: Personal lines 70%, Commercial 26%, Motor 4%
  *
  * ACL s18 compliant — no unverified statistics.
  * Framing: recovery-phase advocacy. DR is restoration network, NOT claim advocate.
@@ -20,16 +22,16 @@ import { NAP } from '@/lib/constants'
 import { Shield } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Ex-Cyclone Alfred Claim Disputes & Recovery Guide 2025 | Disaster Recovery Australia',
+  title: 'Ex-Cyclone Alfred Claim Disputes & Recovery Guide 2026 | Disaster Recovery Australia',
   description:
-    'Ex-TC Alfred recovery guide for disputed and underpaid insurance claims. 132,000 ICA claims lodged. IICRC-certified contractors, AFCA dispute pathways, and ARPC cyclone pool navigation for SE Queensland and Northern NSW.',
+    'Ex-TC Alfred recovery guide for disputed and underpaid insurance claims. 132,000 ICA claims lodged. AU$1.877B final insured losses (PERILS). IICRC-certified contractors, AFCA dispute pathways, and ARPC cyclone pool navigation for SE Queensland and Northern NSW.',
   alternates: {
     canonical: `${NAP.url}/events/ex-cyclone-alfred-recovery`,
   },
   openGraph: {
     title: 'Ex-Cyclone Alfred Claim Disputes Guide | Disaster Recovery Australia',
     description:
-      'Recovery-phase guide for Ex-TC Alfred insurance claims. Disputed claims, underpayment, contractor quality issues — AFCA pathways and IICRC-certified restoration support.',
+      'Recovery-phase guide for Ex-TC Alfred insurance claims. 132,000 claims lodged, AU$1.877B final insured losses (PERILS). Disputed claims, underpayment, contractor quality issues — AFCA pathways and IICRC-certified restoration support.',
     url: `${NAP.url}/events/ex-cyclone-alfred-recovery`,
     type: 'website',
   },
@@ -85,10 +87,10 @@ export default function ExCycloneAlfredRecoveryPage() {
       <AgGuidePageTemplate
         category="Ex-TC Alfred"
         title="Still waiting on your Alfred claim? You shouldn&apos;t have to."
-        subtitle="132,000+ claims lodged. Insurers under pressure. NRPG gets yours moving."
+        subtitle="132,000+ claims lodged. AU$1.877B final insured losses. NRPG gets yours moving."
         gradient="linear-gradient(135deg, #1A0A0A 0%, #7B1A1A 100%)"
         icon={<Shield className="h-10 w-10" />}
-        lastReviewed="2026-04-07"
+        lastReviewed="2026-04-09"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Events', href: '/events' },
@@ -103,10 +105,12 @@ export default function ExCycloneAlfredRecoveryPage() {
               <>
                 <p>
                   Tropical Cyclone Alfred caused unprecedented damage across Queensland and NSW. To date,
-                  132,000+ claims have been lodged with an estimated $1.5 billion in insured losses (ICA
-                  verified). Insurers are stretched. Assessors are booked weeks out. It&apos;s not personal
-                  — it&apos;s systemic pressure. But you don&apos;t have to wait alone. NRPG specialises in
-                  getting stuck claims unstuck.
+                  132,000+ claims have been lodged. PERILS has confirmed a <strong>final insured loss of
+                  AU$1.877 billion</strong> — the largest insured cyclone loss on a current-value basis since
+                  Cyclone Debbie in 2017 (PERILS final estimate, released 13 April 2026). Insurers are
+                  stretched. Assessors are booked weeks out. It&apos;s not personal — it&apos;s systemic
+                  pressure. But you don&apos;t have to wait alone. NRPG specialises in getting stuck claims
+                  unstuck.
                 </p>
               </>
             ),
