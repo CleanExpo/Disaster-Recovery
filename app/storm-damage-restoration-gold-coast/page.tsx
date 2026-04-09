@@ -5,13 +5,13 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Restoration Gold Coast | 24/7',
-  description: 'Emergency storm damage restoration on the Gold Coast. IICRC-certified contractors respond in under 60 minutes across all Gold Coast suburbs. Available 24/7.',
-  keywords: 'storm damage restoration gold coast, storm damage gold coast, hail damage gold coast, wind damage gold coast, emergency storm repair gold coast, storm damage repair gold coast',
+  title: 'Storm Damage Restoration Gold Coast | 24/7 Emergency Response',
+  description:
+    'Emergency storm damage restoration across the Gold Coast. Roof tarping, structural make-safe, water extraction. IICRC-certified. Ex-TC Alfred recovery support. Lodge 24/7.',
+  keywords: 'storm damage restoration gold coast, storm damage gold coast, hail damage gold coast, wind damage gold coast, emergency storm repair gold coast, TC Alfred gold coast, storm damage repair gold coast',
   openGraph: {
     title: 'Storm Damage Restoration Gold Coast | 24/7 Emergency Response',
-    description: 'Emergency storm damage restoration on the Gold Coast. IICRC-certified contractors respond in under 60 minutes. Available 24/7.',
-    images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Storm Damage Restoration')}&city=${encodeURIComponent('Gold Coast')}&service=storm-damage-restoration`, width: 1200, height: 630 }],
+    description: 'Emergency storm damage restoration across the Gold Coast. IICRC-certified. Ex-TC Alfred recovery support. Lodge 24/7.',
     type: 'website',
   },
   alternates: {
@@ -25,7 +25,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/storm-damage-restoration-gold-coast/#localbusiness`,
   name: `${NAP.name} Gold Coast`,
   url: `${NAP.url}/storm-damage-restoration-gold-coast`,
-  description: '24/7 emergency storm damage restoration on the Gold Coast. IICRC-certified contractor network for hail damage, wind damage, roof repairs, and structural restoration across all Gold Coast suburbs.',
+  description: 'IICRC-certified storm damage restoration across the Gold Coast. Emergency roof tarping, structural make-safe, water extraction, and insurance claim documentation.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'City', name: 'Gold Coast', containedInPlace: { '@type': 'State', name: 'Queensland' } },
@@ -37,11 +37,11 @@ const localBusinessSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Emergency Storm Damage Restoration Gold Coast',
+  name: 'Storm Damage Restoration Gold Coast',
   provider: { '@type': 'Organization', name: NAP.name, '@id': `${NAP.url}/#organization` },
   areaServed: { '@type': 'City', name: 'Gold Coast' },
   serviceType: 'Storm Damage Restoration',
-  description: 'Professional storm damage restoration on the Gold Coast including emergency make-safe, roof tarping, hail damage repair, structural restoration, and full insurance documentation.',
+  description: 'Professional storm damage restoration across the Gold Coast: emergency make-safe, roof tarping, structural drying, water extraction, and insurance claim documentation.',
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
@@ -51,33 +51,35 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How much does storm damage restoration cost on the Gold Coast?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Storm damage restoration on the Gold Coast ranges from $1,500 for emergency roof tarping to $60,000 or more for combined structural and water damage from severe storm events. Costs depend on the type of damage (hail, wind, or water), the extent of property affected, and access complexity. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works.' },
+      name: 'Is storm damage covered by home insurance on the Gold Coast?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes \u2014 most standard home insurance policies cover sudden storm damage including wind, hail, and rain ingress through a breached roof or wall. Lodge as \u2018storm damage\u2019 and \u2018water ingress\u2019 separately to maximise your coverage position. Gradual damage from maintenance failures is typically excluded.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'How quickly can a storm damage contractor respond on the Gold Coast?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors across the Gold Coast respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.' },
+      name: 'Does Ex-TC Alfred damage qualify for an insurance claim on the Gold Coast?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes \u2014 damage caused by Ex-TC Alfred in March 2026 is a covered event under most standard home insurance policies. Lodge as \u2018storm damage\u2019 referencing the March 2026 event. NRPG provides full documentation packs to support claim lodgement across northern Gold Coast suburbs.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'Does insurance cover storm damage restoration on the Gold Coast?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home and contents insurance policies cover storm damage including wind, hail, and storm-related water ingress. Flood cover from rising water is typically a separate add-on. We bill you directly so work begins immediately, and provide full claims documentation \u2014 timestamped photos, detailed scope of works, and progress reports \u2014 to support your insurance reimbursement.' },
+      name: 'How quickly can NRPG respond to storm damage on the Gold Coast?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors are available 24/7 across the Gold Coast LGA. Lodge your claim at disasterrecovery.com.au/claim and we dispatch for emergency make-safe including roof tarping and water extraction. Response times vary by event severity and suburb location.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'What should I do immediately after storm damage to my Gold Coast property?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ensure personal safety first \u2014 stay away from fallen power lines and structurally compromised areas. If safe, place buckets under active leaks and move valuables away from water. Photograph all damage for insurance purposes. Do not attempt roof access during or after a storm. Lodge your claim at disasterrecovery.com.au/claim for a 60-minute emergency make-safe response.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'How is hail damage restored on Gold Coast properties?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Hail damage restoration involves a full external assessment, replacement of cracked or broken roof tiles, repair of dented metal roofing, skylight replacement, gutter and downpipe restoration, and repainting of damaged external surfaces. Interior water damage caused by hail-breached roofing is treated simultaneously with industrial extraction and structural drying equipment.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is the Gold Coast at risk of cyclone damage?',
-      acceptedAnswer: { '@type': 'Answer', text: 'While direct cyclone hits on the Gold Coast are rare, the region regularly experiences the remnants of tropical cyclones that bring destructive winds, heavy rainfall, and storm surge risks. Ex-tropical cyclone events can produce sustained winds above 100 km/h and rainfall exceeding 200 mm in 24 hours, causing widespread property damage across the Gold Coast.' },
+      name: 'What should I do first after storm damage to my Gold Coast home?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Do not re-enter until it is safe. Photograph all damage before touching anything \u2014 timestamped evidence is essential for your claim. Apply emergency tarping to any roof breach if safe to do so. Lodge your insurance claim within 72 hours. Call NRPG for professional make-safe and water extraction.',
+      },
     },
   ],
 };
