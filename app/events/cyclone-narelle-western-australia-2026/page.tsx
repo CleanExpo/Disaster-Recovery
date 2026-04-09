@@ -53,10 +53,19 @@ export default function CycloneNarelleWA2026Page() {
       governmentHotline="1800 032 965"
       financialAssistance={[
         {
+          name: 'Australian Government Disaster Recovery Payment (AGDRP)',
+          provider: 'Services Australia',
+          description:
+            'One-off federal payment for eligible adults and children seriously affected by Cyclone Narelle. Activated 10 April 2026 (2pm AWST). Eligible LGAs: Carnarvon (including Coral Bay, Inggarda, Kennedy Range, Lyndon, Minilya, North Plantations, Wooramel, Yandoo Creek) and Exmouth (including Learmonth, North West Cape). Claim via myGov.',
+          amounts: '$1,000 per eligible adult | $400 per eligible child',
+          hotline: '180 22 66',
+          applicationUrl: 'https://www.servicesaustralia.gov.au/disaster-recovery-payment',
+        },
+        {
           name: "WA Premier's Disaster Relief Payment",
           provider: 'WA State Government',
           description:
-            'One-off payment for households where the primary dwelling has been destroyed or severely damaged as a direct result of Cyclone Narelle. Requires inspection confirmation of damage level.',
+            'One-off payment for households where the primary dwelling has been destroyed or severely damaged as a direct result of Cyclone Narelle. Requires inspection confirmation of damage level. Applied via DFES SmartyGrants.',
           amounts: '$4,000 (destroyed/severely damaged) | $2,000 (major damage)',
           hotline: '1800 032 965',
           applicationUrl: 'https://www.dfes.wa.gov.au/recovery',

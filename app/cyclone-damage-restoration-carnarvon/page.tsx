@@ -61,7 +61,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Does ARPC cover Carnarvon cyclone claims?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Carnarvon is at 24.9\u00b0S \u2014 marginally south of the Tropic of Capricorn (23.5\u00b0S). However, the WA DRFA declaration for Cyclone Narelle confirms government recognition of a cyclone event affecting the Gascoyne. Check your Product Disclosure Statement \u2014 many WA coastal policies extend ARPC-equivalent cyclone coverage to the Gascoyne region. Lodge your claim and let your insurer confirm coverage; do not assume you are excluded.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Carnarvon is at 24.9\u00b0S \u2014 marginally south of the Tropic of Capricorn (23.5\u00b0S). However, the WA DRFA declaration for Cyclone Narelle confirms government recognition of a cyclone event affecting the Gascoyne. Cyclone Narelle has been confirmed as an ARPC Declared Cyclone Event. Check your Product Disclosure Statement \u2014 many WA coastal policies extend ARPC-equivalent cyclone coverage to the Gascoyne region. Lodge your claim and let your insurer confirm coverage; do not assume you are excluded.' },
     },
     {
       '@type': 'Question',
@@ -70,8 +70,8 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'What WA government assistance is available for Carnarvon?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The WA Premier\u2019s Disaster Relief Payment provides up to $4,000 for severely damaged or destroyed properties, and $2,000 for major damage. DFES coordinates emergency response and recovery. The WA Recovery hotline is 1800 032 965. NRPG provides IICRC-certified damage documentation to support your grant application.' },
+      name: 'What government assistance is available for Carnarvon after Cyclone Narelle?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The Australian Government Disaster Recovery Payment (AGDRP) was activated on 10 April 2026 for eligible Carnarvon LGA communities including Coral Bay, Inggarda, Kennedy Range, Lyndon, Minilya, North Plantations, Wooramel, and Yandoo Creek. The AGDRP provides $1,000 per eligible adult and $400 per eligible child. Claim via myGov at servicesaustralia.gov.au or call 180 22 66. The WA Premier\u2019s Disaster Relief Payment provides $4,000 for owner-occupiers with destroyed or severely damaged properties and $2,000 for tenants, available via DFES SmartyGrants. WA Recovery hotline: 1800 032 965. Check eligibility at official sources before applying.' },
     },
   ],
 };
@@ -88,7 +88,7 @@ export default function CycloneDamageRestorationCarnarvonPage() {
         subtitle="IICRC-certified contractors responding to Cyclone Narelle across Carnarvon, Shark Bay, and the Gascoyne. DRFA declared zone — wind damage and river flood restoration. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-10"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -97,7 +97,7 @@ export default function CycloneDamageRestorationCarnarvonPage() {
         ]}
         sections={[
           {
-            heading: 'Carnarvon and the Gascoyne — Cyclone Risk Profile',
+            heading: 'Carnarvon and the Gascoyne \u2014 Cyclone Risk Profile',
             body: (
               <>
                 <p>
@@ -117,7 +117,73 @@ export default function CycloneDamageRestorationCarnarvonPage() {
             ),
           },
           {
-            heading: 'Cyclone Narelle 2026 — Carnarvon Impact',
+            heading: 'Government Assistance \u2014 Cyclone Narelle (Activated 10 April 2026)',
+            body: (
+              <>
+                <p>
+                  <strong>Australian Government Disaster Recovery Payment (AGDRP)</strong> has been activated
+                  for eligible Carnarvon LGA communities as of 10 April 2026, 2pm AWST.
+                </p>
+                <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '0.5rem', padding: '1rem', margin: '1rem 0' }}>
+                  <p style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+                    AGDRP Payment Amounts
+                  </p>
+                  <ul style={{ paddingLeft: '1.5rem', margin: 0 }}>
+                    <li style={{ marginBottom: '0.375rem' }}><strong>$1,000</strong> per eligible adult</li>
+                    <li><strong>$400</strong> per eligible child</li>
+                  </ul>
+                </div>
+                <p style={{ marginTop: '0.75rem' }}>
+                  <strong>Eligible communities in the Carnarvon LGA:</strong> Coral Bay, Inggarda,
+                  Kennedy Range, Lyndon, Minilya, North Plantations, Wooramel, Yandoo Creek.
+                </p>
+                <p style={{ marginTop: '0.75rem' }}>
+                  <strong>How to claim:</strong> Claim via{' '}
+                  <a href="https://www.servicesaustralia.gov.au" target="_blank" rel="noopener noreferrer">
+                    myGov / Services Australia
+                  </a>{' '}
+                  or call the Emergency Info Line on <strong>180 22 66</strong>.
+                  Additional information:{' '}
+                  <a href="https://nema.gov.au/our-work/disaster-recovery/disaster-recovery-payments" target="_blank" rel="noopener noreferrer">
+                    nema.gov.au
+                  </a>.
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  <strong>WA Premier&apos;s Disaster Relief Payment</strong> is also available for
+                  owner-occupiers and tenants with eligible damage:
+                </p>
+                <ul style={{ paddingLeft: '1.5rem', marginTop: '0.5rem' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <strong>$4,000</strong> for owner-occupiers with destroyed or severely damaged properties
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <strong>$2,000</strong> for eligible tenants
+                  </li>
+                  <li>
+                    Apply via DFES SmartyGrants &mdash; WA Disaster Relief Hotline:{' '}
+                    <strong>1800 032 965</strong>
+                  </li>
+                </ul>
+                <p style={{ marginTop: '1rem' }}>
+                  <strong>ARPC Declared Cyclone Event:</strong> Cyclone Narelle has been confirmed as a
+                  declared event under the ARPC Cyclone Reinsurance Pool. Lodge your insurance claim as
+                  &lsquo;cyclone&rsquo; to ensure correct ARPC pool processing.
+                </p>
+                <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#4B5563' }}>
+                  Check eligibility and current activation status at official sources before applying:{' '}
+                  <a href="https://www.servicesaustralia.gov.au" target="_blank" rel="noopener noreferrer">servicesaustralia.gov.au</a>,{' '}
+                  <a href="https://nema.gov.au/our-work/disaster-recovery/disaster-recovery-payments" target="_blank" rel="noopener noreferrer">nema.gov.au</a>,{' '}
+                  <a href="https://www.disaster.wa.gov.au" target="_blank" rel="noopener noreferrer">disaster.wa.gov.au</a>.
+                </p>
+                <p style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: '#6B7280' }}>
+                  NRPG collects your contact and property details to coordinate contractor matching.
+                  See our <a href="/privacy-policy">Privacy Policy</a>.
+                </p>
+              </>
+            ),
+          },
+          {
+            heading: 'Cyclone Narelle 2026 \u2014 Carnarvon Impact',
             body: (
               <>
                 <p>
@@ -127,16 +193,16 @@ export default function CycloneDamageRestorationCarnarvonPage() {
                 </p>
                 <ul style={{ paddingLeft: '1.5rem', marginTop: '0.75rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Current contractor staging:</strong> NRPG has contractors positioned in
-                    the Gascoyne region for post-clearance dispatch to Carnarvon and surrounding areas.
+                    <strong>Current contractor staging:</strong> NRPG is coordinating availability of
+                    contractors in the Gascoyne region for post-clearance dispatch to Carnarvon and surrounding areas.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Priority lodgement queue:</strong> Carnarvon lodgements are in the priority
                     dispatch queue alongside all six DRFA-declared shires.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Financial assistance:</strong> WA Premier&apos;s Disaster Relief Payment up to
-                    $4,000 for severely damaged properties. Hotline: 1800 032 965.
+                    <strong>Financial assistance:</strong> AGDRP ($1,000/adult, $400/child via myGov) plus
+                    WA Premier&apos;s Relief ($4,000 owner-occupiers / $2,000 tenants). Hotline: 1800 032 965.
                   </li>
                 </ul>
               </>
@@ -168,7 +234,7 @@ export default function CycloneDamageRestorationCarnarvonPage() {
             ),
           },
           {
-            heading: 'Dual Insurance Lodgement — Wind + Flood in Carnarvon',
+            heading: 'Dual Insurance Lodgement \u2014 Wind + Flood in Carnarvon',
             body: (
               <>
                 <p>
@@ -205,15 +271,15 @@ export default function CycloneDamageRestorationCarnarvonPage() {
           },
           {
             question: 'Does ARPC cover Carnarvon cyclone claims?',
-            answer: 'Carnarvon is at 24.9\u00b0S \u2014 marginally south of the Tropic of Capricorn (23.5\u00b0S). However, the WA DRFA declaration for Cyclone Narelle confirms government recognition of a cyclone event affecting the Gascoyne. Check your Product Disclosure Statement \u2014 many WA coastal policies extend ARPC-equivalent cyclone coverage to the Gascoyne region. Lodge your claim and let your insurer confirm coverage; do not assume you are excluded.',
+            answer: 'Carnarvon is at 24.9\u00b0S \u2014 marginally south of the Tropic of Capricorn (23.5\u00b0S). However, the WA DRFA declaration for Cyclone Narelle confirms government recognition of a cyclone event affecting the Gascoyne. Cyclone Narelle has been confirmed as an ARPC Declared Cyclone Event. Check your Product Disclosure Statement \u2014 many WA coastal policies extend ARPC-equivalent cyclone coverage to the Gascoyne region. Lodge your claim and let your insurer confirm coverage; do not assume you are excluded.',
           },
           {
             question: 'How does the Gascoyne River flooding affect Carnarvon damage claims?',
             answer: 'Cyclone rainfall in the upper Gascoyne catchment regularly causes river flooding in Carnarvon town. Flooding from river inundation may be assessed differently to direct cyclone wind damage under your policy. Lodge both \u2018cyclone damage\u2019 and \u2018water damage/flooding\u2019 as separate lodgements to maximise coverage. NRPG provides documentation that clearly separates wind damage from water ingress from river flooding.',
           },
           {
-            question: 'What WA government assistance is available for Carnarvon?',
-            answer: 'The WA Premier\u2019s Disaster Relief Payment provides up to $4,000 for severely damaged or destroyed properties, and $2,000 for major damage. DFES coordinates emergency response and recovery. The WA Recovery hotline is 1800 032 965. NRPG provides IICRC-certified damage documentation to support your grant application.',
+            question: 'What government assistance is available for Carnarvon after Cyclone Narelle?',
+            answer: 'The Australian Government Disaster Recovery Payment (AGDRP) was activated on 10 April 2026 for eligible Carnarvon LGA communities including Coral Bay, Inggarda, Kennedy Range, Lyndon, Minilya, North Plantations, Wooramel, and Yandoo Creek. The AGDRP provides $1,000 per eligible adult and $400 per eligible child. Claim via myGov at servicesaustralia.gov.au or call 180 22 66. The WA Premier\u2019s Disaster Relief Payment provides $4,000 for owner-occupiers with destroyed or severely damaged properties and $2,000 for tenants, available via DFES SmartyGrants. WA Recovery hotline: 1800 032 965. Check eligibility at official sources before applying.',
           },
         ]}
         relatedGuides={[

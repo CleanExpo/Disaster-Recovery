@@ -49,7 +49,7 @@ const faqSchema = {
       name: 'What if my insurer is slow to respond?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG chases assessments and keeps pressure on your insurer. As your dedicated advocate, we track your claim progress and follow up on your behalf — you don\'t have to chase your insurer yourself.',
+        text: 'NRPG coordinates IICRC-certified restoration contractors and provides independent damage documentation to support your claim. If your insurer is slow, AFCA (Australian Financial Complaints Authority) can investigate delays at no cost to you.',
       },
     },
     {
@@ -65,7 +65,7 @@ const faqSchema = {
       name: "What's the difference between government relief and insurance claim?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Government relief provides immediate grants for hardship and structural damage. Insurance claims cover the full cost of damage to your property and contents. They are separate processes and can be lodged simultaneously. NRPG helps you maximise both.',
+        text: 'Government relief provides immediate grants for hardship and structural damage. Insurance claims cover the full cost of damage to your property and contents. They are separate processes and can be lodged simultaneously. NRPG provides independent damage documentation to support both processes.',
       },
     },
     {
@@ -215,9 +215,10 @@ export default function QueenslandFloods2026Page() {
                   </div>
                 </div>
                 <div className="mt-auto">
-                  {/* TODO: Replace href="#" with the official Extended ESHA application URL when available */}
                   <a
-                    href="#"
+                    href="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Check LGA Eligibility &amp; Apply
@@ -242,9 +243,10 @@ export default function QueenslandFloods2026Page() {
                   programs.
                 </p>
                 <div className="mt-auto">
-                  {/* TODO: Replace href="#" with the official Personal Hardship application URL when available */}
                   <a
-                    href="#"
+                    href="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Apply for Hardship Assistance
@@ -269,9 +271,10 @@ export default function QueenslandFloods2026Page() {
                   professional assessment reports. Eligible works must exceed $5,000. Primary residence only.
                 </p>
                 <div className="mt-auto">
-                  {/* TODO: Replace href="#" with the official Structural Assistance Grants application URL when available */}
                   <a
-                    href="#"
+                    href="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Apply for Structural Grants
@@ -301,8 +304,8 @@ export default function QueenslandFloods2026Page() {
                 },
                 {
                   number: '02',
-                  title: 'Insurer Negotiation',
-                  body: 'We negotiate with insurers on your behalf, track progress, and chase assessments. You have a dedicated advocate — not a call centre.',
+                  title: 'Independent Documentation',
+                  body: 'NRPG provides certified independent damage assessments and restoration documentation that supports your claim position with your insurer or AFCA.',
                 },
                 {
                   number: '03',
@@ -381,7 +384,7 @@ export default function QueenslandFloods2026Page() {
                 },
                 {
                   q: 'What if my insurer is slow to respond?',
-                  a: "NRPG chases assessments and keeps pressure on your insurer. As your dedicated advocate, we track your claim progress and follow up on your behalf — you don't have to chase your insurer yourself.",
+                  a: 'NRPG coordinates IICRC-certified restoration contractors and provides independent damage documentation to support your claim. If your insurer is slow, AFCA (Australian Financial Complaints Authority) can investigate delays at no cost to you.',
                 },
                 {
                   q: 'Do I need to wait for an insurance assessor before government relief?',
@@ -389,7 +392,7 @@ export default function QueenslandFloods2026Page() {
                 },
                 {
                   q: "What's the difference between government relief and insurance claim?",
-                  a: 'Government relief provides immediate grants for hardship and structural damage. Insurance claims cover the full cost of damage to your property and contents. They are separate processes and can be lodged simultaneously. NRPG helps you maximise both.',
+                  a: 'Government relief provides immediate grants for hardship and structural damage. Insurance claims cover the full cost of damage to your property and contents. They are separate processes and can be lodged simultaneously. NRPG provides independent damage documentation to support both processes.',
                 },
                 {
                   q: "Can NRPG help if I've already lodged a claim?",
