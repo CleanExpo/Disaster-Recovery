@@ -8,7 +8,7 @@
  * Personal Hardship Assistance deadline: 27 April 2026
  * Structural Assistance Grants deadline: 27 April 2026
  *
- * ICA trust signal: 132,000+ claims, $1.5B insured losses (Ex-TC Alfred 2023, ICA figures).
+ * ICA trust signal: 132,000+ claims, AU$1.877B insured losses (Ex-TC Alfred, PERILS final — 13 Apr 2026).
  * ACL s18 compliant — no unverified statistics.
  * Framing: NRPG is restoration + claim lodgement network, NOT claim advocate.
  */
@@ -353,7 +353,7 @@ export default function QueenslandFloods2026Page() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                'After Ex-Tropical Cyclone Alfred in 2023, 132,000+ claims were lodged across Australia, with over $1.5 billion in insured losses (ICA figures).',
+                'After Ex-Tropical Cyclone Alfred, 132,000+ claims were lodged across Queensland and northern NSW, with AU$1.877 billion in final insured losses (PERILS, 13 April 2026).',
                 'Our restoration partners are IICRC-certified and comply with S500:2025 and S520:2025 standards.',
               ].map((signal, idx) => (
                 <div key={idx} className="flex items-start gap-3">
