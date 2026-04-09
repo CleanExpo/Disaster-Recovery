@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
   "installCommand": "npm install --force --legacy-peer-deps --include=dev",
-  "buildCommand": "npx prisma@5 migrate deploy && npx prisma@5 generate && node scripts/core/force-build-pages.cjs && node scripts/core/generate-sitemap.cjs && next build",
+  "buildCommand": "npx prisma@5 generate && node scripts/core/force-build-pages.cjs && node scripts/core/generate-sitemap.cjs && next build",
   "public": true,
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=8192",
@@ -19,7 +19,7 @@
   },
   "regions": ["syd1"],
   "github": {
-    "silent": true
+    "enabled": false
   },
   "functions": {
     "app/api/cron/reddit-orchestrator/route.ts": {
