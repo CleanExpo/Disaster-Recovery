@@ -616,13 +616,13 @@ export default function StormDamageRestorationPage() {
           },
           {
             title: 'Roof Leak Repair',
-            href: '/services/roof-leak-repair',
+            href: '/guides/services/emergency-roof-tarping-make-safe',
             description:
               'Fast roof leak detection and repair — temporary tarping through to permanent roof restoration and replacement.',
           },
           {
             title: 'Emergency Board Up',
-            href: '/services/emergency-board-up',
+            href: '/services/emergency-services/emergency-board-up',
             description:
               'Immediate board-up and make-safe services for broken windows, doors and exposed openings after storm damage.',
           },

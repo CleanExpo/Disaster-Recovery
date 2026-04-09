@@ -733,13 +733,13 @@ export default function BushfireDamageRestorationPage() {
           },
           {
             title: 'Smoke Damage Restoration',
-            href: '/services/smoke-damage-restoration',
+            href: '/services/fire-damage-restoration',
             description:
               'Specialist smoke and soot damage cleanup — air scrubbing, thermal deodorisation, HEPA filtration and content restoration.',
           },
           {
             title: 'Emergency Board Up',
-            href: '/services/emergency-board-up',
+            href: '/services/emergency-services/emergency-board-up',
             description:
               'Immediate board-up and make-safe services for fire-damaged properties — securing openings, temporary weatherproofing and hazard fencing.',
           },
