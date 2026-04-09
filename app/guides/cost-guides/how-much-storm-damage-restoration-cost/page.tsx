@@ -344,7 +344,7 @@ export default function HowMuchStormDamageRestorationCostPage() {
         },
         {
           title: 'How to Document Storm Damage for Insurance',
-          href: '/guides/insurance/document-storm-damage-insurance',
+          href: '/guides/insurance/document-water-damage-insurance',
           description: 'Step-by-step guide to photographing and documenting storm damage before cleanup.',
         },
       ]}

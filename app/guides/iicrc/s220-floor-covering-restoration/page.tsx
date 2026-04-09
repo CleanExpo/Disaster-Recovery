@@ -397,13 +397,13 @@ export default function S220FloorCoveringRestorationPage() {
       relatedGuides={[
         {
           title: 'IICRC S500 Water Damage Restoration — What Certified Contractors Do',
-          href: '/guides/iicrc/s500-water-damage-restoration',
+          href: '/guides/water-damage/iicrc-s500-water-damage-restoration-standard',
           description:
             'How the IICRC S500 standard governs professional water damage remediation and what it means for your claim.',
         },
         {
           title: 'IICRC S520 Mould Remediation — What Certified Contractors Do',
-          href: '/guides/iicrc/s520-mould-remediation',
+          href: '/guides/mould/iicrc-s520-mould-remediation-standard',
           description:
             'What the S520 standard requires of certified mould remediation contractors and why it matters after water damage.',
         },

@@ -148,7 +148,7 @@ export default function FloodDamageRestorationSunshineCoastPage() {
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
-          { label: 'Flood Damage', href: '/services/flood-damage' },
+          { label: 'Flood Damage', href: '/services/water-damage' },
           { label: 'Sunshine Coast' },
         ]}
         sections={[
