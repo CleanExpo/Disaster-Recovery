@@ -50,7 +50,7 @@ const localBusinessSchema = {
   name: `${NAP.name} Far North Queensland`,
   url: `${NAP.url}/events/tc-maila-fnq-2026`,
   description:
-    'IICRC-certified cyclone damage restoration contractors serving Far North Queensland. Pre-positioned for TC Maila landfall. 60-minute emergency response post-clearance.',
+    'IICRC-certified cyclone damage restoration contractors serving Far North Queensland. Coordinating availability for TC Maila response. Response times subject to location, demand, and post-clearance access conditions.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'Place', name: 'Far North Queensland' },
@@ -128,7 +128,7 @@ const faqSchema = {
       name: 'How quickly will NRPG respond after TC Maila?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors are pre-positioned across FNQ and will respond within 60 minutes of emergency services issuing the all-clear for your area. Lodge your claim now at disasterrecovery.com.au/claim to be first in the dispatch queue \u2014 assignments are queued and contractors are deployed the moment post-clearance conditions allow.',
+        text: 'NRPG contractors are coordinating availability across FNQ and will deploy as soon as post-clearance conditions safely permit. Response times are subject to location, demand, and access conditions — contractors are queued and dispatched as areas become accessible. Lodge at disasterrecovery.com.au/claim to be prioritised in the dispatch queue.',
       },
     },
   ],
@@ -177,12 +177,36 @@ export default function TCMailaFNQ2026Page() {
                   rainfall, and flash flooding.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  NRPG IICRC-certified contractors are pre-positioned across FNQ postcodes including
-                  4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda), 4874 (Mossman),
-                  4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast), 4878 (Palm Cove), and
-                  4879 (Trinity Beach). Claims can be lodged online 24/7 at disasterrecovery.com.au/claim.
-                  Contractor dispatch occurs within 60 minutes of emergency services issuing the all-clear
-                  for affected areas.
+                  NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes
+                  including 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda),
+                  4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast),
+                  4878 (Palm Cove), and 4879 (Trinity Beach). Claims can be lodged online 24/7 at{' '}
+                  <a href="/claim">disasterrecovery.com.au/claim</a>. Response times are subject to
+                  location, demand, and post-clearance access conditions.
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  <strong>Official BOM tracking:</strong>{' '}
+                  <a
+                    href="https://www.bom.gov.au/cyclone/7dayforecast/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    BOM 7-Day Tropical Cyclone Forecast
+                  </a>{' '}
+                  ·{' '}
+                  <a
+                    href="https://www.bom.gov.au/warning/tropical-cyclone-forecast-track-map/IDQ65002"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    TC Maila Forecast Track Map (IDQ65002)
+                  </a>
+                </p>
+                <p style={{ marginTop: '0.75rem', fontSize: '0.875rem', color: '#555' }}>
+                  By submitting a claim at disasterrecovery.com.au/claim, NRPG collects your name,
+                  contact details, and property information for the purpose of matching you with an
+                  IICRC-certified contractor and coordinating insurance documentation. See our{' '}
+                  <a href="/privacy">Privacy Policy</a> for full details.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>{' '}
@@ -214,8 +238,12 @@ export default function TCMailaFNQ2026Page() {
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Request an IICRC-certified contractor.</strong> NRPG provides psychrometric
                     drying logs and full scope documentation required for insurer sign-off. Lodge now at{' '}
-                    <a href="/claim">disasterrecovery.com.au/claim</a> to be first in the queue for
-                    post-clearance dispatch.
+                    <a href="/claim">disasterrecovery.com.au/claim</a> to be first in the dispatch
+                    queue — response times subject to location, demand, and post-clearance access
+                    conditions. <em style={{ fontSize: '0.85em', color: '#666' }}>
+                      NRPG collects your contact and property details to coordinate contractor
+                      matching. See our <a href="/privacy">Privacy Policy</a>.
+                    </em>
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Keep all emergency accommodation receipts.</strong> If your property is
@@ -260,6 +288,59 @@ export default function TCMailaFNQ2026Page() {
                     with your insurer through the restoration process, reducing delays and disputes.
                   </li>
                 </ul>
+              </>
+            ),
+          },
+          {
+            heading: 'Government Assistance — TC Maila',
+            body: (
+              <>
+                <p>
+                  The following government assistance programs may be available to eligible FNQ
+                  residents and property owners affected by TC Maila. Check eligibility and
+                  activation status directly at official sources — programs activate at varying
+                  stages post-landfall and eligibility criteria apply.
+                </p>
+                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>QLD Personal Hardship Assistance</strong> — emergency hardship payments
+                    and household grants, activated by QLD Government post-disaster declaration.{' '}
+                    <a
+                      href="https://www.qld.gov.au/community/disasters-emergencies/financial-assistance"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Check eligibility at qld.gov.au
+                    </a>
+                  </li>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>Queensland SES</strong> — emergency tarping, tree removal, and make-safe
+                    during and immediately after the event.{' '}
+                    <a
+                      href="https://www.ses.qld.gov.au/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ses.qld.gov.au
+                    </a>
+                  </li>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>Get Ready Queensland — TC Maila</strong> — official preparation and
+                    recovery information.{' '}
+                    <a
+                      href="https://www.getready.qld.gov.au/tcMaila"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      getready.qld.gov.au/tcMaila
+                    </a>
+                  </li>
+                </ul>
+                <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#555' }}>
+                  Program availability and eligibility criteria are subject to change by the
+                  Queensland Government. Verify current activation status at official sources
+                  before applying.
+                </p>
               </>
             ),
           },
@@ -310,7 +391,7 @@ export default function TCMailaFNQ2026Page() {
           {
             question: 'How quickly will NRPG respond after TC Maila?',
             answer:
-              'NRPG contractors are pre-positioned across FNQ and will respond within 60 minutes of emergency services issuing the all-clear for your area. Lodge your claim now at disasterrecovery.com.au/claim to be first in the dispatch queue — assignments are queued and contractors are deployed the moment post-clearance conditions allow.',
+              'NRPG contractors are coordinating availability across FNQ and will deploy as soon as post-clearance conditions safely permit. Response times are subject to location, demand, and access conditions following the all-clear — contractors are queued and dispatched as areas become accessible. Lodge your claim now at disasterrecovery.com.au/claim to be prioritised in the dispatch queue.',
           },
         ]}
         relatedGuides={[
