@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/middle-night-flooding-emergency' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What should I do first if my house floods in the middle of the night?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Your first priority is safety. Turn off electricity at the switchboard (if safe to access), do not walk through standing water near electrical fittings, wake all household members, and evacuate if water is rising quickly or there is structural concern. Call 000 for life-threatening emergencies or the SES on 132 500 for urgent storm and flood assistance. Once safe, stop the water source if possible and submit a claim through Disaster Recovery for professional restoration.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I get a restoration crew dispatched at midnight in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Disaster Recovery operates a 24/7 online claim platform with IICRC-certified contractors rostered for after-hours response across Australia. Submit your claim at any hour and contractor matching begins immediately. Metropolitan areas typically see faster response times than regional locations.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Should I call the SES or a restoration company for overnight flooding?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on the situation. Call the SES (132 500) for immediate hazards like storm damage, fallen trees, or rescue from rising floodwater. Call a restoration company (or submit a claim through Disaster Recovery) for water extraction, structural drying, and damage documentation. In major events, you may need both \u2014 submit your Disaster Recovery claim while waiting for SES assistance so your restorer can be matched in parallel.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I document flood damage at 2 am for insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use your smartphone with flash enabled. Take wide-angle photos of every affected room, close-up shots of specific damage, and video with narration describing what you see. Photograph the water source if identifiable. Use your phone notes app to record the time, observations, and actions taken. Keep all damaged items in place until professionally documented. Your Disaster Recovery contractor will supplement this with formal moisture readings and scope documentation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to wait for my insurer before starting overnight flood cleanup?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Australian insurance policies generally require you to take reasonable steps to mitigate further damage \u2014 delaying extraction can worsen damage and potentially jeopardise your claim. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+  ],
+};
+
 export default function MiddleNightFloodingEmergencyPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="nightflood-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency"
       title="Middle of Night Flooding: Emergency Response"
       subtitle="Expert answers and solutions for"
@@ -282,5 +336,6 @@ export default function MiddleNightFloodingEmergencyPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

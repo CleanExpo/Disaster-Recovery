@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/find-24-hour-emergency-restoration' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How do I find a genuine 24-hour emergency restoration service in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Look for companies with IICRC-certified technicians, genuine after-hours crews (not just a voicemail), documented make-safe processes, and transparent pricing. Disaster Recovery operates a national 24/7 platform that matches you with certified contractors \u2014 submit a claim online any time of day or night and contractor matching begins immediately.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why is it important to start water extraction within the first few hours?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage escalates rapidly. Within hours, plasterboard absorbs moisture and carpet underlay saturates. Within 24 to 48 hours, mould can begin growing on damp organic materials. Every hour of delay increases restoration costs and extends drying timelines. Starting extraction within 6 hours and having drying equipment running within 24 hours significantly reduces total damage.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to wait for my insurer before calling a restorer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Most Australian insurance policies require you to take reasonable steps to mitigate further damage \u2014 this is your duty to mitigate. Delaying make-safe works while waiting for insurer approval can actually jeopardise your claim. Through Disaster Recovery, we bill you directly so work begins immediately. Full claims documentation is provided to support your insurance reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does emergency make-safe cost through Disaster Recovery?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The initial commitment through the Disaster Recovery platform is $2,750, comprising a $550 platform fee (covering claim lodgement, contractor matching, documentation, and support) and $2,200 in contractor credit applied to your emergency make-safe works. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What areas does Disaster Recovery cover for emergency restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Disaster Recovery operates a national network covering all Australian capital cities, regional centres, and many remote areas. Our IICRC-certified contractors handle all disaster types including water damage, fire damage, storm damage, mould remediation, biohazard, and more. Response times vary by location \u2014 metropolitan areas typically have faster response than remote regions.',
+      },
+    },
+  ],
+};
+
 export default function Find24HourEmergencyRestorationPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="find24hr-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Emergency"
       title="24 Hour Emergency Restoration Services Near You"
       subtitle="Expert answers and solutions for"
@@ -277,5 +331,6 @@ export default function Find24HourEmergencyRestorationPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

@@ -21,6 +21,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can you handle bushfire smoke and soot damage in Victoria?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our IICRC S520:2025-certified contractors specialise in smoke and soot remediation, including air quality testing, surface decontamination, HVAC cleaning and contents restoration for bushfire-affected properties across Victoria.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you service East Gippsland and Alpine areas after bushfires?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. East Gippsland and the Alpine Shire are priority coverage zones given their repeat bushfire history. Our contractors are deployed to these areas immediately following declared events.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Victorian emergency recovery financial assistance work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Emergency Recovery Victoria administers financial assistance grants for eligible residents in declared disaster zones. Assistance types include essential services, emergency accommodation, structural repairs and clean-up support. Current declared areas and eligibility details are at vic.gov.au/emergency-recovery-victoria.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you help with post-flood mould in Victorian properties?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Victoria\u2019s cool, damp climate accelerates mould growth following flood events. Our IICRC S520:2025-certified contractors provide mould assessment, containment, remediation and clearance testing for post-flood properties across the state.',
+      },
+    },
+  ],
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -57,6 +96,11 @@ export default function VictoriaServicesPage() {
         id="vic-localbusiness"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="svcvic-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Victoria"

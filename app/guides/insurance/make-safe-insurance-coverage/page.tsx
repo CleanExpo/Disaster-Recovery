@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Shield } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance/make-safe-insurance-coverage' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is included in make-safe works for water damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage make-safe includes emergency water extraction, deployment of commercial dehumidifiers and air movers, antimicrobial treatment to prevent mould, furniture elevation, initial moisture mapping, and comprehensive photographic documentation. This stabilises the property and prevents secondary damage while the full restoration scope is assessed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Am I legally required to arrange make-safe before my insurer approves my claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Under Section 56 of the Insurance Contracts Act 1984, you have a duty to take reasonable steps to prevent or minimise further loss. Delaying make-safe while waiting for insurer approval can result in reduced payouts or declined coverage for secondary damage. Through Disaster Recovery, we bill you directly so work begins immediately.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover the cost of make-safe works?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home and contents policies cover make-safe works that are reasonable, necessary, and related to an insured event. This typically includes emergency extraction, drying, board-up, tarping, and hazard removal. Your contractor provides full claims documentation to support your reimbursement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens after make-safe is complete?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'After make-safe, your NRPG contractor provides a formal contract with clear terms and conditions for the full restoration scope. You review and approve the scope before additional work begins. The make-safe documentation \u2014 photos, moisture reports, and initial assessment \u2014 forms the basis of your insurance claim.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does make-safe cost through Disaster Recovery?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The initial commitment is $2,750, comprising a $550 platform fee and $2,200 contractor credit applied to emergency make-safe works. This covers claim lodgement, contractor matching, emergency stabilisation, and full documentation. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+  ],
+};
+
 export default function MakeSafeInsuranceCoveragePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="makesafe-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Make Safe Services: What Insurance Covers"
       subtitle="Make-safe is the emergency stabilisation that prevents further damage to your property. Understanding what make-safe includes, your legal duty to mitigate, and what your insurer is obliged to cover puts you in control of the process."
@@ -230,5 +284,6 @@ export default function MakeSafeInsuranceCoveragePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

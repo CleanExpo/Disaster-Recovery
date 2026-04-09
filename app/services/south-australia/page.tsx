@@ -21,6 +21,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you cover hail damage to roofs in Adelaide?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Hail damage to roofs, skylights, gutters and external cladding is a common event across Adelaide metro. Our certified contractors provide emergency tarping, damage assessment and full restoration, including insurance documentation for hail damage claims.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you help with Kangaroo Island bushfire recovery?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Kangaroo Island is a priority coverage zone given its significant bushfire history. Our contractors handle smoke and soot remediation, structural assessment, char removal, contents cleaning and full rebuilds for island properties.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Recovery SA financial assistance work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Recovery SA administers financial assistance for SA residents and businesses in declared disaster areas, including grants for emergency accommodation, essential repairs and clean-up. Visit recovery.sa.gov.au for current declared areas and eligibility criteria.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the fastest way to get a contractor to my SA property?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Submit your claim via our online form at /claim. This is the fastest way to connect with an available certified contractor in your area. Our dispatch team coordinates contractor deployment based on urgency and location.',
+      },
+    },
+  ],
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -57,6 +96,11 @@ export default function SouthAustraliaServicesPage() {
         id="sa-localbusiness"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="svcsa-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="South Australia"

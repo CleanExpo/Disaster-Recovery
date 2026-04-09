@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,43 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/warehouse-roof-leak-restoration' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can emergency tarping be done on a warehouse roof?',
+      acceptedAnswer: { '@type': 'Answer', text: "Emergency tarping can typically begin within 60 minutes of the contractor arriving on site, with the affected area secured within 2\u20134 hours depending on the size and accessibility of the damage. However, tarping may be delayed if conditions are unsafe \u2014 active severe storms, high winds, or darkness require the contractor to assess working-at-height risks before proceeding. In these cases, internal water diversion protects stock until roof access is safe." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does it take to dry a water-damaged warehouse?',
+      acceptedAnswer: { '@type': 'Answer', text: "Drying times depend on the volume of water ingress, the area affected, the materials involved, and the warehouse conditions. A localised roof leak affecting a small area typically requires 3\u20135 days of industrial drying. Significant flooding affecting large areas with wet concrete slabs, insulated walls, or office fitouts can take 2\u20134 weeks. The contractor provides daily moisture readings and an estimated completion date from day one." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can we keep operating the warehouse during restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: 'In most cases, yes. Drying equipment and restoration work can be configured to allow continued use of unaffected areas. Forklift lanes, loading docks, and access routes are kept clear. Containment barriers separate the work zone from operational areas. The contractor coordinates with your operations team to schedule noisy or disruptive work around your shift patterns. Full shutdown is only required when electrical safety concerns affect the entire building.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for warehouse restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the warehouse owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, stock losses, equipment damage, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if we discover more damage after the roof is repaired?',
+      acceptedAnswer: { '@type': 'Answer', text: 'This is common with warehouse roof leaks. Water that has entered through the roof may have travelled along purlins, down columns, and into wall cavities before becoming visible. The restoration contractor conducts moisture mapping across the full potentially affected area, not just the visible drip zone, to identify all damage. If additional damage is discovered during restoration, it is documented and added to the scope of works and claims documentation before the claim is closed.' },
+    },
+  ],
+};
+
 export default function WarehouseRoofLeakRestorationPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="warehouse-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Commercial"
       title="Warehouse Roof Leak Damage Restoration"
       subtitle="Expert answers and solutions for"
@@ -217,5 +252,6 @@ export default function WarehouseRoofLeakRestorationPage() {
         },
       ]}
     />
+    </>
   );
 }

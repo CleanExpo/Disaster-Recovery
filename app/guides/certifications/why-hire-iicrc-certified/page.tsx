@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Award } from 'lucide-react';
 import Link from 'next/link';
 import { AgGuidePageTemplate } from '@/components/antigravity';
@@ -22,9 +23,43 @@ export const metadata: Metadata = generateSEO({
   canonical: '/guides/certifications/why-hire-iicrc-certified',
 });
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does IICRC certified mean in Australia?',
+      acceptedAnswer: { '@type': 'Answer', text: 'IICRC (Institute of Inspection Cleaning and Restoration Certification) is the globally recognised standards body for the restoration industry. In Australia, IICRC certification indicates that a technician has completed formal training and examination in restoration disciplines such as water damage (WRT), fire and smoke (FSRT), or mould remediation (AMRT). It is recognised by all major Australian insurers as the benchmark for restoration competency.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I check if a restoration company is actually IICRC certified?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. IICRC certification is held by individual technicians, not companies. You can verify any technician\u2019s certification status on the IICRC website (iicrc.org). Ask the company which specific technicians will be on your job and what certifications they hold. All contractors in the NRPG network have their certifications verified before they are approved to receive claims.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will my insurer reject a claim if the restorer is not IICRC certified?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Insurers can and do challenge claims where restoration work was performed by uncertified operators. If the documentation does not demonstrate compliance with industry standards, the insurer may dispute the scope, the method, or the cost. Using IICRC-certified professionals protects your claim because the work follows recognised protocols and produces documentation that insurers accept.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between WRT, FSRT, and AMRT certifications?',
+      acceptedAnswer: { '@type': 'Answer', text: 'WRT (Water Damage Restoration Technician) covers structural drying, moisture science, and water damage categories. FSRT (Fire and Smoke Restoration Technician) covers soot and residue types, cleaning methods, corrosion prevention, and deodourisation. AMRT (Applied Microbial Remediation Technician) covers mould assessment, containment, HEPA filtration, remediation, and clearance testing. Each certification addresses a different damage type with its own science, equipment, and protocols.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Disaster Recovery verify contractor certifications?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Every contractor in the NRPG network must provide current IICRC certifications, a minimum of $20 million public liability insurance, and all relevant trade licences before being approved. These credentials are verified directly with the issuing bodies and must be kept current. Contractors are also subject to ongoing quality audits. Non-compliant contractors are suspended from the network until issues are resolved.' },
+    },
+  ],
+};
+
 export default function WhyHireIicrcCertifiedPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="iicrcwhy-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Certifications"
       title="Why IICRC Certification Matters for Restoration"
       subtitle="IICRC certification is the international benchmark for restoration professionals. Understanding what it means — and what happens when technicians lack it — can save your property, your health, and your insurance claim."
@@ -241,5 +276,6 @@ export default function WhyHireIicrcCertifiedPage() {
         },
       ]}
     />
+    </>
   );
 }

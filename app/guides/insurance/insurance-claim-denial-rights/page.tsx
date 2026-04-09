@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { ShieldAlert } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -14,9 +15,70 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can my insurer refuse my claim without giving reasons?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Under clause 77 of the General Insurance Code of Practice, insurers must give you written reasons when they refuse a claim, reduce a claim, or refuse a particular remedy. The reasons must be specific and reference the relevant policy terms or legislative provisions. If your insurer has refused your claim without specific reasons, the refusal of reasons is itself a breach of the Code and a ground for an IDR complaint.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does my insurer have to respond to an IDR complaint?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Under the General Insurance Code of Practice, your insurer must provide a final IDR response within 30 calendar days of receiving your complaint. If they do not respond within that timeframe, you can proceed to lodge a complaint with AFCA without waiting for their response.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can my insurer refuse my whole claim because I notified them late?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Generally no. Section 54 of the Insurance Contracts Act 1984 (Cth) prevents an insurer from refusing a claim entirely based on late notification unless the insurer can show that the delay caused it actual prejudice \u2014 for example, that it was unable to investigate the loss because of the delay. Delay alone is not a ground to refuse the entire claim. If your claim was refused on this basis, it is worth disputing through IDR and AFCA.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'My insurer is blaming wear and tear. Can I challenge that?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The wear and tear exclusion typically applies only where wear and tear is the proximate (primary) cause of the loss \u2014 not merely a contributing background factor. Where a sudden covered event (a storm, burst pipe, or fire) caused the damage, the exclusion may not apply even if the property had some pre-existing deterioration. An independent contractor assessment documenting the cause of the damage is valuable evidence in this type of dispute. AFCA has a track record of finding against insurers who incorrectly applied the wear and tear exclusion.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is Section 54 of the Insurance Contracts Act?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Section 54 of the Insurance Contracts Act 1984 (Cth) is a key consumer protection that limits an insurer\u2019s ability to refuse a claim based on something the policyholder did or failed to do after the policy was entered into. The insurer can only refuse or reduce the claim to the extent that the act or omission actually caused or contributed to the loss. If the breach was unrelated to the loss, the insurer cannot refuse the claim on that basis.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can Disaster Recovery help if my insurer has denied my claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The Disaster Recovery platform connects you with vetted, IICRC-certified restoration contractors who can provide independent, itemised assessments of your property damage. These assessments document the cause, extent, and cost of damage in a format that supports IDR and AFCA complaints. Getting an independent assessment before or during your dispute gives you evidence beyond your own account of the damage. Note that Disaster Recovery connects you with contractors \u2014 it does not provide legal advice or act as a claims advocate.',
+      },
+    },
+  ],
+};
+
 export default function InsuranceClaimDenialRightsPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="insdenial-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="What to Do When Your Insurance Claim Is Denied in Australia"
       subtitle="Your rights, the dispute process, and how to challenge common denial grounds including wear and tear, pre-existing conditions, and non-disclosure"
@@ -406,5 +468,6 @@ export default function InsuranceClaimDenialRightsPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

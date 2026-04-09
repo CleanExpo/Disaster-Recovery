@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,43 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/retail-flood-inventory-recovery' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can flood-damaged retail stock be saved?',
+      acceptedAnswer: { '@type': 'Answer', text: 'It depends on the water category and the type of stock. Clean water (burst pipe) allows the highest salvage rates \u2014 non-porous items in sealed packaging can usually be cleaned and returned to stock. Contaminated water (stormwater flooding, sewage) means all porous items are written off. Electronics that have been submerged are typically written off regardless of water type. A professional triage assessment on day one is essential to maximise salvage and avoid condemning recoverable stock.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I document stock losses for my insurance claim?',
+      acceptedAnswer: { '@type': 'Answer', text: "Photograph all damage before any cleanup begins (wide shots and close-ups). Pull stock-on-hand reports from your POS system. Create a categorised damage schedule listing every affected product with quantity, purchase cost, replacement cost, and damage status. Obtain current supplier pricing for replacement stock. Do not dispose of any stock until it has been documented and your insurer has been notified. Keep disposal receipts and sample items as physical evidence." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does it take to restore a flooded retail store?',
+      acceptedAnswer: { '@type': 'Answer', text: "Minor flooding (Category 1 water, limited area) can typically be dried and restored within 5\u201310 days. Significant flooding requiring fitout replacement, new flooring, and complete restocking typically takes 3\u20136 weeks. The timeline depends on the extent of fitout damage, lead times for replacement materials and fixtures, and whether partial trading is possible during restoration. The contractor provides a target reopening date in the initial scope of works." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can we keep trading while the store is being restored?',
+      acceptedAnswer: { '@type': 'Answer', text: "Often, yes. Options include operating from an unaffected section of the store while restoration is contained to the damaged area, setting up a temporary pop-up location, pivoting to online or phone orders, or operating click-and-collect from a temporary location. Your insurer expects you to take reasonable steps to minimise the interruption \u2014 demonstrating alternative trading arrangements strengthens your business interruption claim." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for commercial retail restoration?',
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the store owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide comprehensive claims documentation covering building damage, contents (stock) losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance." },
+    },
+  ],
+};
+
 export default function RetailFloodInventoryRecoveryPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="retail-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Commercial"
       title="Retail Store Flood: Inventory Recovery Process"
       subtitle="Expert answers and solutions for"
@@ -216,5 +251,6 @@ export default function RetailFloodInventoryRecoveryPage() {
         },
       ]}
     />
+    </>
   );
 }

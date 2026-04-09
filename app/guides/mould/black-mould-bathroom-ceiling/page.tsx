@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
@@ -9,9 +10,70 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/mould/black-mould-bathroom-ceiling' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How dangerous is black mould on my bathroom ceiling?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Black mould (Stachybotrys chartarum) releases mycotoxins and airborne spores that can cause respiratory irritation, allergic reactions, sinus infections, and worsened asthma symptoms. In an enclosed bathroom, spore concentrations can be significantly higher than in ventilated rooms. Children, the elderly, and immunocompromised individuals are at greatest risk. If anyone in your household is experiencing persistent respiratory issues, professional remediation is recommended.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I remove black mould from my bathroom ceiling myself?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'DIY removal is generally appropriate when the affected area is smaller than 1 square metre, the mould is on the paint surface only (not embedded in plaster), and no household members have respiratory conditions. Use a solution of white vinegar or a commercial mould remover, wear a P2/N95 mask and gloves, and ensure the room is well ventilated. If the mould covers more than 1 square metre, keeps returning, or the ceiling is bubbling or sagging, call a professional.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does mould keep coming back on my bathroom ceiling after cleaning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Surface cleaning removes visible mould but leaves the root structures (hyphae) embedded in porous materials like plaster and grout. Without removing the contaminated substrate and addressing the underlying moisture source \u2014 such as inadequate ventilation, a roof leak, or chronic condensation \u2014 mould will regrow within weeks to months. Professional remediation includes containment, physical removal of contaminated material, antimicrobial treatment, and moisture source rectification.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does professional bathroom mould removal cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The cost depends on the size of the affected area, the extent of substrate damage, and whether the moisture source requires structural repairs (such as fixing a roof leak or installing ventilation). We bill you directly \u2014 not your insurer \u2014 so work begins immediately without waiting for approval. We provide full claims documentation including photos, scope of works, and reports so you can submit your insurance claim. Payment plans are available through Blue Fire Finance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will my exhaust fan prevent mould on the bathroom ceiling?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A properly installed and correctly sized exhaust fan is the single most effective mould prevention measure for bathrooms. The fan must vent directly outside (not into the roof cavity), be rated for your bathroom size (minimum 25 litres per second), and run during showers plus at least 20 minutes afterwards. A humidity-sensing switch can automate this. However, if there is a roof leak or building envelope issue contributing moisture from above, ventilation alone will not solve the problem.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can a professional respond to bathroom mould?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our IICRC-certified contractor network operates 24/7 across Australia. For mould affecting a single bathroom, a scheduled assessment is typically arranged within 24 to 48 hours. If mould is associated with an active water leak or a larger contamination event, emergency response is available. Submit your claim online and a contractor in your area will be assigned promptly.',
+      },
+    },
+  ],
+};
+
 export default function BlackMouldBathroomCeilingPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="blackmould-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Mould"
       title="Black Mould on Bathroom Ceiling: Removal Guide"
       subtitle="Expert answers and solutions for"
@@ -175,5 +237,6 @@ export default function BlackMouldBathroomCeilingPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

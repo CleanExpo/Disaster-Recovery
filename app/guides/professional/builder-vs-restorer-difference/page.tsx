@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Users } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -13,9 +14,43 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/professional/builder-vs-restorer-difference' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can a builder do restoration work?',
+      acceptedAnswer: { '@type': 'Answer', text: "A standard builder\u2019s licence does not cover restoration disciplines such as structural drying, moisture mapping, antimicrobial treatment, or smoke and soot removal. These require IICRC certification \u2014 an internationally recognised qualification specific to the restoration industry. While a builder can handle reconstruction after the restoration phase is complete, they should not be managing the initial damage response, drying, or decontamination without proper training." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why is hiring a restorer cheaper than hiring a builder for water damage?',
+      acceptedAnswer: { '@type': 'Answer', text: "Restorers use a \u201crestore before replace\u201d methodology. They assess every affected material with professional moisture meters and thermal imaging, then dry and decontaminate what can be saved \u2014 typically 40\u201370% of materials that a builder would demolish and replace. You avoid paying for unnecessary demolition, disposal, and replacement of recoverable materials. On an average residential water damage job, this saves $10,000\u2013$15,000 compared to a full rip-and-replace approach." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I know if my property needs a restorer or a builder?',
+      acceptedAnswer: { '@type': 'Answer', text: "If the damage involves water, fire, smoke, mould, or any form of contamination, you need a restoration professional first. Restorers handle the emergency response, drying, decontamination, and damage assessment. Once the structure is confirmed dry and clean, a builder can then handle any necessary reconstruction \u2014 replastering, painting, cabinetry, and finish work. The restorer\u2019s documentation will clearly identify what needs replacement, giving the builder a precise scope." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What documentation does a restorer provide that a builder does not?',
+      acceptedAnswer: { '@type': 'Answer', text: "IICRC-certified restorers produce detailed documentation including initial moisture readings and mapping, daily drying logs with psychrometric data, thermal imaging reports, antimicrobial treatment certificates, photo documentation at every stage, and a comprehensive scope of works. This evidence package is what insurance companies expect when assessing claims. A builder\u2019s invoice typically lists only the materials and labour for replacement, which does not demonstrate the necessity of the work performed." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if I hire a builder and mould appears later?',
+      acceptedAnswer: { '@type': 'Answer', text: 'This is one of the most common outcomes when restoration is skipped. If a builder replaces water-damaged materials without first verifying the structure is fully dry, residual moisture trapped behind new plasterboard or under new flooring creates ideal conditions for mould growth. Mould can appear within weeks to months, requiring a full mould remediation \u2014 which is a separate, additional cost on top of what you already paid the builder. A professional restorer prevents this by confirming dry standard before any reconstruction begins.' },
+    },
+  ],
+};
+
 export default function BuilderVsRestorerPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script id="buildervrest-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
       category="Professional"
       title="Builder vs Restorer: The $15,000 Difference"
       subtitle="Why builders &ldquo;rip and tear&rdquo; what professional restorers save. Understand the methodology difference that can save thousands and reduce waste by 70%."
@@ -211,5 +246,6 @@ export default function BuilderVsRestorerPage() {
         },
       ]}
     />
+    </>
   );
 }

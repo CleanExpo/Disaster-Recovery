@@ -21,6 +21,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you service Pilbara and Kimberley cyclone damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The Pilbara and Kimberley are our highest-priority cyclone deployment zones in WA. Our certified contractors are positioned for rapid response to Karratha, Port Hedland, Broome and surrounds during and after cyclone events.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you handle mining camp and industrial facility damage in WA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our commercial services team has experience with mining sector facilities, processing plants and worker accommodation across regional WA. We provide large-scale restoration for industrial and commercial properties.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does WA disaster financial assistance work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'DFES Recovery WA and the WA Government administer financial assistance for eligible residents and businesses in declared disaster areas. Assistance may include emergency accommodation, structural repair grants and essential services support. Visit dfes.wa.gov.au/recovery for current declared areas and eligibility.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What Perth metro storm damage do you cover?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We cover all Perth metro storm damage including wind damage, roof damage, flooding, fallen trees, storm surge on coastal properties and all associated water damage. Our Perth network provides 24/7 emergency response and full restoration services.',
+      },
+    },
+  ],
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -57,6 +96,11 @@ export default function WesternAustraliaServicesPage() {
         id="wa-localbusiness"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="svcwa-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Western Australia"

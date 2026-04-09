@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { DollarSign } from 'lucide-react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
@@ -22,9 +23,62 @@ export const metadata: Metadata = generateSEO({
   canonical: '/guides/insurance/should-i-take-a-payout',
 });
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can I reject a cash settlement offer from my insurer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. A cash settlement is an option, not a requirement. You have every right to reject the offer and request managed repairs instead, negotiate a higher amount, or dispute the offer through the insurer\u2019s internal complaints process and then through AFCA (Australian Financial Complaints Authority). Under the General Insurance Code of Practice, your insurer must not pressure you into accepting.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the contents claims strategy for maximising my payout?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Your policy has two separate covers \u2014 building (the structure) and contents (your moveable possessions). When both are damaged, taking a cash settlement for the building portion settles those costs separately, leaving your full contents entitlement intact. This strategy is most valuable when contents damage is extensive and close to the sum insured. However, it is only safe when the building damage is genuinely understood and there is low risk of hidden damage.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why are insurance cash settlement offers often too low?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Cash settlement offers are typically based on a visual inspection by the insurer\u2019s loss adjuster, using the cheapest available materials and labour rates. They almost always account only for visible damage. With water, fire, mould, and contamination damage, concealed damage behind walls, under floors, and in ceiling cavities frequently represents 3\u20135 times more affected area than what is visible. Once you accept the payout, the claim is usually closed \u2014 and you bear the cost of any additional damage discovered during repairs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Should I get an independent assessment before accepting a payout?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If the damage involves water, fire, smoke, mould, sewage, or any form of contamination \u2014 absolutely yes. An independent IICRC-certified restoration professional will conduct moisture mapping, thermal imaging, and a thorough investigation to identify concealed damage that the insurer\u2019s assessor may have missed. The resulting scope of works gives you an accurate cost to compare against the cash offer, and serves as evidence if you need to negotiate or dispute.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if I accept a payout and then discover more damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Once you accept a cash settlement, the claim is typically closed. If you discover additional damage during repairs \u2014 which is common with water, fire, and mould damage \u2014 you may not be able to reopen the claim or request additional funds. You become personally responsible for the full cost of any additional work. This is why an independent assessment before accepting is so important: it identifies the true scope before you commit.',
+      },
+    },
+  ],
+};
+
 export default function ShouldITakeAPayoutPage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="payout-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Should I Take an Insurance Payout?"
       subtitle="When your insurer offers a cash settlement instead of managing repairs, the decision can save you thousands — or cost you thousands. Here's how to tell the difference."
@@ -345,5 +399,6 @@ export default function ShouldITakeAPayoutPage() {
         },
       ]}
     />
+    </>
   );
 }

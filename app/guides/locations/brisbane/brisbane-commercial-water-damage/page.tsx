@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -9,9 +10,62 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/brisbane/brisbane-commercial-water-damage' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can a commercial water damage contractor respond in Brisbane CBD?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG contractors provide a 60-minute emergency response across greater Brisbane, including the CBD, Fortitude Valley, South Brisbane, and surrounding commercial precincts. The 24/7 response means after-hours emergencies \u2014 burst pipes overnight, storm damage on weekends \u2014 are addressed immediately. Water extraction and drying equipment are deployed on the first visit to begin limiting damage from the outset.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does commercial water damage restoration take in Brisbane?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Timelines depend on the scale of damage and water category. A localised burst pipe in a single office suite typically requires 3\u20135 days of structural drying in Brisbane\u2019s humid climate. Multi-floor damage from a fire sprinkler failure or roof leak can take 2\u20134 weeks for full drying and restoration. Brisbane\u2019s high humidity (60\u201370% average) extends drying times compared to drier climates. The contractor provides an estimated timeline from day one with daily moisture monitoring updates.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will my commercial insurance cover flood damage in Brisbane?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Standard commercial property insurance typically covers sudden water damage (burst pipes, sprinkler failures, storm damage). Flood cover \u2014 specifically riverine flooding from the Brisbane River or creek systems \u2014 is often a separate policy endorsement that must be specifically purchased. After the 2022 floods, many Brisbane policies were amended or repriced. Check your policy wording for the distinction between \u201cstorm damage\u201d and \u201cflood.\u201d We provide full claims documentation to support your claim regardless of the event type.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can commercial restoration work be done after hours to avoid disrupting our business?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Many Brisbane CBD and Fortitude Valley businesses specifically request after-hours restoration. Water extraction, equipment setup, and demolition can be scheduled for evenings and weekends. Drying equipment runs continuously but operates quietly once deployed. The contractor coordinates access, security, and building management requirements for after-hours work.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is billing handled for commercial water damage in Brisbane?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We bill you directly \u2014 the business owner, tenant, or body corporate \u2014 so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, contents, stock losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance for large restorations.',
+      },
+    },
+  ],
+};
+
 export default function BrisbaneCommercialWaterDamagePage() {
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="bnecomm-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Brisbane Commercial Water Damage Restoration"
       subtitle="Specialist guide to managing commercial water damage in Brisbane — from subtropical storm surges to burst mains in high-rise office towers across the CBD, Fortitude Valley, and South Brisbane"
@@ -165,5 +219,6 @@ export default function BrisbaneCommercialWaterDamagePage() {
         },
       ]}
     />
+    </>
   );
 }
