@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { FileText } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -15,8 +16,61 @@ export const metadata: Metadata = {
 };
 
 export default function HowToDocumentPropertyDamagePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the most important thing to document immediately after property damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Timestamped photographs and video of every affected area before any cleaning or repair work begins. Use your phone with the date and time stamp enabled, take wide-angle shots showing full rooms and close-ups of specific damage, and back up everything to cloud storage immediately. The pre-repair condition of your property is the evidence your insurer needs \u2014 once repairs start, that evidence is gone.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need to wait for insurer approval before making emergency repairs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Your policy and the General Insurance Code of Practice both expect you to take reasonable steps to prevent further damage. Emergency make-safe work \u2014 tarping a damaged roof, boarding a broken window, extracting standing water \u2014 should begin promptly. Document the damage thoroughly before make-safe work begins, then photograph the make-safe measures you have taken. Keep all receipts for emergency works.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I document damage to expensive items I no longer have receipts for?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Bank and credit card statements, warranty registrations, email order confirmations, and photos from before the event (including social media, family photos, or previous insurance documentation) all support claimed values. For high-value items such as jewellery, artwork or collectibles, a pre-loss appraisal or valuation (if one exists) is the strongest evidence. Without documentation, your insurer will typically use market value at time of loss.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long do I have to lodge an insurance claim in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Policies vary, but most require you to notify your insurer as soon as reasonably possible after the event. Delays in notification can complicate your claim if the insurer argues they were prejudiced by the late notice. Lodge promptly. If your claim is denied and you wish to take it to AFCA, you generally have two years from the date of the insurer\u2019s final decision to make a complaint.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is AFCA and how does it help with property damage disputes?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The Australian Financial Complaints Authority (AFCA) is the external dispute resolution scheme for financial services complaints in Australia, including insurance disputes. It is free to use for consumers. If you are unable to resolve a dispute with your insurer through their internal complaints process, you can lodge a complaint with AFCA. AFCA can require your insurer to review its decision, and its determinations are binding on insurers.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="docprop-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="How to Document Property Damage for Insurance Claims"
       subtitle="A complete guide for Australian homeowners and tenants covering"
@@ -324,5 +378,6 @@ export default function HowToDocumentPropertyDamagePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

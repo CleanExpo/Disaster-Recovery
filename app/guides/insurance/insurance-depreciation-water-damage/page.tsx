@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function InsuranceDepreciationWaterDamagePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Does insurance depreciation apply to all water damage claims in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'It depends on your policy type. Replacement value (new for old) policies generally do not apply depreciation to building repairs \u2014 your insurer pays to replace damaged materials with new equivalents. Indemnity value policies pay the current market value, which factors in depreciation based on age and condition. Check your Product Disclosure Statement to confirm your cover type.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much can depreciation reduce my water damage insurance payout?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Under an indemnity policy, depreciation can reduce payouts by 40% to 60% for older properties. For example, 10-year-old carpet depreciated at 10% per year could receive zero payout, leaving you to cover the full replacement cost. Even under replacement value policies, contents may still be subject to depreciation.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I dispute depreciation applied to my water damage claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Common grounds for dispute include depreciation applied incorrectly under a replacement value policy, excessive depreciation rates above industry standards, condition evidence being ignored, and betterment being applied when you are simply restoring to pre-loss condition. Lodge a complaint with AFCA if your insurer will not resolve the dispute.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is betterment and how does it affect my water damage claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Betterment is when an insurer reduces your payout because the replacement is arguably better than the original. For example, replacing old carpet with new carpet. However, betterment should only apply when the replacement genuinely improves your position \u2014 simply restoring to pre-loss condition with current materials is not betterment.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does professional documentation help reduce depreciation on my claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Thorough professional documentation \u2014 pre-restoration photography, moisture mapping, daily drying reports, and detailed scope of works \u2014 makes it harder for insurers to apply blanket depreciation. Through Disaster Recovery, your IICRC certified contractor provides full claims documentation from day one to support your reimbursement.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="depreciation-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Understanding Depreciation in Water Damage Claims"
       subtitle="When your insurer applies depreciation to a water damage claim, your payout can be reduced by thousands. This guide explains how depreciation works in Australian insurance, when it applies, and how to dispute unfair deductions."
@@ -233,5 +287,6 @@ export default function InsuranceDepreciationWaterDamagePage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

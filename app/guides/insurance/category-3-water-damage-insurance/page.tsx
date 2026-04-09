@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,69 @@ export const metadata: Metadata = {
 };
 
 export default function Category3WaterDamageInsurancePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the difference between Category 1, 2, and 3 water damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Category 1 is clean water from a sanitary source (e.g., broken supply pipe). Category 2 is grey water with significant contamination (e.g., washing machine overflow). Category 3 is grossly contaminated black water containing pathogens and toxins \u2014 sewage, floodwater, or any water left untreated for more than 48 hours. The category determines the remediation protocol and cost.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why does Category 3 water damage cost more to remediate?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Category 3 requires mandatory removal of all porous materials (carpet, plasterboard, insulation), hospital-grade anti-microbial treatment, full PPE for technicians, controlled waste disposal at licensed facilities, and post-remediation clearance testing. These requirements typically make Category 3 remediation 2 to 4 times more expensive than Category 1 restoration of the same area.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can my insurer downgrade a Category 3 event to Category 1 or 2?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Some assessors may attempt to classify contaminated water at a lower category to reduce costs. However, the IICRC S500:2025 standard is clear: sewage, floodwater, and any water stagnant for more than 48 hours is Category 3 regardless of appearance. If you believe the classification is wrong, request the assessor confirm the category in writing and obtain an independent assessment from an IICRC-certified professional.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if I delay Category 3 cleanup?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Delay worsens the damage significantly. Mould colonisation begins within 24 to 48 hours in contaminated environments. Contaminated water wicks further into structural materials via capillary action, expanding the remediation zone. Bacterial and viral contamination becomes harder to treat the longer it remains. Every day of delay increases cost and health risk.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover sewage damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most home and contents policies cover sudden and accidental sewage overflow. However, insurers may deny claims if they determine the overflow was caused by a pre-existing blockage or lack of maintenance (gradual damage exclusion). Document the event timeline, photograph the source, and keep records of any prior plumbing maintenance to support a sudden and accidental claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does Disaster Recovery handle Category 3 billing?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly \u2014 not your insurer. This means work begins immediately without waiting for insurer approval, which is critical for Category 3 events where every hour of delay increases contamination. We provide full claims documentation (photos, scope of works, moisture data, clearance certificates) for you to submit to your insurer for reimbursement. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="cat3ins-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="Category 3 Water Damage: Insurance Claims Guide"
       subtitle="Category 3 (black water) damage is the most serious classification of water damage. It carries significant health risks, requires specialist remediation, and is frequently under-scoped by insurers. Here is what you need to know to protect your claim."
@@ -180,5 +242,6 @@ export default function Category3WaterDamageInsurancePage() {
         { title: 'Section 54 Contractor Rights', href: '/guides/insurance/section-54-contractor-rights', description: 'Your legal right to choose your own qualified contractor.' },
       ]}
     />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import { AgGuidePageTemplate } from '@/components/antigravity';
@@ -23,8 +24,61 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function SewageBackupHealthRisksPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How dangerous is exposure to sewage backup?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sewage backup is classified as IICRC Category 3 (black water) \u2014 the most hazardous water damage category. Raw sewage contains bacteria (E. coli, Salmonella, Leptospira), viruses (Hepatitis A, Norovirus), and parasites (Giardia, Cryptosporidium) that cause serious illness. Exposure can occur through ingestion, skin contact, or inhalation of contaminated dust. Children, elderly, immunocompromised individuals, and pregnant women are at highest risk of severe outcomes.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I clean up sewage backup myself?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'DIY sewage cleanup is strongly discouraged due to the serious health risks involved. Professional remediation requires full PPE (Tyvek coveralls, P2 respirators, nitrile gloves, eye protection), hospital-grade antimicrobials with specific contact times, removal of all contaminated porous materials, containment to prevent cross-contamination, and post-remediation biological testing to verify safe re-occupation. Household cleaning products and equipment cannot achieve the decontamination level required for safe re-occupation.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What materials need to be removed after sewage backup?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'IICRC S500:2025 Category 3 protocol requires removal of all contaminated porous materials: carpet and underlay, plasterboard (cut to a minimum 300mm above the visible waterline), insulation, particleboard subfloor (if swollen or saturated), and most soft furnishings and contents that contacted the sewage. Non-porous surfaces (concrete, tiles, metal) and structural timber can be cleaned, treated with antimicrobials, and retained.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does professional sewage cleanup take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional sewage remediation typically takes 3 to 7 days, depending on the extent of contamination and the area affected. This includes extraction and removal of contaminated materials (day 1\u20132), antimicrobial treatment (day 2\u20133), structural drying (days 3\u20135+), and post-remediation verification. Reconstruction (replacing removed plasterboard, flooring, etc.) follows after clearance and adds additional time.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover sewage backup cleanup?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home insurance policies cover sewage backup from blocked or failed plumbing as accidental damage. Stormwater ingress and sewage overflow from municipal mains may also be covered depending on policy terms. We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation \u2014 including contamination assessment, remediation scope, and post-remediation verification \u2014 is provided to support your insurance reimbursement.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="sewage-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Biohazard"
       title="Sewage Backup: Health Risks & Safe Cleanup"
       subtitle="Sewage backup is one of the most hazardous property damage events. Raw sewage contains pathogens that cause serious illness. Understanding the health risks, why professional remediation is essential, and what safe re-occupation requires can protect your family and your property."
@@ -259,5 +313,6 @@ export default function SewageBackupHealthRisksPage() {
         },
       ]}
     />
+    </>
   );
 }

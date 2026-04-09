@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function WollongongCoastalStormDamagePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How quickly can storm damage response start in Wollongong during an East Coast Low?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'NRPG contractors provide a 60-minute emergency response across the Illawarra, 24/7. During severe East Coast Low events, demand surges and access may be restricted by flooding, road closures, or fallen trees. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are prioritised. Emergency tarping and make-safe begin as soon as conditions allow safe roof access and site entry. Internal water diversion can begin even while external conditions prevent roof access.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover East Coast Low storm damage in the Illawarra?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home and building insurance policies cover storm damage including wind, rain, and hail damage. Flood cover \u2014 specifically overland water flow from creeks and waterways \u2014 is often a separate policy endorsement. After recent flooding events, some Illawarra properties in high-risk creek corridors face higher premiums or flood exclusions. Check your policy wording for the distinction between \u201cstorm damage\u201d (usually covered) and \u201cflood\u201d (may require separate cover). Full claims documentation is provided to support your claim for reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does coastal storm damage restoration take in the Illawarra?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Timelines depend on damage severity. Emergency tarping and make-safe take 2\u20136 hours on site. Structural drying in the Illawarra\u2019s humid climate typically takes 5\u20137 days (longer than drier areas). Full restoration including roof repairs, ceiling replacement, repainting, and flooring replacement can take 3\u20138 weeks depending on the scope. Properties with flash flood damage requiring full decontamination add 1\u20132 weeks. The contractor provides an estimated timeline from day one.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What about salt damage to my coastal property \u2014 is that covered by insurance?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Salt spray damage that occurs as part of a storm event (wind-driven salt during an East Coast Low) is typically covered under storm damage provisions. Gradual salt deterioration (progressive corrosion over months or years) is generally excluded as \u201cgradual deterioration\u201d or \u201cmaintenance.\u201d Professional documentation distinguishes storm-related salt damage from pre-existing corrosion, which is critical for the insurance claim. The contractor specifies marine-grade replacement materials where possible.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is billing handled for storm damage restoration in the Illawarra?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories, emergency make-safe, restoration works, and salt/mould remediation to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="gongcoast-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Wollongong Coastal Property Storm Damage Repair"
       subtitle="Expert guide to repairing coastal storm damage across the Illawarra — from Wollongong and Shellharbour to Kiama, covering East Coast Low events, escarpment weather patterns, and salt spray deterioration"
@@ -171,5 +225,6 @@ export default function WollongongCoastalStormDamagePage() {
         },
       ]}
     />
+    </>
   );
 }

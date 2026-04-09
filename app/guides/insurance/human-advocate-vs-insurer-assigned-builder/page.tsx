@@ -11,6 +11,7 @@
  */
 
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Shield } from 'lucide-react'
 import { AgGuidePageTemplate } from '@/components/antigravity'
 import { NAP } from '@/lib/constants'
@@ -43,8 +44,61 @@ export const metadata: Metadata = {
 }
 
 export default function HumanAdvocateVsInsurerBuilderPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I reject my insurer\u2019s assigned builder?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You should check your policy and raise concerns through your insurer\u2019s internal dispute process. AFCA has found that insurers have obligations around the quality of work delivered by their preferred contractors. If you have concerns, you have the right to raise them before the claim is closed.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is an independent IICRC-certified assessment?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'An independent assessment is conducted by an IICRC-certified restoration professional who has no commercial relationship with your insurer. Their scope of works documents all damage to the current IICRC standard (S500:2025 for water, S700:2025 for fire/smoke) independently of the insurer\u2019s authorised scope.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does AFCA help policyholders in restoration disputes?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'AFCA (Australian Financial Complaints Authority) accepts complaints about insurance claims at no cost to policyholders. AFCA can require insurers to pay additional amounts, reopen closed claims, or arrange independent re-assessment. Complaints must generally be lodged within 2 years of the insurer\u2019s decision.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does \u201cWho First\u201d mean Disaster Recovery Australia argues my insurance claim for me?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Disaster Recovery Australia is a restoration network \u2014 our IICRC-certified contractors restore your property. We do not act as claim advocates or insurance advisors. \u201cWho First\u201d means that our contractor\u2019s scope documents your loss in full, to the current IICRC standard, independently of your insurer\u2019s authorised budget. That independent documentation is what you use to support any dispute process.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between IICRC S500:2025 and S700:2025?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'IICRC S500:2025 is the Standard for Professional Water Damage Restoration \u2014 it governs flood, leak, and water damage jobs. IICRC S700:2025 is the Standard for Professional Fire and Smoke Damage Restoration \u2014 it governs jobs involving fire, smoke, and related residues. Both are current 2025 editions. Some jobs (e.g. fire suppression water damage) require both standards.',
+        },
+      },
+    ],
+  }
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="advocatebuild-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance Claims"
       title="Your Advocate vs Your Insurer's Builder"
       subtitle="When disaster strikes, your insurer assigns a builder. That builder works for the insurer's budget — not your recovery. Here is what the difference means in practice."
@@ -284,5 +338,6 @@ export default function HumanAdvocateVsInsurerBuilderPage() {
         { title: 'Fire Damage Restoration Services', href: '/services/fire-damage-restoration' },
       ]}
     />
+    </>
   )
 }

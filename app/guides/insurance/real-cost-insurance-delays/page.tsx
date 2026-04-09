@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,8 +15,61 @@ export const metadata: Metadata = {
 };
 
 export default function RealCostInsuranceDelaysPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much extra does insurance delay cost in secondary damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A water damage claim that costs $5,000 with same-day intervention can escalate to $15,000\u2013$20,000 or more with a two-week delay. Mould growth, timber swelling, flooring delamination, and contents degradation all compound rapidly. Every day of delay increases the total restoration cost.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I have to wait for my insurer to approve restoration before starting work?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Under the Insurance Contracts Act 1984, you have a duty to mitigate (Section 56) \u2014 meaning you should take reasonable steps to prevent further damage. Through Disaster Recovery, we bill you directly so work begins immediately. Full claims documentation is provided to support your reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is Section 54 and how does it protect me?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Section 54 of the Insurance Contracts Act 1984 prevents insurers from refusing a claim solely due to non-compliance with a policy term, provided the non-compliance did not cause the loss. In practice, this protects your right to choose your own contractor, begin make-safe before claim approval, and claim reimbursement for reasonable costs.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How quickly does mould grow after water damage in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In Australian conditions \u2014 particularly during the warmer months with high humidity \u2014 mould spores can begin germinating within 24 hours on damp organic materials. Established colonies can form within 48 to 72 hours. This is why same-day extraction and drying equipment deployment is critical.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What documentation do I need to support my insurance claim after starting work early?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You need pre-restoration photographs, moisture readings, a written scope of works, equipment logs, and daily monitoring reports. Through Disaster Recovery, your IICRC certified contractor provides all of this documentation as standard. This evidence demonstrates the damage was from the insured event, the response was reasonable, and the costs are justified.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="inscostdelay-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance"
       title="The Real Cost of Insurance Delays - ASIC & ICA Data on Claims Crisis"
       subtitle="ASIC concerned about unresolved 2022 flood claims. ICA reports 78% of catastrophes Oct-April. Learn your Section 54 rights and how delays cost thousands in secondary damage."
@@ -233,5 +287,6 @@ export default function RealCostInsuranceDelaysPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

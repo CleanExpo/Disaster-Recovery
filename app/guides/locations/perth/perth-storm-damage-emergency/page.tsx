@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function PerthStormDamageEmergencyPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How quickly can emergency tarping be done after a storm in Perth?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'NRPG contractors provide a 60-minute emergency response across greater Perth, 24/7. However, after major storm events affecting thousands of properties (like the 2010 hailstorm), demand surges and response times may be longer. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are in the queue. Tarping typically takes 2\u20134 hours once the contractor is on site, depending on the damage extent and roof accessibility. If roof access is unsafe during active storms, internal water diversion protects the interior until conditions improve.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does insurance cover storm damage in Perth?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most Australian home and building insurance policies cover storm damage including wind, hail, and rain damage to the building structure, roof, windows, contents, and fencing. However, policy excesses vary (some Perth policies have higher storm-specific excesses), and some policies exclude certain items like solar panels or have limits on fencing cover. Full claims documentation \u2014 including emergency make-safe, damage assessment, and restoration \u2014 is provided to support your claim for reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Should I get emergency tarping or wait for my insurer to send someone?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Get emergency tarping done immediately. Every rainfall event after the storm causes additional water damage through the damaged roof, increasing the total claim cost and the risk of mould growth. Insurers expect policyholders to take reasonable steps to mitigate further damage \u2014 emergency tarping is a recognised and claimable mitigation measure. We bill you directly so work begins immediately without waiting for insurer approval, and the emergency make-safe is documented as part of your overall claim.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What if my solar panels were damaged by hail in Perth?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Hail-damaged solar panels are a common claim item after Perth storms. The contractor documents all panel damage (cracked glass, damaged frames, inverter impact) with photographs and model/serial numbers for your claim. Solar panel replacement is typically covered under building insurance, though some policies have sub-limits or specific solar exclusions \u2014 check your policy wording. Damaged panels should be isolated (switched off at the inverter and DC isolator) immediately for safety.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is billing handled for Perth storm damage restoration?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories and restoration works to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="perthstorm-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Perth Storm Damage Emergency Response"
       subtitle="Expert guide to managing storm damage emergencies across Perth — from severe thunderstorms and hail in the northern suburbs to coastal wind damage along the western seaboard"
@@ -168,5 +222,6 @@ export default function PerthStormDamageEmergencyPage() {
         },
       ]}
     />
+    </>
   );
 }

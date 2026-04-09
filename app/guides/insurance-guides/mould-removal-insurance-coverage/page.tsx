@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function MouldRemovalInsuranceCoveragePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Does home insurance cover mould removal in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'It depends on the cause. Insurance typically covers mould removal when the mould is secondary to a covered event \u2014 for example, mould that developed after a burst pipe, storm damage, or appliance failure. Insurance does not cover mould caused by gradual deterioration, poor maintenance, condensation, rising damp, or lack of ventilation. The key is demonstrating a clear causal link between a sudden, accidental insured event and the mould growth.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I do if I find mould after water damage?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Photograph all visible mould and water damage immediately, including the source of the water. Do not disturb or clean the mould before your insurer has inspected or arranged an assessor. Report the damage to your insurer promptly. Get a professional mould assessment from an IICRC-certified assessor who can provide air quality testing, moisture mapping, and a report linking the mould to the covered event. If the mould poses an immediate health risk, prioritise safety \u2014 take thorough photos and videos first, then remediate.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why do insurers deny mould claims?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The most common reasons for mould claim denial are: the mould is classified as gradual deterioration (not linked to a sudden event), the property owner failed to maintain the building (known leaks not repaired, poor ventilation), the mould was pre-existing before the claimed event, or the policyholder delayed reporting or failed to mitigate further damage. Insufficient documentation \u2014 no professional assessment, no moisture mapping, no evidence linking mould to a covered event \u2014 is also a frequent cause of denial.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I start mould remediation before my insurer approves the claim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, and in many cases you should. Mould spreads rapidly \u2014 delaying remediation while waiting for insurer approval allows contamination to expand, increasing both the health risk and the total cost. We bill you directly so work begins immediately without waiting for insurer approval. We provide comprehensive pre-remediation documentation (photos, moisture mapping, air quality testing) and post-remediation clearance results so your insurer has full evidence to process your reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does professional mould remediation cost in Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Professional mould remediation in Australia typically costs $2,500 to $20,000+ depending on the species, contamination extent, accessibility, and whether the mould is in open areas or concealed behind walls and in ceiling cavities. The Disaster Recovery platform has a $2,750 initial commitment ($550 platform fee + $2,200 contractor credit) covering the emergency assessment and initial remediation. Additional works are quoted in a formal contract after assessment. Payment plans are available through Blue Fire Finance.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="mouldinscov-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Insurance Guides"
       title="Is Mould Removal Covered by Insurance in Australia?"
       subtitle="When your insurer will cover mould remediation, when they will not, and how to document your mould claim to maximise your chance of reimbursement."
@@ -233,5 +287,6 @@ export default function MouldRemovalInsuranceCoveragePage() {
         },
       ]}
     />
+    </>
   );
 }

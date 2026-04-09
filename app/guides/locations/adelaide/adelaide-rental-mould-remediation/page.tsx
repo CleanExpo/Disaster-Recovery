@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -10,8 +11,61 @@ export const metadata: Metadata = {
 };
 
 export default function AdelaideRentalMouldRemediationPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is a landlord responsible for mould in a rental property in South Australia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Under the SA Residential Tenancies Act 1995, landlords are responsible for maintaining the property in a reasonable state of repair. If mould results from a structural defect \u2014 leaking roof, rising damp, defective plumbing, or inadequate ventilation \u2014 the landlord bears the cost of both the repair and mould remediation. If mould results from tenant behaviour (failing to ventilate, drying clothes indoors), the tenant may be liable. Professional assessment helps establish causation for SACAT proceedings.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does mould remediation cost in an Adelaide rental property?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Mould remediation in Adelaide rental properties typically ranges from $2,200 for a single room (bathroom or bedroom) to $8,000\u2013$15,000 for multi-room contamination involving wall cavity mould, subfloor treatment, and material replacement. The cost depends on the contamination extent, materials affected, and whether structural repairs (plumbing, waterproofing, ventilation) are required. We bill you directly so work begins immediately, and provide full claims documentation for insurance reimbursement.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I stay in the property during mould remediation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For minor remediation (single room, surface mould), tenants can usually remain in the property while the affected area is contained. For extensive remediation involving multiple rooms, wall cavity treatment, or air quality concerns, temporary relocation is recommended \u2014 particularly for occupants with respiratory conditions, young children, or compromised immune systems. Your landlord insurance or contents insurance may cover temporary accommodation costs.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why does mould keep coming back in my Adelaide rental?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Recurring mould in Adelaide rentals almost always indicates an unresolved moisture source. Common causes include inadequate exhaust ventilation (fans missing or venting into the roof cavity), single-glazed windows causing condensation, blocked subfloor vents in older properties, and undetected leaks in plumbing or the building envelope. Professional mould assessment identifies the root cause so remediation addresses both the mould and the moisture source. Without fixing the source, mould returns within weeks to months.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is billing handled for rental mould remediation?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We bill you directly \u2014 whichever party engages the service (landlord or tenant). Work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance. The documentation package also supports SACAT proceedings if the cost responsibility between landlord and tenant is disputed.',
+        },
+      },
+    ],
+  };
+
   return (
-    <AgGuidePageTemplate
+    <>
+      <Script
+        id="adlrental-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <AgGuidePageTemplate
       category="Locations"
       title="Adelaide Rental Property Mould Remediation"
       subtitle="Expert guide to identifying, treating, and preventing mould in Adelaide rental properties — covering landlord obligations, tenant rights, and professional remediation under SA law"
@@ -168,5 +222,6 @@ export default function AdelaideRentalMouldRemediationPage() {
         },
       ]}
     />
+    </>
   );
 }
