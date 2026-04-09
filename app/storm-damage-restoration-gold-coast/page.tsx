@@ -45,12 +45,50 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does storm damage restoration cost on the Gold Coast?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Storm damage restoration on the Gold Coast ranges from $1,500 for emergency roof tarping to $60,000 or more for combined structural and water damage from severe storm events. Costs depend on the type of damage (hail, wind, or water), the extent of property affected, and access complexity. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can a storm damage contractor respond on the Gold Coast?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors across the Gold Coast respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover storm damage restoration on the Gold Coast?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home and contents insurance policies cover storm damage including wind, hail, and storm-related water ingress. Flood cover from rising water is typically a separate add-on. We bill you directly so work begins immediately, and provide full claims documentation \u2014 timestamped photos, detailed scope of works, and progress reports \u2014 to support your insurance reimbursement.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I do immediately after storm damage to my Gold Coast property?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Ensure personal safety first \u2014 stay away from fallen power lines and structurally compromised areas. If safe, place buckets under active leaks and move valuables away from water. Photograph all damage for insurance purposes. Do not attempt roof access during or after a storm. Lodge your claim at disasterrecovery.com.au/claim for a 60-minute emergency make-safe response.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is hail damage restored on Gold Coast properties?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Hail damage restoration involves a full external assessment, replacement of cracked or broken roof tiles, repair of dented metal roofing, skylight replacement, gutter and downpipe restoration, and repainting of damaged external surfaces. Interior water damage caused by hail-breached roofing is treated simultaneously with industrial extraction and structural drying equipment.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the Gold Coast at risk of cyclone damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'While direct cyclone hits on the Gold Coast are rare, the region regularly experiences the remnants of tropical cyclones that bring destructive winds, heavy rainfall, and storm surge risks. Ex-tropical cyclone events can produce sustained winds above 100 km/h and rainfall exceeding 200 mm in 24 hours, causing widespread property damage across the Gold Coast.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationGoldCoastPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="sdrgc-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrgc-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrgc-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Gold Coast"

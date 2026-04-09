@@ -45,11 +45,39 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does the ARPC Cyclone Pool apply to Darwin and NT properties?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 the ARPC Cyclone Reinsurance Pool applies to all NT properties, not just those north of the Tropic of Capricorn. The full Northern Territory jurisdiction is covered. Your insurer holds cyclone reinsurance through the pool and manages your claim on its behalf. This does not change your rights \u2014 you can still dispute underpayment through AFCA.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What cyclone rating applies to Darwin homes?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Post-1985 Darwin homes are built to Category D wind classification, designed for sustained winds of 240 km/h. Homes built between 1975 and 1985 under the post-Tracy rebuilding code offer significant protection but may not meet the full current standard. Pre-1975 properties are most vulnerable and should be assessed by a licensed structural engineer after any significant cyclone event.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is wet season flooding covered the same way as cyclone damage under insurance?',
+      acceptedAnswer: { '@type': 'Answer', text: 'No \u2014 wet season flooding and cyclone damage are treated as distinct perils under most Australian home insurance policies. Cyclone damage (wind, wind-driven rain, storm surge within 48 hours of the event) is covered under the cyclone peril. Separate flood inundation from overflowing waterways is assessed as a flood event. Documenting the cause and entry point of water is critical to correct claim classification.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly will NRPG contractors respond after a Darwin cyclone?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors dispatch within 60 minutes of emergency services issuing the all-clear for your area following a cyclone event. Lodge your claim at disasterrecovery.com.au/claim in advance \u2014 we queue assignments and dispatch the moment clearance is confirmed for your suburb.' },
+    },
+  ],
+};
+
 export default function CycloneWaterDamageRestorationDarwinPage() {
   return (
     <>
       <Script id="cddarwin-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="cddarwin-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="cddarwin-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone and Water Damage Restoration Darwin"

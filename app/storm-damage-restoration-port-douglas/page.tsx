@@ -49,11 +49,39 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is Port Douglas in the TC Maila direct impact zone?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 Port Douglas and the Daintree Coast are in TC Maila\u2019s forecast impact corridor. BOM is projecting landfall-level conditions for postcode 4877 in the 11\u201312 April window. NRPG contractors are pre-staged in the region for immediate post-clearance response.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I lodge a cyclone damage claim for a Port Douglas property?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Lodge at disasterrecovery.com.au/claim once emergency services confirm it is safe to assess your property. Photograph all damage first. The ARPC Cyclone Pool applies to FNQ postcodes \u2014 lodge as "cyclone damage" and "water ingress" separately.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will road closures affect response time in the Daintree?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Potentially yes \u2014 the Daintree River Ferry and the single highway north can be disrupted by cyclone debris. NRPG pre-positions contractors in the region before major events. Lodge your claim early to be first in the queue once access is restored.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does home insurance cover mould after tropical flooding in Port Douglas?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Mould arising directly from a covered cyclone or storm event is generally covered under standard policies. However, insurer-appointed assessors sometimes dispute mould coverage if they claim it resulted from delayed reporting. Lodge early and request IICRC-certified assessment to document the causal link.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationPortDouglasPage() {
   return (
     <>
       <Script id="sdrpd-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrpd-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrpd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Port Douglas"

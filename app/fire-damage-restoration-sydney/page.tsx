@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How do I lodge a house fire insurance claim in Sydney?',
+      acceptedAnswer: { '@type': 'Answer', text: "Call your insurer immediately after the fire brigade confirms it is safe to re-enter. Photograph all damage \u2014 fire, smoke, soot, and water from fire suppression. Lodge your claim describing \u2018fire damage\u2019 and \u2018smoke damage\u2019 as separate items. Your insurer\u2019s ALE (Additional Living Expenses) benefit covers temporary accommodation if the property is uninhabitable. Lodge at disasterrecovery.com.au/claim for an IICRC-certified assessment to support your claim scope." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does home insurance cover bushfire ember damage in Sydney?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 ember attack damage (embers entering through roof vents, gutters, or crevices and igniting internal materials) is covered under the fire damage provision of most standard Australian home insurance policies. Smoke and soot damage from nearby bushfires (even without direct ember impact) is also generally covered. Document the source of damage carefully \u2014 photograph the entry points.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can fire damage restoration remove smoke odour from my Sydney home?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. IICRC S700:2025-certified restoration uses thermal fogging and ozone treatment to chemically neutralise smoke odour molecules \u2014 not mask them. This is the only effective method for permanent odour elimination. Household cleaning products address surface soot but cannot penetrate wall cavities or HVAC systems where odour-causing compounds are absorbed. NRPG contractors are S700:2025-certified and equipped for full odour remediation.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does fire damage restoration take in Sydney?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Minor fire damage (single room, limited smoke spread): 7\u201314 days. Moderate fire damage (multiple rooms, smoke in HVAC): 3\u20136 weeks. Major structural fires: 3\u20136 months for full restoration to pre-loss condition. NRPG provides a project timeline as part of the initial assessment scope.' },
+    },
+  ],
+};
+
 export default function FireDamageRestorationSydneyPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="fdrsyd-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="fdrsyd-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="fdrsyd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Sydney"

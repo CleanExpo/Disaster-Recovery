@@ -44,12 +44,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is Rockhampton in the ARPC Cyclone Pool zone?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 Rockhampton sits on the Tropic of Capricorn, which is within the ARPC Cyclone Reinsurance Pool geographic coverage zone. For TC Maila-related events, lodge your claim as cyclone damage and water ingress (not flood or storm) to ensure correct pool classification. NRPG provides full ARPC-compliant documentation packs for Rockhampton homeowners.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Did TC Maila affect Rockhampton?',
+      acceptedAnswer: { '@type': 'Answer', text: "TC Maila\u2019s southern projection includes the Rockhampton corridor for the 13\u201316 April 2026 window. Even if TC Maila passes north of direct Rockhampton impact, the system will generate strong wind and rain bands extending well south of the eye. Rockhampton and Capricorn Coast properties should prepare for cyclone-force wind gusts and heavy rainfall regardless of the exact track." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does flood risk interact with cyclone damage in Rockhampton?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Fitzroy River flooding is a significant secondary risk during cyclone events in Rockhampton \u2014 it is a separate peril from cyclone wind damage. The 2011 Rockhampton floods were partially cyclone-driven. It is important to document wind damage and flooding separately for insurance purposes: cyclone wind damage is processed under the ARPC pool, while flood damage is assessed under your flood provision. NRPG documents both perils separately in our claims packs.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG reach Rockhampton?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG targets a 60-minute response for Rocky metro properties. Capricorn Coast (Yeppoon, Emu Park) is approximately 60 minutes. Gladstone is approximately 90 minutes. Emerald requires coordinated response with a 3-hour lead time. Lodge at disasterrecovery.com.au/claim immediately after the all-clear to secure your position in the response queue.' },
+    },
+  ],
+};
+
 export default function CycloneDamageRestorationRockhamptonPage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="cdrrck-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="cdrrck-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="cdrrck-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Rockhampton"

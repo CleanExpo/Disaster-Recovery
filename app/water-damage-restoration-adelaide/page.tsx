@@ -68,6 +68,37 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What causes the most water damage in Adelaide?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "The three most common sources in Adelaide are: (1) burst pipes in summer \u2014 thermal expansion in Adelaide\u2019s extreme heat causes pipe joint failures; (2) winter storm water ingress through aged roofing in established inner suburbs; (3) stormwater drainage overflow in heavy winter rainfall events. Lodge immediately at disasterrecovery.com.au/claim for 60-minute emergency response.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does water damage restoration take in Adelaide?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Structural drying in Adelaide typically takes 3\u20135 days in summer (low ambient humidity assists equipment efficiency) and 5\u201310 days in winter (cool temperatures require longer equipment run times). Category 3 losses involving sewage or external flooding may require 10\u201321 days. NRPG contractors produce daily psychrometric logs confirming progress toward drying targets.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Adelaide home insurance cover storm water ingress?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes \u2014 storm water entering through damaged building elements (failed roof, broken windows) is covered under the storm damage provision of most standard South Australian home insurance policies. Stormwater overflow from external drainage systems may be treated as flood and requires a specific flood extension. Document the water entry point clearly when photographing damage.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationAdelaidePage() {
   return (
     <>
@@ -80,6 +111,11 @@ export default function WaterDamageRestorationAdelaidePage() {
         id="wdradl-service"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="wdradl-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Water Damage"

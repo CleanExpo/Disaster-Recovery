@@ -45,11 +45,39 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can I still lodge or supplement an Alfred claim on the Sunshine Coast?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 if your Alfred claim is still open, underpaid, or disputed, NRPG can assist at any stage. We provide independent IICRC reassessment, supplementary moisture mapping, and AFCA-ready documentation for properties where the original scope missed damage or where the insurer has disputed the full extent of loss.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is canal estate storm damage covered differently from flood damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Storm damage and flood inundation are two distinct perils under most Australian home insurance policies. Canal rise from storm events may be classified as either stormwater runoff or flood depending on your policy wording and the origin of the water. Documenting the exact entry point and timing of water ingress is critical. NRPG provides detailed scope reports that distinguish between storm and flood damage for insurance purposes.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why is mould appearing in my property months after Alfred?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Mould appearing weeks or months after a storm event typically indicates incomplete structural drying. Queensland\u2019s high ambient humidity means residual moisture in wall cavities, insulation, and subfloor spaces remains at levels that support mould growth even after surface materials appear dry. IICRC-certified contractors use thermal imaging and calibrated moisture meters to identify wet areas that standard visual inspection misses.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG respond to storm damage on the Sunshine Coast?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors respond within 60 minutes across the full Noosa-to-Caloundra corridor following emergency storms. Hinterland communities including Maleny, Montville, and Eumundi have a 90-minute response window. Lodge your claim at disasterrecovery.com.au/claim for immediate contractor matching.' },
+    },
+  ],
+};
+
 export default function StormWaterDamageRestorationSunshineCoastPage() {
   return (
     <>
       <Script id="swdsc-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="swdsc-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="swdsc-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm and Water Damage"
         title="Storm and Water Damage Restoration Sunshine Coast"

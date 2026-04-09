@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is my Alfred storm damage claim still active?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 storm damage claims from Alfred can still be lodged or supplemented if you have undiscovered damage or an underpaid settlement. The PERILS final loss confirmation of AU$1.877 billion does not close individual claim windows. NRPG provides IICRC-certified scope documentation for supplementary lodgement and AFCA escalation.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Brisbane home insurance cover hail damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 hail damage to roofing, guttering, skylights, and cladding is covered under the storm damage provision of most standard Australian home insurance policies. Lodge promptly \u2014 delayed lodgement can complicate causation arguments if subsequent weather events occur. Photograph all hail impact points before any cleanup.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between storm damage and flood damage for Brisbane insurance claims?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Storm damage covers wind-driven structural failure and water entering through breached building elements. Flood damage covers inundation from external water bodies (Brisbane River, Kedron Brook, Oxley Creek). Most standard policies cover storm; flood requires a specific extension. Lodge storm wind damage and storm water ingress separately from any flood component.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG respond to roof damage in Brisbane?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Within 60 minutes for emergency make-safe (roof tarping, temporary boarding) following storm events. Structural repairs are scheduled based on insurer approval and contractor availability. Lodge at disasterrecovery.com.au/claim for immediate dispatch matching.' },
+    },
+  ],
+};
+
 export default function StormDamageRestorationBrisbanePage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="sdrbne-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="sdrbne-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="sdrbne-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Brisbane"

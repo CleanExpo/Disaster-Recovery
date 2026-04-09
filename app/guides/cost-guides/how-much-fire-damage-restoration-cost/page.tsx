@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
@@ -14,11 +15,60 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does fire damage restoration cost in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Fire damage restoration costs in Australia range from $1,500 for smoke and soot cleaning in a single room after a contained fire to $500,000 or more for a total structural loss and rebuild. Most partial fire damage events \u2014 smoke cleaning, partial structural repair, HVAC decontamination, and contents pack-out \u2014 fall in the $20,000\u2013$80,000 range for a residential property. The final cost depends on fire size and duration, building construction type, smoke spread, and water damage from fire suppression.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover fire damage restoration costs in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Fire is covered as a standard insured peril under virtually all Australian home building and contents insurance policies. This includes structural repair, smoke and soot cleaning, contents restoration, and temporary accommodation (ALE) while the property is uninhabitable. We bill you directly and provide full IICRC S700-standard documentation \u2014 including scope of works, photo evidence, and itemised invoices \u2014 to support your insurance reimbursement claim.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does smoke damage restoration involve?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Smoke damage restoration involves removing smoke, soot, and combustion particles from all affected surfaces and materials using specialist HEPA-filtered equipment and fire restoration chemistry. It includes cleaning structural elements, contents, soft furnishings, and accessible cavities. HVAC decontamination is a critical component \u2014 smoke travels through ducted systems to rooms far from the fire origin. Thermal fogging and ozone treatment are used in the final phase to neutralise embedded odour in porous materials.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does fire damage restoration take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A contained single-room fire event (smoke cleaning and minor repairs) typically takes 1\u20132 weeks. Partial structural fire damage requires 4\u201312 weeks depending on the scope of demolition, structural assessment, and rebuild. A total loss rebuild is a construction project typically taking 6\u201318 months, subject to council approvals, engineering sign-off, and construction scheduling. Emergency make-safe and initial cleaning can begin within 24\u201348 hours of the event.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the hidden cost of fire damage that people miss?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The most commonly missed costs are HVAC decontamination (smoke spreads through ducted systems to unaffected areas), electrical rewiring (heat and smoke degrade cable insulation throughout the property), and structural engineering assessment for steel elements exposed to sustained heat. Water damage from fire brigade suppression is also routinely underestimated \u2014 this Category 3 water damage requires its own IICRC-compliant remediation scope on top of the fire restoration work.',
+      },
+    },
+  ],
+};
+
 export default function HowMuchFireDamageRestorationCostPage() {
   return (
-    <AgGuidePageTemplate
-      category="Cost Guides"
-      title="Fire Damage Restoration Cost Guide Australia 2026"
+    <>
+      <Script id="costfire-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <AgGuidePageTemplate
+        category="Cost Guides"
+        title="Fire Damage Restoration Cost Guide Australia 2026"
       subtitle="Expert answers and solutions for"
       gradient="linear-gradient(135deg, #7c1d1d 0%, #dc2626 100%)"
       icon={<DollarSign className="h-10 w-10" />}
@@ -312,5 +362,6 @@ export default function HowMuchFireDamageRestorationCostPage() {
       ]}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
+    </>
   );
 }

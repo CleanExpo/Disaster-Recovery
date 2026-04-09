@@ -55,11 +55,59 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly does mould grow after water damage in Cairns?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "In Cairns\u2019 tropical climate (30\u00b0C+ with 70\u201385% humidity year-round), mould can establish within 24 hours of water damage occurring. Post-cyclone conditions \u2014 warm temperatures, elevated humidity, and saturated materials \u2014 create ideal propagation conditions. Lodge immediately for 60-minute emergency response: delayed treatment in Cairns\u2019 climate converts a manageable water damage claim into a full mould remediation project.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is TC Maila water damage covered by home insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Yes \u2014 water ingress caused by cyclone wind damage to building elements (roof failure, broken windows, damaged walls) is covered under most home insurance policies as cyclone damage, processed through the ARPC Cyclone Reinsurance Pool. Lodge as \u2018cyclone damage\u2019 and \u2018water ingress\u2019 \u2014 not \u2018flood\u2019. NRPG provides full IICRC-certified documentation for ARPC pool claim lodgement.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is IICRC S500:2025 and why does it matter for my Cairns claim?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "ANSI/IICRC S500:2025 is the Australian standard for water damage restoration. Insurers require psychrometric drying logs that only IICRC-certified contractors can produce. Non-certified work in Cairns\u2019 tropical conditions often leaves residual moisture in wall cavities and subfloor \u2014 visible as mould appearing weeks after apparent drying. NRPG only connects you with S500:2025-certified contractors.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I lodge a water damage claim in Cairns?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Lodge at disasterrecovery.com.au/claim. Photograph all damage first \u2014 timestamped evidence is critical. Lodge as \u2018cyclone damage\u2019 and \u2018water ingress\u2019 for TC Maila events. NRPG manages all insurer correspondence on your behalf and provides a full IICRC-certified documentation pack.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can NRPG help if my Cairns contractor did incomplete drying?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. If a non-certified contractor dried your property and you now have mould or structural issues, NRPG performs thermal imaging moisture mapping to identify residual wet areas and provides IICRC-compliant re-remediation with documentation for insurer re-lodgement.',
+      },
+    },
+  ],
+};
+
 export default function WaterDamageRestorationCairnsPage() {
   return (
     <>
       <Script id="wdrc-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="wdrc-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="wdrc-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Cairns"
