@@ -2,7 +2,7 @@
  * Ex-Tropical Cyclone Alfred — Queensland 2025 (Recovery)
  *
  * TC Alfred made landfall SE Queensland / Northern NSW, late February 2025.
- * ICA Insurance Catastrophe declared. 95,000+ claims lodged as at March 2025.
+ * ICA Insurance Catastrophe declared. 132,000+ claims lodged (PERILS final, 13 Apr 2026). AU$1.877B insured losses.
  *
  * G1 ✅ ICA Catastrophe declaration confirmed.
  * G2 ✅ Affected LGAs: 16 QLD councils declared under DRFA.
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ex-Cyclone Alfred QLD 2025 — Insurance Claims & Restoration | Disaster Recovery Australia',
     description:
-      'Insurance Catastrophe declared for ex-TC Alfred. 95,000+ insurance claims lodged. Expert restoration contractors across SE Queensland — water damage, storm damage, and claims support.',
+      'Insurance Catastrophe declared for ex-TC Alfred. 132,000+ insurance claims lodged. AU$1.877B final insured losses (PERILS). Expert restoration contractors across SE Queensland — water damage, storm damage, and claims support.',
     url: 'https://disasterrecovery.com.au/events/cyclone-alfred-queensland-2025',
     type: 'website',
   },
