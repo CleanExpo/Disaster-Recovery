@@ -45,19 +45,57 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does fire damage restoration cost in Brisbane?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Fire damage restoration in Brisbane ranges from $5,000 for a contained kitchen fire to $150,000 or more for whole-of-house damage requiring full structural rebuild. Smoke-only damage typically costs $3,000–$10,000. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does fire damage restoration take in Brisbane?',
+      acceptedAnswer: { '@type': 'Answer', text: "Timeline depends on severity. A contained kitchen fire restoration takes 1–2 weeks. Single-room structural fire takes 3–6 weeks. Major fire damage requiring full rebuild can take 3–6 months. Brisbane's subtropical humidity can affect drying and odour treatment timelines. Your contractor provides a detailed timeline after the structural assessment." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can smoke damage be fully removed from a Brisbane home?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Professional smoke damage restoration using IICRC S700:2025 protocols can fully remove smoke residue and odour from most building materials. The process involves HEPA vacuuming, chemical sponge cleaning, wet cleaning, thermal fogging, and ozone or hydroxyl treatment. Some porous materials (soft furnishings, unfinished timber) may need replacement if deeply penetrated.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover fire damage restoration in Brisbane?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home and contents policies cover fire damage restoration, including emergency board-up, structural repair, contents cleaning, and temporary accommodation. We bill you directly so work starts immediately without waiting for insurer approval. We provide comprehensive claims documentation including photos, structural reports, contents inventories, and itemised invoicing.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What about asbestos after a fire in a Brisbane home?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Pre-1990 Brisbane homes may contain asbestos in eaves, cladding, or roofing. Fire damage can release asbestos fibres, creating an airborne hazard. Licensed asbestos assessors test for contamination before restoration begins. If asbestos is confirmed, licensed removalists handle the material under Queensland workplace health and safety regulations before restoration contractors proceed.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can you respond to a house fire in Brisbane?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors across Brisbane respond within 60 minutes of claim lodgement for emergency board-up and make-safe. Lodge your claim at disasterrecovery.com.au/claim. Note that fire-damaged properties must be cleared by Queensland Fire and Emergency Services before any restoration work can begin.' },
+    },
+  ],
+};
+
 export default function FireDamageRestorationBrisbanePage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="fdrb-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="fdrb-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="fdrbne-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Brisbane"
         subtitle="Emergency fire and smoke damage restoration across all Brisbane metro suburbs. IICRC-certified contractors respond in under 60 minutes, 24 hours a day, 7 days a week."
         gradient="linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)"
         icon={<Flame className="h-10 w-10" />}
-        lastReviewed="2026-02-27"
+        lastReviewed="2026-04-09"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -128,7 +166,7 @@ export default function FireDamageRestorationBrisbanePage() {
             body: (
               <>
                 <p>
-                  Professional fire damage restoration follows the IICRC S540 Standard for cleaning and deodorisation
+                  Professional fire damage restoration follows the IICRC S700:2025 Standard for cleaning and deodorisation
                   after fire damage. The process is methodical and typically proceeds in these stages:
                 </p>
                 <ol style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
@@ -239,7 +277,7 @@ export default function FireDamageRestorationBrisbanePage() {
           },
           {
             question: 'Can smoke damage be fully removed from a Brisbane home?',
-            answer: 'Yes. Professional smoke damage restoration using IICRC S540 protocols can fully remove smoke residue and odour from most building materials. The process involves HEPA vacuuming, chemical sponge cleaning, wet cleaning, thermal fogging, and ozone or hydroxyl treatment. Some porous materials (soft furnishings, unfinished timber) may need replacement if deeply penetrated.',
+            answer: 'Yes. Professional smoke damage restoration using IICRC S700:2025 protocols can fully remove smoke residue and odour from most building materials. The process involves HEPA vacuuming, chemical sponge cleaning, wet cleaning, thermal fogging, and ozone or hydroxyl treatment. Some porous materials (soft furnishings, unfinished timber) may need replacement if deeply penetrated.',
           },
           {
             question: 'Does insurance cover fire damage restoration in Brisbane?',

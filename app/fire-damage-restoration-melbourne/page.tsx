@@ -45,12 +45,40 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does Victorian home insurance cover bushfire damage to Melbourne properties?',
+      acceptedAnswer: { '@type': 'Answer', text: "Yes — bushfire damage to the building, contents, and associated structures is covered under the fire damage provision of most standard Victorian home insurance policies. Victoria's high BAL-rated properties may have specific policy conditions — check your PDS. The Victorian Bushfire Insurance Scheme provides specific protections for properties in declared disaster areas." },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I claim for smoke damage if my Melbourne property was not directly in a bushfire zone?',
+      acceptedAnswer: { '@type': 'Answer', text: "Yes — smoke damage (soot, PM2.5 deposition in roof spaces, HVAC contamination) arising from a fire event is generally covered under the fire and smoke provisions of standard policies, even if your property was not in the direct fire zone. Document the smoke event (BOM records, media coverage), photograph soot deposits, and lodge as 'smoke damage from bushfire event'." },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is Melbourne fire damage restoration different from other cities?',
+      acceptedAnswer: { '@type': 'Answer', text: "Melbourne's heritage building stock (Victorian and Edwardian construction with lath-and-plaster walls and timber subfloors) responds to fire and smoke differently from modern construction. NRPG's S700:2025-certified contractors are experienced with heritage restoration requirements, including lime-based plaster repair, heritage-compatible finishes, and the specific challenges of smoke remediation in double-brick construction." },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I do immediately after a house fire in Melbourne?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Wait for the fire brigade to confirm the property is safe to re-enter. Do not attempt to clean up — soot damage spreads when disturbed and can void insurance claims if evidence is destroyed. Photograph everything from the front gate. Call your insurer. Lodge at disasterrecovery.com.au/claim for IICRC-certified emergency make-safe and structural assessment.' },
+    },
+  ],
+};
+
 export default function FireDamageRestorationMelbournePage() {
   return (
     <>
       {/* All schema data below is trusted static content — safe to inject */}
       <Script id="fdrmelb-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="fdrmelb-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="fdrmelb-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Melbourne"
