@@ -145,6 +145,8 @@ const PRIORITY_MAP: Record<string, number> = {
   '/fire-damage-restoration-sydney': 0.9,
   '/fire-damage-restoration-melbourne': 0.9,
   '/guides/insurance/arpc-cyclone-reinsurance-pool': 0.95,
+  '/cyclone-water-damage-restoration-darwin': 0.9,
+  '/storm-water-damage-restoration-sunshine-coast': 0.9,
   '/events': 0.7,
   '/insurance-decoder': 0.7,
   '/property': 0.75,
