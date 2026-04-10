@@ -23,7 +23,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Lint
-        run: npm run lint || echo "::warning::Lint errors found — see DR-511 for fix plan"
+        run: npm run lint
 
   typecheck:
     name: ci / typecheck

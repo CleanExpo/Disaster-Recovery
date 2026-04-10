@@ -173,7 +173,7 @@ export default function PitchDeckPresentation() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300">Contractor Utilisation</span>
-                    <span className="text-2xl font-bold text-white">< 60%</span>
+                    <span className="text-2xl font-bold text-white">&lt; 60%</span>
                   </div>
                 </div>
               </div>

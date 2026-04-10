@@ -186,60 +186,59 @@ class SMSService {
     return segments * costPerSegment;
   }
 
-  // Validate Email Address format
-  private isValidPhoneNumber(
-    // Australian Email Address validation
+  // Validate Australian phone number format
+  private isValidPhoneNumber(email: string): boolean {
     const phoneRegex = /^(\+61|0)[2-478](?:[ -]?[0-9]){8}$/;
     return phoneRegex.test(email.replace(/\s/g, ''));
   }
 
-  // Format Email Address to international format
-  formatPhoneNumber(
+  // Format phone number to international format
+  formatPhoneNumber(email: string): string {
     const cleaned = email.replace(/\D/g, '');
-    
+
     // Australian number
     if (cleaned.startsWith('61')) {
       return '+' + cleaned;
     } else if (cleaned.startsWith('0')) {
       return '+61' + cleaned.substring(1);
     }
-    
+
     return email;
   }
 
   // Check rate limits
-  private checkRateLimit(
+  private checkRateLimit(email: string): boolean {
     const now = new Date();
     const messages = sentMessages.get(email) || [];
-    
+
     // Clean old messages
     const recentMessages = messages.filter(date => {
       const diff = now.getTime() - date.getTime();
       return diff < 24 * 60 * 60 * 1000; // Keep last 24 hours
     });
-    
+
     // Check per minute limit
     const lastMinute = recentMessages.filter(date => {
       const diff = now.getTime() - date.getTime();
       return diff < 60 * 1000;
     });
     if (lastMinute.length >= RATE_LIMITS.perMinute) return false;
-    
+
     // Check per hour limit
     const lastHour = recentMessages.filter(date => {
       const diff = now.getTime() - date.getTime();
       return diff < 60 * 60 * 1000;
     });
     if (lastHour.length >= RATE_LIMITS.perHour) return false;
-    
+
     // Check per day limit
     if (recentMessages.length >= RATE_LIMITS.perDay) return false;
-    
+
     return true;
   }
 
   // Track sent message for rate limiting
-  private trackSentMessage(
+  private trackSentMessage(email: string): void {
     const messages = sentMessages.get(email) || [];
     messages.push(new Date());
     sentMessages.set(email, messages);
