@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
@@ -12,9 +13,43 @@ export const metadata: Metadata = {
   },
 };
 
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is black mould more dangerous than other types of mould?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '\'Black mould\' commonly refers to Stachybotrys chartarum, which produces trichothecene mycotoxins that are toxic at low concentrations. However, colour alone does not identify mould species — many non-toxic moulds are black. Only laboratory testing can confirm Stachybotrys. Any extensive mould growth — regardless of colour — should be treated as potentially hazardous and remediated professionally under IICRC S520:2025 protocols.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can black mould be killed with bleach?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Bleach disinfects surface mould on non-porous surfaces but does not penetrate porous materials to eliminate the root structure (hyphae). Stachybotrys grows on cellulose-based materials (plasterboard, timber) where bleach cannot reach. Water in bleach solution can also add moisture and feed further mould growth. Professional remediation involves removing contaminated materials and treating the underlying substrate with penetrating antifungal agents rather than surface-only disinfection.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'When should occupants vacate a property during black mould remediation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Occupants should vacate during active mould remediation work that involves demolition, HEPA vacuuming, and antifungal application. Children, pregnant women, the elderly, and immunocompromised individuals should not return until post-remediation air clearance testing is complete and spore counts meet IICRC S520:2025 clearance criteria. NRPG provides a clearance report before reoccupation.',
+      },
+    }
+  ],
+});
+
 export default function BlackMouldRemovalPage() {
   return (
-    <AgContentPageTemplate
+    <>
+      <Script id="black-mould-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
+      <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
@@ -33,5 +68,6 @@ export default function BlackMouldRemovalPage() {
       sections={getServiceChildSections({ serviceName: 'Black Mould Removal', parentCategory: 'Mould Remediation', context: 'toxic black mould and stachybotrys removal' })}
       relatedPages={getRelatedPages('water-damage')}
     />
+    </>
   );
 }
