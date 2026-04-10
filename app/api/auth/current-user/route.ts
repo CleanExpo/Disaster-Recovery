@@ -1,22 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
-    // Find user by email and return user info with permissions
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
       select: {
@@ -24,40 +20,21 @@ export async function GET(req: NextRequest) {
         email: true,
         name: true,
         role: true,
-        // TODO: Add permissions and lastLoginAt fields to User model when needed
-        // permissions: true,
-        // lastLoginAt: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
-
-    // TODO: Update last login time when lastLoginAt field is added
-    // await prisma.user.update({
-    //   where: { id: user.id },
-    //   data: { lastLoginAt: new Date() }
-    // });
 
     return NextResponse.json({
       user: {
         ...user,
-        // TODO: Parse permissions when field is added
-        // permissions: user.permissions ? JSON.parse(user.permissions as string) : []
-        permissions: []
-      }
+        permissions: [] as string[],
+      },
     });
-
   } catch (error) {
-    console.error('Error fetching current user:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

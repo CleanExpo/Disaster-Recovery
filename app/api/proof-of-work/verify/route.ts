@@ -1,157 +1,140 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
+
+const VerifyBodySchema = z.object({
+  claimId: z.string().min(1),
+  verificationStatus: z.enum(['VERIFIED', 'REJECTED', 'PENDING']),
+  verificationNotes: z.string().optional(),
+});
 
 export async function POST(req: NextRequest) {
   try {
-    const { claimId, verificationStatus, verificationNotes } = await req.json();
+    const body = await req.json();
+    const parsed = VerifyBodySchema.safeParse(body);
 
-    // Validate input
-    if (!claimId || !verificationStatus) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Missing required fields: claimId, verificationStatus' },
+        { error: 'Validation failed', issues: parsed.error.issues },
         { status: 400 }
       );
     }
 
-    // Validate verification status
-    const validStatuses = ['VERIFIED', 'REJECTED', 'PENDING'];
-    if (!validStatuses.includes(verificationStatus)) {
-      return NextResponse.json(
-        { error: `Invalid verification status. Must be one of: ${validStatuses.join(', ')}` },
-        { status: 400 }
-      );
-    }
+    const { claimId, verificationStatus, verificationNotes } = parsed.data;
 
-    // TODO: Implement when proofOfWork model is added
-    return NextResponse.json(
-      { error: 'Proof of work verification not yet implemented' },
-      { status: 501 }
-    );
-    
-    /* Commented out until model is added:
-    const existingClaim: any = null;
-    
-    // const existingClaim = await prisma.proofOfWork.findUnique({
-    //   where: { id: claimId },
-    //   include: {
-    //     contractor: {
-    //       select: {
-    //         id: true,
-    //         email: true,
-    //         username: true,
-    //         status: true }
-    //     }
-    //   }
-    // });
-
-    if (!existingClaim) {
-      return NextResponse.json(
-        { error: 'Proof of work claim not found' },
-        { status: 404 }
-      );
-    }
-
-    // TODO: Update the claim when model is added
-    const updatedClaim: any = { id: claimId, verificationStatus };
-    
-    // const updatedClaim = await prisma.proofOfWork.update({
-    //   where: { id: claimId },
-      data: {
-        verificationStatus,
-        verificationNotes,
-        verifiedAt: verificationStatus === 'VERIFIED' ? new Date() : null }
+    const existingClaim = await prisma.proofOfWork.findUnique({
+      where: { id: claimId },
+      include: {
+        contractor: {
+          select: {
+            id: true,
+            email: true,
+            username: true,
+            status: true,
+            onboardingStep: true,
+          },
+        },
+      },
     });
 
-    // If claim is verified or rejected, check contractor's overall status
+    if (!existingClaim) {
+      return NextResponse.json({ error: 'Proof of work claim not found' }, { status: 404 });
+    }
+
+    const updatedClaim = await prisma.proofOfWork.update({
+      where: { id: claimId },
+      data: {
+        verificationStatus,
+        rejectionReason:
+          verificationStatus === 'REJECTED' ? (verificationNotes ?? null) : null,
+        verifiedAt: verificationStatus === 'VERIFIED' ? new Date() : null,
+      },
+    });
+
     if (verificationStatus === 'VERIFIED' || verificationStatus === 'REJECTED') {
       const contractorId = existingClaim.contractorId;
 
-      // Get all proof of work claims for this contractor
-      const allClaims = await prisma.proofOfWork.findMany({
-        where: { contractorId },
-        select: {
-          workType: true,
-          verificationStatus: true }
-      });
+      const [allClaims, competencyTests] = await Promise.all([
+        prisma.proofOfWork.findMany({
+          where: { contractorId },
+          select: { workType: true, verificationStatus: true },
+        }),
+        prisma.competencyTestResult.findMany({
+          where: { contractorId, passed: true },
+          select: { category: true },
+        }),
+      ]);
 
-      // Get required work types from passed competency tests
-      const competencyTests = await prisma.competencyTestResult.findMany({
-        where: {
-          contractorId,
-          passed: true },
-        select: {
-          workType: true }
-      });
+      const requiredCategories = competencyTests.map((t) => t.category);
+      const verifiedWorkTypes = [
+        ...new Set(
+          allClaims
+            .filter((c) => c.verificationStatus === 'VERIFIED')
+            .map((c) => c.workType)
+        ),
+      ];
 
-      const requiredWorkTypes = competencyTests.map(test => test.workType);
-      const verifiedClaims = allClaims.filter(claim => claim.verificationStatus === 'VERIFIED');
-      const rejectedClaims = allClaims.filter(claim => claim.verificationStatus === 'REJECTED');
+      const hasAllRequiredProof =
+        requiredCategories.length > 0 &&
+        requiredCategories.every((category) => verifiedWorkTypes.includes(category));
 
-      // Check if contractor has verified proof of work for all required work types
-      const verifiedWorkTypes = [...new Set(verifiedClaims.map(claim => claim.workType))];
-      const hasAllRequiredProof = requiredWorkTypes.every(workType =>
-        verifiedWorkTypes.includes(workType)
-      );
-
-      // Update contractor status based on proof of work verification
-      let newContractorStatus = existingClaim.contractor.status;
-      let statusUpdateData: any = {};
-
-      if (hasAllRequiredProof && verifiedClaims.length >= requiredWorkTypes.length) {
-        // All required proof of work is verified - move to next stage
-        newContractorStatus = 'APPROVED';
-        statusUpdateData = {
-          status: 'APPROVED',
-          approvedAt: new Date(),
-          onboardingStep: Math.max(existingClaim.contractor.onboardingStep || 0, 10), // Proof verification step
-        };
-      } else if (rejectedClaims.length > 0 && verificationStatus === 'REJECTED') {
-        // Some claims rejected - contractor needs to resubmit
-        newContractorStatus = 'UNDER_REVIEW';
-        statusUpdateData = {
-          status: 'UNDER_REVIEW',
-          reviewNotes: `Proof of work verification incomplete. Rejected: ${rejectedClaims.length}, Verified: ${verifiedClaims.length}` };
-      }
-
-      if (newContractorStatus !== existingClaim.contractor.status) {
+      if (
+        hasAllRequiredProof &&
+        existingClaim.contractor.status !== 'APPROVED'
+      ) {
         await prisma.contractor.update({
           where: { id: contractorId },
-          data: statusUpdateData
+          data: {
+            status: 'APPROVED',
+            approvedAt: new Date(),
+            onboardingStep: Math.max(existingClaim.contractor.onboardingStep ?? 0, 10),
+          },
+        });
+      } else if (
+        verificationStatus === 'REJECTED' &&
+        existingClaim.contractor.status !== 'UNDER_REVIEW'
+      ) {
+        await prisma.contractor.update({
+          where: { id: contractorId },
+          data: { status: 'UNDER_REVIEW' },
         });
       }
 
-      // Create notification for contractor
-      await prisma.notification.create({
+      const notificationType =
+        verificationStatus === 'VERIFIED'
+          ? 'PROOF_OF_WORK_APPROVED'
+          : 'PROOF_OF_WORK_REJECTED';
+
+      await prisma.contractorNotification.create({
         data: {
-          type: verificationStatus === 'VERIFIED' ? 'PROOF_OF_WORK_APPROVED' : 'PROOF_OF_WORK_REJECTED',
-          title: `Proof of Work ${verificationStatus === 'VERIFIED' ? 'Approved' : 'Rejected'}`,
-          message: verificationStatus === 'VERIFIED' 
-            ? `Your proof of work for ${existingClaim.workType} has been approved`
-            : `Your proof of work for ${existingClaim.workType} has been rejected. Please review the feedback and resubmit.`,
-          metadata: JSON.stringify({
-            contractorId,
-            proofOfWorkId: claimId,
-            workType: existingClaim.workType,
-            verificationNotes,
-            newStatus: newContractorStatus }),
-          read: false,
-          recipientType: 'CONTRACTOR',
-          recipientId: contractorId }
+          contractorId,
+          type: notificationType,
+          priority: verificationStatus === 'REJECTED' ? 'HIGH' : 'NORMAL',
+          subject:
+            verificationStatus === 'VERIFIED'
+              ? 'Proof of Work Approved'
+              : 'Proof of Work Rejected',
+          message:
+            verificationStatus === 'VERIFIED'
+              ? `The proof of work for ${existingClaim.workType} has been approved.`
+              : `The proof of work for ${existingClaim.workType} has been rejected. Please review the feedback and resubmit.`,
+          actionRequired: verificationStatus === 'REJECTED',
+        },
       });
 
-      // If contractor is now approved, create welcome notification
-      if (newContractorStatus === 'APPROVED' && existingClaim.contractor.status !== 'APPROVED') {
-        await prisma.notification.create({
+      if (
+        hasAllRequiredProof &&
+        existingClaim.contractor.status !== 'APPROVED'
+      ) {
+        await prisma.contractorNotification.create({
           data: {
-            type: 'CONTRACTOR_APPROVED',
-            title: 'Congratulations! Your Application is Approved',
-            message: 'Your contractor application has been fully approved. You can now start receiving leads.',
-            metadata: JSON.stringify({
-              contractorId,
-              approvedAt: new Date().toISOString() }),
-            read: false,
-            recipientType: 'CONTRACTOR',
-            recipientId: contractorId }
+            contractorId,
+            type: 'SYSTEM',
+            priority: 'HIGH',
+            subject: 'Application Approved',
+            message:
+              'The contractor application has been fully approved. Leads can now be received.',
+          },
         });
       }
     }
@@ -160,24 +143,16 @@ export async function POST(req: NextRequest) {
       success: true,
       claim: {
         ...updatedClaim,
-        evidence: JSON.parse(updatedClaim.evidence as string || '[]')
+        evidence: JSON.parse(updatedClaim.evidence) as unknown[],
       },
-      message: `Proof of work claim ${verificationStatus.toLowerCase()} successfully` });
-
+      message: `Proof of work claim ${verificationStatus.toLowerCase()} successfully`,
+    });
   } catch (error) {
-    console.error('Error verifying proof of work:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error during proof of work verification',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
-      { status: 500 }
-    );
-    */
-  } catch (error) {
-    console.error('Error verifying proof of work:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
       { status: 500 }
     );
   }
@@ -185,21 +160,11 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    // TODO: Implement when proofOfWork model is added
-    return NextResponse.json(
-      { error: 'Proof of work verification not yet implemented' },
-      { status: 501 }
-    );
-
-    /* Commented out until model is added:
     const { searchParams } = new URL(req.url);
     const claimId = searchParams.get('claimId');
 
     if (!claimId) {
-      return NextResponse.json(
-        { error: 'Missing claimId parameter' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing claimId parameter' }, { status: 400 });
     }
 
     const claim = await prisma.proofOfWork.findUnique({
@@ -208,29 +173,25 @@ export async function GET(req: NextRequest) {
         contractor: {
           select: {
             email: true,
-            businessName: true,
+            username: true,
             status: true,
-            phone: true }
-        }
-      }
+            mobileNumber: true,
+          },
+        },
+      },
     });
 
     if (!claim) {
-      return NextResponse.json(
-        { error: 'Proof of work claim not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Proof of work claim not found' }, { status: 404 });
     }
 
     return NextResponse.json({
       claim: {
         ...claim,
-        evidence: JSON.parse(claim.evidence as string || '[]')
-      }
+        evidence: JSON.parse(claim.evidence) as unknown[],
+      },
     });
-    */
   } catch (error) {
-    console.error('Error fetching proof of work claim:', error);
     return NextResponse.json(
       { error: 'Failed to fetch proof of work claim' },
       { status: 500 }

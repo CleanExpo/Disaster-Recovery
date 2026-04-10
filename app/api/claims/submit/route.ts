@@ -5,6 +5,7 @@ import { sendEmail } from '@/lib/email';
 import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
 import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
 import { dispatchClaimStatusNotification } from '@/lib/notifications';
+import { rateLimit } from '@/lib/rate-limit';
 import fs from 'node:fs/promises';
 
 const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
@@ -179,6 +180,22 @@ async function readFallbackClaim(claimId: string): Promise<TrackClaimPayload | n
 }
 
 export async function POST(request: NextRequest) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  const limit = await rateLimit(ip, 'claims-submit');
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { success: false, message: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(limit.retryAfter ?? 60) },
+      },
+    );
+  }
+
   try {
     const raw = await request.json();
     const parsed = ClaimSubmitSchema.safeParse(raw);
