@@ -7,7 +7,7 @@
  */
 
 import { prisma } from '@/lib/prisma';
-import { getRedditClient } from '../reddit-client';
+import { getSubmissionMetrics } from '../reddit-client';
 import type { PerformanceFeedback, PerformanceSnapshot } from './types';
 import type { PostCategory } from '../reddit-types';
 
@@ -52,7 +52,6 @@ export async function checkRecentPostPerformance(): Promise<{
     };
   }
 
-  const client = getRedditClient();
   const snapshots: PerformanceSnapshot[] = [];
   const now = new Date();
 
@@ -60,14 +59,7 @@ export async function checkRecentPostPerformance(): Promise<{
     if (!post.redditId) continue;
 
     try {
-      // Fetch submission data from Reddit
-      const submission = await (client.getSubmission(post.redditId).fetch() as Promise<{
-        ups: number;
-        downs: number;
-        num_comments: number;
-        upvote_ratio: number;
-        removed_by_category: string | null;
-      }>);
+      const submission = await getSubmissionMetrics(post.redditId);
 
       const snapshot: PerformanceSnapshot = {
         postId: post.id,
