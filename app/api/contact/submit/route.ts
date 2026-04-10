@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam } from '@/lib/lead-scoring';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { rateLimit } from '@/lib/rate-limit';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -16,6 +17,22 @@ const contactSchema = z.object({
   preferredContact: z.enum(['phone', 'email', 'both']).optional() });
 
 export async function POST(request: NextRequest) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  const limit = await rateLimit(ip, 'contact-submit');
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { success: false, message: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(limit.retryAfter ?? 60) },
+      },
+    );
+  }
+
   try {
     const body = await request.json();
     

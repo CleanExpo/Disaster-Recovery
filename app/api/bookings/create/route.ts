@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam, getResponseTime } from '@/lib/lead-scoring';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { encrypt, isConfigured } from '@/lib/encryption';
+import { rateLimit } from '@/lib/rate-limit';
 
 const bookingSchema = z.object({
   // Service Details
@@ -104,6 +105,22 @@ function calculateEstimatedArrival(date: string, time: string, urgency: string):
 }
 
 export async function POST(request: NextRequest) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  const limit = await rateLimit(ip, 'bookings-create');
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { success: false, message: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(limit.retryAfter ?? 60) },
+      },
+    );
+  }
+
   try {
     const body = await request.json();
 

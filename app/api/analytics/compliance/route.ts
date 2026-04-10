@@ -8,22 +8,18 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user) {
-      return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
     const { searchParams } = new URL(req.url);
-    const timeframe = searchParams.get('timeframe') || '30d';
-    const reportType = searchParams.get('type') || 'summary';
+    const timeframe = searchParams.get('timeframe') ?? '30d';
+    const reportType = searchParams.get('type') ?? 'summary';
 
-    // Calculate date range
     const now = new Date();
     let startDate: Date;
-    
+
     switch (timeframe) {
       case '7d':
         startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
@@ -40,33 +36,23 @@ export async function GET(req: NextRequest) {
 
     // Certification compliance
     const totalContractors = await prisma.contractor.count({
-      where: {
-        status: 'APPROVED'
-      }
+      where: { status: 'APPROVED' },
     });
 
-    // Count contractors with at least one verified certification
     const certifiedContractors = await prisma.contractor.count({
       where: {
         status: 'APPROVED',
-        certifications: {
-          some: {
-            status: 'VERIFIED',
-          },
-        },
+        certifications: { some: { status: 'VERIFIED' } },
       },
     });
 
-    // Count contractors with verified IICRC certifications specifically
     const iicrcCertified = await prisma.contractor.count({
       where: {
         status: 'APPROVED',
         certifications: {
           some: {
             status: 'VERIFIED',
-            certificationType: {
-              startsWith: 'IICRC',
-            },
+            certificationType: { startsWith: 'IICRC' },
           },
         },
       },
@@ -76,13 +62,11 @@ export async function GET(req: NextRequest) {
     const completedTraining = await prisma.contractor.count({
       where: {
         status: 'APPROVED',
-        onboardingStep: {
-          gte: 14 // Completed all 14 days
-        }
-      }
+        onboardingStep: { gte: 14 },
+      },
     });
 
-    // Insurance compliance — count contractors with at least one active policy
+    // Insurance compliance
     const insuredContractors = await prisma.contractor.count({
       where: {
         status: 'APPROVED',
@@ -95,125 +79,131 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    // Insurance expiring within 30 days
     const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
     const expiringSoon = await prisma.contractorInsurance.count({
       where: {
         status: 'ACTIVE',
-        expiryDate: {
-          gt: now,
-          lte: thirtyDaysFromNow,
-        },
+        expiryDate: { gt: now, lte: thirtyDaysFromNow },
       },
     });
 
-    // Document compliance - TODO: Implement when document tracking is added
-    const documentsSubmitted = 0; // Placeholder
+    // Inspection report quality compliance
+    const reportsSubmitted = await prisma.inspectionReport.count({
+      where: { createdAt: { gte: startDate } },
+    });
 
-    const documentsVerified = 0; // Placeholder
+    const approvedReports = await prisma.inspectionReport.count({
+      where: {
+        createdAt: { gte: startDate },
+        status: 'APPROVED',
+      },
+    });
 
-    const documentsRejected = 0; // Placeholder
+    const rejectedReports = await prisma.inspectionReport.count({
+      where: {
+        createdAt: { gte: startDate },
+        status: 'REJECTED',
+      },
+    });
 
-    // Quality compliance (inspection reports) - TODO: Implement when inspection tracking is added
-    const reportsSubmitted = 0; // Placeholder
+    // Audit compliance
+    const auditEvents = await prisma.auditLog.count({
+      where: { createdAt: { gte: startDate } },
+    });
 
-    const highQualityReports = 0; // Placeholder
-
-    const lowQualityReports = 0; // Placeholder
-
-    // Audit compliance - TODO: Implement when audit tracking is added
-    const auditEvents = 0; // Placeholder
-
-    const criticalEvents = 0; // Placeholder
+    const criticalEvents = await prisma.auditLog.count({
+      where: {
+        createdAt: { gte: startDate },
+        success: false,
+      },
+    });
 
     const complianceReport = {
       summary: {
-        overallCompliance: totalContractors > 0 ? Math.round(((certifiedContractors + insuredContractors + completedTraining) / (totalContractors * 3)) * 100) : 0,
+        overallCompliance:
+          totalContractors > 0
+            ? Math.round(
+                ((certifiedContractors + insuredContractors + completedTraining) /
+                  (totalContractors * 3)) *
+                  100
+              )
+            : 0,
         totalContractors,
-        lastUpdated: new Date().toISOString()
+        lastUpdated: new Date().toISOString(),
       },
       certifications: {
         totalCertified: certifiedContractors,
         iicrcCertified,
-        complianceRate: totalContractors > 0 ? Math.round((certifiedContractors / totalContractors) * 100) : 0
+        complianceRate:
+          totalContractors > 0
+            ? Math.round((certifiedContractors / totalContractors) * 100)
+            : 0,
       },
       training: {
         completed: completedTraining,
-        complianceRate: totalContractors > 0 ? Math.round((completedTraining / totalContractors) * 100) : 0
+        complianceRate:
+          totalContractors > 0
+            ? Math.round((completedTraining / totalContractors) * 100)
+            : 0,
       },
       insurance: {
         validInsurance: insuredContractors,
         expiringSoon,
-        complianceRate: totalContractors > 0 ? Math.round((insuredContractors / totalContractors) * 100) : 0
-      },
-      documentation: {
-        submitted: documentsSubmitted,
-        verified: documentsVerified,
-        rejected: documentsRejected,
-        verificationRate: documentsSubmitted > 0 ? Math.round((documentsVerified / documentsSubmitted) * 100) : 0
+        complianceRate:
+          totalContractors > 0
+            ? Math.round((insuredContractors / totalContractors) * 100)
+            : 0,
       },
       quality: {
         reportsSubmitted,
-        highQuality: highQualityReports,
-        lowQuality: lowQualityReports,
-        qualityRate: reportsSubmitted > 0 ? Math.round((highQualityReports / reportsSubmitted) * 100) : 0
+        approved: approvedReports,
+        rejected: rejectedReports,
+        approvalRate:
+          reportsSubmitted > 0
+            ? Math.round((approvedReports / reportsSubmitted) * 100)
+            : 0,
       },
       audit: {
         totalEvents: auditEvents,
-        criticalEvents,
-        criticalEventRate: auditEvents > 0 ? Math.round((criticalEvents / auditEvents) * 100) : 0
-      }
+        failedEvents: criticalEvents,
+        failureRate:
+          auditEvents > 0 ? Math.round((criticalEvents / auditEvents) * 100) : 0,
+      },
     };
 
     if (reportType === 'detailed') {
-      // Add detailed contractor-level compliance data
       const detailedData = await prisma.contractor.findMany({
-        where: {
-          status: 'APPROVED'
-        },
+        where: { status: 'APPROVED' },
         select: {
           id: true,
           username: true,
           email: true,
           onboardingStep: true,
-          createdAt: true
+          createdAt: true,
         },
-        take: 100 // Limit for performance
+        take: 100,
       });
 
       return NextResponse.json({
         timeframe,
         compliance: complianceReport,
-        contractors: detailedData.map(contractor => ({
+        contractors: detailedData.map((contractor) => ({
           ...contractor,
-          certifications: [],
-          complianceScore: calculateContractorComplianceScore(contractor, now)
-        }))
+          certifications: [] as string[],
+          complianceScore: calculateContractorComplianceScore(contractor),
+        })),
       });
     }
 
-    return NextResponse.json({
-      timeframe,
-      compliance: complianceReport
-    });
-
+    return NextResponse.json({ timeframe, compliance: complianceReport });
   } catch (error) {
-    console.error('Error fetching compliance analytics:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-function calculateContractorComplianceScore(contractor: { onboardingStep: number | null }, now: Date): number {
-  let score = 0;
-  let maxScore = 1;
-
-  // Training completion
-  if (contractor.onboardingStep >= 14) {
-    score += 1;
-  }
-
-  return Math.round((score / maxScore) * 100);
+function calculateContractorComplianceScore(contractor: {
+  onboardingStep: number | null;
+}): number {
+  const score = (contractor.onboardingStep ?? 0) >= 14 ? 1 : 0;
+  return Math.round((score / 1) * 100);
 }
