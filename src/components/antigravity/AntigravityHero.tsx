@@ -40,8 +40,8 @@ export function AntigravityHero() {
           </div>
 
           <h1 className="ag-hero-h1 ag-slide-up-2">
-            Restore Your Property. <br />
-            <span className="ag-gradient-text">Reclaim Your Life.</span>
+            Emergency Disaster Restoration Australia.<br />
+            <span className="ag-gradient-text">Restore Your Property. Reclaim Your Life.</span>
           </h1>
 
           <p className="ag-hero-national-tagline ag-slide-up-2" style={{
