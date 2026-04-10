@@ -6,13 +6,13 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services',
-  description: 'Australia\'s national disaster recovery claims platform. Connect with IICRC-certified restoration contractors 24/7. Water damage, fire damage, mould remediation, storm recovery. 60-minute response nationwide.',
+  description: 'Emergency water damage, fire, mould & storm restoration across Australia. IICRC-certified contractors, 60-minute response, 24/7. Lodge a claim online.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au',
   },
   openGraph: {
     title: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services',
-    description: 'Australia\'s national disaster recovery claims platform. IICRC-certified contractors, 60-minute response, 100% online.',
+    description: 'Emergency restoration for water damage, fire, mould & storm. IICRC-certified, 60-minute response, 24/7 nationwide.',
     type: 'website',
     url: 'https://disasterrecovery.com.au',
   },
@@ -21,19 +21,31 @@ export const metadata: Metadata = {
 // HowTo schema data — all trusted static content, safe to stringify
 const howToSchemaData = JSON.stringify(generateHowToSchema());
 
-// AggregateRating schema — trusted static content, safe to stringify
-const aggregateRatingSchemaData = JSON.stringify({
+// Organization schema — trusted static content, safe to stringify
+const organizationSchemaData = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "AggregateRating",
-  "itemReviewed": {
-    "@type": "Organization",
-    "name": "NRPG Disaster Recovery",
-    "@id": `${NAP.url}/#organization`,
+  "@type": "Organization",
+  "@id": `${NAP.url}/#organization`,
+  "name": "Disaster Recovery Australia",
+  "url": NAP.url,
+  "logo": `${NAP.url}/images/antigravity/dr-logo.webp`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": NAP.phone,
+    "contactType": "customer support",
+    "areaServed": "AU",
+    "availableLanguage": "en-AU",
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59",
+    },
   },
-  "ratingValue": "4.9",
-  "reviewCount": "12847",
-  "bestRating": "5",
-  "worstRating": "1",
+  "sameAs": [
+    "https://www.facebook.com/disasterrecoveryau",
+  ],
+  "areaServed": { "@type": "Country", name: "Australia" },
 });
 
 // FAQPage schema — trusted static content, safe to stringify
@@ -94,10 +106,10 @@ export default function HomePageWrapper() {
         dangerouslySetInnerHTML={{ __html: howToSchemaData }}
       />
       <Script
-        id="homepage-aggregate-rating"
+        id="homepage-organization"
         type="application/ld+json"
         // Trusted static schema data — no user input
-        dangerouslySetInnerHTML={{ __html: aggregateRatingSchemaData }}
+        dangerouslySetInnerHTML={{ __html: organizationSchemaData }}
       />
       <Script
         id="homepage-faq-schema"

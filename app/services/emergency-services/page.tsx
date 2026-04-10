@@ -29,6 +29,53 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How fast do you respond to a disaster emergency?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG dispatches certified technicians within 60 minutes of lodgement in major metropolitan areas. After-hours and regional response is available 24/7. Emergency make-safe — tarping, board-up, and water extraction — is completed on the first dispatch.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What counts as an emergency for disaster restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Burst pipes, sewage backup, storm inundation, fire damage, structural collapse risk, biohazard contamination, and any event causing active water intrusion or immediate health and safety risk qualifies as an emergency. Call or lodge online immediately — do not wait for insurance approval before requesting emergency make-safe.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need insurer approval before emergency services start?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Under the General Insurance Code of Practice, your insurer must accept or deny a claim within 10 business days of receiving full information. Emergency make-safe work can and should begin immediately to prevent escalating damage. Document everything and notify your insurer as soon as practicable.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What emergency services do you provide?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Emergency water extraction, structural drying deployment, emergency board-up and tarping, emergency plumbing containment, biohazard sanitisation, sewage cleanup, storm make-safe, fire damage containment, and emergency power restoration coordination.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is emergency disaster response available on weekends and public holidays?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. NRPG operates 24 hours a day, 7 days a week, 365 days a year including all public holidays. Lodge online at disasterrecovery.com.au/claim or call the emergency line at any time.',
+      },
+    },
+  ],
+};
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -45,6 +92,7 @@ export default function EmergencyServicesPage() {
   return (
     <>
     <Script id="emergency-services-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+    <Script id="emergency-services-faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
