@@ -33,7 +33,16 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'How Long Does Water Damage Restoration Take? — 2025 Guide',
   description: 'A complete timeline for water damage restoration in Australia — from emergency extraction through structural drying to final repairs.',
-  author: { '@type': 'Organization', name: 'Disaster Recovery Australia', url: 'https://disasterrecovery.com.au' },
+  author: {
+    '@type': 'Person',
+    name: WATER_DAMAGE_AUTHOR.name,
+    jobTitle: WATER_DAMAGE_AUTHOR.jobTitle,
+    hasCredential: WATER_DAMAGE_AUTHOR.credentials?.map((c: string) => ({
+      '@type': 'EducationalOccupationalCredential',
+      name: c,
+    })),
+    memberOf: { '@type': 'Organization', name: 'Disaster Recovery Australia', url: 'https://disasterrecovery.com.au' },
+  },
   publisher: {
     '@type': 'Organization',
     name: 'Disaster Recovery Australia',

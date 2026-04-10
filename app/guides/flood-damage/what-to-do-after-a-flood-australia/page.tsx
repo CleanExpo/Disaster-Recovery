@@ -35,9 +35,18 @@ const articleSchema = {
   headline: 'What to Do After a Flood in Australia — Step-by-Step Guide 2025',
   description: 'A complete step-by-step guide on what to do after a flood in Australia, covering safety, insurance, water extraction, and mould prevention.',
   author: {
-    '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
-    url: 'https://disasterrecovery.com.au',
+    '@type': 'Person',
+    name: WATER_DAMAGE_AUTHOR.name,
+    jobTitle: WATER_DAMAGE_AUTHOR.jobTitle,
+    hasCredential: WATER_DAMAGE_AUTHOR.credentials?.map((c) => ({
+      '@type': 'EducationalOccupationalCredential',
+      name: c,
+    })),
+    memberOf: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
+      url: 'https://disasterrecovery.com.au',
+    },
   },
   publisher: {
     '@type': 'Organization',
