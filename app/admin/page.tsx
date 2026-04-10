@@ -1,3 +1,6 @@
+// Prevent Next.js from prerendering this page at build time — requires DB
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import {
   LayoutDashboard,
