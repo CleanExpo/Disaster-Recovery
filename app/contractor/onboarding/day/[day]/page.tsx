@@ -29,8 +29,8 @@ function DayTrainingPageOriginal() {
   const params = useParams();
   const router = useRouter();
   const day = parseInt(params.day as string);
-  const module = ONBOARDING_PROGRAM[day - 1];
-  
+  const trainingModule = ONBOARDING_PROGRAM[day - 1];
+
   const [activeTab, setActiveTab] = useState<'video' | 'reading' | 'podcast' | 'assignment'>('video');
   const [progress, setProgress] = useState<LearningProgress>({
     videosWatched: {},
@@ -111,7 +111,7 @@ function DayTrainingPageOriginal() {
         ...progress.quizScores,
         [quizTitle]: score.percentage
       },
-      assignmentsSubmitted: score.percentage >= (module.completionCriteria.quizScore || 75)
+      assignmentsSubmitted: score.percentage >= (trainingModule.completionCriteria.quizScore || 75)
         ? [...progress.assignmentsSubmitted, quizTitle]
         : progress.assignmentsSubmitted
     };
@@ -125,12 +125,12 @@ function DayTrainingPageOriginal() {
     let completed = 0;
 
     // Videos
-    if (module.components.videos) {
-      module.components.videos.forEach(video => {
+    if (trainingModule.components.videos) {
+      trainingModule.components.videos.forEach(video => {
         if (video.mandatory) {
           total++;
           const watched = progress.videosWatched[video.title] || 0;
-          if (watched >= (module.completionCriteria.minVideoWatchTime || 95)) {
+          if (watched >= (trainingModule.completionCriteria.minVideoWatchTime || 95)) {
             completed++;
           }
         }
@@ -138,14 +138,14 @@ function DayTrainingPageOriginal() {
     }
 
     // Readings
-    if (module.components.readings) {
-      total += module.components.readings.length;
+    if (trainingModule.components.readings) {
+      total += trainingModule.components.readings.length;
       completed += progress.readingsCompleted.length;
     }
 
     // Assignments
-    if (module.components.assignments) {
-      total += module.components.assignments.length;
+    if (trainingModule.components.assignments) {
+      total += trainingModule.components.assignments.length;
       completed += progress.assignmentsSubmitted.length;
     }
 
@@ -157,7 +157,7 @@ function DayTrainingPageOriginal() {
     return moduleProgress === 100;
   };
 
-  if (!module) {
+  if (!trainingModule) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -182,8 +182,8 @@ function DayTrainingPageOriginal() {
                 <ArrowLeft className="w-5 h-5" />
               </button>
               <div>
-                <h1 className="text-2xl font-bold">Day {day}: {module.title}</h1>
-                <p className="text-blue-800 mt-1">{module.description}</p>
+                <h1 className="text-2xl font-bold">Day {day}: {trainingModule.title}</h1>
+                <p className="text-blue-800 mt-1">{trainingModule.description}</p>
               </div>
             </div>
             <div className="text-right">
@@ -226,9 +226,9 @@ function DayTrainingPageOriginal() {
               <div className="flex items-center space-x-2">
                 <Video className="w-4 h-4" />
                 <span>Video Lessons</span>
-                {module.components.videos && (
+                {trainingModule.components.videos && (
                   <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
-                    {module.components.videos.length}
+                    {trainingModule.components.videos.length}
                   </span>
                 )}
               </div>
@@ -245,9 +245,9 @@ function DayTrainingPageOriginal() {
               <div className="flex items-center space-x-2">
                 <BookOpen className="w-4 h-4" />
                 <span>Reading Materials</span>
-                {module.components.readings && (
+                {trainingModule.components.readings && (
                   <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
-                    {module.components.readings.length}
+                    {trainingModule.components.readings.length}
                   </span>
                 )}
               </div>
@@ -281,9 +281,9 @@ function DayTrainingPageOriginal() {
               <div className="flex items-center space-x-2">
                 <FileText className="w-4 h-4" />
                 <span>Assignments</span>
-                {module.components.assignments && (
+                {trainingModule.components.assignments && (
                   <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
-                    {module.components.assignments.length}
+                    {trainingModule.components.assignments.length}
                   </span>
                 )}
               </div>
@@ -298,24 +298,24 @@ function DayTrainingPageOriginal() {
           {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Video Tab */}
-            {activeTab === 'video' && module.components.videos && (
+            {activeTab === 'video' && trainingModule.components.videos && (
               <div className="bg-white rounded-xl shadow-lg">
                 <div className="aspect-video bg-black rounded-t-xl overflow-hidden">
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="text-center">
                       <Play className="w-16 h-16 text-white mb-4 mx-auto" />
                       <p className="text-white text-lg font-semibold">
-                        {module.components.videos[currentVideo]?.title}
+                        {trainingModule.components.videos[currentVideo]?.title}
                       </p>
                       <p className="text-gray-500 mt-2">
-                        Duration: {module.components.videos[currentVideo]?.duration} minutes
+                        Duration: {trainingModule.components.videos[currentVideo]?.duration} minutes
                       </p>
                       <button
                         onClick={() => {
                           setVideoPlaying(true);
                           // Simulate video watching
                           setTimeout(() => {
-                            handleVideoProgress(module.components.videos![currentVideo].title, 100);
+                            handleVideoProgress(trainingModule.components.videos![currentVideo].title, 100);
                           }, 2000);
                         }}
                         className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -338,7 +338,7 @@ function DayTrainingPageOriginal() {
                   </div>
                   
                   <div className="space-y-3">
-                    {module.components.videos.map((video, index) => {
+                    {trainingModule.components.videos.map((video, index) => {
                       const watched = progress.videosWatched[video.title] || 0;
                       return (
                         <button
@@ -401,9 +401,9 @@ function DayTrainingPageOriginal() {
             )}
 
             {/* Reading Tab */}
-            {activeTab === 'reading' && module.components.readings && (
+            {activeTab === 'reading' && trainingModule.components.readings && (
               <div className="space-y-6">
-                {module.components.readings.map((reading, index) => {
+                {trainingModule.components.readings.map((reading, index) => {
                   const isCompleted = progress.readingsCompleted.includes(reading.title);
                   return (
                     <div key={index} className="bg-white rounded-xl shadow-lg p-6">
@@ -465,7 +465,7 @@ function DayTrainingPageOriginal() {
                 </div>
                 
                 <div className="space-y-4">
-                  {module.components.videos?.map((video, index) => {
+                  {trainingModule.components.videos?.map((video, index) => {
                     const listened = progress.podcastsListened.includes(`podcast_${video.title}`);
                     return (
                       <div key={index} className="border rounded-lg p-4">
@@ -513,9 +513,9 @@ function DayTrainingPageOriginal() {
             )}
 
             {/* Assignment Tab */}
-            {activeTab === 'assignment' && module.components.assignments && (
+            {activeTab === 'assignment' && trainingModule.components.assignments && (
               <div className="space-y-6">
-                {module.components.assignments.map((assignment, index) => {
+                {trainingModule.components.assignments.map((assignment, index) => {
                   const isSubmitted = progress.assignmentsSubmitted.includes(assignment.title);
                   const isQuiz = assignment.type === 'QUIZ';
                   
@@ -586,7 +586,7 @@ function DayTrainingPageOriginal() {
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
               <h3 className="font-bold text-gray-900 mb-4">Today's Objectives</h3>
               <div className="space-y-3">
-                {module.objectives.map((objective, index) => (
+                {trainingModule.objectives.map((objective, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <p className="text-sm text-gray-600">{objective}</p>
@@ -597,27 +597,27 @@ function DayTrainingPageOriginal() {
               <div className="mt-6 pt-6 border-t">
                 <h4 className="font-semibold text-gray-900 mb-3">Completion Status</h4>
                 <div className="space-y-3">
-                  {module.components.videos && (
+                  {trainingModule.components.videos && (
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Videos</span>
                       <span className="font-semibold">
-                        {Object.values(progress.videosWatched).filter(v => v >= 95).length}/{module.components.videos.length}
+                        {Object.values(progress.videosWatched).filter(v => v >= 95).length}/{trainingModule.components.videos.length}
                       </span>
                     </div>
                   )}
-                  {module.components.readings && (
+                  {trainingModule.components.readings && (
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Readings</span>
                       <span className="font-semibold">
-                        {progress.readingsCompleted.length}/{module.components.readings.length}
+                        {progress.readingsCompleted.length}/{trainingModule.components.readings.length}
                       </span>
                     </div>
                   )}
-                  {module.components.assignments && (
+                  {trainingModule.components.assignments && (
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Assignments</span>
                       <span className="font-semibold">
-                        {progress.assignmentsSubmitted.length}/{module.components.assignments.length}
+                        {progress.assignmentsSubmitted.length}/{trainingModule.components.assignments.length}
                       </span>
                     </div>
                   )}

@@ -1,0 +1,20 @@
+# Corrupted legacy files — not used by the active Next.js app
+# TODO: refactor or remove these in a future cleanup session (DR-511 follow-up)
+src/components/analytics/
+src/components/documents/
+src/components/interactive/
+src/components/ModernServiceCards.tsx
+src/components/partners/AffiliateSignup.tsx
+src/components/layout/R6Header.tsx
+src/components/layout/PremiumHeader.tsx
+src/components/notifications/NotificationCenter.tsx
+src/crm/
+src/hooks/useFormValidation.ts
+src/lib/demo-training-modules.ts
+src/lib/notifications/realtime-service.ts
+src/lib/notifications/sms-service.ts
+src/lib/validation.ts
+
+# Build outputs
+.next/
+node_modules/
