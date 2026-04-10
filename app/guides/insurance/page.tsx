@@ -24,6 +24,7 @@ const insuranceGuides = [
   { title: 'Loss Assessor vs Contractor', href: '/guides/insurance/loss-assessor-vs-contractor', description: 'The difference between loss assessors and restoration contractors, and when you need each.' },
   { title: 'Make-Safe Insurance Coverage', href: '/guides/insurance/make-safe-insurance-coverage', description: 'Understanding emergency make-safe coverage and your rights under Australian insurance law.' },
   { title: 'The Real Cost of Insurance Delays', href: '/guides/insurance/real-cost-insurance-delays', description: 'How insurer delays escalate damage and costs, and what you can do about it.' },
+  { title: 'What to Do When Your Insurer Delays Your Claim', href: '/guides/insurance/insurer-delays-your-claim', description: 'GICP timeframes your insurer must meet, how to lodge an IDR complaint for delays, and when to escalate to AFCA.' },
   { title: 'Section 54 Contractor Rights', href: '/guides/insurance/section-54-contractor-rights', description: 'Your legal rights under Section 54 of the Insurance Contracts Act when choosing a contractor.' },
   { title: 'Should I Take a Payout?', href: '/guides/insurance/should-i-take-a-payout', description: 'Cash settlement vs managed repair — which option is better for your situation?' },
 ];
