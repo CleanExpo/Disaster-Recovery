@@ -41,16 +41,17 @@ function minutesBetween(a: Date | null | undefined, b: Date | null | undefined):
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await verifyAuth(request);
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       throw new APIError('Contractor authentication required', 401);
     }
 
     const job = await prisma.job.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { outcome: true },
     });
 
@@ -74,9 +75,10 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await verifyAuth(request);
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       throw new APIError('Contractor authentication required', 401);
@@ -87,7 +89,7 @@ export async function PATCH(
 
     // Fetch current job state (include outcome to prevent duplicate logging)
     const existing = await prisma.job.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { outcome: true },
     });
     if (!existing) {
@@ -114,7 +116,7 @@ export async function PATCH(
 
     // Update the Job row
     const updatedJob = await prisma.job.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(dbStatus ? { status: dbStatus } : {}),
         ...(validatedData.notes ? { internalNotes: validatedData.notes } : {}),
@@ -177,7 +179,7 @@ export async function PATCH(
     }
 
     return successResponse({
-      message: `Job ${params.id} updated successfully`,
+      message: `Job ${id} updated successfully`,
       job: updatedJob,
     });
   } catch (error) {
@@ -187,16 +189,17 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await verifyAuth(request);
     if (!user || !hasRole(user.role as UserRole, [UserRole.ADMIN])) {
       throw new APIError('Admin authentication required', 401);
     }
 
     const existing = await prisma.job.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { outcome: true },
     });
     if (!existing) {
@@ -206,7 +209,7 @@ export async function DELETE(
     const now = new Date();
 
     await prisma.job.update({
-      where: { id: params.id },
+      where: { id },
       data: { status: 'completed', completedAt: now, updatedAt: now },
     });
 
@@ -231,8 +234,8 @@ export async function DELETE(
     }
 
     return successResponse({
-      message: `Job ${params.id} cancelled successfully`,
-      jobId: params.id,
+      message: `Job ${id} cancelled successfully`,
+      jobId: id,
     });
   } catch (error) {
     return handleAPIError(error);
