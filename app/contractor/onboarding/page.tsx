@@ -123,9 +123,9 @@ function ContractorOnboardingPageOriginal() {
     if (day < onboardingState.currentDay) return 'available';
     
     // Check if prerequisite days are completed
-    const module = ONBOARDING_PROGRAM[day - 1];
-    if (module.mustCompleteBy < day) {
-      const prereqCompleted = Array.from({ length: module.mustCompleteBy }, (_, i) => i + 1)
+    const trainingModule = ONBOARDING_PROGRAM[day - 1];
+    if (trainingModule.mustCompleteBy < day) {
+      const prereqCompleted = Array.from({ length: trainingModule.mustCompleteBy }, (_, i) => i + 1)
         .every(d => onboardingState.completedDays.includes(d));
       if (!prereqCompleted) return 'locked';
     }

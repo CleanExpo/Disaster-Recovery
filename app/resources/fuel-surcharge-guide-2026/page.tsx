@@ -300,7 +300,7 @@ export default function FuelSurchargeGuide2026Page() {
             </h2>
 
             <div className="bg-slate-800 text-white rounded-lg p-6 mb-6 font-mono text-sm">
-              <p className="text-slate-400 mb-2">// The Formula</p>
+              <p className="text-slate-400 mb-2">{'// The Formula'}</p>
               <p className="text-amber-300 font-bold text-base">
                 Fuel Surcharge = (Current Price − Baseline Price) × Avg Litres Per Job
               </p>
