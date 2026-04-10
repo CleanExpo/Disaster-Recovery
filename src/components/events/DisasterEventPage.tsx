@@ -58,6 +58,12 @@ export interface DisasterEventPageProps {
 
   // Optional — displays a severity/status note in the hero (e.g. "Category 5 — 215 km/h sustained winds")
   alertNote?: string
+
+  // Optional — overrides the default remote LGA contractor availability note
+  remoteLGANote?: string
+
+  // Optional — shows a 000 emergency warning at the very top of the page
+  showEmergencyWarning?: boolean
 }
 
 const EVENT_TYPE_LABELS: Record<EventType, string> = {
@@ -155,6 +161,8 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
     eshaDeadline,
     alertNote,
     slug,
+    remoteLGANote,
+    showEmergencyWarning = false,
   } = props
 
   const phaseConfig = EVENT_PHASE_LABELS[eventPhase]
@@ -182,6 +190,19 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="min-h-screen bg-white">
+
+        {/* 000 Emergency Warning */}
+        {showEmergencyWarning && (
+          <div className="bg-red-700 text-white py-3 px-4 text-center" role="alert">
+            <p className="text-sm font-bold">
+              If you are in immediate danger, call{' '}
+              <a href="tel:000" className="underline font-black">
+                000
+              </a>
+              .
+            </p>
+          </div>
+        )}
 
         {/* ESHA Urgency Banner */}
         {eshaDeadline && (
@@ -270,7 +291,9 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               </div>
               {remoteLGAs.length > 0 && (
                 <p className="mt-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">
-                  <strong>Note for remote areas ({remoteLGAs.join(', ')}):</strong> Contractor availability in remote regions may be limited. Disaster Recovery Australia will confirm coverage and estimated response times when you lodge your claim.
+                  <strong>Note for remote areas ({remoteLGAs.join(', ')}):</strong>{' '}
+                  {remoteLGANote ??
+                    'Contractor availability in remote regions may be limited. Disaster Recovery Australia will confirm coverage and estimated response times when you lodge your claim.'}
                 </p>
               )}
             </div>

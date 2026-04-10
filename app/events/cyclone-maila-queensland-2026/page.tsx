@@ -68,6 +68,7 @@ const financialAssistanceItems: FinancialAssistanceItem[] = [
 export default function CycloneMailaQLD2026Page() {
   return (
     <DisasterEventPage
+      showEmergencyWarning={true}
       eventName="Maila"
       eventType="cyclone"
       eventPhase="pre-landfall"
