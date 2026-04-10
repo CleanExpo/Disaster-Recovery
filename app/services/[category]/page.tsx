@@ -23,9 +23,10 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata(
-  { params }: { params: { category: string } }
+  { params }: { params: Promise<{ category: string }> }
 ): Promise<Metadata> {
-  const category = getCategoryBySlug(params.category);
+  const { category: categorySlug } = await params;
+  const category = getCategoryBySlug(categorySlug);
   
   if (!category) {
     return {
@@ -74,8 +75,9 @@ const getServiceIcon = (slug: string) => {
   return icons[slug] || icons.default;
 };
 
-export default function GMBCategoryPage({ params }: { params: { category: string } }) {
-  const category = getCategoryBySlug(params.category);
+export default async function GMBCategoryPage({ params }: { params: Promise<{ category: string }> }) {
+  const { category: categorySlug } = await params;
+  const category = getCategoryBySlug(categorySlug);
 
   if (!category) {
     notFound();

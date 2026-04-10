@@ -22,13 +22,14 @@ import {
   Calendar, MessageSquare} from 'lucide-react';
 
 interface EquipmentPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: EquipmentPageProps): Promise<Metadata> {
-  const equipment = getEquipmentById(params.id);
+  const { id } = await params;
+  const equipment = getEquipmentById(id);
   
   if (!equipment) {
     return {
@@ -52,8 +53,9 @@ export async function generateStaticParams() {
     id: equipment.id }));
 }
 
-export default function EquipmentSpecificationPage({ params }: EquipmentPageProps) {
-  const equipment = getEquipmentById(params.id);
+export default async function EquipmentSpecificationPage({ params }: EquipmentPageProps) {
+  const { id } = await params;
+  const equipment = getEquipmentById(id);
 
   if (!equipment) {
     notFound();

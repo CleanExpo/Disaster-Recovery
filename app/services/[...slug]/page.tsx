@@ -16,8 +16,9 @@ async function getSEOPage(slug: string) {
   return preview;
 }
 
-export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
-  const slug = params.slug.join('/');
+export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata> {
+  const { slug: slugArr } = await params;
+  const slug = slugArr.join('/');
   const page = await getSEOPage(slug);
   
   if (!page) {
@@ -80,8 +81,9 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
   };
 }
 
-export default async function SEOLocationPage({ params }: { params: PageParams }) {
-  const slug = params.slug.join('/');
+export default async function SEOLocationPage({ params }: { params: Promise<PageParams> }) {
+  const { slug: slugArr } = await params;
+  const slug = slugArr.join('/');
   const page = await getSEOPage(slug);
   
   if (!page) {
