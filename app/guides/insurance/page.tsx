@@ -27,6 +27,7 @@ const insuranceGuides = [
   { title: 'What to Do When Your Insurer Delays Your Claim', href: '/guides/insurance/insurer-delays-your-claim', description: 'GICP timeframes your insurer must meet, how to lodge an IDR complaint for delays, and when to escalate to AFCA.' },
   { title: 'Section 54 Contractor Rights', href: '/guides/insurance/section-54-contractor-rights', description: 'Your legal rights under Section 54 of the Insurance Contracts Act when choosing a contractor.' },
   { title: 'Should I Take a Payout?', href: '/guides/insurance/should-i-take-a-payout', description: 'Cash settlement vs managed repair — which option is better for your situation?' },
+  { title: 'Burst Pipe Insurance Claim', href: '/guides/insurance/burst-pipe-insurance-claim', description: 'What Australian home insurance covers for burst pipe water damage, gradual leak disputes, and how to maximise your settlement.' },
 ];
 
 export default function InsuranceGuidesPage() {
