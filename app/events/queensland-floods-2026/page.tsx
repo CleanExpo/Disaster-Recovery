@@ -112,6 +112,17 @@ export default function QueenslandFloods2026Page() {
 
       <div className="min-h-screen bg-white">
 
+        {/* ── 000 Emergency Warning ── */}
+        <div className="bg-red-700 text-white py-3 px-4 text-center" role="alert">
+          <p className="text-sm font-bold">
+            If you are in immediate danger, call{' '}
+            <a href="tel:000" className="underline font-black">
+              000
+            </a>
+            .
+          </p>
+        </div>
+
         {/* ── Deadline Urgency Banner ── */}
         <div className="bg-amber-50 border-b border-amber-400">
           <div className="container mx-auto px-6 max-w-5xl py-4">
@@ -180,8 +191,25 @@ export default function QueenslandFloods2026Page() {
             <h2 className="font-display text-3xl font-bold text-slate-900 mb-2">
               Government Relief — Still Available
             </h2>
-            <p className="text-slate-600 mb-10">
+            <p className="text-slate-600 mb-3">
               Three programs remain open. All close 27 April 2026. Apply for each you are eligible for.
+            </p>
+            <p className="text-slate-600 text-sm mb-6">
+              58 Local Government Areas are declared under the Disaster Recovery Funding Arrangements (DRFA). For
+              the full list of eligible LGAs, visit{' '}
+              <a
+                href="https://www.qra.qld.gov.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-blue-700 hover:text-blue-900 font-medium"
+              >
+                qra.qld.gov.au
+              </a>{' '}
+              or call the Queensland Reconstruction Authority on{' '}
+              <a href="tel:1800173349" className="underline text-blue-700 hover:text-blue-900 font-medium">
+                1800 173 349
+              </a>
+              .
             </p>
             <div className="grid md:grid-cols-3 gap-6">
 
@@ -198,15 +226,26 @@ export default function QueenslandFloods2026Page() {
                 </h3>
                 <p className="text-green-700 font-bold text-xl mb-3">Up to $5,000</p>
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                  Covers temporary accommodation, essential household items, meals, transport, medical
-                  prescriptions, and childcare for eligible residents in declared LGAs.
+                  Extended Household and Structural Assistance under Exceptional Circumstances — covers temporary
+                  accommodation, essential household items, meals, transport, medical prescriptions, and childcare
+                  for eligible residents in the 10 declared LGAs. Available until 27 April 2026.
                 </p>
                 <div className="mb-4">
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Eligible LGAs (10)</p>
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                    Eligible LGAs (10)
+                  </p>
                   <div className="flex flex-wrap gap-1">
                     {[
-                      'Gympie', 'Noosa', 'Sunshine Coast', 'Caloundra', 'Maroochy',
-                      'Buderim', 'Maleny', 'Mapleton', 'Eumundi', 'Cooroy',
+                      'Banana',
+                      'Barcaldine',
+                      'Bundaberg',
+                      'Carpentaria',
+                      'Doomadgee',
+                      'Douglas',
+                      'Flinders',
+                      'Gladstone',
+                      'North Burnett',
+                      'Western Downs',
                     ].map((lga) => (
                       <span key={lga} className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
                         {lga}
@@ -216,7 +255,7 @@ export default function QueenslandFloods2026Page() {
                 </div>
                 <div className="mt-auto">
                   <a
-                    href="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance"
+                    href="https://www.disaster.qld.gov.au"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
@@ -240,11 +279,24 @@ export default function QueenslandFloods2026Page() {
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
                   Financial assistance for individuals and families experiencing personal hardship as a direct
                   result of the Queensland Floods. No asset testing applies. Can be combined with other relief
-                  programs.
+                  programs. Deadline: 27 April 2026. Apply via{' '}
+                  <a
+                    href="https://www.disaster.qld.gov.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline text-purple-700 hover:text-purple-900"
+                  >
+                    disaster.qld.gov.au
+                  </a>{' '}
+                  or call the QRA on{' '}
+                  <a href="tel:1800173349" className="underline text-purple-700 hover:text-purple-900">
+                    1800 173 349
+                  </a>
+                  . [Source: disaster.qld.gov.au]
                 </p>
                 <div className="mt-auto">
                   <a
-                    href="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance"
+                    href="https://www.disaster.qld.gov.au"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors"
@@ -269,10 +321,20 @@ export default function QueenslandFloods2026Page() {
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
                   Covers structural damage, electrical and plumbing repairs, drying and mould remediation, and
                   professional assessment reports. Eligible works must exceed $5,000. Primary residence only.
+                  [Source:{' '}
+                  <a
+                    href="https://www.disaster.qld.gov.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline text-green-800 hover:text-green-950"
+                  >
+                    disaster.qld.gov.au
+                  </a>
+                  ]
                 </p>
                 <div className="mt-auto">
                   <a
-                    href="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance"
+                    href="https://www.disaster.qld.gov.au"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-lg transition-colors"
