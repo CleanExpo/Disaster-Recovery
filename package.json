@@ -16,7 +16,8 @@
     "db:studio": "prisma studio",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "check:scripts": "node -e \"const p=require('./package.json');const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\""
   },
   "prisma": {
     "seed": "tsx scripts/core/seed.ts"
