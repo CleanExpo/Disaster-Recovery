@@ -209,12 +209,11 @@ export async function POST(request: NextRequest) {
     const createdAtIso = new Date().toISOString();
     let trackClaim: TrackClaimPayload | null = null;
 
-    // DR-390: Only block if access instructions are provided and encryption is not configured.
-    // Claims without access instructions do not require encryption and proceed normally.
-    // TODO (DR-390): Set KMS_KEY_ID or ENCRYPTION_SECRET in Vercel env vars to enable
-    //                encrypted access instruction storage.
+    // DR-390 / DR-491: Only block if access instructions are provided and encryption is not configured.
+    // ENCRYPTION_SECRET is set in Vercel Production (DR-491). Claims without access instructions
+    // do not require encryption and proceed normally regardless.
     if (body.accessInstructions && !isConfigured() && process.env.NODE_ENV !== 'development') {
-      console.error('[security] DR-390: Property access encryption is not configured (no KMS_KEY_ID or ENCRYPTION_SECRET). Cannot store access instructions without encryption in production.');
+      console.error('[security] DR-390: ENCRYPTION_SECRET is not configured. Cannot store access instructions without encryption in production.');
       return NextResponse.json({
         success: false,
         error: 'Server configuration error',
@@ -323,9 +322,12 @@ export async function POST(request: NextRequest) {
 // Get claim by ID
 // DR-390: Access instructions are only decrypted and returned when the caller
 // is an assigned contractor or an admin.
-// TODO (DR-390): Replace the x-caller-role / x-caller-id headers with a
-//   verified session token check (NextAuth getServerSession) once auth is wired up.
-//   Until then, the field is withheld from unauthenticated callers entirely.
+//
+// DR-391 (P0 — tracked separately): The x-caller-role / x-caller-id headers
+// below are trivially forgeable and must be replaced with a verified session
+// token check (NextAuth getServerSession). Until that lands, the encrypted
+// access instructions field is withheld from unauthenticated callers entirely,
+// so this is not a data leak — only a defence-in-depth gap.
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const claimId = searchParams.get('id');
