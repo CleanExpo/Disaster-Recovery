@@ -29,6 +29,17 @@ export interface RelatedGuide {
   description?: string;
 }
 
+export interface GuideAuthor {
+  /** Full name of the person or team */
+  name: string;
+  /** Job title or role */
+  jobTitle: string;
+  /** Professional credentials or certifications */
+  credentials?: string[];
+  /** Profile or bio URL */
+  url?: string;
+}
+
 export interface AgGuidePageTemplateProps {
   /** Guide category name (e.g. 'Water Damage', 'Fire Damage') */
   category: string;
@@ -56,6 +67,11 @@ export interface AgGuidePageTemplateProps {
   lastReviewed?: string;
   /** Optional stats for the guide hero (e.g. [{ label: 'Updated', value: '2026' }]) */
   stats?: { label: string; value: string }[];
+  /**
+   * Named author for E-E-A-T and GEO signals.
+   * When provided, Article schema author becomes a Person; otherwise falls back to Organization.
+   */
+  author?: GuideAuthor;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -79,6 +95,7 @@ export function AgGuidePageTemplate({
   cta,
   lastReviewed,
   stats,
+  author,
 }: AgGuidePageTemplateProps) {
   // FAQPage schema for rich results
   const faqSchema = faqs && faqs.length > 0
@@ -99,16 +116,34 @@ export function AgGuidePageTemplate({
   // Article schema for GEO citation and rich results
   // Enhanced with AI citation signals: dateModified, speakableSpecification, mainEntityOfPage
   const reviewDate = lastReviewed || '2026-02-26';
+
+  const schemaAuthor = author
+    ? {
+        '@type': 'Person',
+        name: author.name,
+        jobTitle: author.jobTitle,
+        ...(author.credentials && author.credentials.length > 0
+          ? { hasCredential: author.credentials.map((c) => ({ '@type': 'EducationalOccupationalCredential', name: c })) }
+          : {}),
+        ...(author.url ? { url: author.url } : {}),
+        memberOf: {
+          '@type': 'Organization',
+          name: 'Disaster Recovery Australia',
+          url: 'https://disasterrecovery.com.au',
+        },
+      }
+    : {
+        '@type': 'Organization',
+        name: 'Disaster Recovery Australia',
+        url: 'https://disasterrecovery.com.au',
+      };
+
   const articleSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description: subtitle || `Expert guide on ${title.toLowerCase()} from Disaster Recovery Australia`,
-    author: {
-      '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
-      url: 'https://disasterrecovery.com.au',
-    },
+    author: schemaAuthor,
     publisher: {
       '@type': 'Organization',
       name: 'Disaster Recovery Australia',
@@ -301,6 +336,18 @@ export function AgGuidePageTemplate({
             <div>
               <strong style={{ color: 'var(--ag-primary-blue)' }}>Category:</strong> {category}
             </div>
+            {author && (
+              <div>
+                <strong style={{ color: 'var(--ag-primary-blue)' }}>Author:</strong>{' '}
+                {author.name}
+                {author.jobTitle && ` — ${author.jobTitle}`}
+                {author.credentials && author.credentials.length > 0 && (
+                  <span style={{ marginLeft: '0.35rem', color: 'var(--ag-text-muted)' }}>
+                    ({author.credentials.join(', ')})
+                  </span>
+                )}
+              </div>
+            )}
             <div>
               <strong style={{ color: 'var(--ag-primary-blue)' }}>Last reviewed:</strong>{' '}
               <time dateTime={reviewDate}>

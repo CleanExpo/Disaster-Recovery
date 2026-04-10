@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { Clock } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
+import { WATER_DAMAGE_AUTHOR } from '@/lib/guide-authors';
 
 export const metadata: Metadata = {
   title: 'How Long Does Water Damage Restoration Take? — 2025 Guide',
@@ -175,6 +176,7 @@ export default function HowLongWaterDamagePage() {
         category="Water Damage"
         title="How Long Does Water Damage Restoration Take?"
         subtitle="3–5 days for structural drying. 1–4 weeks for repairs. Total project time 1–3 weeks for standard events. Here is what happens at each stage and why the timeline cannot be shortened."
+        author={WATER_DAMAGE_AUTHOR}
         gradient="linear-gradient(135deg, #0C2340 0%, #0369A1 100%)"
         icon={<Clock className="h-10 w-10" />}
         lastReviewed="2026-04-10"
