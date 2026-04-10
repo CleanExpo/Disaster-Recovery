@@ -7,6 +7,12 @@ import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityFooter } from './AntigravityFooter';
 import { AgAccordion } from './AgAccordion';
 import type { AccordionItem } from './AgAccordion';
+import {
+  WATER_DAMAGE_AUTHOR,
+  INSURANCE_GUIDE_AUTHOR,
+  FIRE_DAMAGE_AUTHOR,
+  MOULD_AUTHOR,
+} from '@/lib/guide-authors';
 
 /* -------------------------------------------------------------------------- */
 /* Types                                                                       */
@@ -75,6 +81,22 @@ export interface AgGuidePageTemplateProps {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Author resolution                                                           */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Returns a default author based on the guide's category string.
+ * Covers all major damage types; falls back to water damage author.
+ */
+function resolveDefaultAuthor(category: string): GuideAuthor {
+  const lower = category.toLowerCase();
+  if (lower.includes('fire') || lower.includes('smoke')) return FIRE_DAMAGE_AUTHOR;
+  if (lower.includes('mould') || lower.includes('mold')) return MOULD_AUTHOR;
+  if (lower.includes('insurance') || lower.includes('claim')) return INSURANCE_GUIDE_AUTHOR;
+  return WATER_DAMAGE_AUTHOR;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Component                                                                   */
 /* -------------------------------------------------------------------------- */
 
@@ -117,26 +139,22 @@ export function AgGuidePageTemplate({
   // Enhanced with AI citation signals: dateModified, speakableSpecification, mainEntityOfPage
   const reviewDate = lastReviewed || '2026-02-26';
 
-  const schemaAuthor = author
-    ? {
-        '@type': 'Person',
-        name: author.name,
-        jobTitle: author.jobTitle,
-        ...(author.credentials && author.credentials.length > 0
-          ? { hasCredential: author.credentials.map((c) => ({ '@type': 'EducationalOccupationalCredential', name: c })) }
-          : {}),
-        ...(author.url ? { url: author.url } : {}),
-        memberOf: {
-          '@type': 'Organization',
-          name: 'Disaster Recovery Australia',
-          url: 'https://disasterrecovery.com.au',
-        },
-      }
-    : {
-        '@type': 'Organization',
-        name: 'Disaster Recovery Australia',
-        url: 'https://disasterrecovery.com.au',
-      };
+  // Explicit author prop takes priority; fall back to category-derived default
+  const resolvedAuthor = author ?? resolveDefaultAuthor(category);
+  const schemaAuthor = {
+    '@type': 'Person',
+    name: resolvedAuthor.name,
+    jobTitle: resolvedAuthor.jobTitle,
+    ...(resolvedAuthor.credentials && resolvedAuthor.credentials.length > 0
+      ? { hasCredential: resolvedAuthor.credentials.map((c) => ({ '@type': 'EducationalOccupationalCredential', name: c })) }
+      : {}),
+    ...(resolvedAuthor.url ? { url: resolvedAuthor.url } : {}),
+    memberOf: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
+      url: 'https://disasterrecovery.com.au',
+    },
+  };
 
   const articleSchema = JSON.stringify({
     '@context': 'https://schema.org',
@@ -336,18 +354,16 @@ export function AgGuidePageTemplate({
             <div>
               <strong style={{ color: 'var(--ag-primary-blue)' }}>Category:</strong> {category}
             </div>
-            {author && (
-              <div>
-                <strong style={{ color: 'var(--ag-primary-blue)' }}>Author:</strong>{' '}
-                {author.name}
-                {author.jobTitle && ` — ${author.jobTitle}`}
-                {author.credentials && author.credentials.length > 0 && (
-                  <span style={{ marginLeft: '0.35rem', color: 'var(--ag-text-muted)' }}>
-                    ({author.credentials.join(', ')})
-                  </span>
-                )}
-              </div>
-            )}
+            <div>
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Author:</strong>{' '}
+              {resolvedAuthor.name}
+              {resolvedAuthor.jobTitle && ` — ${resolvedAuthor.jobTitle}`}
+              {resolvedAuthor.credentials && resolvedAuthor.credentials.length > 0 && (
+                <span style={{ marginLeft: '0.35rem', color: 'var(--ag-text-muted)' }}>
+                  ({resolvedAuthor.credentials.join(', ')})
+                </span>
+              )}
+            </div>
             <div>
               <strong style={{ color: 'var(--ag-primary-blue)' }}>Last reviewed:</strong>{' '}
               <time dateTime={reviewDate}>
