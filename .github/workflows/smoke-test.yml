@@ -1,0 +1,154 @@
+name: Smoke Tests (Preview)
+
+# Runs after Vercel creates a preview deployment for every PR.
+# Gates merging to main — branch protection requires this check to pass.
+#
+# Required GitHub Secrets:
+#   VERCEL_TOKEN                       — Vercel personal access token
+#   VERCEL_ORG_ID                      — Vercel team ID (team_xxx)
+#   VERCEL_PROJECT_ID                  — Vercel project ID for disaster-recovery
+#   VERCEL_AUTOMATION_BYPASS_SECRET    — Vercel deployment protection bypass token
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: smoke-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  smoke-test:
+    name: ci / smoke-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: read
+      pull-requests: write
+      statuses: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # Wait for Vercel to create the preview deployment, then extract its URL
+      - name: Wait for Vercel preview deployment
+        id: vercel-url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          echo "Waiting for Vercel preview deployment for commit ${{ github.event.pull_request.head.sha }}..."
+
+          MAX_ATTEMPTS=24  # 24 × 15s = 6 minutes
+          ATTEMPT=0
+          PREVIEW_URL=""
+
+          while [[ $ATTEMPT -lt $MAX_ATTEMPTS ]]; do
+            PREVIEW_URL=$(npx vercel ls \
+              --token="${VERCEL_TOKEN}" \
+              --scope="${VERCEL_ORG_ID}" \
+              2>/dev/null \
+              | grep "${{ github.event.pull_request.head.sha }}" \
+              | head -1 \
+              | awk '{print $2}' || true)
+
+            if [[ -n "$PREVIEW_URL" ]]; then
+              echo "Preview URL found: https://${PREVIEW_URL}"
+              echo "url=https://${PREVIEW_URL}" >> $GITHUB_OUTPUT
+              break
+            fi
+
+            ATTEMPT=$((ATTEMPT + 1))
+            echo "Attempt ${ATTEMPT}/${MAX_ATTEMPTS} — no deployment found yet, waiting 15s..."
+            sleep 15
+          done
+
+          if [[ -z "$PREVIEW_URL" ]]; then
+            echo "::error::Vercel preview deployment not found after $((MAX_ATTEMPTS * 15))s"
+            exit 1
+          fi
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Run smoke tests
+        env:
+          SMOKE_BASE_URL: ${{ steps.vercel-url.outputs.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: |
+          npx playwright test \
+            --config=playwright.smoke.config.ts \
+            --reporter=list,html
+
+      - name: Upload smoke test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-report-pr-${{ github.event.pull_request.number }}
+          path: playwright-report/smoke/
+          retention-days: 14
+
+      - name: Comment smoke test result on PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ job.status }}';
+            const previewUrl = '${{ steps.vercel-url.outputs.url }}';
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            const icon = status === 'success' ? '✅' : '❌';
+            const headline = status === 'success'
+              ? 'Smoke tests passed — safe to merge'
+              : 'Smoke tests FAILED — do not merge';
+
+            const body = [
+              `## ${icon} ${headline}`,
+              '',
+              `**Preview URL:** ${previewUrl}`,
+              `**Test run:** [View report](${runUrl})`,
+              '',
+              status === 'failure'
+                ? '> Download the artifact **smoke-test-report** from the Actions run for the full Playwright HTML report.'
+                : '> All tiers passed: Liveness, Critical Paths, Auth Safety, Security Headers, API Liveness.',
+            ].join('\n');
+
+            // Find existing bot comment to update instead of spamming
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Smoke tests')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
