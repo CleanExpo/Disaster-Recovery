@@ -117,6 +117,9 @@ export default function TCMailaFNQ2026Page() {
             heading: 'TC Maila — Current Situation',
             body: (
               <>
+                <p style={{ backgroundColor: '#fff3cd', border: '1px solid #e0a800', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  If you are in immediate danger, call 000. For life-threatening emergencies, do not delay contacting emergency services.
+                </p>
                 <p>
                   Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h
                   and is tracking toward the Far North Queensland coast. The Bureau of Meteorology (BOM) is
@@ -208,7 +211,8 @@ export default function TCMailaFNQ2026Page() {
               <>
                 <p>
                   NRPG provides end-to-end cyclone damage restoration and insurance documentation support
-                  across the full TC Maila impact corridor. Services available from 60 minutes post-clearance:
+                  across the full TC Maila impact corridor. Contractors aim to attend from 60 minutes after the
+                  official all-clear, subject to location, demand, and post-event access conditions:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
@@ -298,10 +302,11 @@ export default function TCMailaFNQ2026Page() {
               <>
                 <p>
                   For context on the scale of FNQ cyclone events: Ex-Tropical Cyclone Alfred (March 2026)
-                  was confirmed by PERILS at a final insured loss of AU$1.877 billion — the largest insured
-                  cyclone loss on a current-value basis since Cyclone Debbie in 2017. The Alfred loss
-                  involved over 132,000 ICA claims across Queensland and northern New South Wales, with
-                  personal lines accounting for 70% of the total, commercial property 26%, and motor 4%.
+                  was confirmed at a final insured loss of AU$1.877 billion (Source: PERILS AG final estimate,
+                  March 2026) — the largest insured cyclone loss on a current-value basis since Cyclone Debbie
+                  in 2017. The Alfred loss involved over 132,000 claims across Queensland and northern New South
+                  Wales, with personal lines accounting for 70% of the total, commercial property 26%, and motor
+                  4% (Source: Insurance Council of Australia, April 2026).
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   FNQ properties in the TC Maila corridor that also sustained damage during Ex-TC Alfred
@@ -324,7 +329,7 @@ export default function TCMailaFNQ2026Page() {
           {
             question: 'What postcodes does NRPG cover for TC Maila?',
             answer:
-              'NRPG covers the full FNQ impact corridor including postcodes 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast), 4878 (Palm Cove), and 4879 (Trinity Beach). Lodge at disasterrecovery.com.au/claim for contractor matching across all FNQ postcodes.',
+              'NRPG coordinates contractor availability across the full FNQ impact corridor including postcodes 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast), 4878 (Palm Cove), and 4879 (Trinity Beach). Contact us via disasterrecovery.com.au/claim for a local specialist — contractor availability in affected areas is subject to post-event access and demand conditions.',
           },
           {
             question: 'How does the ARPC Cyclone Pool affect my claim?',
