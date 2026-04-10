@@ -41,6 +41,38 @@ const serviceSchema = {
   hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
 };
 
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How do you minimise business interruption during commercial restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG develops a business continuity plan before any work begins. This includes staging work to keep operational areas running, scheduling intensive work outside business hours, coordinating with your facilities manager daily, and prioritising systems critical to your operations. We target the fastest path to full reoccupation without compromising restoration quality.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you handle commercial insurance claims directly with insurers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We provide complete claims-ready documentation — IICRC-certified assessment reports, scope of works, photographic evidence, moisture drying logs, and invoices — in the format commercial insurers require. We can liaise directly with your insurer or appointed loss adjuster to expedite claim approval and avoid delays that extend business disruption.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What commercial property types do you restore?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG restores all commercial property types: offices, retail centres, warehouses, factories, restaurants and hospitality venues, healthcare facilities, aged care, schools, strata buildings, data centres, and specialist industrial facilities. Each requires specific compliance knowledge that our IICRC-certified contractors and project managers are trained to address.',
+      },
+    }
+  ],
+});
+
 export default function CommercialServicesPage() {
   return (
     <>
