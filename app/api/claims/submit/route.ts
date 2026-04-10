@@ -6,6 +6,7 @@ import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
 import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
 import { dispatchClaimStatusNotification } from '@/lib/notifications';
 import { rateLimit } from '@/lib/rate-limit';
+import { getCallerIdentity } from '@/lib/auth/require-session';
 import fs from 'node:fs/promises';
 
 const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
@@ -340,20 +341,18 @@ export async function POST(request: NextRequest) {
 // DR-390: Access instructions are only decrypted and returned when the caller
 // is an assigned contractor or an admin.
 //
-// DR-391 (P0 — tracked separately): The x-caller-role / x-caller-id headers
-// below are trivially forgeable and must be replaced with a verified session
-// token check (NextAuth getServerSession). Until that lands, the encrypted
-// access instructions field is withheld from unauthenticated callers entirely,
-// so this is not a data leak — only a defence-in-depth gap.
+// DR-521: Caller identity is now resolved from the NextAuth server session.
+// The JWT is validated server-side — callers cannot forge their role by
+// setting request headers.
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const claimId = searchParams.get('id');
 
-  // DR-390: Read caller identity from request headers (placeholder — replace with session auth)
-  const callerRole = request.headers.get('x-caller-role') ?? '';
-  const callerId   = request.headers.get('x-caller-id')   ?? '';
+  // DR-521: Resolve caller identity from the validated server session.
+  // Returns role='public' with null userId/email when no session exists.
+  const { role: callerRole, userId: callerId } = await getCallerIdentity();
   const canReadAccessInstructions =
-    callerRole === 'admin' || callerRole === 'contractor';
+    callerRole === 'admin' || callerRole === 'super_admin' || callerRole === 'contractor';
 
   if (!claimId) {
     return NextResponse.json({
