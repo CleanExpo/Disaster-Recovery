@@ -58,6 +58,7 @@ jobs:
       run: npx prisma migrate deploy
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DIRECT_URL: ${{ secrets.DIRECT_URL }}
 
   # ── Gate 3: Deploy to Vercel production ──
   deploy:
