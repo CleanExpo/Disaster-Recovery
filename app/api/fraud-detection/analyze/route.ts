@@ -1,124 +1,99 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import FraudDetectionService, { DocumentAnalysisInput } from '@/lib/ai/fraud-detection';
+
+const ValidDocumentTypes = [
+  'INSURANCE_POLICY',
+  'BUSINESS_LICENSE',
+  'CERTIFICATION',
+  'PROOF_OF_WORK',
+  'FINANCIAL_STATEMENT',
+  'OTHER',
+] as const;
+
+type DocumentType = (typeof ValidDocumentTypes)[number];
+
+const AnalyzeBodySchema = z.object({
+  documentId: z.string().optional(),
+  contractorId: z.string().min(1),
+  documentType: z.enum(ValidDocumentTypes),
+  content: z.string().min(1),
+  metadata: z.record(z.unknown()).optional(),
+});
+
+const CriticalDocumentTypes: DocumentType[] = [
+  'INSURANCE_POLICY',
+  'BUSINESS_LICENSE',
+  'CERTIFICATION',
+];
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const {
-      documentId,
-      contractorId,
-      documentType,
-      content,
-      metadata
-    } = body;
+    const parsed = AnalyzeBodySchema.safeParse(body);
 
-    // Validate required fields
-    if (!contractorId || !documentType || !content) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Missing required fields: contractorId, documentType, content' },
+        { error: 'Validation failed', issues: parsed.error.issues },
         { status: 400 }
       );
     }
 
-    // Validate document type
-    const validDocumentTypes = [
-      'INSURANCE_POLICY',
-      'BUSINESS_LICENSE', 
-      'CERTIFICATION',
-      'PROOF_OF_WORK',
-      'FINANCIAL_STATEMENT',
-      'OTHER'
-    ];
+    const { documentId, contractorId, documentType, content, metadata } = parsed.data;
 
-    if (!validDocumentTypes.includes(documentType)) {
-      return NextResponse.json(
-        { error: `Invalid document type. Must be one of: ${validDocumentTypes.join(', ')}` },
-        { status: 400 }
-      );
-    }
-
-    // Check if contractor exists
     const contractor = await prisma.contractor.findUnique({
-      where: { id: contractorId }
+      where: { id: contractorId },
     });
 
     if (!contractor) {
-      return NextResponse.json(
-        { error: 'Contractor not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Contractor not found' }, { status: 404 });
     }
 
-    // Prepare analysis input
     const analysisInput: DocumentAnalysisInput = {
       documentType,
       content,
       metadata: {
         ...metadata,
-        ipAddress: req.ip || req.headers.get('x-forwarded-for')?.split(',')[0],
-        userAgent: req.headers.get('user-agent') || undefined,
-        uploadTimestamp: new Date().toISOString() },
-      contractorId };
+        ipAddress:
+          req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? undefined,
+        userAgent: req.headers.get('user-agent') ?? undefined,
+        uploadTimestamp: new Date().toISOString(),
+      },
+      contractorId,
+    };
 
-    // Run fraud detection analysis
     const fraudDetectionService = FraudDetectionService.getInstance();
     const analysisResult = await fraudDetectionService.analyzeDocument(analysisInput);
 
-    // TODO: Update document record when onboardingDocument model is added
-    // if (documentId) {
-    //   await prisma.onboardingDocument.update({
-    //     where: { id: documentId },
-    //     data: {
-    //       fraudAnalysisCompleted: true,
-    //       fraudConfidenceScore: analysisResult.confidenceScore,
-    //       fraudRiskLevel: analysisResult.confidenceScore >= 80 ? 'LOW' : 
-    //                       analysisResult.confidenceScore >= 60 ? 'MEDIUM' : 'HIGH',
-    //       fraudAnalysisResults: JSON.stringify(analysisResult),
-    //       reviewRequired: analysisResult.recommendedAction === 'REVIEW',
-    //       status: analysisResult.recommendedAction === 'REJECT' ? 'REJECTED' :
-    //               analysisResult.recommendedAction === 'REVIEW' ? 'UNDER_REVIEW' : 'APPROVED'
-    //     }
-    //   });
-    // }
-
-    // Update contractor status if this is a critical document
-    const criticalDocuments = ['INSURANCE_POLICY', 'BUSINESS_LICENSE', 'CERTIFICATION'];
-    if (criticalDocuments.includes(documentType)) {
+    if (CriticalDocumentTypes.includes(documentType)) {
       if (analysisResult.recommendedAction === 'REJECT') {
         await prisma.contractor.update({
           where: { id: contractorId },
           data: {
             status: 'REJECTED',
-            rejectionReason: `Document fraud detected: ${analysisResult.suspiciousElements.join(', ')}`
-          }
+            rejectionReason: `Document fraud detected: ${analysisResult.suspiciousElements.join(', ')}`,
+          },
         });
       } else if (analysisResult.recommendedAction === 'REVIEW') {
         await prisma.contractor.update({
           where: { id: contractorId },
-          data: {
-            status: 'UNDER_REVIEW'
-            // TODO: Add reviewNotes field to Contractor model
-            // reviewNotes: `Document requires manual review: ${analysisResult.suspiciousElements.join(', ')}`
-          }
+          data: { status: 'UNDER_REVIEW' },
         });
       }
     }
 
-    // Return analysis results
     return NextResponse.json({
       success: true,
       analysis: analysisResult,
-      documentId,
-      message: `Document analysis completed. Recommendation: ${analysisResult.recommendedAction}`
+      documentId: documentId ?? null,
+      message: `Document analysis completed. Recommendation: ${analysisResult.recommendedAction}`,
     });
-
   } catch (error) {
-    console.error('Error in fraud detection API:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error during fraud analysis',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );
@@ -128,70 +103,23 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const contractorId = searchParams.get('contractorId');
-    const documentId = searchParams.get('documentId');
-    const riskLevel = searchParams.get('riskLevel');
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '20');
-
-    const skip = (page - 1) * limit;
-
-    // Build where clause
-    const where: any = {};
-    if (contractorId) where.contractorId = contractorId;
-    if (riskLevel) where.riskLevel = riskLevel;
-
-    // TODO: Get fraud detection logs when fraudDetectionLog model is added
-    const logs: any[] = [];
-    const total = 0;
-    
-    // const [logs, total] = await Promise.all([
-    //   prisma.fraudDetectionLog.findMany({
-    //     where,
-    //     include: {
-    //       contractor: {
-    //         select: {
-    //           email: true,
-    //           username: true,
-    //           status: true }
-    //       }
-    //     },
-    //     orderBy: { createdAt: 'desc' },
-    //     skip,
-    //     take: limit }),
-    //   prisma.fraudDetectionLog.count({ where })
-    // ]);
-
-    // TODO: Get summary statistics when model is added
-    const stats: any[] = [];
-    
-    // const stats = await prisma.fraudDetectionLog.groupBy({
-    //   by: ['riskLevel'],
-    //   _count: {
-    //     id: true
-    //   },
-    //   where: contractorId ? { contractorId } : undefined
-    // });
+    const page = Math.max(parseInt(searchParams.get('page') ?? '1', 10), 1);
+    const limit = Math.min(parseInt(searchParams.get('limit') ?? '20', 10), 100);
 
     return NextResponse.json({
-      logs,
+      logs: [] as unknown[],
       pagination: {
         page,
         limit,
-        total,
-        pages: Math.ceil(total / limit)
+        total: 0,
+        pages: 0,
       },
       statistics: {
-        total,
-        byRiskLevel: stats.reduce((acc, stat) => {
-          acc[stat.riskLevel || 'UNKNOWN'] = stat._count.id;
-          return acc;
-        }, {} as Record<string, number>)
-      }
+        total: 0,
+        byRiskLevel: {} as Record<string, number>,
+      },
     });
-
   } catch (error) {
-    console.error('Error fetching fraud detection logs:', error);
     return NextResponse.json(
       { error: 'Failed to fetch fraud detection logs' },
       { status: 500 }
