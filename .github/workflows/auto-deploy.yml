@@ -92,7 +92,7 @@ jobs:
     - name: Deploy to Vercel Production
       id: deploy
       run: |
-        URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+        URL=$(vercel deploy --prebuilt --prod --archive=tgz --token=${{ secrets.VERCEL_TOKEN }})
         echo "url=$URL" >> $GITHUB_OUTPUT
 
   # ── Gate 4: Smoke test the live deployment ──
