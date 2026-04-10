@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { PipetteIcon } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
+import { INSURANCE_GUIDE_AUTHOR } from '@/lib/guide-authors';
 
 export const metadata: Metadata = {
   title: 'Burst Pipe Insurance Claim Australia — What Is Covered & What to Do',
@@ -34,9 +35,18 @@ const articleSchema = {
   headline: 'Burst Pipe Insurance Claim Australia — What Is Covered & What to Do',
   description: 'A complete guide to burst pipe water damage insurance claims in Australia — coverage, documentation, gradual leak disputes, and settlement maximisation.',
   author: {
-    '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
-    url: 'https://disasterrecovery.com.au',
+    '@type': 'Person',
+    name: INSURANCE_GUIDE_AUTHOR.name,
+    jobTitle: INSURANCE_GUIDE_AUTHOR.jobTitle,
+    hasCredential: INSURANCE_GUIDE_AUTHOR.credentials?.map((c) => ({
+      '@type': 'EducationalOccupationalCredential',
+      name: c,
+    })),
+    memberOf: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
+      url: 'https://disasterrecovery.com.au',
+    },
   },
   publisher: {
     '@type': 'Organization',
@@ -133,6 +143,7 @@ export default function BurstPipeInsuranceClaimPage() {
         gradient="linear-gradient(135deg, #1E3A5F 0%, #0EA5E9 100%)"
         icon={<PipetteIcon className="h-10 w-10" />}
         lastReviewed="2026-04-10"
+        author={INSURANCE_GUIDE_AUTHOR}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Guides', href: '/guides' },
