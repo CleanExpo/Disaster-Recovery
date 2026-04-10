@@ -31,7 +31,6 @@ const organizationSchemaData = JSON.stringify({
   "logo": `${NAP.url}/images/antigravity/dr-logo.webp`,
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": NAP.phone,
     "contactType": "customer support",
     "areaServed": "AU",
     "availableLanguage": "en-AU",

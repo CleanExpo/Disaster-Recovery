@@ -61,11 +61,43 @@ export const metadata: Metadata = {
     'ICBM': '-25.2744, 133.7751' }
 };
 
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What IICRC standard governs biohazard cleanup in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IICRC S540 (Standard for Trauma and Crime Scene Cleanup, 2023 edition) is the governing standard for professional biohazard cleanup in Australia. It establishes protocols for hazard assessment, personal protective equipment (PPE), containment, disinfection, verification, and disposal of biohazardous waste. Australian contractors must also comply with state-specific Public Health Acts and relevant Work Health and Safety (WHS) Act 2011 regulations governing handling and disposal of biohazardous materials.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who is legally responsible for arranging biohazard cleanup after a trauma event in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Responsibility varies by circumstance. For incidents in a private home, the property owner or estate is responsible for engaging remediation. For incidents in a rental property, the lessor (landlord) bears primary responsibility under residential tenancy legislation across Australian states. In workplaces, the duty holder under the WHS Act 2011 must arrange cleanup to restore a safe work environment. Queensland, NSW, and Victoria have specific guidance on unattended death cleanup responsibilities issued by the relevant state health departments.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is biohazardous waste from cleanup disposed of in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Biohazardous waste generated during cleanup — including blood-saturated materials, sharps, tissue, and contaminated PPE — is classified as clinical and related waste under the relevant state Environmental Protection Act. It must be segregated into UN-approved biohazard containers, stored appropriately, and transported and disposed of by a licensed clinical waste contractor to an approved facility. NRPG coordinates with licensed waste contractors to manage disposal in accordance with state EPA requirements.',
+      },
+    }
+  ],
+});
+
 export default function BiohazardCleanupPage() {
   const schemaStr = JSON.stringify(serviceSchema);
   return (
     <>
     <Script id="biohazard-cleanup-svc-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
+    <Script id="biohazard-cleanup-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
