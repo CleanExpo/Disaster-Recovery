@@ -405,6 +405,10 @@ model Contractor {
   // Applications submitted via /contractor/apply (raw snapshot of the onboarding wizard)
   applications ContractorApplication[]
 
+  // Proof of work and competency
+  proofOfWork          ProofOfWork[]
+  competencyTestResults CompetencyTestResult[]
+
   // ── Job Matching Fields ──────────────────────────────────────────────────
   // Base location for distance calculations
   baseLatitude  Float?
@@ -789,6 +793,72 @@ model ContractorKPI {
 
   @@unique([contractorId, periodType, periodStart])
   @@index([periodType, periodStart])
+}
+
+model ProofOfWork {
+  id           String   @id @default(cuid())
+  contractorId String
+  contractor   Contractor @relation(fields: [contractorId], references: [id])
+
+  workType            String // WATER_DAMAGE, MOULD_REMEDIATION, FIRE_DAMAGE, etc.
+  projectName         String
+  clientName          String
+  clientContact       String
+  projectAddress      String?
+  completionDate      DateTime
+  projectValue        Float
+  projectDescription  String?
+  damageType          String[] @default([])
+  propertyType        String   // RESIDENTIAL, COMMERCIAL, INDUSTRIAL, INSTITUTIONAL
+  emergencyResponse   Boolean  @default(false)
+  insuranceClaim      Boolean  @default(false)
+  insuranceCompany    String?
+
+  // Evidence stored as JSON: array of {type, url, description, uploadedAt}
+  evidence            String   @default("[]")
+
+  verificationStatus  String   @default("PENDING") // PENDING, VERIFIED, REJECTED
+  verifiedBy          String?
+  verifiedAt          DateTime?
+  rejectionReason     String?
+
+  submittedAt         DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([contractorId])
+  @@index([verificationStatus])
+  @@index([workType])
+}
+
+model CompetencyTestResult {
+  id           String   @id @default(cuid())
+  contractorId String
+  contractor   Contractor @relation(fields: [contractorId], references: [id])
+
+  category        String // CompetencyCategory enum value
+  attemptNumber   Int    @default(1)
+  score           Int    // raw score
+  totalPossible   Int
+  percentage      Float
+  passed          Boolean
+
+  // Time tracking
+  startedAt       DateTime
+  completedAt     DateTime?
+  timeTakenSeconds Int?
+
+  // Certification issued on pass
+  certificateNumber String?
+  certificateExpiry DateTime?
+
+  // Re-assessment
+  reassessmentDueDate DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([contractorId])
+  @@index([category])
+  @@index([passed])
 }
 
 model ContractorAgreement {
