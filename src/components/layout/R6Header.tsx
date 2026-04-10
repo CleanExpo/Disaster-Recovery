@@ -473,7 +473,7 @@ export default function R6Header() {
                   )}
                 >
                   <span className="relative z-10">
-                    {emergencyMode ? "🚨 EMERGENCY CALL NOW" : "Use Our Online Form"
+                    {emergencyMode ? "🚨 EMERGENCY CALL NOW" : "Use Our Online Form"}
                   </span>
                 </R6Button>
               </a>

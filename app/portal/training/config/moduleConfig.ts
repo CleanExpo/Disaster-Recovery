@@ -175,15 +175,15 @@ export const getModuleByDay = (day: number) => {
 };
 
 export const isModuleAccessible = (day: number, completedDays: number[] = []): boolean => {
-  const module = getModuleByDay(day);
-  if (!module) return false;
-  if (!module.isAvailable) return false;
-  
+  const trainingModule = getModuleByDay(day);
+  if (!trainingModule) return false;
+  if (!trainingModule.isAvailable) return false;
+
   // Check prerequisites
-  if (module.requiresPrerequisites) {
-    return module.requiresPrerequisites.every(prereq => completedDays.includes(prereq));
+  if (trainingModule.requiresPrerequisites) {
+    return trainingModule.requiresPrerequisites.every(prereq => completedDays.includes(prereq));
   }
-  
+
   return true;
 };
 

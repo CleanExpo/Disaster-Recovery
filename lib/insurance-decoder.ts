@@ -225,7 +225,7 @@ export class InsuranceDecoder {
           'Maintenance done but inadequate for conditions',
           'Dispute over what constitutes "reasonable" maintenance'
         ]
-      ],
+      },
       relatedTerms: ['gradual-damage', 'wear-tear', 'duty-of-care'],
       commonMisunderstandings: [
         'Thinking DIY maintenance always suffices',
