@@ -30,6 +30,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is biohazard cleaning and when is it required?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Biohazard cleaning is the professional decontamination and removal of materials that pose a biological health risk — including blood, bodily fluids, sewage, chemical contamination, and decomposition matter. It is required after traumatic incidents, unattended deaths, crime scenes, hoarding situations, and infectious disease exposure. IICRC-certified technicians use PPE, containment protocols, and EPA-registered antimicrobial agents to safely restore the property.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is biohazard cleaning covered by insurance in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Many Australian home and business insurance policies cover biohazard cleaning under property damage or specified events. Coverage depends on the policy and the cause of the contamination. We provide full documentation — scope of works, IICRC-certified reports, photographs — to support your claim. Contact your insurer to confirm your coverage before work begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How discreet is your biohazard cleaning service?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'All biohazard cleaning is conducted with full discretion. Unmarked vehicles are available on request. Technicians arrive without identifying signage where required. Trauma cleaning often takes place during sensitive circumstances — we operate with compassion and professionalism throughout.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can you respond to a biohazard emergency?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG deploys IICRC-certified biohazard technicians 24/7 across Australia. In most metro areas, response is within 60 minutes of lodging a claim at disasterrecovery.com.au/claim. Prompt response limits secondary contamination spread and reduces the scope of decontamination required.',
+      },
+    },
+  ],
+});
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -45,6 +84,7 @@ const serviceSchema = {
 export default function BiohazardCleaningPage() {
   return (
     <>
+    <Script id="biohazard-cleaning-faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
     <Script id="biohazard-cleaning-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
     <AgContentPageTemplate
       hero={{
