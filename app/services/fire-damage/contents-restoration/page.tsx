@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
@@ -12,9 +13,43 @@ export const metadata: Metadata = {
   },
 };
 
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What items can be restored after fire and smoke damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Many items can be salvaged including furniture, clothing, documents, photographs, electronics, artwork, and collectibles using ultrasonic cleaning, ozone treatment, freeze-drying for documents, and specialist electronics drying. Porous materials with deep soot penetration may not be restorable. IICRC-certified contents specialists assess each item individually.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is contents restoration covered by insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Contents restoration after fire damage is covered under most Australian contents insurance policies. You have the right to professional restoration attempts before contents are written off. Insurers must cover restoration costs up to replacement value. Document all affected items with photographs and purchase receipts before any cleaning or disposal.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is pack-out and why is it used in fire restoration?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Pack-out involves removing all salvageable contents from the fire-damaged property to a specialist facility for cleaning and storage. This protects items from ongoing smoke and soot exposure, allows structural cleaning to proceed unimpeded, and enables thorough contents decontamination. Items are catalogued, cleaned, and returned when the property is ready for reoccupation.',
+      },
+    }
+  ],
+});
+
 export default function FireDamagedContentsRestorationPage() {
   return (
-    <AgContentPageTemplate
+    <>
+      <Script id="contents-restoration-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
+      <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
@@ -33,5 +68,6 @@ export default function FireDamagedContentsRestorationPage() {
       sections={getServiceChildSections({ serviceName: 'Fire Damaged Contents Restoration', parentCategory: 'Fire Damage', context: 'salvaging and restoring belongings and documents after fire' })}
       relatedPages={getRelatedPages('fire-damage')}
     />
+    </>
   );
 }
