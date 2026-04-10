@@ -1,0 +1,76 @@
+# Build artifacts
+.next/
+dist/
+build/
+out/
+.output/
+.nuxt/
+target/
+*.min.js
+*.min.css
+*.bundle.js
+
+# Dependencies
+node_modules/
+vendor/
+
+# Lock files (30K-80K tokens each)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+Gemfile.lock
+poetry.lock
+Cargo.lock
+composer.lock
+
+# Caches
+.cache/
+.turbo/
+.parcel-cache/
+*.tsbuildinfo
+
+# Test output & snapshots
+coverage/
+__snapshots__/
+__fixtures__/
+
+# Logs
+*.log
+
+# Env (security + waste)
+.env
+.env.*
+
+# Databases
+*.db
+*.sqlite
+
+# Media (Claude cannot read these)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.ico
+*.mp4
+*.mov
+*.avi
+*.woff
+*.woff2
+*.ttf
+*.eot
+*.pdf
+
+# Generated
+*.d.ts
+*.js.map
+*.css.map
+generated/
+__generated__/
+
+# Vercel
+.vercel/
+
+# Prisma generated
+prisma/migrations/*/migration_lock.toml
