@@ -24,8 +24,7 @@
   },
   "functions": {
     "app/api/cron/reddit-orchestrator/route.ts": {
-      "maxDuration": 120,
-      "memory": 1024
+      "maxDuration": 120
     }
   },
   "crons": [

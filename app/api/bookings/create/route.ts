@@ -130,11 +130,13 @@ export async function POST(request: NextRequest) {
     // Build scheduled date
     const scheduledDate = buildScheduledDate(validatedData.date, validatedData.time);
 
-    // DR-390: Warn in non-development environments if encryption is not configured.
-    // TODO (DR-390): Ensure KMS_KEY_ID or ENCRYPTION_SECRET is set in Vercel env vars
-    //                before go-live. Remove the NODE_ENV guard once provisioned.
+    // DR-390 / DR-491: Block booking creation in production if ENCRYPTION_SECRET is not set.
+    // ENCRYPTION_SECRET is configured in Vercel Production (see DR-491). Dev environments
+    // are permitted to run without encryption for local iteration — isConfigured() returns
+    // false in that case and the NODE_ENV guard below lets dev proceed with the console.warn
+    // emitted by src/lib/encryption.ts.
     if (!isConfigured() && process.env.NODE_ENV !== 'development') {
-      console.error('[security] DR-390: Property access encryption is not configured (no KMS_KEY_ID or ENCRYPTION_SECRET). Booking creation blocked in non-dev environment.');
+      console.error('[security] DR-390: ENCRYPTION_SECRET is not configured. Booking creation blocked in non-dev environment.');
       return NextResponse.json({
         success: false,
         message: 'Server configuration error. Please try again or contact support.',
