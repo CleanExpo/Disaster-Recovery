@@ -53,51 +53,11 @@ const serviceSchema = {
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'When is TC Maila expected to make landfall?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: "BOM is forecasting TC Maila landfall impacts for the FNQ coast in the 11\u201314 April 2026 window, with April 13 the peak convergence forecast date. NRPG contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree). Lodge your claim now at disasterrecovery.com.au/claim.",
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'I have an unresolved Alfred claim \u2014 can I still lodge it?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: "Yes. PERILS\u2019 April 13 final loss confirmation of AU$1.877 billion does not close your claim window. Most policies allow supplementary lodgement for underpaid or disputed claims. NRPG provides IICRC-certified scope documentation to support AFCA escalation if your insurer has underpaid or stalled.",
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can NRPG help with both TC Maila damage and an Alfred claim at the same property?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. If your property was damaged by Alfred and now sustains additional TC Maila damage, NRPG manages both claims \u2014 ensuring documentation clearly delineates each event for separate lodgement. This is critical for maximising your combined claim outcome.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the PERILS final loss figure for Ex-TC Alfred?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'PERILS confirmed a final insured loss of AU$1.877 billion for Ex-Tropical Cyclone Alfred. This represents the largest insured cyclone loss on a current-value basis since Cyclone Debbie in 2017. The figure comprises personal lines (70%), commercial (26%), and motor (4%) losses across Queensland and northern NSW.',
-      },
-    },
-  ],
-};
-
 export default function April13ConvergencePage() {
   return (
     <>
       <Script id="a13c-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="a13c-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <Script id="a13c-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AgGuidePageTemplate
         category="Emergency Response"
         title="April 13 — TC Maila Landfall &amp; Alfred Insurance: Two Events, One Window"
