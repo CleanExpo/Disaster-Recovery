@@ -55,11 +55,43 @@ export const metadata: Metadata = {
     'ICBM': '-25.2744, 133.7751' }
 };
 
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What constitutes a property emergency requiring immediate professional response?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A property emergency is any event causing sudden, significant damage that creates immediate health, safety, or structural risk — or where delayed response will substantially worsen the damage. Common triggers include burst pipes, sewage overflow, severe storm damage, fire, flooding, and unattended deaths. The IICRC defines emergency conditions where mitigation must begin within 24-48 hours to prevent secondary damage such as mould growth, structural deterioration, or contamination spread. Delayed response can also affect insurance claim validity under policy mitigation obligations.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does a professional emergency response assessment include?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A professional emergency response assessment covers: source identification and isolation, safety assessment of structural integrity and electrical and gas systems, water category and classification per IICRC S500 (Categories 1, 2, or 3), affected material mapping, moisture mapping using thermal imaging and calibrated metres, immediate extraction and stabilisation requirements, and documentation for insurance notification. This assessment forms the basis of the emergency mitigation scope and is provided to the insurer as part of initial claim lodgement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can NRPG contractors respond to a property emergency?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG\'s contractor network is structured for 24/7 response across metropolitan and regional areas. Emergency response times vary by location — metropolitan areas typically achieve on-site attendance within 2-4 hours, and regional areas within 4-8 hours where contractors are available. For declared disaster events affecting widespread areas, NRPG deploys multiple contractor teams to triage the most urgent jobs and coordinates response according to hazard severity and access clearances from state emergency services.',
+      },
+    }
+  ],
+});
+
 export default function EmergencyResponsePage() {
   const schemaStr = JSON.stringify(serviceSchema);
   return (
     <>
     <Script id="emergency-response-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
+    <Script id="emergency-response-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',

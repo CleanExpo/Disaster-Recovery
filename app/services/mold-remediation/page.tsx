@@ -55,12 +55,44 @@ export const metadata: Metadata = {
     'ICBM': '-25.2744, 133.7751' }
 };
 
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the difference between mould removal and mould remediation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mould removal implies eliminating all mould — which is not achievable, as mould spores exist naturally in all indoor and outdoor environments. Mould remediation is the correct industry term, describing the process of reducing mould levels to naturally occurring background concentrations by removing contaminated materials, cleaning affected surfaces, and addressing the underlying moisture source. IICRC S520 (Standard for Professional Mould Remediation, 2023 edition) defines the protocols used by certified contractors across Australia for all mould remediation projects.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are the health risks associated with mould in Australian buildings?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mould exposure can cause a range of health effects depending on species, spore concentration, and individual sensitivity. Common effects include allergic reactions, rhinitis, asthma exacerbation, skin and eye irritation, and respiratory infections. Toxigenic species such as Stachybotrys chartarum and Aspergillus flavus can produce mycotoxins that cause more serious systemic effects. NSW Health, Queensland Health, and the AIHA identify children, elderly persons, pregnant women, and immunocompromised individuals as higher-risk groups requiring priority remediation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does home insurance cover mould remediation in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Coverage depends on the cause of the mould. Mould resulting from a sudden and accidental insured event — such as a burst pipe or storm water ingress — is typically covered under standard home insurance policies. Mould from gradual or maintenance-related moisture ingress is generally excluded as a maintenance issue. Insurers may require IICRC-certified contractors and independent testing. Policy wording should be reviewed carefully; the Australian Financial Complaints Authority (AFCA) handles unresolved claim disputes where coverage is contested.',
+      },
+    }
+  ],
+});
+
 export default function MoldRemediationPage() {
   return (
     <>
     <Script id="mold-remediation-schema" type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
     />
+    <Script id="mold-remediation-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
