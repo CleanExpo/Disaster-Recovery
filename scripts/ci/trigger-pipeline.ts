@@ -354,7 +354,39 @@ function sleep(ms: number): Promise<void> {
 // ---------------------------------------------------------------------------
 
 async function main(): Promise<void> {
-  const apiKey = requireEnv('ANTHROPIC_API_KEY');
+  // Soft-fail when ANTHROPIC_API_KEY is not set — this pipeline requires
+  // Anthropic Managed Agents Research Preview access. Without the key the
+  // job exits 0 so it does not block the PR merge.
+  const apiKey = process.env['ANTHROPIC_API_KEY'];
+  if (!apiKey) {
+    const githubToken = optionalEnv('GITHUB_TOKEN');
+    const repo = optionalEnv('REPO');
+    const prNumber = optionalEnv('PR_NUMBER');
+    console.log(
+      'ANTHROPIC_API_KEY is not configured — managed agent pipeline skipped.\n' +
+        'Add ANTHROPIC_API_KEY (with Managed Agents Research Preview access) as a ' +
+        'GitHub Actions secret to enable this pipeline.',
+    );
+    if (githubToken && repo && prNumber) {
+      await postPRComment(
+        repo,
+        prNumber,
+        {
+          passed: true,
+          summary:
+            'Managed Agent CI/CD pipeline skipped — ANTHROPIC_API_KEY not configured. ' +
+            'Manual review required before merging.',
+          details:
+            'Add ANTHROPIC_API_KEY (with Anthropic Managed Agents Research Preview access) ' +
+            'as a GitHub Actions secret to enable automated pipeline review.',
+          durationMs: 0,
+        },
+        githubToken,
+      );
+    }
+    process.exit(0);
+  }
+
   const githubToken = requireEnv('GITHUB_TOKEN');
   const prContext: PRContext = {
     prNumber: requireEnv('PR_NUMBER'),
