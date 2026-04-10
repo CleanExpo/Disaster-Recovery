@@ -127,8 +127,8 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: { params: { city: string; slug: string[] } }) {
-  const { city, slug } = params;
+export async function generateMetadata({ params }: { params: Promise<{ city: string; slug: string[] }> }) {
+  const { city, slug } = await params;
 
   if (slug.length === 1) {
     // City-service page: /locations/sydney/water-damage-restoration
@@ -209,8 +209,8 @@ function generateSuburbServiceMetadata(city: string, suburbSlug: string, service
   };
 }
 
-export default function LocationServicePage({ params }: { params: { city: string; slug: string[] } }) {
-  const { city, slug } = params;
+export default async function LocationServicePage({ params }: { params: Promise<{ city: string; slug: string[] }> }) {
+  const { city, slug } = await params;
 
   let pageData;
   let suburbName: string | undefined;
