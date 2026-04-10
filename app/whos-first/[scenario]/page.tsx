@@ -4,16 +4,17 @@ import ScenarioPageComponent from '../../../components/whos-first/scenario-page'
 import { WhosFirstGenerator } from '../../../lib/whos-first-generator';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     scenario: string;
-  };
+  }>;
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { scenario: scenarioId } = await params;
   // Parse scenario ID to extract components
-  const parts = params.scenario.split('-');
-  
+  const parts = scenarioId.split('-');
+
   // Generate scenario data
   const scenario = WhosFirstGenerator.generateScenario(
     parts[0], // damage type
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: scenario.metaDescription,
     },
     alternates: {
-      canonical: `/whos-first/${params.scenario}`,
+      canonical: `/whos-first/${scenarioId}`,
     },
   };
 }
@@ -68,9 +69,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function WhosFirstScenarioPage({ params }: PageProps) {
+export default async function WhosFirstScenarioPage({ params }: PageProps) {
+  const { scenario: scenarioId } = await params;
   // Parse scenario ID to extract components
-  const parts = params.scenario.split('-');
+  const parts = scenarioId.split('-');
   
   // Generate scenario data
   const scenario = WhosFirstGenerator.generateScenario(

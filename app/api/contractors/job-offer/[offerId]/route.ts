@@ -30,10 +30,10 @@ interface OfferActionBody {
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { offerId: string } },
+  { params }: { params: Promise<{ offerId: string }> },
 ) {
   try {
-    const { offerId } = params;
+    const { offerId } = await params;
 
     const offer = await prisma.jobOffer.findUnique({
       where: { id: offerId },
@@ -235,10 +235,11 @@ export async function PATCH(
 // GET — fetch current offer status
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { offerId: string } },
+  { params }: { params: Promise<{ offerId: string }> },
 ) {
+  const { offerId } = await params;
   const offer = await prisma.jobOffer.findUnique({
-    where: { id: params.offerId },
+    where: { id: offerId },
     select: {
       id: true,
       jobId: true,

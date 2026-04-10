@@ -21,9 +21,9 @@ const MarkReadSchema = z.union([
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { claimId: string } },
+  { params }: { params: Promise<{ claimId: string }> },
 ): Promise<NextResponse> {
-  const { claimId } = params;
+  const { claimId } = await params;
 
   if (!claimId || typeof claimId !== 'string') {
     return NextResponse.json(
@@ -70,9 +70,9 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { claimId: string } },
+  { params }: { params: Promise<{ claimId: string }> },
 ): Promise<NextResponse> {
-  const { claimId } = params;
+  const { claimId } = await params;
 
   if (!claimId || typeof claimId !== 'string') {
     return NextResponse.json(
