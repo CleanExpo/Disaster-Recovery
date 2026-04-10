@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
@@ -12,9 +13,43 @@ export const metadata: Metadata = {
   },
 };
 
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can mouldy carpet be cleaned or does it need to be replaced?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Carpet that has been wet for more than 24-48 hours with Category 1 (clean) water and shows early surface mould may be restorable with professional extraction, antifungal treatment, and drying. Carpet wet with Category 2 or 3 water (grey or black water) cannot be decontaminated to a safe standard and must be disposed of. Carpet that has developed mould through the backing and underlay is not restorable regardless of water category and requires full removal.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do you remove mould from carpet safely?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG technicians use containment to prevent spore spread, HEPA vacuuming of the surface, truck-mounted extraction with antifungal solution, and high-velocity drying. If the mould has penetrated the backing or underlay, the carpet is removed and disposed of as biological waste. The subfloor is treated with antifungal before new flooring is installed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is mouldy carpet covered by insurance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Carpet mould following a water damage event (burst pipe, flood, roof leak) that is a covered loss is claimable under home or contents insurance. The key factors are the cause of the water event and whether the response was timely. Mould resulting from delayed drying or pre-existing moisture problems may not be covered. We document the incident timeline, cause, and drying response to support your claim.',
+      },
+    }
+  ],
+});
+
 export default function CarpetMouldRemediationPage() {
   return (
-    <AgContentPageTemplate
+    <>
+      <Script id="carpet-mould-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
+      <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
@@ -33,5 +68,6 @@ export default function CarpetMouldRemediationPage() {
       sections={getServiceChildSections({ serviceName: 'Carpet Mould Remediation', parentCategory: 'Mould Remediation', context: 'carpet and underlay mould treatment' })}
       relatedPages={getRelatedPages('water-damage')}
     />
+    </>
   );
 }
