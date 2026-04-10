@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { Waves } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
+import { WATER_DAMAGE_AUTHOR } from '@/lib/guide-authors';
 
 export const metadata: Metadata = {
   title: 'What to Do After a Flood in Australia — Step-by-Step Guide 2025',
@@ -203,6 +204,7 @@ export default function WhatToDoAfterFloodPage() {
         category="Flood Damage"
         title="What to Do After a Flood in Australia"
         subtitle="A step-by-step guide for homeowners and tenants. Safety checks, insurance steps, water extraction, mould prevention — what to do and in what order."
+        author={WATER_DAMAGE_AUTHOR}
         gradient="linear-gradient(135deg, #0C2340 0%, #1D4ED8 100%)"
         icon={<Waves className="h-10 w-10" />}
         lastReviewed="2026-04-10"
