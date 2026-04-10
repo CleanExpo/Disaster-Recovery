@@ -103,53 +103,6 @@ const serviceSchema = {
   },
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Is it too late to lodge an Alfred claim?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. Most QLD policies allow up to 30\u201390 days from event discovery. Mould and structural issues discovered months later can be lodged as supplementary claims if they arose from the Alfred event. NRPG documents the causal chain between the original Alfred damage and current conditions for insurer and AFCA purposes.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'PERILS said AU$1.877B \u2014 why might my claim be less than I expected?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'PERILS measures total market insured losses across all policies and insurers. Individual claim amounts depend on your sum insured, policy excess, and the scope of covered damage at your specific property. NRPG provides a full independent scope assessment to ensure your claim reflects actual damage.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the ARPC Cyclone Pool and does it affect FNQ claims?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The ARPC (Australian Reinsurance Pool Corporation) Cyclone Pool is a government reinsurance backstop. Your insurer manages your claim under pool rules. Your rights as a policyholder are unchanged \u2014 AFCA escalation remains available at no cost if your claim is disputed or underpaid.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'My insurer says the damage is wear and tear \u2014 is that right?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Wear and tear exclusions are frequently misapplied after cyclone events. If your insurer attributes pre-existing condition to damage from TC Alfred, NRPG provides a certified assessment with IICRC methodology to support your position. AFCA considers independent assessments when reviewing disputed decisions.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: "I'm seeing mould months after Alfred \u2014 is that covered?",
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, if the mould arose from water ingress caused by a covered Alfred event. NRPG documents the moisture pathway from the original damage event to current mould growth for insurer and AFCA purposes, establishing the causal link required for claim acceptance.',
-      },
-    },
-  ],
-};
-
 export default function AlfredFNQ2026Page() {
   return (
     <>
@@ -162,11 +115,6 @@ export default function AlfredFNQ2026Page() {
         id="alfredFNQ-service"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <Script
-        id="alfredFNQ-faq"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <AgGuidePageTemplate
         category="Event Recovery"
