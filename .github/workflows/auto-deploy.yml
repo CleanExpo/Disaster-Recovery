@@ -100,6 +100,9 @@ jobs:
   smoke-test:
     needs: deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      statuses: write
     steps:
     - name: Wait for deployment propagation
       run: sleep 30
