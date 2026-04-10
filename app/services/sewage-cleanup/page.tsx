@@ -29,6 +29,53 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can you respond to a sewage backup?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NRPG dispatches IICRC-certified technicians within 60 minutes in most metro areas, 24/7. Sewage backup is a Category 3 contamination event — every hour of delay increases health risk and structural damage. Contact us immediately at disasterrecovery.com.au/claim.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is sewage backup covered by home insurance in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home and contents policies cover sudden sewage backup events as a defined event under water damage. Gradual deterioration or blocked drains due to lack of maintenance may be excluded. Begin emergency make-safe immediately — do not wait for insurer approval. Document all damage with photographs before cleanup.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What health risks does sewage contamination cause?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sewage (Category 3 black water) contains bacteria, viruses, parasites, and chemical contaminants including E. coli, Salmonella, Hepatitis A, and Cryptosporidium. Exposure causes serious gastrointestinal illness and skin infections. Do not enter a sewage-affected area without full PPE. Evacuate and call a certified technician immediately.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can my belongings be restored after sewage damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Porous materials that have absorbed sewage — carpet, soft furnishings, cardboard, insulation — must be disposed of under IICRC S500:2025 protocols. Hard surfaces, tiles, timber, and many contents can be decontaminated and restored with antimicrobial treatment. Your restoration contractor will document the scope for insurance purposes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does sewage cleanup take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Emergency extraction and containment typically takes 4–12 hours. Full decontamination and antimicrobial treatment of affected areas takes 1–3 days. Structural drying following sewage events typically requires 3–7 days under IICRC S500:2025 protocols. Timeline varies with the extent of contamination and affected area.',
+      },
+    },
+  ],
+});
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -44,6 +91,7 @@ const serviceSchema = {
 export default function SewageCleanupPage() {
   return (
     <>
+    <Script id="sewage-cleanup-faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
     <Script id="sewage-cleanup-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
     <AgContentPageTemplate
       hero={{
