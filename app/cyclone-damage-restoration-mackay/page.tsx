@@ -55,8 +55,8 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Is Mackay affected by TC Maila?',
-      acceptedAnswer: { '@type': 'Answer', text: "TC Maila\u2019s projected southern range includes the Mackay corridor. BOM is forecasting tropical cyclone conditions potentially extending to Mackay and the Whitsundays in the 12\u201315 April 2026 window. The primary impact is forecast for FNQ, but NQ and CQ properties should prepare. Lodge your claim at disasterrecovery.com.au/claim to be ready for post-clearance response." },
+      name: 'Was Mackay affected by TC Maila?',
+      acceptedAnswer: { '@type': 'Answer', text: "TC Maila made landfall across the FNQ coast on 11\u201312 April 2026. Outer bands and associated weather systems affected the Mackay and Whitsundays corridor. If your Mackay or Whitsundays property sustained damage from TC Maila, lodge at disasterrecovery.com.au/claim for IICRC-certified post-clearance response." },
     },
     {
       '@type': 'Question',
@@ -70,8 +70,8 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'What cyclone preparation should Mackay homeowners do now?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Before TC Maila: secure loose outdoor items, check gutters and downpipes are clear, identify your emergency shelter. After TC Maila passes and the all-clear is issued: photograph all damage before touching anything, then lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch.' },
+      name: 'What should Mackay homeowners do after TC Maila?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Wait for emergency services to confirm the all-clear before inspecting your property. Photograph all damage before touching anything \u2014 timestamped images are required for your insurance claim. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch once the all-clear is issued for your suburb.' },
     },
   ],
 };
@@ -88,7 +88,7 @@ export default function CycloneDamageRestorationMackayPage() {
         subtitle="IICRC-certified contractors for TC Maila response across Mackay, the Whitsundays, and Central Queensland coast. Emergency make-safe and structural restoration. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-12"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -107,9 +107,9 @@ export default function CycloneDamageRestorationMackayPage() {
                   across the Whitsunday and Mackay regions.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  TC Maila&apos;s projected southern range includes the Mackay corridor in the 12–15 April 2026
-                  forecast window, with potential for tropical cyclone conditions even if the main landfall occurs
-                  further north.
+                  TC Maila made landfall across the FNQ coast on 11–12 April 2026. Outer bands and associated
+                  weather affected the Mackay and Whitsundays corridor. NRPG contractors are available for
+                  post-clearance response across Mackay and the Whitsundays.
                 </p>
               </>
             ),
@@ -156,8 +156,8 @@ export default function CycloneDamageRestorationMackayPage() {
         ]}
         faqs={[
           {
-            question: 'Is Mackay affected by TC Maila?',
-            answer: 'TC Maila\'s projected southern range includes the Mackay corridor. BOM is forecasting tropical cyclone conditions potentially extending to Mackay and the Whitsundays in the 12–15 April 2026 window. The primary impact is forecast for FNQ, but NQ and CQ properties should prepare. Lodge your claim at disasterrecovery.com.au/claim to be ready for post-clearance response.',
+            question: 'Was Mackay affected by TC Maila?',
+            answer: 'TC Maila made landfall across the FNQ coast on 11–12 April 2026. Outer bands and associated weather systems affected the Mackay and Whitsundays corridor. If your Mackay or Whitsundays property sustained damage, lodge at disasterrecovery.com.au/claim for IICRC-certified post-clearance response.',
           },
           {
             question: 'How does the ARPC Cyclone Pool apply to Mackay?',
@@ -168,8 +168,8 @@ export default function CycloneDamageRestorationMackayPage() {
             answer: 'Response to Whitsunday Island properties is coordinated via marine transport (Shute Harbour or Abel Point Marina) post-clearance. Lodge your claim early — island response requires additional logistics coordination and is sequenced after mainland clearance is confirmed.',
           },
           {
-            question: 'What cyclone preparation should Mackay homeowners do now?',
-            answer: 'Before TC Maila: secure loose outdoor items, check gutters and downpipes are clear, identify your emergency shelter. After TC Maila passes and the all-clear is issued: photograph all damage before touching anything, then lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch.',
+            question: 'What should Mackay homeowners do after TC Maila?',
+            answer: 'Wait for emergency services to confirm the all-clear before inspecting your property. Photograph all damage before touching anything — timestamped images are required for your insurance claim. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch once the all-clear is issued for your suburb.',
           },
         ]}
         relatedGuides={[

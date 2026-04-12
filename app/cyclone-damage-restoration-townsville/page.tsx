@@ -56,7 +56,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Is Townsville in the TC Maila impact zone?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 BOM is forecasting TC Maila impacts across the NQ coast including the Townsville corridor in the 11\u201314 April window. NRPG contractors are pre-positioned for immediate dispatch post-clearance. Lodge your claim now at disasterrecovery.com.au/claim.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes \u2014 TC Maila made landfall across the FNQ coast on 11\u201312 April 2026, with outer bands affecting the Townsville corridor. NRPG contractors are deployed for post-clearance response. Lodge your claim at disasterrecovery.com.au/claim.' },
     },
     {
       '@type': 'Question',
@@ -108,9 +108,8 @@ export default function CycloneDamageRestorationTownsvillePage() {
                   for low-lying suburbs adjacent to Cleveland Bay and Ross River.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  TC Maila is tracking toward the FNQ and NQ coast with forecast impacts for the Townsville–Cape
-                  York corridor in the 11–14 April 2026 window. NRPG contractors are pre-positioned and ready for
-                  immediate dispatch post-clearance.
+                  TC Maila made landfall across the FNQ coast on 11–12 April 2026. NRPG contractors are deployed
+                  across the Townsville corridor for post-clearance response.
                 </p>
               </>
             ),
@@ -166,8 +165,8 @@ export default function CycloneDamageRestorationTownsvillePage() {
         ]}
         faqs={[
           {
-            question: 'Is Townsville in the TC Maila impact zone?',
-            answer: 'Yes — BOM is forecasting TC Maila impacts across the NQ coast including the Townsville corridor in the 11–14 April window. NRPG contractors are pre-positioned for immediate dispatch post-clearance. Lodge your claim now at disasterrecovery.com.au/claim.',
+            question: 'Was Townsville affected by TC Maila?',
+            answer: 'Yes — TC Maila made landfall on the FNQ coast on 11–12 April 2026, with outer bands affecting the Townsville corridor. NRPG contractors are deployed for post-clearance response. Lodge your TC Maila claim at disasterrecovery.com.au/claim.',
           },
           {
             question: 'How does the ARPC Cyclone Pool affect my Townsville claim?',
