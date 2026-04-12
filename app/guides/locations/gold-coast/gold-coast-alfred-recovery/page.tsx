@@ -260,7 +260,7 @@ export default function GoldCoastAlfredRecoveryPage() {
           },
           {
             title: 'AFCA Insurance Dispute Guide',
-            href: '/guides/insurance/afca-insurance-complaint-guide',
+            href: '/guides/insurance/afca-complaint-guide',
             description:
               'Step-by-step guide to lodging an AFCA complaint for an underpaid or disputed insurance claim.',
           },
