@@ -10,6 +10,11 @@
  *        Emergency Relief Payments now closed. DRA deadline 21 July 2026.
  * G5 ✅ Phase: recovery (fires commenced 7 January 2026).
  *
+ * GAP-023/GAP-046: IICRC standard corrected from FSRT technician cert to
+ * S700:2025 (Standard for Fire and Smoke Damage Restoration).
+ * PERILS AU$786M estimate referenced — subject to PERILS update April 2026.
+ * ICA Declared Catastrophe status confirmed.
+ *
  * ACL s18 compliant — no unverified statistics.
  */
 
@@ -41,10 +46,12 @@ export default function VictoriaBushfires2026Page() {
       state="Victoria"
       stateAbbr="VIC"
       year={2026}
-      iicrcStandard="IICRC FSRT (Fire & Smoke Restoration Technician)"
+      iicrcStandard="ANSI/IICRC S700:2025 (Fire and Smoke Damage Restoration)"
       slug="events/victoria-bushfires-2026"
       metaTitle="Victoria Bushfires 2026 — Insurance Claims & Recovery | Disaster Recovery Australia"
       metaDescription="Victorian Bushfires January 2026. 23 declared LGAs. IICRC-certified restoration contractors for smoke damage, suppression water damage, and insurance claims support."
+      alertNote="ICA Declared Catastrophe. PERILS has estimated insured losses — refer to perils.net for the current figure as estimates are updated post-event. DRA deadline: 21 July 2026."
+      showEmergencyWarning={false}
 
       // 23 LGAs declared per Premier VIC press release
       affectedLGAs={[
