@@ -51,7 +51,7 @@ export default function CycloneNarelleWA2026Page() {
       ]}
       remoteLGAs={['Ashburton', 'Upper Gascoyne', 'Yalgoo']}
       remoteLGANote="Contact us for a specialist referral — contractor availability in remote Gascoyne and Mid-West shires is being confirmed."
-      showEmergencyWarning
+      showEmergencyWarning={false}
       eshaDeadline="2026-04-27"
       governmentHotline="1800 032 965"
       financialAssistance={[
