@@ -4,25 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const { prisma } = await import('@/lib/prisma');
-    
-    // TODO: Fetch all published SEO pages when sEOLocationPage model is added
-    // const pages = await prisma.sEOLocationPage.findMany({
-    //   where: {
-    //     status: 'PUBLISHED'
-    //   },
-    //   select: {
-    //     slug: true,
-    //     title: true,
-    //     updatedAt: true,
-    //     priorityScore: true
-    //   },
-    //   orderBy: [
-    //     { priorityScore: 'desc' },
-    //     { updatedAt: 'desc' }
-    //   ]
-    // });
-    const pages: any[] = [];
+    const pages: { slug: string; updatedAt: Date; priorityScore: number }[] = [];
 
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au';
     
