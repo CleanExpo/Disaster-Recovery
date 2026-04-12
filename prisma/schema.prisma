@@ -408,6 +408,7 @@ model Contractor {
   // Proof of work and competency
   proofOfWork          ProofOfWork[]
   competencyTestResults CompetencyTestResult[]
+  inspectionReports    InspectionReport[]
 
   // ── Job Matching Fields ──────────────────────────────────────────────────
   // Base location for distance calculations
@@ -1633,6 +1634,7 @@ model InspectionReport {
   insuranceClaimId     String?
   inspectionDate       DateTime
   inspectorId          String
+  inspector            Contractor @relation(fields: [inspectorId], references: [id])
   jurisdiction         String
   applicableCodes      String[]
   iicrcStandards       String[]
