@@ -1,11 +1,25 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { rateLimit } from '@/lib/rate-limit';
 import crypto from 'crypto';
 
 const PAYMENT_AMOUNT_AUD = 2475;
 
 export async function POST(request: Request) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  const limit = await rateLimit(ip, 'contractor-onboarding-submit');
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { success: false, message: 'Too many requests. Please try again later.' },
+      { status: 429, headers: { 'Retry-After': String(limit.retryAfter ?? 60) } },
+    );
+  }
+
   try {
     const body = await request.json();
     const application = body?.application || {};
@@ -55,7 +69,7 @@ export async function POST(request: Request) {
             passwordHash: tempPasswordHash,
             mobileNumber: phone ?? '',
             status: 'PENDING',
-            onboardingStep: 0,
+            onboardingStep: 1,
             // Link to the application we just created
             applications: {
               connect: { id: record.id }
