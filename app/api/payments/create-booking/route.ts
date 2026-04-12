@@ -216,7 +216,6 @@ export async function PUT(request: NextRequest) {
       // 3. Send confirmation emails
       // 4. Create contractor payout record (to be released after KPIs met)
       
-      console.log(`Payment successful for booking ${bookingId}`);
       
       // You would typically update your database here
       // await updateBookingStatus(bookingId, 'paid');
@@ -236,7 +235,6 @@ export async function PUT(request: NextRequest) {
 
     case 'invoice.payment_succeeded':
       const invoice = event.data.object as Stripe.Invoice;
-      console.log(`Bank transfer received for booking ${invoice.metadata.bookingId}`);
       
       // Handle successful bank transfer
       // Similar actions to payment_intent.succeeded
@@ -244,7 +242,6 @@ export async function PUT(request: NextRequest) {
       break;
 
     default:
-      console.log(`Unhandled event type: ${event.type}`);
   }
 
   return NextResponse.json({ success: true, received: true });

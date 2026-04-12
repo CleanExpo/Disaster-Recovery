@@ -111,9 +111,6 @@ export async function POST(request: NextRequest) {
       console.error('Email sending error:', error);
     });
     
-    // Log submission for monitoring
-    console.log('Contact form submission:', { id: submissionId, leadScore, priority, assignment });
-
     // Return success response
     return NextResponse.json({
       success: true,
@@ -142,11 +139,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function OPTIONS(request: NextRequest) {
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type' } });
-}
