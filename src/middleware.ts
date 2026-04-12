@@ -30,8 +30,27 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
   };
 }
 
+// GAP-044 / DR-547: Crawl-critical paths that must always be publicly accessible.
+// These are excluded from the matcher below, but this guard handles edge-runtime
+// scenarios where the middleware fires unexpectedly (e.g. CDN cache miss fallback).
+const ALWAYS_PUBLIC = ['/robots.txt', '/sitemap.xml', '/sitemap-index.xml'];
+
+// Known search-engine crawler user-agent fragments (GAP-044).
+const CRAWLER_UA_RE = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot/i;
+
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+
+  // ── Crawl-critical paths — always pass through (GAP-044) ─────────────────
+  if (ALWAYS_PUBLIC.includes(path)) {
+    return NextResponse.next();
+  }
+
+  // ── Search-engine crawlers — pass through on any non-API path ─────────────
+  const ua = request.headers.get('user-agent') ?? '';
+  if (CRAWLER_UA_RE.test(ua) && !path.startsWith('/api/')) {
+    return NextResponse.next();
+  }
 
   // ── CORS preflight for API routes ────────────────────────────────────────
   if (path.startsWith('/api/') && request.method === 'OPTIONS') {
