@@ -1,13 +1,12 @@
-'use client';
-
 /**
  * AntigravityHomePage — Full homepage composition
- * Renders all Antigravity sections in the correct order.
+ * Server Component — no hooks, no browser APIs. Client children hydrate independently.
+ * BeforeAfterSlider is deferred (ssr:false) to remove its JS from the critical path.
  */
 
+import dynamic from 'next/dynamic';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityHero } from './AntigravityHero';
-import { AntigravityBeforeAfterSlider } from './AntigravityBeforeAfterSlider';
 import { AntigravityQuickAssessment } from './AntigravityQuickAssessment';
 import { AntigravityTrustBanner } from './AntigravityTrustBanner';
 import { AntigravityRecoveryProcess } from './AntigravityRecoveryProcess';
@@ -16,6 +15,12 @@ import { AntigravityBrandEquipment } from './AntigravityBrandEquipment';
 import { AntigravityCommercialSection } from './AntigravityCommercialSection';
 import { AntigravityContractorNetworkCTA } from './AntigravityContractorNetworkCTA';
 import { AntigravityFooter } from './AntigravityFooter';
+
+// Deferred — drag/touch JS removed from critical path. SSR still renders placeholder height.
+const AntigravityBeforeAfterSlider = dynamic(
+  () => import('./AntigravityBeforeAfterSlider').then((m) => m.AntigravityBeforeAfterSlider),
+  { ssr: false, loading: () => <div style={{ height: '500px', background: '#0f2942' }} /> }
+);
 
 const servicePillars = [
   {
