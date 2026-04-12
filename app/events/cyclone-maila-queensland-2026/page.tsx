@@ -1,12 +1,12 @@
 /**
- * Cyclone Maila — Queensland 2026 (Pre-landfall)
+ * Cyclone Maila — Queensland 2026
  *
- * TC Maila upgraded to Category 5 on 9 April 2026. Sustained winds 215 km/h.
- * Cape York Peninsula landfall forecast Sat–Sun 11–12 April 2026.
- * BOM Watch/Warning window open. No DRFA financial assistance declared yet — activate post-landfall declaration.
- * NOTE: Do NOT state NRPG can dispatch during active Cat 5 conditions (ACL compliance).
+ * DR-573 37-C ACL hotfix: removed hardcoded category, wind-speed superlatives,
+ * and tense-specific landfall date claims. Page is now evergreen — all weather-state
+ * references point to live BOM sources. Phase updated to recovery.
  *
- * ACL s18 compliant — no unverified statistics.
+ * ACL s18 / s29(1)(g)(m) compliant — no unverified statistics, no frozen category
+ * or intensity claims. $100M/contravention regime active 26 March 2026.
  * No phone numbers per site rules — use governmentApplicationUrl only.
  */
 
@@ -15,16 +15,16 @@ import DisasterEventPage from '@/components/events/DisasterEventPage'
 import type { FinancialAssistanceItem } from '@/components/events/DisasterEventPage'
 
 export const metadata: Metadata = {
-  title: 'Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia',
+  title: 'Tropical Cyclone Maila Queensland 2026 — Cyclone Damage Restoration & Claim Support | Disaster Recovery Australia',
   description:
-    'Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors coordinating availability for Cairns, Townsville, and Cape York. Response times subject to location and access conditions. Preparation guide and recovery support.',
+    'Tropical Cyclone Maila has impacted Far North Queensland and Cape York. IICRC-certified restoration contractors coordinating availability for Cairns, Townsville, and Cape York. Lodge your TC Maila insurance claim 24/7. Response times subject to location and access conditions.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
   },
   openGraph: {
-    title: 'TC Maila Category 5 — FNQ Preparation & Recovery | Disaster Recovery Australia',
+    title: 'TC Maila Queensland 2026 — Cyclone Damage Restoration & Claim Support | Disaster Recovery Australia',
     description:
-      'Tropical Cyclone Maila has upgraded to Category 5 (215 km/h sustained winds) and is tracking towards Far North Queensland — landfall forecast 11–12 April 2026. IICRC-certified contractors ready to respond. Preparation guide, government resources, and insurance claims support.',
+      'Tropical Cyclone Maila — cyclone damage restoration and insurance claim support across Far North Queensland and Cape York. IICRC-certified contractors. Lodge your claim 24/7.',
     url: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
     type: 'website',
   },
@@ -68,21 +68,21 @@ const financialAssistanceItems: FinancialAssistanceItem[] = [
 export default function CycloneMailaQLD2026Page() {
   return (
     <DisasterEventPage
-      showEmergencyWarning={true}
+      showEmergencyWarning={false}
       eventName="Maila"
       eventType="cyclone"
-      eventPhase="pre-landfall"
+      eventPhase="recovery"
       state="Queensland"
       stateAbbr="QLD"
       year={2026}
       // S500:2025 (water/storm surge) + S700:2025 (wind/structural damage)
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
-      alertNote="Category 5 — Sustained winds 215 km/h. Landfall forecast 11–12 April 2026."
+      alertNote="TC Maila has impacted FNQ and Cape York. Refer to bom.gov.au for current warnings. Lodge your claim 24/7."
       slug="events/cyclone-maila-queensland-2026"
-      metaTitle="Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia"
-      metaDescription="Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors coordinating availability for Cairns, Townsville, and Cape York. Response times subject to location and access conditions."
+      metaTitle="Tropical Cyclone Maila Queensland 2026 — Cyclone Damage Restoration & Claim Support | Disaster Recovery Australia"
+      metaDescription="Tropical Cyclone Maila has impacted Far North Queensland and Cape York. IICRC-certified restoration contractors coordinating availability for Cairns, Townsville, and Cape York. Lodge your TC Maila insurance claim 24/7."
 
-      // BOM Watch/Warning window open. Cat 5 upgrade confirmed 9 April 2026. Landfall forecast Sat–Sun 11–12 April.
+      // Maila FNQ / Cape York corridor — 37-C evergreen pivot.
       affectedLGAs={[
         'Cairns',
         'Townsville',
