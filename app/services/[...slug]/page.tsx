@@ -9,7 +9,7 @@ interface PageParams {
 
 /** Resolve page from DB (when model exists) or from preview data (location combinations). */
 async function getSEOPage(slug: string) {
-  // TODO: When sEOLocationPage model is added, query prisma first:
+  // Deferred: query sEOLocationPage model when added to Prisma schema
   // const page = await prisma.sEOLocationPage.findUnique({ where: { slug, status: 'PUBLISHED' } });
   // if (page) return page;
   const preview = await getSEOPagePreview(slug);

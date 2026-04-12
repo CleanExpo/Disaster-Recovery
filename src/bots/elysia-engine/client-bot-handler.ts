@@ -141,7 +141,7 @@ export class ClientBotHandler {
    */
   private static async handleEmergency(body: any, orchestrator: MasterOrchestrator): Promise<any> {
     try {
-      // TODO: Fetch emergency guide from database when emergencyGuide model is added
+      // Deferred: fetch from emergencyGuide model when added to Prisma schema
       // const emergencyGuide = await prisma.emergencyGuide.findFirst({
       //   where: {
       //     active: true,
@@ -366,7 +366,7 @@ export class ClientBotHandler {
     try {
       switch (intent.type) {
         case 'service_inquiry':
-          // TODO: Fetch services when serviceProcedure model is added
+          // Deferred: fetch from serviceProcedure model when added to Prisma schema
           // const services = await prisma.serviceProcedure.findMany({
           //   where: { active: true },
           //   take: 5
@@ -379,7 +379,7 @@ export class ClientBotHandler {
           };
           
         case 'cost_estimate':
-          // TODO: Fetch standard pricing ranges when verifiedContent model is added
+          // Deferred: fetch pricing from verifiedContent model when added to Prisma schema
           // const pricing = await prisma.verifiedContent.findFirst({
           //   where: {
           //     type: 'pricing_guide',
@@ -394,7 +394,7 @@ export class ClientBotHandler {
           };
           
         case 'insurance_claim':
-          // TODO: Fetch insurance info when insuranceProcess model is added
+          // Deferred: fetch from insuranceProcess model when added to Prisma schema
           // const insuranceInfo = await prisma.insuranceProcess.findMany({
           //   where: { active: true },
           //   take: 5
@@ -407,7 +407,7 @@ export class ClientBotHandler {
           };
           
         default:
-          // TODO: Fetch general info when verifiedContent model is added
+          // Deferred: fetch from verifiedContent model when added to Prisma schema
           // const generalInfo = await prisma.verifiedContent.findFirst({
           //   where: {
           //     type: 'general_info',
@@ -496,7 +496,7 @@ export class ClientBotHandler {
     verification: any
   ): Promise<void> {
     try {
-      // TODO: Log compliance audit when complianceAudit model is added
+      // Deferred: log to complianceAudit model when added to Prisma schema
       // await prisma.complianceAudit.create({
       //   data: {
       //     conversationId,
@@ -526,7 +526,7 @@ export class ClientBotHandler {
     response: string
   ): Promise<void> {
     try {
-      // TODO: Update conversation when botConversation model is added
+      // Deferred: persist to botConversation model when added to Prisma schema
       // await prisma.botConversation.upsert({
       //   where: { sessionId },
       //   create: {

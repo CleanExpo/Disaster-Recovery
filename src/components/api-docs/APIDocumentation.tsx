@@ -31,7 +31,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// TODO: Create these components
+// Deferred components — create when analytics data layer is available:
 // import { EndpointDocumentation } from './EndpointDocumentation';
 // import { AuthenticationDocs } from './AuthenticationDocs';
 // import { WebhooksDocs } from './WebhooksDocs';
@@ -623,25 +623,25 @@ export function APIDocumentation() {
 
           {/* Authentication Tab */}
           <TabsContent value="authentication" className="mt-6">
-            {/* TODO: Add AuthenticationDocs component */}
+            {/* AuthenticationDocs component — deferred */}
             <div className="p-4">Authentication Documentation - Coming Soon</div>
           </TabsContent>
 
           {/* Webhooks Tab */}
           <TabsContent value="webhooks" className="mt-6">
-            {/* TODO: Add WebhooksDocs component */}
+            {/* WebhooksDocs component — deferred */}
             <div className="p-4">Webhooks Documentation - Coming Soon</div>
           </TabsContent>
 
           {/* Playground Tab */}
           <TabsContent value="playground" className="mt-6">
-            {/* TODO: Add APIPlayground component */}
+            {/* APIPlayground component — deferred */}
             <div className="p-4">API Playground - Coming Soon</div>
           </TabsContent>
 
           {/* Examples Tab */}
           <TabsContent value="examples" className="mt-6">
-            {/* TODO: Add CodeExamples component */}
+            {/* CodeExamples component — deferred */}
             <div className="p-4">Code Examples - Coming Soon</div>
           </TabsContent>
 

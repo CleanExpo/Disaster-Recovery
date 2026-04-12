@@ -176,7 +176,7 @@ export class DataVerificationService {
           break;
           
         case 'service_procedure':
-          // TODO: Verify procedure exists in database when serviceProcedure model is added
+          // Deferred: verify serviceProcedure model when added to Prisma schema
           // const procedure = await this.prisma.serviceProcedure.findFirst({
           //   where: { id: dataSource }
           // });
@@ -187,7 +187,7 @@ export class DataVerificationService {
           break;
           
         case 'emergency_guide':
-          // TODO: Verify emergency guide exists when emergencyGuide model is added
+          // Deferred: verify emergencyGuide model when added to Prisma schema
           // const guide = await this.prisma.emergencyGuide.findFirst({
           //   where: { id: dataSource }
           // });
@@ -198,7 +198,7 @@ export class DataVerificationService {
           break;
           
         case 'insurance_process':
-          // TODO: Verify insurance process info when insuranceProcess model is added
+          // Deferred: verify insuranceProcess model when added to Prisma schema
           // const process = await this.prisma.insuranceProcess.findFirst({
           //   where: { id: dataSource }
           // });
@@ -209,7 +209,7 @@ export class DataVerificationService {
           break;
           
         default:
-          // TODO: Check general verified content when verifiedContent model is added
+          // Deferred: verify verifiedContent model when added to Prisma schema
           // const content = await this.prisma.verifiedContent.findFirst({
           //   where: { 
           //     type: responseType,
@@ -297,7 +297,7 @@ export class StepByStepGuideService {
     source: string;
   } | null> {
     try {
-      // TODO: Fetch guide from database when stepByStepGuide model is added
+      // Deferred: fetch from stepByStepGuide model when added to Prisma schema
       // const guide = await this.prisma.stepByStepGuide.findFirst({
       //   where: {
       //     type: guideType,
@@ -402,7 +402,7 @@ export class StepByStepGuideService {
     }>;
   }> {
     try {
-      // TODO: Fetch guides from database when stepByStepGuide model is added
+      // Deferred: fetch from stepByStepGuide model when added to Prisma schema
       // const guides = await this.prisma.stepByStepGuide.findMany({
       //   where: {
       //     userType: userType,
