@@ -61,10 +61,10 @@ export default function April13ConvergencePage() {
       <AgGuidePageTemplate
         category="Emergency Response"
         title="April 13 — TC Maila Landfall &amp; Alfred Insurance: Two Events, One Window"
-        subtitle="TC Maila is forecast to make landfall on the FNQ coast on 13 April 2026. On the same day, PERILS releases its AU$1.877 billion Alfred final loss estimate. Whether you&apos;re bracing for TC Maila or still navigating an Alfred claim — NRPG is ready."
+        subtitle="TC Maila made landfall on the FNQ coast on 11–12 April 2026, coinciding with PERILS&apos; AU$1.877 billion Alfred final loss estimate. Whether you have a new TC Maila claim or an unresolved Alfred claim — NRPG is responding now."
         gradient="linear-gradient(135deg, #1a0533 0%, #6B21A8 50%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-12"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Events', href: '/events' },
@@ -72,29 +72,26 @@ export default function April13ConvergencePage() {
         ]}
         sections={[
           {
-            heading: 'TC Maila — April 13 Landfall Window Active',
+            heading: 'TC Maila — Landfall Confirmed, Recovery Phase Active',
             body: (
               <>
+                <p style={{ backgroundColor: '#d4edda', border: '1px solid #28a745', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  TC Maila made landfall on the FNQ coast on 11–12 April 2026. Recovery phase is now active. Lodge your claim at disasterrecovery.com.au/claim.
+                </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h and is
-                  tracking directly toward the Far North Queensland coast. BOM has forecast landfall impacts across
-                  the Cairns to Cape York corridor, with April 13 representing the peak convergence date in the
-                  11–14 April 2026 window.
+                  Tropical Cyclone Maila made landfall across the Far North Queensland coast on 11–12 April 2026
+                  as a Category 5 system with sustained winds of 215 km/h. The event brought destructive wind,
+                  storm surge, and intense rainfall across the Cairns to Cape York corridor. Postcodes 4870
+                  (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands),
+                  and 4895 (Daintree) were within the primary impact zone.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Category 5 conditions include destructive winds exceeding 200 km/h, storm surge along the
-                  coastline, and intense rainfall causing flash flooding and riverine inundation. The FNQ coast
-                  from Cairns to Cape York is on high alert, with postcodes 4870 (Cairns), 4877 (Port Douglas),
-                  4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree) identified as
-                  primary impact zones.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  NRPG certified contractors are pre-positioned across all affected postcodes. Claims can be
+                  NRPG IICRC-certified contractors are now in the post-clearance response phase. Claims can be
                   lodged online 24/7 at disasterrecovery.com.au/claim. Contractor dispatch occurs within
-                  60 minutes of emergency services issuing the all-clear for affected areas.
+                  60 minutes of emergency services issuing the all-clear for your suburb.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>
+                  <strong>Do NOT enter a damaged property until emergency services confirm the all-clear for your specific suburb.</strong>
                 </p>
               </>
             ),
@@ -164,8 +161,8 @@ export default function April13ConvergencePage() {
         ]}
         faqs={[
           {
-            question: 'When is TC Maila expected to make landfall?',
-            answer: 'BOM is forecasting TC Maila landfall impacts for the FNQ coast in the 11–14 April 2026 window, with April 13 the peak convergence forecast date. NRPG contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree). Lodge your claim now at disasterrecovery.com.au/claim.',
+            question: 'Has TC Maila made landfall?',
+            answer: 'Yes — TC Maila made landfall on the Far North Queensland coast on 11–12 April 2026. The recovery phase is now active. NRPG contractors are responding post-clearance across postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree). Lodge your claim at disasterrecovery.com.au/claim.',
           },
           {
             question: 'I have an unresolved Alfred claim — can I still lodge it?',
