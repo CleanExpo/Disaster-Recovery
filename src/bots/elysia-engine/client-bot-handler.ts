@@ -141,15 +141,13 @@ export class ClientBotHandler {
    */
   private static async handleEmergency(body: any, orchestrator: MasterOrchestrator): Promise<any> {
     try {
-      // TODO: Fetch emergency guide from database when emergencyGuide model is added
-      // const emergencyGuide = await prisma.emergencyGuide.findFirst({
-      //   where: {
-      //     active: true,
-      //     emergencyType: this.determineEmergencyType(body.message)
-      //   },
-      //   orderBy: { priority: 'desc' }
-      // });
-      const emergencyGuide = null;
+      const emergencyGuide = await prisma.emergencyGuide.findFirst({
+        where: {
+          active: true,
+          emergencyType: this.determineEmergencyType(body.message),
+        },
+        orderBy: { priority: 'desc' },
+      });
       
       if (!emergencyGuide) {
         return {
@@ -365,61 +363,51 @@ export class ClientBotHandler {
   private static async fetchVerifiedData(intent: any): Promise<any> {
     try {
       switch (intent.type) {
-        case 'service_inquiry':
-          // TODO: Fetch services when serviceProcedure model is added
-          // const services = await prisma.serviceProcedure.findMany({
-          //   where: { active: true },
-          //   take: 5
-          // });
-          const services: any[] = [];
+        case 'service_inquiry': {
+          const services = await prisma.serviceProcedure.findMany({
+            where: { active: true },
+            take: 5,
+          });
           return {
             type: 'services',
             data: services,
-            sourceId: 'service_procedures'
+            sourceId: 'service_procedures',
           };
-          
-        case 'cost_estimate':
-          // TODO: Fetch standard pricing ranges when verifiedContent model is added
-          // const pricing = await prisma.verifiedContent.findFirst({
-          //   where: {
-          //     type: 'pricing_guide',
-          //     active: true
-          //   }
-          // });
-          const pricing = null;
+        }
+
+        case 'cost_estimate': {
+          const pricing = await prisma.verifiedContent.findFirst({
+            where: { type: 'pricing_guide', active: true },
+          });
           return {
             type: 'pricing',
             data: pricing,
-            sourceId: pricing?.id
+            sourceId: pricing?.id,
           };
-          
-        case 'insurance_claim':
-          // TODO: Fetch insurance info when insuranceProcess model is added
-          // const insuranceInfo = await prisma.insuranceProcess.findMany({
-          //   where: { active: true },
-          //   take: 5
-          // });
-          const insuranceInfo: any[] = [];
+        }
+
+        case 'insurance_claim': {
+          const insuranceInfo = await prisma.insuranceProcess.findMany({
+            where: { active: true },
+            take: 5,
+          });
           return {
             type: 'insurance',
             data: insuranceInfo,
-            sourceId: 'insurance_processes'
+            sourceId: 'insurance_processes',
           };
-          
-        default:
-          // TODO: Fetch general info when verifiedContent model is added
-          // const generalInfo = await prisma.verifiedContent.findFirst({
-          //   where: {
-          //     type: 'general_info',
-          //     active: true
-          //   }
-          // });
-          const generalInfo = null;
+        }
+
+        default: {
+          const generalInfo = await prisma.verifiedContent.findFirst({
+            where: { type: 'general_info', active: true },
+          });
           return {
             type: 'general',
             data: generalInfo,
-            sourceId: generalInfo?.id
+            sourceId: generalInfo?.id,
           };
+        }
       }
     } catch (error) {
       console.error('Error fetching verified data:', error);
@@ -496,22 +484,20 @@ export class ClientBotHandler {
     verification: any
   ): Promise<void> {
     try {
-      // TODO: Log compliance audit when complianceAudit model is added
-      // await prisma.complianceAudit.create({
-      //   data: {
-      //     conversationId,
-      //     requestType: 'client_message',
-      //     requestContent: request,
-      //     responseContent: response,
-      //     verified: verification.verified,
-      //     prohibited: false,
-      //     disclaimersAdded: verification.disclaimers || [],
-      //     dataSources: verification.sources || [],
-      //     channel: 'web',
-      //     userType: 'customer'
-      //   }
-      // });
-      console.log('Compliance audit:', { conversationId, verified: verification.verified });
+      await prisma.complianceAudit.create({
+        data: {
+          conversationId,
+          requestType: 'client_message',
+          requestContent: request,
+          responseContent: response,
+          verified: verification.verified,
+          prohibited: false,
+          disclaimersAdded: verification.disclaimers ?? [],
+          dataSources: verification.sources ?? [],
+          channel: 'web',
+          userType: 'customer',
+        },
+      });
     } catch (error) {
       console.error('Compliance audit logging error:', error);
     }
@@ -526,31 +512,34 @@ export class ClientBotHandler {
     response: string
   ): Promise<void> {
     try {
-      // TODO: Update conversation when botConversation model is added
-      // await prisma.botConversation.upsert({
-      //   where: { sessionId },
-      //   create: {
-      //     sessionId,
-      //     channel: body.channel,
-      //     userType: 'customer',
-      //     messages: [
-      //       { role: 'user', content: body.message, timestamp: new Date() },
-      //       { role: 'assistant', content: response, timestamp: new Date() }
-      //     ],
-      //     status: 'active',
-      //     lastMessageAt: new Date()
-      //   },
-      //   update: {
-      //     messages: {
-      //       push: [
-      //         { role: 'user', content: body.message, timestamp: new Date() },
-      //         { role: 'assistant', content: response, timestamp: new Date() }
-      //       ]
-      //     },
-      //     lastMessageAt: new Date()
-      //   }
-      // });
-      console.log('Conversation update:', { sessionId, channel: body.channel });
+      const newMessages = [
+        { role: 'user', content: body.message, timestamp: new Date().toISOString() },
+        { role: 'assistant', content: response, timestamp: new Date().toISOString() },
+      ];
+      const existing = await prisma.botConversation.findUnique({
+        where: { sessionId },
+        select: { messages: true },
+      });
+      if (existing) {
+        await prisma.botConversation.update({
+          where: { sessionId },
+          data: {
+            messages: [...(existing.messages as object[]), ...newMessages],
+            lastMessageAt: new Date(),
+          },
+        });
+      } else {
+        await prisma.botConversation.create({
+          data: {
+            sessionId,
+            channel: body.channel,
+            userType: 'customer',
+            messages: newMessages,
+            status: 'active',
+            lastMessageAt: new Date(),
+          },
+        });
+      }
     } catch (error) {
       console.error('Conversation update error:', error);
     }
