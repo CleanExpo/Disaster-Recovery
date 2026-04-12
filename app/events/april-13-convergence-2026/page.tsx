@@ -13,12 +13,12 @@ import { NAP } from '@/lib/constants';
  */
 
 export const metadata: Metadata = {
-  title: 'TC Maila Landfall & Alfred Insurance Claims | April 13 2026 FNQ',
-  description: 'TC Maila landfall forecast April 13 — FNQ coast. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute 24/7.',
-  keywords: 'TC Maila landfall April 13, Alfred insurance payout April 2026, FNQ cyclone April 2026, cyclone insurance claim Queensland April 2026',
+  title: 'TC Maila Landfall & Alfred Insurance Claims | FNQ April 2026',
+  description: 'TC Maila has made landfall across FNQ. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute — NRPG deployed 24/7.',
+  keywords: 'TC Maila landfall April 13, Alfred insurance payout April 2026, FNQ cyclone April 2026, cyclone insurance claim Queensland April 2026, TC Maila recovery',
   openGraph: {
-    title: 'TC Maila Landfall & Alfred Insurance Claims | April 13 2026 FNQ',
-    description: 'TC Maila landfall forecast April 13 — FNQ coast. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute 24/7.',
+    title: 'TC Maila Landfall & Alfred Insurance Claims | FNQ April 2026',
+    description: 'TC Maila has made landfall across FNQ. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute — NRPG deployed 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('April 13 — TC Maila & Alfred Insurance')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -59,12 +59,12 @@ export default function April13ConvergencePage() {
       <Script id="a13c-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="a13c-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <AgGuidePageTemplate
-        category="Emergency Response"
-        title="April 13 — TC Maila Landfall &amp; Alfred Insurance: Two Events, One Window"
-        subtitle="TC Maila is forecast to make landfall on the FNQ coast on 13 April 2026. On the same day, PERILS releases its AU$1.877 billion Alfred final loss estimate. Whether you&apos;re bracing for TC Maila or still navigating an Alfred claim — NRPG is ready."
+        category="Emergency Recovery"
+        title="April 13 — TC Maila &amp; Alfred Insurance: Two Events, One Window"
+        subtitle="TC Maila has made landfall across the FNQ coast. PERILS has confirmed Alfred&apos;s final insured loss at AU$1.877 billion. Whether you need TC Maila emergency response or are resolving a stalled Alfred claim — NRPG contractors are deployed and ready."
         gradient="linear-gradient(135deg, #1a0533 0%, #6B21A8 50%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-12"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Events', href: '/events' },
@@ -72,29 +72,31 @@ export default function April13ConvergencePage() {
         ]}
         sections={[
           {
-            heading: 'TC Maila — April 13 Landfall Window Active',
+            heading: 'TC Maila — Made Landfall 11–12 April 2026',
             body: (
               <>
+                <p style={{ backgroundColor: '#d4edda', border: '1px solid #28a745', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  TC Maila has made landfall. NRPG contractors are deployed across the FNQ impact corridor.
+                  For recovery resources and government assistance, visit the{' '}
+                  <a href="/events/tc-maila-recovery-2026" style={{ color: '#155724', textDecoration: 'underline' }}>
+                    TC Maila Recovery Hub
+                  </a>.
+                </p>
+                <p style={{ backgroundColor: '#fff3cd', border: '1px solid #e0a800', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  Do NOT enter a damaged property until emergency services confirm the all-clear for your area. If you are in immediate danger, call 000.
+                </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h and is
-                  tracking directly toward the Far North Queensland coast. BOM has forecast landfall impacts across
-                  the Cairns to Cape York corridor, with April 13 representing the peak convergence date in the
-                  11–14 April 2026 window.
+                  Tropical Cyclone Maila made landfall across the Far North Queensland coast on 11–12 April 2026.
+                  The Category 5 event brought destructive winds, storm surge, and intense rainfall across the
+                  Cairns to Cape York corridor. Properties in postcodes 4870 (Cairns), 4877 (Port Douglas),
+                  4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree) were in
+                  the primary impact zone.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Category 5 conditions include destructive winds exceeding 200 km/h, storm surge along the
-                  coastline, and intense rainfall causing flash flooding and riverine inundation. The FNQ coast
-                  from Cairns to Cape York is on high alert, with postcodes 4870 (Cairns), 4877 (Port Douglas),
-                  4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree) identified as
-                  primary impact zones.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  NRPG certified contractors are pre-positioned across all affected postcodes. Claims can be
-                  lodged online 24/7 at disasterrecovery.com.au/claim. Contractor dispatch occurs within
-                  60 minutes of emergency services issuing the all-clear for affected areas.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>
+                  NRPG IICRC-certified contractors are deployed and dispatching as clearances are confirmed for
+                  each area. Lodge your claim at{' '}
+                  <a href="/claim">disasterrecovery.com.au/claim</a> — 60-minute post-clearance response,
+                  subject to location, demand, and access conditions.
                 </p>
               </>
             ),
@@ -164,8 +166,8 @@ export default function April13ConvergencePage() {
         ]}
         faqs={[
           {
-            question: 'When is TC Maila expected to make landfall?',
-            answer: 'BOM is forecasting TC Maila landfall impacts for the FNQ coast in the 11–14 April 2026 window, with April 13 the peak convergence forecast date. NRPG contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree). Lodge your claim now at disasterrecovery.com.au/claim.',
+            question: 'Has TC Maila made landfall?',
+            answer: 'Yes. TC Maila made landfall across the Far North Queensland coast on 11–12 April 2026. NRPG IICRC-certified contractors are deployed and dispatching as area clearances are confirmed. Lodge your claim now at disasterrecovery.com.au/claim for 60-minute post-clearance response. For full recovery resources, visit disasterrecovery.com.au/events/tc-maila-recovery-2026.',
           },
           {
             question: 'I have an unresolved Alfred claim — can I still lodge it?',
@@ -181,9 +183,10 @@ export default function April13ConvergencePage() {
           },
         ]}
         relatedGuides={[
-          { title: 'TC Maila FNQ Emergency — Lodge Your Claim', href: '/events/tc-maila-fnq-2026', description: 'Real-time TC Maila response information and claim lodgement.' },
+          { title: 'TC Maila Recovery Hub — Post-Landfall Resources', href: '/events/tc-maila-recovery-2026', description: 'Contractor dispatch, ARPC claims, and government assistance post-TC Maila.' },
+          { title: 'TC Maila FNQ — Damage Restoration', href: '/events/tc-maila-fnq-2026', description: 'TC Maila impact corridor information and claim lodgement.' },
           { title: 'Ex-TC Alfred Recovery — Disputed Claims', href: '/events/ex-cyclone-alfred-recovery', description: 'If your Alfred claim is stalled or underpaid, NRPG can escalate.' },
-          { title: 'Cyclone Damage Restoration Cairns', href: '/cyclone-damage-restoration-cairns', description: 'FNQ cyclone restoration hub — pre-positioned contractors.' },
+          { title: 'Cyclone Damage Restoration Cairns', href: '/cyclone-damage-restoration-cairns', description: 'FNQ cyclone restoration hub — deployed contractors.' },
         ]}
         cta={{ text: 'Lodge Your Claim Now — TC Maila or Alfred', href: '/claim' }}
       />
