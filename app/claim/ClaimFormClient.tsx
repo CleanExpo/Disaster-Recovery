@@ -459,7 +459,9 @@ function OnlineClaimPageOriginal() {
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold mb-2">Submit Online Claim</h1>
+            <h1 className="text-3xl font-bold mb-1">Submit Online Claim</h1>
+            {/* GAP-073 — "Who First" positioning at intake entry point */}
+            <p className="text-base text-blue-700 font-medium">Working for you, not your insurer.</p>
           </div>
           <div className="bg-green-50 border border-green-200 rounded-lg p-3 md:max-w-sm w-full">
             <Label className="text-xs font-semibold text-green-900">Quick Fill Scenario</Label>

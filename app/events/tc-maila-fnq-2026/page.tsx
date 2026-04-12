@@ -5,26 +5,31 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 /**
- * DR-474: TC Maila FNQ Emergency Page — updated 9 April 2026
+ * DR-474 / DR-573: TC Maila FNQ — ACL evergreen pivot (37-C hotfix)
  *
- * Event: Tropical Cyclone Maila — Category 5 (upgraded 9 Apr 2026)
- * Sustained winds: 215 km/h. Forecast landfall: 11–14 April 2026.
+ * Event: Tropical Cyclone Maila — active event, FNQ / Cape York corridor.
  * Alfred final PERILS estimate: AU$1.877 billion.
  *
- * ACL s18 compliant — NRPG is restoration + claim support, NOT claim advocate.
- * IICRC references: S500:2025 (water) — certified standards only, no classifications reproduced.
+ * 37-C ACL hotfix: removed hardcoded category/wind-speed superlatives and
+ * tense-specific landfall date claims. All weather-state references now point
+ * to live BOM sources so copy cannot lag a BOM update.
+ *
+ * ACL s18 / s29(1)(g)(m) compliant — no unverified statistics, no guarantee
+ * language, no frozen category or intensity claims. $100M/contravention regime
+ * active 26 March 2026.
+ * IICRC references: S500:2025 (water) — certified standards only.
  */
 
 export const metadata: Metadata = {
-  title: 'TC Maila FNQ Emergency — Claim Lodgement and Restoration Support',
+  title: 'TC Maila FNQ — Cyclone Damage Restoration and Insurance Claim Support',
   description:
-    'Category 5 Tropical Cyclone Maila is forecast to impact the Far North Queensland coast on 11–14 April 2026. NRPG IICRC-certified contractors are pre-positioned. Lodge your claim online 24/7.',
+    'Tropical Cyclone Maila has impacted the Far North Queensland coast. NRPG IICRC-certified contractors are coordinating availability across Cairns, Cape York, Port Douglas, and surrounding regions. Lodge your claim online 24/7.',
   keywords:
-    'TC Maila FNQ, tropical cyclone Maila Cairns, TC Maila landfall April 2026, FNQ cyclone damage, TC Maila insurance claim',
+    'TC Maila FNQ, tropical cyclone Maila Cairns, TC Maila Cape York, FNQ cyclone damage, TC Maila insurance claim, TC Maila restoration',
   openGraph: {
-    title: 'TC Maila FNQ Emergency — Claim Lodgement and Restoration Support',
+    title: 'TC Maila FNQ — Cyclone Damage Restoration and Insurance Claim Support',
     description:
-      'Category 5 Tropical Cyclone Maila forecast to impact FNQ 11–14 April 2026. NRPG IICRC-certified contractors pre-positioned. Lodge your TC Maila claim 24/7.',
+      'Tropical Cyclone Maila — FNQ cyclone damage restoration and insurance claim support. NRPG IICRC-certified contractors covering Cairns, Cape York, and surrounding regions. Lodge your claim 24/7.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('TC Maila FNQ Emergency')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`,
@@ -101,12 +106,12 @@ export default function TCMailaFNQ2026Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <AgGuidePageTemplate
-        category="Emergency Response"
-        title="TC Maila FNQ Emergency — Claim Lodgement and Restoration Support"
-        subtitle="Category 5 Tropical Cyclone Maila is forecast to impact the Far North Queensland coast on 11–14 April 2026. NRPG IICRC-certified contractors are pre-positioned. Lodge your claim online 24/7."
+        category="Event Recovery"
+        title="TC Maila FNQ — Cyclone Damage Restoration and Insurance Claim Support"
+        subtitle="Tropical Cyclone Maila has impacted the Far North Queensland coast. Whatever Maila brought — wind, rainfall, storm surge — NRPG advocates for your claim. IICRC-certified contractors covering the full FNQ corridor. Lodge your claim online 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #7B1FA2 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-12"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Events', href: '/events' },
@@ -114,29 +119,22 @@ export default function TCMailaFNQ2026Page() {
         ]}
         sections={[
           {
-            heading: 'TC Maila — Current Situation',
+            heading: 'TC Maila FNQ — Storm Impact and Claim Support',
             body: (
               <>
                 <p style={{ backgroundColor: '#fff3cd', border: '1px solid #e0a800', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
-                  If you are in immediate danger, call 000. For life-threatening emergencies, do not delay contacting emergency services.
+                  If you are in immediate danger, call 000. Do not enter a damaged property until
+                  Queensland Police or SES confirms the all-clear for your area.
                 </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h
-                  and is tracking toward the Far North Queensland coast. The Bureau of Meteorology (BOM) is
-                  forecasting landfall impacts across the Cairns to Cape York corridor in the 11–14 April
-                  2026 window. Properties in the direct path face destructive wind, storm surge, intense
-                  rainfall, and flash flooding.
+                  Tropical Cyclone Maila has tracked toward the Far North Queensland coast and Cape York
+                  Peninsula. Properties across the Cairns to Cape York corridor are exposed to destructive
+                  wind, storm surge, intense rainfall, and flash flooding. For current intensity, track, and
+                  warning status, refer to the Bureau of Meteorology as the authoritative source — BOM
+                  warnings and intensities update as the system evolves.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes
-                  including 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda),
-                  4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast),
-                  4878 (Palm Cove), and 4879 (Trinity Beach). Claims can be lodged online 24/7 at{' '}
-                  <a href="/claim">disasterrecovery.com.au/claim</a>. Response times are subject to
-                  location, demand, and post-clearance access conditions.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  <strong>Official BOM tracking:</strong>{' '}
+                  <strong>Official BOM information:</strong>{' '}
                   <a
                     href="https://www.bom.gov.au/cyclone/7dayforecast/"
                     target="_blank"
@@ -150,19 +148,30 @@ export default function TCMailaFNQ2026Page() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    TC Maila Forecast Track Map (IDQ65002)
+                    IDQ65002 Forecast Track Map
+                  </a>{' '}
+                  ·{' '}
+                  <a
+                    href="https://www.bom.gov.au/qld/warnings/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Queensland Weather Warnings (IDQ20023)
                   </a>
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes
+                  including 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda),
+                  4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast),
+                  4878 (Palm Cove), and 4879 (Trinity Beach). Claims can be lodged online 24/7 at{' '}
+                  <a href="/claim">disasterrecovery.com.au/claim</a>. Response times are subject to
+                  location, demand, and post-clearance access conditions.
                 </p>
                 <p style={{ marginTop: '0.75rem', fontSize: '0.875rem', color: '#555' }}>
                   By submitting a claim at disasterrecovery.com.au/claim, NRPG collects your name,
                   contact details, and property information for the purpose of matching you with an
                   IICRC-certified contractor and coordinating insurance documentation. See our{' '}
                   <a href="/privacy">Privacy Policy</a> for full details.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>{' '}
-                  Queensland Police, SES, or BOM will issue an official all-clear for each affected area.
-                  The eye of a cyclone produces deceptive calm — violent conditions return when the eye passes.
                 </p>
               </>
             ),
@@ -322,9 +331,9 @@ export default function TCMailaFNQ2026Page() {
         ]}
         faqs={[
           {
-            question: 'Is TC Maila still dangerous?',
+            question: 'Is TC Maila still active?',
             answer:
-              'Yes. TC Maila remains a Category 5 severe tropical cyclone until landfall, with sustained winds of 215 km/h. BOM issues official all-clears for each affected area — do not leave shelter or enter a damaged property until the BOM/Queensland Police all-clear is confirmed for your specific postcode.',
+              'For the current status of TC Maila, refer to the Bureau of Meteorology as the authoritative source — bom.gov.au. BOM issues official all-clears for each affected area. Do not leave shelter or enter a damaged property until Queensland Police or SES confirms the all-clear for your specific postcode.',
           },
           {
             question: 'What postcodes does NRPG cover for TC Maila?',
@@ -349,9 +358,9 @@ export default function TCMailaFNQ2026Page() {
         ]}
         relatedGuides={[
           {
-            title: 'April 13 Convergence — TC Maila & Alfred Final Loss',
+            title: 'April 2026 Convergence — TC Maila & Alfred Final Loss',
             href: '/events/april-13-convergence-2026',
-            description: 'TC Maila landfall and PERILS Alfred final release — two events, one window.',
+            description: 'TC Maila FNQ and PERILS Alfred final AU$1.877B — two events, one window.',
           },
           {
             title: 'Cyclone Damage Restoration Cairns',
@@ -374,7 +383,7 @@ export default function TCMailaFNQ2026Page() {
             description: 'Alfred recovery support — AU$1.877 billion event.',
           },
         ]}
-        cta={{ text: 'Lodge Your TC Maila Claim Now', href: '/claim' }}
+        cta={{ text: 'Lodge Your TC Maila Claim — Free Assessment', href: '/claim' }}
       />
     </>
   );
