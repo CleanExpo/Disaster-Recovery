@@ -134,22 +134,29 @@ export default function CycloneDamageRestorationCairnsPage() {
             ),
           },
           {
-            heading: 'TC Maila Category 5 — FNQ Response Active',
+            heading: 'TC Maila — Cairns Recovery Phase Active',
             body: (
               <>
+                <p style={{ backgroundColor: '#d4edda', border: '1px solid #28a745', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  TC Maila made landfall across FNQ on 11–12 April 2026. Recovery operations are underway.{' '}
+                  <a href="/events/tc-maila-recovery-2026" style={{ color: '#155724', textDecoration: 'underline' }}>
+                    TC Maila Recovery Hub
+                  </a>
+                  {' '}for full post-landfall resources.
+                </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 (sustained winds 215 km/h) and is tracking
-                  toward the Far North Queensland coast. BOM is forecasting landfall impacts for the Cairns to Cape
-                  York corridor in the 11–12 April 2026 window.
+                  Tropical Cyclone Maila made landfall across the Far North Queensland coast on 11–12 April 2026 as a
+                  Category 5 system with sustained winds of 215 km/h. Cairns (4870) was within the direct TC Maila
+                  landfall corridor. NRPG IICRC-certified contractors are deployed across Cairns and all FNQ postcodes
+                  for 60-minute post-clearance response.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  NRPG certified contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas),
+                  NRPG contractors are deployed across postcodes 4870 (Cairns), 4877 (Port Douglas),
                   4895 (Daintree), 4874 (Mossman), 4875 (Wonga Beach), 4873 (Kuranda), and 4880 (Atherton Tablelands).
-                  Claims can be lodged online 24/7. Contractor dispatch occurs within 60 minutes of emergency services
-                  issuing the all-clear for affected areas.
+                  Lodge your TC Maila claim online 24/7. Contractor dispatch within 60 minutes of area clearance.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  <strong>Do NOT enter a damaged property until emergency services confirm it is safe.</strong>
+                  <strong>Do NOT enter a damaged property until Queensland Police or SES confirms your area is safe.</strong>
                 </p>
               </>
             ),

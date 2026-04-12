@@ -55,8 +55,8 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Is Innisfail in the TC Maila impact zone?',
-      acceptedAnswer: { '@type': 'Answer', text: "Yes \u2014 the Innisfail and Cassowary Coast corridor is within TC Maila\u2019s projected impact track. BOM is forecasting tropical cyclone conditions for postcode 4860 in the 11\u201314 April window. NRPG contractors are pre-positioned in the Innisfail region for immediate post-clearance response. Lodge your claim now at disasterrecovery.com.au/claim." },
+      name: 'Was Innisfail affected by TC Maila?',
+      acceptedAnswer: { '@type': 'Answer', text: "Yes \u2014 TC Maila made landfall across the FNQ coast on 11\u201312 April 2026. The Innisfail and Cassowary Coast corridor (postcode 4860) was within the TC Maila impact zone. NRPG contractors are deployed in the Innisfail region for post-clearance response. Lodge your claim now at disasterrecovery.com.au/claim." },
     },
     {
       '@type': 'Question',
@@ -176,8 +176,8 @@ export default function CycloneDamageRestorationInnisfailPage() {
         ]}
         faqs={[
           {
-            question: 'Is Innisfail in the TC Maila impact zone?',
-            answer: 'Yes — the Innisfail and Cassowary Coast corridor is within TC Maila\'s projected impact track. BOM is forecasting tropical cyclone conditions for postcode 4860 in the 11–14 April window. NRPG contractors are pre-positioned in the Innisfail region for immediate post-clearance response. Lodge your claim now at disasterrecovery.com.au/claim.',
+            question: 'Was Innisfail affected by TC Maila?',
+            answer: 'Yes — TC Maila made landfall across the FNQ coast on 11–12 April 2026. Innisfail and the Cassowary Coast (postcode 4860) were within the TC Maila impact zone. NRPG contractors are deployed for post-clearance response. Lodge your claim at disasterrecovery.com.au/claim.',
           },
           {
             question: 'What is the wettest place in Australia and why does it matter for cyclone damage?',
