@@ -31,12 +31,6 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// TODO: Create these components
-// import { EndpointDocumentation } from './EndpointDocumentation';
-// import { AuthenticationDocs } from './AuthenticationDocs';
-// import { WebhooksDocs } from './WebhooksDocs';
-// import { APIPlayground } from './APIPlayground';
-// import { CodeExamples } from './CodeExamples';
 
 import type { APICategory, APIEndpoint } from '@/types/api-docs';
 import { API_BASE_URLS, API_VERSIONS } from '@/types/api-docs';
@@ -623,25 +617,21 @@ export function APIDocumentation() {
 
           {/* Authentication Tab */}
           <TabsContent value="authentication" className="mt-6">
-            {/* TODO: Add AuthenticationDocs component */}
             <div className="p-4">Authentication Documentation - Coming Soon</div>
           </TabsContent>
 
           {/* Webhooks Tab */}
           <TabsContent value="webhooks" className="mt-6">
-            {/* TODO: Add WebhooksDocs component */}
             <div className="p-4">Webhooks Documentation - Coming Soon</div>
           </TabsContent>
 
           {/* Playground Tab */}
           <TabsContent value="playground" className="mt-6">
-            {/* TODO: Add APIPlayground component */}
             <div className="p-4">API Playground - Coming Soon</div>
           </TabsContent>
 
           {/* Examples Tab */}
           <TabsContent value="examples" className="mt-6">
-            {/* TODO: Add CodeExamples component */}
             <div className="p-4">Code Examples - Coming Soon</div>
           </TabsContent>
 

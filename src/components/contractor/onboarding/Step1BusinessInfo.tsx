@@ -54,8 +54,6 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
     // Use local validation
     const isValid = validateABN(abn);
     
-    // TODO: Also validate against ABR API
-    // const response = await fetch(`/api/validate-abn?abn=${abn}`);
     
     setAbnValidation({
       isValidating: false,
