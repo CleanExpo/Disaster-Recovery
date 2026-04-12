@@ -94,9 +94,6 @@ export async function POST(request: NextRequest) {
     const accessToken = await generateAccessToken(userPayload);
     const refreshToken = await generateRefreshToken(user.id);
     
-    // Log successful login
-    console.log(`Login successful for user: ${user.email}`);
-    
     // Return success response with tokens
     return NextResponse.json({
       success: true,
@@ -130,11 +127,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function OPTIONS(request: NextRequest) {
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorisation' } });
-}
