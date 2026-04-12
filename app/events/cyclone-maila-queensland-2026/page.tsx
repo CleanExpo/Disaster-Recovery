@@ -1,12 +1,9 @@
 /**
- * Cyclone Maila — Queensland 2026 (Pre-landfall)
+ * Cyclone Maila — Queensland 2026 (Evergreen pivot — DR-534)
  *
- * TC Maila upgraded to Category 5 on 9 April 2026. Sustained winds 215 km/h.
- * Cape York Peninsula landfall forecast Sat–Sun 11–12 April 2026.
- * BOM Watch/Warning window open. No DRFA financial assistance declared yet — activate post-landfall declaration.
- * NOTE: Do NOT state NRPG can dispatch during active Cat 5 conditions (ACL compliance).
- *
- * ACL s18 compliant — no unverified statistics.
+ * Removed frozen Cat 5 / 215 km/h / landfall date language.
+ * All BOM data cited via live source links only (IDQ65002 etc).
+ * ACL s29(1)(g)/(m) compliant — no superlatives not verbatim-sourced.
  * No phone numbers per site rules — use governmentApplicationUrl only.
  */
 
@@ -15,16 +12,16 @@ import DisasterEventPage from '@/components/events/DisasterEventPage'
 import type { FinancialAssistanceItem } from '@/components/events/DisasterEventPage'
 
 export const metadata: Metadata = {
-  title: 'Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia',
+  title: 'Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery Australia',
   description:
-    'Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors coordinating availability for Cairns, Townsville, and Cape York. Response times subject to location and access conditions. Preparation guide and recovery support.',
+    'Tropical Cyclone Maila — whatever it brings, flood, rainfall, or storm surge, NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live track and conditions.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
   },
   openGraph: {
-    title: 'TC Maila Category 5 — FNQ Preparation & Recovery | Disaster Recovery Australia',
+    title: 'TC Maila FNQ — Preparation & Recovery | Disaster Recovery Australia',
     description:
-      'Tropical Cyclone Maila has upgraded to Category 5 (215 km/h sustained winds) and is tracking towards Far North Queensland — landfall forecast 11–12 April 2026. IICRC-certified contractors ready to respond. Preparation guide, government resources, and insurance claims support.',
+      'Tropical Cyclone Maila — whatever it brings. NRPG IICRC-certified contractors ready across FNQ. Follow BOM for live conditions. Lodge your claim 24/7.',
     url: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
     type: 'website',
   },
@@ -77,12 +74,12 @@ export default function CycloneMailaQLD2026Page() {
       year={2026}
       // S500:2025 (water/storm surge) + S700:2025 (wind/structural damage)
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
-      alertNote="Category 5 — Sustained winds 215 km/h. Landfall forecast 11–12 April 2026."
+      alertNote="Follow BOM for live TC Maila track and warnings — bom.gov.au/cyclone or IDQ65002."
       slug="events/cyclone-maila-queensland-2026"
-      metaTitle="Tropical Cyclone Maila Queensland 2026 — Category 5 Preparation & Recovery | Disaster Recovery Australia"
-      metaDescription="Tropical Cyclone Maila has upgraded to Category 5 (sustained winds 215 km/h) and is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. IICRC-certified restoration contractors coordinating availability for Cairns, Townsville, and Cape York. Response times subject to location and access conditions."
+      metaTitle="Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery Australia"
+      metaDescription="Tropical Cyclone Maila — whatever it brings, flood, rainfall, or storm surge, NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live track and conditions."
 
-      // BOM Watch/Warning window open. Cat 5 upgrade confirmed 9 April 2026. Landfall forecast Sat–Sun 11–12 April.
+      // DR-534 evergreen pivot — frozen category/speed/landfall data removed.
       affectedLGAs={[
         'Cairns',
         'Townsville',
