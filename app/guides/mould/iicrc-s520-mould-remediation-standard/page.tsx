@@ -55,7 +55,7 @@ export default function MouldRemediationWhatToExpectPage() {
         name: 'What is ANSI/IICRC S520:2025?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'ANSI/IICRC S520:2025 is the current Standard for Professional Mould Remediation, published by the IICRC. It is the professional benchmark certification standard for mould remediation contractors in Australia. For the full standard, visit iicrc.org.',
+          text: 'ANSI/IICRC S520:2025 is the current Standard for Professional Mould Remediation, published by the Institute of Inspection, Cleaning and Restoration Certification (IICRC). It is the professional benchmark certification standard for mould remediation contractors in Australia and internationally. The 2026 US National Defense Authorization Act (NDAA) mandates ANSI/IICRC S520 for military housing mould remediation — a US federal legislative endorsement of the standard. For the full standard, visit iicrc.org.',
         },
       },
       {
@@ -121,6 +121,9 @@ export default function MouldRemediationWhatToExpectPage() {
             <>
               <p>
                 Professional mould remediation in Australia is performed to <strong>ANSI/IICRC S520:2025</strong> — the current edition of the Standard for Professional Mould Remediation, published by the Institute of Inspection, Cleaning and Restoration Certification (IICRC). This is the professional benchmark referenced by insurers, loss adjusters, and the Australian Financial Complaints Authority (AFCA) when assessing whether mould remediation was completed appropriately.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                The standard's authority extends beyond the Australian industry. The 2026 US National Defense Authorization Act (NDAA) mandates ANSI/IICRC S520 as the governing standard for mould remediation in US military housing — a federal legislative endorsement that underscores why insurers, loss adjusters, and AFCA treat S520 certification as the non-negotiable benchmark for professional mould work.
               </p>
               <p style={{ marginTop: '1rem' }}>
                 All contractors in the NRPG network hold current IICRC Applied Microbial Remediation Technician (AMRT) certification. For the full ANSI/IICRC S520:2025 standard, visit{' '}
