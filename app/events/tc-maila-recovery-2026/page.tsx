@@ -248,6 +248,88 @@ export default function TCMailaRecovery2026Page() {
             ),
           },
           {
+            heading: 'Government Assistance — TC Maila',
+            body: (
+              <>
+                <p>
+                  The following government assistance programs may be available to eligible FNQ residents and
+                  property owners affected by TC Maila. Activation status and eligibility criteria apply —
+                  verify current availability at official sources before applying.
+                </p>
+                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>Australian Government Disaster Recovery Payment (AGDRP)</strong> — a lump-sum
+                    payment for eligible individuals in declared disaster areas. Check activation and
+                    eligibility at{' '}
+                    <a
+                      href="https://www.servicesaustralia.gov.au/australian-government-disaster-recovery-payment"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      servicesaustralia.gov.au
+                    </a>
+                    .
+                  </li>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>Disaster Recovery Allowance (DRA)</strong> — short-term income support for
+                    employees, small business owners, or farmers whose income was affected by TC Maila.
+                    Up to 13 weeks assistance, means-tested. Check at{' '}
+                    <a
+                      href="https://www.servicesaustralia.gov.au/disaster-recovery-allowance"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      servicesaustralia.gov.au
+                    </a>
+                    .
+                  </li>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>QLD Personal Hardship Assistance</strong> — emergency hardship payments
+                    and household grants activated by the Queensland Government following disaster
+                    declaration.{' '}
+                    <a
+                      href="https://www.qld.gov.au/community/disasters-emergencies/financial-assistance"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Check eligibility at qld.gov.au
+                    </a>
+                    .
+                  </li>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>Disaster Recovery Funding Arrangements (DRFA)</strong> — Queensland Government
+                    and Australian Government joint funding for restoration of essential public assets and
+                    eligible private infrastructure. DRFA activation is declared per LGA.{' '}
+                    <a
+                      href="https://www.disasterassist.gov.au/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      disasterassist.gov.au
+                    </a>
+                  </li>
+                  <li style={{ marginBottom: '0.75rem' }}>
+                    <strong>Queensland SES</strong> — emergency tarping, tree removal, and immediate
+                    make-safe post-clearance.{' '}
+                    <a
+                      href="https://www.ses.qld.gov.au/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ses.qld.gov.au
+                    </a>
+                  </li>
+                </ul>
+                <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#555' }}>
+                  Government assistance programs are activated by declaration and are subject to eligibility
+                  criteria and deadlines. Verify current activation status for your LGA at official sources.
+                  NRPG does not manage government grant applications — these are separate from your insurance
+                  claim.
+                </p>
+              </>
+            ),
+          },
+          {
             heading: 'FNQ Areas — TC Maila Impact Corridor',
             body: (
               <>
