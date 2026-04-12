@@ -175,51 +175,48 @@ export class DataVerificationService {
           }
           break;
           
-        case 'service_procedure':
-          // TODO: Verify procedure exists in database when serviceProcedure model is added
-          // const procedure = await this.prisma.serviceProcedure.findFirst({
-          //   where: { id: dataSource }
-          // });
-          // if (procedure) {
-          //   sources.push(`Approved Procedures: ${procedure.title}`);
-          //   return { verified: true, sources };
-          // }
+        case 'service_procedure': {
+          const procedure = await this.prisma.serviceProcedure.findFirst({
+            where: { id: dataSource },
+          });
+          if (procedure) {
+            sources.push(`Approved Procedures: ${procedure.title}`);
+            return { verified: true, sources };
+          }
           break;
-          
-        case 'emergency_guide':
-          // TODO: Verify emergency guide exists when emergencyGuide model is added
-          // const guide = await this.prisma.emergencyGuide.findFirst({
-          //   where: { id: dataSource }
-          // });
-          // if (guide) {
-          //   sources.push(`Emergency Guidelines: ${guide.title}`);
-          //   return { verified: true, sources };
-          // }
+        }
+
+        case 'emergency_guide': {
+          const guide = await this.prisma.emergencyGuide.findFirst({
+            where: { id: dataSource },
+          });
+          if (guide) {
+            sources.push(`Emergency Guidelines: ${guide.title}`);
+            return { verified: true, sources };
+          }
           break;
-          
-        case 'insurance_process':
-          // TODO: Verify insurance process info when insuranceProcess model is added
-          // const process = await this.prisma.insuranceProcess.findFirst({
-          //   where: { id: dataSource }
-          // });
-          // if (process) {
-          //   sources.push(`Insurance Procedures: ${process.insurerName}`);
-          //   return { verified: true, sources };
-          // }
+        }
+
+        case 'insurance_process': {
+          const insuranceProcess = await this.prisma.insuranceProcess.findFirst({
+            where: { id: dataSource },
+          });
+          if (insuranceProcess) {
+            sources.push(`Insurance Procedures: ${insuranceProcess.insurerName}`);
+            return { verified: true, sources };
+          }
           break;
-          
-        default:
-          // TODO: Check general verified content when verifiedContent model is added
-          // const content = await this.prisma.verifiedContent.findFirst({
-          //   where: { 
-          //     type: responseType,
-          //     active: true
-          //   }
-          // });
-          // if (content) {
-          //   sources.push(`Verified Content: ${content.title}`);
-          //   return { verified: true, sources };
-          // }
+        }
+
+        default: {
+          const content = await this.prisma.verifiedContent.findFirst({
+            where: { type: responseType, active: true },
+          });
+          if (content) {
+            sources.push(`Verified Content: ${content.title}`);
+            return { verified: true, sources };
+          }
+        }
       }
       
       return { verified: false, sources: [] };
@@ -297,20 +294,10 @@ export class StepByStepGuideService {
     source: string;
   } | null> {
     try {
-      // TODO: Fetch guide from database when stepByStepGuide model is added
-      // const guide = await this.prisma.stepByStepGuide.findFirst({
-      //   where: {
-      //     type: guideType,
-      //     userType: userType,
-      //     active: true
-      //   },
-      //   include: {
-      //     steps: {
-      //       orderBy: { stepNumber: 'asc' }
-      //     }
-      //   }
-      // });
-      const guide = null;
+      const guide = await this.prisma.stepByStepGuide.findFirst({
+        where: { type: guideType, userType, active: true },
+        include: { steps: { orderBy: { stepNumber: 'asc' } } },
+      });
       
       if (!guide) {
         return null;
@@ -402,22 +389,11 @@ export class StepByStepGuideService {
     }>;
   }> {
     try {
-      // TODO: Fetch guides from database when stepByStepGuide model is added
-      // const guides = await this.prisma.stepByStepGuide.findMany({
-      //   where: {
-      //     userType: userType,
-      //     active: true
-      //   },
-      //   select: {
-      //     id: true,
-      //     type: true,
-      //     title: true,
-      //     description: true,
-      //     estimatedReadTime: true
-      //   },
-      //   orderBy: { priority: 'asc' }
-      // });
-      const guides: any[] = [];
+      const guides = await this.prisma.stepByStepGuide.findMany({
+        where: { userType, active: true },
+        select: { id: true, type: true, title: true, description: true, estimatedReadTime: true },
+        orderBy: { priority: 'asc' },
+      });
       
       return {
         guides: guides.map(guide => ({
