@@ -3,6 +3,58 @@ import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { isAdminRole } from '@/lib/admin-constants';
 
+// ── In-memory rate limiting (sliding window, per Edge instance) ───────────────
+// Provides meaningful flood protection on public POST endpoints.
+// Per-instance (not globally distributed) — acceptable for single-source abuse
+// prevention. Upgrade to @upstash/ratelimit when Redis is provisioned.
+
+const _rlStore = new Map<string, number[]>();
+
+interface RateLimitRule {
+  windowMs: number;
+  maxRequests: number;
+}
+
+const RATE_LIMIT_RULES: Readonly<Record<string, RateLimitRule>> = {
+  '/api/claims/submit':   { windowMs: 60_000, maxRequests: 5 },
+  '/api/contact/submit':  { windowMs: 60_000, maxRequests: 10 },
+  '/api/bookings/create': { windowMs: 60_000, maxRequests: 10 },
+};
+
+function checkRateLimit(
+  path: string,
+  ip: string,
+  method: string,
+): { limited: boolean; retryAfter?: number } {
+  if (method !== 'POST') return { limited: false };
+
+  const rule = RATE_LIMIT_RULES[path];
+  if (!rule) return { limited: false };
+
+  const now = Date.now();
+  const windowStart = now - rule.windowMs;
+  const key = `${path}:${ip}`;
+
+  const timestamps = (_rlStore.get(key) ?? []).filter((t) => t > windowStart);
+
+  if (timestamps.length >= rule.maxRequests) {
+    const retryAfter = Math.ceil((timestamps[0] + rule.windowMs - now) / 1000);
+    return { limited: true, retryAfter };
+  }
+
+  timestamps.push(now);
+  _rlStore.set(key, timestamps);
+
+  // Evict fully-expired keys periodically to prevent unbounded Map growth
+  if (_rlStore.size > 0 && _rlStore.size % 200 === 0) {
+    for (const [k, ts] of _rlStore) {
+      if (ts[ts.length - 1] <= windowStart) _rlStore.delete(k);
+    }
+  }
+
+  return { limited: false };
+}
+
 const ALLOWED_ORIGINS = [
   'https://disasterrecovery.com.au',
   'https://www.disasterrecovery.com.au',
@@ -40,6 +92,30 @@ export async function middleware(request: NextRequest) {
       status: 204,
       headers: getCorsHeaders(origin),
     });
+  }
+
+  // ── Rate limiting on public POST endpoints ────────────────────────────────
+  const clientIp =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  const rl = checkRateLimit(path, clientIp, request.method);
+  if (rl.limited) {
+    return new NextResponse(
+      JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+      {
+        status: 429,
+        headers: {
+          'Content-Type': 'application/json',
+          'Retry-After': String(rl.retryAfter ?? 60),
+          'X-RateLimit-Limit': String(
+            RATE_LIMIT_RULES[path]?.maxRequests ?? 10,
+          ),
+          'X-RateLimit-Remaining': '0',
+        },
+      },
+    );
   }
 
   // ── RBAC: protect /admin routes ──────────────────────────────────────────
