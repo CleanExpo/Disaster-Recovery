@@ -67,6 +67,14 @@ const faqSchema = {
         text: 'Yes. AFCA is a voluntary external dispute resolution scheme \u2014 it does not prevent you from pursuing legal action. However, courts are typically slower, more expensive, and require legal representation. For most property insurance disputes within AFCA\u2019s monetary limits, AFCA is the more practical avenue.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Can AFCA publicly name my insurer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. AFCA has a formal power to publicly name financial firms that fail to comply with AFCA determinations, repeatedly breach AFCA\u2019s rules, or demonstrate systemic poor conduct. AFCA also publishes annual data identifying which insurers receive the most complaints and their resolution rates. Non-compliance with an AFCA determination can be referred to ASIC for enforcement action.',
+      },
+    },
   ],
 };
 
@@ -389,6 +397,67 @@ export default function AFCAComplaintGuidePage() {
           ),
         },
         {
+          heading: 'AFCA\'s Public Naming Power — When Insurers Are Named',
+          body: (
+            <>
+              <p>
+                AFCA holds a formal power to publicly name financial firms — including general
+                insurers — that fail to meet their obligations under AFCA&apos;s rules. This
+                public naming power was confirmed and extended in AFCA&apos;s updated
+                Operational Guidelines, and is separate from AFCA&apos;s normal process of
+                publishing de-identified determinations.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>When AFCA can publicly name an insurer:</strong>
+              </p>
+              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem' }}>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Failure to comply with a determination:</strong> If an insurer does
+                  not comply with an AFCA determination that a complainant has accepted, AFCA
+                  can name the firm publicly and refer the matter to ASIC for enforcement action.
+                  Insurers are well aware that non-compliance carries this consequence.
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Systemic non-compliance with AFCA&apos;s rules:</strong> Where an
+                  insurer repeatedly breaches AFCA&apos;s rules — for example, by failing to
+                  respond within required timeframes, obstructing the complaints process, or
+                  refusing to participate in conciliation — AFCA can name them in its published
+                  communications and annual review data.
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>High complaint volumes and poor resolution rates:</strong> AFCA
+                  publishes annual data identifying which financial firms receive the most
+                  complaints and their resolution rates. Insurers with high complaint volumes
+                  and poor outcomes for consumers appear prominently in this public data — which
+                  is accessible to all policyholders before they choose a product.
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Serious misconduct referrals to ASIC:</strong> Where AFCA identifies
+                  conduct that warrants regulatory attention beyond the resolution of individual
+                  complaints, it can refer the matter to ASIC and — in appropriate cases — make
+                  that referral public.
+                </li>
+              </ul>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>What this means for your complaint:</strong> The public naming power
+                creates a strong incentive for insurers to engage constructively in the AFCA
+                process and to comply with determinations promptly. An insurer that knows a
+                pattern of poor outcomes will appear in AFCA&apos;s published data has a
+                reputational reason to resolve complaints fairly, not just a legal one.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                You can check an insurer&apos;s complaint history before lodging or as context
+                for your complaint by reviewing AFCA&apos;s published annual review data at{' '}
+                <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer">
+                  afca.org.au
+                </a>
+                . High complaint volumes for specific claim types or particular insurers can
+                provide useful context for your own IDR and AFCA complaint.
+              </p>
+            </>
+          ),
+        },
+        {
           heading: 'How an Independent Restoration Assessment Supports Your AFCA Complaint',
           body: (
             <>
@@ -451,6 +520,11 @@ export default function AFCAComplaintGuidePage() {
           question: 'Can I go to court instead of using AFCA?',
           answer:
             'Yes. AFCA is a voluntary external dispute resolution scheme — it does not prevent you from pursuing legal action. However, courts are typically slower, more expensive, and require legal representation. For most property insurance disputes within AFCA\'s monetary limits, AFCA is the more practical avenue.',
+        },
+        {
+          question: 'Can AFCA publicly name my insurer?',
+          answer:
+            'Yes. AFCA has a formal power to publicly name financial firms that fail to comply with AFCA determinations, repeatedly breach AFCA\'s rules, or demonstrate systemic poor conduct. AFCA also publishes annual data identifying which insurers receive the most complaints and their resolution rates. Non-compliance with a determination can be referred to ASIC for enforcement action.',
         },
       ]}
       relatedGuides={[

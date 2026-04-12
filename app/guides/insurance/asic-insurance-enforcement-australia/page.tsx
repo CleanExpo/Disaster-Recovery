@@ -60,6 +60,14 @@ export default function AsicInsuranceEnforcementAustraliaPage() {
           text: 'First, document everything \u2014 keep copies of all correspondence, maintain a timeline of events, and obtain a professional, independent assessment of the damage if possible. Then escalate formally through the insurer\u2019s Internal Dispute Resolution process in writing. If unresolved, lodge with AFCA. For patterns of conduct that go beyond your own claim, you can also report to ASIC. Professional restoration documentation from a qualified contractor can significantly strengthen your position at every stage.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'What was the ASIC v RACQ case about and what does it mean for me?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'ASIC took Federal Court action against RACQ Insurance after finding that RACQ sent renewal notices to hundreds of thousands of policyholders that misrepresented whether their premium had changed. RACQ paid a $575,000 civil penalty and issued corrective communications. The case confirms that misleading conduct in renewal notices \u2014 not just claims handling \u2014 falls within ASIC\u2019s enforcement powers. If you receive a misleading renewal notice, you can report it to ASIC at asic.gov.au.',
+        },
+      },
     ],
   };
 
@@ -266,6 +274,66 @@ export default function AsicInsuranceEnforcementAustraliaPage() {
           ),
         },
         {
+          heading: 'ASIC Enforcement in Practice: RACQ Insurance Misleading Renewals',
+          body: (
+            <>
+              <p>
+                ASIC&apos;s 2022 Federal Court action against RACQ Insurance is one of the most
+                instructive recent enforcement examples for policyholders. RACQ is one of
+                Australia&apos;s largest general insurers, particularly dominant in Queensland
+                home and motor insurance.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>What happened:</strong> ASIC found that RACQ had sent renewal notices to
+                hundreds of thousands of home and motor insurance policyholders that stated — or
+                implied — that the policyholder&apos;s premium had not changed when it had, in
+                fact, increased. Policyholders who relied on these renewal communications were led
+                to believe their existing cover was being maintained at the same cost. ASIC
+                characterised this as misleading conduct in contravention of the ASIC Act.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>The outcome:</strong> RACQ paid a civil penalty of{' '}
+                <strong>$575,000</strong> and issued corrective communications to affected
+                policyholders. The case established that insurers cannot communicate renewal
+                terms in a way that obscures or downplays premium changes, even where the
+                underlying cover remains the same.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>What it means for policyholders:</strong>
+              </p>
+              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem' }}>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Check renewal notices carefully:</strong> Insurers are obligated to
+                  communicate premium changes clearly. If a renewal notice is ambiguous about
+                  whether your premium has changed, request a written comparison from your insurer.
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Misleading renewals are enforceable:</strong> ASIC&apos;s action
+                  confirms that misleading conduct in renewal communications — not just in claims
+                  handling — falls within ASIC&apos;s enforcement remit under the ASIC Act.
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>You can report similar conduct to ASIC:</strong> If you receive a
+                  renewal notice you believe is misleading about premium or coverage changes,
+                  you can report it to ASIC at asic.gov.au in addition to raising it with your
+                  insurer or AFCA.
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>ASIC uses individual reports to identify systemic patterns:</strong>
+                  RACQ&apos;s conduct affected a large number of policyholders — but it was
+                  identified and investigated because ASIC actively monitors market-wide conduct.
+                  Individual reports contribute to that intelligence.
+                </li>
+              </ul>
+              <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#64748b', fontStyle: 'italic' }}>
+                Source: ASIC Media Release — &ldquo;RACQ Insurance pays $575,000 penalty for
+                misleading home and motor insurance renewal communications&rdquo;. Amounts and
+                findings are as published by ASIC. Verify current status at asic.gov.au.
+              </p>
+            </>
+          ),
+        },
+        {
           heading: 'AFCA as Your Primary Complaint Pathway',
           body: (
             <>
@@ -334,6 +402,11 @@ export default function AsicInsuranceEnforcementAustraliaPage() {
           question: 'What should I do if I think my insurer is handling my claim poorly?',
           answer:
             'First, document everything — keep copies of all correspondence, maintain a timeline of events, and obtain a professional, independent assessment of the damage if possible. Then escalate formally through the insurer\'s Internal Dispute Resolution process in writing. If unresolved, lodge with AFCA. For patterns of conduct that go beyond your own claim, you can also report to ASIC. Professional restoration documentation from a qualified contractor can significantly strengthen your position at every stage.',
+        },
+        {
+          question: 'What was the ASIC v RACQ case about and what does it mean for me?',
+          answer:
+            'ASIC took Federal Court action against RACQ Insurance after finding that RACQ had sent renewal notices to hundreds of thousands of policyholders that misrepresented whether their premium had changed. RACQ paid a $575,000 civil penalty and issued corrective communications. The case confirms that misleading conduct in renewal notices — not just in claims handling — falls within ASIC\'s enforcement powers. If you receive a renewal notice you believe is misleading about premium or coverage changes, you can report it to ASIC at asic.gov.au.',
         },
       ]}
       relatedGuides={[
