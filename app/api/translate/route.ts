@@ -6,7 +6,7 @@
  *
  * Uses @google/genai SDK — model configurable via TRANSLATION_MODEL env var.
  * Default: gemini-1.5-flash (Phase 1 model).
- * TODO DR-430: upgrade to Gemma 4 Vertex AI once DPA signed
+ * DR-430: upgrade to Gemma 4 Vertex AI pending DPA sign-off.
  * Swap to a Gemma 4 Vertex AI endpoint by setting TRANSLATION_MODEL.
  *
  * POST { texts: string[], targetLanguage: string }
@@ -25,7 +25,7 @@ const translateSchema = z.object({
   targetLanguage: z.enum(Object.keys(SUPPORTED_LANGUAGES) as [string, ...string[]]),
 });
 
-// TODO DR-430: upgrade to Gemma 4 Vertex AI once DPA signed
+// DR-430: upgrade to Gemma 4 Vertex AI pending DPA sign-off
 const DEFAULT_MODEL = 'gemini-1.5-flash';
 
 const MAX_TEXTS = 50;
