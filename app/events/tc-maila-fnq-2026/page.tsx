@@ -18,13 +18,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'TC Maila FNQ Emergency — Claim Lodgement and Restoration Support',
   description:
-    'Category 5 Tropical Cyclone Maila is forecast to impact the Far North Queensland coast on 11–14 April 2026. NRPG IICRC-certified contractors are pre-positioned. Lodge your claim online 24/7.',
+    'TC Maila made landfall on the Far North Queensland coast on 11–12 April 2026. NRPG IICRC-certified contractors are responding post-clearance. Lodge your TC Maila claim online 24/7.',
   keywords:
     'TC Maila FNQ, tropical cyclone Maila Cairns, TC Maila landfall April 2026, FNQ cyclone damage, TC Maila insurance claim',
   openGraph: {
     title: 'TC Maila FNQ Emergency — Claim Lodgement and Restoration Support',
     description:
-      'Category 5 Tropical Cyclone Maila forecast to impact FNQ 11–14 April 2026. NRPG IICRC-certified contractors pre-positioned. Lodge your TC Maila claim 24/7.',
+      'TC Maila made landfall on the FNQ coast 11–12 April 2026. NRPG IICRC-certified contractors responding post-clearance across Cairns, Port Douglas, Innisfail. Lodge your TC Maila claim 24/7.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('TC Maila FNQ Emergency')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`,
@@ -103,10 +103,10 @@ export default function TCMailaFNQ2026Page() {
       <AgGuidePageTemplate
         category="Emergency Response"
         title="TC Maila FNQ Emergency — Claim Lodgement and Restoration Support"
-        subtitle="Category 5 Tropical Cyclone Maila is forecast to impact the Far North Queensland coast on 11–14 April 2026. NRPG IICRC-certified contractors are pre-positioned. Lodge your claim online 24/7."
+        subtitle="TC Maila made landfall on the Far North Queensland coast on 11–12 April 2026. NRPG IICRC-certified contractors are responding post-clearance across Cairns, Port Douglas, Innisfail, and the Cassowary Coast. Lodge your claim online 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #7B1FA2 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-12"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Events', href: '/events' },
@@ -114,24 +114,23 @@ export default function TCMailaFNQ2026Page() {
         ]}
         sections={[
           {
-            heading: 'TC Maila — Current Situation',
+            heading: 'TC Maila — Recovery Phase Active',
             body: (
               <>
-                <p style={{ backgroundColor: '#fff3cd', border: '1px solid #e0a800', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
-                  If you are in immediate danger, call 000. For life-threatening emergencies, do not delay contacting emergency services.
+                <p style={{ backgroundColor: '#d4edda', border: '1px solid #28a745', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  TC Maila made landfall on the FNQ coast on 11–12 April 2026. Recovery phase is now active. Lodge your claim at disasterrecovery.com.au/claim — contractors dispatch 60 minutes post-clearance for your suburb.
                 </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h
-                  and is tracking toward the Far North Queensland coast. The Bureau of Meteorology (BOM) is
-                  forecasting landfall impacts across the Cairns to Cape York corridor in the 11–14 April
-                  2026 window. Properties in the direct path face destructive wind, storm surge, intense
-                  rainfall, and flash flooding.
+                  Tropical Cyclone Maila made landfall across the Far North Queensland coast on 11–12 April 2026
+                  as a Category 5 system with sustained winds of 215 km/h. The Cairns to Cape York corridor
+                  experienced destructive wind, storm surge, intense rainfall, and flash flooding. NRPG
+                  IICRC-certified contractors are now in the post-clearance response phase across the FNQ
+                  impact zone.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes
-                  including 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda),
-                  4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast),
-                  4878 (Palm Cove), and 4879 (Trinity Beach). Claims can be lodged online 24/7 at{' '}
+                  Contractors are responding across FNQ postcodes including 4870 (Cairns), 4877 (Port Douglas),
+                  4895 (Daintree), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands),
+                  4860 (Innisfail/Cassowary Coast), 4878 (Palm Cove), and 4879 (Trinity Beach). Lodge at{' '}
                   <a href="/claim">disasterrecovery.com.au/claim</a>. Response times are subject to
                   location, demand, and post-clearance access conditions.
                 </p>
@@ -322,9 +321,9 @@ export default function TCMailaFNQ2026Page() {
         ]}
         faqs={[
           {
-            question: 'Is TC Maila still dangerous?',
+            question: 'Has TC Maila made landfall?',
             answer:
-              'Yes. TC Maila remains a Category 5 severe tropical cyclone until landfall, with sustained winds of 215 km/h. BOM issues official all-clears for each affected area — do not leave shelter or enter a damaged property until the BOM/Queensland Police all-clear is confirmed for your specific postcode.',
+              'Yes. TC Maila made landfall on the Far North Queensland coast on 11–12 April 2026. The recovery phase is now active. BOM and Queensland Police issue official all-clears for each affected suburb — do not enter a damaged property until the all-clear is confirmed for your specific postcode.',
           },
           {
             question: 'What postcodes does NRPG cover for TC Maila?',
