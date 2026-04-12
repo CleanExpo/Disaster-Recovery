@@ -9,16 +9,19 @@ import { NAP } from '@/lib/constants';
  *
  * Created: 9 April 2026 — Captures peak search moment when two major events coincide:
  * 1. PERILS releases final Alfred insured loss figure (AU$1.877 billion)
- * 2. TC Maila forecast to make landfall on FNQ coast (Cat 5, 215 km/h)
+ * 2. TC Maila tracking toward FNQ coast — refer to BOM for current intensity
+ *
+ * DR-573 ACL hotfix: removed Cat 5 / 215 km/h superlatives. All intensity
+ * references now point to live BOM sources. PERILS Alfred content unchanged.
  */
 
 export const metadata: Metadata = {
-  title: 'TC Maila Landfall & Alfred Insurance Claims | April 13 2026 FNQ',
-  description: 'TC Maila landfall forecast April 13 — FNQ coast. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute 24/7.',
-  keywords: 'TC Maila landfall April 13, Alfred insurance payout April 2026, FNQ cyclone April 2026, cyclone insurance claim Queensland April 2026',
+  title: 'TC Maila FNQ & Alfred Insurance Claims | April 2026',
+  description: 'TC Maila has impacted the FNQ coast. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute 24/7. IICRC-certified contractors across FNQ.',
+  keywords: 'TC Maila FNQ April 2026, Alfred insurance claim April 2026, FNQ cyclone April 2026, cyclone insurance claim Queensland, Alfred PERILS AU$1.877 billion',
   openGraph: {
-    title: 'TC Maila Landfall & Alfred Insurance Claims | April 13 2026 FNQ',
-    description: 'TC Maila landfall forecast April 13 — FNQ coast. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute 24/7.',
+    title: 'TC Maila FNQ & Alfred Insurance Claims | April 2026',
+    description: 'TC Maila has impacted the FNQ coast. PERILS confirms Alfred final loss AU$1.877 billion. Lodge your TC Maila claim or escalate your Alfred dispute 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('April 13 — TC Maila & Alfred Insurance')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -59,12 +62,12 @@ export default function April13ConvergencePage() {
       <Script id="a13c-localbusiness" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <Script id="a13c-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <AgGuidePageTemplate
-        category="Emergency Response"
-        title="April 13 — TC Maila Landfall &amp; Alfred Insurance: Two Events, One Window"
-        subtitle="TC Maila is forecast to make landfall on the FNQ coast on 13 April 2026. On the same day, PERILS releases its AU$1.877 billion Alfred final loss estimate. Whether you&apos;re bracing for TC Maila or still navigating an Alfred claim — NRPG is ready."
+        category="Event Recovery"
+        title="TC Maila FNQ &amp; Alfred Insurance: Two Events, One Window"
+        subtitle="TC Maila has impacted the Far North Queensland coast. PERILS confirmed the Alfred final loss at AU$1.877 billion. Whether you need TC Maila storm damage restoration or are still navigating an Alfred claim dispute — NRPG is ready."
         gradient="linear-gradient(135deg, #1a0533 0%, #6B21A8 50%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
-        lastReviewed="2026-04-09"
+        lastReviewed="2026-04-12"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Events', href: '/events' },
@@ -72,29 +75,31 @@ export default function April13ConvergencePage() {
         ]}
         sections={[
           {
-            heading: 'TC Maila — April 13 Landfall Window Active',
+            heading: 'TC Maila — FNQ Impact Window',
             body: (
               <>
+                <p style={{ backgroundColor: '#fff3cd', border: '1px solid #e0a800', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                  Do NOT enter a damaged property until Queensland Police or SES confirms the all-clear for your area.
+                </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h and is
-                  tracking directly toward the Far North Queensland coast. BOM has forecast landfall impacts across
-                  the Cairns to Cape York corridor, with April 13 representing the peak convergence date in the
-                  11–14 April 2026 window.
+                  Tropical Cyclone Maila has tracked toward the Far North Queensland coast and Cape York Peninsula.
+                  Properties across the Cairns to Cape York corridor are exposed to destructive wind, storm surge,
+                  intense rainfall, and flash flooding. For current intensity, track, and warning status, refer to
+                  the Bureau of Meteorology — warnings update as the system evolves:
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Category 5 conditions include destructive winds exceeding 200 km/h, storm surge along the
-                  coastline, and intense rainfall causing flash flooding and riverine inundation. The FNQ coast
-                  from Cairns to Cape York is on high alert, with postcodes 4870 (Cairns), 4877 (Port Douglas),
-                  4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree) identified as
-                  primary impact zones.
+                  <a href="https://www.bom.gov.au/cyclone/7dayforecast/" target="_blank" rel="noopener noreferrer">
+                    BOM 7-Day Tropical Cyclone Forecast
+                  </a>{' '}·{' '}
+                  <a href="https://www.bom.gov.au/warning/tropical-cyclone-forecast-track-map/IDQ65002" target="_blank" rel="noopener noreferrer">
+                    IDQ65002 Forecast Track Map
+                  </a>
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  NRPG certified contractors are pre-positioned across all affected postcodes. Claims can be
-                  lodged online 24/7 at disasterrecovery.com.au/claim. Contractor dispatch occurs within
-                  60 minutes of emergency services issuing the all-clear for affected areas.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>
+                  NRPG IICRC-certified contractors are coordinating availability across the FNQ corridor including
+                  postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton
+                  Tablelands), and 4895 (Daintree). Claims can be lodged online 24/7 at disasterrecovery.com.au/claim.
+                  Response times are subject to location, demand, and post-clearance access conditions.
                 </p>
               </>
             ),
@@ -165,7 +170,7 @@ export default function April13ConvergencePage() {
         faqs={[
           {
             question: 'When is TC Maila expected to make landfall?',
-            answer: 'BOM is forecasting TC Maila landfall impacts for the FNQ coast in the 11–14 April 2026 window, with April 13 the peak convergence forecast date. NRPG contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree). Lodge your claim now at disasterrecovery.com.au/claim.',
+            answer: 'TC Maila has impacted the Far North Queensland coast and Cape York Peninsula. For current warning status, track, and all-clear notifications, refer to bom.gov.au. NRPG contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas), 4873 (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), and 4895 (Daintree). Lodge your claim now at disasterrecovery.com.au/claim.',
           },
           {
             question: 'I have an unresolved Alfred claim — can I still lodge it?',
