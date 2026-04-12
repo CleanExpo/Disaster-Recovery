@@ -204,10 +204,16 @@ export default function OnlineClaimPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Submit Online Claim</h1>
-          <p className="text-gray-700">Platform Fee: ${PLATFORM_FEE.toFixed(2)}</p>
+        {/* GAP-073: Trust positioning header */}
+        <div className="text-center mb-4">
+          <p className="text-sm uppercase tracking-widest text-[#8A6B4E] font-semibold mb-2">
+            Independent Claim Advocacy
+          </p>
+          <h1 className="text-3xl font-bold mb-2 text-[#1C2E47]">
+            We work for you, not your insurer.
+          </h1>
+          <p className="text-gray-600 text-base mb-1">Submit your claim for independent NRPG advocacy.</p>
+          <p className="text-gray-500 text-sm">Platform connection fee: ${PLATFORM_FEE.toFixed(2)}</p>
         </div>
 
         {/* Progress Steps */}
