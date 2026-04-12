@@ -600,6 +600,10 @@ function OnlineClaimPageOriginal() {
               {step === 3 && 'Authorizations & Terms'}
               {step === 4 && 'Final Review & Submit'}
             </CardTitle>
+            <CardDescription className="flex items-center gap-2 text-blue-700 font-semibold text-sm pt-1">
+              <Shield className="h-4 w-4 flex-shrink-0" />
+              Working for you, not your insurer.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             {/* Step 1: Property & Damage */}

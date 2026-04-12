@@ -217,10 +217,10 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
           </div>
         )}
 
-        {/* Hero Section */}
-        <section className="bg-slate-900 text-white py-16 md:py-24">
+        {/* Hero Section — py-8 on mobile (reduced from py-16) + CTAs before description (DR-550 GAP-067/069) */}
+        <section className="bg-slate-900 text-white py-8 md:py-24">
           <div className="container mx-auto px-6 max-w-5xl">
-            <div className="mb-4 flex flex-wrap items-center gap-3">
+            <div className="mb-3 flex flex-wrap items-center gap-3">
               <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${phaseConfig.badgeColour}`}>
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 {phaseConfig.label}
@@ -236,13 +236,12 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               <br />
               <span className="text-blue-400">{state} {year}</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-2xl mb-8 leading-relaxed">
-              {isRecovery
-                ? `If your property has been damaged by ${eventLabel.toLowerCase()} ${eventName}, Disaster Recovery Australia-network ${iicrcStandard}-qualified contractors are ready to attend. Document your damage and lodge your insurance claim today.`
-                : `${eventLabel} ${eventName} is approaching ${state}. Prepare now — secure your property, document pre-event condition, and get claim-ready. Disaster Recovery Australia-network contractors are on standby across the affected region.`
-              }
+            {/* Who First brand promise — GAP-073 */}
+            <p className="text-sm font-semibold text-blue-300 mb-4 tracking-wide uppercase">
+              Working for you, not your insurer.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* CTAs before description — primary action visible on mobile without scroll (≤3-tap crisis protocol) */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <Link
                 href="/claim"
                 className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-colors text-lg"
@@ -258,6 +257,12 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                 </a>
               )}
             </div>
+            <p className="text-xl text-slate-300 max-w-2xl mb-0 leading-relaxed">
+              {isRecovery
+                ? `If your property has been damaged by ${eventLabel.toLowerCase()} ${eventName}, Disaster Recovery Australia-network ${iicrcStandard}-qualified contractors are ready to attend. Document your damage and lodge your insurance claim today.`
+                : `${eventLabel} ${eventName} is approaching ${state}. Prepare now — secure your property, document pre-event condition, and get claim-ready. Disaster Recovery Australia-network contractors are on standby across the affected region.`
+              }
+            </p>
           </div>
         </section>
 
