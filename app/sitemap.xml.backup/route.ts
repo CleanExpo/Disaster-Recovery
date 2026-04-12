@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const { prisma } = await import('@/lib/prisma');
     
-    // TODO: Fetch all published SEO pages when sEOLocationPage model is added
+    // Deferred: fetch sEOLocationPage records when model added to Prisma schema
     // const pages = await prisma.sEOLocationPage.findMany({
     //   where: {
     //     status: 'PUBLISHED'
