@@ -21,11 +21,6 @@ import {
 // Import all analytics components
 import { KPIPerformanceDashboard } from './KPIPerformanceDashboard';
 import { ComplianceReports } from './ComplianceReports';
-// TODO: Create these components
-// import { FinancialReports } from './FinancialReports';
-// import { LeadAnalytics } from './LeadAnalytics';
-// import { CustomReportBuilder } from './CustomReportBuilder';
-// import { AuditLogReport } from './AuditLogReport';
 
 import { usePermissions, useHasPermission } from '@/hooks/usePermissions';
 import { ProtectedComponent } from '@/components/auth/ProtectedRoute';
@@ -254,14 +249,12 @@ export function AnalyticsDashboard() {
             permission="company.billing.view"
             message="You need billing permissions to view financial reports"
           >
-            {/* TODO: Add FinancialReports component */}
             <div className="p-4">Financial Reports - Coming Soon</div>
           </ProtectedComponent>
         </TabsContent>
 
         {/* Lead Analytics Tab */}
         <TabsContent value="leads">
-          {/* TODO: Add LeadAnalytics component */}
           <div className="p-4">Lead Analytics - Coming Soon</div>
         </TabsContent>
 
@@ -271,7 +264,6 @@ export function AnalyticsDashboard() {
             permission="audit.logs.view"
             message="You need audit permissions to view audit logs"
           >
-            {/* TODO: Add AuditLogReport component */}
             <div className="p-4">Audit Log Report - Coming Soon</div>
           </ProtectedComponent>
         </TabsContent>
@@ -282,7 +274,6 @@ export function AnalyticsDashboard() {
             permission="portal.analytics.view"
             message="You need admin permissions to build custom reports"
           >
-            {/* TODO: Add CustomReportBuilder component */}
             <div className="p-4">Custom Report Builder - Coming Soon</div>
           </ProtectedComponent>
         </TabsContent>
