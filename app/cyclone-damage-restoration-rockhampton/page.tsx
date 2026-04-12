@@ -103,10 +103,9 @@ export default function CycloneDamageRestorationRockhamptonPage() {
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   TC Marcia (2015) made landfall near Shoalwater Bay, north of Rockhampton, generating Category 5
-                  conditions and causing significant structural damage across the region. TC Maila&apos;s projected
-                  southern range includes the Rockhampton corridor for the 13&ndash;16 April 2026 window. Even if TC
-                  Maila passes north of direct Rockhampton impact, the system will generate strong wind and rain bands
-                  extending well south of the eye.
+                  conditions and causing significant structural damage across the region. TC Maila (April 2026)
+                  has impacted the Far North Queensland coast — outer rain bands from such systems can extend
+                  well south of the eye into the Rockhampton corridor. For current warning status, refer to bom.gov.au.
                 </p>
               </>
             ),
@@ -163,7 +162,7 @@ export default function CycloneDamageRestorationRockhamptonPage() {
           },
           {
             question: 'Did TC Maila affect Rockhampton?',
-            answer: "TC Maila's southern projection includes the Rockhampton corridor for the 13–16 April 2026 window. Even if TC Maila passes north of direct Rockhampton impact, the system will generate strong wind and rain bands extending well south of the eye. Rockhampton and Capricorn Coast properties should prepare for cyclone-force wind gusts and heavy rainfall regardless of the exact track.",
+            answer: "TC Maila (April 2026) has impacted the Far North Queensland coast. Cyclone outer rain bands can extend well south of the eye — Rockhampton and Capricorn Coast properties may experience strong wind gusts and heavy rainfall. For current warning status, refer to bom.gov.au. Lodge any TC Maila-related claims at disasterrecovery.com.au/claim.",
           },
           {
             question: 'How does flood risk interact with cyclone damage in Rockhampton?',

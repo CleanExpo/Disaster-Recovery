@@ -284,8 +284,8 @@ export default function CyclonePreparationChecklistPage() {
             body: (
               <>
                 <p>
-                  Tropical Cyclone Maila — a Category 5 system — made landfall on the Far North
-                  Queensland coast between April 11–14, 2026. If your property was affected by
+                  Tropical Cyclone Maila has impacted the Far North Queensland coast and Cape York
+                  Peninsula. If your property was affected by
                   TC Maila, the following applies:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>

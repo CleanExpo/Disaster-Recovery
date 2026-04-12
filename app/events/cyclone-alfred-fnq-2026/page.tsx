@@ -350,7 +350,7 @@ export default function AlfredFNQ2026Page() {
           {
             title: 'TC Maila FNQ Emergency',
             href: '/events/tc-maila-fnq-2026',
-            description: 'Category 5 TC Maila FNQ — claim lodgement and restoration support.',
+            description: 'TC Maila FNQ — claim lodgement and restoration support.',
           },
           {
             title: 'ARPC Cyclone Reinsurance Pool Guide',
