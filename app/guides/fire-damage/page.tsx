@@ -887,7 +887,7 @@ function FireDamageGuidePageOriginal() {
             },
             {
               q: 'Can smoke damage be cleaned or does everything need replacing?',
-              a: 'Many smoke-damaged items can be professionally cleaned and restored, but it depends on the smoke type and material. Protein residue from kitchen fires cleans well from hard surfaces. Synthetic smoke (from burning plastics) is more corrosive and may permanently stain porous materials. Soft furnishings, carpets, and curtains often need replacing if heavily affected. Hard surfaces like countertops, tiles, and glass generally respond well to professional cleaning with specialised solvents. An IICRC-certified technician can assess what is salvageable versus what requires replacement.'
+              a: 'Many smoke-damaged items can be professionally cleaned and restored, but it depends on the smoke type and material. Protein residue from kitchen fires cleans well from hard surfaces. Synthetic smoke (from burning plastics) is more corrosive and may permanently stain porous materials. Soft furnishings, carpets, and curtains often need replacing if heavily affected. Hard surfaces like countertops, tiles, and glass generally respond well to professional cleaning with specialised solvents. An IICRC S700:2025-certified technician can assess what is salvageable versus what requires replacement using standardised smoke residue classifications and cleaning protocols under the ANSI/IICRC S700 Standard for Fire and Smoke Damage Restoration.'
             },
             {
               q: 'Is it safe to enter my home after a fire?',
@@ -920,7 +920,7 @@ function FireDamageGuidePageOriginal() {
           <div><strong className="text-orange-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
           <div><strong className="text-orange-900">Category:</strong> Fire Damage Restoration</div>
           <div><strong className="text-orange-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
-          <div><strong className="text-orange-900">Standard:</strong> IICRC S520:2025 certified practices</div>
+          <div><strong className="text-orange-900">Standard:</strong> IICRC S700:2025 (Fire and Smoke Damage Restoration) and S520:2025 (Mould Remediation)</div>
         </div>
       </section>
 
