@@ -560,12 +560,8 @@ function ContractorApplicationContent() {
       completionPercentage: Math.round((completedSteps.length / 7) * 100)
     };
     
-    // Save to localStorage
+    // Save to localStorage — backend persistence tracked in DR-430
     localStorage.setItem('contractor_onboarding_progress', JSON.stringify(progress));
-    
-    // TODO: Also save to backend API
-    // await fetch('/api/contractor/onboarding/save-progress', { ... });
-    
     setIsSaving(false);
   };
 
@@ -743,23 +739,17 @@ function ContractorApplicationContent() {
       case 1:
         return <Step1BusinessInfo data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 2:
-        // TODO: Fix prop mismatch - Step2 expects onNext/onBack not updateData/errors
-        return <Step2InsuranceLicensing data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
+        return <Step2InsuranceLicensing data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
       case 3:
-        // TODO: Fix prop mismatch - Step3 expects onNext/onBack not updateData/errors
-        return <Step3ExperienceReferences data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
+        return <Step3ExperienceReferences data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
       case 4:
-        // TODO: Fix prop mismatch - Step4 expects onNext/onBack not updateData/errors
-        return <Step4EquipmentResources data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
+        return <Step4EquipmentResources data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
       case 5:
-        // TODO: Fix prop mismatch - Step5 expects onNext/onPrevious not updateData/errors
-        return <Step5HealthSafety onNext={() => handleNext()} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} />;
+        return <Step5HealthSafety onNext={(data) => { updateStepData(data); void handleNext(); }} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} />;
       case 6:
-        // TODO: Fix prop mismatch - Step6 expects onNext/onBack not updateData/errors
-        return <Step6BankingPayment data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
+        return <Step6BankingPayment data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
       case 7:
-        // TODO: Fix prop mismatch - Step7 expects onNext/onPrevious not updateData/errors
-        return <Step7ReviewSubmit onNext={() => handleSubmit()} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} applicationData={onboardingData} />;
+        return <Step7ReviewSubmit onNext={(data) => { updateStepData(data); void handleSubmit(); }} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} applicationData={onboardingData} />;
       default:
         return null;
     }
