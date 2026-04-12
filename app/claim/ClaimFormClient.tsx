@@ -456,6 +456,19 @@ function OnlineClaimPageOriginal() {
   return (
     <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
       <div className="container mx-auto px-4 max-w-4xl">
+        {/* Who First trust signal — GAP-073 */}
+        <div className="mb-6 bg-blue-900 text-white rounded-xl px-6 py-4 flex items-center gap-4">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center">
+            <Shield className="w-5 h-5 text-blue-200" />
+          </div>
+          <p className="font-semibold text-base md:text-lg">
+            <strong className="text-white">Work for you, not your insurer.</strong>{' '}
+            <span className="text-blue-200 font-normal">
+              NRPG coordinates independent assessment and restoration — you keep control of your claim.
+            </span>
+          </p>
+        </div>
+
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="text-center md:text-left">
