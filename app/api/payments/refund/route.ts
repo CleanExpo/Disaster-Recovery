@@ -87,15 +87,6 @@ export async function POST(request: NextRequest) {
       });
     }
     
-    // Log refund for audit trail
-    console.log('Refund processed:', {
-      refundId: refund.id,
-      bookingId: refundData.bookingId,
-      amount: refundAmount,
-      reason: refundData.reason,
-      autoApprove
-    });
-    
     return NextResponse.json({
       success: true,
       refundId: refund.id,

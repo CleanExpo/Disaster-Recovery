@@ -129,23 +129,6 @@ export async function POST(request: NextRequest) {
 
     const disputeId = enquiry.id;
 
-    // Log email send (email service integration can be added later)
-    console.log(`Dispute confirmation email would be sent to ${disputeData.customerEmail} for dispute ${disputeId}`);
-
-    // If contractor involved, notify them
-    if (disputeData.contractorId) {
-      console.log(`Notifying contractor ${disputeData.contractorId} of dispute ${disputeId}`);
-    }
-
-    // Log for audit trail
-    console.log('Dispute created:', {
-      disputeId,
-      type: disputeData.disputeType,
-      severity: disputeData.severity,
-      priority,
-      assignedTo
-    });
-
     const response: DisputeResponse = {
       disputeId,
       status: 'open',
@@ -218,11 +201,6 @@ export async function PUT(request: NextRequest) {
       lastUpdated: new Date().toISOString(),
       updatedBy: 'Resolution Team'
     };
-
-    // If resolved, log resolution
-    if (status === 'resolved' && resolution) {
-      console.log(`Dispute ${disputeId} resolved: ${resolution}`);
-    }
 
     return NextResponse.json({
       success: true,
