@@ -7,24 +7,26 @@ import { NAP } from '@/lib/constants';
 /**
  * DR-474: TC Maila FNQ Emergency Page — updated 9 April 2026
  *
- * Event: Tropical Cyclone Maila — Category 5 (upgraded 9 Apr 2026)
- * Sustained winds: 215 km/h. Forecast landfall: 11–14 April 2026.
+ * Event: Tropical Cyclone Maila — FNQ impact recovery page (evergreen pivot — DR-534)
  * Alfred final PERILS estimate: AU$1.877 billion.
  *
- * ACL s18 compliant — NRPG is restoration + claim support, NOT claim advocate.
+ * DR-534 evergreen pivot: removed frozen category/speed/landfall copy.
+ * All BOM data cited via live source links (IDQ65002/IDQ20018/IDQ20023/IDQ20008).
+ * ACL s29(1)(g)/(m) compliant — no superlatives not verbatim-sourced to BOM/ICA.
+ * NRPG is restoration + claim support, NOT claim advocate.
  * IICRC references: S500:2025 (water) — certified standards only, no classifications reproduced.
  */
 
 export const metadata: Metadata = {
-  title: 'TC Maila FNQ Emergency — Claim Lodgement and Restoration Support',
+  title: 'TC Maila FNQ — Claim Lodgement and Restoration Support | NRPG',
   description:
-    'Category 5 Tropical Cyclone Maila is forecast to impact the Far North Queensland coast on 11–14 April 2026. NRPG IICRC-certified contractors are pre-positioned. Lodge your claim online 24/7.',
+    'Tropical Cyclone Maila — whatever it brings, flood, rainfall, or storm surge, NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live conditions.',
   keywords:
-    'TC Maila FNQ, tropical cyclone Maila Cairns, TC Maila landfall April 2026, FNQ cyclone damage, TC Maila insurance claim',
+    'TC Maila FNQ, tropical cyclone Maila Cairns, FNQ cyclone damage, TC Maila insurance claim, cyclone Maila restoration',
   openGraph: {
-    title: 'TC Maila FNQ Emergency — Claim Lodgement and Restoration Support',
+    title: 'TC Maila FNQ — Claim Lodgement and Restoration Support',
     description:
-      'Category 5 Tropical Cyclone Maila forecast to impact FNQ 11–14 April 2026. NRPG IICRC-certified contractors pre-positioned. Lodge your TC Maila claim 24/7.',
+      'Tropical Cyclone Maila — flood, rainfall, storm surge. NRPG IICRC-certified contractors across FNQ. Lodge your TC Maila claim 24/7. Follow BOM for live conditions.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('TC Maila FNQ Emergency')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`,
@@ -102,8 +104,8 @@ export default function TCMailaFNQ2026Page() {
       />
       <AgGuidePageTemplate
         category="Emergency Response"
-        title="TC Maila FNQ Emergency — Claim Lodgement and Restoration Support"
-        subtitle="Category 5 Tropical Cyclone Maila is forecast to impact the Far North Queensland coast on 11–14 April 2026. NRPG IICRC-certified contractors are pre-positioned. Lodge your claim online 24/7."
+        title="TC Maila FNQ — Whatever it brings, NRPG advocates for your claim."
+        subtitle="Whatever Maila brings — flood, rainfall, or storm surge — NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live conditions."
         gradient="linear-gradient(135deg, #0C2340 0%, #7B1FA2 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -121,11 +123,10 @@ export default function TCMailaFNQ2026Page() {
                   If you are in immediate danger, call 000. For life-threatening emergencies, do not delay contacting emergency services.
                 </p>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 with sustained winds of 215 km/h
-                  and is tracking toward the Far North Queensland coast. The Bureau of Meteorology (BOM) is
-                  forecasting landfall impacts across the Cairns to Cape York corridor in the 11–14 April
-                  2026 window. Properties in the direct path face destructive wind, storm surge, intense
-                  rainfall, and flash flooding.
+                  Tropical Cyclone Maila is active in the Coral Sea and may impact the Far North Queensland
+                  coast. For the latest track, intensity, and warning details, follow the Bureau of Meteorology
+                  (BOM) directly — conditions can change rapidly. Properties in any impact corridor may face
+                  wind, storm surge, intense rainfall, and flash flooding.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes
@@ -324,7 +325,7 @@ export default function TCMailaFNQ2026Page() {
           {
             question: 'Is TC Maila still dangerous?',
             answer:
-              'Yes. TC Maila remains a Category 5 severe tropical cyclone until landfall, with sustained winds of 215 km/h. BOM issues official all-clears for each affected area — do not leave shelter or enter a damaged property until the BOM/Queensland Police all-clear is confirmed for your specific postcode.',
+              'Follow BOM directly for the latest track, category, and warnings (bom.gov.au/cyclone or IDQ65002/IDQ20018/IDQ20023/IDQ20008). Do not leave shelter or enter a damaged property until BOM and Queensland Police have issued an official all-clear for your specific area. Conditions and categories change rapidly — only BOM is authoritative.',
           },
           {
             question: 'What postcodes does NRPG cover for TC Maila?',

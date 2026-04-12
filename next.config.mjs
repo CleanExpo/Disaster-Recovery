@@ -24,6 +24,9 @@ const nextConfig = {
       { source: '/contractor-terms', destination: '/terms', permanent: false },
       // Canonical redirect — old DR-398 page had advocacy framing violations
       { source: '/events/cyclone-narelle-wa', destination: '/events/cyclone-narelle-western-australia-2026', permanent: true },
+      // DR-533: NSW/QLD storms April 2026 — long-tail canonical redirect
+      { source: '/nsw-storms-april-2026-insurance-claims', destination: '/events/nsw-storms-april-2026', permanent: true },
+      { source: '/nsw-qld-storms-2026', destination: '/events/nsw-storms-april-2026', permanent: true },
       // DR-464/DR-469: Legacy WordPress URLs with old "Disaster Recovery QLD" branding → 301 to new pages
       { source: '/about-us', destination: '/about', permanent: true },
       { source: '/about-us-disaster-recovery-qld-our-story', destination: '/about', permanent: true },
