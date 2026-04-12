@@ -1,5 +1,8 @@
 /**
- * DR-399: Queensland Floods 2026 Landing Page
+ * DR-399 / DR-552 (Lane B): Queensland Floods 2026 Landing Page
+ *
+ * Flood events: Ex-TC Alfred, Tropical Low 29U (March 2026), and related rainfall events.
+ * Primary impact areas: Bundaberg, Burnett River catchment, North Burnett.
  *
  * CRITICAL: General ESHA closed 7 April 2026 — DO NOT render general ESHA.
  * Only Extended ESHA (Exceptional Circumstances) is shown.
@@ -8,8 +11,8 @@
  * Personal Hardship Assistance deadline: 27 April 2026
  * Structural Assistance Grants deadline: 27 April 2026
  *
- * ICA trust signal: 132,000+ claims, AU$1.877B insured losses (Ex-TC Alfred, PERILS final — 13 Apr 2026).
- * ACL s18 compliant — no unverified statistics.
+ * ICA trust signal: 2,000+ flood-specific claims (March 2026 events).
+ * ACL s29(1)(g)/(m) compliant — no unverified superlatives.
  * Framing: NRPG is restoration + claim lodgement network, NOT claim advocate.
  */
 
@@ -17,16 +20,16 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'QLD Floods 2026 Claims & Relief | NRPG',
+  title: 'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery Australia',
   description:
-    'Government relief closes 27 April. Lodge your QLD flood claim in 90 seconds. NRPG handles negotiation, restoration, and your full recovery.',
+    'Queensland Floods 2026 — Tropical Low 29U, Bundaberg, Burnett River catchment, and related events. Government assistance closes 27 April 2026. 2,000+ ICA claims. IICRC-certified restoration contractors. Lodge your claim now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
   },
   openGraph: {
-    title: 'QLD Floods 2026 Claims & Relief | NRPG',
+    title: 'QLD Floods 2026 — Bundaberg & Burnett River Recovery | Disaster Recovery Australia',
     description:
-      'Government relief closes 27 April. Lodge your QLD flood claim in 90 seconds. NRPG handles negotiation, restoration, and your full recovery.',
+      'Queensland Floods 2026 (Tropical Low 29U). Bundaberg and Burnett River catchment most affected. Government relief closes 27 April. NRPG IICRC-certified contractors ready now.',
     url: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
     type: 'website',
   },
@@ -82,10 +85,10 @@ const faqSchema = {
 const eventSchema = {
   '@context': 'https://schema.org',
   '@type': 'Event',
-  name: 'Queensland Floods 2026 — Disaster Recovery',
+  name: 'Queensland Floods 2026 (Tropical Low 29U) — Disaster Recovery',
   description:
-    'Queensland Floods 2026. Extended ESHA, Personal Hardship Assistance, and Structural Grants available until 27 April 2026. NRPG lodges claims and coordinates IICRC-certified restoration.',
-  startDate: '2026-01-01',
+    'Queensland Floods 2026 — Tropical Low 29U and related March 2026 events. Bundaberg and Burnett River catchment. Extended ESHA, Personal Hardship Assistance, and Structural Grants available until 27 April 2026. NRPG IICRC-certified restoration and claims support.',
+  startDate: '2026-03-01',
   location: {
     '@type': 'State',
     name: 'Queensland',
@@ -146,12 +149,15 @@ export default function QueenslandFloods2026Page() {
               </span>
             </div>
             <h1 className="font-display text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
-              Your claim. Your restoration.
+              Queensland Floods 2026
               <br />
-              <span className="text-blue-400">Who First.</span>
+              <span className="text-blue-400">Work for you, not your insurer.</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-2xl mb-8 leading-relaxed">
-              Government assistance ends 27 April. NRPG speeds your claim and your rebuild.
+            <p className="text-xl text-slate-300 max-w-2xl mb-2 leading-relaxed">
+              Tropical Low 29U and related March 2026 flood events impacted Bundaberg, the Burnett River catchment, and surrounding LGAs across Queensland.
+            </p>
+            <p className="text-base text-slate-400 max-w-2xl mb-8">
+              Government assistance ends 27 April 2026. NRPG coordinates IICRC-certified restoration and supports your claim.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -418,8 +424,8 @@ export default function QueenslandFloods2026Page() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                'After Ex-Tropical Cyclone Alfred, 132,000+ claims were lodged across Queensland and northern NSW, with AU$1.877 billion in final insured losses (PERILS, 13 April 2026).',
-                'Our restoration partners are IICRC-certified and comply with S500:2025 and S520:2025 standards.',
+                'Tropical Low 29U and related March 2026 flood events generated 2,000+ ICA claims across Queensland, with Bundaberg and the Burnett River catchment among the most impacted areas [Insurance Council of Australia].',
+                'NRPG restoration partners are IICRC-certified and comply with S500:2025 (Water Damage Restoration) and S520:2025 (Mould Remediation) standards.',
               ].map((signal, idx) => (
                 <div key={idx} className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

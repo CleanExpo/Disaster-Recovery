@@ -1,16 +1,20 @@
 /**
  * Mould Remediation — What to Expect from a Certified Contractor
  *
- * BUILD-002 / GAP-043: References ANSI/IICRC S520:2025 as the certification
+ * BUILD-002 / GAP-043 / DR-556: References ANSI/IICRC S520:2025 as the certification
  * benchmark held by our contractors. Describes our certified process —
  * not the standard's content.
+ *
+ * DR-556: Added 2026 NDAA federal mandate hook — US NDAA mandates S520 for military
+ * housing mould remediation. Non-operational for AU regulatory compliance but
+ * strong credibility signal. Framing per GAP-043/GAP-051.
  *
  * IICRC compliance: names the standard, states contractors follow it,
  * describes what a certified job involves in contractor process terms.
  * Does NOT reproduce the standard's framework, classification system,
  * or remediation protocol content.
  *
- * ACL s18 compliant — no unverified statistics.
+ * ACL s29(1)(g)/(m) compliant — no unverified superlatives.
  */
 
 import type { Metadata } from 'next'
@@ -21,17 +25,20 @@ import { NAP } from '@/lib/constants'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation — What to Expect | Disaster Recovery Australia',
+  title: 'ANSI/IICRC S520 Mould Remediation — What Certified Contractors Do | Disaster Recovery Australia',
   description:
-    'What professional mould remediation involves. How ANSI/IICRC S520:2025-certified contractors assess, contain, remediate, and document mould-affected properties — and what your insurance claim needs.',
+    'ANSI/IICRC S520:2025 is the professional benchmark for mould remediation — and the standard the US federal government mandated for military housing (2026 NDAA). How certified contractors assess, contain, remediate, and document mould-affected properties in Australia.',
   keywords: [
     'mould remediation',
+    'IICRC S520',
+    'ANSI IICRC S520',
     'IICRC certified mould remediation',
     'mould removal Australia',
     'mould remediation process',
     'mould insurance claim',
     'certified mould contractor',
     'secondary mould damage',
+    'NDAA mould standard',
   ],
   alternates: {
     canonical: `${NAP.url}/guides/mould/iicrc-s520-mould-remediation-standard`,
@@ -195,6 +202,36 @@ export default function MouldRemediationWhatToExpectPage() {
               </ul>
               <p style={{ marginTop: '1rem' }}>
                 Secondary mould damage caused by an insurer&apos;s contractor failing to dry adequately is a covered loss under most policies — the insurer is responsible for the quality of work performed by their preferred contractors. An independent ANSI/IICRC S520:2025 assessment documents whether the mould growth is attributable to the original incident and what remediation is required.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: 'ANSI/IICRC S520 and the 2026 US Federal Mandate',
+          body: (
+            <>
+              <p>
+                In 2026, the US National Defense Authorization Act (NDAA) mandated ANSI/IICRC S520
+                as the mould remediation standard for military housing. This federal mandate does not
+                apply to Australian properties — Australia has its own regulatory framework — but it
+                is a significant credibility signal for the standard itself.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                When the US federal government selects a single standard to govern mould remediation
+                across its entire housing portfolio, it reflects the rigour of that standard&apos;s
+                methodology. The same standard — ANSI/IICRC S520:2025 — is what NRPG&apos;s
+                certified contractor network works to on Australian properties.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                Australian alignment: AS-IICRC S520:2025 is the Australian-aligned edition, maintained
+                by Standards Australia in parallel with the IICRC publication. NRPG contractors hold
+                IICRC certifications — the underlying standard methodology is equivalent.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Why this matters when choosing a contractor:</strong> Competitors marketing
+                &quot;leading&quot; mould services without IICRC certification are not working to this
+                standard. The method the US federal government mandated for its most demanding housing
+                portfolio is the method a certified contractor brings to your property.
               </p>
             </>
           ),
