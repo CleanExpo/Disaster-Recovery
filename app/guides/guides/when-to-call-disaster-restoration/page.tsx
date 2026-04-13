@@ -52,7 +52,7 @@ export default function WhenToCallDisasterRestorationPage() {
         name: 'How does the Disaster Recovery platform connect me with a restorer?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Lodge your claim online at disasterrecovery.com.au/claim with your damage details and photos. The platform matches you with an IICRC certified contractor in your area within 60 minutes. We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement.',
+          text: 'Lodge your claim online at disasterrecovery.com.au/claim with your damage details and photos. The platform matches you with an IICRC certified contractor in your area as soon as a certified contractor is confirmed for your area. We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement.',
         },
       },
     ],
@@ -273,7 +273,7 @@ export default function WhenToCallDisasterRestorationPage() {
         {
           question: 'How does the Disaster Recovery platform connect me with a restorer?',
           answer:
-            'Lodge your claim online at disasterrecovery.com.au/claim with your damage details and photos. The platform matches you with an IICRC certified contractor in your area within 60 minutes. We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement.',
+            'Lodge your claim online at disasterrecovery.com.au/claim with your damage details and photos. The platform matches you with an IICRC certified contractor in your area as soon as a certified contractor is confirmed for your area. We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement.',
         },
       ]}
       relatedGuides={[

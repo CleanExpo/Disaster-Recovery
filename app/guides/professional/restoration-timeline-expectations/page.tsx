@@ -119,7 +119,7 @@ export default function RestorationTimelineExpectationsPage() {
                 </p>
                 <ul className="list-disc pl-6 space-y-3">
                   <li>
-                    <strong>Emergency response (same day)</strong> — NRPG contractors attend within 60 minutes of your call, 24 hours a day. Emergency response includes water extraction, make-safe measures, and an initial assessment to determine damage class and category.
+                    <strong>Emergency response (same day)</strong> — NRPG contractors attend as soon as a certified contractor is confirmed for your area of your call, 24 hours a day. Emergency response includes water extraction, make-safe measures, and an initial assessment to determine damage class and category.
                   </li>
                   <li>
                     <strong>Make-safe (1–3 days)</strong> — Securing the property against further damage: boarding windows, tarping roofs, removing standing water, and isolating electrical circuits in affected areas. This phase protects both the occupants and the structure while the scope is being prepared.
@@ -210,7 +210,7 @@ export default function RestorationTimelineExpectationsPage() {
                     <strong>Claim lodgement</strong> — You contact your insurer (or NRPG directly) and a claim is opened. NRPG can assist with lodgement and will provide the insurer with a preliminary scope and urgency assessment.
                   </li>
                   <li>
-                    <strong>Emergency response and make-safe</strong> — NRPG attends within 60 minutes, extracts standing water, and secures the property. A damage class and category assessment is completed. You receive a written preliminary scope.
+                    <strong>Emergency response and make-safe</strong> — NRPG attends as soon as a certified contractor is confirmed for your area, extracts standing water, and secures the property. A damage class and category assessment is completed. You receive a written preliminary scope.
                   </li>
                   <li>
                     <strong>Drying monitoring</strong> — Equipment is deployed and daily psychrometric readings begin. You receive regular updates on drying progress. The drying log is shared with your insurer as readings are recorded.

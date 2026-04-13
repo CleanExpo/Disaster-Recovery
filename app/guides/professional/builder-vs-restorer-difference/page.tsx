@@ -188,7 +188,7 @@ export default function BuilderVsRestorerPage() {
                   <strong>Instant matching</strong> — NRPG matches you with the nearest available IICRC-certified restorer within your selected radius (20&ndash;100 km).
                 </li>
                 <li>
-                  <strong>60-minute emergency response</strong> — Your matched contractor responds within 60 minutes, 24/7, to begin make-safe and prevent further damage.
+                  <strong>priority emergency response</strong> — Your matched contractor responds as soon as a certified contractor is confirmed for your area, 24/7, to begin make-safe and prevent further damage.
                 </li>
                 <li>
                   <strong>Work begins immediately</strong> without waiting for insurer approval. We bill you directly, and provide full claims documentation — photos, moisture logs, scope of works, and treatment records — so you have everything your insurer needs for reimbursement.

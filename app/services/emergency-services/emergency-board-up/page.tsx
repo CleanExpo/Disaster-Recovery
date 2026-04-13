@@ -39,7 +39,7 @@ const faqSchema = JSON.stringify({
       name: 'How quickly can you board up a property after storm or fire damage?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches emergency make-safe teams 24/7. In most metro areas response is within 60 minutes. Board-up is temporary protection — full repair or replacement of compromised openings follows once assessment and insurance approval are in place.',
+        text: 'NRPG dispatches emergency make-safe teams 24/7. In most metro areas response is as soon as a certified contractor is confirmed for your area. Board-up is temporary protection — full repair or replacement of compromised openings follows once assessment and insurance approval are in place.',
       },
     }
   ],

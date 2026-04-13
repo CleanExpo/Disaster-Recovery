@@ -15,11 +15,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Brisbane | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across all Brisbane suburbs. IICRC S500:2025 certified contractors respond in under 60 minutes. Burst pipes, storm flooding, Alfred recovery support. Lodge your claim 24/7.',
+  description: 'Professional water damage restoration across all Brisbane suburbs. IICRC S500:2025 certified contractors respond as quickly as possible. Burst pipes, storm flooding, Alfred recovery support. Lodge your claim 24/7.',
   keywords: 'water damage restoration brisbane, water damage brisbane, flood damage brisbane, burst pipe brisbane, water damage repair brisbane, IICRC brisbane, alfred water damage brisbane, structural drying brisbane',
   openGraph: {
     title: 'Water Damage Restoration Brisbane | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across all Brisbane suburbs. IICRC S500:2025 certified. 60-minute response. Alfred and storm flood claim support.',
+    description: 'Emergency water damage restoration across all Brisbane suburbs. IICRC S500:2025 certified. priority response. Alfred and storm flood claim support.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Brisbane')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -63,7 +63,7 @@ const faqSchema = {
       name: 'How quickly should water damage be treated in Brisbane?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Within 24\u201348 hours. Brisbane\u2019s subtropical climate means mould establishes rapidly in water-affected materials. The longer water remains in wall cavities and subfloor, the more extensive and costly the damage becomes. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+        text: "Within 24\u201348 hours. Brisbane\u2019s subtropical climate means mould establishes rapidly in water-affected materials. The longer water remains in wall cavities and subfloor, the more extensive and costly the damage becomes. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
       },
     },
     {
@@ -118,7 +118,7 @@ export default function WaterDamageRestorationBrisbanePage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Brisbane"
-        subtitle="Emergency water damage restoration across all Brisbane suburbs. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Ex-TC Alfred recovery support available."
+        subtitle="Emergency water damage restoration across all Brisbane suburbs. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Ex-TC Alfred recovery support available."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -205,7 +205,7 @@ export default function WaterDamageRestorationBrisbanePage() {
             heading: 'Brisbane Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across all Brisbane suburbs:</p>
+                <p>priority emergency response across all Brisbane suburbs:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner City / South Bank:</strong> Brisbane CBD, South Brisbane, Kangaroo Point, Fortitude
                   Valley, Spring Hill, Newstead, Teneriffe, New Farm
@@ -241,7 +241,7 @@ export default function WaterDamageRestorationBrisbanePage() {
         faqs={[
           {
             question: 'How quickly should water damage be treated in Brisbane?',
-            answer: "Within 24–48 hours. Brisbane's subtropical climate means mould establishes rapidly in water-affected materials. The longer water remains in wall cavities and subfloor, the more extensive and costly the damage becomes. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+            answer: "Within 24–48 hours. Brisbane's subtropical climate means mould establishes rapidly in water-affected materials. The longer water remains in wall cavities and subfloor, the more extensive and costly the damage becomes. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
           },
           {
             question: 'Is my Alfred flood damage still claimable in 2026?',

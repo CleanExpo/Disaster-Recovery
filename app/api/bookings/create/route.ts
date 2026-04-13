@@ -240,8 +240,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: validatedData.urgency === 'emergency'
-        ? 'Emergency booking confirmed. Team dispatched immediately.'
-        : 'Booking received successfully. We will confirm within 30 minutes.',
+        ? 'Emergency booking confirmed. A contractor will be in contact as soon as possible.'
+        : 'Booking received. A contractor will be in touch to confirm your appointment.',
       booking: {
         reference: bookingRef,
         status: booking.status === 'CONFIRMED' ? 'confirmed' : 'pending_confirmation',

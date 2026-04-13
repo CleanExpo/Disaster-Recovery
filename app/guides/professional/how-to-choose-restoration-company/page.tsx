@@ -201,7 +201,7 @@ export default function HowToChooseRestorationCompanyPage() {
                     <strong>IICRC certification required for network membership</strong> — No contractor joins the NRPG network without holding current, verified IICRC certification relevant to their service offering. Certifications are checked at onboarding and monitored ongoing.
                   </li>
                   <li>
-                    <strong>60-minute emergency response</strong> — NRPG contractors commit to a 60-minute emergency response, 24 hours a day, 7 days a week, including public holidays.
+                    <strong>priority emergency response</strong> — NRPG contractors commit to a priority emergency response, 24 hours a day, 7 days a week, including public holidays.
                   </li>
                   <li>
                     <strong>Direct insurer billing</strong> — NRPG manages the insurance documentation process end-to-end. You authorise the work and pay your excess — NRPG handles everything else with your insurer.

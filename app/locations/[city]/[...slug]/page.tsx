@@ -153,14 +153,14 @@ function generateCityServiceMetadata(city: string, service: string) {
 
   return {
     title: `Emergency ${serviceTitle} ${cityTitle} | NRPG 24/7`,
-    description: `Emergency ${serviceTitle.toLowerCase()} in ${cityTitle}. IICRC-certified contractors respond in under 60 minutes. Available 24/7.`,
+    description: `Emergency ${serviceTitle.toLowerCase()} in ${cityTitle}. IICRC-certified contractors respond as quickly as possible. Available 24/7.`,
     keywords: `${service}, ${city}, emergency restoration, disaster recovery, 24 hour service`,
     alternates: {
       canonical: `https://disasterrecovery.com.au/locations/${city}/${service}`,
     },
     openGraph: {
       title: `Emergency ${serviceTitle} ${cityTitle} | NRPG 24/7`,
-      description: `Emergency ${serviceTitle.toLowerCase()} in ${cityTitle} — IICRC-certified contractors respond in under 60 minutes. Available 24/7.`,
+      description: `Emergency ${serviceTitle.toLowerCase()} in ${cityTitle} — IICRC-certified contractors respond as quickly as possible. Available 24/7.`,
       type: 'website',
       images: [{
         url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(cityTitle)}&service=${encodeURIComponent(service)}`,
@@ -190,14 +190,14 @@ function generateSuburbServiceMetadata(city: string, suburbSlug: string, service
 
   return {
     title: `Emergency ${serviceTitle} ${suburbName} ${cityTitle} | NRPG 24/7`,
-    description: `Emergency ${serviceTitle.toLowerCase()} in ${suburbName}, ${cityTitle}. IICRC-certified contractors respond in under 60 minutes.${riskPhrase}`,
+    description: `Emergency ${serviceTitle.toLowerCase()} in ${suburbName}, ${cityTitle}. IICRC-certified contractors respond as quickly as possible.${riskPhrase}`,
     keywords: `${service}, ${suburbName}, ${cityTitle}, ${state}, emergency restoration, disaster recovery, 24 hour service`,
     alternates: {
       canonical: `https://disasterrecovery.com.au/locations/${city}/${suburbSlug}/${service}`,
     },
     openGraph: {
       title: `Emergency ${serviceTitle} ${suburbName} ${cityTitle} | NRPG 24/7`,
-      description: `Emergency ${serviceTitle.toLowerCase()} in ${suburbName}, ${cityTitle} — IICRC-certified contractors respond in under 60 minutes. Available 24/7.`,
+      description: `Emergency ${serviceTitle.toLowerCase()} in ${suburbName}, ${cityTitle} — IICRC-certified contractors respond as quickly as possible. Available 24/7.`,
       type: 'website',
       images: [{
         url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(`${suburbName}, ${cityTitle}`)}&service=${encodeURIComponent(service)}`,

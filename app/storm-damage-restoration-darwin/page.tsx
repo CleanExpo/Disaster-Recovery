@@ -70,7 +70,7 @@ const faqSchema = {
       name: 'How quickly can NRPG contractors respond to storm damage in Darwin?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG maintains certified contractors across the Darwin metropolitan area including Nightcliff, Casuarina, Palmerston, and surrounding suburbs. For post-cyclone events, emergency response is mobilised as soon as it is safe to operate — typically within hours of a system clearing the area. For Wet Season storm events (downbursts, localised tornadoes, lightning strikes), NRPG targets a 60-minute emergency response for structural make-safe and roof tarping. Outer rural areas including Humpty Doo, Howard Springs, and Coolalinga are served with extended response times.',
+        text: 'NRPG maintains certified contractors across the Darwin metropolitan area including Nightcliff, Casuarina, Palmerston, and surrounding suburbs. For post-cyclone events, emergency response is mobilised as soon as it is safe to operate — typically within hours of a system clearing the area. For Wet Season storm events (downbursts, localised tornadoes, lightning strikes), NRPG targets a priority emergency response for structural make-safe and roof tarping. Outer rural areas including Humpty Doo, Howard Springs, and Coolalinga are served with extended response times.',
       },
     },
     {
@@ -198,7 +198,7 @@ export default function StormDamageRestorationDarwinPage() {
           },
           {
             question: 'How quickly can NRPG contractors respond to storm damage in Darwin?',
-            answer: 'NRPG maintains certified contractors across Darwin metro including Nightcliff, Casuarina, and Palmerston. For post-cyclone events, response is mobilised as soon as it is safe — typically within hours of a system clearing. For Wet Season storm events, NRPG targets a 60-minute emergency response. Outer rural areas including Humpty Doo, Howard Springs, and Coolalinga are served with extended response times.',
+            answer: 'NRPG maintains certified contractors across Darwin metro including Nightcliff, Casuarina, and Palmerston. For post-cyclone events, response is mobilised as soon as it is safe — typically within hours of a system clearing. For Wet Season storm events, NRPG targets a priority emergency response. Outer rural areas including Humpty Doo, Howard Springs, and Coolalinga are served with extended response times.',
           },
           {
             question: 'How much does storm damage restoration cost in Darwin?',

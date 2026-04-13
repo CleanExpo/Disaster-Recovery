@@ -141,7 +141,7 @@ export default function FireDamageRestorationNewcastlePage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Newcastle"
-        subtitle="Emergency fire and smoke damage restoration across Newcastle, the Hunter Valley, and Upper Hunter. IICRC-certified contractors respond in under 60 minutes, 24 hours a day, 7 days a week."
+        subtitle="Emergency fire and smoke damage restoration across Newcastle, the Hunter Valley, and Upper Hunter. IICRC-certified contractors respond as quickly as possible, 24 hours a day, 7 days a week."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"

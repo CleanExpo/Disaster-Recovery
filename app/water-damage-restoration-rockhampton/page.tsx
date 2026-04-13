@@ -12,13 +12,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Rockhampton | 24/7 IICRC Certified',
   description:
-    'Professional water damage restoration across Rockhampton and Central Queensland. IICRC S500:2025 certified. Fitzroy River flood recovery. 60-minute emergency response.',
+    'Professional water damage restoration across Rockhampton and Central Queensland. IICRC S500:2025 certified. Fitzroy River flood recovery. priority emergency response.',
   keywords:
     'water damage restoration rockhampton, water damage rockhampton, fitzroy river flood, burst pipe rockhampton, storm flooding rockhampton, IICRC rockhampton central queensland',
   openGraph: {
     title: 'Water Damage Restoration Rockhampton | 24/7 IICRC Certified',
     description:
-      'Emergency water damage restoration across Rockhampton and Central Queensland. IICRC S500:2025 certified. Fitzroy River flood recovery. 60-minute response.',
+      'Emergency water damage restoration across Rockhampton and Central Queensland. IICRC S500:2025 certified. Fitzroy River flood recovery. priority response.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Rockhampton')}&service=water-damage-restoration`,
@@ -146,7 +146,7 @@ export default function WaterDamageRestorationRockhamptonPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Rockhampton"
-        subtitle="Emergency water damage restoration across Rockhampton and Central Queensland. IICRC S500:2025 certified technicians. Fitzroy River flood recovery. 60-minute emergency response."
+        subtitle="Emergency water damage restoration across Rockhampton and Central Queensland. IICRC S500:2025 certified technicians. Fitzroy River flood recovery. priority emergency response."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -227,7 +227,7 @@ export default function WaterDamageRestorationRockhamptonPage() {
             heading: 'Rockhampton Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Rockhampton LGA:</p>
+                <p>priority emergency response across the Rockhampton LGA:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>City/Inner (flood-risk priority):</strong> Rockhampton CBD, Depot Hill,
                   The Range, Frenchville, Norman Gardens, Park Avenue

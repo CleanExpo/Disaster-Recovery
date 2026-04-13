@@ -143,7 +143,7 @@ export default function FloodDamageRestorationWollongongPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Wollongong"
-        subtitle="IICRC-certified Category 3 flood damage restoration across Wollongong and the Illawarra. Escarpment runoff, Lake Illawarra, and industrial contamination specialists. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across Wollongong and the Illawarra. Escarpment runoff, Lake Illawarra, and industrial contamination specialists. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -236,7 +236,7 @@ export default function FloodDamageRestorationWollongongPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for Category 3 extraction across Greater Wollongong
+                  priority emergency response for Category 3 extraction across Greater Wollongong
                   and the Illawarra:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
@@ -261,7 +261,7 @@ export default function FloodDamageRestorationWollongongPage() {
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>General Illawarra coverage:</strong> All Wollongong, Shellharbour, and
-                  Kiama LGAs &mdash; 60-minute response for Category 3 extraction
+                  Kiama LGAs &mdash; priority response for Category 3 extraction
                 </p>
               </>
             ),

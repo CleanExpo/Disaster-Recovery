@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: 'flood damage canberra, flood damage ACT, murrumbidgee flood canberra, flood restoration tuggeranong, flood damage molonglo valley, ACT government building flood, canberra creek flooding, flood damage weston creek',
   openGraph: {
     title: 'Flood Damage Restoration Canberra | Murrumbidgee & ACT IICRC S500',
-    description: 'Emergency flood damage restoration across Canberra and the ACT. Murrumbidgee inundation, creek overflow, and government/heritage building restoration. IICRC S500:2025 certified. 60-minute response.',
+    description: 'Emergency flood damage restoration across Canberra and the ACT. Murrumbidgee inundation, creek overflow, and government/heritage building restoration. IICRC S500:2025 certified. priority response.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Flood Damage Restoration')}&city=${encodeURIComponent('Canberra')}&service=flood-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -81,7 +81,7 @@ export default function FloodDamageRestorationCanberraPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Canberra"
-        subtitle="Emergency flood damage restoration across Canberra and the ACT. Murrumbidgee inundation, creek flooding, and specialist government building restoration. IICRC S500:2025 certified. 60-minute response."
+        subtitle="Emergency flood damage restoration across Canberra and the ACT. Murrumbidgee inundation, creek flooding, and specialist government building restoration. IICRC S500:2025 certified. priority response."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"

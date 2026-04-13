@@ -38,7 +38,7 @@ const faqSchema = JSON.stringify({
       name: 'How quickly can you respond to a sewage backup?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches IICRC-certified technicians within 60 minutes in most metro areas, 24/7. Sewage backup is a Category 3 contamination event — every hour of delay increases health risk and structural damage. Contact us immediately at disasterrecovery.com.au/claim.',
+        text: 'NRPG dispatches IICRC-certified technicians as soon as a certified contractor is confirmed for your area in most metro areas, 24/7. Sewage backup is a Category 3 contamination event — every hour of delay increases health risk and structural damage. Contact us immediately at disasterrecovery.com.au/claim.',
       },
     },
     {

@@ -160,7 +160,7 @@ export default function GoldCoastHighRiseWaterDamagePage() {
                   <strong>Lodge your claim online</strong> — Submit through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the building name and address, approximate floors and units affected, and whether the source is common property or a lot owner issue. NRPG matches you with contractors experienced in Gold Coast high-rise restoration.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> — Contractors respond within 60 minutes, 24/7, across the Gold Coast. Emergency water extraction begins on all affected levels simultaneously. The water source is isolated (working with building management to shut down risers if necessary). Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response and make-safe</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across the Gold Coast. Emergency water extraction begins on all affected levels simultaneously. The water source is isolated (working with building management to shut down risers if necessary). Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the full multi-unit restoration scope. We bill you directly — the body corporate, lot owner, or strata manager — so the restoration is not delayed by insurance processing.

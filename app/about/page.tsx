@@ -72,7 +72,7 @@ const aboutFAQs = [
   },
   {
     question: 'How quickly can a contractor respond?',
-    answer: 'Our platform matches you with the nearest IICRC-certified contractor automatically. Emergency jobs receive priority dispatching, with contractors typically responding within 60 minutes in metropolitan areas. The platform operates 24/7/365 with no phone queues or business-hours limitations.',
+    answer: 'Our platform matches you with the nearest IICRC-certified contractor automatically. Emergency jobs receive priority dispatching. The platform operates 24/7/365 with no phone queues or business-hours limitations — a contractor will be in contact as soon as one is confirmed for your area.',
   },
 ];
 const aboutFAQSchema = JSON.stringify({
@@ -272,7 +272,7 @@ export default function AboutPage() {
                   { metric: 'Platform Availability', value: '24/7/365' },
                   { metric: 'Contractor Certification', value: '100% IICRC' },
                   { metric: 'Minimum Public Liability', value: '$20M' },
-                  { metric: 'Target Response Time', value: '60 minutes' },
+                  { metric: 'Contractor Matching', value: 'Priority Queue' },
                   { metric: 'Minimum Service Fee', value: '$2,200' },
                   { metric: 'Payment Plans', value: 'Available' },
                   { metric: 'Platform Type', value: '100% Digital' },

@@ -86,7 +86,7 @@ const waterDamageFaqSchema = JSON.stringify({
       name: 'How quickly can you respond to water damage?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches IICRC-certified water extraction technicians within 60 minutes of claim lodgement in most metro areas. 24/7 service across all Australian states and territories.',
+        text: 'NRPG dispatches IICRC-certified water extraction technicians as soon as a certified contractor is confirmed for your area of claim lodgement in most metro areas. 24/7 service across all Australian states and territories.',
       },
     },
     {

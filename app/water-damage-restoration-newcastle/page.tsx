@@ -16,11 +16,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Newcastle | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across Newcastle and the Hunter region. IICRC S500:2025 certified contractors respond in under 60 minutes. Hunter River flooding, east coast low storm damage, burst pipes. Lodge your claim 24/7.',
+  description: 'Professional water damage restoration across Newcastle and the Hunter region. IICRC S500:2025 certified contractors respond as quickly as possible. Hunter River flooding, east coast low storm damage, burst pipes. Lodge your claim 24/7.',
   keywords: 'water damage restoration newcastle, water damage newcastle, flood damage newcastle, burst pipe newcastle, hunter valley flood damage, maitland flood damage, water damage repair newcastle, IICRC newcastle, east coast low water damage',
   openGraph: {
     title: 'Water Damage Restoration Newcastle | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across Newcastle and the Hunter region. IICRC S500:2025 certified. 60-minute response. Hunter River flood and east coast low storm damage specialists.',
+    description: 'Emergency water damage restoration across Newcastle and the Hunter region. IICRC S500:2025 certified. priority response. Hunter River flood and east coast low storm damage specialists.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Newcastle')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -80,7 +80,7 @@ const faqSchema = {
       name: 'How quickly should I act after water damage in Newcastle?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Immediately — within 24 to 48 hours is critical. Newcastle and the Hunter Valley experience humid summer conditions where mould establishes in water-affected materials within 48 hours of exposure. Delays in extraction and drying allow moisture to penetrate wall cavities, subfloor timbers, and insulation, dramatically increasing both the remediation cost and the likelihood of mould-related health risks. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+        text: "Immediately — within 24 to 48 hours is critical. Newcastle and the Hunter Valley experience humid summer conditions where mould establishes in water-affected materials within 48 hours of exposure. Delays in extraction and drying allow moisture to penetrate wall cavities, subfloor timbers, and insulation, dramatically increasing both the remediation cost and the likelihood of mould-related health risks. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
       },
     },
     {
@@ -103,7 +103,7 @@ export default function WaterDamageRestorationNewcastlePage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Newcastle"
-        subtitle="Emergency water damage restoration across Newcastle and the Hunter region. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Hunter River flood and east coast low storm damage specialists."
+        subtitle="Emergency water damage restoration across Newcastle and the Hunter region. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Hunter River flood and east coast low storm damage specialists."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -189,7 +189,7 @@ export default function WaterDamageRestorationNewcastlePage() {
             heading: 'Newcastle Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Newcastle and the Hunter region:</p>
+                <p>priority emergency response across Newcastle and the Hunter region:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Newcastle Inner City:</strong> Newcastle CBD, Cooks Hill, Hamilton, Islington, Georgetown,
                   Wickham, Carrington, Tighes Hill, Mayfield
@@ -229,7 +229,7 @@ export default function WaterDamageRestorationNewcastlePage() {
           },
           {
             question: 'How quickly should I act after water damage in Newcastle?',
-            answer: "Immediately — within 24 to 48 hours is critical. Newcastle and the Hunter Valley experience humid summer conditions where mould establishes in water-affected materials within 48 hours of exposure. Delays in extraction and drying allow moisture to penetrate wall cavities, subfloor timbers, and insulation, dramatically increasing both the remediation cost and the likelihood of mould-related health risks. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+            answer: "Immediately — within 24 to 48 hours is critical. Newcastle and the Hunter Valley experience humid summer conditions where mould establishes in water-affected materials within 48 hours of exposure. Delays in extraction and drying allow moisture to penetrate wall cavities, subfloor timbers, and insulation, dramatically increasing both the remediation cost and the likelihood of mould-related health risks. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
           },
           {
             question: 'How much does water damage restoration cost in Newcastle?',

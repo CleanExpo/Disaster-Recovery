@@ -166,7 +166,7 @@ export default function WaterDamageRestorationSunshineCoastPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Sunshine Coast"
-        subtitle="Emergency water damage restoration across the Sunshine Coast. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Ex-TC Alfred recovery and secondary damage support available."
+        subtitle="Emergency water damage restoration across the Sunshine Coast. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Ex-TC Alfred recovery and secondary damage support available."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"

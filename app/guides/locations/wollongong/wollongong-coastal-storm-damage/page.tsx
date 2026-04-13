@@ -20,7 +20,7 @@ export default function WollongongCoastalStormDamagePage() {
         name: 'How quickly can storm damage response start in Wollongong during an East Coast Low?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'NRPG contractors provide a 60-minute emergency response across the Illawarra, 24/7. During severe East Coast Low events, demand surges and access may be restricted by flooding, road closures, or fallen trees. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are prioritised. Emergency tarping and make-safe begin as soon as conditions allow safe roof access and site entry. Internal water diversion can begin even while external conditions prevent roof access.',
+          text: 'NRPG contractors provide a priority emergency response across the Illawarra, 24/7. During severe East Coast Low events, demand surges and access may be restricted by flooding, road closures, or fallen trees. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are prioritised. Emergency tarping and make-safe begin as soon as conditions allow safe roof access and site entry. Internal water diversion can begin even while external conditions prevent roof access.',
         },
       },
       {
@@ -166,7 +166,7 @@ export default function WollongongCoastalStormDamagePage() {
                   <strong>Lodge your claim online</strong> — Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with photos of the damage, your suburb, and a description of the damage types (roof, flooding, tree impact, coastal erosion). NRPG matches you with contractors experienced in Illawarra coastal storm damage.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> — Contractors respond within 60 minutes, 24/7, across the Illawarra from Helensburgh to Kiama. Emergency tarping, board-up, tree removal from structures, and water extraction begin immediately when safe to do so. Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response and make-safe</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across the Illawarra from Helensburgh to Kiama. Emergency tarping, board-up, tree removal from structures, and water extraction begin immediately when safe to do so. Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the full scope of roof repair, decontamination, drying, salt remediation, and structural restoration. We bill you directly so you control the process and timeline.
@@ -188,7 +188,7 @@ export default function WollongongCoastalStormDamagePage() {
       faqs={[
         {
           question: 'How quickly can storm damage response start in Wollongong during an East Coast Low?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across the Illawarra, 24/7. During severe East Coast Low events, demand surges and access may be restricted by flooding, road closures, or fallen trees. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are prioritised. Emergency tarping and make-safe begin as soon as conditions allow safe roof access and site entry. Internal water diversion can begin even while external conditions prevent roof access.',
+          answer: 'NRPG contractors provide a priority emergency response across the Illawarra, 24/7. During severe East Coast Low events, demand surges and access may be restricted by flooding, road closures, or fallen trees. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are prioritised. Emergency tarping and make-safe begin as soon as conditions allow safe roof access and site entry. Internal water diversion can begin even while external conditions prevent roof access.',
         },
         {
           question: 'Does insurance cover East Coast Low storm damage in the Illawarra?',

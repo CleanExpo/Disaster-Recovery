@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Fire Damage Restoration Perth | IICRC S700:2025 Certified Emergency',
-  description: 'Emergency fire damage restoration across Perth and Western Australia. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. 60-minute response. Lodge your claim 24/7.',
+  description: 'Emergency fire damage restoration across Perth and Western Australia. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. priority response. Lodge your claim 24/7.',
   keywords: 'fire damage restoration perth, fire damage perth, smoke damage perth, bushfire damage perth WA, soot damage perth, fire restoration perth, house fire perth WA',
   openGraph: {
     title: 'Fire Damage Restoration Perth | IICRC S700:2025 Certified Emergency',
-    description: 'Emergency fire damage restoration across Perth and Western Australia. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. 60-minute response. Lodge your claim 24/7.',
+    description: 'Emergency fire damage restoration across Perth and Western Australia. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. priority response. Lodge your claim 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Fire Damage Restoration')}&city=${encodeURIComponent('Perth')}&service=fire-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -82,7 +82,7 @@ export default function FireDamageRestorationPerthPage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Perth"
-        subtitle="Emergency fire damage restoration across Perth and Western Australia. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire structural damage. 60-minute response."
+        subtitle="Emergency fire damage restoration across Perth and Western Australia. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire structural damage. priority response."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -135,7 +135,7 @@ export default function FireDamageRestorationPerthPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across all Perth suburbs for fire damage make-safe and structural
+                  priority emergency response across all Perth suburbs for fire damage make-safe and structural
                   assessment.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

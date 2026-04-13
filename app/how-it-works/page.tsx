@@ -18,7 +18,7 @@ const howToSchema = {
   '@type': 'HowTo',
   name: 'How Disaster Recovery Works — From Damage to Restoration',
   description:
-    'Your complete 6-step journey from property damage to full restoration with IICRC-certified contractors, 60-minute response, and insurance-compliant documentation.',
+    'Your complete 6-step journey from property damage to full restoration with IICRC-certified contractors, priority response, and insurance-compliant documentation.',
   totalTime: 'P14D',
   estimatedCost: {
     '@type': 'MonetaryAmount',
@@ -37,7 +37,7 @@ const howToSchema = {
       '@type': 'HowToStep',
       position: 2,
       name: 'Matched With a Certified Contractor',
-      text: 'Our system immediately matches you with an IICRC-certified contractor in your area from the NRPG network. A qualified restoration professional will contact you within 60 minutes.',
+      text: 'Our system immediately matches you with an IICRC-certified contractor in your area from the NRPG network. A qualified restoration professional will contact you as soon as a certified contractor is confirmed for your area.',
     },
     {
       '@type': 'HowToStep',
@@ -108,7 +108,7 @@ export default function HowItWorksPage() {
           body: (
             <div className="prose prose-lg max-w-none">
               <p>Once your claim is submitted, our system immediately matches you with an IICRC-certified contractor in your area from the NRPG network. All contractors meet strict industry standards and carry comprehensive insurance.</p>
-              <p><strong>A qualified restoration professional will contact you within 60 minutes</strong> to discuss your situation and schedule an on-site inspection. Your contractor communicates directly with you — no intermediaries, no delays.</p>
+              <p><strong>A qualified restoration professional will contact you as soon as a certified contractor is confirmed for your area</strong> to discuss your situation and schedule an on-site inspection. Your contractor communicates directly with you — no intermediaries, no delays.</p>
             </div>
           ),
           background: 'light',
@@ -210,7 +210,7 @@ export default function HowItWorksPage() {
                 <li><strong>Australia-wide coverage</strong> — certified contractors in every state and territory</li>
                 <li><strong>24/7/365 availability</strong> — submit your claim any time, day or night, every day of the year</li>
                 <li><strong>IICRC-certified network</strong> — every contractor meets the highest industry standards</li>
-                <li><strong>60-minute response target</strong> — our dispatch team aims to have a contractor contact you within the hour</li>
+                <li><strong>priority response target</strong> — our dispatch team aims to have a contractor contact you within the hour</li>
                 <li><strong>Insurance-compliant documentation</strong> — all invoicing formatted for insurer acceptance</li>
                 <li><strong>We bill you directly</strong> — work begins immediately, no insurer delays</li>
                 <li><strong>Flexible payment plans</strong> — manage costs through{' '}

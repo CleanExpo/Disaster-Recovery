@@ -94,7 +94,7 @@ export default function FireDamageRestorationCairnsPage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Cairns"
-        subtitle="Emergency fire damage restoration across Cairns and Far North Queensland. IICRC S700:2025 certified contractors for post-cyclone electrical fires, structural fires, and smoke damage in tropical conditions. 60-minute response."
+        subtitle="Emergency fire damage restoration across Cairns and Far North Queensland. IICRC S700:2025 certified contractors for post-cyclone electrical fires, structural fires, and smoke damage in tropical conditions. priority response."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -168,7 +168,7 @@ export default function FireDamageRestorationCairnsPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across Cairns and surrounds for fire damage make-safe and
+                  priority emergency response across Cairns and surrounds for fire damage make-safe and
                   structural assessment.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

@@ -52,7 +52,7 @@ export default function StormDamageRoofLeakRepairPage() {
         name: 'What should I do if water is coming through my ceiling right now?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Place buckets or containers under active drips. If the ceiling is bulging or sagging, stay clear \u2014 saturated plasterboard can collapse without warning. Do not attempt to climb onto the roof. Turn off electricity to affected areas if water is near light fittings or power points. Then lodge a claim at disasterrecovery.com.au/claim for a 60-minute emergency response from an IICRC-certified contractor who will perform emergency tarping and water extraction.',
+          text: 'Place buckets or containers under active drips. If the ceiling is bulging or sagging, stay clear \u2014 saturated plasterboard can collapse without warning. Do not attempt to climb onto the roof. Turn off electricity to affected areas if water is near light fittings or power points. Then lodge a claim at disasterrecovery.com.au/claim for a priority emergency response from an IICRC-certified contractor who will perform emergency tarping and water extraction.',
         },
       },
     ],
@@ -226,7 +226,7 @@ export default function StormDamageRoofLeakRepairPage() {
                   <strong>Instant matching</strong> — NRPG matches you with the nearest available IICRC-certified contractor within your selected radius (20&ndash;100 km) who has storm damage and water restoration capabilities.
                 </li>
                 <li>
-                  <strong>60-minute emergency response</strong> — Your matched contractor responds within 60 minutes, 24/7, including weekends and public holidays. During major storm events, multiple contractors may be deployed to manage demand.
+                  <strong>priority emergency response</strong> — Your matched contractor responds as soon as a certified contractor is confirmed for your area, 24/7, including weekends and public holidays. During major storm events, multiple contractors may be deployed to manage demand.
                 </li>
                 <li>
                   <strong>Make-safe on arrival</strong> — The contractor performs emergency tarping, water extraction, and immediate interior protection. They document all damage with timestamped photos and moisture readings.
@@ -261,7 +261,7 @@ export default function StormDamageRoofLeakRepairPage() {
         },
         {
           question: 'What should I do if water is coming through my ceiling right now?',
-          answer: 'Place buckets or containers under active drips. If the ceiling is bulging or sagging, stay clear — saturated plasterboard can collapse without warning. Do not attempt to climb onto the roof. Turn off electricity to affected areas if water is near light fittings or power points. Then lodge a claim at disasterrecovery.com.au/claim for a 60-minute emergency response from an IICRC-certified contractor who will perform emergency tarping and water extraction.',
+          answer: 'Place buckets or containers under active drips. If the ceiling is bulging or sagging, stay clear — saturated plasterboard can collapse without warning. Do not attempt to climb onto the roof. Turn off electricity to affected areas if water is near light fittings or power points. Then lodge a claim at disasterrecovery.com.au/claim for a priority emergency response from an IICRC-certified contractor who will perform emergency tarping and water extraction.',
         },
       ]}
       relatedGuides={[

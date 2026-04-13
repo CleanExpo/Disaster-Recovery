@@ -145,7 +145,7 @@ export default function FireDamageRestorationDarwinPage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Darwin"
-        subtitle="Emergency fire damage restoration across Darwin, Palmerston, and Greater Darwin. IICRC S700:2025 certified contractors for dry season grassfire interface properties, structural fires, and smoke damage in tropical conditions. 60-minute response."
+        subtitle="Emergency fire damage restoration across Darwin, Palmerston, and Greater Darwin. IICRC S700:2025 certified contractors for dry season grassfire interface properties, structural fires, and smoke damage in tropical conditions. priority response."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -222,7 +222,7 @@ export default function FireDamageRestorationDarwinPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across Darwin and surrounds for fire damage
+                  priority emergency response across Darwin and surrounds for fire damage
                   make-safe and structural assessment:
                 </p>
                 <p style={{ marginTop: '1rem' }}>

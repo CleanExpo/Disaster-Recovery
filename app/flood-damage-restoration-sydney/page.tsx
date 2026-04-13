@@ -144,7 +144,7 @@ export default function FloodDamageRestorationSydneyPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Sydney"
-        subtitle="IICRC-certified Category 3 flood damage restoration across Sydney. Hawkesbury River, Parramatta River, and overland flow specialists. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across Sydney. Hawkesbury River, Parramatta River, and overland flow specialists. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -235,7 +235,7 @@ export default function FloodDamageRestorationSydneyPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for Category 3 extraction across greater Sydney:
+                  priority emergency response for Category 3 extraction across greater Sydney:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Western Sydney (highest risk):</strong> Windsor, Richmond, Pitt Town,
@@ -254,7 +254,7 @@ export default function FloodDamageRestorationSydneyPage() {
                   (Powells Creek), Marrickville
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
-                  <strong>General metro coverage:</strong> All Sydney LGAs &mdash; 60-minute response
+                  <strong>General metro coverage:</strong> All Sydney LGAs &mdash; priority response
                   for Category 3 extraction
                 </p>
               </>

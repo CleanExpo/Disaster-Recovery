@@ -153,7 +153,7 @@ export default function FloodDamageRestorationBrisbanePage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Brisbane"
-        subtitle="IICRC-certified Category 3 flood damage restoration across Brisbane. Brisbane River flooding, overland flow, and Ex-TC Alfred inundation specialists. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across Brisbane. Brisbane River flooding, overland flow, and Ex-TC Alfred inundation specialists. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -239,7 +239,7 @@ export default function FloodDamageRestorationBrisbanePage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for Category 3 emergency extraction and containment:
+                  priority emergency response for Category 3 emergency extraction and containment:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Brisbane River floodplain:</strong> Rocklea, Moorooka, Yeronga, Fairfield, Annerley,

@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Fire Damage Restoration Melbourne | IICRC S700:2025 Certified Emergency',
-  description: 'Emergency fire damage restoration across Melbourne and Victoria. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. 60-minute response. Lodge your claim 24/7.',
+  description: 'Emergency fire damage restoration across Melbourne and Victoria. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. priority response. Lodge your claim 24/7.',
   keywords: 'fire damage restoration melbourne, fire damage melbourne, smoke damage melbourne, soot damage melbourne, bushfire damage melbourne, fire restoration melbourne victoria',
   openGraph: {
     title: 'Fire Damage Restoration Melbourne | IICRC S700:2025 Certified Emergency',
-    description: 'Emergency fire damage restoration across Melbourne and Victoria. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. 60-minute response. Lodge your claim 24/7.',
+    description: 'Emergency fire damage restoration across Melbourne and Victoria. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire damage. priority response. Lodge your claim 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Fire Damage Restoration')}&city=${encodeURIComponent('Melbourne')}&service=fire-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -82,7 +82,7 @@ export default function FireDamageRestorationMelbournePage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Melbourne"
-        subtitle="Emergency fire damage restoration across Melbourne and Victoria. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire structural damage. 60-minute response."
+        subtitle="Emergency fire damage restoration across Melbourne and Victoria. IICRC S700:2025 certified contractors for fire, smoke, soot, and bushfire structural damage. priority response."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -135,7 +135,7 @@ export default function FireDamageRestorationMelbournePage() {
             heading: 'Melbourne Suburbs and Regional Victoria We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Melbourne metro:</p>
+                <p>priority emergency response across Melbourne metro:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner City:</strong> Melbourne CBD, South Melbourne, Port Melbourne, St Kilda, Fitzroy,
                   Collingwood, Richmond

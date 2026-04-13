@@ -12,13 +12,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Mackay | 24/7 IICRC Certified',
   description:
-    'Professional water damage restoration across Mackay and the Whitsunday coast. IICRC S500:2025 certified. 60-minute response. Cyclone and storm flood recovery support.',
+    'Professional water damage restoration across Mackay and the Whitsunday coast. IICRC S500:2025 certified. priority response. Cyclone and storm flood recovery support.',
   keywords:
     'water damage restoration mackay, water damage mackay, burst pipe mackay, storm flooding mackay, TC Maila mackay, IICRC mackay',
   openGraph: {
     title: 'Water Damage Restoration Mackay | 24/7 IICRC Certified',
     description:
-      'Emergency water damage restoration across Mackay and the Whitsunday coast. IICRC S500:2025 certified. 60-minute response. TC Maila water damage recovery.',
+      'Emergency water damage restoration across Mackay and the Whitsunday coast. IICRC S500:2025 certified. priority response. TC Maila water damage recovery.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Mackay')}&service=water-damage-restoration`,
@@ -146,7 +146,7 @@ export default function WaterDamageRestorationMackayPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Mackay"
-        subtitle="Emergency water damage restoration across Mackay and the Whitsunday coast. IICRC S500:2025 certified technicians. 60-minute response. Cyclone and storm flood recovery support."
+        subtitle="Emergency water damage restoration across Mackay and the Whitsunday coast. IICRC S500:2025 certified technicians. priority response. Cyclone and storm flood recovery support."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -192,7 +192,7 @@ export default function WaterDamageRestorationMackayPage() {
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   NRPG IICRC-certified contractors are pre-positioned across the Mackay region to provide
-                  60-minute post-clearance response for:
+                  priority post-clearance response for:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>Emergency water extraction and containment</li>
@@ -216,7 +216,7 @@ export default function WaterDamageRestorationMackayPage() {
             heading: 'Mackay Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Mackay LGA:</p>
+                <p>priority emergency response across the Mackay LGA:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>City/Inner:</strong> Mackay CBD, North Mackay, South Mackay, West Mackay,
                   Andergrove, Beaconsfield, Blacks Beach, Mount Pleasant

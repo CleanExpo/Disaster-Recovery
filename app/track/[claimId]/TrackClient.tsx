@@ -337,7 +337,7 @@ function TrackClaimPageOriginal() {
               <Alert>
                 <Phone className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Important:</strong> Your contractor will call you directly within 60 minutes.
+                  <strong>Important:</strong> Your contractor will call you directly as soon as a certified contractor is confirmed for your area.
                   All future communication about your claim should be with them, not Disaster Recovery.
                 </AlertDescription>
               </Alert>

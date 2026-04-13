@@ -7,7 +7,7 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Cairns TC Maila Recovery — Complete Guide for Property Owners 2026',
   description:
-    'Complete TC Maila recovery guide for Cairns property owners. Cairns (4870) is the primary TC Maila landfall zone. What to do now, ARPC cyclone pool claims, mould prevention, and NRPG 60-minute post-clearance response.',
+    'Complete TC Maila recovery guide for Cairns property owners. Cairns (4870) is the primary TC Maila landfall zone. What to do now, ARPC cyclone pool claims, mould prevention, and NRPG priority post-clearance response.',
   keywords:
     'cairns TC Maila recovery, cyclone Maila cairns, cairns cyclone damage 2026, ARPC cyclone pool cairns, cairns 4870 cyclone recovery',
   alternates: {
@@ -47,7 +47,7 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Cairns' },
   serviceType: 'Cyclone Damage Restoration',
   description:
-    'Emergency cyclone damage restoration, structural drying, mould remediation, and ARPC/insurer claim documentation for Cairns property owners affected by TC Maila April 2026. Primary landfall zone — 60-minute post-clearance response.',
+    'Emergency cyclone damage restoration, structural drying, mould remediation, and ARPC/insurer claim documentation for Cairns property owners affected by TC Maila April 2026. Primary landfall zone — priority post-clearance response.',
 };
 
 const faqSchema = {
@@ -59,7 +59,7 @@ const faqSchema = {
       name: 'What should Cairns property owners do immediately after TC Maila?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Wait for Queensland Police or SES to confirm the all-clear before leaving shelter or entering your property. Do not re-enter during the calm of the eye — TC Maila\'s eye wall passed over Cairns and violent conditions returned as it tracked south. Photograph all damage immediately with timestamps before any cleanup or repairs. Notify your insurer within 24–48 hours to activate your Additional Living Expenses benefit. Lodge at disasterrecovery.com.au/claim — NRPG contractors are deployed across Cairns for 60-minute post-clearance response.',
+        text: 'Wait for Queensland Police or SES to confirm the all-clear before leaving shelter or entering your property. Do not re-enter during the calm of the eye — TC Maila\'s eye wall passed over Cairns and violent conditions returned as it tracked south. Photograph all damage immediately with timestamps before any cleanup or repairs. Notify your insurer within 24–48 hours to activate your Additional Living Expenses benefit. Lodge at disasterrecovery.com.au/claim — NRPG contractors are deployed across Cairns for priority post-clearance response.',
       },
     },
     {
@@ -140,7 +140,7 @@ export default function CairnsTCMailaRecoveryPage() {
                   <strong>Structural wind damage</strong> was widespread across all Cairns suburbs. At 215 km/h, TC Maila exceeded the design wind speed of many older residential structures built before the AS4055:2012 cyclone zone design updates. Roof structures in Cairns North, Bungalow, Manoora, Woree, Manunda, and Mooroobool sustained significant damage. Queenslander-style homes, lightweight steel frame construction, and fibrous cement cladding are particularly susceptible to Category 5 wind loads.
                 </p>
                 <p>
-                  <strong>NRPG contractors are deployed</strong> across all Cairns postcodes. Emergency response teams with water extraction equipment, industrial drying arrays, and roof tarping materials are staging from pre-positioned depots for 60-minute post-clearance response across 4870, 4878, and 4879. Lodge at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> to enter the priority response queue.
+                  <strong>NRPG contractors are deployed</strong> across all Cairns postcodes. Emergency response teams with water extraction equipment, industrial drying arrays, and roof tarping materials are staging from pre-positioned depots for priority post-clearance response across 4870, 4878, and 4879. Lodge at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> to enter the priority response queue.
                 </p>
               </div>
             ),
@@ -206,7 +206,7 @@ export default function CairnsTCMailaRecoveryPage() {
                 </p>
                 <ol className="list-decimal pl-6 space-y-3">
                   <li>
-                    <strong>Day 1: All-clear and emergency make-safe.</strong> Once Queensland SES or Police confirm area clearance, NRPG deploys within 60 minutes. Emergency roof tarping, structural securing, and boarding of compromised openings. Electrical safety check coordinated before power restoration. All make-safe works documented for the claim.
+                    <strong>Day 1: All-clear and emergency make-safe.</strong> Once Queensland SES or Police confirm area clearance, NRPG deploys as soon as a certified contractor is confirmed for your area. Emergency roof tarping, structural securing, and boarding of compromised openings. Electrical safety check coordinated before power restoration. All make-safe works documented for the claim.
                   </li>
                   <li>
                     <strong>Days 1&ndash;3: Water extraction and drying deployment.</strong> Industrial water extraction from all affected areas. Deployment of structural drying and dehumidification equipment. Initial moisture mapping of all affected structural elements — walls, ceilings, floors, subfloors. Mould prevention treatment applied to vulnerable surfaces in Cairns&rsquo; tropical conditions.
@@ -232,7 +232,7 @@ export default function CairnsTCMailaRecoveryPage() {
           {
             question: 'What should Cairns property owners do immediately after TC Maila?',
             answer:
-              'Wait for Queensland Police or SES to confirm the all-clear before leaving shelter or entering your property. Photograph all damage with timestamps before any cleanup. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG contractors are deployed across Cairns for 60-minute post-clearance response. Do not commence permanent repairs without insurer scope approval.',
+              'Wait for Queensland Police or SES to confirm the all-clear before leaving shelter or entering your property. Photograph all damage with timestamps before any cleanup. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG contractors are deployed across Cairns for priority post-clearance response. Do not commence permanent repairs without insurer scope approval.',
           },
           {
             question: 'How does the ARPC Cyclone Pool affect Cairns TC Maila claims?',

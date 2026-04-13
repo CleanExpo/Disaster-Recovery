@@ -19,7 +19,7 @@ const faqSchema = {
       name: 'How quickly can emergency water extraction start in Sydney CBD?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors provide a 60-minute emergency response across Sydney CBD, 24/7. The contractor coordinates with building management for loading dock and goods lift access to begin extraction as quickly as possible. After-hours response includes security coordination and building management notification. In CBD high-rises, extraction equipment can typically be operational on the affected floor within 90 minutes of the initial call.',
+        text: 'NRPG contractors provide a priority emergency response across Sydney CBD, 24/7. The contractor coordinates with building management for loading dock and goods lift access to begin extraction as quickly as possible. After-hours response includes security coordination and building management notification. In CBD high-rises, extraction equipment can typically be operational on the affected floor within 90 minutes of the initial call.',
       },
     },
     {
@@ -160,7 +160,7 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
                   <strong>Lodge your claim online</strong> — Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the building address, affected floors, water source if known, and building management contact details. NRPG matches you with contractors experienced in Sydney CBD high-rise water extraction.
                 </li>
                 <li>
-                  <strong>Emergency response</strong> — Contractors respond within 60 minutes, 24/7, across Sydney CBD. Emergency water extraction begins on arrival, coordinating with building management for loading dock and goods lift access. Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across Sydney CBD. Emergency water extraction begins on arrival, coordinating with building management for loading dock and goods lift access. Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract</strong> — After make-safe and initial extraction, the contractor provides a formal contract with full terms and conditions covering the full drying and restoration scope. We bill you directly — the tenant, building owner, or body corporate.
@@ -182,7 +182,7 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
       faqs={[
         {
           question: 'How quickly can emergency water extraction start in Sydney CBD?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across Sydney CBD, 24/7. The contractor coordinates with building management for loading dock and goods lift access to begin extraction as quickly as possible. After-hours response includes security coordination and building management notification. In CBD high-rises, extraction equipment can typically be operational on the affected floor within 90 minutes of the initial call.',
+          answer: 'NRPG contractors provide a priority emergency response across Sydney CBD, 24/7. The contractor coordinates with building management for loading dock and goods lift access to begin extraction as quickly as possible. After-hours response includes security coordination and building management notification. In CBD high-rises, extraction equipment can typically be operational on the affected floor within 90 minutes of the initial call.',
         },
         {
           question: 'Can water extraction be done after hours to avoid disrupting our CBD office?',

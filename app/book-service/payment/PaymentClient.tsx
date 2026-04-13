@@ -410,7 +410,7 @@ function PaymentPageContent() {
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <CheckCircle className="h-4 w-4 text-green-500 mt-0.5" />
-                        <p className="text-xs text-gray-700">Contractor contacts you within 30 minutes</p>
+                        <p className="text-xs text-gray-700">Contractor will be in contact to confirm your appointment</p>
                       </div>
                       <div className="flex items-start gap-2">
                         <CheckCircle className="h-4 w-4 text-green-500 mt-0.5" />

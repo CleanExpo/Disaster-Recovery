@@ -20,7 +20,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
         name: 'How quickly can industrial flood recovery begin in Newcastle?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'NRPG contractors provide a 60-minute emergency response across greater Newcastle, 24/7. For industrial facilities, the initial response focuses on safety assessment, hazard identification, and emergency water removal. If the facility is in a flood-affected access area (Kooragang Island, Hexham corridor), the contractor coordinates with SES and emergency services for site access as soon as conditions allow. Work begins immediately without waiting for insurer approval.',
+          text: 'NRPG contractors provide a priority emergency response across greater Newcastle, 24/7. For industrial facilities, the initial response focuses on safety assessment, hazard identification, and emergency water removal. If the facility is in a flood-affected access area (Kooragang Island, Hexham corridor), the contractor coordinates with SES and emergency services for site access as soon as conditions allow. Work begins immediately without waiting for insurer approval.',
         },
       },
       {
@@ -168,7 +168,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
                   <strong>Lodge your claim online</strong> — Submit through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the facility location, flood depth, type of operations, and any known hazards (chemicals, asbestos, hazardous materials). NRPG matches you with contractors experienced in Newcastle industrial flood recovery.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> — Contractors respond within 60 minutes, 24/7. Safety assessment, hazard identification, and emergency water removal begin immediately. If access is flood-affected (Kooragang Island, Hexham), the contractor coordinates with SES and emergency services for site access. Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response and make-safe</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7. Safety assessment, hazard identification, and emergency water removal begin immediately. If access is flood-affected (Kooragang Island, Hexham), the contractor coordinates with SES and emergency services for site access. Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract and scope</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the full scope of facility decontamination, equipment assessment, structural repairs, and restoration timeline. We bill you directly — the facility owner or operator.
@@ -190,7 +190,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
       faqs={[
         {
           question: 'How quickly can industrial flood recovery begin in Newcastle?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across greater Newcastle, 24/7. For industrial facilities, the initial response focuses on safety assessment, hazard identification, and emergency water removal. If the facility is in a flood-affected access area (Kooragang Island, Hexham corridor), the contractor coordinates with SES and emergency services for site access as soon as conditions allow. Work begins immediately without waiting for insurer approval.',
+          answer: 'NRPG contractors provide a priority emergency response across greater Newcastle, 24/7. For industrial facilities, the initial response focuses on safety assessment, hazard identification, and emergency water removal. If the facility is in a flood-affected access area (Kooragang Island, Hexham corridor), the contractor coordinates with SES and emergency services for site access as soon as conditions allow. Work begins immediately without waiting for insurer approval.',
         },
         {
           question: 'Can flood-damaged industrial equipment be salvaged?',

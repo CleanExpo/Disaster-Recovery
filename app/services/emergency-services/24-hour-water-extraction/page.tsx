@@ -22,7 +22,7 @@ const faqSchema = JSON.stringify({
       name: 'How quickly can you extract water from a flooded property?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches IICRC-certified extraction technicians within 60 minutes in most metro areas, 24 hours a day. Truck-mounted extractors can remove hundreds of litres per hour. Emergency extraction and make-safe is typically completed within 2–6 hours depending on the volume of water and affected area.',
+        text: 'NRPG dispatches IICRC-certified extraction technicians as soon as a certified contractor is confirmed for your area in most metro areas, 24 hours a day. Truck-mounted extractors can remove hundreds of litres per hour. Emergency extraction and make-safe is typically completed within 2–6 hours depending on the volume of water and affected area.',
       },
     },
     {

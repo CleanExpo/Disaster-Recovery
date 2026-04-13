@@ -546,7 +546,7 @@ function ModernContactPageOriginal() {
               </span>
             </h2>
             <p className="text-gray-400 mb-6">
-              Submit an emergency claim online — a contractor will call you within 60 minutes.
+              Submit an emergency claim online — a contractor will call you as soon as a certified contractor is confirmed for your area.
             </p>
             <motion.a
               href="/claim"

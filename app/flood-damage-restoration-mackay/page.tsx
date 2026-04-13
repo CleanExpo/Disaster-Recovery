@@ -6,10 +6,10 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Flood Damage Restoration Mackay | Pioneer River Flood Recovery',
-  description: 'Flood damage restoration across Mackay. Pioneer River flooding, cyclone-driven inundation, IICRC S500:2025 certified. Category 3 water decontamination. 60-minute response.',
+  description: 'Flood damage restoration across Mackay. Pioneer River flooding, cyclone-driven inundation, IICRC S500:2025 certified. Category 3 water decontamination. priority response.',
   openGraph: {
     title: 'Flood Damage Restoration Mackay | Pioneer River Flood Recovery',
-    description: 'Flood damage restoration across Mackay. Pioneer River flooding, cyclone-driven inundation, IICRC S500:2025 certified. Category 3 water decontamination. 60-minute response.',
+    description: 'Flood damage restoration across Mackay. Pioneer River flooding, cyclone-driven inundation, IICRC S500:2025 certified. Category 3 water decontamination. priority response.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Flood Damage Restoration')}&city=${encodeURIComponent('Mackay')}&service=flood-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -24,7 +24,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/flood-damage-restoration-mackay/#localbusiness`,
   name: `${NAP.name} Mackay`,
   url: `${NAP.url}/flood-damage-restoration-mackay`,
-  description: 'Flood damage restoration across Mackay. Pioneer River flood recovery, IICRC S500:2025 Category 3 decontamination, 60-minute emergency response 24/7.',
+  description: 'Flood damage restoration across Mackay. Pioneer River flood recovery, IICRC S500:2025 Category 3 decontamination, priority emergency response 24/7.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'City', name: 'Mackay', containedInPlace: { '@type': 'State', name: 'Queensland' } },
@@ -93,7 +93,7 @@ export default function FloodDamageRestorationMackayPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Flood Damage Restoration Mackay"
-        subtitle="Flood damage restoration across Mackay. Pioneer River flood recovery specialists. IICRC S500:2025 certified Category 3 decontamination. 60-minute emergency response 24/7."
+        subtitle="Flood damage restoration across Mackay. Pioneer River flood recovery specialists. IICRC S500:2025 certified Category 3 decontamination. priority emergency response 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #0D47A1 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
