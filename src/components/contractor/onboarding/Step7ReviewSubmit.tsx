@@ -298,8 +298,8 @@ export default function Step7ReviewSubmit({
       
       // Process payment
       toast({
-        title: "Processing Payment",
-        description: "Charging application fee of $275..." })
+        title: "Processing Application",
+        description: "Submitting your application..." })
       
       await new Promise(resolve => setTimeout(resolve, 1500))
       
@@ -462,25 +462,20 @@ export default function Step7ReviewSubmit({
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
-              Payment Summary
+              Fee Summary
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
-            <div className="flex justify-between">
-              <span>Application Fee (one-time)</span>
-              <span className="font-semibold">$275.00</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Joining Fee (upon approval)</span>
-              <span className="font-semibold">$2,200.00</span>
-            </div>
+            <p className="text-sm text-muted-foreground">
+              The NRPG fee structure — including application, joining, and ongoing subscription fees — is confirmed in your contractor agreement. Fees are payable via EFT (Bank Transfer).
+            </p>
             <Separator />
-            <div className="flex justify-between text-lg font-semibold">
-              <span>Due Today</span>
-              <span>$275.00</span>
-            </div>
-            <p className="text-sm text-muted-foreground mt-2">
-              The joining fee will be charged upon approval of your application.
+            <p className="text-sm text-muted-foreground">
+              For current rates, visit the{' '}
+              <a href="/rates" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                Rate Schedule
+              </a>{' '}
+              or contact NRPG directly.
             </p>
           </CardContent>
         </Card>
@@ -562,10 +557,10 @@ export default function Step7ReviewSubmit({
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
-                          I authorise the payment of $275.00 application fee
+                          I authorise payment of any applicable NRPG application fees
                         </FormLabel>
                         <FormDescription>
-                          This payment will be processed immediately upon submission
+                          Fees are confirmed in the contractor agreement and paid via EFT (Bank Transfer)
                         </FormDescription>
                       </div>
                     </FormItem>

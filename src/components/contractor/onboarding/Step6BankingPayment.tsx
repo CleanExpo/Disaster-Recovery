@@ -8,10 +8,9 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { 
-  CreditCard, 
-  Building2, 
-  FileText, 
+import {
+  Building2,
+  FileText,
   Shield,
   AlertCircle,
   DollarSign,
@@ -31,8 +30,8 @@ interface BankingPaymentData {
   gstRegistered: boolean;
   taxFileNumber?: string;
   
-  // Payment Preferences
-  preferredPaymentMethod: 'eft' | 'cheque' | 'credit_card';
+  // Payment Preferences — EFT (Bank Transfer) only
+  preferredPaymentMethod: 'eft';
   paymentTerms: '7days' | '14days' | '30days' | '45days';
   invoiceEmail: string;
   
@@ -46,10 +45,6 @@ interface BankingPaymentData {
   creditLimit: string;
   tradesmanInsurance: boolean;
   publicLiabilityLimit: string;
-  
-  // Payment Processing
-  acceptCreditCards: boolean;
-  merchantProvider?: string;
   
   // Terms Agreement
   agreeToTerms: boolean;
@@ -103,7 +98,6 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
   const gstRegistered = watch('gstRegistered');
   const insuranceDirectBilling = watch('insuranceDirectBilling');
   const restoreAssistAccess = watch('restoreAssistAccess');
-  const acceptCreditCards = watch('acceptCreditCards');
   const agreeToTerms = watch('agreeToTerms');
   const agreeToFees = watch('agreeToFees');
   const understandPaymentTerms = watch('understandPaymentTerms');
@@ -266,29 +260,28 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
             <DollarSign className="mr-2 h-5 w-5 text-purple-600" />
             Payment Preferences
           </h3>
-          
+
+          <Alert className="mb-4 border-blue-200 bg-blue-50">
+            <Info className="h-4 w-4 text-blue-600" />
+            <AlertDescription className="text-blue-800">
+              NRPG pays all contractors directly via Electronic Funds Transfer (EFT / Bank Transfer) only. Cheque and credit card are not supported.
+            </AlertDescription>
+          </Alert>
+
           <div className="space-y-4">
             <div>
-              <Label>Preferred Payment Method</Label>
-              <RadioGroup 
-                defaultValue={data.preferredPaymentMethod || 'eft'}
-                onValueChange={(value) => setValue('preferredPaymentMethod', value as any)}
-              >
-                <div className="flex items-center space-x-2 mt-2">
-                  <RadioGroupItem value="eft" id="eft" />
-                  <Label htmlFor="eft">Electronic Funds Transfer (EFT)</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="cheque" id="cheque" />
-                  <Label htmlFor="cheque">Cheque</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="credit_card" id="credit_card" />
-                  <Label htmlFor="credit_card">Credit Card</Label>
-                </div>
-              </RadioGroup>
+              <Label>Payment Method</Label>
+              <div className="flex items-center space-x-2 mt-2 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md">
+                <RadioGroup defaultValue="eft">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="eft" id="eft" checked disabled />
+                    <Label htmlFor="eft" className="font-medium">Electronic Funds Transfer (EFT) — Bank Transfer</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              <input type="hidden" {...register('preferredPaymentMethod')} value="eft" />
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Payment Terms</Label>
@@ -306,16 +299,15 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   <p role="alert" className="text-red-500 text-sm mt-1">{errors.paymentTerms.message}</p>
                 )}
               </div>
-              
+
               <div>
                 <Label htmlFor="invoiceEmail">Invoice Email Address</Label>
                 <Input
                   id="invoiceEmail"
                   type="email"
-                  {...register('invoiceEmail', { 
+                  {...register('invoiceEmail', {
                     required: 'Invoice email is required',
                     pattern: {
-                      // Simple, robust email regex
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: 'Invalid email address'
                     }
@@ -327,28 +319,6 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   <p role="alert" className="text-red-500 text-sm mt-1">{errors.invoiceEmail.message}</p>
                 )}
               </div>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="acceptCreditCards"
-                  checked={acceptCreditCards}
-                  onCheckedChange={(checked) => setValue('acceptCreditCards', checked as boolean)}
-                />
-                <Label htmlFor="acceptCreditCards">We accept credit card payments from clients</Label>
-              </div>
-              
-              {acceptCreditCards && (
-                <div className="ml-6">
-                  <Label htmlFor="merchantProvider">Merchant Provider</Label>
-                  <Input
-                    id="merchantProvider"
-                    {...register('merchantProvider')}
-                    placeholder="e.g., Square, PayPal, Stripe"
-                  />
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -424,7 +394,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
         {/* Financial Information */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <CreditCard className="mr-2 h-5 w-5 text-blue-700" />
+            <DollarSign className="mr-2 h-5 w-5 text-blue-700" />
             Financial Information
           </h3>
           
@@ -487,12 +457,16 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
           <div className="space-y-4">
             <div className="p-4 bg-gray-50 rounded-lg">
               <h4 className="font-medium mb-2">NRPG Platform Fees</h4>
-              <ul className="text-sm text-gray-700 space-y-1">
-                <li>• Application Fee: $275 (one-time, non-refundable)</li>
-                <li>• Joining Fee: $2,200 (upon approval)</li>
-                <li>• Monthly Subscription: $495 (after 3-month ramp-up period)</li>
-                <li>• Lead Distribution Fee: 5-10% of project value</li>
-              </ul>
+              <p className="text-sm text-gray-700 mb-2">
+                The NRPG fee structure — including application, joining, and subscription fees — will be confirmed in your contractor agreement upon review.
+              </p>
+              <p className="text-sm text-gray-500">
+                For current rates, visit the{' '}
+                <a href="/rates" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                  Rate Schedule
+                </a>{' '}
+                or contact NRPG directly.
+              </p>
             </div>
             
             <div className="space-y-3">
