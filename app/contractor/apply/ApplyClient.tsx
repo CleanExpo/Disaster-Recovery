@@ -664,7 +664,28 @@ function ContractorApplicationContent() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          application: onboardingData
+          application: onboardingData,
+          // Eligibility verification data captured before the wizard — stored in
+          // ContractorApplication.data for compliance review. Strip large data URLs
+          // (licence/IICRC photos) from the JSON payload; those are uploaded separately.
+          eligibility: eligibilityData ? {
+            carsiMemberNumber: eligibilityData.carsiMemberNumber,
+            associationChoice: eligibilityData.associationChoice,
+            associationMemberNumber: eligibilityData.associationMemberNumber,
+            associationOtherName: eligibilityData.associationOtherName,
+            iicrcCertNumber: eligibilityData.iicrcCertNumber,
+            iicrcCertCardFrontFileName: eligibilityData.iicrcCertCardFrontFileName,
+            driversLicenceNumber: eligibilityData.driversLicenceNumber,
+            driversLicenceState: eligibilityData.driversLicenceState,
+            abn: eligibilityData.abn,
+            acn: eligibilityData.acn,
+            registeredBusinessName: eligibilityData.registeredBusinessName,
+            abnVerified: eligibilityData.abnVerified,
+            asicVerified: eligibilityData.asicVerified,
+            yearsInBusinessConfirmed: eligibilityData.yearsInBusinessConfirmed,
+            currentMemberDeclaration: eligibilityData.currentMemberDeclaration,
+            // Photo data URLs submitted as separate upload — omitted from JSON payload
+          } : null
         })
       });
 
