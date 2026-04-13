@@ -478,7 +478,7 @@ function OnlineClaimPageOriginal() {
             <Label className="text-xs font-semibold text-green-900">Quick Fill Scenario</Label>
             <div className="mt-2 flex gap-2">
               <Select value={selectedScenario} onValueChange={setSelectedScenario}>
-                <SelectTrigger className="bg-white">
+                <SelectTrigger className="bg-white" aria-label="Quick fill scenario">
                   <SelectValue placeholder="Select scenario" />
                 </SelectTrigger>
                 <SelectContent>
@@ -625,24 +625,27 @@ function OnlineClaimPageOriginal() {
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label>Full Name *</Label>
+                      <Label htmlFor="claim-fullName">Full Name *</Label>
                       <Input
+                        id="claim-fullName"
                         value={formData.fullName}
                         onChange={(e) => setFormData({...formData, fullName: e.target.value})}
                         required
                       />
                     </div>
                     <div>
-                      <Label>Phone Number *</Label>
+                      <Label htmlFor="claim-phone">Phone Number *</Label>
                       <Input
+                        id="claim-phone"
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         required
                       />
                     </div>
                     <div>
-                      <Label>Email Address *</Label>
+                      <Label htmlFor="claim-email">Email Address *</Label>
                       <Input
+                        id="claim-email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -657,7 +660,7 @@ function OnlineClaimPageOriginal() {
                         value={formData.preferredContact}
                         onValueChange={(value) => setFormData({...formData, preferredContact: value})}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger aria-label="Preferred contact method">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -677,16 +680,18 @@ function OnlineClaimPageOriginal() {
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="md:col-span-2">
-                      <Label>Property Address *</Label>
+                      <Label htmlFor="claim-propertyAddress">Property Address *</Label>
                       <Input
+                        id="claim-propertyAddress"
                         value={formData.propertyAddress}
                         onChange={(e) => setFormData({...formData, propertyAddress: e.target.value})}
                         required
                       />
                     </div>
                     <div>
-                      <Label>Suburb *</Label>
+                      <Label htmlFor="claim-suburb">Suburb *</Label>
                       <Input
+                        id="claim-suburb"
                         value={formData.suburb}
                         onChange={(e) => setFormData({...formData, suburb: e.target.value})}
                         required
@@ -698,7 +703,7 @@ function OnlineClaimPageOriginal() {
                         value={formData.state}
                         onValueChange={(value) => setFormData({...formData, state: value})}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger aria-label="State">
                           <SelectValue placeholder="Select state" />
                         </SelectTrigger>
                         <SelectContent>
@@ -714,8 +719,9 @@ function OnlineClaimPageOriginal() {
                       </Select>
                     </div>
                     <div>
-                      <Label>Postcode *</Label>
+                      <Label htmlFor="claim-postcode">Postcode *</Label>
                       <Input
+                        id="claim-postcode"
                         value={formData.postcode}
                         onChange={(e) => setFormData({...formData, postcode: e.target.value})}
                         maxLength={4}
@@ -728,7 +734,7 @@ function OnlineClaimPageOriginal() {
                         value={formData.propertyType}
                         onValueChange={(value) => setFormData({...formData, propertyType: value})}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger aria-label="Property type">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -742,8 +748,9 @@ function OnlineClaimPageOriginal() {
                     </div>
                   </div>
                   <div>
-                    <Label>Access Instructions (gate codes, etc.)</Label>
+                    <Label htmlFor="claim-accessInstructions">Access Instructions (gate codes, etc.)</Label>
                     <Textarea
+                      id="claim-accessInstructions"
                       value={formData.accessInstructions}
                       onChange={(e) => setFormData({...formData, accessInstructions: e.target.value})}
                       placeholder="Any special instructions for accessing the property..."
@@ -780,8 +787,9 @@ function OnlineClaimPageOriginal() {
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label>Date Damage Occurred *</Label>
+                      <Label htmlFor="claim-damageDate">Date Damage Occurred *</Label>
                       <Input
+                        id="claim-damageDate"
                         type="date"
                         value={formData.damageDate}
                         onChange={(e) => setFormData({...formData, damageDate: e.target.value})}
@@ -794,7 +802,7 @@ function OnlineClaimPageOriginal() {
                         value={formData.urgencyLevel}
                         onValueChange={(value) => setFormData({...formData, urgencyLevel: value})}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger aria-label="Urgency level">
                           <SelectValue placeholder="Select urgency" />
                         </SelectTrigger>
                         <SelectContent>
@@ -806,8 +814,9 @@ function OnlineClaimPageOriginal() {
                     </div>
                   </div>
                   <div>
-                    <Label>Describe the Damage *</Label>
+                    <Label htmlFor="claim-damageDescription">Describe the Damage *</Label>
                     <Textarea
+                      id="claim-damageDescription"
                       value={formData.damageDescription}
                       onChange={(e) => setFormData({...formData, damageDescription: e.target.value})}
                       rows={4}
@@ -870,37 +879,42 @@ function OnlineClaimPageOriginal() {
                   {formData.hasInsurance && (
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
                       <div>
-                        <Label>Insurance Company</Label>
+                        <Label htmlFor="claim-insuranceCompany">Insurance Company</Label>
                         <Input
+                          id="claim-insuranceCompany"
                           value={formData.insuranceCompany}
                           onChange={(e) => setFormData({...formData, insuranceCompany: e.target.value})}
                         />
                       </div>
                       <div>
-                        <Label>Policy Number</Label>
+                        <Label htmlFor="claim-policyNumber">Policy Number</Label>
                         <Input
+                          id="claim-policyNumber"
                           value={formData.policyNumber}
                           onChange={(e) => setFormData({...formData, policyNumber: e.target.value})}
                         />
                       </div>
                       <div>
-                        <Label>Insurance Claim Number</Label>
+                        <Label htmlFor="claim-insuranceClaimNumber">Insurance Claim Number</Label>
                         <Input
+                          id="claim-insuranceClaimNumber"
                           value={formData.insuranceClaimNumber}
                           onChange={(e) => setFormData({...formData, insuranceClaimNumber: e.target.value})}
                         />
                       </div>
                       <div>
-                        <Label>Excess Amount</Label>
+                        <Label htmlFor="claim-excessAmount">Excess Amount</Label>
                         <Input
+                          id="claim-excessAmount"
                           type="number"
                           value={formData.excessAmount}
                           onChange={(e) => setFormData({...formData, excessAmount: e.target.value})}
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <Label>Assessor Details (if applicable)</Label>
+                        <Label htmlFor="claim-assessorDetails">Assessor Details (if applicable)</Label>
                         <Textarea
+                          id="claim-assessorDetails"
                           value={formData.assessorDetails}
                           onChange={(e) => setFormData({...formData, assessorDetails: e.target.value})}
                           placeholder="Name, contact, appointment time..."
