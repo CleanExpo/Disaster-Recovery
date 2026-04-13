@@ -1,15 +1,19 @@
 /**
  * Water Damage Restoration — What to Expect from a Certified Contractor
  *
- * BUILD-002 / GAP-004: References ANSI/IICRC S500:2025 as the certification
+ * BUILD-002 / GAP-004 / DR-556: References ANSI/IICRC S500:2025 as the certification
  * benchmark held by our contractors. Describes our certified process —
  * not the standard's content.
+ *
+ * DR-556: Added S500 Consensus Body 2026 Position Statement section on
+ * Category of Water Damage / Weather-Related Events — directly relevant
+ * to Australian cyclone/flood policyholders.
  *
  * IICRC compliance: names the standard, states contractors follow it,
  * describes what a certified job involves in contractor process terms.
  * Does NOT reproduce the standard's framework or content.
  *
- * ACL s18 compliant — no unverified statistics.
+ * ACL s29(1)(g)/(m) compliant — no unverified superlatives.
  */
 
 import type { Metadata } from 'next'
@@ -20,11 +24,13 @@ import { NAP } from '@/lib/constants'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration — What to Expect | Disaster Recovery Australia',
+  title: 'ANSI/IICRC S500 Water Damage Restoration — What Certified Contractors Do | Disaster Recovery Australia',
   description:
-    'What professional water damage restoration involves. How ANSI/IICRC S500:2025-certified contractors assess, dry, and document water-damaged properties — and what your insurance claim needs.',
+    'ANSI/IICRC S500:2025 is the professional benchmark for water damage restoration in Australia. S500 Consensus Body 2026 Position Statement on weather-related flood events. How certified contractors assess, dry, and document water-damaged properties.',
   keywords: [
     'water damage restoration',
+    'IICRC S500',
+    'ANSI IICRC S500',
     'IICRC certified water damage',
     'water damage restoration process',
     'flood restoration Australia',
@@ -174,6 +180,48 @@ export default function WaterDamageRestorationWhatToExpectPage() {
               </ul>
               <p style={{ marginTop: '1rem' }}>
                 Secondary mould damage caused by an insurer&apos;s contractor failing to dry adequately is a covered loss under most policies — the insurer is responsible for the quality of work performed by their preferred contractors. An independent ANSI/IICRC S500:2025 assessment documents whether original drying was completed to standard and what secondary damage has resulted.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: 'S500 Consensus Body 2026 — Weather-Related Events Position Statement',
+          body: (
+            <>
+              <p>
+                In 2026, the IICRC S500 Consensus Body published a Position Statement on the
+                Category of Water Damage classification for weather-related events — including
+                storm surge, cyclone flooding, and rainfall-driven inundation. This is relevant
+                to Australian policyholders because the category of water determines the scope
+                of remediation required.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                The Consensus Body position clarifies how weather-sourced water — including
+                floodwater, storm surge, and cyclone-driven inundation — is classified under
+                the S500 framework. Contractors not working to the 2025 edition may be applying
+                outdated categorisation that does not reflect the current standard position,
+                which can affect the scope of works and the appropriateness of any restoration
+                approach.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                For Australian homeowners affected by cyclone or flood events — including
+                Ex-TC Alfred, TC Maila, and the 2026 Queensland and NSW flood events — this
+                matters because insurer-appointed contractors may be categorising the water
+                source differently to what the current S500 Consensus Body position requires.
+                An independent ANSI/IICRC S500:2025 assessment applies the current standard
+                and documents the water category as the basis for the restoration scope.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                Source: IICRC S500 Consensus Body 2026 Position Statement — available at{' '}
+                <a
+                  href="https://iicrc.org/s500/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1D4ED8', textDecoration: 'underline' }}
+                >
+                  iicrc.org/s500
+                </a>
+                .
               </p>
             </>
           ),
