@@ -16,6 +16,7 @@ import {
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
 import { validateABN } from '@/lib/utils/australian-compliance';
 import { DEMO_DATA, simulateClick, autoFillForm } from '@/lib/demo-mode';
+import Step0Eligibility, { EligibilityData } from '@/components/contractor/onboarding/Step0Eligibility';
 import Step1BusinessInfo from '@/components/contractor/onboarding/Step1BusinessInfo';
 import Step2InsuranceLicensing from '@/components/contractor/onboarding/Step2InsuranceLicensing';
 import Step3ExperienceReferences from '@/components/contractor/onboarding/Step3ExperienceReferences';
@@ -421,6 +422,8 @@ const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unkn
 function ContractorApplicationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [eligibilityConfirmed, setEligibilityConfirmed] = useState(false);
+  const [eligibilityData, setEligibilityData] = useState<EligibilityData | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [isDemoRunning, setIsDemoRunning] = useState(false);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
@@ -430,6 +433,12 @@ function ContractorApplicationContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [quickFillSelection, setQuickFillSelection] = useState<string>('');
+
+  const handleEligibilityConfirmed = (data: EligibilityData) => {
+    setEligibilityData(data);
+    setEligibilityConfirmed(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -753,6 +762,41 @@ function ContractorApplicationContent() {
         return null;
     }
   };
+
+  // ── Eligibility gate — renders before the main wizard ──────────────────────
+  if (!eligibilityConfirmed) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+        <header className="border-b border-slate-700/50 bg-black/30 backdrop-blur-sm sticky top-0 z-40">
+          <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div className="flex items-center justify-between gap-2">
+              <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
+                <Shield className="h-7 w-7 sm:h-8 sm:w-8 text-blue-400" />
+                <div>
+                  <div className="text-white font-semibold text-sm sm:text-base">NRPG</div>
+                  <div className="text-slate-400 text-xs hidden sm:block">Contractor Application</div>
+                </div>
+              </Link>
+              <Link
+                href="/"
+                className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 min-h-[44px] bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg transition text-sm"
+              >
+                <X className="h-4 w-4" />
+                <span className="hidden sm:inline">Exit</span>
+              </Link>
+            </div>
+          </div>
+        </header>
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-10 max-w-3xl">
+          <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
+            <div className="p-6 sm:p-8 md:p-10">
+              <Step0Eligibility onConfirmed={handleEligibilityConfirmed} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
