@@ -22,7 +22,7 @@ export const fireSmokeData: ServicePageData = {
   introHeading: 'The Corrosive Threat of Smoke WEBS',
   introParagraphs: [
     'Extinguishing a fire is only the initial phase of recovery. The dense, acidic soot and smoke webs left behind rapidly corrode electronics, tarnish metals, and permanently stain structural elements within days.',
-    'Our IICRC S700:2025-certified teams act immediately to neutralise these acidic byproducts. The IICRC S700:2025 Standard for Professional Fire and Smoke Damage Restoration defines best-practice protocols for smoke classification, structural decontamination, and HVAC cleaning — the same framework our technicians follow on every job. NRPG employs commercial-grade ultrasonic cleaning tanks for contents recovery, alongside heavy-duty HEPA air scrubbers to completely filter airborne particulate matter from the environment.',
+    'IICRC FSRT-certified teams act immediately to neutralise these acidic byproducts. The IICRC FSRT (Fire and Smoke Restoration Technician) credential defines best-practice protocols for smoke classification, structural decontamination, and HVAC cleaning — the same framework technicians follow on every job. NRPG employs commercial-grade ultrasonic cleaning tanks for contents recovery, alongside heavy-duty HEPA air scrubbers to completely filter airborne particulate matter from the environment.',
   ],
   technicalCards: [
     {
@@ -41,7 +41,7 @@ export const fireSmokeData: ServicePageData = {
       description: 'Acidic fire residues initiate rapid oxidative corrosion on brass, copper, and sensitive electronics. We apply immediate protective sealants and anti-corrosive inhibitors prior to the full restoration phase.',
     },
   ],
-  protocolHeading: 'The IICRC S700:2025 Restoration Framework',
+  protocolHeading: 'The IICRC FSRT Restoration Framework',
   protocolSteps: [
     {
       title: 'Structural Safety Profiling:',
@@ -67,6 +67,6 @@ export const fireSmokeData: ServicePageData = {
     ctaHref: '/claim?service=fire-damage',
     ctaText: 'Make a Claim',
     footerNote: 'Approved and trusted by top tier insurers across Australia and New Zealand.',
-    trustText: 'Operating under IICRC S700:2025 — the current Standard for Professional Fire & Smoke Damage Restoration.',
+    trustText: 'Operating under IICRC FSRT — the Fire and Smoke Restoration Technician certification standard.',
   },
 };

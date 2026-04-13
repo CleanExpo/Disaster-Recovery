@@ -35,7 +35,7 @@ const steps = [
     iconAlt: 'Restoration',
     title: '4. Complete Restoration',
     description:
-      'Returning the property to pre-loss condition with seamless insurance billing.',
+      'Returning the property to pre-loss condition with direct insurance billing.',
     hasConnector: false,
   },
 ];

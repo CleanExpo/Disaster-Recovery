@@ -12,7 +12,7 @@ const equipment = [
     image: '/images/antigravity/gear-deviceMockups.png',
     alt: 'Disaster Recovery Command Apps on Devices',
     title: 'Command Ecosystem',
-    description: 'Seamlessly integrated technology for claims management across iPads, mobiles, and laptops.',
+    description: 'Fully integrated technology for claims management across iPads, mobiles, and laptops.',
     href: '/operational-excellence/command-ecosystem',
   },
   {

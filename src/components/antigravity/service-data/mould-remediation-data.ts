@@ -66,7 +66,7 @@ export const mouldRemediationData: ServicePageData = {
     description: 'Automated dispatch to the nearest available biohazard extraction fleet.',
     ctaHref: '/claim?service=mould-remediation',
     ctaText: 'Make a Claim',
-    footerNote: 'We bill you directly — full claims documentation provided. IICRC S520:2025 compliant reporting.',
+    footerNote: 'Contractors bill directly — full claims documentation provided. IICRC S520:2025 compliant reporting.',
     trustText: 'Operating strictly under IICRC S520:2025 Standard for Professional Microbial Remediation.',
   },
 };

@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false },
-  manifest: '/manifest.json',
+  manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -144,7 +144,6 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0052CC" />
         <script
           type="application/ld+json"
@@ -327,7 +326,7 @@ export default function RootLayout({
                 "name": "Disaster Restoration Services",
                 "itemListElement": [
                   { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Water Damage Restoration", "description": "24/7 emergency water extraction, structural drying, and moisture remediation following Category 1, 2, or 3 water damage events. Follows IICRC S500:2025." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fire & Smoke Damage Restoration", "description": "Make-safe, soot removal, odour elimination, contents pack-out, and full structural reinstatement following fire damage. Follows IICRC S700:2025." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fire & Smoke Damage Restoration", "description": "Make-safe, soot removal, odour elimination, contents pack-out, and full structural reinstatement following fire damage. Follows IICRC FSRT." } },
                   { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Storm Damage Restoration", "description": "Emergency make-safe, roof tarping, water intrusion control, and reinstatement following cyclone, storm, or hail damage." } },
                   { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flood Recovery", "description": "Category 3 flood water extraction, contamination remediation, structural drying, and insurance documentation for ICA CAT flood events." } },
                   { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mould Remediation", "description": "Air quality assessment, containment, HEPA filtration, antimicrobial treatment, and clearance testing. Follows IICRC S520:2025." } },
