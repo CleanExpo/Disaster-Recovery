@@ -101,7 +101,9 @@ export const metadata: Metadata = {
     google: ['dDWcL2TyZJ3cNEkXAqLrpMk8Lc0Yqy0soQzmTUMubVI', 'CrxqogWzyQzp7XriWhZJT0bnxJVkilQawe-0lRQ6pqI'],
     yandex: '',
     yahoo: '',
-    other: {} },
+    other: {
+      'msvalidate.01': 'F73BE1B1E698FD592FE2EA8D27992837',
+    } },
   alternates: {
     canonical: 'https://disasterrecovery.com.au',
     languages: {
