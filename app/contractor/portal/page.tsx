@@ -11,7 +11,8 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
+import SubContractorManager from '@/components/contractor/portal/SubContractorManager';
+import {
   Building,
   Phone,
   MapPin,
@@ -29,7 +30,8 @@ import {
   Home,
   ChevronRight,
   Timer,
-  AlertTriangle
+  AlertTriangle,
+  Users,
 } from 'lucide-react';
 
 interface Job {
@@ -292,7 +294,7 @@ function ContractorPortalPageOriginal() {
 
         {/* Jobs Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="available">
               Available ({availableJobs.length})
             </TabsTrigger>
@@ -301,6 +303,10 @@ function ContractorPortalPageOriginal() {
             </TabsTrigger>
             <TabsTrigger value="completed">
               Completed ({completedJobs.length})
+            </TabsTrigger>
+            <TabsTrigger value="sub-contractors" className="flex items-center gap-1.5">
+              <Users className="h-3.5 w-3.5" />
+              Sub-Contractors
             </TabsTrigger>
           </TabsList>
 
@@ -422,6 +428,12 @@ function ContractorPortalPageOriginal() {
                 <p className="text-gray-700">No completed jobs yet</p>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="sub-contractors" className="mt-6">
+            <SubContractorManager
+              contractorId={contractor?.id ?? contractor?.contractorId ?? ''}
+            />
           </TabsContent>
         </Tabs>
       </div>
