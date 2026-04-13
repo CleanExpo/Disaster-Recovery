@@ -1977,3 +1977,78 @@ model ClaimNotification {
   @@index([claimId, read])
   @@index([claimId, createdAt])
 }
+
+// =============================================================================
+// DR-592: Sub-Contractor Engagement System
+// Licensed trade sub-contractors within the NRPG contractor portal.
+// =============================================================================
+
+/// A licensed external sub-contractor registered by an NRPG primary contractor.
+model SubContractor {
+  id                       String   @id @default(cuid())
+  /// ABN — 11 digits, no spaces
+  abn                      String
+  businessName             String
+  tradingName              String?
+  contactName              String
+  contactEmail             String
+  contactPhone             String
+  tradeType                String   // SubContractorTradeType enum
+  licenceNumber            String
+  licenceState             String   // AustralianState
+  licenceExpiry            DateTime
+  /// Public liability coverage in AUD
+  publicLiabilityCoverage  Float
+  publicLiabilityInsurer   String
+  publicLiabilityExpiry    DateTime
+  onboardingStatus         String   @default("NOT_STARTED") // OnboardingStatus
+  status                   String   @default("PENDING")     // SubContractorStatus
+  agreementSignedAt        DateTime?
+  agreementSignedBy        String?
+  /// The primary NRPG contractor who registered this sub-contractor
+  registeredByContractorId String
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  engagements SubContractorEngagement[]
+
+  @@unique([abn, registeredByContractorId])
+  @@index([registeredByContractorId])
+  @@index([tradeType])
+  @@index([status])
+}
+
+/// Links a job to a sub-contractor engagement with markup applied.
+model SubContractorEngagement {
+  id                       String    @id @default(cuid())
+  jobId                    String
+  subContractorId          String
+  primaryContractorId      String
+  tradeType                String    // SubContractorTradeType
+  /// Description of the work scope
+  workScope                String    @db.Text
+  /// Sub-contractor quoted invoice amount in AUD (excl. GST)
+  subInvoiceAmount         Float
+  /// Markup percentage applied — minimum 15
+  markupPercent            Float
+  /// Amount charged to customer (excl. GST)
+  customerChargeAmount     Float
+  /// GST on customer charge
+  gstAmount                Float
+  /// customerChargeAmount + gstAmount
+  customerChargeTotalIncGst Float
+  status                   String    @default("QUOTED") // EngagementStatus
+  authorisedAt             DateTime?
+  completedAt              DateTime?
+  invoicedAt               DateTime?
+  notes                    String?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+
+  subContractor SubContractor @relation(fields: [subContractorId], references: [id])
+
+  @@index([jobId])
+  @@index([subContractorId])
+  @@index([primaryContractorId])
+  @@index([status])
+}
