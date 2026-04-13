@@ -88,7 +88,7 @@ export const generateFAQSchema = () => ({
       "name": "How quickly can you respond to water damage emergencies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our target is contractor contact within 60 minutes for emergency water damage across all major Australian cities. Our network of IICRC-certified contractors ensures rapid availability 24/7."
+        "text": "NRPG targets rapid on-site response for emergency water damage across all major Australian cities. The network of IICRC-certified contractors ensures availability 24/7."
       }
     },
     {
@@ -96,7 +96,7 @@ export const generateFAQSchema = () => ({
       "name": "Do you work directly with insurance companies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, we work with clients insured by all major Australian insurance companies. We bill you directly so work begins immediately, and provide all documentation your insurer needs to process your reimbursement claim."
+        "text": "NRPG contractors work with clients insured by all major Australian insurance companies. Contractors bill directly so work begins immediately, and provide all documentation your insurer needs to process your reimbursement claim."
       }
     },
     {
@@ -104,7 +104,7 @@ export const generateFAQSchema = () => ({
       "name": "What areas of Australia do you service?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We provide nationwide coverage across all of Australia, from major cities like Sydney, Melbourne, Brisbane, Perth, and Adelaide to regional and remote areas including Coober Pedy, Mount Isa, and Thursday Island."
+        "text": "NRPG provides nationwide coverage across all of Australia, from major cities like Sydney, Melbourne, Brisbane, Perth, and Adelaide to regional and remote areas including Coober Pedy, Mount Isa, and Thursday Island."
       }
     },
     {
@@ -112,7 +112,7 @@ export const generateFAQSchema = () => ({
       "name": "Are your contractors certified?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "All contractors in our network are IICRC certified and complete our comprehensive 14-day training program. They maintain current insurance, undergo background checks, and follow strict quality standards."
+        "text": "All contractors in the NRPG network are IICRC certified and complete a comprehensive 14-day training program. They maintain current insurance, undergo background checks, and follow strict quality standards."
       }
     },
     {
@@ -120,7 +120,7 @@ export const generateFAQSchema = () => ({
       "name": "What types of damage do you handle?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We handle all types of property damage including water damage, fire and smoke damage, mould remediation, storm damage, sewage cleanup, biohazard cleaning, and structural drying for properties from single rooms to 80+ floor buildings."
+        "text": "NRPG contractors handle all types of property damage including water damage, fire and smoke damage, mould remediation, storm damage, sewage cleanup, biohazard cleaning, and structural drying for properties from single rooms to 80+ floor buildings."
       }
     }
   ]
@@ -161,8 +161,8 @@ export const generateHowToSchema = () => ({
     {
       "@type": "HowToStep",
       "position": 3,
-      "name": "Receive a 60-Minute Emergency Response",
-      "text": "Your matched contractor arrives within 60 minutes to assess the damage and begin make-safe and mitigation work.",
+      "name": "Emergency Contractor Dispatch",
+      "text": "Your matched contractor targets rapid on-site response to assess the damage and begin make-safe and mitigation work.",
       "url": "https://disasterrecovery.com.au/claim"
     },
     {
@@ -188,7 +188,7 @@ const serviceHowToData: Record<string, {
     description: 'The IICRC-standard process for restoring water-damaged properties, from emergency extraction through to complete restoration and sign-off.',
     totalTime: 'P3D',
     steps: [
-      { name: 'Emergency Water Extraction', text: 'IICRC-certified technicians arrive within 60 minutes to extract standing water using truck-mounted and portable pumps. Industrial wet vacuums remove water from carpets, underlay, and hard surfaces to stop the damage spreading.' },
+      { name: 'Emergency Water Extraction', text: 'IICRC-certified technicians respond rapidly to extract standing water using truck-mounted and portable pumps. Industrial wet vacuums remove water from carpets, underlay, and hard surfaces to stop the damage spreading.' },
       { name: 'Moisture Mapping and Assessment', text: 'Using thermal imaging cameras and pinless moisture meters, technicians map the full extent of water intrusion including inside wall cavities, under flooring, and above ceilings. This determines the IICRC water damage category (1–3) and class (1–4).' },
       { name: 'Structural Drying and Dehumidification', text: 'Commercial-grade dehumidifiers and high-velocity air movers are strategically placed based on the moisture map. Drying progress is monitored daily with moisture readings until materials reach their dry standard — typically 2–5 days depending on severity.' },
       { name: 'Antimicrobial Treatment', text: 'All affected areas are treated with IICRC-approved antimicrobial agents to prevent mould growth. This is critical in Australia where warm, humid conditions can trigger mould within 24–48 hours of water exposure.' },
@@ -237,7 +237,7 @@ const serviceHowToData: Record<string, {
     description: 'The process for restoring storm-damaged properties, from emergency tarping and make-safe through to structural repair and weatherproofing.',
     totalTime: 'P10D',
     steps: [
-      { name: 'Emergency Make-Safe and Tarping', text: 'Within 60 minutes of your call, technicians arrive to tarp damaged roofs, board up broken windows, and secure the property against further weather exposure. Fallen trees or debris are cleared from access points and critical areas.' },
+      { name: 'Emergency Make-Safe and Tarping', text: 'Following your claim lodgement, technicians respond as quickly as possible to tarp damaged roofs, board up broken windows, and secure the property against further weather exposure. Fallen trees or debris are cleared from access points and critical areas.' },
       { name: 'Damage Assessment and Documentation', text: 'A detailed scope of works is prepared documenting all storm damage — roof, gutters, fascia, windows, fencing, landscaping, and interior water ingress. Photos, measurements, and itemised costings are compiled for your insurance claim submission.' },
       { name: 'Water Ingress Mitigation', text: 'Any water that has entered through the damaged roof or windows is extracted and affected areas are set up for structural drying. This prevents secondary damage including mould growth, timber rot, and electrical faults.' },
       { name: 'Structural Repairs', text: 'Licensed builders repair or replace damaged roof tiles, sheeting, battens, and trusses. Broken windows, damaged guttering, fascia boards, and external cladding are restored. All structural work is certified to meet current Australian Building Code requirements.' },

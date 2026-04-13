@@ -8,13 +8,13 @@ import Link from 'next/link';
 const stakeholderCards = [
   {
     title: 'Property Managers',
-    pain: 'Tenant calling at 2am? We respond within 60 minutes and handle everything — documentation, coordination, owner reporting.',
+    pain: 'Tenant calling at 2am? Contractors respond to your property and handle everything — documentation, coordination, owner reporting.',
     cta: 'Set Up Emergency Protocol',
     href: '/for-business/property-managers',
   },
   {
     title: 'Strata Managers',
-    pain: 'Common property damage affecting multiple lots? We coordinate the entire restoration and provide per-lot documentation for your committee.',
+    pain: 'Common property damage affecting multiple lots? NRPG coordinates the entire restoration and provides per-lot documentation for your committee.',
     cta: 'Report Common Property Damage',
     href: '/for-business/strata-managers',
   },

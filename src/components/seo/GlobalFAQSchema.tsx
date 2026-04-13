@@ -145,7 +145,7 @@ const globalFAQ = {
       "name": "How quickly can a restoration company respond to an emergency?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "NRPG's network of IICRC-certified contractors provides a 60-minute emergency response across major Australian cities including Sydney, Melbourne, Brisbane, Perth, and Adelaide. You lodge your claim online, get instantly matched with the nearest available contractor within your selected radius (20–100 km), and receive confirmation within minutes. The service operates 24 hours a day, 7 days a week."
+        "text": "NRPG's network of IICRC-certified contractors provides priority emergency response across major Australian cities including Sydney, Melbourne, Brisbane, Perth, and Adelaide. You lodge your claim online, get instantly matched with the nearest available contractor within your selected radius (20–100 km), and receive confirmation within minutes. The service operates 24 hours a day, 7 days a week."
       }
     },
     {
@@ -161,7 +161,7 @@ const globalFAQ = {
       "name": "What should I do immediately after water damage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Stop the water source if safe to do so (turn off mains or isolate the burst pipe). Move valuable items to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Contact a professional restoration company immediately — mould can begin growing within 24 to 48 hours in Australian conditions. Lodge your claim at disasterrecovery.com.au for a 60-minute emergency response."
+        "text": "Stop the water source if safe to do so (turn off mains or isolate the burst pipe). Move valuable items to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Contact a professional restoration company immediately — mould can begin growing within 24 to 48 hours in Australian conditions. Lodge your claim at disasterrecovery.com.au for priority emergency dispatch."
       }
     },
     {
@@ -185,7 +185,7 @@ const globalFAQ = {
       "name": "How does your online system work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fill out the online form at disasterrecovery.com.au/claim with your damage details, location, and photos. NRPG instantly matches you with IICRC-certified contractors within your selected radius (20–100 km). You receive a confirmed response within 60 minutes. We bill you directly so work starts immediately, and provide full documentation to support your insurance claim."
+        "text": "Fill out the online form at disasterrecovery.com.au/claim with your damage details, location, and photos. NRPG instantly matches you with IICRC-certified contractors within your selected radius (20–100 km). Contractors respond to your property following claim lodgement. Contractors bill directly so work starts immediately, and provide full documentation to support your insurance claim."
       }
     },
     {

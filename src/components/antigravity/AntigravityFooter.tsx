@@ -90,7 +90,7 @@ export function AntigravityFooter() {
       <div className="ag-footer-bottom ag-container">
         <div className="ag-copyright">
           &copy; {currentYear} Disaster Recovery Australia. All rights reserved.
-          Powered by National Recovery Platform Group (NRPG).
+          Powered by National Restoration Professionals Group (NRPG).
         </div>
         <div className="ag-legal-links">
           <Link href="/terms">Terms of Service</Link>

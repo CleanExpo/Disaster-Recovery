@@ -78,8 +78,8 @@ export function AntigravityHero() {
               <Image src="/images/antigravity/icon_3d_stopwatch.webp" alt="Fast Response" width={48} height={48} draggable={false} />
             </div>
             <div className="ag-orb-text">
-              <strong>Under 60 Mins</strong>
-              <span>Average Response Time</span>
+              <strong>Priority Response</strong>
+              <span>Emergency Dispatch</span>
             </div>
           </div>
 
