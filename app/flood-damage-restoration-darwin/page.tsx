@@ -145,7 +145,7 @@ export default function FloodDamageRestorationDarwinPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Darwin"
-        subtitle="Emergency flood damage restoration across Darwin, Palmerston, and Greater Darwin. IICRC S500:2025 Category 2–3 certified contractors for wet season monsoonal flooding, rural Darwin agricultural contamination, and TC Maila storm flooding. 60-minute response."
+        subtitle="Emergency flood damage restoration across Darwin, Palmerston, and Greater Darwin. IICRC S500:2025 Category 2–3 certified contractors for wet season monsoonal flooding, rural Darwin agricultural contamination, and TC Maila storm flooding. priority response."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -225,7 +225,7 @@ export default function FloodDamageRestorationDarwinPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across Darwin and Greater Darwin for IICRC S500:2025
+                  priority emergency response across Darwin and Greater Darwin for IICRC S500:2025
                   Category 2&ndash;3 flood damage make-safe, extraction, and structural drying:
                 </p>
                 <p style={{ marginTop: '1rem' }}>

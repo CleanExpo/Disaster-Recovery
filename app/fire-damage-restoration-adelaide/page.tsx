@@ -94,7 +94,7 @@ export default function FireDamageRestorationAdelaidePage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Adelaide"
-        subtitle="Emergency fire damage restoration across Adelaide and South Australia. IICRC S700:2025 certified contractors for fire, smoke, bushfire, and asbestos-aware fibro home restoration. Adelaide Hills BAL zones covered. 60-minute response."
+        subtitle="Emergency fire damage restoration across Adelaide and South Australia. IICRC S700:2025 certified contractors for fire, smoke, bushfire, and asbestos-aware fibro home restoration. Adelaide Hills BAL zones covered. priority response."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -168,7 +168,7 @@ export default function FireDamageRestorationAdelaidePage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across Adelaide metro for fire damage make-safe and structural
+                  priority emergency response across Adelaide metro for fire damage make-safe and structural
                   assessment.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

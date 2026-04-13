@@ -192,7 +192,7 @@ export default function RetailFloodInventoryRecoveryPage() {
                   <strong>Lodge your claim online</strong> &mdash; Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with details of the flooding, affected stock and floor area, and whether the store is currently trading. NRPG instantly matches you with contractors experienced in retail restoration.
                 </li>
                 <li>
-                  <strong>60-minute emergency response</strong> &mdash; Matched contractors respond within 60 minutes, 24/7. The initial focus is water extraction, stock triage and protection of salvageable inventory, and containment to limit the spread of damage.
+                  <strong>priority emergency response</strong> &mdash; Matched contractors respond as soon as a certified contractor is confirmed for your area, 24/7. The initial focus is water extraction, stock triage and protection of salvageable inventory, and containment to limit the spread of damage.
                 </li>
                 <li>
                   <strong>Make-safe and stock documentation</strong> &mdash; The contractor documents all damaged stock and fitout with photographs, video, and detailed inventories before any cleanup or disposal begins. This documentation is provided as part of your claims package.

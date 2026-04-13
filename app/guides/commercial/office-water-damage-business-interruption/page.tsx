@@ -181,7 +181,7 @@ export default function OfficeWaterDamageBusinessInterruptionPage() {
                   <strong>Lodge your claim online</strong> &mdash; Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with details of the water event, affected areas, and number of floors or tenancies impacted. NRPG instantly matches you with contractors experienced in commercial office restoration within your selected radius.
                 </li>
                 <li>
-                  <strong>60-minute emergency response</strong> &mdash; Matched contractors respond within 60 minutes, 24/7. For office environments, the initial focus is always on water extraction, power safety assessment, and protecting unaffected areas from secondary damage.
+                  <strong>priority emergency response</strong> &mdash; Matched contractors respond as soon as a certified contractor is confirmed for your area, 24/7. For office environments, the initial focus is always on water extraction, power safety assessment, and protecting unaffected areas from secondary damage.
                 </li>
                 <li>
                   <strong>Make-safe and containment</strong> &mdash; Emergency water extraction, containment barriers to protect unaffected zones, and removal of collapsed ceiling tiles and debris. The goal is to stabilise the environment and prevent the damage from spreading further.

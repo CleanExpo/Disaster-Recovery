@@ -7,7 +7,7 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Perth Summer Storm Damage — Insurance and Restoration Guide',
   description:
-    "Perth's summer storm season brings hail, winds, and flash flooding. IICRC-certified emergency response for Perth storm damage — insurance claim guide and 60-minute response.",
+    "Perth's summer storm season brings hail, winds, and flash flooding. IICRC-certified emergency response for Perth storm damage — insurance claim guide and priority response.",
   keywords:
     'perth summer storm damage, perth hail damage insurance, perth storm restoration, flash flooding perth, storm damage insurance perth',
   alternates: {
@@ -42,7 +42,7 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Perth' },
   serviceType: 'Storm Damage Restoration',
   description:
-    'IICRC-certified storm damage restoration for Perth summer events — hail damage, wind damage, flash flooding, emergency tarping, insurance claim documentation, and 60-minute response across greater Perth.',
+    'IICRC-certified storm damage restoration for Perth summer events — hail damage, wind damage, flash flooding, emergency tarping, insurance claim documentation, and priority response across greater Perth.',
 };
 
 const faqSchema = {
@@ -201,7 +201,7 @@ export default function PerthSummerStormDamagePage() {
                     <strong>Lodge your claim online</strong> — Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with photographs, your suburb, and a description of the damage. NRPG matches you with Perth storm damage contractors immediately.
                   </li>
                   <li>
-                    <strong>Roof tarping for tile damage</strong> — Industrial-grade UV-stabilised tarpaulins are secured over damaged roof sections within the 60-minute emergency response window. Tarping prevents further water ingress through every subsequent rainfall until permanent roof repairs are completed.
+                    <strong>Roof tarping for tile damage</strong> — Industrial-grade UV-stabilised tarpaulins are secured over damaged roof sections within the priority emergency response window. Tarping prevents further water ingress through every subsequent rainfall until permanent roof repairs are completed.
                   </li>
                   <li>
                     <strong>Window board-up</strong> — Broken windows, skylights, and glazed openings are boarded with plywood or polycarbonate sheeting to prevent ongoing water ingress, secure the property, and protect against entry.

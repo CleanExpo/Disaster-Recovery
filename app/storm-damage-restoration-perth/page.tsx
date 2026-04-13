@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Restoration Perth | Hail, Wind and Roof Damage 24/7',
-  description: 'Emergency storm damage restoration across Perth. IICRC-certified contractors for hail damage, wind damage, roof repairs, and structural make-safe. 60-minute response. Lodge your claim 24/7.',
+  description: 'Emergency storm damage restoration across Perth. IICRC-certified contractors for hail damage, wind damage, roof repairs, and structural make-safe. priority response. Lodge your claim 24/7.',
   keywords: 'storm damage restoration perth, storm damage perth, hail damage perth, roof damage perth, wind damage perth WA, storm restoration perth, cyclone damage perth',
   openGraph: {
     title: 'Storm Damage Restoration Perth | Hail, Wind and Roof Damage 24/7',
-    description: 'Emergency storm damage restoration across Perth. IICRC-certified contractors for hail damage, wind damage, roof repairs, and structural make-safe. 60-minute response. Lodge your claim 24/7.',
+    description: 'Emergency storm damage restoration across Perth. IICRC-certified contractors for hail damage, wind damage, roof repairs, and structural make-safe. priority response. Lodge your claim 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Storm Damage Restoration')}&city=${encodeURIComponent('Perth')}&service=storm-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -67,7 +67,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can NRPG respond to storm damage in Perth?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG targets a 60-minute response for emergency make-safe across the Perth metropolitan area. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch. Hills properties (Kalamunda, Mundaring) may require 60\u201390 minutes depending on traffic and access.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG targets a priority response for emergency make-safe across the Perth metropolitan area. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch. Hills properties (Kalamunda, Mundaring) may require 60\u201390 minutes depending on traffic and access.' },
     },
   ],
 };
@@ -82,7 +82,7 @@ export default function StormDamageRestorationPerthPage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Perth"
-        subtitle="Emergency storm damage restoration across Perth and Western Australia. Hail, wind damage, roof failures, and structural make-safe. IICRC-certified contractors, 60-minute response."
+        subtitle="Emergency storm damage restoration across Perth and Western Australia. Hail, wind damage, roof failures, and structural make-safe. IICRC-certified contractors, priority response."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -142,7 +142,7 @@ export default function StormDamageRestorationPerthPage() {
             heading: 'Perth Suburbs We Cover',
             body: (
               <>
-                <p>60-minute response across the Perth metropolitan area:</p>
+                <p>priority response across the Perth metropolitan area:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner City:</strong> Perth CBD, Northbridge, Leederville, Highgate, Subiaco, Mount Lawley
                 </p>
@@ -184,7 +184,7 @@ export default function StormDamageRestorationPerthPage() {
           },
           {
             question: 'How quickly can NRPG respond to storm damage in Perth?',
-            answer: 'NRPG targets a 60-minute response for emergency make-safe across the Perth metropolitan area. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch. Hills properties (Kalamunda, Mundaring) may require 60–90 minutes depending on traffic and access.',
+            answer: 'NRPG targets a priority response for emergency make-safe across the Perth metropolitan area. Lodge at disasterrecovery.com.au/claim for immediate IICRC-certified contractor dispatch. Hills properties (Kalamunda, Mundaring) may require 60–90 minutes depending on traffic and access.',
           },
         ]}
         relatedGuides={[

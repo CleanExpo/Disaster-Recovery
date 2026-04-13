@@ -129,7 +129,7 @@ const timelinePhases: TimelinePhase[] = [
     duration: 'Day 1 — Hours 1–6',
     colour: '#EF4444',
     steps: [
-      'Technician dispatch within 60 minutes of claim lodgement',
+      'Technician dispatch as soon as a certified contractor is confirmed for your area of claim lodgement',
       'Hazard assessment — electrical isolation, category classification',
       'Thermal imaging survey to map moisture penetration',
       'Bulk water extraction — truck-mounted and weighted rover units',
@@ -347,7 +347,7 @@ export default function HowLongWaterDamagePage() {
           answer: faq.acceptedAnswer.text,
         }))}
         relatedGuides={[
-          { title: 'Emergency Water Extraction', href: '/services/emergency-water-extraction', description: 'Lodge an emergency claim — 60-minute dispatch.' },
+          { title: 'Emergency Water Extraction', href: '/services/emergency-water-extraction', description: 'Lodge an emergency claim — priority dispatch.' },
           { title: 'What to Do After a Flood', href: '/guides/flood-damage/what-to-do-after-a-flood-australia', description: 'Step-by-step flood recovery guide.' },
           { title: 'When Your Insurer Delays Your Claim', href: '/guides/insurance/insurer-delays-your-claim', description: 'GICP timeframes and how to escalate.' },
           { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Full water damage restoration service.' },

@@ -17,7 +17,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can a restoration contractor respond to a data centre water emergency?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG\u2019s network provides a 60-minute emergency response across major Australian cities, 24/7. For data centre emergencies, initial phone consultation often begins within minutes of lodging your claim online, allowing your on-site team to begin containment actions immediately while the contractor mobilises.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG\u2019s network provides a priority emergency response across major Australian cities, 24/7. For data centre emergencies, initial phone consultation often begins within minutes of lodging your claim online, allowing your on-site team to begin containment actions immediately while the contractor mobilises.' },
     },
     {
       '@type': 'Question',
@@ -167,7 +167,7 @@ export default function DataCentreWaterDamagePage() {
                   <strong>Lodge your claim online</strong> &mdash; Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the location, nature of the water event, and any known details about affected equipment. NRPG instantly matches you with contractors experienced in data centre restoration within your selected radius.
                 </li>
                 <li>
-                  <strong>60-minute emergency response</strong> &mdash; Matched contractors respond within 60 minutes, 24 hours a day, 7 days a week. For data centre emergencies, initial phone consultation often begins within minutes to guide your team on immediate containment actions before the contractor arrives on site.
+                  <strong>priority emergency response</strong> &mdash; Matched contractors respond as soon as a certified contractor is confirmed for your area, 24 hours a day, 7 days a week. For data centre emergencies, initial phone consultation often begins within minutes to guide your team on immediate containment actions before the contractor arrives on site.
                 </li>
                 <li>
                   <strong>Make-safe and containment</strong> &mdash; The contractor performs emergency make-safe &mdash; water extraction, power isolation guidance, equipment protection, and containment of the affected zone. This phase focuses on stopping the damage from spreading.
@@ -189,7 +189,7 @@ export default function DataCentreWaterDamagePage() {
       faqs={[
         {
           question: 'How quickly can a restoration contractor respond to a data centre water emergency?',
-          answer: 'NRPG\'s network provides a 60-minute emergency response across major Australian cities, 24/7. For data centre emergencies, initial phone consultation often begins within minutes of lodging your claim online, allowing your on-site team to begin containment actions immediately while the contractor mobilises.',
+          answer: 'NRPG\'s network provides a priority emergency response across major Australian cities, 24/7. For data centre emergencies, initial phone consultation often begins within minutes of lodging your claim online, allowing your on-site team to begin containment actions immediately while the contractor mobilises.',
         },
         {
           question: 'Can server equipment be restored after water damage?',

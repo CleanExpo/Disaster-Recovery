@@ -46,7 +46,7 @@ const faqSchema = {
       name: 'How quickly can emergency roof repairs be done after a storm?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors can respond within 60 minutes of clearance from emergency services. Emergency tarping and make-safe works are typically completed within hours of arrival. Permanent roof repairs are scheduled after insurer scope approval, usually within 2–4 weeks for standard events.',
+        text: 'NRPG contractors can respond as soon as a certified contractor is confirmed for your area of clearance from emergency services. Emergency tarping and make-safe works are typically completed within hours of arrival. Permanent roof repairs are scheduled after insurer scope approval, usually within 2–4 weeks for standard events.',
       },
     },
   ],

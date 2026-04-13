@@ -82,7 +82,7 @@ export default function StormDamageRestorationMelbournePage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Melbourne"
-        subtitle="Emergency storm damage restoration across Melbourne and Victoria. IICRC-certified contractors for hail, wind damage, roof failures, and structural make-safe. 60-minute response, 24 hours a day."
+        subtitle="Emergency storm damage restoration across Melbourne and Victoria. IICRC-certified contractors for hail, wind damage, roof failures, and structural make-safe. priority response, 24 hours a day."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -136,7 +136,7 @@ export default function StormDamageRestorationMelbournePage() {
             heading: 'Melbourne Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency storm response across Melbourne metro:</p>
+                <p>priority emergency storm response across Melbourne metro:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner City:</strong> Melbourne CBD, South Melbourne, Port Melbourne, Docklands, Fitzroy,
                   Collingwood

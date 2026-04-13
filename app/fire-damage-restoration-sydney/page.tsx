@@ -82,7 +82,7 @@ export default function FireDamageRestorationSydneyPage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Sydney"
-        subtitle="Emergency fire damage restoration across all Sydney suburbs. IICRC S700:2025 certified technicians for fire, smoke, soot, and odour restoration. 60-minute dispatch, 24 hours a day."
+        subtitle="Emergency fire damage restoration across all Sydney suburbs. IICRC S700:2025 certified technicians for fire, smoke, soot, and odour restoration. priority dispatch, 24 hours a day."
         gradient="linear-gradient(135deg, #1A0800 0%, #D84315 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -137,7 +137,7 @@ export default function FireDamageRestorationSydneyPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across all Sydney suburbs for fire damage make-safe and structural
+                  priority emergency response across all Sydney suburbs for fire damage make-safe and structural
                   assessment.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

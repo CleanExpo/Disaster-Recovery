@@ -17,11 +17,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Wollongong | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across Wollongong and the Illawarra. IICRC S500:2025 certified contractors respond in under 60 minutes. Escarpment runoff, Lake Illawarra flooding, storm swell water ingress. Lodge your claim 24/7.',
+  description: 'Professional water damage restoration across Wollongong and the Illawarra. IICRC S500:2025 certified contractors respond as quickly as possible. Escarpment runoff, Lake Illawarra flooding, storm swell water ingress. Lodge your claim 24/7.',
   keywords: 'water damage restoration wollongong, water damage wollongong, flood damage wollongong, burst pipe wollongong, illawarra escarpment flood, lake illawarra flooding, water damage repair wollongong, IICRC wollongong, storm damage wollongong',
   openGraph: {
     title: 'Water Damage Restoration Wollongong | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across Wollongong and the Illawarra. IICRC S500:2025 certified. 60-minute response. Escarpment runoff, coastal storm swell, and Lake Illawarra flooding specialists.',
+    description: 'Emergency water damage restoration across Wollongong and the Illawarra. IICRC S500:2025 certified. priority response. Escarpment runoff, coastal storm swell, and Lake Illawarra flooding specialists.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Wollongong')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -104,7 +104,7 @@ export default function WaterDamageRestorationWollongongPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Wollongong"
-        subtitle="Emergency water damage restoration across Wollongong and the Illawarra. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Escarpment runoff, coastal storm swell, and Lake Illawarra flooding specialists."
+        subtitle="Emergency water damage restoration across Wollongong and the Illawarra. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Escarpment runoff, coastal storm swell, and Lake Illawarra flooding specialists."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -188,7 +188,7 @@ export default function WaterDamageRestorationWollongongPage() {
             heading: 'Wollongong Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Wollongong and the Illawarra:</p>
+                <p>priority emergency response across Wollongong and the Illawarra:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Wollongong Inner City:</strong> Wollongong CBD, North Wollongong, Wollongong East,
                   Fairy Meadow, Gwynneville, Keiraville, Mount Keira, Figtree

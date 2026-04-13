@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const faqData = [
   {
     question: 'What should I do when a tenant reports water damage?',
-    answer: 'Instruct the tenant to turn off the water at the mains (if safe to do so), move valuables off the floor, and take photos of the damage. Then contact Disaster Recovery immediately — we deploy an IICRC-certified contractor to the property within 60 minutes, 24/7. Do not wait for owner approval if there is an immediate risk of further damage; your duty of care requires you to take reasonable steps to mitigate the loss.',
+    answer: 'Instruct the tenant to turn off the water at the mains (if safe to do so), move valuables off the floor, and take photos of the damage. Then contact Disaster Recovery immediately — we deploy an IICRC-certified contractor to the property as soon as a certified contractor is confirmed for your area, 24/7. Do not wait for owner approval if there is an immediate risk of further damage; your duty of care requires you to take reasonable steps to mitigate the loss.',
   },
   {
     question: 'Who is responsible for restoration costs — the owner or the tenant?',
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     question: 'How quickly can you respond to a commercial property emergency?',
-    answer: 'An IICRC-certified contractor from our NRPG network will contact you within 60 minutes of your claim being lodged, and can be on-site within the hour — 24 hours a day, 7 days a week, 365 days a year. This applies Australia-wide, including after hours, weekends, and public holidays.',
+    answer: 'An IICRC-certified contractor from our NRPG network will contact you as soon as a certified contractor is confirmed for your area of your claim being lodged, and can be on-site within the hour — 24 hours a day, 7 days a week, 365 days a year. This applies Australia-wide, including after hours, weekends, and public holidays.',
   },
   {
     question: 'What documentation do you provide for building owners?',
@@ -126,7 +126,7 @@ export default function PropertyManagersPage() {
                 <p>
                   <Link href="/claim" className="text-blue-600 hover:underline font-medium">Lodge a claim online</Link> — it takes
                   under five minutes and is available 24/7. An IICRC-certified contractor from our NRPG network
-                  will contact you within 60 minutes and can be on-site within the hour. Our contractors operate
+                  will contact you as soon as a certified contractor is confirmed for your area and can be on-site within the hour. Our contractors operate
                   Australia-wide and respond at all hours, including weekends and public holidays.
                 </p>
 
@@ -209,7 +209,7 @@ export default function PropertyManagersPage() {
                   health is affected by untreated mould, or whose belongings are damaged by water you failed
                   to address, may seek compensation through the relevant tenancy tribunal. A building owner
                   whose insurance claim is reduced because secondary damage could have been prevented may hold
-                  the managing agent responsible for the difference. The cost of a 60-minute emergency response
+                  the managing agent responsible for the difference. The cost of a priority emergency response
                   is almost always a fraction of the cost of inaction.
                 </p>
               </div>
@@ -443,7 +443,7 @@ export default function PropertyManagersPage() {
                   Disaster Recovery operates around the clock, every day of the year. When you{' '}
                   <Link href="/claim" className="text-blue-600 hover:underline font-medium">lodge a claim online</Link>,
                   our system immediately matches your property with an IICRC-certified contractor from
-                  the NRPG network in your area. The contractor will contact you within 60 minutes and
+                  the NRPG network in your area. The contractor will contact you as soon as a certified contractor is confirmed for your area and
                   can be on-site within the hour — at 2pm or 2am, on Christmas Day or a Tuesday in July.
                 </p>
 
@@ -456,7 +456,7 @@ export default function PropertyManagersPage() {
                 <ol>
                   <li>You lodge the claim online with property details, damage type, and photos</li>
                   <li>Our system matches a certified contractor in your area within minutes</li>
-                  <li>The contractor contacts you within 60 minutes to discuss the situation</li>
+                  <li>The contractor contacts you as soon as a certified contractor is confirmed for your area to discuss the situation</li>
                   <li>The contractor is on-site within the hour to perform emergency make-safe</li>
                 </ol>
 
@@ -469,7 +469,7 @@ export default function PropertyManagersPage() {
                   <li><strong>Your agency&apos;s after-hours number</strong> — so the tenant calls you first</li>
                   <li><strong>Basic safety instructions</strong> — turn off water mains, do not enter if structural risk, evacuate if gas or electrical hazard</li>
                   <li><strong>Documentation instructions</strong> — take photos and video before touching anything</li>
-                  <li><strong>What to expect</strong> — a certified restoration technician will attend within 60 minutes once you have been notified</li>
+                  <li><strong>What to expect</strong> — a certified restoration technician will attend as soon as a certified contractor is confirmed for your area once you have been notified</li>
                 </ul>
                 <p>
                   This prevents tenants from attempting DIY cleanup (which often worsens damage and

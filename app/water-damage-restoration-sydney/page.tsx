@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Sydney | 24/7',
-  description: 'Emergency water damage restoration in Sydney. IICRC-certified contractors respond in under 60 minutes across all Sydney metro suburbs. Available 24/7.',
+  description: 'Emergency water damage restoration in Sydney. IICRC-certified contractors respond as quickly as possible across all Sydney metro suburbs. Available 24/7.',
   keywords: 'water damage restoration sydney, water damage sydney, flood cleanup sydney, burst pipe sydney, emergency water removal sydney, water damage repair sydney',
   openGraph: {
     title: 'Water Damage Restoration Sydney | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration in Sydney. IICRC-certified contractors respond in under 60 minutes. Available 24/7.',
+    description: 'Emergency water damage restoration in Sydney. IICRC-certified contractors respond as quickly as possible. Available 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Sydney')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -62,7 +62,7 @@ const faqSchema = {
       name: 'How quickly can a water damage restoration contractor respond in Sydney?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors across Sydney metro respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
+        text: 'NRPG contractors across Sydney metro respond as soon as a certified contractor is confirmed for your area of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
       },
     },
     {
@@ -86,7 +86,7 @@ const faqSchema = {
       name: 'What should I do immediately after water damage in my Sydney property?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Stop the water source if safe (turn off mains or isolate the burst pipe). Move valuables to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Lodge your claim at disasterrecovery.com.au/claim for a 60-minute emergency response. Mould can begin growing within 24 to 48 hours in Sydney humidity, so fast action is critical.',
+        text: 'Stop the water source if safe (turn off mains or isolate the burst pipe). Move valuables to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Lodge your claim at disasterrecovery.com.au/claim for a priority emergency response. Mould can begin growing within 24 to 48 hours in Sydney humidity, so fast action is critical.',
       },
     },
     {
@@ -110,7 +110,7 @@ export default function WaterDamageRestorationSydneyPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Sydney"
-        subtitle="Emergency water damage restoration across all Sydney metro suburbs. IICRC-certified contractors respond in under 60 minutes, 24 hours a day, 7 days a week."
+        subtitle="Emergency water damage restoration across all Sydney metro suburbs. IICRC-certified contractors respond as quickly as possible, 24 hours a day, 7 days a week."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-02-27"
@@ -196,7 +196,7 @@ export default function WaterDamageRestorationSydneyPage() {
                     your selected radius (20–100 km)
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>60-minute response</strong> — emergency make-safe begins within the hour across Sydney metro
+                    <strong>priority response</strong> — emergency make-safe begins within the hour across Sydney metro
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Full claims documentation</strong> — timestamped photos, moisture readings, scope of works,
@@ -285,7 +285,7 @@ export default function WaterDamageRestorationSydneyPage() {
           },
           {
             question: 'How quickly can a water damage restoration contractor respond in Sydney?',
-            answer: 'NRPG contractors across Sydney metro respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
+            answer: 'NRPG contractors across Sydney metro respond as soon as a certified contractor is confirmed for your area of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
           },
           {
             question: 'Does insurance cover water damage restoration in Sydney?',
@@ -297,7 +297,7 @@ export default function WaterDamageRestorationSydneyPage() {
           },
           {
             question: 'What should I do immediately after water damage in my Sydney property?',
-            answer: 'Stop the water source if safe (turn off mains or isolate the burst pipe). Move valuables to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Lodge your claim at disasterrecovery.com.au/claim for a 60-minute emergency response. Mould can begin growing within 24 to 48 hours in Sydney humidity, so fast action is critical.',
+            answer: 'Stop the water source if safe (turn off mains or isolate the burst pipe). Move valuables to dry areas and photograph all damage for insurance. Do not use electrical appliances in wet areas. Lodge your claim at disasterrecovery.com.au/claim for a priority emergency response. Mould can begin growing within 24 to 48 hours in Sydney humidity, so fast action is critical.',
           },
           {
             question: 'Are your Sydney water damage contractors IICRC certified?',

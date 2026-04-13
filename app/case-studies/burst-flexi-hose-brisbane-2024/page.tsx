@@ -350,7 +350,7 @@ export default function BurstFlexiHoseCaseStudyPage() {
         ]}
         relatedPages={[
           { title: 'Burst Pipe Insurance Claim Guide', href: '/guides/insurance/burst-pipe-insurance-claim', description: 'What is covered, gradual leak disputes, and how to maximise your settlement.' },
-          { title: 'Emergency Water Extraction', href: '/services/emergency-water-extraction', description: 'Lodge an emergency claim for 60-minute water extraction dispatch.' },
+          { title: 'Emergency Water Extraction', href: '/services/emergency-water-extraction', description: 'Lodge an emergency claim for priority water extraction dispatch.' },
           { title: 'Document Water Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', description: 'How to photograph and document water damage for your claim.' },
           { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Full water damage restoration service — extraction, drying, and repairs.' },
         ]}

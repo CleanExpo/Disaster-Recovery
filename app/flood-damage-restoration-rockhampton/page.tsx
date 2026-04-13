@@ -6,10 +6,10 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Flood Damage Restoration Rockhampton | Fitzroy River Recovery',
-  description: 'Flood damage restoration across Rockhampton. Fitzroy River flood recovery specialists. IICRC S500:2025 certified Cat 3 decontamination. 60-minute response 24/7.',
+  description: 'Flood damage restoration across Rockhampton. Fitzroy River flood recovery specialists. IICRC S500:2025 certified Cat 3 decontamination. priority response 24/7.',
   openGraph: {
     title: 'Flood Damage Restoration Rockhampton | Fitzroy River Recovery',
-    description: 'Flood damage restoration across Rockhampton. Fitzroy River flood recovery specialists. IICRC S500:2025 certified Cat 3 decontamination. 60-minute response 24/7.',
+    description: 'Flood damage restoration across Rockhampton. Fitzroy River flood recovery specialists. IICRC S500:2025 certified Cat 3 decontamination. priority response 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Flood Damage Restoration')}&city=${encodeURIComponent('Rockhampton')}&service=flood-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -24,7 +24,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/flood-damage-restoration-rockhampton/#localbusiness`,
   name: `${NAP.name} Rockhampton`,
   url: `${NAP.url}/flood-damage-restoration-rockhampton`,
-  description: 'Flood damage restoration across Rockhampton. Fitzroy River flood recovery, IICRC S500:2025 Category 3 decontamination, 60-minute emergency response 24/7.',
+  description: 'Flood damage restoration across Rockhampton. Fitzroy River flood recovery, IICRC S500:2025 Category 3 decontamination, priority emergency response 24/7.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'City', name: 'Rockhampton', containedInPlace: { '@type': 'State', name: 'Queensland' } },
@@ -93,7 +93,7 @@ export default function FloodDamageRestorationRockhamptonPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Flood Damage Restoration Rockhampton"
-        subtitle="Flood damage restoration across Rockhampton. Fitzroy River flood recovery specialists. IICRC S500:2025 certified Category 3 decontamination. 60-minute response 24/7."
+        subtitle="Flood damage restoration across Rockhampton. Fitzroy River flood recovery specialists. IICRC S500:2025 certified Category 3 decontamination. priority response 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #0D47A1 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"

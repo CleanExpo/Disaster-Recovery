@@ -16,11 +16,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cairns | IICRC-Certified 24/7 Emergency',
-  description: 'Professional water damage restoration in Cairns and Far North Queensland. IICRC S500:2025 certified contractors, 60-minute response. TC Maila water damage recovery. Lodge your claim 24/7.',
+  description: 'Professional water damage restoration in Cairns and Far North Queensland. IICRC S500:2025 certified contractors, priority response. TC Maila water damage recovery. Lodge your claim 24/7.',
   keywords: 'water damage restoration cairns, water damage cairns, FNQ water damage, cyclone water damage cairns, burst pipe cairns, TC Maila water damage, flood damage cairns FNQ',
   openGraph: {
     title: 'Water Damage Restoration Cairns | IICRC-Certified 24/7 Emergency',
-    description: 'Emergency water damage restoration across Cairns and Far North Queensland. IICRC S500:2025 certified. 60-minute response. TC Maila water damage recovery available now.',
+    description: 'Emergency water damage restoration across Cairns and Far North Queensland. IICRC S500:2025 certified. priority response. TC Maila water damage recovery available now.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Cairns')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -64,7 +64,7 @@ const faqSchema = {
       name: 'How quickly does mould grow after water damage in Cairns?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "In Cairns\u2019 tropical climate (30\u00b0C+ with 70\u201385% humidity year-round), mould can establish within 24 hours of water damage occurring. Post-cyclone conditions \u2014 warm temperatures, elevated humidity, and saturated materials \u2014 create ideal propagation conditions. Lodge immediately for 60-minute emergency response: delayed treatment in Cairns\u2019 climate converts a manageable water damage claim into a full mould remediation project.",
+        text: "In Cairns\u2019 tropical climate (30\u00b0C+ with 70\u201385% humidity year-round), mould can establish within 24 hours of water damage occurring. Post-cyclone conditions \u2014 warm temperatures, elevated humidity, and saturated materials \u2014 create ideal propagation conditions. Lodge immediately for priority emergency response: delayed treatment in Cairns\u2019 climate converts a manageable water damage claim into a full mould remediation project.",
       },
     },
     {
@@ -111,7 +111,7 @@ export default function WaterDamageRestorationCairnsPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Cairns"
-        subtitle="Emergency water damage restoration across Cairns and Far North Queensland. IICRC S500:2025 certified technicians. 60-minute response. TC Maila water damage recovery available now."
+        subtitle="Emergency water damage restoration across Cairns and Far North Queensland. IICRC S500:2025 certified technicians. priority response. TC Maila water damage recovery available now."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -197,7 +197,7 @@ export default function WaterDamageRestorationCairnsPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across Cairns LGA:
+                  priority emergency response across Cairns LGA:
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>City/Inner:</strong> Cairns City, Cairns North, Manunda, Westcourt, Manoora,
@@ -221,7 +221,7 @@ export default function WaterDamageRestorationCairnsPage() {
         faqs={[
           {
             question: 'How quickly does mould grow after water damage in Cairns?',
-            answer: "In Cairns' tropical climate (30°C+ with 70–85% humidity year-round), mould can establish within 24 hours of water damage occurring. Post-cyclone conditions — warm temperatures, elevated humidity, and saturated materials — create ideal propagation conditions. Lodge immediately for 60-minute emergency response: delayed treatment in Cairns' climate converts a manageable water damage claim into a full mould remediation project.",
+            answer: "In Cairns' tropical climate (30°C+ with 70–85% humidity year-round), mould can establish within 24 hours of water damage occurring. Post-cyclone conditions — warm temperatures, elevated humidity, and saturated materials — create ideal propagation conditions. Lodge immediately for priority emergency response: delayed treatment in Cairns' climate converts a manageable water damage claim into a full mould remediation project.",
           },
           {
             question: 'Is TC Maila water damage covered by home insurance?',

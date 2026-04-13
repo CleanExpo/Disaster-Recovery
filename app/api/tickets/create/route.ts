@@ -52,8 +52,8 @@ export async function POST(request: NextRequest) {
         success: true,
         ticketId: serviceRequest.id,
         message:
-          'Ticket created successfully. A specialist will contact you within 30 minutes.',
-        estimatedResponse: '30 minutes',
+          'Ticket created successfully. A specialist will be in contact with you shortly.',
+        estimatedResponse: 'as soon as possible',
         trackingUrl: `/track/${serviceRequest.id}`,
       },
       { status: 201 }

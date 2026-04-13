@@ -89,7 +89,7 @@ function WorkflowDemonstrationOriginal() {
     {
       id: 'client-contact',
       title: 'Contractor Calls Client',
-      description: 'Contractor makes direct phone contact with client within 60 MINUTES',
+      description: 'Contractor makes direct phone contact with client as soon as a certified contractor is confirmed for your area',
       status: 'pending'
     },
     {

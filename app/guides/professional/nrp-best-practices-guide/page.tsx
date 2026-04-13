@@ -155,7 +155,7 @@ export default function NRPBestPracticesGuidePage() {
                 Clear, proactive communication is a core NRPG standard. Property owners dealing with disaster damage are under significant stress. Your professionalism in communication directly affects client satisfaction, review scores, and your priority ranking within the network.
               </p>
               <p>
-                <strong>Initial response (within 60 minutes of job acceptance):</strong>
+                <strong>Initial response (as soon as a certified contractor is confirmed for your area of job acceptance):</strong>
               </p>
               <ul className="list-disc pl-6 space-y-3">
                 <li>Confirm your estimated arrival time via the platform.</li>

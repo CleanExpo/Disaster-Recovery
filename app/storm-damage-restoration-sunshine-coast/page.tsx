@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: 'storm damage sunshine coast, roof damage sunshine coast, structural storm damage sunshine coast, ex-tc alfred storm damage, hinterland tree fall sunshine coast, storm damage maleny montville, ARPC cyclone pool QLD',
   openGraph: {
     title: 'Storm Damage Restoration Sunshine Coast | Ex-TC Alfred Structural Repairs',
-    description: 'Emergency storm damage restoration across the Sunshine Coast. Structural repairs, roof loss, and hinterland tree-fall damage. Ex-TC Alfred recovery support. IICRC-certified. 60-minute response.',
+    description: 'Emergency storm damage restoration across the Sunshine Coast. Structural repairs, roof loss, and hinterland tree-fall damage. Ex-TC Alfred recovery support. IICRC-certified. priority response.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Storm Damage Restoration')}&city=${encodeURIComponent('Sunshine Coast')}&service=storm-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -81,7 +81,7 @@ export default function StormDamageRestorationSunshineCoastPage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Sunshine Coast"
-        subtitle="Emergency storm damage restoration across the Sunshine Coast. Structural repairs, roof loss, wind damage, and hinterland tree-fall. Ex-TC Alfred recovery support. IICRC-certified contractors. 60-minute response."
+        subtitle="Emergency storm damage restoration across the Sunshine Coast. Structural repairs, roof loss, wind damage, and hinterland tree-fall. Ex-TC Alfred recovery support. IICRC-certified contractors. priority response."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"

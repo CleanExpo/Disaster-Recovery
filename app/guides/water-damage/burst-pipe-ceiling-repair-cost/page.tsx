@@ -221,7 +221,7 @@ export default function BurstPipeCeilingRepairCostPage() {
                 <strong>Then lodge your claim:</strong>
               </p>
               <p>
-                Submit your details at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a>. NRPG instantly matches you with the nearest IICRC-certified restoration professional within your selected radius. You receive a confirmed response within 60 minutes — 24/7, including weekends and public holidays.
+                Submit your details at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a>. NRPG instantly matches you with the nearest IICRC-certified restoration professional within your selected radius. You receive a confirmed response as soon as a certified contractor is confirmed for your area — 24/7, including weekends and public holidays.
               </p>
               <p>
                 Work begins immediately without waiting for insurer approval. You control the process, and full claims documentation is provided to support your insurance reimbursement.

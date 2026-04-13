@@ -131,7 +131,7 @@ export default function EmergencyRoofTarpingMakeSafePage() {
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>NRPG dispatch timing:</strong> NRPG emergency contractors are
-                    dispatched within 60 minutes of storm clearance for roof tarping and
+                    dispatched as soon as a certified contractor is confirmed for your area of storm clearance for roof tarping and
                     emergency board-up. Submit your claim through the Disaster Recovery
                     platform before the storm has fully passed to secure your place in
                     the dispatch queue.

@@ -17,7 +17,7 @@ const events = [
     phase: 'Recovery',
     state: 'QLD',
     lgas: 'Cairns, Port Douglas, Innisfail, Townsville',
-    description: 'TC Maila made landfall across the Far North Queensland coast on 11–12 April 2026. NRPG IICRC-certified contractors deployed. Lodge your cyclone damage claim — 60-minute post-clearance response.',
+    description: 'TC Maila made landfall across the Far North Queensland coast on 11–12 April 2026. NRPG IICRC-certified contractors deployed. Lodge your cyclone damage claim — priority post-clearance response.',
     badgeColour: 'bg-red-700',
   },
   {

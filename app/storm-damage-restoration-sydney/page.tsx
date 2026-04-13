@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Restoration Sydney | Hail, Wind & Structural Repairs 24/7',
-  description: 'Emergency storm damage restoration across all Sydney suburbs. IICRC-certified contractors for hail damage, roof repairs, wind damage, and structural make-safe. 60-minute response. Lodge your claim 24/7.',
+  description: 'Emergency storm damage restoration across all Sydney suburbs. IICRC-certified contractors for hail damage, roof repairs, wind damage, and structural make-safe. priority response. Lodge your claim 24/7.',
   keywords: 'storm damage restoration sydney, storm damage sydney, hail damage sydney, roof damage sydney, wind damage sydney, storm damage repair sydney, emergency storm restoration sydney',
   openGraph: {
     title: 'Storm Damage Restoration Sydney | Hail, Wind & Structural Repairs 24/7',
-    description: 'Emergency storm damage restoration across all Sydney suburbs. IICRC-certified contractors for hail damage, roof repairs, wind damage, and structural make-safe. 60-minute response. Lodge your claim 24/7.',
+    description: 'Emergency storm damage restoration across all Sydney suburbs. IICRC-certified contractors for hail damage, roof repairs, wind damage, and structural make-safe. priority response. Lodge your claim 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Storm Damage Restoration')}&city=${encodeURIComponent('Sydney')}&service=storm-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -57,7 +57,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly should I act after storm damage to my Sydney property?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Immediately \u2014 if there is a structural breach (damaged roof, broken windows), water ingress will continue with every subsequent rain event, escalating the damage and complicating the claim. Lodge at disasterrecovery.com.au/claim for 60-minute emergency make-safe (tarping and temporary boarding) to stop further damage while the formal repair scope is assessed.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Immediately \u2014 if there is a structural breach (damaged roof, broken windows), water ingress will continue with every subsequent rain event, escalating the damage and complicating the claim. Lodge at disasterrecovery.com.au/claim for priority emergency make-safe (tarping and temporary boarding) to stop further damage while the formal repair scope is assessed.' },
     },
     {
       '@type': 'Question',
@@ -82,7 +82,7 @@ export default function StormDamageRestorationSydneyPage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Sydney"
-        subtitle="Emergency storm damage restoration across all Sydney suburbs. IICRC-certified contractors for hail, wind damage, roof failures, and structural make-safe. 60-minute response, 24 hours a day."
+        subtitle="Emergency storm damage restoration across all Sydney suburbs. IICRC-certified contractors for hail, wind damage, roof failures, and structural make-safe. priority response, 24 hours a day."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -117,7 +117,7 @@ export default function StormDamageRestorationSydneyPage() {
               <>
                 <ul style={{ paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Emergency response:</strong> Roof tarping and temporary boarding within 60 minutes of call for
+                    <strong>Emergency response:</strong> Roof tarping and temporary boarding as soon as a certified contractor is confirmed for your area of call for
                     properties with structural breaches.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
@@ -167,7 +167,7 @@ export default function StormDamageRestorationSydneyPage() {
             heading: 'Sydney Suburbs We Cover',
             body: (
               <>
-                <p>60-minute response across all Sydney LGAs:</p>
+                <p>priority response across all Sydney LGAs:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner West:</strong> Glebe, Newtown, Leichhardt, Marrickville, Ashfield, Burwood, Strathfield, Homebush
                 </p>
@@ -201,7 +201,7 @@ export default function StormDamageRestorationSydneyPage() {
           },
           {
             question: 'How quickly should I act after storm damage to my Sydney property?',
-            answer: 'Immediately — if there is a structural breach (damaged roof, broken windows), water ingress will continue with every subsequent rain event, escalating the damage and complicating the claim. Lodge at disasterrecovery.com.au/claim for 60-minute emergency make-safe (tarping and temporary boarding) to stop further damage while the formal repair scope is assessed.',
+            answer: 'Immediately — if there is a structural breach (damaged roof, broken windows), water ingress will continue with every subsequent rain event, escalating the damage and complicating the claim. Lodge at disasterrecovery.com.au/claim for priority emergency make-safe (tarping and temporary boarding) to stop further damage while the formal repair scope is assessed.',
           },
           {
             question: 'What is the most common storm damage claim dispute in Sydney?',

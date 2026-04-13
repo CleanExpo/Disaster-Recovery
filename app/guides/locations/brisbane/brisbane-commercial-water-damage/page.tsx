@@ -19,7 +19,7 @@ const faqSchema = {
       name: 'How quickly can a commercial water damage contractor respond in Brisbane CBD?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors provide a 60-minute emergency response across greater Brisbane, including the CBD, Fortitude Valley, South Brisbane, and surrounding commercial precincts. The 24/7 response means after-hours emergencies \u2014 burst pipes overnight, storm damage on weekends \u2014 are addressed immediately. Water extraction and drying equipment are deployed on the first visit to begin limiting damage from the outset.',
+        text: 'NRPG contractors provide a priority emergency response across greater Brisbane, including the CBD, Fortitude Valley, South Brisbane, and surrounding commercial precincts. The 24/7 response means after-hours emergencies \u2014 burst pipes overnight, storm damage on weekends \u2014 are addressed immediately. Water extraction and drying equipment are deployed on the first visit to begin limiting damage from the outset.',
       },
     },
     {
@@ -160,7 +160,7 @@ export default function BrisbaneCommercialWaterDamagePage() {
                   <strong>Lodge your claim online</strong> — Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the location, type of water damage, approximate affected area, and whether the premises are currently occupied. NRPG matches you with contractors experienced in Brisbane commercial restoration.
                 </li>
                 <li>
-                  <strong>Emergency response</strong> — Contractors respond within 60 minutes, 24/7, across greater Brisbane. Emergency water extraction, containment, and make-safe measures begin immediately. Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across greater Brisbane. Emergency water extraction, containment, and make-safe measures begin immediately. Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract and scope</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the restoration scope, timeline, after-hours scheduling requirements, and cost. We bill you directly — the business owner, tenant, or body corporate — so you control the process and timeline.
@@ -182,7 +182,7 @@ export default function BrisbaneCommercialWaterDamagePage() {
       faqs={[
         {
           question: 'How quickly can a commercial water damage contractor respond in Brisbane CBD?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across greater Brisbane, including the CBD, Fortitude Valley, South Brisbane, and surrounding commercial precincts. The 24/7 response means after-hours emergencies — burst pipes overnight, storm damage on weekends — are addressed immediately. Water extraction and drying equipment are deployed on the first visit to begin limiting damage from the outset.',
+          answer: 'NRPG contractors provide a priority emergency response across greater Brisbane, including the CBD, Fortitude Valley, South Brisbane, and surrounding commercial precincts. The 24/7 response means after-hours emergencies — burst pipes overnight, storm damage on weekends — are addressed immediately. Water extraction and drying equipment are deployed on the first visit to begin limiting damage from the outset.',
         },
         {
           question: 'How long does commercial water damage restoration take in Brisbane?',

@@ -231,7 +231,7 @@ export default function HowLongFireDamageRestorationPage() {
               </p>
               <ol className="list-decimal pl-6 space-y-4">
                 <li>
-                  <strong>Engage a professional restorer immediately</strong> — The sooner make-safe is completed and the restoration process begins, the less secondary damage (water, mould, corrosion) accumulates. Every day of delay adds to the scope. Lodge your claim at <Link href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</Link> for a 60-minute emergency response.
+                  <strong>Engage a professional restorer immediately</strong> — The sooner make-safe is completed and the restoration process begins, the less secondary damage (water, mould, corrosion) accumulates. Every day of delay adds to the scope. Lodge your claim at <Link href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</Link> for a priority emergency response.
                 </li>
                 <li>
                   <strong>Do not wait for insurer approval to begin</strong> — We bill you directly, so work begins immediately without waiting for insurer approval. This eliminates the most common delay in fire restoration — waiting weeks for an insurer-appointed assessor and then weeks more for approval to proceed. You control the process and your insurer reimburses you using the documentation we provide.

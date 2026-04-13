@@ -6,7 +6,7 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Fire Damage Restoration Brisbane | 24/7',
-  description: 'Emergency fire damage restoration in Brisbane. IICRC-certified contractors for smoke damage, soot removal, structural restoration. Available 24/7 with 60-minute response.',
+  description: 'Emergency fire damage restoration in Brisbane. IICRC-certified contractors for smoke damage, soot removal, structural restoration. Available 24/7 with priority response.',
   keywords: 'fire damage restoration brisbane, fire damage brisbane, smoke damage brisbane, soot removal brisbane, fire restoration brisbane, house fire brisbane',
   openGraph: {
     title: 'Fire Damage Restoration Brisbane | 24/7 Emergency Response',
@@ -77,7 +77,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can you respond to a house fire in Brisbane?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors across Brisbane respond within 60 minutes of claim lodgement for emergency board-up and make-safe. Lodge your claim at disasterrecovery.com.au/claim. Note that fire-damaged properties must be cleared by Queensland Fire and Emergency Services before any restoration work can begin.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors across Brisbane respond as soon as a certified contractor is confirmed for your area of claim lodgement for emergency board-up and make-safe. Lodge your claim at disasterrecovery.com.au/claim. Note that fire-damaged properties must be cleared by Queensland Fire and Emergency Services before any restoration work can begin.' },
     },
   ],
 };
@@ -92,7 +92,7 @@ export default function FireDamageRestorationBrisbanePage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Brisbane"
-        subtitle="Emergency fire and smoke damage restoration across all Brisbane metro suburbs. IICRC-certified contractors respond in under 60 minutes, 24 hours a day, 7 days a week."
+        subtitle="Emergency fire and smoke damage restoration across all Brisbane metro suburbs. IICRC-certified contractors respond as quickly as possible, 24 hours a day, 7 days a week."
         gradient="linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -289,7 +289,7 @@ export default function FireDamageRestorationBrisbanePage() {
           },
           {
             question: 'How quickly can you respond to a house fire in Brisbane?',
-            answer: 'NRPG contractors across Brisbane respond within 60 minutes of claim lodgement for emergency board-up and make-safe. Lodge your claim at disasterrecovery.com.au/claim. Note that fire-damaged properties must be cleared by Queensland Fire and Emergency Services before any restoration work can begin.',
+            answer: 'NRPG contractors across Brisbane respond as soon as a certified contractor is confirmed for your area of claim lodgement for emergency board-up and make-safe. Lodge your claim at disasterrecovery.com.au/claim. Note that fire-damaged properties must be cleared by Queensland Fire and Emergency Services before any restoration work can begin.',
           },
         ]}
         relatedGuides={[

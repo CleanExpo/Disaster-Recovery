@@ -115,7 +115,7 @@ const faqSchema = {
       name: 'What is the fastest mould remediation response in Sydney?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches IICRC-certified mould assessors within 48 hours of lodgement. Emergency make-safe (containment and HEPA air scrubbing) can begin within 60 minutes for severe cases. Lodge at disasterrecovery.com.au/claim.',
+        text: 'NRPG dispatches IICRC-certified mould assessors within 48 hours of lodgement. Emergency make-safe (containment and HEPA air scrubbing) can begin as soon as a certified contractor is confirmed for your area for severe cases. Lodge at disasterrecovery.com.au/claim.',
       },
     },
   ],
@@ -275,7 +275,7 @@ export default function MouldRemediationSydneyPage() {
           {
             question: 'What is the fastest mould remediation response in Sydney?',
             answer:
-              'NRPG dispatches IICRC-certified mould assessors within 48 hours of lodgement. Emergency make-safe (containment and HEPA air scrubbing) can begin within 60 minutes for severe cases. Lodge at disasterrecovery.com.au/claim.',
+              'NRPG dispatches IICRC-certified mould assessors within 48 hours of lodgement. Emergency make-safe (containment and HEPA air scrubbing) can begin as soon as a certified contractor is confirmed for your area for severe cases. Lodge at disasterrecovery.com.au/claim.',
           },
         ]}
         relatedGuides={[

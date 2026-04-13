@@ -15,11 +15,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Ipswich | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across Ipswich and the Brisbane Valley. IICRC S500:2025 certified. 60-minute response. Ex-TC Alfred and Bremer River flood recovery. Lodge 24/7.',
+  description: 'Professional water damage restoration across Ipswich and the Brisbane Valley. IICRC S500:2025 certified. priority response. Ex-TC Alfred and Bremer River flood recovery. Lodge 24/7.',
   keywords: 'water damage restoration ipswich, water damage ipswich, flood damage ipswich, bremer river flood, burst pipe ipswich, IICRC ipswich, alfred water damage ipswich, springfield water damage',
   openGraph: {
     title: 'Water Damage Restoration Ipswich | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across Ipswich and the Brisbane Valley. IICRC S500:2025 certified. 60-minute response. Alfred and Bremer River flood recovery.',
+    description: 'Emergency water damage restoration across Ipswich and the Brisbane Valley. IICRC S500:2025 certified. priority response. Alfred and Bremer River flood recovery.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Ipswich')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -63,7 +63,7 @@ const faqSchema = {
       name: 'How quickly should water damage be treated in Ipswich?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Within 24\u201348 hours. Ipswich\u2019s subtropical climate and proximity to the Bremer River means that water-affected properties can develop mould rapidly. Properties that have experienced repeated flooding are particularly vulnerable as residual moisture in wall framing and subfloor accelerates colonisation. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+        text: "Within 24\u201348 hours. Ipswich\u2019s subtropical climate and proximity to the Bremer River means that water-affected properties can develop mould rapidly. Properties that have experienced repeated flooding are particularly vulnerable as residual moisture in wall framing and subfloor accelerates colonisation. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
       },
     },
     {
@@ -102,7 +102,7 @@ export default function WaterDamageRestorationIpswichPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Ipswich"
-        subtitle="Emergency water damage restoration across Ipswich and the Brisbane Valley. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Ex-TC Alfred and Bremer River flood recovery support."
+        subtitle="Emergency water damage restoration across Ipswich and the Brisbane Valley. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Ex-TC Alfred and Bremer River flood recovery support."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -200,7 +200,7 @@ export default function WaterDamageRestorationIpswichPage() {
             heading: 'Ipswich Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Ipswich and the Brisbane Valley:</p>
+                <p>priority emergency response across Ipswich and the Brisbane Valley:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner Ipswich:</strong> Ipswich CBD, North Ipswich, Woodend, Churchill, Brassall
                 </p>
@@ -223,7 +223,7 @@ export default function WaterDamageRestorationIpswichPage() {
         faqs={[
           {
             question: 'How quickly should water damage be treated in Ipswich?',
-            answer: "Within 24\u201348 hours. Ipswich\u2019s subtropical climate and proximity to the Bremer River means that water-affected properties can develop mould rapidly. Properties that have experienced repeated flooding are particularly vulnerable as residual moisture in wall framing and subfloor accelerates colonisation. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+            answer: "Within 24\u201348 hours. Ipswich\u2019s subtropical climate and proximity to the Bremer River means that water-affected properties can develop mould rapidly. Properties that have experienced repeated flooding are particularly vulnerable as residual moisture in wall framing and subfloor accelerates colonisation. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
           },
           {
             question: 'Is my Ex-TC Alfred flood damage still claimable in 2026?',

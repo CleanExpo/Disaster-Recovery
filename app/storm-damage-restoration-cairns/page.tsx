@@ -82,7 +82,7 @@ export default function StormDamageRestorationCairnsPage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Cairns"
-        subtitle="Emergency storm damage restoration across Cairns and Far North Queensland. IICRC-certified contractors for wind damage, roof failures, structural make-safe, and TC Maila response. 60-minute post-clearance dispatch."
+        subtitle="Emergency storm damage restoration across Cairns and Far North Queensland. IICRC-certified contractors for wind damage, roof failures, structural make-safe, and TC Maila response. priority post-clearance dispatch."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -106,7 +106,7 @@ export default function StormDamageRestorationCairnsPage() {
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   TC Maila (April 2026) has impacted the Far North Queensland coast — NRPG contractors
-                  are deployed for 60-minute post-clearance response. For current warning status, refer to bom.gov.au.
+                  are deployed for priority post-clearance response. For current warning status, refer to bom.gov.au.
                 </p>
               </>
             ),
@@ -117,7 +117,7 @@ export default function StormDamageRestorationCairnsPage() {
               <>
                 <ul style={{ paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Emergency make-safe:</strong> roof tarping and temporary boarding within 60 minutes of
+                    <strong>Emergency make-safe:</strong> roof tarping and temporary boarding as soon as a certified contractor is confirmed for your area of
                     clearance to prevent secondary water ingress in Cairns&apos; tropical rainfall
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
@@ -145,7 +145,7 @@ export default function StormDamageRestorationCairnsPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across all Cairns suburbs and the Far North Queensland corridor.
+                  priority emergency response across all Cairns suburbs and the Far North Queensland corridor.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>City/Inner:</strong> Cairns City, Cairns North, Manunda, Westcourt, Manoora, Edge Hill,

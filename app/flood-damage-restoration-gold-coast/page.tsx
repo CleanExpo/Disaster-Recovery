@@ -146,7 +146,7 @@ export default function FloodDamageRestorationGoldCoastPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Gold Coast"
-        subtitle="IICRC-certified Category 3 flood damage restoration across the Gold Coast. Canal estate flooding, Nerang River inundation, and Ex-TC Alfred recovery specialists. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across the Gold Coast. Canal estate flooding, Nerang River inundation, and Ex-TC Alfred recovery specialists. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -255,7 +255,7 @@ export default function FloodDamageRestorationGoldCoastPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for Category 3 emergency extraction and containment:
+                  priority emergency response for Category 3 emergency extraction and containment:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Northern canal estates:</strong> Hope Island, Sanctuary Cove, Coomera — Coomera River

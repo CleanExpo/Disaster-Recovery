@@ -214,7 +214,7 @@ export default function FloodDamageRestorationTownsvillePage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response post-clearance across all Townsville flood-affected areas:
+                  priority emergency response post-clearance across all Townsville flood-affected areas:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Ross River corridor:</strong> Idalia, Rosslea, Hyde Park, Belgian Gardens —

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: 'cyclone damage restoration darwin, water damage darwin, cyclone darwin NT, storm damage darwin, tropical flooding darwin, IICRC darwin NT, cyclone restoration northern territory',
   openGraph: {
     title: 'Cyclone and Water Damage Restoration Darwin | IICRC-Certified NT Response',
-    description: 'IICRC-certified cyclone and water damage restoration contractors in Darwin and the Northern Territory. 60-minute post-clearance response. ARPC Cyclone Pool applies.',
+    description: 'IICRC-certified cyclone and water damage restoration contractors in Darwin and the Northern Territory. priority post-clearance response. ARPC Cyclone Pool applies.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Cyclone and Water Damage Restoration')}&city=${encodeURIComponent('Darwin')}&service=cyclone-water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -25,7 +25,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/cyclone-water-damage-restoration-darwin/#localbusiness`,
   name: `${NAP.name} Darwin`,
   url: `${NAP.url}/cyclone-water-damage-restoration-darwin`,
-  description: 'IICRC-certified cyclone and water damage restoration contractors serving Darwin and the Northern Territory. 60-minute emergency response post-clearance. ARPC Cyclone Pool applies to all NT properties.',
+  description: 'IICRC-certified cyclone and water damage restoration contractors serving Darwin and the Northern Territory. priority emergency response post-clearance. ARPC Cyclone Pool applies to all NT properties.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'Place', name: 'Darwin', containedInPlace: { '@type': 'State', name: 'Northern Territory' } },
@@ -67,7 +67,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly will NRPG contractors respond after a Darwin cyclone?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors dispatch within 60 minutes of emergency services issuing the all-clear for your area following a cyclone event. Lodge your claim at disasterrecovery.com.au/claim in advance \u2014 we queue assignments and dispatch the moment clearance is confirmed for your suburb.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors dispatch as soon as a certified contractor is confirmed for your area of emergency services issuing the all-clear for your area following a cyclone event. Lodge your claim at disasterrecovery.com.au/claim in advance \u2014 we queue assignments and dispatch the moment clearance is confirmed for your suburb.' },
     },
   ],
 };
@@ -81,7 +81,7 @@ export default function CycloneWaterDamageRestorationDarwinPage() {
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone and Water Damage Restoration Darwin"
-        subtitle="IICRC-certified cyclone and water damage restoration contractors in Darwin and the Northern Territory. 60-minute post-clearance response. ARPC Cyclone Pool applies to all NT properties."
+        subtitle="IICRC-certified cyclone and water damage restoration contractors in Darwin and the Northern Territory. priority post-clearance response. ARPC Cyclone Pool applies to all NT properties."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -179,7 +179,7 @@ export default function CycloneWaterDamageRestorationDarwinPage() {
           },
           {
             question: 'How quickly will NRPG contractors respond after a Darwin cyclone?',
-            answer: 'NRPG contractors dispatch within 60 minutes of emergency services issuing the all-clear for your area following a cyclone event. Lodge your claim at disasterrecovery.com.au/claim in advance — we queue assignments and dispatch the moment clearance is confirmed for your suburb.',
+            answer: 'NRPG contractors dispatch as soon as a certified contractor is confirmed for your area of emergency services issuing the all-clear for your area following a cyclone event. Lodge your claim at disasterrecovery.com.au/claim in advance — we queue assignments and dispatch the moment clearance is confirmed for your suburb.',
           },
         ]}
         relatedGuides={[

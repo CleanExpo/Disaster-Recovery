@@ -14,11 +14,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Toowoomba | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across Toowoomba and the Darling Downs. IICRC S500:2025 certified contractors. 60-minute response. Burst pipes, storm flooding, insurance claims. Lodge 24/7.',
+  description: 'Professional water damage restoration across Toowoomba and the Darling Downs. IICRC S500:2025 certified contractors. priority response. Burst pipes, storm flooding, insurance claims. Lodge 24/7.',
   keywords: 'water damage restoration toowoomba, water damage toowoomba, flood damage toowoomba, burst pipe toowoomba, darling downs water damage, IICRC toowoomba, storm damage toowoomba',
   openGraph: {
     title: 'Water Damage Restoration Toowoomba | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across Toowoomba and the Darling Downs. IICRC S500:2025 certified. 60-minute response.',
+    description: 'Emergency water damage restoration across Toowoomba and the Darling Downs. IICRC S500:2025 certified. priority response.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Toowoomba')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -62,7 +62,7 @@ const faqSchema = {
       name: 'How quickly should water damage be treated in Toowoomba?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Within 24\u201348 hours. Despite Toowoomba\u2019s cooler climate, mould can still establish in water-affected wall cavities and subfloor within two days. Flash flooding from summer storms can saturate building materials rapidly. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.',
+        text: 'Within 24\u201348 hours. Despite Toowoomba\u2019s cooler climate, mould can still establish in water-affected wall cavities and subfloor within two days. Flash flooding from summer storms can saturate building materials rapidly. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.',
       },
     },
     {
@@ -101,7 +101,7 @@ export default function WaterDamageRestorationToowoombaPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Toowoomba"
-        subtitle="Emergency water damage restoration across Toowoomba and the Darling Downs. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Burst pipes, flash flooding, and storm damage."
+        subtitle="Emergency water damage restoration across Toowoomba and the Darling Downs. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Burst pipes, flash flooding, and storm damage."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -193,7 +193,7 @@ export default function WaterDamageRestorationToowoombaPage() {
             heading: 'Toowoomba Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Toowoomba and the Darling Downs:</p>
+                <p>priority emergency response across Toowoomba and the Darling Downs:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner Toowoomba:</strong> Toowoomba CBD, South Toowoomba, East Toowoomba, Newtown,
                   Harristown, Glenvale
@@ -214,7 +214,7 @@ export default function WaterDamageRestorationToowoombaPage() {
         faqs={[
           {
             question: 'How quickly should water damage be treated in Toowoomba?',
-            answer: "Within 24\u201348 hours. Despite Toowoomba\u2019s cooler climate, mould can still establish in water-affected wall cavities and subfloor within two days. Flash flooding from summer storms can saturate building materials rapidly. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+            answer: "Within 24\u201348 hours. Despite Toowoomba\u2019s cooler climate, mould can still establish in water-affected wall cavities and subfloor within two days. Flash flooding from summer storms can saturate building materials rapidly. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
           },
           {
             question: 'Does insurance cover flash flood water damage in Toowoomba?',

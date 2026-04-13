@@ -70,7 +70,7 @@ const faqSchema = {
       name: 'How quickly can NRPG contractors respond to storm damage in Townsville?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "NRPG maintains certified contractors across the Townsville metro area including Kirwan, Thuringowa, Aitkenvale, and surrounding suburbs. For post-cyclone events, emergency response is mobilised as soon as it is safe to operate — typically within hours of a cyclone clearing the area. For non-cyclone storm events, NRPG targets a 60-minute emergency response for structural make-safe and roof tarping. Magnetic Island properties are served via ferry-accessible contractors.",
+        text: "NRPG maintains certified contractors across the Townsville metro area including Kirwan, Thuringowa, Aitkenvale, and surrounding suburbs. For post-cyclone events, emergency response is mobilised as soon as it is safe to operate — typically within hours of a cyclone clearing the area. For non-cyclone storm events, NRPG targets a priority emergency response for structural make-safe and roof tarping. Magnetic Island properties are served via ferry-accessible contractors.",
       },
     },
     {
@@ -192,7 +192,7 @@ export default function StormDamageRestorationTownsvillePage() {
           },
           {
             question: 'How quickly can NRPG contractors respond to storm damage in Townsville?',
-            answer: "NRPG maintains certified contractors across the Townsville metro area including Kirwan, Thuringowa, Aitkenvale, and surrounding suburbs. For post-cyclone events, emergency response is mobilised as soon as it is safe to operate — typically within hours of a cyclone clearing the area. For non-cyclone storm events, NRPG targets a 60-minute emergency response for structural make-safe and roof tarping. Magnetic Island properties are served via ferry-accessible contractors.",
+            answer: "NRPG maintains certified contractors across the Townsville metro area including Kirwan, Thuringowa, Aitkenvale, and surrounding suburbs. For post-cyclone events, emergency response is mobilised as soon as it is safe to operate — typically within hours of a cyclone clearing the area. For non-cyclone storm events, NRPG targets a priority emergency response for structural make-safe and roof tarping. Magnetic Island properties are served via ferry-accessible contractors.",
           },
           {
             question: 'Does home insurance cover storm damage to my Townsville property?',

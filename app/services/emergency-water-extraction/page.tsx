@@ -6,7 +6,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Emergency Water Extraction Australia | 60-Minute Response',
-  description: 'Emergency water extraction across Australia. IICRC-certified technicians, 60-minute dispatch, truck-mounted extraction units. Available 24/7 for burst pipes, flooding, and sewage backup.',
+  description: 'Emergency water extraction across Australia. IICRC-certified technicians, priority dispatch, truck-mounted extraction units. Available 24/7 for burst pipes, flooding, and sewage backup.',
   keywords: [
     'emergency water extraction',
     'emergency water extraction Australia',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Emergency Water Extraction Australia | 60-Minute Response',
-    description: 'IICRC-certified emergency water extraction. 60-minute dispatch, 24/7, Australia-wide.',
+    description: 'IICRC-certified emergency water extraction. priority dispatch, 24/7, Australia-wide.',
     type: 'website',
   },
 };
@@ -35,7 +35,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Emergency Water Extraction',
-  description: 'Emergency water extraction and flood mitigation with IICRC-certified technicians. 60-minute dispatch across Australia.',
+  description: 'Emergency water extraction and flood mitigation with IICRC-certified technicians. priority dispatch across Australia.',
   provider: {
     '@type': 'Organization',
     '@id': 'https://disasterrecovery.com.au/#organization',
@@ -75,7 +75,7 @@ const faqSchema = {
       name: 'How quickly can you extract water from a flooded property?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches certified extraction technicians within 60 minutes of claim lodgement in major metropolitan areas. Truck-mounted extraction units can remove thousands of litres per hour. Most residential extractions are completed in 2–4 hours, followed immediately by drying equipment deployment.',
+        text: 'NRPG dispatches certified extraction technicians as soon as a certified contractor is confirmed for your area of claim lodgement in major metropolitan areas. Truck-mounted extraction units can remove thousands of litres per hour. Most residential extractions are completed in 2–4 hours, followed immediately by drying equipment deployment.',
       },
     },
     {
@@ -150,7 +150,7 @@ const howToSchema = {
       '@type': 'HowToStep',
       position: 4,
       name: 'Lodge an emergency claim',
-      text: 'Lodge online at disasterrecovery.com.au/claim or call the 24/7 emergency line. Provide your address, type of water, and approximate affected area. An IICRC-certified technician will be dispatched within 60 minutes.',
+      text: 'Lodge online at disasterrecovery.com.au/claim or call the 24/7 emergency line. Provide your address, type of water, and approximate affected area. An IICRC-certified technician will be dispatched as soon as a certified contractor is confirmed for your area.',
     },
     {
       '@type': 'HowToStep',
@@ -184,7 +184,7 @@ export default function EmergencyWaterExtractionPage() {
           gradient: 'linear-gradient(135deg, #051A2E 0%, #0369A1 100%)',
           icon: <Droplets className="h-12 w-12" />,
           title: 'Emergency Water Extraction',
-          subtitle: 'IICRC-certified water extraction and flood mitigation. 60-minute dispatch, 24/7, across Australia. Truck-mounted extraction for all categories of water damage.',
+          subtitle: 'IICRC-certified water extraction and flood mitigation. priority dispatch, 24/7, across Australia. Truck-mounted extraction for all categories of water damage.',
         }}
         cta={{ text: 'Lodge Emergency Claim', href: '/claim?service=water-extraction' }}
         breadcrumbs={[
@@ -281,7 +281,7 @@ export default function EmergencyWaterExtractionPage() {
                   <li>Check for electrical hazards — turn off power at the switchboard if water is near outlets.</li>
                   <li>Shut off the main water valve if the source is a burst pipe or appliance failure.</li>
                   <li>Photograph all affected areas before moving anything — this is required for your insurance claim.</li>
-                  <li>Lodge your emergency claim online or call NRPG 24/7 — a certified technician dispatches within 60 minutes.</li>
+                  <li>Lodge your emergency claim online or call NRPG 24/7 — a certified technician dispatches as soon as a certified contractor is confirmed for your area.</li>
                   <li>Notify your insurer as soon as practicable — emergency make-safe does not require pre-approval.</li>
                 </ol>
                 <div className="mt-6">

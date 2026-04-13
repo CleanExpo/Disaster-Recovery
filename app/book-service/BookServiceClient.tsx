@@ -455,7 +455,7 @@ function BookServicePageOriginal() {
                 <p className="text-sm text-blue-800 mt-1">
                   1. Complete this form with your damage details<br />
                   2. Pay the $2,750 initial assessment fee<br />
-                  3. A qualified contractor will contact you within {formData.urgencyLevel === 'emergency' ? '30 minutes' : formData.urgencyLevel === 'urgent' ? '2 hours' : '24 hours'}<br />
+                  3. A qualified contractor will contact you to confirm your appointment<br />
                   4. Contractor performs assessment and provides detailed quote<br />
                   5. $2,200 credited toward your restoration work
                 </p>

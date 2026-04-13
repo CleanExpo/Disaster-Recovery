@@ -63,7 +63,7 @@ const faqSchema = JSON.stringify({
       name: 'How quickly can you respond to a biohazard emergency?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG deploys IICRC-certified biohazard technicians 24/7 across Australia. In most metro areas, response is within 60 minutes of lodging a claim at disasterrecovery.com.au/claim. Prompt response limits secondary contamination spread and reduces the scope of decontamination required.',
+        text: 'NRPG deploys IICRC-certified biohazard technicians 24/7 across Australia. In most metro areas, response is as soon as a certified contractor is confirmed for your area of lodging a claim at disasterrecovery.com.au/claim. Prompt response limits secondary contamination spread and reduces the scope of decontamination required.',
       },
     },
   ],

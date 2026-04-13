@@ -16,13 +16,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Perth | IICRC-Certified 24/7 Emergency',
   description:
-    'Professional water damage restoration across Perth and Western Australia. IICRC S500:2025 certified contractors, 60-minute response. Burst pipes, storm flooding, and water ingress specialists. Lodge your claim 24/7.',
+    'Professional water damage restoration across Perth and Western Australia. IICRC S500:2025 certified contractors, priority response. Burst pipes, storm flooding, and water ingress specialists. Lodge your claim 24/7.',
   keywords:
     'water damage restoration perth, water damage perth, burst pipe perth, storm water damage perth, water damage repair perth WA, IICRC perth, flood damage restoration perth',
   openGraph: {
     title: 'Water Damage Restoration Perth | IICRC-Certified 24/7 Emergency',
     description:
-      'Professional water damage restoration across Perth and Western Australia. IICRC S500:2025 certified contractors, 60-minute response.',
+      'Professional water damage restoration across Perth and Western Australia. IICRC S500:2025 certified contractors, priority response.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Perth')}&service=water-damage-restoration`,
@@ -79,7 +79,7 @@ const faqSchema = {
       name: 'How quickly does water damage need to be treated in Perth?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Within 24\u201348 hours. Perth\u2019s summer heat (35\u00b0C+) and low humidity accelerate surface drying but can trap moisture in wall cavities and subfloor, creating hidden mould growth. In winter, cool and wet conditions slow structural drying and extend the window for mould establishment. Lodge immediately for 60-minute emergency response \u2014 early treatment prevents the damage from escalating.",
+        text: "Within 24\u201348 hours. Perth\u2019s summer heat (35\u00b0C+) and low humidity accelerate surface drying but can trap moisture in wall cavities and subfloor, creating hidden mould growth. In winter, cool and wet conditions slow structural drying and extend the window for mould establishment. Lodge immediately for priority emergency response \u2014 early treatment prevents the damage from escalating.",
       },
     },
     {
@@ -130,7 +130,7 @@ export default function WaterDamageRestorationPerthPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Perth"
-        subtitle="Emergency water damage restoration across Perth and Western Australia. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Burst pipes, storm flooding, and cyclone water damage specialists."
+        subtitle="Emergency water damage restoration across Perth and Western Australia. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Burst pipes, storm flooding, and cyclone water damage specialists."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -198,7 +198,7 @@ export default function WaterDamageRestorationPerthPage() {
             heading: 'Perth Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Perth metropolitan area:</p>
+                <p>priority emergency response across the Perth metropolitan area:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner City/North:</strong> Perth CBD, Northbridge, Leederville, Mount Lawley, Highgate,
                   Subiaco, Claremont
@@ -223,7 +223,7 @@ export default function WaterDamageRestorationPerthPage() {
           {
             question: 'How quickly does water damage need to be treated in Perth?',
             answer:
-              "Within 24–48 hours. Perth's summer heat (35°C+) and low humidity accelerate surface drying but can trap moisture in wall cavities and subfloor, creating hidden mould growth. In winter, cool and wet conditions slow structural drying and extend the window for mould establishment. Lodge immediately for 60-minute emergency response — early treatment prevents the damage from escalating.",
+              "Within 24–48 hours. Perth's summer heat (35°C+) and low humidity accelerate surface drying but can trap moisture in wall cavities and subfloor, creating hidden mould growth. In winter, cool and wet conditions slow structural drying and extend the window for mould establishment. Lodge immediately for priority emergency response — early treatment prevents the damage from escalating.",
           },
           {
             question: 'Is water damage from Perth storms covered by home insurance?',

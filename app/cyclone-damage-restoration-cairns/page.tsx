@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   keywords: 'cyclone damage restoration cairns, cyclone damage cairns, TC Maila Cairns, FNQ cyclone repair, cyclone insurance claim cairns, storm damage cairns, water damage cairns cyclone, IICRC cairns',
   openGraph: {
     title: 'Cyclone Damage Restoration Cairns | TC Maila Emergency Response',
-    description: 'IICRC-certified cyclone damage contractors pre-positioned across FNQ. 60-minute response post-clearance. Lodge your TC Maila claim online 24/7.',
+    description: 'IICRC-certified cyclone damage contractors pre-positioned across FNQ. priority response post-clearance. Lodge your TC Maila claim online 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Cyclone Damage Restoration')}&city=${encodeURIComponent('Cairns')}&service=cyclone-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -35,7 +35,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/cyclone-damage-restoration-cairns/#localbusiness`,
   name: `${NAP.name} Cairns`,
   url: `${NAP.url}/cyclone-damage-restoration-cairns`,
-  description: 'IICRC-certified cyclone damage restoration contractors serving Cairns and all Far North Queensland postcodes. 60-minute emergency response post-clearance. Full insurance claim documentation.',
+  description: 'IICRC-certified cyclone damage restoration contractors serving Cairns and all Far North Queensland postcodes. priority emergency response post-clearance. Full insurance claim documentation.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'City', name: 'Cairns', containedInPlace: { '@type': 'State', name: 'Queensland' } },
@@ -62,7 +62,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly will NRPG contractors reach my Cairns property after TC Maila?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors are pre-positioned across FNQ. Response occurs within 60 minutes of emergency services issuing the all-clear for your area. Lodge your claim at disasterrecovery.com.au/claim now \u2014 we queue assignments and dispatch the moment clearance is confirmed.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors are pre-positioned across FNQ. Response occurs as soon as a certified contractor is confirmed for your area of emergency services issuing the all-clear for your area. Lodge your claim at disasterrecovery.com.au/claim now \u2014 we queue assignments and dispatch the moment clearance is confirmed.' },
     },
     {
       '@type': 'Question',
@@ -101,7 +101,7 @@ export default function CycloneDamageRestorationCairnsPage() {
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Cairns"
-        subtitle="IICRC-certified contractors pre-positioned across Far North Queensland. 60-minute response post-clearance for Cairns, Port Douglas, Mossman, Innisfail, and Cape York. Lodge your claim online 24/7."
+        subtitle="IICRC-certified contractors pre-positioned across Far North Queensland. priority response post-clearance for Cairns, Port Douglas, Mossman, Innisfail, and Cape York. Lodge your claim online 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -149,7 +149,7 @@ export default function CycloneDamageRestorationCairnsPage() {
                 <p style={{ marginTop: '1rem' }}>
                   NRPG certified contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas),
                   4895 (Daintree), 4874 (Mossman), 4875 (Wonga Beach), 4873 (Kuranda), and 4880 (Atherton Tablelands).
-                  Claims can be lodged online 24/7. Contractor dispatch occurs within 60 minutes of emergency services
+                  Claims can be lodged online 24/7. Contractor dispatch occurs as soon as a certified contractor is confirmed for your area of emergency services
                   issuing the all-clear for affected areas.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
@@ -291,7 +291,7 @@ export default function CycloneDamageRestorationCairnsPage() {
         faqs={[
           {
             question: 'How quickly will NRPG contractors reach my Cairns property after TC Maila?',
-            answer: 'NRPG contractors are pre-positioned across FNQ. Response occurs within 60 minutes of emergency services issuing the all-clear for your area. Lodge your claim at disasterrecovery.com.au/claim now — we queue assignments and dispatch the moment clearance is confirmed.',
+            answer: 'NRPG contractors are pre-positioned across FNQ. Response occurs as soon as a certified contractor is confirmed for your area of emergency services issuing the all-clear for your area. Lodge your claim at disasterrecovery.com.au/claim now — we queue assignments and dispatch the moment clearance is confirmed.',
           },
           {
             question: 'Is cyclone damage covered by home insurance in FNQ?',

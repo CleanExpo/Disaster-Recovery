@@ -20,7 +20,7 @@ export default function SunshineCoastHotelRestorationPage() {
         name: 'How quickly can hotel restoration begin on the Sunshine Coast?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'NRPG contractors provide a 60-minute emergency response across the Sunshine Coast, 24/7, from Caloundra to Noosa. For hotels and resorts, the initial response focuses on water extraction, containment of affected areas, and tarping of roof damage to prevent further water ingress. Work begins immediately without waiting for insurer approval \u2014 every hour of delay means more rooms offline and more lost revenue.',
+          text: 'NRPG contractors provide a priority emergency response across the Sunshine Coast, 24/7, from Caloundra to Noosa. For hotels and resorts, the initial response focuses on water extraction, containment of affected areas, and tarping of roof damage to prevent further water ingress. Work begins immediately without waiting for insurer approval \u2014 every hour of delay means more rooms offline and more lost revenue.',
         },
       },
       {
@@ -160,7 +160,7 @@ export default function SunshineCoastHotelRestorationPage() {
                   <strong>Lodge your claim online</strong> — Submit through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the property name and location, type and extent of damage, number of affected rooms, and current occupancy status. NRPG matches you with contractors experienced in Sunshine Coast hospitality restoration.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> — Contractors respond within 60 minutes, 24/7, across the Sunshine Coast from Caloundra to Noosa. Emergency water extraction, tarping, and containment begin immediately. Work begins immediately without waiting for insurer approval — critical for minimising the number of room-nights lost.
+                  <strong>Emergency response and make-safe</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across the Sunshine Coast from Caloundra to Noosa. Emergency water extraction, tarping, and containment begin immediately. Work begins immediately without waiting for insurer approval — critical for minimising the number of room-nights lost.
                 </li>
                 <li>
                   <strong>Formal contract and restoration plan</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including a phased restoration plan developed with hotel management to minimise guest disruption. We bill you directly — the hotel owner, management company, or body corporate.
@@ -182,7 +182,7 @@ export default function SunshineCoastHotelRestorationPage() {
       faqs={[
         {
           question: 'How quickly can hotel restoration begin on the Sunshine Coast?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across the Sunshine Coast, 24/7, from Caloundra to Noosa. For hotels and resorts, the initial response focuses on water extraction, containment of affected areas, and tarping of roof damage to prevent further water ingress. Work begins immediately without waiting for insurer approval — every hour of delay means more rooms offline and more lost revenue.',
+          answer: 'NRPG contractors provide a priority emergency response across the Sunshine Coast, 24/7, from Caloundra to Noosa. For hotels and resorts, the initial response focuses on water extraction, containment of affected areas, and tarping of roof damage to prevent further water ingress. Work begins immediately without waiting for insurer approval — every hour of delay means more rooms offline and more lost revenue.',
         },
         {
           question: 'Can a hotel keep operating during water damage restoration?',

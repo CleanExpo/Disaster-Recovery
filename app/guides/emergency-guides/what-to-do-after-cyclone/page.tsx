@@ -289,7 +289,7 @@ export default function WhatToDoAfterCyclonePage() {
                     contractor match.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>60-minute post-clearance response target.</strong> For properties within
+                    <strong>priority post-clearance response target.</strong> For properties within
                     30km of pre-staged NRPG contractor positions, the target response time from official
                     all-clear to contractor on-site is 60 minutes.
                   </li>

@@ -326,7 +326,7 @@ export default function StrataManagersPage() {
                   Disaster Recovery bills the body corporate (owners corporation)
                   directly. We do not bill insurers and we do not wait for insurer
                   approval before commencing work. This means restoration begins
-                  immediately — within 60 minutes of your call — rather than days
+                  immediately — as soon as a certified contractor is confirmed for your area of your call — rather than days
                   or weeks into an insurance approval process. You control the
                   process, not the insurer.
                 </p>
@@ -543,7 +543,7 @@ export default function StrataManagersPage() {
                   When a strata building has a burst pipe at 2am on a Saturday, the
                   insurer&apos;s claims line may not even be staffed. Even during
                   business hours, getting insurer approval for emergency works can
-                  take days. Our model means restoration begins within 60 minutes
+                  take days. Our model means restoration begins as soon as a certified contractor is confirmed for your area
                   of your call — because the only approval needed is yours. The
                   body corporate engages us directly, we respond immediately, and
                   the insurance claim is lodged afterwards with full supporting
@@ -694,7 +694,7 @@ export default function StrataManagersPage() {
             title: 'Lodge a Claim',
             href: '/claim',
             description:
-              'Report common property damage online — 24/7 availability with 60-minute emergency response.',
+              'Report common property damage online — 24/7 availability with priority emergency response.',
           },
         ]}
       />

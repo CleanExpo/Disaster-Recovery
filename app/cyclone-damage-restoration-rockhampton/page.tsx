@@ -66,7 +66,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can NRPG reach Rockhampton?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG targets a 60-minute response for Rocky metro properties. Capricorn Coast (Yeppoon, Emu Park) is approximately 60 minutes. Gladstone is approximately 90 minutes. Emerald requires coordinated response with a 3-hour lead time. Lodge at disasterrecovery.com.au/claim immediately after the all-clear to secure your position in the response queue.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG targets a priority response for Rocky metro properties. Capricorn Coast (Yeppoon, Emu Park) is approximately 60 minutes. Gladstone is approximately 90 minutes. Emerald requires coordinated response with a 3-hour lead time. Lodge at disasterrecovery.com.au/claim immediately after the all-clear to secure your position in the response queue.' },
     },
   ],
 };
@@ -170,7 +170,7 @@ export default function CycloneDamageRestorationRockhamptonPage() {
           },
           {
             question: 'How quickly can NRPG reach Rockhampton?',
-            answer: 'NRPG targets a 60-minute response for Rocky metro properties. Capricorn Coast (Yeppoon, Emu Park) is approximately 60 minutes. Gladstone is approximately 90 minutes. Emerald requires coordinated response with a 3-hour lead time. Lodge at disasterrecovery.com.au/claim immediately after the all-clear to secure your position in the response queue.',
+            answer: 'NRPG targets a priority response for Rocky metro properties. Capricorn Coast (Yeppoon, Emu Park) is approximately 60 minutes. Gladstone is approximately 90 minutes. Emerald requires coordinated response with a 3-hour lead time. Lodge at disasterrecovery.com.au/claim immediately after the all-clear to secure your position in the response queue.',
           },
         ]}
         relatedGuides={[

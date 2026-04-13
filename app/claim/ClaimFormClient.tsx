@@ -422,7 +422,7 @@ function OnlineClaimPageOriginal() {
                 </h3>
                 <ol className="space-y-2 text-sm">
                   <li>1. Your claim is being matched with a certified NRPG contractor</li>
-                  <li>2. <strong className="text-red-600">The contractor will call you directly within 60 MINUTES</strong></li>
+                  <li>2. A verified NRPG contractor will review your claim and contact you directly</li>
                   <li>3. They will schedule an inspection at your convenience</li>
                   <li>4. The contractor handles all work and insurance liaison</li>
                   <li>5. All future communication is directly with your contractor</li>
@@ -1069,7 +1069,7 @@ function OnlineClaimPageOriginal() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold mb-2">Contractor Responsibilities:</h4>
                   <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="font-bold text-blue-700">• Initial phone contact aimed within 60 minutes (subject to contractor availability)</li>
+                    <li className="font-bold text-blue-700">• Initial phone contact once a certified contractor is confirmed for your area</li>
                     <li>• Schedule and conduct property inspection</li>
                     <li>• Perform emergency make-safe works</li>
                     <li>• Document all damage thoroughly</li>

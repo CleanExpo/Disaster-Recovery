@@ -16,13 +16,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'TC Maila Recovery — FNQ Damage Restoration and Insurance Claims',
   description:
-    'TC Maila has made landfall. Lodge your cyclone damage claim now. IICRC-certified NRPG contractors are deployed across FNQ postcodes 4870, 4877, 4895, 4873, 4874, 4880, 4860. 60-minute post-clearance response.',
+    'TC Maila has made landfall. Lodge your cyclone damage claim now. IICRC-certified NRPG contractors are deployed across FNQ postcodes 4870, 4877, 4895, 4873, 4874, 4880, 4860. priority post-clearance response.',
   keywords:
     'TC Maila recovery, TC Maila damage, TC Maila restoration, cyclone Maila damage FNQ, FNQ cyclone recovery 2026, TC Maila insurance claim',
   openGraph: {
     title: 'TC Maila Recovery — FNQ Damage Restoration and Insurance Claims',
     description:
-      'TC Maila has made landfall. Lodge your cyclone damage claim now. IICRC-certified NRPG contractors deployed across FNQ. 60-minute post-clearance response.',
+      'TC Maila has made landfall. Lodge your cyclone damage claim now. IICRC-certified NRPG contractors deployed across FNQ. priority post-clearance response.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('TC Maila Recovery')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`,
@@ -44,7 +44,7 @@ const localBusinessSchema = {
   name: `${NAP.name} Far North Queensland`,
   url: `${NAP.url}/events/tc-maila-recovery-2026`,
   description:
-    'IICRC-certified cyclone damage restoration contractors deployed across Far North Queensland post-TC Maila. 60-minute post-clearance response. Emergency make-safe, water extraction, structural drying, and full insurance documentation.',
+    'IICRC-certified cyclone damage restoration contractors deployed across Far North Queensland post-TC Maila. priority post-clearance response. Emergency make-safe, water extraction, structural drying, and full insurance documentation.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'Place', name: 'Far North Queensland' },
@@ -141,7 +141,7 @@ export default function TCMailaRecovery2026Page() {
       <AgGuidePageTemplate
         category="Emergency Recovery"
         title="TC Maila Recovery — Damage Restoration and Claims"
-        subtitle="TC Maila has impacted the Far North Queensland coast. NRPG IICRC-certified contractors are deployed across FNQ. Lodge your claim now for 60-minute post-clearance response. Do NOT enter a damaged property until emergency services confirm it is safe."
+        subtitle="TC Maila has impacted the Far North Queensland coast. NRPG IICRC-certified contractors are deployed across FNQ. Lodge your claim now for priority post-clearance response. Do NOT enter a damaged property until emergency services confirm it is safe."
         gradient="linear-gradient(135deg, #4A0404 0%, #7B1FA2 50%, #0C2340 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-13"
@@ -189,7 +189,7 @@ export default function TCMailaRecovery2026Page() {
               <>
                 <p>
                   NRPG IICRC-certified contractors are deployed across the full TC Maila impact corridor and
-                  available within 60 minutes of post-clearance for the following services:
+                  available as soon as a certified contractor is confirmed for your area of post-clearance for the following services:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
@@ -253,20 +253,20 @@ export default function TCMailaRecovery2026Page() {
               <>
                 <p>NRPG response status across the TC Maila impact corridor:</p>
                 <p style={{ marginTop: '1rem' }}>
-                  <strong>Cairns (4870):</strong> Deployed — 60-minute post-clearance response.
+                  <strong>Cairns (4870):</strong> Deployed — priority post-clearance response.
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
-                  <strong>Northern Beaches (4878–4879):</strong> Deployed — 60-minute post-clearance response.
+                  <strong>Northern Beaches (4878–4879):</strong> Deployed — priority post-clearance response.
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
-                  <strong>Port Douglas / Daintree (4877 / 4895):</strong> Deployed — 60-minute post-clearance
+                  <strong>Port Douglas / Daintree (4877 / 4895):</strong> Deployed — priority post-clearance
                   response.
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
-                  <strong>Mossman (4873 / 4874):</strong> Deployed — 60-minute post-clearance response.
+                  <strong>Mossman (4873 / 4874):</strong> Deployed — priority post-clearance response.
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
-                  <strong>Innisfail / Cassowary Coast (4860):</strong> Deployed — 60-minute post-clearance
+                  <strong>Innisfail / Cassowary Coast (4860):</strong> Deployed — priority post-clearance
                   response.
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>

@@ -7,13 +7,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Flood Damage Restoration Cairns | TC Maila Emergency Recovery',
   description:
-    'Flood damage restoration across Cairns and FNQ. TC Maila Category 3 floodwater decontamination. IICRC S500:2025 certified. 60-minute response post-clearance.',
+    'Flood damage restoration across Cairns and FNQ. TC Maila Category 3 floodwater decontamination. IICRC S500:2025 certified. priority response post-clearance.',
   keywords:
     'flood damage restoration cairns, TC Maila flooding cairns, FNQ flood restoration, cairns flood recovery, cyclone flood cairns',
   openGraph: {
     title: 'Flood Damage Restoration Cairns | TC Maila Emergency Recovery',
     description:
-      'Flood damage restoration across Cairns and FNQ. TC Maila Category 3 floodwater decontamination. IICRC S500:2025 certified. 60-minute response post-clearance.',
+      'Flood damage restoration across Cairns and FNQ. TC Maila Category 3 floodwater decontamination. IICRC S500:2025 certified. priority response post-clearance.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Flood Damage Restoration')}&city=${encodeURIComponent('Cairns')}&service=flood-damage-restoration`,
@@ -145,7 +145,7 @@ export default function FloodDamageRestorationCairnsPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Cairns"
-        subtitle="IICRC S500:2025 certified flood damage restoration across Cairns and Far North Queensland. TC Maila Category 3 post-cyclone floodwater decontamination. 60-minute response post-clearance. Lodge your claim 24/7."
+        subtitle="IICRC S500:2025 certified flood damage restoration across Cairns and Far North Queensland. TC Maila Category 3 post-cyclone floodwater decontamination. priority response post-clearance. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #0D47A1 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-13"
@@ -211,7 +211,7 @@ export default function FloodDamageRestorationCairnsPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response post-clearance across Cairns and the FNQ corridor:
+                  priority emergency response post-clearance across Cairns and the FNQ corridor:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Cairns metro:</strong> Cairns CBD and City, Cairns North, Manunda, Mooroobool,
