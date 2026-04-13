@@ -54,7 +54,7 @@ const faqSchema = {
       name: 'What damage is TC Maila expected to cause in Townsville?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "TC Maila (April 2026, Category 5) is forecast to affect Townsville and the broader North Queensland coast. Category 5 cyclone-force winds cause widespread structural damage including complete roof losses, wall failures, and severe water ingress. Suburbs along Cleveland Bay and the Ross River corridor face additional storm surge risk. NRPG contractors are on standby for immediate post-cyclone response once conditions are safe. Lodge your claim at disasterrecovery.com.au/claim.",
+        text: "TC Maila (April 2026) has impacted the Far North Queensland coast and Cape York Peninsula. Cyclone-force winds cause widespread structural damage including complete roof losses, wall failures, and severe water ingress. Suburbs along Cleveland Bay and the Ross River corridor face compound risk from wind damage and storm surge. NRPG contractors are deployed for post-cyclone response. Lodge your claim at disasterrecovery.com.au/claim. For current warning status, refer to bom.gov.au.",
       },
     },
     {
@@ -117,8 +117,9 @@ export default function StormDamageRestorationTownsvillePage() {
                   intensifying further south.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  TC Maila (April 2026, Category 5) is currently in the Townsville watch zone. Widespread structural
-                  storm damage, complete roof losses, and severe water ingress are expected in affected suburbs.
+                  TC Maila (April 2026) has impacted the Far North Queensland coast. For current warning
+                  status and affected suburbs, refer to bom.gov.au. Widespread structural storm damage,
+                  complete roof losses, and severe water ingress can occur in affected areas.
                   Townsville&apos;s flat coastal topography amplifies storm surge risk &mdash; suburbs along Cleveland
                   Bay and the Ross River corridor face compound risk from wind damage and inundation. The storm season
                   extends six months (November&ndash;April), and Townsville can be affected by multiple significant
@@ -183,7 +184,7 @@ export default function StormDamageRestorationTownsvillePage() {
         faqs={[
           {
             question: 'What damage is TC Maila expected to cause in Townsville?',
-            answer: "TC Maila (April 2026, Category 5) is forecast to affect Townsville and the broader North Queensland coast. Category 5 cyclone-force winds cause widespread structural damage including complete roof losses, wall failures, and severe water ingress. Suburbs along Cleveland Bay and the Ross River corridor face additional storm surge risk. NRPG contractors are on standby for immediate post-cyclone response once conditions are safe. Lodge your claim at disasterrecovery.com.au/claim.",
+            answer: "TC Maila (April 2026) has impacted the Far North Queensland coast and Cape York Peninsula. Cyclone-force winds cause widespread structural damage including complete roof losses, wall failures, and severe water ingress. Suburbs along Cleveland Bay and the Ross River corridor face compound risk from wind damage and storm surge. NRPG contractors are deployed for post-cyclone response. Lodge your claim at disasterrecovery.com.au/claim. For current warning status, refer to bom.gov.au.",
           },
           {
             question: 'Does the ARPC Cyclone Reinsurance Pool apply to my Townsville property?',

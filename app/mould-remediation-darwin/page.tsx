@@ -187,11 +187,10 @@ export default function MouldRemediationDarwinPage() {
             body: (
               <>
                 <p>
-                  TC Maila (April 2026 Category 5) is tracking toward FNQ and NQ, with the Northern
-                  Territory in the watch zone for outer rain bands. Even if Darwin avoids a direct
-                  cyclone strike, the associated rainfall and humidity surge from TC Maila&apos;s outer
-                  bands is sufficient to drive significant mould events in buildings with any existing
-                  moisture vulnerability.
+                  TC Maila (April 2026) has impacted the Far North Queensland coast. Outer rain bands
+                  from tropical cyclones can affect Darwin even without a direct strike — the associated
+                  rainfall and humidity surge is sufficient to drive significant mould events in buildings
+                  with any existing moisture vulnerability. For current BOM status, refer to bom.gov.au.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   TC Tracy (1974) destroyed approximately 70% of Darwin. The rebuilt city contains a

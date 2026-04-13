@@ -7,7 +7,9 @@ import { NAP } from '@/lib/constants';
 /**
  * DR-475 / BUILD-006: Cyclone Damage Restoration Cairns
  *
- * Created: 9 April 2026 — TC Maila Cat 5 tracking toward FNQ coast (landfall 11–12 April).
+ * Created: 9 April 2026 — TC Maila tracked toward FNQ coast (April 2026).
+ * DR-573 ACL hotfix: removed Cat 5 / 215 km/h superlatives. All intensity
+ * references now point to live BOM sources.
  * This page captures the highest-intent search traffic in Australia right now.
  * ACL s18 compliant — NRPG is restoration + claim support, NOT claim advocate.
  */
@@ -134,13 +136,15 @@ export default function CycloneDamageRestorationCairnsPage() {
             ),
           },
           {
-            heading: 'TC Maila Category 5 — FNQ Response Active',
+            heading: 'TC Maila FNQ — Impact and Recovery',
             body: (
               <>
                 <p>
-                  Tropical Cyclone Maila has been upgraded to Category 5 (sustained winds 215 km/h) and is tracking
-                  toward the Far North Queensland coast. BOM is forecasting landfall impacts for the Cairns to Cape
-                  York corridor in the 11–12 April 2026 window.
+                  Tropical Cyclone Maila has impacted the Far North Queensland coast and Cape York Peninsula.
+                  For current warning status and all-clear notifications, refer to{' '}
+                  <a href="https://www.bom.gov.au/cyclone/7dayforecast/" target="_blank" rel="noopener noreferrer">
+                    bom.gov.au
+                  </a>.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   NRPG certified contractors are pre-positioned across postcodes 4870 (Cairns), 4877 (Port Douglas),
