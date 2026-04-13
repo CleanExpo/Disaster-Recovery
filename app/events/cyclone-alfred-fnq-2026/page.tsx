@@ -269,10 +269,15 @@ export default function AlfredFNQ2026Page() {
             heading: 'Government Assistance — Alfred QLD',
             body: (
               <>
+                <div style={{ backgroundColor: '#fffbeb', border: '1px solid #f59e0b', borderRadius: '6px', padding: '0.75rem 1rem', marginBottom: '1rem', fontWeight: 600 }}>
+                  <strong style={{ color: '#92400e' }}>Deadline: 27 April 2026</strong>
+                  {' '}— QLD government assistance programs for Alfred-affected LGAs close 27 April 2026.
+                  Personal Hardship Assistance, Extended ESHA, and Structural Assistance Grants must be
+                  lodged before this date. Insurance claims have no deadline.
+                </div>
                 <p>
                   The following government assistance programs were activated for Ex-TC Alfred affected
-                  areas. Check eligibility and current activation status at official sources before
-                  applying — some programs have application deadlines.
+                  areas. Apply before 27 April 2026 — programs close on that date.
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
