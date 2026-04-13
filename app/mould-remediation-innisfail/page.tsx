@@ -9,7 +9,7 @@ import { NAP } from '@/lib/constants';
  *
  * Created: 9 April 2026
  * Context: Innisfail is the most cyclone-struck town in Australia. TC Maila
- * (Cat 5, expected landfall 11-14 April 2026) is tracking directly toward the
+ * (April 2026) has impacted the Far North Queensland coast including the
  * Innisfail corridor. Wet Tropics climate (2,500-3,000mm annual rainfall,
  * 28-32°C, 80%+ humidity year-round) means mould establishes within 24 hours
  * of water intrusion. High proportion of fibro/asbestos-cement housing stock
@@ -165,8 +165,8 @@ export default function MouldRemediationInnisfailPage() {
                   Innisfail is known as Australia&apos;s most cyclone-struck town. TC Larry (2006,
                   Category 4) caused catastrophic damage across the Cassowary Coast and recovery took
                   years &mdash; leaving many properties in incomplete restoration when TC Yasi (2011,
-                  Category 5) struck again. Now TC Maila (Category 5, expected landfall 11&ndash;14
-                  April 2026) is tracking directly toward the Innisfail corridor.
+                  Category 5) struck again. TC Maila (April 2026) has since impacted the Far North
+                  Queensland coast including the Innisfail corridor.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   Innisfail&apos;s Wet Tropics climate makes post-cyclone mould uniquely dangerous.

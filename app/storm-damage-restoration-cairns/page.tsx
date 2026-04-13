@@ -105,9 +105,8 @@ export default function StormDamageRestorationCairnsPage() {
                   collapse across the LGA.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  TC Maila (Cat 5, April 2026) represents the extreme end of the storm damage spectrum &mdash; with
-                  NRPG contractors pre-positioned for 60-minute post-clearance response for the April 11&ndash;14
-                  impact window.
+                  TC Maila (April 2026) has impacted the Far North Queensland coast — NRPG contractors
+                  are deployed for 60-minute post-clearance response. For current warning status, refer to bom.gov.au.
                 </p>
               </>
             ),
