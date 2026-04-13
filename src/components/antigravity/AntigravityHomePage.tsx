@@ -1,6 +1,8 @@
+'use client';
+
 /**
  * AntigravityHomePage — Full homepage composition
- * Server Component — no hooks, no browser APIs. Client children hydrate independently.
+ * Client Component — required for next/dynamic with ssr:false (Next.js 15).
  * BeforeAfterSlider is deferred (ssr:false) to remove its JS from the critical path.
  */
 
