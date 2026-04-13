@@ -430,7 +430,7 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
           <div>
             <h2 className="text-xl font-bold text-white">Eligibility Requirements</h2>
             <p className="text-slate-400 text-sm">
-              All 7 requirements must be confirmed before the application opens.
+              All 7 requirements below must be confirmed before the application opens.
             </p>
           </div>
         </div>
@@ -612,12 +612,12 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
         />
       </Section>
 
-      {/* ── 4 & 5. Experience + Declaration ───────────────────────────────────── */}
+      {/* ── 4. Years of experience ────────────────────────────────────────────── */}
       <Section
         number={4}
-        title="Experience & Business Member Declaration"
-        subtitle="The business must have 2+ years active industry experience, and the IICRC card must belong to a current business member."
-        satisfied={req4_experience && req5_declaration}
+        title="Minimum 2 Years Business Experience"
+        subtitle="The applying business must have been actively operating in the cleaning or restoration industry for at least 2 years."
+        satisfied={req4_experience}
       >
         <label className="flex items-start gap-2.5 cursor-pointer group">
           <input
@@ -630,8 +630,16 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
             Confirm: the business has been actively operating in the industry for 2 or more years.
           </span>
         </label>
+      </Section>
 
-        <label className="flex items-start gap-2.5 cursor-pointer group mt-2">
+      {/* ── 5. Current business member declaration ────────────────────────────── */}
+      <Section
+        number={5}
+        title="Current Business Member Declaration"
+        subtitle="The IICRC certification card uploaded above must be registered to a current active member of the applying business."
+        satisfied={req5_declaration}
+      >
+        <label className="flex items-start gap-2.5 cursor-pointer group">
           <input
             type="checkbox"
             checked={data.currentMemberDeclaration}
@@ -644,9 +652,9 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
         </label>
       </Section>
 
-      {/* ── 5 (visual). Driver's Licence — Identity Verification ──────────────── */}
+      {/* ── 6. Driver's Licence — Identity Verification ───────────────────────── */}
       <Section
-        number={5}
+        number={6}
         title="Driver's Licence — Identity Verification"
         subtitle="Front and back of a current Australian driver's licence held by the person completing this application. Used to verify identity against business registration details."
         satisfied={req6_licence}
@@ -713,9 +721,9 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
         </div>
       </Section>
 
-      {/* ── 6 (visual). ABN + ASIC Business Registration ──────────────────────── */}
+      {/* ── 7. ABN + ASIC Business Registration ──────────────────────────────── */}
       <Section
-        number={6}
+        number={7}
         title="Business Registration — ABN & ASIC Verification"
         subtitle="Verify the ABN against the Australian Business Register and confirm the business is registered with ASIC. Enter details exactly as they appear in the official registers."
         satisfied={req7_business}
@@ -824,7 +832,11 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
       <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 text-xs text-slate-400 space-y-1">
         <p className="font-medium text-slate-300">Document storage and privacy</p>
         <p>
-          All documents uploaded here (IICRC card, driver&apos;s licence) are stored securely and used exclusively to verify eligibility for NRPG membership. They are not shared with third parties. By proceeding you consent to this use in accordance with the NRPG Privacy Policy.
+          All documents uploaded here (IICRC card, driver&apos;s licence) are stored securely and used exclusively to verify eligibility for NRPG membership. They are not shared with third parties. By proceeding you consent to this use in accordance with the{' '}
+          <a href="/privacy" className="text-slate-300 underline underline-offset-2 hover:text-white transition-colors">
+            NRPG Privacy Policy
+          </a>
+          .
         </p>
       </div>
 

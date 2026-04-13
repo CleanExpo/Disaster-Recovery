@@ -703,6 +703,17 @@ export default function SubContractorManager({ contractorId }: SubContractorMana
     }
   };
 
+  if (!contractorId) {
+    return (
+      <Alert className="border-amber-200 bg-amber-50">
+        <AlertCircle className="h-4 w-4 text-amber-600" />
+        <AlertDescription className="text-amber-800">
+          Contractor profile not loaded. Please refresh the page or contact support.
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
