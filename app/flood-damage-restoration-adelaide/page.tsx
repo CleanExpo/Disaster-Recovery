@@ -144,7 +144,7 @@ export default function FloodDamageRestorationAdelaidePage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Adelaide"
-        subtitle="IICRC-certified Category 3 flood damage restoration across Adelaide and South Australia. Torrens, Onkaparinga, and Gawler river flooding specialists. Heritage stone and Barossa Valley wine country property restoration. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across Adelaide and South Australia. Torrens, Onkaparinga, and Gawler river flooding specialists. Heritage stone and Barossa Valley wine country property restoration. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -248,7 +248,7 @@ export default function FloodDamageRestorationAdelaidePage() {
             heading: 'Adelaide Areas We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Adelaide metropolitan area and surrounds:</p>
+                <p>priority emergency response across the Adelaide metropolitan area and surrounds:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Torrens River corridor:</strong> Campbelltown, Newton, Tranmere, Payneham,
                   Magill, St Peters, Norwood, Kensington, Burnside

@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Restoration Rockhampton | 24/7 IICRC Certified',
-  description: 'Storm damage restoration across Rockhampton and Central Queensland. IICRC-certified contractors. Cyclone-driven storm, hail, and flood events. 60-minute emergency response.',
+  description: 'Storm damage restoration across Rockhampton and Central Queensland. IICRC-certified contractors. Cyclone-driven storm, hail, and flood events. priority emergency response.',
   keywords: 'storm damage restoration rockhampton, cyclone damage rockhampton, storm rockhampton, central queensland storm restoration, rocky storm damage',
   openGraph: {
     title: 'Storm Damage Restoration Rockhampton | 24/7 IICRC Certified',
-    description: 'Storm damage restoration across Rockhampton and Central Queensland. IICRC-certified contractors. Cyclone-driven storm, hail, and flood events. 60-minute emergency response.',
+    description: 'Storm damage restoration across Rockhampton and Central Queensland. IICRC-certified contractors. Cyclone-driven storm, hail, and flood events. priority emergency response.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Storm Damage Restoration')}&city=${encodeURIComponent('Rockhampton')}&service=storm-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -78,7 +78,7 @@ const faqSchema = {
       name: 'Can I get emergency make-safe after a storm in Rockhampton tonight?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Yes — NRPG operates 24/7/365. Lodge your claim at disasterrecovery.com.au/claim and an NRPG-certified contractor will be dispatched to your Rockhampton property. NRPG targets a 60-minute emergency response for structural make-safe anywhere in Greater Rockhampton.",
+        text: "Yes — NRPG operates 24/7/365. Lodge your claim at disasterrecovery.com.au/claim and an NRPG-certified contractor will be dispatched to your Rockhampton property. NRPG targets a priority emergency response for structural make-safe anywhere in Greater Rockhampton.",
       },
     },
   ],
@@ -94,7 +94,7 @@ export default function StormDamageRestorationRockhamptonPage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Rockhampton"
-        subtitle="Storm damage restoration across Rockhampton and Central Queensland. IICRC-certified contractors for cyclone-driven storm, hail, and flood events. 60-minute emergency response 24/7."
+        subtitle="Storm damage restoration across Rockhampton and Central Queensland. IICRC-certified contractors for cyclone-driven storm, hail, and flood events. priority emergency response 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -223,7 +223,7 @@ export default function StormDamageRestorationRockhamptonPage() {
           },
           {
             question: 'Can I get emergency make-safe after a storm in Rockhampton tonight?',
-            answer: "Yes — NRPG operates 24/7/365. Lodge your claim at disasterrecovery.com.au/claim and an NRPG-certified contractor will be dispatched to your Rockhampton property. NRPG targets a 60-minute emergency response for structural make-safe anywhere in Greater Rockhampton.",
+            answer: "Yes — NRPG operates 24/7/365. Lodge your claim at disasterrecovery.com.au/claim and an NRPG-certified contractor will be dispatched to your Rockhampton property. NRPG targets a priority emergency response for structural make-safe anywhere in Greater Rockhampton.",
           },
         ]}
         relatedGuides={[

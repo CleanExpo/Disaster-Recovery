@@ -67,7 +67,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can NRPG respond to roof damage in Brisbane?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Within 60 minutes for emergency make-safe (roof tarping, temporary boarding) following storm events. Structural repairs are scheduled based on insurer approval and contractor availability. Lodge at disasterrecovery.com.au/claim for immediate dispatch matching.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'As soon as emergency services clear the area for emergency make-safe (roof tarping, temporary boarding) following storm events. Structural repairs are scheduled based on insurer approval and contractor availability. Lodge at disasterrecovery.com.au/claim for immediate dispatch matching.' },
     },
   ],
 };
@@ -82,7 +82,7 @@ export default function StormDamageRestorationBrisbanePage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Brisbane"
-        subtitle="Emergency storm damage restoration across all Brisbane suburbs. Wind damage, hail, roof failure, and structural make-safe. IICRC-certified contractors, 60-minute response. Ex-TC Alfred recovery support available."
+        subtitle="Emergency storm damage restoration across all Brisbane suburbs. Wind damage, hail, roof failure, and structural make-safe. IICRC-certified contractors, priority response. Ex-TC Alfred recovery support available."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -166,7 +166,7 @@ export default function StormDamageRestorationBrisbanePage() {
             heading: 'Brisbane Suburbs We Cover',
             body: (
               <>
-                <p>60-minute response across all Brisbane suburbs:</p>
+                <p>priority response across all Brisbane suburbs:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner City/South Bank:</strong> Brisbane CBD, South Brisbane, Kangaroo Point, Fortitude Valley, New Farm, Newstead
                 </p>
@@ -211,7 +211,7 @@ export default function StormDamageRestorationBrisbanePage() {
           },
           {
             question: 'How quickly can NRPG respond to roof damage in Brisbane?',
-            answer: 'Within 60 minutes for emergency make-safe (roof tarping, temporary boarding) following storm events. Structural repairs are scheduled based on insurer approval and contractor availability. Lodge at disasterrecovery.com.au/claim for immediate dispatch matching.',
+            answer: 'As soon as emergency services clear the area for emergency make-safe (roof tarping, temporary boarding) following storm events. Structural repairs are scheduled based on insurer approval and contractor availability. Lodge at disasterrecovery.com.au/claim for immediate dispatch matching.',
           },
         ]}
         relatedGuides={[

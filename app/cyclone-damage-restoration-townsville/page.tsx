@@ -11,11 +11,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Cyclone Damage Restoration Townsville | TC Maila Emergency Response',
-  description: 'Cyclone damage restoration in Townsville and North Queensland. IICRC-certified contractors pre-positioned for TC Maila. 60-minute response post-clearance. Lodge your claim 24/7.',
+  description: 'Cyclone damage restoration in Townsville and North Queensland. IICRC-certified contractors pre-positioned for TC Maila. priority response post-clearance. Lodge your claim 24/7.',
   keywords: 'cyclone damage restoration townsville, cyclone damage townsville, TC Maila townsville, NQ cyclone repair, cyclone insurance claim townsville, storm damage townsville, water damage townsville',
   openGraph: {
     title: 'Cyclone Damage Restoration Townsville | TC Maila Emergency',
-    description: 'IICRC-certified cyclone restoration contractors in Townsville. 60-minute post-clearance response. Lodge your TC Maila claim online 24/7.',
+    description: 'IICRC-certified cyclone restoration contractors in Townsville. priority post-clearance response. Lodge your TC Maila claim online 24/7.',
     type: 'website',
   },
   alternates: {
@@ -66,7 +66,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can NRPG respond to cyclone damage in Townsville?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Within 60 minutes of emergency services confirming area clearance. Lodge your claim at disasterrecovery.com.au/claim \u2014 we queue the assignment and dispatch the moment the all-clear is issued for your suburb.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'As soon as emergency services have confirmed confirming area clearance. Lodge your claim at disasterrecovery.com.au/claim \u2014 we queue the assignment and dispatch the moment the all-clear is issued for your suburb.' },
     },
     {
       '@type': 'Question',
@@ -85,7 +85,7 @@ export default function CycloneDamageRestorationTownsvillePage() {
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Townsville"
-        subtitle="IICRC-certified contractors ready for TC Maila response across Townsville and North Queensland. 60-minute dispatch post-clearance. Lodge your claim online 24/7."
+        subtitle="IICRC-certified contractors ready for TC Maila response across Townsville and North Queensland. priority dispatch post-clearance. Lodge your claim online 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -133,7 +133,7 @@ export default function CycloneDamageRestorationTownsvillePage() {
                     the ARPC Cyclone Pool applies to NQ events and affects how claims are processed.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Lodge at disasterrecovery.com.au/claim</strong> for 60-minute emergency make-safe.
+                    <strong>Lodge at disasterrecovery.com.au/claim</strong> for priority emergency make-safe.
                     NRPG coordinates directly with your insurer on your behalf.
                   </li>
                 </ol>
@@ -175,7 +175,7 @@ export default function CycloneDamageRestorationTownsvillePage() {
           },
           {
             question: 'How quickly can NRPG respond to cyclone damage in Townsville?',
-            answer: 'Within 60 minutes of emergency services confirming area clearance. Lodge your claim at disasterrecovery.com.au/claim — we queue the assignment and dispatch the moment the all-clear is issued for your suburb.',
+            answer: 'As soon as emergency services have confirmed confirming area clearance. Lodge your claim at disasterrecovery.com.au/claim — we queue the assignment and dispatch the moment the all-clear is issued for your suburb.',
           },
           {
             question: 'What cyclone damage is covered by home insurance?',

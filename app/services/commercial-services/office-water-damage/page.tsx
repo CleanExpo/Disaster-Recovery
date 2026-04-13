@@ -22,7 +22,7 @@ const faqSchema = JSON.stringify({
       name: 'How quickly can you respond to office water damage?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches IICRC-certified technicians within 60 minutes in most metro areas, 24/7. For office water damage, rapid extraction is critical — water in commercial environments affects IT infrastructure, documents, electrical systems, and flooring. Every hour of delay increases the scope and cost of restoration.',
+        text: 'NRPG dispatches IICRC-certified technicians as soon as a certified contractor is confirmed for your area in most metro areas, 24/7. For office water damage, rapid extraction is critical — water in commercial environments affects IT infrastructure, documents, electrical systems, and flooring. Every hour of delay increases the scope and cost of restoration.',
       },
     },
     {

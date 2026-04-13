@@ -19,7 +19,7 @@ const faqSchema = {
       name: 'How quickly can a restoration contractor respond to apartment flooding in Melbourne?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors provide a 60-minute emergency response across greater Melbourne, 24/7. For apartment flooding, the initial response focuses on water source isolation (working with building management to shut down risers if needed), emergency water extraction on all affected levels, and deployment of drying equipment. Every hour of delay increases the risk of mould growth and structural damage, particularly in Melbourne\u2019s variable humidity conditions.',
+        text: 'NRPG contractors provide a priority emergency response across greater Melbourne, 24/7. For apartment flooding, the initial response focuses on water source isolation (working with building management to shut down risers if needed), emergency water extraction on all affected levels, and deployment of drying equipment. Every hour of delay increases the risk of mould growth and structural damage, particularly in Melbourne\u2019s variable humidity conditions.',
       },
     },
     {
@@ -160,7 +160,7 @@ export default function MelbourneApartmentFloodRestorationPage() {
                   <strong>Lodge your claim online</strong> — Submit through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the building address, your apartment number, approximate extent of damage (which floors/units affected), and whether you are a lot owner, OC committee member, or strata manager. NRPG matches you with contractors experienced in Melbourne apartment restoration.
                 </li>
                 <li>
-                  <strong>Emergency response</strong> — Contractors respond within 60 minutes, 24/7, across greater Melbourne. Emergency water extraction and source isolation begin immediately. If the source is a common property pipe, the contractor works with building management to isolate the affected riser. Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across greater Melbourne. Emergency water extraction and source isolation begin immediately. If the source is a common property pipe, the contractor works with building management to isolate the affected riser. Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions covering all affected units and common property. We bill you directly — the lot owner, OC, or strata manager — so the restoration is not delayed by insurance processing.
@@ -182,7 +182,7 @@ export default function MelbourneApartmentFloodRestorationPage() {
       faqs={[
         {
           question: 'How quickly can a restoration contractor respond to apartment flooding in Melbourne?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across greater Melbourne, 24/7. For apartment flooding, the initial response focuses on water source isolation (working with building management to shut down risers if needed), emergency water extraction on all affected levels, and deployment of drying equipment. Every hour of delay increases the risk of mould growth and structural damage, particularly in Melbourne\'s variable humidity conditions.',
+          answer: 'NRPG contractors provide a priority emergency response across greater Melbourne, 24/7. For apartment flooding, the initial response focuses on water source isolation (working with building management to shut down risers if needed), emergency water extraction on all affected levels, and deployment of drying equipment. Every hour of delay increases the risk of mould growth and structural damage, particularly in Melbourne\'s variable humidity conditions.',
         },
         {
           question: 'Who pays for water damage in a Melbourne apartment — the owners corporation or the lot owner?',

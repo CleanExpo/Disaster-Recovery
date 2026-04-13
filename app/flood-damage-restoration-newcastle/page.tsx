@@ -144,7 +144,7 @@ export default function FloodDamageRestorationNewcastlePage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Newcastle"
-        subtitle="IICRC-certified Category 3 flood damage restoration across Newcastle, Maitland, and the Hunter Valley. Hunter River specialists — including agricultural contamination. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across Newcastle, Maitland, and the Hunter Valley. Hunter River specialists — including agricultural contamination. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -235,7 +235,7 @@ export default function FloodDamageRestorationNewcastlePage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for Category 3 extraction across Greater Newcastle and
+                  priority emergency response for Category 3 extraction across Greater Newcastle and
                   the Hunter Valley:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
@@ -260,7 +260,7 @@ export default function FloodDamageRestorationNewcastlePage() {
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>General Hunter coverage:</strong> All Hunter Valley and Lake Macquarie LGAs
-                  &mdash; 60-minute response for Category 3 extraction
+                  &mdash; priority response for Category 3 extraction
                 </p>
               </>
             ),

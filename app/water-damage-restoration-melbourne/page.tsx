@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Melbourne | 24/7',
-  description: 'Emergency water damage restoration in Melbourne. IICRC-certified contractors respond in under 60 minutes across all Melbourne metro suburbs. Available 24/7.',
+  description: 'Emergency water damage restoration in Melbourne. IICRC-certified contractors respond as quickly as possible across all Melbourne metro suburbs. Available 24/7.',
   keywords: 'water damage restoration melbourne, water damage melbourne, flood cleanup melbourne, burst pipe melbourne, emergency water removal melbourne, water damage repair melbourne',
   openGraph: {
     title: 'Water Damage Restoration Melbourne | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration in Melbourne. IICRC-certified contractors respond in under 60 minutes. Available 24/7.',
+    description: 'Emergency water damage restoration in Melbourne. IICRC-certified contractors respond as quickly as possible. Available 24/7.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Melbourne')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -62,7 +62,7 @@ const faqSchema = {
       name: 'How quickly can you respond to water damage in Melbourne?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG contractors across Melbourne metro respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim for instant contractor matching. The service operates 24 hours a day, 7 days a week, including public holidays.',
+        text: 'NRPG contractors across Melbourne metro respond as soon as a certified contractor is confirmed for your area of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim for instant contractor matching. The service operates 24 hours a day, 7 days a week, including public holidays.',
       },
     },
     {
@@ -110,7 +110,7 @@ export default function WaterDamageRestorationMelbournePage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Melbourne"
-        subtitle="Emergency water damage restoration across all Melbourne metro suburbs. IICRC-certified contractors respond in under 60 minutes, 24 hours a day, 7 days a week."
+        subtitle="Emergency water damage restoration across all Melbourne metro suburbs. IICRC-certified contractors respond as quickly as possible, 24 hours a day, 7 days a week."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-02-27"
@@ -197,7 +197,7 @@ export default function WaterDamageRestorationMelbournePage() {
                     your selected radius (20–100 km)
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>60-minute response</strong> — emergency make-safe begins within the hour across Melbourne metro
+                    <strong>priority response</strong> — emergency make-safe begins within the hour across Melbourne metro
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Full claims documentation</strong> — timestamped photos, moisture readings, scope of works,
@@ -287,7 +287,7 @@ export default function WaterDamageRestorationMelbournePage() {
           },
           {
             question: 'How quickly can you respond to water damage in Melbourne?',
-            answer: 'NRPG contractors across Melbourne metro respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim for instant contractor matching. The service operates 24 hours a day, 7 days a week, including public holidays.',
+            answer: 'NRPG contractors across Melbourne metro respond as soon as a certified contractor is confirmed for your area of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim for instant contractor matching. The service operates 24 hours a day, 7 days a week, including public holidays.',
           },
           {
             question: 'Does insurance cover water damage in Melbourne apartments?',

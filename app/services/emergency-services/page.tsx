@@ -38,7 +38,7 @@ const faqSchema = {
       name: 'How fast do you respond to a disaster emergency?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG dispatches certified technicians within 60 minutes of lodgement in major metropolitan areas. After-hours and regional response is available 24/7. Emergency make-safe — tarping, board-up, and water extraction — is completed on the first dispatch.',
+        text: 'NRPG dispatches certified technicians as soon as a certified contractor is confirmed for your area of lodgement in major metropolitan areas. After-hours and regional response is available 24/7. Emergency make-safe — tarping, board-up, and water extraction — is completed on the first dispatch.',
       },
     },
     {

@@ -170,7 +170,7 @@ export default function MouldRemediationCairnsPage() {
                   is dramatically shorter in Cairns than in any other major Australian city. If your
                   Cairns property sustained TC Maila water damage, mould remediation is not optional
                   &mdash; it is a time-critical extension of the restoration process. Lodge immediately
-                  for 60-minute post-clearance emergency response.
+                  for priority post-clearance emergency response.
                 </p>
               </>
             ),
@@ -200,7 +200,7 @@ export default function MouldRemediationCairnsPage() {
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
                   NRPG IICRC S520-certified contractors perform emergency make-safe and initial drying
-                  within 60 minutes of clearance to prevent mould becoming the dominant issue.
+                  as soon as a certified contractor is confirmed for your area of clearance to prevent mould becoming the dominant issue.
                 </p>
               </>
             ),
@@ -239,7 +239,7 @@ export default function MouldRemediationCairnsPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute post-clearance response across Cairns and FNQ:
+                  priority post-clearance response across Cairns and FNQ:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>City/Inner:</strong> Cairns City, Cairns North, Manunda, Westcourt, Manoora,

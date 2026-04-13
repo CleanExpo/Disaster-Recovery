@@ -70,7 +70,7 @@ const faqSchema = {
       name: 'How do I find emergency water damage contractors in Darwin after hours?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG operates 24/7 in Darwin. Lodge your emergency through disasterrecovery.com.au/claim for 60-minute emergency dispatch. NRPG pre-stages contractors in Darwin from October each year ahead of the wet season, ensuring equipment and personnel are ready at the start of the monsoon period. After-hours lodgement through the online form triggers immediate contractor notification.',
+        text: 'NRPG operates 24/7 in Darwin. Lodge your emergency through disasterrecovery.com.au/claim for priority emergency dispatch. NRPG pre-stages contractors in Darwin from October each year ahead of the wet season, ensuring equipment and personnel are ready at the start of the monsoon period. After-hours lodgement through the online form triggers immediate contractor notification.',
       },
     },
     {
@@ -168,7 +168,7 @@ export default function DarwinWetSeasonWaterDamagePage() {
                   Effective emergency water damage response in Darwin requires contractors who understand the Top End&rsquo;s unique conditions — the 24/7 nature of wet season events, the compressed mould timeline, and the regulatory requirements that apply to NT properties.
                 </p>
                 <p>
-                  <strong>24/7 NRPG Darwin.</strong> NRPG maintains 24/7 emergency response capacity in Darwin, with contractor staging commencing in October each year ahead of the wet season. Lodge your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> for 60-minute emergency dispatch. Do not wait until business hours to lodge — Darwin&rsquo;s mould timeline means overnight delays have real consequences.
+                  <strong>24/7 NRPG Darwin.</strong> NRPG maintains 24/7 emergency response capacity in Darwin, with contractor staging commencing in October each year ahead of the wet season. Lodge your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> for priority emergency dispatch. Do not wait until business hours to lodge — Darwin&rsquo;s mould timeline means overnight delays have real consequences.
                 </p>
                 <p>
                   <strong>ARPC pool applies across all NT.</strong> The ARPC Cyclone Reinsurance Pool covers all of the Northern Territory, including Darwin, Palmerston, Alice Springs, and regional centres. All cyclone-related water damage claims — whether from direct cyclone impact or cyclone-driven rainfall — are processed through the ARPC pool. NRPG provides documentation that captures both the cyclone and water ingress components of the claim.
@@ -211,7 +211,7 @@ export default function DarwinWetSeasonWaterDamagePage() {
           },
           {
             question: 'How do I find emergency water damage contractors in Darwin after hours?',
-            answer: 'NRPG operates 24/7 in Darwin. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch. NRPG pre-stages contractors in Darwin from October each year ahead of the wet season, ensuring equipment and personnel are ready at the start of the monsoon period.',
+            answer: 'NRPG operates 24/7 in Darwin. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch. NRPG pre-stages contractors in Darwin from October each year ahead of the wet season, ensuring equipment and personnel are ready at the start of the monsoon period.',
           },
           {
             question: 'What property types are most vulnerable to wet season water damage in Darwin?',

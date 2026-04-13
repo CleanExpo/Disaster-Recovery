@@ -16,11 +16,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Townsville | IICRC-Certified Emergency Response',
-  description: 'Professional water damage restoration in Townsville and North Queensland. IICRC-certified contractors, 60-minute response. TC Maila water damage and storm flooding specialists. Lodge your claim 24/7.',
+  description: 'Professional water damage restoration in Townsville and North Queensland. IICRC-certified contractors, priority response. TC Maila water damage and storm flooding specialists. Lodge your claim 24/7.',
   keywords: 'water damage restoration townsville, water damage townsville, NQ water damage, cyclone water damage townsville, burst pipe townsville, storm flooding townsville, TC Maila water damage townsville',
   openGraph: {
     title: 'Water Damage Restoration Townsville | IICRC-Certified Emergency Response',
-    description: 'Emergency water damage restoration across Townsville and North Queensland. IICRC S500:2025 certified. 60-minute response. TC Maila water damage recovery available now.',
+    description: 'Emergency water damage restoration across Townsville and North Queensland. IICRC S500:2025 certified. priority response. TC Maila water damage recovery available now.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Townsville')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -88,7 +88,7 @@ const faqSchema = {
       name: 'What should I do immediately after water damage in Townsville?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Wait for the emergency services all-clear. Then: (1) photograph all damage before touching anything; (2) stop the water source if safe to do so; (3) lodge your claim at disasterrecovery.com.au/claim; (4) do not use household fans \u2014 they spread mould spores in Townsville\u2019s humidity. NRPG will dispatch IICRC-certified contractors within 60 minutes of area clearance.",
+        text: "Wait for the emergency services all-clear. Then: (1) photograph all damage before touching anything; (2) stop the water source if safe to do so; (3) lodge your claim at disasterrecovery.com.au/claim; (4) do not use household fans \u2014 they spread mould spores in Townsville\u2019s humidity. NRPG will dispatch IICRC-certified contractors as soon as a certified contractor is confirmed for your area of area clearance.",
       },
     },
   ],
@@ -103,7 +103,7 @@ export default function WaterDamageRestorationTownsvillePage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Townsville"
-        subtitle="Emergency water damage restoration across Townsville and North Queensland. IICRC S500:2025 certified technicians. 60-minute response. TC Maila water damage recovery available now."
+        subtitle="Emergency water damage restoration across Townsville and North Queensland. IICRC S500:2025 certified technicians. priority response. TC Maila water damage recovery available now."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -178,7 +178,7 @@ export default function WaterDamageRestorationTownsvillePage() {
             heading: 'Townsville Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Townsville LGA:</p>
+                <p>priority emergency response across the Townsville LGA:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>City/Inner:</strong> Townsville City, South Townsville, North Ward, Belgian
                   Gardens, Mysterton, Mundingburra, Hyde Park, Rosslea
@@ -213,7 +213,7 @@ export default function WaterDamageRestorationTownsvillePage() {
           },
           {
             question: 'What should I do immediately after water damage in Townsville?',
-            answer: "Wait for the emergency services all-clear. Then: (1) photograph all damage before touching anything; (2) stop the water source if safe to do so; (3) lodge your claim at disasterrecovery.com.au/claim; (4) do not use household fans — they spread mould spores in Townsville's humidity. NRPG will dispatch IICRC-certified contractors within 60 minutes of area clearance.",
+            answer: "Wait for the emergency services all-clear. Then: (1) photograph all damage before touching anything; (2) stop the water source if safe to do so; (3) lodge your claim at disasterrecovery.com.au/claim; (4) do not use household fans — they spread mould spores in Townsville's humidity. NRPG will dispatch IICRC-certified contractors as soon as a certified contractor is confirmed for your area of area clearance.",
           },
         ]}
         relatedGuides={[

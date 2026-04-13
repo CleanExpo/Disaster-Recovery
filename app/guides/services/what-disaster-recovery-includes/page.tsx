@@ -93,7 +93,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
                   <strong>Claim lodgement</strong> — You submit your damage details, location, and photos through the online claim form at <Link href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</Link>. The platform processes your claim immediately — no phone queues, no business-hours-only service desk, no waiting for a callback.
                 </li>
                 <li>
-                  <strong>Instant contractor matching</strong> — The platform matches you with the nearest available IICRC-certified contractor within your selected radius (20 to 100 km). Matching happens automatically based on your location, damage type, and contractor availability. You receive confirmation within minutes, with a 60-minute emergency response target.
+                  <strong>Instant contractor matching</strong> — The platform matches you with the nearest available IICRC-certified contractor within your selected radius (20 to 100 km). Matching happens automatically based on your location, damage type, and contractor availability. You receive confirmation within minutes, with a priority emergency response target.
                 </li>
                 <li>
                   <strong>Documentation support</strong> — Throughout the restoration, the platform coordinates documentation standards with your contractor. This ensures you receive professional-grade claims documentation — not just a few photos and an invoice, but the full evidence package your insurer requires.

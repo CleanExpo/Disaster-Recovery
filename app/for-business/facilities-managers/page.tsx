@@ -110,7 +110,7 @@ export default function FacilitiesManagersPage() {
                 obligations, not one who returns calls &quot;during business hours.&quot;
               </p>
               <p>
-                Our standard emergency SLA targets contractor contact within 60 minutes
+                Our standard emergency SLA targets contractor contact as soon as a certified contractor is confirmed for your area
                 of claim lodgement, with on-site attendance within the hour — 24 hours a
                 day, 7 days a week, 365 days a year. This applies Australia-wide, including
                 after hours, weekends, and public holidays. There is no additional surcharge
@@ -243,7 +243,7 @@ export default function FacilitiesManagersPage() {
                 </Link>
                 , our system immediately matches your building with an IICRC-certified
                 contractor from the NRPG network in your area. The contractor contacts you
-                within 60 minutes and can be on-site within the hour. The process is
+                as soon as a certified contractor is confirmed for your area and can be on-site within the hour. The process is
                 identical at midday on a Monday or midnight on Christmas Eve. There is no
                 after-hours surcharge on the emergency make-safe fee.
               </p>
@@ -298,7 +298,7 @@ export default function FacilitiesManagersPage() {
           title: 'Lodge a Claim',
           href: '/claim',
           description:
-            'Report building damage online — 24/7 availability with 60-minute emergency response.',
+            'Report building damage online — 24/7 availability with priority emergency response.',
         },
       ]}
     />

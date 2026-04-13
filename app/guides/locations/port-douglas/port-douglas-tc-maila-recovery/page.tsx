@@ -7,7 +7,7 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Port Douglas TC Maila Recovery — Property Owner Guide 2026',
   description:
-    'TC Maila recovery guide for Port Douglas and Daintree property owners. Port Douglas (4877) is in the direct TC Maila landfall corridor. ARPC cyclone pool claims, mould prevention, and NRPG 60-minute post-clearance response.',
+    'TC Maila recovery guide for Port Douglas and Daintree property owners. Port Douglas (4877) is in the direct TC Maila landfall corridor. ARPC cyclone pool claims, mould prevention, and NRPG priority post-clearance response.',
   keywords:
     'port douglas TC Maila recovery, cyclone Maila port douglas, port douglas cyclone damage 2026, daintree cyclone recovery 2026',
   alternates: {
@@ -59,7 +59,7 @@ const faqSchema = {
       name: 'What should Port Douglas property owners do immediately after TC Maila?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Wait for Queensland Police or SES to issue the all-clear before leaving shelter or entering your property. Do not re-enter during the eye — violent conditions return as TC Maila\'s eye passes. Photograph all damage with timestamps before any cleanup. Notify your insurer within 24–48 hours to activate Additional Living Expenses. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across Port Douglas (4877) and Daintree (4895) for 60-minute post-clearance response.',
+        text: 'Wait for Queensland Police or SES to issue the all-clear before leaving shelter or entering your property. Do not re-enter during the eye — violent conditions return as TC Maila\'s eye passes. Photograph all damage with timestamps before any cleanup. Notify your insurer within 24–48 hours to activate Additional Living Expenses. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across Port Douglas (4877) and Daintree (4895) for priority post-clearance response.',
       },
     },
     {
@@ -140,7 +140,7 @@ export default function PortDouglasTCMailaRecoveryPage() {
                   <strong>Mossman Gorge corridor</strong> — the Mossman River catchment experienced rapid rise during TC Maila, affecting Mossman (4873) and Newell Beach. Properties in the Mossman River floodplain require the same cyclone vs flood peril distinction as those in the Daintree. Lodge cyclone water ingress separately from river flood inundation.
                 </p>
                 <p>
-                  <strong>NRPG contractors are deployed</strong> across Port Douglas (4877), Daintree (4895), and Mossman (4873/4874). Lodge at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> for 60-minute post-clearance response once Queensland SES confirms your area is clear.
+                  <strong>NRPG contractors are deployed</strong> across Port Douglas (4877), Daintree (4895), and Mossman (4873/4874). Lodge at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> for priority post-clearance response once Queensland SES confirms your area is clear.
                 </p>
               </div>
             ),
@@ -203,7 +203,7 @@ export default function PortDouglasTCMailaRecoveryPage() {
                 </p>
                 <ol className="list-decimal pl-6 space-y-3">
                   <li>
-                    <strong>All-clear and emergency make-safe.</strong> Once Queensland SES confirms access, NRPG deploys within 60 minutes to Port Douglas and within a confirmed timeframe to Daintree and Mossman Gorge depending on road access. Roof tarping, structural securing, boarding of openings. All make-safe documented for the claim.
+                    <strong>All-clear and emergency make-safe.</strong> Once Queensland SES confirms access, NRPG deploys as soon as a certified contractor is confirmed for your area to Port Douglas and within a confirmed timeframe to Daintree and Mossman Gorge depending on road access. Roof tarping, structural securing, boarding of openings. All make-safe documented for the claim.
                   </li>
                   <li>
                     <strong>Days 1&ndash;3: Water extraction and drying deployment.</strong> Industrial extraction from all affected areas. Deployment of drying and dehumidification equipment. Initial moisture mapping of walls, ceilings, floors, and subfloors. Mould prevention treatment applied immediately.
@@ -226,7 +226,7 @@ export default function PortDouglasTCMailaRecoveryPage() {
           {
             question: 'What should Port Douglas property owners do immediately after TC Maila?',
             answer:
-              'Wait for Queensland Police or SES all-clear before leaving shelter or entering your property. Photograph all damage with timestamps. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across 4877 and 4895 for 60-minute post-clearance response.',
+              'Wait for Queensland Police or SES all-clear before leaving shelter or entering your property. Photograph all damage with timestamps. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across 4877 and 4895 for priority post-clearance response.',
           },
           {
             question: 'How does the ARPC Cyclone Pool apply to Port Douglas TC Maila claims?',

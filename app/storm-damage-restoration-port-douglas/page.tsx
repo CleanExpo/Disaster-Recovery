@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   keywords: 'cyclone damage port douglas, storm damage port douglas, TC Maila port douglas, water damage port douglas, cyclone restoration mossman, daintree cyclone damage',
   openGraph: {
     title: 'Cyclone Damage Restoration Port Douglas | TC Maila Response',
-    description: 'Emergency cyclone damage restoration for Port Douglas, Mossman, and the Daintree. IICRC-certified, 60-minute response post-clearance.',
+    description: 'Emergency cyclone damage restoration for Port Douglas, Mossman, and the Daintree. IICRC-certified, priority response post-clearance.',
     type: 'website',
   },
   alternates: {

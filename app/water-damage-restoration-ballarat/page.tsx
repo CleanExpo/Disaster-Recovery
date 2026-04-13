@@ -15,11 +15,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Ballarat | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across Ballarat and regional Victoria. IICRC S500:2025 certified. 60-minute response. Burst pipes, storm flooding, heritage restoration. Lodge 24/7.',
+  description: 'Professional water damage restoration across Ballarat and regional Victoria. IICRC S500:2025 certified. priority response. Burst pipes, storm flooding, heritage restoration. Lodge 24/7.',
   keywords: 'water damage restoration ballarat, water damage ballarat, burst pipe ballarat, flood damage ballarat, heritage restoration ballarat, IICRC ballarat, water damage repair ballarat, structural drying ballarat',
   openGraph: {
     title: 'Water Damage Restoration Ballarat | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across Ballarat and regional Victoria. IICRC S500:2025 certified. 60-minute response. Heritage building specialists.',
+    description: 'Emergency water damage restoration across Ballarat and regional Victoria. IICRC S500:2025 certified. priority response. Heritage building specialists.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Ballarat')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -102,7 +102,7 @@ export default function WaterDamageRestorationBallaratPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Ballarat"
-        subtitle="Emergency water damage restoration across Ballarat and regional Victoria. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Heritage building specialists."
+        subtitle="Emergency water damage restoration across Ballarat and regional Victoria. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Heritage building specialists."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -189,7 +189,7 @@ export default function WaterDamageRestorationBallaratPage() {
             heading: 'Ballarat Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Ballarat and the surrounding region:</p>
+                <p>priority emergency response across Ballarat and the surrounding region:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner Ballarat:</strong> Ballarat CBD, Ballarat East, Ballarat Central, Wendouree,
                   Sebastopol

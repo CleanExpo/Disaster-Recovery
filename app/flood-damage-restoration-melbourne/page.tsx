@@ -260,7 +260,7 @@ export default function FloodDamageRestorationMelbournePage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for Category 3 emergency extraction and containment across all
+                  priority emergency response for Category 3 emergency extraction and containment across all
                   Melbourne flood catchments:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>

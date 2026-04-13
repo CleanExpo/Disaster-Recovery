@@ -85,7 +85,7 @@ export default function CycloneDamageRestorationInnisfailPage() {
       <AgGuidePageTemplate
         category="Cyclone Damage"
         title="Cyclone Damage Restoration Innisfail"
-        subtitle="IICRC-certified contractors pre-positioned for TC Maila response across Innisfail, Tully, Mission Beach, and the Cassowary Coast. 60-minute post-clearance dispatch. Lodge your claim 24/7."
+        subtitle="IICRC-certified contractors pre-positioned for TC Maila response across Innisfail, Tully, Mission Beach, and the Cassowary Coast. priority post-clearance dispatch. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"

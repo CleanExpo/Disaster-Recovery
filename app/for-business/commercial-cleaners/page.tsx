@@ -160,7 +160,7 @@ export default function CommercialCleanersPage() {
                   get moving.
                 </li>
                 <li>
-                  <strong>We respond within 60 minutes.</strong> An IICRC-certified
+                  <strong>We respond as soon as a certified contractor is confirmed for your area.</strong> An IICRC-certified
                   contractor from our national NRPG network contacts the site contact (you
                   or your client, whichever you prefer) within the hour. They can be on-site
                   the same day — often within the hour — 24 hours a day, 7 days a week.
@@ -182,7 +182,7 @@ export default function CommercialCleanersPage() {
                 partnerships are built on reliability, not contracts.
               </p>
 
-              <h3>60-minute response, 24/7</h3>
+              <h3>priority response, 24/7</h3>
               <p>
                 Emergencies do not wait for business hours. If your client calls you at 11pm
                 on a Saturday because the office is flooding, you can{' '}
@@ -362,7 +362,7 @@ export default function CommercialCleanersPage() {
               </p>
               <ol style={{ color: 'rgba(255,255,255,0.85)' }}>
                 <li>Our system matches an IICRC-certified contractor from the NRPG network in the client&apos;s area — typically within minutes.</li>
-                <li>The contractor contacts the site contact within 60 minutes to discuss the situation and confirm attendance.</li>
+                <li>The contractor contacts the site contact as soon as a certified contractor is confirmed for your area to discuss the situation and confirm attendance.</li>
                 <li>The contractor arrives on-site and performs the emergency make-safe: stopping the source, extracting water, setting up containment and deploying drying equipment.</li>
                 <li>We keep you informed throughout. You referred the client — you deserve to know what is happening.</li>
               </ol>

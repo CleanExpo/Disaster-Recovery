@@ -7,13 +7,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Fire Damage Restoration Mackay | TC Maila Emergency Response',
   description:
-    'Fire damage restoration across Mackay and Central Queensland. IICRC S700:2025 certified. Post-TC Maila electrical fire response. 60-minute emergency dispatch.',
+    'Fire damage restoration across Mackay and Central Queensland. IICRC S700:2025 certified. Post-TC Maila electrical fire response. priority emergency dispatch.',
   keywords:
     'fire damage restoration mackay, post cyclone fire mackay, TC Maila fire mackay, electrical fire mackay, smoke damage mackay, central queensland fire restoration',
   openGraph: {
     title: 'Fire Damage Restoration Mackay | TC Maila Emergency Response',
     description:
-      'Fire damage restoration across Mackay and Central Queensland. IICRC S700:2025 certified. Post-TC Maila electrical fire response. 60-minute emergency dispatch.',
+      'Fire damage restoration across Mackay and Central Queensland. IICRC S700:2025 certified. Post-TC Maila electrical fire response. priority emergency dispatch.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Fire Damage Restoration')}&city=${encodeURIComponent('Mackay')}&service=fire-damage-restoration`,
@@ -137,7 +137,7 @@ export default function FireDamageRestorationMackayPage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Mackay"
-        subtitle="IICRC S700:2025 certified fire damage restoration across Mackay and Central Queensland. Post-TC Maila electrical fire response. Multi-peril cyclone and fire claim specialists. 60-minute emergency dispatch."
+        subtitle="IICRC S700:2025 certified fire damage restoration across Mackay and Central Queensland. Post-TC Maila electrical fire response. Multi-peril cyclone and fire claim specialists. priority emergency dispatch."
         gradient="linear-gradient(135deg, #7F0000 0%, #C62828 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-13"
@@ -209,7 +209,7 @@ export default function FireDamageRestorationMackayPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response across Mackay and surrounding areas:
+                  priority emergency response across Mackay and surrounding areas:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Mackay city:</strong> Mackay CBD, North Mackay, South Mackay, West Mackay

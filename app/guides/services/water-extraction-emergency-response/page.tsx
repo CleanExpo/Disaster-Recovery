@@ -28,7 +28,7 @@ export default function WaterExtractionEmergencyResponsePage() {
         name: 'How quickly should water be extracted?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Water should be extracted within 24 hours of the damage event wherever possible. Category 1 (clean) water degrades to Category 2 (grey water) within 24–48 hours as it contacts building materials and supports bacterial growth. Mould begins to establish in warm, humid conditions within 24–48 hours of water intrusion. Each hour of delayed extraction increases the extent of saturation, the risk of category upgrade, and the overall restoration cost. 60-minute emergency response is the benchmark for professional restoration contractors.',
+          text: 'Water should be extracted within 24 hours of the damage event wherever possible. Category 1 (clean) water degrades to Category 2 (grey water) within 24–48 hours as it contacts building materials and supports bacterial growth. Mould begins to establish in warm, humid conditions within 24–48 hours of water intrusion. Each hour of delayed extraction increases the extent of saturation, the risk of category upgrade, and the overall restoration cost. priority emergency response is the benchmark for professional restoration contractors.',
         },
       },
       {
@@ -181,7 +181,7 @@ export default function WaterExtractionEmergencyResponsePage() {
           },
           {
             question: 'How quickly should water be extracted?',
-            answer: 'Water should be extracted within 24 hours of the damage event wherever possible. Category 1 (clean) water degrades to Category 2 (grey water) within 24–48 hours as it contacts building materials and supports bacterial growth. Mould begins to establish in warm, humid conditions within 24–48 hours of water intrusion. Each hour of delayed extraction increases the extent of saturation, the risk of category upgrade, and the overall restoration cost. 60-minute emergency response is the benchmark for professional restoration contractors.',
+            answer: 'Water should be extracted within 24 hours of the damage event wherever possible. Category 1 (clean) water degrades to Category 2 (grey water) within 24–48 hours as it contacts building materials and supports bacterial growth. Mould begins to establish in warm, humid conditions within 24–48 hours of water intrusion. Each hour of delayed extraction increases the extent of saturation, the risk of category upgrade, and the overall restoration cost. priority emergency response is the benchmark for professional restoration contractors.',
           },
           {
             question: 'What equipment is used for water extraction?',

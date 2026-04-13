@@ -4,7 +4,7 @@ import ModernContactPage from './ContactClient';
 
 export const metadata: Metadata = {
   title: 'Contact Us | 24/7 Emergency Line',
-  description: 'Get immediate emergency help for property damage. Contact our 24/7 online response team. Certified restoration specialists respond within 60 minutes.',
+  description: 'Get immediate emergency help for property damage. Contact our 24/7 online response team. Certified restoration specialists respond as soon as a certified contractor is confirmed for your area.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/contact',
   },

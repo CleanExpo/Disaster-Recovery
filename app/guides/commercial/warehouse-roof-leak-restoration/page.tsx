@@ -17,7 +17,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can emergency tarping be done on a warehouse roof?',
-      acceptedAnswer: { '@type': 'Answer', text: "Emergency tarping can typically begin within 60 minutes of the contractor arriving on site, with the affected area secured within 2\u20134 hours depending on the size and accessibility of the damage. However, tarping may be delayed if conditions are unsafe \u2014 active severe storms, high winds, or darkness require the contractor to assess working-at-height risks before proceeding. In these cases, internal water diversion protects stock until roof access is safe." },
+      acceptedAnswer: { '@type': 'Answer', text: "Emergency tarping can typically begin as soon as a certified contractor is confirmed for your area of the contractor arriving on site, with the affected area secured within 2\u20134 hours depending on the size and accessibility of the damage. However, tarping may be delayed if conditions are unsafe \u2014 active severe storms, high winds, or darkness require the contractor to assess working-at-height risks before proceeding. In these cases, internal water diversion protects stock until roof access is safe." },
     },
     {
       '@type': 'Question',
@@ -193,7 +193,7 @@ export default function WarehouseRoofLeakRestorationPage() {
                   <strong>Lodge your claim online</strong> &mdash; Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with details of the roof damage, approximate affected area, and whether stock or equipment is at risk. NRPG instantly matches you with contractors experienced in warehouse and industrial restoration.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> &mdash; Contractors respond within 60 minutes, 24/7. Emergency tarping, water extraction, stock protection, and containment begin immediately to limit the damage.
+                  <strong>Emergency response and make-safe</strong> &mdash; Contractors respond as soon as a certified contractor is confirmed for your area, 24/7. Emergency tarping, water extraction, stock protection, and containment begin immediately to limit the damage.
                 </li>
                 <li>
                   <strong>Formal contract and scope</strong> &mdash; After make-safe, the contractor provides a formal contract with full terms and conditions, including a detailed scope of works covering roof repair, structural drying, stock damage documentation, and a restoration timeline. We bill you directly so work begins immediately without waiting for insurer approval.
@@ -215,7 +215,7 @@ export default function WarehouseRoofLeakRestorationPage() {
       faqs={[
         {
           question: 'How quickly can emergency tarping be done on a warehouse roof?',
-          answer: 'Emergency tarping can typically begin within 60 minutes of the contractor arriving on site, with the affected area secured within 2–4 hours depending on the size and accessibility of the damage. However, tarping may be delayed if conditions are unsafe — active severe storms, high winds, or darkness require the contractor to assess working-at-height risks before proceeding. In these cases, internal water diversion protects stock until roof access is safe.',
+          answer: 'Emergency tarping can typically begin as soon as a certified contractor is confirmed for your area of the contractor arriving on site, with the affected area secured within 2–4 hours depending on the size and accessibility of the damage. However, tarping may be delayed if conditions are unsafe — active severe storms, high winds, or darkness require the contractor to assess working-at-height risks before proceeding. In these cases, internal water diversion protects stock until roof access is safe.',
         },
         {
           question: 'How long does it take to dry a water-damaged warehouse?',

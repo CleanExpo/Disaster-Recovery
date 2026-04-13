@@ -33,7 +33,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/events/april-13-convergence-2026/#localbusiness`,
   name: `${NAP.name} Far North Queensland`,
   url: `${NAP.url}/events/april-13-convergence-2026`,
-  description: 'IICRC-certified cyclone damage restoration contractors serving Far North Queensland. Pre-positioned for TC Maila landfall and supporting Alfred insurance claim escalations. 60-minute emergency response post-clearance.',
+  description: 'IICRC-certified cyclone damage restoration contractors serving Far North Queensland. Pre-positioned for TC Maila landfall and supporting Alfred insurance claim escalations. priority emergency response post-clearance.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'Place', name: 'Far North Queensland', containedInPlace: { '@type': 'State', name: 'Queensland' } },
@@ -49,7 +49,7 @@ const serviceSchema = {
   provider: { '@type': 'Organization', name: NAP.name, '@id': `${NAP.url}/#organization` },
   areaServed: { '@type': 'Place', name: 'Far North Queensland' },
   serviceType: 'Cyclone Damage Restoration',
-  description: 'Professional cyclone damage restoration for TC Maila landfall impacts across FNQ and ongoing Alfred insurance claim support. IICRC-certified contractors, 60-minute post-clearance response, full insurer documentation management for both new TC Maila claims and unresolved Alfred disputes.',
+  description: 'Professional cyclone damage restoration for TC Maila landfall impacts across FNQ and ongoing Alfred insurance claim support. IICRC-certified contractors, priority post-clearance response, full insurer documentation management for both new TC Maila claims and unresolved Alfred disputes.',
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
@@ -145,7 +145,7 @@ export default function April13ConvergencePage() {
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>TC Maila emergency response:</strong> Emergency make-safe, roof tarping,
-                    structural drying, and water damage remediation. 60-minute response post-clearance
+                    structural drying, and water damage remediation. priority response post-clearance
                     across postcodes 4870, 4877, 4873, 4874, 4880, and 4895.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>

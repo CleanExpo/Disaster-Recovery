@@ -287,7 +287,7 @@ function ContractorPortalPageOriginal() {
           <Alert className="mb-6 bg-red-50 border-red-200">
             <AlertTriangle className="h-4 w-4 text-red-600" />
             <AlertDescription className="text-red-800">
-              <strong>URGENT:</strong> You have emergency jobs requiring contact within 60 MINUTES!
+              <strong>URGENT:</strong> You have emergency jobs requiring contact as soon as a certified contractor is confirmed for your area!
             </AlertDescription>
           </Alert>
         )}

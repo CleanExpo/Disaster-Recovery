@@ -94,7 +94,7 @@ export default function StormDamageRestorationGoldCoastPage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Gold Coast"
-        subtitle="Emergency storm damage restoration across all Gold Coast suburbs. IICRC-certified contractors respond in under 60 minutes, 24 hours a day, 7 days a week."
+        subtitle="Emergency storm damage restoration across all Gold Coast suburbs. IICRC-certified contractors respond as quickly as possible, 24 hours a day, 7 days a week."
         gradient="linear-gradient(135deg, #1E3A5F 0%, #4A90D9 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-02-27"
@@ -282,7 +282,7 @@ export default function StormDamageRestorationGoldCoastPage() {
           },
           {
             question: 'How quickly can a storm damage contractor respond on the Gold Coast?',
-            answer: 'NRPG contractors across the Gold Coast respond within 60 minutes of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
+            answer: 'NRPG contractors across the Gold Coast respond as soon as a certified contractor is confirmed for your area of claim lodgement. Lodge your claim online at disasterrecovery.com.au/claim and you are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week, including public holidays.',
           },
           {
             question: 'Does insurance cover storm damage restoration on the Gold Coast?',
@@ -290,7 +290,7 @@ export default function StormDamageRestorationGoldCoastPage() {
           },
           {
             question: 'What should I do immediately after storm damage to my Gold Coast property?',
-            answer: 'Ensure personal safety first — stay away from fallen power lines and structurally compromised areas. If safe, place buckets under active leaks and move valuables away from water. Photograph all damage for insurance purposes. Do not attempt roof access during or after a storm. Lodge your claim at disasterrecovery.com.au/claim for a 60-minute emergency make-safe response.',
+            answer: 'Ensure personal safety first — stay away from fallen power lines and structurally compromised areas. If safe, place buckets under active leaks and move valuables away from water. Photograph all damage for insurance purposes. Do not attempt roof access during or after a storm. Lodge your claim at disasterrecovery.com.au/claim for a priority emergency make-safe response.',
           },
           {
             question: 'How is hail damage restored on Gold Coast properties?',

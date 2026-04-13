@@ -78,7 +78,7 @@ const faqSchema = {
       name: 'How quickly can NRPG respond in Mackay post-clearance?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "NRPG targets a 60-minute response from emergency services all-clear. Contractors are pre-positioned in Mackay for TC Maila and will mobilise as soon as it is safe to operate. Lodge via disasterrecovery.com.au/claim to join the priority queue — early lodgement secures faster contractor dispatch.",
+        text: "NRPG targets a priority response from emergency services all-clear. Contractors are pre-positioned in Mackay for TC Maila and will mobilise as soon as it is safe to operate. Lodge via disasterrecovery.com.au/claim to join the priority queue — early lodgement secures faster contractor dispatch.",
       },
     },
   ],
@@ -138,7 +138,7 @@ export default function StormDamageRestorationMackayPage() {
                   post-clearance response.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Once emergency services confirm it is safe to operate, NRPG targets a 60-minute response for
+                  Once emergency services confirm it is safe to operate, NRPG targets a priority response for
                   emergency make-safe including roof tarping, window boarding, and water extraction. Lodging your
                   claim at disasterrecovery.com.au/claim now secures your place in the priority queue before
                   high-volume post-storm lodgement begins. Because Mackay is north of the Tropic, the ARPC Cyclone
@@ -204,7 +204,7 @@ export default function StormDamageRestorationMackayPage() {
           },
           {
             question: 'How quickly can NRPG respond in Mackay post-clearance?',
-            answer: "NRPG targets a 60-minute response from emergency services all-clear. Contractors are pre-positioned in Mackay for TC Maila and will mobilise as soon as it is safe to operate. Lodge via disasterrecovery.com.au/claim to join the priority queue — early lodgement secures faster contractor dispatch.",
+            answer: "NRPG targets a priority response from emergency services all-clear. Contractors are pre-positioned in Mackay for TC Maila and will mobilise as soon as it is safe to operate. Lodge via disasterrecovery.com.au/claim to join the priority queue — early lodgement secures faster contractor dispatch.",
           },
         ]}
         relatedGuides={[

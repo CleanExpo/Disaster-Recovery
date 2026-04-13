@@ -212,7 +212,7 @@ export default function TCMailaFNQ2026Page() {
               <>
                 <p>
                   NRPG provides end-to-end cyclone damage restoration and insurance documentation support
-                  across the full TC Maila impact corridor. Contractors aim to attend from 60 minutes after the
+                  across the full TC Maila impact corridor. Contractors aim to attend as soon as the
                   official all-clear, subject to location, demand, and post-event access conditions:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>

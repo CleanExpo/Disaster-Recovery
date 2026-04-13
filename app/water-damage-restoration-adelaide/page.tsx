@@ -16,13 +16,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Adelaide | 24/7 IICRC Certified',
   description:
-    'Professional water damage restoration across Adelaide and South Australia. IICRC S500:2025 certified. 60-minute response. Burst pipes, storm flooding, insurance claim support. Lodge 24/7.',
+    'Professional water damage restoration across Adelaide and South Australia. IICRC S500:2025 certified. priority response. Burst pipes, storm flooding, insurance claim support. Lodge 24/7.',
   keywords:
     'water damage restoration adelaide, water damage adelaide, burst pipe adelaide, flood damage adelaide, water damage repair adelaide, IICRC adelaide, structural drying adelaide, insurance claim adelaide',
   openGraph: {
     title: 'Water Damage Restoration Adelaide | 24/7 Emergency Response',
     description:
-      'Emergency water damage restoration across all Adelaide suburbs. IICRC S500:2025 certified. 60-minute response. Insurance claim support.',
+      'Emergency water damage restoration across all Adelaide suburbs. IICRC S500:2025 certified. priority response. Insurance claim support.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Adelaide')}&service=water-damage-restoration`,
@@ -80,7 +80,7 @@ const faqSchema = {
       name: 'How quickly should water damage be treated in Adelaide?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Within 24\u201348 hours. Adelaide\u2019s dry-summer climate means affected materials can begin secondary damage cycles quickly \u2014 clay soils shrink and shift, and mould can establish in wall cavities within 48 hours once winter moisture is present. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+        text: "Within 24\u201348 hours. Adelaide\u2019s dry-summer climate means affected materials can begin secondary damage cycles quickly \u2014 clay soils shrink and shift, and mould can establish in wall cavities within 48 hours once winter moisture is present. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
       },
     },
     {
@@ -131,7 +131,7 @@ export default function WaterDamageRestorationAdelaidePage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Adelaide"
-        subtitle="Emergency water damage restoration across all Adelaide suburbs and South Australia. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day."
+        subtitle="Emergency water damage restoration across all Adelaide suburbs and South Australia. IICRC S500:2025 certified technicians. priority response, 24 hours a day."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -223,7 +223,7 @@ export default function WaterDamageRestorationAdelaidePage() {
             heading: 'Adelaide Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across Greater Adelaide:</p>
+                <p>priority emergency response across Greater Adelaide:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner / CBD:</strong> Adelaide CBD, North Adelaide, Norwood, Unley, Mitcham, Glenelg,
                   Parkside, Prospect, Kensington, Fullarton
@@ -252,7 +252,7 @@ export default function WaterDamageRestorationAdelaidePage() {
           {
             question: 'How quickly should water damage be treated in Adelaide?',
             answer:
-              "Within 24–48 hours. Adelaide's dry-summer climate means affected materials can begin secondary damage cycles quickly — clay soils shrink and shift, and mould can establish in wall cavities within 48 hours once winter moisture is present. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+              "Within 24–48 hours. Adelaide's dry-summer climate means affected materials can begin secondary damage cycles quickly — clay soils shrink and shift, and mould can establish in wall cavities within 48 hours once winter moisture is present. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
           },
           {
             question: 'Does my SA home insurance cover burst pipe damage?',

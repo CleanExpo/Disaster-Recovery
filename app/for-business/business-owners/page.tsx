@@ -20,7 +20,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: 'My business premises is flooded — what should I do first?',
     answer:
-      'Ensure everyone is safe and evacuate the premises if necessary. Turn off the electricity at the mains if you can reach the switchboard safely. Do not walk through standing water that may be in contact with electrical sources. Once safe, photograph and video the damage immediately — before you touch anything. Then lodge a claim online at disasterrecovery.com.au/claim for emergency response within 60 minutes.',
+      'Ensure everyone is safe and evacuate the premises if necessary. Turn off the electricity at the mains if you can reach the switchboard safely. Do not walk through standing water that may be in contact with electrical sources. Once safe, photograph and video the damage immediately — before you touch anything. Then lodge a claim online at disasterrecovery.com.au/claim for emergency response as soon as a certified contractor is confirmed for your area.',
   },
   {
     question: 'Is the landlord or tenant responsible for flood damage restoration?',
@@ -30,7 +30,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: 'How quickly can you get my business back open?',
     answer:
-      'Our emergency response arrives within 60 minutes, 24 hours a day, 7 days a week. The full restoration timeline depends on the extent of damage, but we prioritise commercial properties because we understand that every day closed is revenue lost. For many water damage incidents, we can have you partially trading again within 24–48 hours while restoration continues in affected areas.',
+      'Our emergency response arrives as soon as a certified contractor is confirmed for your area, 24 hours a day, 7 days a week. The full restoration timeline depends on the extent of damage, but we prioritise commercial properties because we understand that every day closed is revenue lost. For many water damage incidents, we can have you partially trading again within 24–48 hours while restoration continues in affected areas.',
   },
   {
     question: 'What business interruption documentation do you provide for insurance?',
@@ -82,7 +82,7 @@ export default function BusinessOwnersPage() {
           icon: <Store className="h-12 w-12" />,
           title: 'Disaster Recovery for Business Owners',
           subtitle:
-            'Every hour your business is closed costs you money. We respond within 60 minutes, 24/7, anywhere in Australia — and give you full documentation for your insurance claim.',
+            'Every hour your business is closed costs you money. We respond as soon as a certified contractor is confirmed for your area, 24/7, anywhere in Australia — and give you full documentation for your insurance claim.',
         }}
         cta={{ text: 'Get Your Business Back Trading', href: '/claim' }}
         secondaryCta={{ text: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide' }}
@@ -151,7 +151,7 @@ export default function BusinessOwnersPage() {
                   claim and one less thing to replace before you can reopen.
                 </p>
 
-                <h3>5. Contact Disaster Recovery — 60-minute response target</h3>
+                <h3>5. Contact Disaster Recovery — priority response target</h3>
                 <p>
                   <Link href="/claim"><strong>Lodge an emergency claim online</strong></Link>.
                   Our IICRC-certified contractors from the national NRPG network arrive within 60
@@ -680,7 +680,7 @@ export default function BusinessOwnersPage() {
           {
             title: 'Lodge an Emergency Claim',
             href: '/claim',
-            description: 'Start your emergency restoration claim online — 60-minute contractor response, 24/7.',
+            description: 'Start your emergency restoration claim online — certified contractor response, 24/7.',
           },
         ]}
       />

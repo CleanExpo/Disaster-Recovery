@@ -157,7 +157,7 @@ export default function CanberraGovernmentRestorationPage() {
                   <strong>Lodge your claim online</strong> — Submit through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with the building location, type and extent of damage, any security clearance requirements, and whether heritage considerations apply. NRPG matches you with contractors experienced in government and institutional restoration in the ACT.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> — Contractors respond within 60 minutes, 24/7, across the ACT. Emergency water extraction, containment, tarping, and make-safe measures begin immediately. Work begins immediately without waiting for insurer or departmental procurement approval for emergency works.
+                  <strong>Emergency response and make-safe</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across the ACT. Emergency water extraction, containment, tarping, and make-safe measures begin immediately. Work begins immediately without waiting for insurer or departmental procurement approval for emergency works.
                 </li>
                 <li>
                   <strong>Formal contract</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the restoration scope, heritage compliance requirements, security protocols, and timeline. We bill you directly — the department, agency, or property manager.

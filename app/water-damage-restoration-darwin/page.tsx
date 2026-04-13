@@ -16,13 +16,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Darwin | IICRC-Certified 24/7 Emergency',
   description:
-    'Professional water damage restoration in Darwin and the NT. IICRC S500:2025 certified contractors, 60-minute response. TC Maila watch zone — Darwin contractors pre-positioned. Post-cyclone and Wet Season water damage recovery. Lodge your claim 24/7.',
+    'Professional water damage restoration in Darwin and the NT. IICRC S500:2025 certified contractors, priority response. TC Maila watch zone — Darwin contractors pre-positioned. Post-cyclone and Wet Season water damage recovery. Lodge your claim 24/7.',
   keywords:
     'water damage restoration darwin, water damage darwin, darwin wet season water damage, cyclone water damage darwin, TC Maila darwin, darwin flood damage, post-cyclone water damage NT, ARPC cyclone pool darwin',
   openGraph: {
     title: 'Water Damage Restoration Darwin | IICRC-Certified 24/7 Emergency',
     description:
-      'Emergency water damage restoration across Darwin and the NT. IICRC S500:2025 certified. 60-minute response. TC Maila watch zone — Darwin contractors pre-positioned now.',
+      'Emergency water damage restoration across Darwin and the NT. IICRC S500:2025 certified. priority response. TC Maila watch zone — Darwin contractors pre-positioned now.',
     images: [
       {
         url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Darwin')}&service=water-damage-restoration`,
@@ -114,7 +114,7 @@ const faqSchema = {
       name: 'How quickly do I need to act on water damage in Darwin?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "In Darwin's tropical climate — 30°C+ with humidity regularly above 80% during the Wet Season — the standard 24-hour mould window from IICRC S500:2025 is effectively compressed to 12 hours or less. Mould can establish and begin colonising structural materials within half a day under active Wet Season conditions. Every hour of delay increases remediation scope and cost. NRPG provides 60-minute emergency response across Darwin for water extraction and make-safe. Do not wait for insurer authorisation before beginning emergency extraction — most policies cover emergency works without prior approval.",
+        text: "In Darwin's tropical climate — 30°C+ with humidity regularly above 80% during the Wet Season — the standard 24-hour mould window from IICRC S500:2025 is effectively compressed to 12 hours or less. Mould can establish and begin colonising structural materials within half a day under active Wet Season conditions. Every hour of delay increases remediation scope and cost. NRPG provides priority emergency response across Darwin for water extraction and make-safe. Do not wait for insurer authorisation before beginning emergency extraction — most policies cover emergency works without prior approval.",
       },
     },
     {
@@ -150,7 +150,7 @@ export default function WaterDamageRestorationDarwinPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Darwin"
-        subtitle="Emergency water damage restoration across Darwin and the NT. IICRC S500:2025 certified technicians. 60-minute response. TC Maila watch zone — Darwin contractors pre-positioned. Lodge your claim 24/7."
+        subtitle="Emergency water damage restoration across Darwin and the NT. IICRC S500:2025 certified technicians. priority response. TC Maila watch zone — Darwin contractors pre-positioned. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -198,7 +198,7 @@ export default function WaterDamageRestorationDarwinPage() {
               <>
                 <p>
                   The NT is currently in the watch zone for TC Maila&apos;s outer rain bands. Darwin
-                  NRPG contractors are pre-positioned for 60-minute post-clearance response. Post-cyclone
+                  NRPG contractors are pre-positioned for priority post-clearance response. Post-cyclone
                   water intrusion is the primary water damage scenario for Darwin — and it follows a
                   specific pattern that differs from standard flood events.
                 </p>
@@ -237,7 +237,7 @@ export default function WaterDamageRestorationDarwinPage() {
             heading: 'Darwin Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Darwin LGA and surrounds:</p>
+                <p>priority emergency response across the Darwin LGA and surrounds:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner Darwin:</strong> Darwin CBD, Larrakeyah, Fannie Bay, Parap, Stuart
                   Park, Nightcliff, Rapid Creek
@@ -272,7 +272,7 @@ export default function WaterDamageRestorationDarwinPage() {
           {
             question: 'How quickly do I need to act on water damage in Darwin?',
             answer:
-              "In Darwin's tropical climate — 30°C+ with humidity regularly above 80% during the Wet Season — the standard 24-hour mould window from IICRC S500:2025 is effectively compressed to 12 hours or less. Mould can establish and begin colonising structural materials within half a day under active Wet Season conditions. Every hour of delay increases remediation scope and cost. NRPG provides 60-minute emergency response across Darwin for water extraction and make-safe. Do not wait for insurer authorisation before beginning emergency extraction — most policies cover emergency works without prior approval.",
+              "In Darwin's tropical climate — 30°C+ with humidity regularly above 80% during the Wet Season — the standard 24-hour mould window from IICRC S500:2025 is effectively compressed to 12 hours or less. Mould can establish and begin colonising structural materials within half a day under active Wet Season conditions. Every hour of delay increases remediation scope and cost. NRPG provides priority emergency response across Darwin for water extraction and make-safe. Do not wait for insurer authorisation before beginning emergency extraction — most policies cover emergency works without prior approval.",
           },
           {
             question: 'How much does water damage restoration cost in Darwin?',

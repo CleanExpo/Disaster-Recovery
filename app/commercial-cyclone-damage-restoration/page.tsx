@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Commercial Cyclone Damage Restoration | IICRC-Certified Contractors FNQ',
-  description: 'Commercial cyclone damage restoration for FNQ businesses, strata buildings, and industrial properties. IICRC-certified contractors, 60-minute post-clearance response. TC Maila commercial response active.',
+  description: 'Commercial cyclone damage restoration for FNQ businesses, strata buildings, and industrial properties. IICRC-certified contractors, priority post-clearance response. TC Maila commercial response active.',
   keywords: 'commercial cyclone damage restoration, cyclone damage commercial property, business cyclone damage FNQ, strata cyclone damage, industrial cyclone restoration, TC Maila commercial',
   openGraph: {
     title: 'Commercial Cyclone Damage Restoration | IICRC-Certified Contractors FNQ',
-    description: 'Commercial cyclone damage restoration for FNQ businesses, strata buildings, and industrial properties. IICRC-certified contractors, 60-minute post-clearance response. TC Maila commercial response active.',
+    description: 'Commercial cyclone damage restoration for FNQ businesses, strata buildings, and industrial properties. IICRC-certified contractors, priority post-clearance response. TC Maila commercial response active.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Commercial Cyclone Damage Restoration')}&city=${encodeURIComponent('FNQ')}&service=commercial-cyclone-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -66,7 +66,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can NRPG mobilise for commercial cyclone damage?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Within 60 minutes of emergency services issuing the all-clear for the affected area. Commercial properties are prioritised for emergency make-safe to allow the earliest possible re-opening. Lodge your commercial claim at disasterrecovery.com.au/claim to be first in the queue post-clearance.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'As soon as emergency services have confirmed issuing the all-clear for the affected area. Commercial properties are prioritised for emergency make-safe to allow the earliest possible re-opening. Lodge your commercial claim at disasterrecovery.com.au/claim to be first in the queue post-clearance.' },
     },
   ],
 };
@@ -184,7 +184,7 @@ export default function CommercialCycloneDamageRestorationPage() {
           },
           {
             question: 'How quickly can NRPG mobilise for commercial cyclone damage?',
-            answer: 'Within 60 minutes of emergency services issuing the all-clear for the affected area. Commercial properties are prioritised for emergency make-safe to allow the earliest possible re-opening. Lodge your commercial claim at disasterrecovery.com.au/claim to be first in the queue post-clearance.',
+            answer: 'As soon as emergency services have confirmed issuing the all-clear for the affected area. Commercial properties are prioritised for emergency make-safe to allow the earliest possible re-opening. Lodge your commercial claim at disasterrecovery.com.au/claim to be first in the queue post-clearance.',
           },
         ]}
         relatedGuides={[

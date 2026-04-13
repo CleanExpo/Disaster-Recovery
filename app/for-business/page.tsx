@@ -45,7 +45,7 @@ export default function ForBusinessPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Disaster Recovery for Business',
-        subtitle: 'Whether you manage one building or a portfolio of hundreds — we respond within 60 minutes, 24/7, anywhere in Australia.',
+        subtitle: 'Whether you manage one building or a portfolio of hundreds — we respond as soon as a certified contractor is confirmed for your area, 24/7, anywhere in Australia.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

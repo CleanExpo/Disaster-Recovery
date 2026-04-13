@@ -378,7 +378,7 @@ export default function ACCCClaimsIntakeAuditPage() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>No manufactured urgency:</strong> The claim form contains no countdown
                   timers, scarcity claims, or pressure language beyond accurate descriptions
-                  of the service timeline (contractor contact within 60 minutes during business
+                  of the service timeline (contractor contact as soon as a certified contractor is confirmed for your area during business
                   hours).
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>

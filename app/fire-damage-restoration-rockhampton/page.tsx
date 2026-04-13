@@ -12,13 +12,13 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Fire Damage Restoration Rockhampton | 24/7 IICRC Certified',
   description:
-    'Fire and smoke damage restoration across Rockhampton and Central Queensland. IICRC S700:2025 certified. Bushfire interface risk, industrial fire, structural fire. 60-minute response.',
+    'Fire and smoke damage restoration across Rockhampton and Central Queensland. IICRC S700:2025 certified. Bushfire interface risk, industrial fire, structural fire. priority response.',
   keywords:
     'fire damage restoration rockhampton, fire damage rockhampton, smoke damage rockhampton, central queensland fire restoration, IICRC rockhampton fire',
   openGraph: {
     title: 'Fire Damage Restoration Rockhampton | 24/7 IICRC Certified',
     description:
-      'Fire and smoke damage restoration across Rockhampton and Central Queensland. IICRC S700:2025 certified. Bushfire interface risk, industrial fire, structural fire. 60-minute response.',
+      'Fire and smoke damage restoration across Rockhampton and Central Queensland. IICRC S700:2025 certified. Bushfire interface risk, industrial fire, structural fire. priority response.',
     type: 'website',
   },
   alternates: {
@@ -136,7 +136,7 @@ export default function FireDamageRestorationRockhamptonPage() {
       <AgGuidePageTemplate
         category="Fire Damage"
         title="Fire Damage Restoration Rockhampton"
-        subtitle="IICRC S700:2025 certified fire and smoke damage restoration across Rockhampton and Central Queensland. Bushfire interface, post-flood electrical fire, structural fire specialists. 60-minute response."
+        subtitle="IICRC S700:2025 certified fire and smoke damage restoration across Rockhampton and Central Queensland. Bushfire interface, post-flood electrical fire, structural fire specialists. priority response."
         gradient="linear-gradient(135deg, #7F0000 0%, #C62828 100%)"
         icon={<Flame className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -226,7 +226,7 @@ export default function FireDamageRestorationRockhamptonPage() {
             body: (
               <>
                 <p>
-                  60-minute emergency response across Rockhampton and surrounding areas:
+                  priority emergency response across Rockhampton and surrounding areas:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>
                   <strong>Rockhampton CBD and inner suburbs:</strong> Rockhampton CBD, Depot Hill,

@@ -124,7 +124,7 @@ const FAQ_SECTIONS = [
     questions: [
       {
         q: 'How quickly can a restoration contractor respond to an emergency?',
-        a: 'NRPG contractors target a 60-minute response across major Australian cities. Response times in regional areas such as Cairns, Townsville, and regional WA depend on contractor availability and distance. When you lodge online at disasterrecovery.com.au/claim, you select your response radius (20–100 km) and are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week including public holidays.',
+        a: 'NRPG contractors target a priority response across major Australian cities. Response times in regional areas such as Cairns, Townsville, and regional WA depend on contractor availability and distance. When you lodge online at disasterrecovery.com.au/claim, you select your response radius (20–100 km) and are instantly matched with the nearest available IICRC-certified contractor. The service operates 24 hours a day, 7 days a week including public holidays.',
       },
       {
         q: 'What areas of Australia does NRPG cover?',
@@ -296,7 +296,7 @@ export default function FAQIndexPage() {
           <div className="bg-blue-900 text-white rounded-xl p-8 text-center">
             <h2 className="text-2xl font-bold mb-3">Need emergency restoration right now?</h2>
             <p className="text-blue-200 mb-6">
-              IICRC-certified contractors available 24/7 across Australia. 60-minute response target.
+              IICRC-certified contractors available 24/7 across Australia. priority response target.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

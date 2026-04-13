@@ -20,7 +20,7 @@ export default function PerthStormDamageEmergencyPage() {
         name: 'How quickly can emergency tarping be done after a storm in Perth?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'NRPG contractors provide a 60-minute emergency response across greater Perth, 24/7. However, after major storm events affecting thousands of properties (like the 2010 hailstorm), demand surges and response times may be longer. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are in the queue. Tarping typically takes 2\u20134 hours once the contractor is on site, depending on the damage extent and roof accessibility. If roof access is unsafe during active storms, internal water diversion protects the interior until conditions improve.',
+          text: 'NRPG contractors provide a priority emergency response across greater Perth, 24/7. However, after major storm events affecting thousands of properties (like the 2010 hailstorm), demand surges and response times may be longer. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are in the queue. Tarping typically takes 2\u20134 hours once the contractor is on site, depending on the damage extent and roof accessibility. If roof access is unsafe during active storms, internal water diversion protects the interior until conditions improve.',
         },
       },
       {
@@ -163,7 +163,7 @@ export default function PerthStormDamageEmergencyPage() {
                   <strong>Lodge your claim online</strong> — Submit your emergency through <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> with photos of the damage, your suburb, and a description of the damage types (roof, windows, fencing, interior water damage). NRPG matches you with contractors experienced in Perth storm damage restoration.
                 </li>
                 <li>
-                  <strong>Emergency response and make-safe</strong> — Contractors respond within 60 minutes, 24/7, across greater Perth. Emergency tarping, board-up, debris removal, and electrical isolation begin immediately when safe to do so. Work begins immediately without waiting for insurer approval.
+                  <strong>Emergency response and make-safe</strong> — Contractors respond as soon as a certified contractor is confirmed for your area, 24/7, across greater Perth. Emergency tarping, board-up, debris removal, and electrical isolation begin immediately when safe to do so. Work begins immediately without waiting for insurer approval.
                 </li>
                 <li>
                   <strong>Formal contract</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the complete restoration scope (roof repair/replacement, interior drying and restoration, window replacement, fencing, and structural repairs). We bill you directly so you control the process and timeline.
@@ -185,7 +185,7 @@ export default function PerthStormDamageEmergencyPage() {
       faqs={[
         {
           question: 'How quickly can emergency tarping be done after a storm in Perth?',
-          answer: 'NRPG contractors provide a 60-minute emergency response across greater Perth, 24/7. However, after major storm events affecting thousands of properties (like the 2010 hailstorm), demand surges and response times may be longer. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are in the queue. Tarping typically takes 2–4 hours once the contractor is on site, depending on the damage extent and roof accessibility. If roof access is unsafe during active storms, internal water diversion protects the interior until conditions improve.',
+          answer: 'NRPG contractors provide a priority emergency response across greater Perth, 24/7. However, after major storm events affecting thousands of properties (like the 2010 hailstorm), demand surges and response times may be longer. Lodging your claim immediately through disasterrecovery.com.au/claim ensures you are in the queue. Tarping typically takes 2–4 hours once the contractor is on site, depending on the damage extent and roof accessibility. If roof access is unsafe during active storms, internal water diversion protects the interior until conditions improve.',
         },
         {
           question: 'Does insurance cover storm damage in Perth?',

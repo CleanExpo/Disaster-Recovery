@@ -92,7 +92,7 @@ const faqSchema = {
       name: 'How quickly should I repair storm damage in Adelaide?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "You should arrange emergency make-safe within 24–48 hours of a storm event. Unprotected roof damage in Adelaide's climate allows water ingress into wall cavities and ceiling spaces that will result in secondary mould damage within 48–72 hours in summer and 5–7 days in cooler months. Emergency tarping and board-up prevents further loss and is almost always covered under your policy's make-safe provision. Lodge your claim at disasterrecovery.com.au/claim immediately — NRPG targets 60-minute response for emergency make-safe across the Adelaide metropolitan area.",
+        text: "You should arrange emergency make-safe within 24–48 hours of a storm event. Unprotected roof damage in Adelaide's climate allows water ingress into wall cavities and ceiling spaces that will result in secondary mould damage within 48–72 hours in summer and 5–7 days in cooler months. Emergency tarping and board-up prevents further loss and is almost always covered under your policy's make-safe provision. Lodge your claim at disasterrecovery.com.au/claim immediately — NRPG targets priority response for emergency make-safe across the Adelaide metropolitan area.",
       },
     },
     {
@@ -136,7 +136,7 @@ export default function StormDamageRestorationAdelaidePage() {
       <AgGuidePageTemplate
         category="Storm Damage"
         title="Storm Damage Restoration Adelaide"
-        subtitle="Emergency storm damage restoration across Adelaide and South Australia. IICRC-certified contractors for hail, wind damage, roof failures, and structural make-safe. 60-minute response, 24 hours a day."
+        subtitle="Emergency storm damage restoration across Adelaide and South Australia. IICRC-certified contractors for hail, wind damage, roof failures, and structural make-safe. priority response, 24 hours a day."
         gradient="linear-gradient(135deg, #0C2340 0%, #1565C0 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -238,7 +238,7 @@ export default function StormDamageRestorationAdelaidePage() {
             heading: 'Adelaide and Adelaide Hills Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency storm response across the Adelaide metropolitan area:</p>
+                <p>priority emergency storm response across the Adelaide metropolitan area:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Inner East:</strong> Norwood, Kensington, Kent Town, Unley, Parkside &mdash; established
                   terrace housing and older tiled roofs with high storm water ingress risk.
@@ -282,7 +282,7 @@ export default function StormDamageRestorationAdelaidePage() {
           {
             question: 'How quickly should I repair storm damage in Adelaide?',
             answer:
-              "Arrange emergency make-safe within 24–48 hours. Unprotected roof damage allows water ingress into cavities that causes mould within 48–72 hours in summer and 5–7 days in cooler months. Emergency tarping and board-up is almost always covered under your policy's make-safe provision. Lodge at disasterrecovery.com.au/claim — NRPG targets 60-minute response for emergency make-safe across Adelaide metro.",
+              "Arrange emergency make-safe within 24–48 hours. Unprotected roof damage allows water ingress into cavities that causes mould within 48–72 hours in summer and 5–7 days in cooler months. Emergency tarping and board-up is almost always covered under your policy's make-safe provision. Lodge at disasterrecovery.com.au/claim — NRPG targets priority response for emergency make-safe across Adelaide metro.",
           },
           {
             question: 'What is the difference between storm damage and flood damage for insurance claims in Adelaide?',

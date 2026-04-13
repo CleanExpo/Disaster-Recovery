@@ -6,11 +6,11 @@ import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Gold Coast | 24/7 IICRC Certified',
-  description: 'Professional water damage restoration across the Gold Coast. IICRC S500:2025 certified contractors respond in under 60 minutes. Burst pipes, storm flooding, Ex-TC Alfred recovery. Lodge 24/7.',
+  description: 'Professional water damage restoration across the Gold Coast. IICRC S500:2025 certified contractors respond as quickly as possible. Burst pipes, storm flooding, Ex-TC Alfred recovery. Lodge 24/7.',
   keywords: 'water damage restoration gold coast, water damage gold coast, flood damage gold coast, burst pipe gold coast, water damage repair gold coast, IICRC gold coast, alfred water damage gold coast, structural drying gold coast',
   openGraph: {
     title: 'Water Damage Restoration Gold Coast | 24/7 Emergency Response',
-    description: 'Emergency water damage restoration across the Gold Coast. IICRC S500:2025 certified. 60-minute response. Ex-TC Alfred recovery support.',
+    description: 'Emergency water damage restoration across the Gold Coast. IICRC S500:2025 certified. priority response. Ex-TC Alfred recovery support.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Water Damage Restoration')}&city=${encodeURIComponent('Gold Coast')}&service=water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -54,7 +54,7 @@ const faqSchema = {
       name: 'How quickly should water damage be treated on the Gold Coast?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Within 24\u201348 hours. The Gold Coast\u2019s subtropical humidity means mould can begin establishing within 24 hours in water-affected wall cavities and subfloor. The longer moisture remains trapped, the greater the structural and contents loss. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+        text: "Within 24\u201348 hours. The Gold Coast\u2019s subtropical humidity means mould can begin establishing within 24 hours in water-affected wall cavities and subfloor. The longer moisture remains trapped, the greater the structural and contents loss. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
       },
     },
     {
@@ -93,7 +93,7 @@ export default function WaterDamageRestorationGoldCoastPage() {
       <AgGuidePageTemplate
         category="Water Damage"
         title="Water Damage Restoration Gold Coast"
-        subtitle="Emergency water damage restoration across the Gold Coast. IICRC S500:2025 certified technicians. 60-minute response, 24 hours a day. Ex-TC Alfred recovery support available."
+        subtitle="Emergency water damage restoration across the Gold Coast. IICRC S500:2025 certified technicians. priority response, 24 hours a day. Ex-TC Alfred recovery support available."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -186,7 +186,7 @@ export default function WaterDamageRestorationGoldCoastPage() {
             heading: 'Gold Coast Suburbs We Cover',
             body: (
               <>
-                <p>60-minute emergency response across the Gold Coast and Tweed Corridor:</p>
+                <p>priority emergency response across the Gold Coast and Tweed Corridor:</p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Coastal Strip:</strong> Southport, Surfers Paradise, Broadbeach, Burleigh
                   Heads, Miami, Mermaid Beach, Nobby Beach
@@ -210,7 +210,7 @@ export default function WaterDamageRestorationGoldCoastPage() {
         faqs={[
           {
             question: 'How quickly should water damage be treated on the Gold Coast?',
-            answer: "Within 24–48 hours. The Gold Coast's subtropical humidity means mould can begin establishing within 24 hours in water-affected wall cavities and subfloor. The longer moisture remains trapped, the greater the structural and contents loss. Lodge at disasterrecovery.com.au/claim for 60-minute emergency dispatch.",
+            answer: "Within 24–48 hours. The Gold Coast's subtropical humidity means mould can begin establishing within 24 hours in water-affected wall cavities and subfloor. The longer moisture remains trapped, the greater the structural and contents loss. Lodge at disasterrecovery.com.au/claim for priority emergency dispatch.",
           },
           {
             question: 'Is my Ex-TC Alfred damage on the Gold Coast still claimable in 2026?',

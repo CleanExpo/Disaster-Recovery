@@ -134,7 +134,7 @@ export default function FloodDamageRestorationPerthPage() {
       <AgGuidePageTemplate
         category="Flood Damage"
         title="Flood Damage Restoration Perth"
-        subtitle="IICRC-certified Category 3 flood damage restoration across Perth. Swan River and Canning River flooding specialists. Winter storm, groundwater rise, and overland flow inundation. 60-minute response. Lodge your claim 24/7."
+        subtitle="IICRC-certified Category 3 flood damage restoration across Perth. Swan River and Canning River flooding specialists. Winter storm, groundwater rise, and overland flow inundation. priority response. Lodge your claim 24/7."
         gradient="linear-gradient(135deg, #0F2942 0%, #01579B 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -279,7 +279,7 @@ export default function FloodDamageRestorationPerthPage() {
             body: (
               <>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  60-minute emergency response for extraction and make-safe across the Perth metropolitan
+                  priority emergency response for extraction and make-safe across the Perth metropolitan
                   region and surrounds:
                 </p>
                 <p style={{ marginTop: '0.5rem' }}>

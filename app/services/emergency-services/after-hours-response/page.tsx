@@ -22,7 +22,7 @@ const faqSchema = JSON.stringify({
       name: 'Do you respond to emergencies at night, on weekends, and on public holidays?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. NRPG operates 24 hours a day, 365 days a year including Christmas, Easter, and all public holidays. Disasters do not observe business hours — neither do we. Lodge a claim at disasterrecovery.com.au/claim at any time and a certified technician will be dispatched within 60 minutes in most metro areas.',
+        text: 'Yes. NRPG operates 24 hours a day, 365 days a year including Christmas, Easter, and all public holidays. Disasters do not observe business hours — neither do we. Lodge a claim at disasterrecovery.com.au/claim at any time and a certified technician will be dispatched as soon as a certified contractor is confirmed for your area in most metro areas.',
       },
     },
     {

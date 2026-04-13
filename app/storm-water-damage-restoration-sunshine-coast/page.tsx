@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: 'storm damage sunshine coast, water damage sunshine coast, storm damage noosa, water damage maroochydore, storm restoration sunshine coast QLD, alfred flood sunshine coast',
   openGraph: {
     title: 'Storm and Water Damage Restoration Sunshine Coast | IICRC Emergency',
-    description: 'Emergency storm and water damage restoration across the Sunshine Coast from Noosa to Caloundra. IICRC S500:2025 certified. 60-minute response. Ex-TC Alfred recovery support available.',
+    description: 'Emergency storm and water damage restoration across the Sunshine Coast from Noosa to Caloundra. IICRC S500:2025 certified. priority response. Ex-TC Alfred recovery support available.',
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('Storm and Water Damage Restoration')}&city=${encodeURIComponent('Sunshine Coast')}&service=storm-water-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
@@ -25,7 +25,7 @@ const localBusinessSchema = {
   '@id': `${NAP.url}/storm-water-damage-restoration-sunshine-coast/#localbusiness`,
   name: `${NAP.name} Sunshine Coast`,
   url: `${NAP.url}/storm-water-damage-restoration-sunshine-coast`,
-  description: 'IICRC-certified storm and water damage restoration contractors serving the Sunshine Coast from Noosa to Caloundra. 60-minute emergency response. Ex-TC Alfred recovery support available.',
+  description: 'IICRC-certified storm and water damage restoration contractors serving the Sunshine Coast from Noosa to Caloundra. priority emergency response. Ex-TC Alfred recovery support available.',
   image: NAP.ogImage,
   priceRange: NAP.priceRange,
   areaServed: { '@type': 'Place', name: 'Sunshine Coast', containedInPlace: { '@type': 'State', name: 'Queensland' } },
@@ -67,7 +67,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How quickly can NRPG respond to storm damage on the Sunshine Coast?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors respond within 60 minutes across the full Noosa-to-Caloundra corridor following emergency storms. Hinterland communities including Maleny, Montville, and Eumundi have a 90-minute response window. Lodge your claim at disasterrecovery.com.au/claim for immediate contractor matching.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'NRPG contractors respond as soon as a certified contractor is confirmed for your area across the full Noosa-to-Caloundra corridor following emergency storms. Hinterland communities including Maleny, Montville, and Eumundi have a 90-minute response window. Lodge your claim at disasterrecovery.com.au/claim for immediate contractor matching.' },
     },
   ],
 };
@@ -81,7 +81,7 @@ export default function StormWaterDamageRestorationSunshineCoastPage() {
       <AgGuidePageTemplate
         category="Storm and Water Damage"
         title="Storm and Water Damage Restoration Sunshine Coast"
-        subtitle="Emergency storm and water damage restoration across the Sunshine Coast from Noosa to Caloundra. IICRC S500:2025 certified. 60-minute response. Ex-TC Alfred recovery support available."
+        subtitle="Emergency storm and water damage restoration across the Sunshine Coast from Noosa to Caloundra. IICRC S500:2025 certified. priority response. Ex-TC Alfred recovery support available."
         gradient="linear-gradient(135deg, #0F2942 0%, #1565C0 100%)"
         icon={<Droplets className="h-10 w-10" />}
         lastReviewed="2026-04-09"
@@ -185,7 +185,7 @@ export default function StormWaterDamageRestorationSunshineCoastPage() {
           },
           {
             question: 'How quickly can NRPG respond to storm damage on the Sunshine Coast?',
-            answer: 'NRPG contractors respond within 60 minutes across the full Noosa-to-Caloundra corridor following emergency storms. Hinterland communities including Maleny, Montville, and Eumundi have a 90-minute response window. Lodge your claim at disasterrecovery.com.au/claim for immediate contractor matching.',
+            answer: 'NRPG contractors respond as soon as a certified contractor is confirmed for your area across the full Noosa-to-Caloundra corridor following emergency storms. Hinterland communities including Maleny, Montville, and Eumundi have a 90-minute response window. Lodge your claim at disasterrecovery.com.au/claim for immediate contractor matching.',
           },
         ]}
         relatedGuides={[

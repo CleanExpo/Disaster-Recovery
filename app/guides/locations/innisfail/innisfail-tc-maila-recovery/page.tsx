@@ -7,7 +7,7 @@ import { NAP } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Innisfail TC Maila Recovery — Property Owner Guide 2026',
   description:
-    'TC Maila recovery guide for Innisfail and Cassowary Coast property owners. Innisfail (4860) is in the TC Maila impact corridor. ARPC cyclone pool claims, mould prevention in tropical conditions, and NRPG 60-minute post-clearance response.',
+    'TC Maila recovery guide for Innisfail and Cassowary Coast property owners. Innisfail (4860) is in the TC Maila impact corridor. ARPC cyclone pool claims, mould prevention in tropical conditions, and NRPG priority post-clearance response.',
   keywords:
     'innisfail TC Maila recovery, cyclone Maila innisfail, innisfail cyclone damage 2026, cassowary coast cyclone recovery 2026, innisfail 4860 cyclone',
   alternates: {
@@ -59,7 +59,7 @@ const faqSchema = {
       name: 'What should Innisfail property owners do immediately after TC Maila?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Wait for Queensland Police or SES to confirm the all-clear for your specific area before leaving shelter or entering your property. Photograph all damage with timestamps before any cleanup or repairs. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across Innisfail (4860) and the Cassowary Coast for 60-minute post-clearance response.',
+        text: 'Wait for Queensland Police or SES to confirm the all-clear for your specific area before leaving shelter or entering your property. Photograph all damage with timestamps before any cleanup or repairs. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across Innisfail (4860) and the Cassowary Coast for priority post-clearance response.',
       },
     },
     {
@@ -140,7 +140,7 @@ export default function InnisfailTCMailaRecoveryPage() {
                   <strong>Babinda Boulders corridor</strong> and the Bellenden Ker range — the wettest mountain range in Australia — channelled extreme rainfall from TC Maila into the Mulgrave and Russell River catchments, affecting properties in Gordonvale, Babinda, and Mirriwinni.
                 </p>
                 <p>
-                  <strong>NRPG contractors are deployed</strong> across Innisfail (4860) and the Cassowary Coast for 60-minute post-clearance response. Lodge at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> to enter the priority response queue.
+                  <strong>NRPG contractors are deployed</strong> across Innisfail (4860) and the Cassowary Coast for priority post-clearance response. Lodge at <a href="/claim" className="text-blue-400 hover:underline">disasterrecovery.com.au/claim</a> to enter the priority response queue.
                 </p>
               </div>
             ),
@@ -203,7 +203,7 @@ export default function InnisfailTCMailaRecoveryPage() {
                 </p>
                 <ol className="list-decimal pl-6 space-y-3">
                   <li>
-                    <strong>All-clear and immediate make-safe.</strong> NRPG deploys within 60 minutes of Queensland SES area clearance. Roof tarping, structural securing, boarding of openings. Mould prevention treatment applied to all wet surfaces at the point of make-safe — not deferred to later in the program.
+                    <strong>All-clear and immediate make-safe.</strong> NRPG deploys as soon as a certified contractor is confirmed for your area of Queensland SES area clearance. Roof tarping, structural securing, boarding of openings. Mould prevention treatment applied to all wet surfaces at the point of make-safe — not deferred to later in the program.
                   </li>
                   <li>
                     <strong>Hours 1&ndash;24: Water extraction and drying deployment.</strong> Industrial extraction from all affected areas, including subfloor spaces. Deployment of structural drying and dehumidification equipment. Initial moisture mapping. In Innisfail&rsquo;s climate, equipment deployment within the first 24 hours is critical — drying that starts in 48 hours costs significantly more than drying that starts in 12.
@@ -226,7 +226,7 @@ export default function InnisfailTCMailaRecoveryPage() {
           {
             question: 'What should Innisfail property owners do immediately after TC Maila?',
             answer:
-              'Wait for Queensland Police or SES all-clear before leaving shelter or entering your property. Photograph all damage with timestamps. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across Innisfail (4860) for 60-minute post-clearance response.',
+              'Wait for Queensland Police or SES all-clear before leaving shelter or entering your property. Photograph all damage with timestamps. Notify your insurer within 24–48 hours. Lodge at disasterrecovery.com.au/claim — NRPG is deployed across Innisfail (4860) for priority post-clearance response.',
           },
           {
             question: 'How does the ARPC Cyclone Pool apply to Innisfail TC Maila claims?',
