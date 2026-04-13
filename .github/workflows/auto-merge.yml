@@ -1,0 +1,97 @@
+name: Auto-merge
+
+# Merges PRs labelled "auto-merge" once all required status checks pass.
+# Requirements:
+#   - PR must have the "auto-merge" label applied
+#   - ci/lint, ci/typecheck, and ci/build must all pass
+#   - The workflow uses GITHUB_TOKEN — no extra secret needed
+
+on:
+  pull_request:
+    types: [labeled, synchronize, reopened]
+  check_suite:
+    types: [completed]
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+
+jobs:
+  auto-merge:
+    name: Auto-merge labelled PRs
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'auto-merge') || github.event_name != 'pull_request'
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Find auto-merge PRs
+        id: find-prs
+        if: github.event_name != 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+            });
+            const labelled = prs.filter(pr =>
+              pr.labels.some(l => l.name === 'auto-merge')
+            );
+            core.setOutput('pr_numbers', JSON.stringify(labelled.map(p => p.number)));
+            return labelled.length;
+
+      - name: Attempt merge (on PR event)
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'auto-merge')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+
+            // Check all required status checks pass
+            const { data: checks } = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: pr.head.sha,
+            });
+
+            const required = ['ci / lint', 'ci / typecheck', 'ci / build'];
+            const results = checks.check_runs.filter(c => required.includes(c.name));
+
+            const allPassed = required.every(name => {
+              const run = results.find(r => r.name === name);
+              return run?.status === 'completed' && run?.conclusion === 'success';
+            });
+
+            if (!allPassed) {
+              const missing = required.filter(name => {
+                const run = results.find(r => r.name === name);
+                return !run || run.status !== 'completed' || run.conclusion !== 'success';
+              });
+              core.info(`Not all checks pass yet. Waiting on: ${missing.join(', ')}`);
+              return;
+            }
+
+            // All checks green — merge
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'squash',
+                commit_title: `${pr.title} (#${pr.number})`,
+                commit_message: `Auto-merged via auto-merge label.\n\nCo-authored-by: ${pr.user.login} <${pr.user.id}+${pr.user.login}@users.noreply.github.com>`,
+              });
+              core.info(`PR #${pr.number} merged successfully.`);
+
+              // Post a comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: '✅ Auto-merged — all CI checks passed.',
+              });
+            } catch (err) {
+              core.setFailed(`Merge failed: ${err.message}`);
+            }

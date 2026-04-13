@@ -1,0 +1,46 @@
+name: Stale PR cleanup
+
+# Warns on PRs with no activity for 7 days.
+# Closes PRs with no activity for 14 days.
+# Excludes PRs labelled "no-stale" or "wip".
+
+on:
+  schedule:
+    # Runs daily at 09:00 AEST (23:00 UTC previous day)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  stale:
+    name: Mark and close stale PRs
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          # Only operate on PRs, not issues
+          stale-issue-message: ''
+          close-issue-message: ''
+          # PR messages
+          stale-pr-message: |
+            This PR has had no activity for 7 days and has been marked stale.
+            If this work is still relevant, please leave a comment or push an update.
+            The PR will be closed automatically after a further 7 days without activity.
+            Remove the `stale` label or push a commit to keep it open.
+          close-pr-message: |
+            This PR has been automatically closed due to 14 days of inactivity.
+            If the work is still needed, please re-open the PR or create a new one.
+          # Timing
+          days-before-pr-stale: 7
+          days-before-pr-close: 7
+          # Do not process issues
+          days-before-issue-stale: -1
+          days-before-issue-close: -1
+          # Labels
+          stale-pr-label: stale
+          exempt-pr-labels: 'no-stale,wip,auto-merge'
+          # Only PRs targeting main
+          operations-per-run: 30
