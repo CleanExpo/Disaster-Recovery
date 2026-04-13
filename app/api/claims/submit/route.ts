@@ -313,7 +313,7 @@ export async function POST(request: NextRequest) {
         : 'Claim submitted successfully.',
       nextSteps: [
         'Your claim is being matched with a certified NRPG contractor',
-        'The contractor will contact you directly within 60 MINUTES',
+        'A recovery coordinator will review your claim and connect you with a verified contractor',
         'The contractor will schedule an inspection at your convenience',
         'All further communication will be directly with your assigned contractor'
       ],
