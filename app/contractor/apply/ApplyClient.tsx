@@ -9,9 +9,9 @@ import { useState, useEffect, Suspense, Fragment } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { 
+import {
   Shield, Building2, FileText, Award, CreditCard, UserCheck, CheckCircle,
-  ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X, ShieldCheck
+  ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X, ShieldCheck, Info
 } from 'lucide-react';
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
 import { validateABN } from '@/lib/utils/australian-compliance';
@@ -691,24 +691,26 @@ function ContractorApplicationContent() {
 
       if (!submitResponse.ok) {
         const errText = await submitResponse.text();
-        console.error('Failed to save contractor application', errText);
+        void errText; // logged server-side; surface message to user
         setSubmitError('We could not save your application. Please try again.');
         setIsSubmitting(false);
         return;
       }
 
       const submitData = await submitResponse.json();
-      const { contractorId, paymentRequired } = submitData as {
+      const { contractorId, paymentRequired, applicationId } = submitData as {
         contractorId: string | null;
         paymentRequired: boolean;
         paymentAmount: number;
+        applicationId: string | null;
       };
 
       // Keep localStorage for UX continuity — only remove after payment redirect
       if (!paymentRequired || !contractorId) {
         // No payment required (or no contractor ID) — go straight to success
         localStorage.removeItem('contractor_onboarding_progress');
-        router.push('/contractor/application-success?payment=pending');
+        const refParam = applicationId ? `&ref=${encodeURIComponent(applicationId)}` : '';
+        router.push(`/contractor/application-success?payment=pending${refParam}`);
         return;
       }
 
@@ -746,7 +748,8 @@ function ContractorApplicationContent() {
       if (statusCode === 503 || statusCode === 501) {
         // Stripe keys not yet added — team will contact them
         localStorage.removeItem('contractor_onboarding_progress');
-        router.push('/contractor/application-success?payment=pending');
+        const refParam = applicationId ? `&ref=${encodeURIComponent(applicationId)}` : '';
+        router.push(`/contractor/application-success?payment=pending${refParam}`);
         return;
       }
 
@@ -756,7 +759,7 @@ function ContractorApplicationContent() {
         errData.error ?? 'Payment setup encountered an error. Our team will contact you to complete the process.'
       );
     } catch (error) {
-      console.error('Submission error:', error);
+      void error; // swallow; surface message to user
       setSubmitError('An unexpected error occurred. Please try again or contact support.');
     } finally {
       setIsSubmitting(false);
@@ -1007,6 +1010,20 @@ function ContractorApplicationContent() {
                 </div>
               </div>
 
+
+              {/* DR-589: Fee disclosure — shown at Step 1 so applicants see it before investing time */}
+              {currentStep === 1 && (
+                <div
+                  role="note"
+                  className="mb-6 flex items-start gap-3 rounded-xl border border-blue-500/40 bg-blue-900/20 px-4 py-3 text-sm text-blue-100"
+                >
+                  <Info className="h-4 w-4 flex-shrink-0 mt-0.5 text-blue-400" aria-hidden />
+                  <p>
+                    <span className="font-semibold text-blue-200">Processing fee: $275 (non-refundable).</span>{' '}
+                    This fee is payable at the final step. Incomplete applications are not charged.
+                  </p>
+                </div>
+              )}
 
               <div className="min-h-[360px]" key={`step-${currentStep}-${quickFillSelection}`}>
                 {renderStepContent()}

@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { CheckCircle2, FileText, ArrowRight, Clock } from 'lucide-react';
 
 interface Props {
-  searchParams: Promise<{ payment?: string }>;
+  searchParams: Promise<{ payment?: string; ref?: string }>;
 }
 
 export default async function ContractorApplicationSuccessPage({ searchParams }: Props) {
   const params = await searchParams;
   const paymentPending = params.payment === 'pending';
+  const applicationRef = params.ref ?? null;
 
   return (
     <>
@@ -29,7 +30,7 @@ export default async function ContractorApplicationSuccessPage({ searchParams }:
               </h1>
               <p className="text-sm sm:text-base text-slate-300 mt-1">
                 {paymentPending
-                  ? 'Your application has been saved successfully.'
+                  ? 'Application details have been saved successfully.'
                   : 'Thank you for applying to join the NRPG contractor network.'}
               </p>
             </div>
@@ -38,28 +39,43 @@ export default async function ContractorApplicationSuccessPage({ searchParams }:
           <div className="space-y-4 text-sm sm:text-base text-slate-200">
             {paymentPending ? (
               <>
+                {applicationRef && (
+                  <div className="rounded-xl border border-blue-500/30 bg-blue-900/20 px-4 py-3">
+                    <p className="text-xs font-medium text-blue-300 mb-0.5">Application reference</p>
+                    <p className="font-mono font-semibold text-blue-100 break-all">{applicationRef}</p>
+                    <p className="text-xs text-blue-300/70 mt-1">Keep this for your records.</p>
+                  </div>
+                )}
                 <div className="rounded-xl border border-amber-500/30 bg-amber-900/20 px-4 py-4">
                   <p className="font-semibold text-amber-300 mb-1">Payment step not yet complete</p>
                   <p className="text-amber-100/80">
-                    Our team will contact you within <span className="font-semibold">24 hours</span> to
-                    complete your application and arrange payment. No action is needed from you right now.
+                    The NRPG team reviews applications within{' '}
+                    <span className="font-semibold">5–7 business days</span>. A confirmation email
+                    has been sent to the address on file. No action is needed right now.
                   </p>
                 </div>
                 <p>
-                  We&apos;ve received all your application details. Once payment is confirmed, your
-                  onboarding materials and training access will be activated.
+                  All application details have been received. Once payment is confirmed, onboarding
+                  materials and training access will be activated.
                 </p>
               </>
             ) : (
               <>
+                {applicationRef && (
+                  <div className="rounded-xl border border-emerald-500/30 bg-emerald-900/20 px-4 py-3">
+                    <p className="text-xs font-medium text-emerald-300 mb-0.5">Application reference</p>
+                    <p className="font-mono font-semibold text-emerald-100 break-all">{applicationRef}</p>
+                    <p className="text-xs text-emerald-300/70 mt-1">Keep this for your records.</p>
+                  </div>
+                )}
                 <p>
-                  Our onboarding team will review your insurance, licensing, experience and safety
-                  details. You&apos;ll receive an email with the outcome and next steps, including
-                  access to training modules and your contractor portal.
+                  The NRPG team will review insurance, licensing, experience and safety details.
+                  An email with the outcome and next steps — including access to training modules
+                  and the contractor portal — will be sent within{' '}
+                  <span className="font-semibold">5–7 business days</span>.
                 </p>
                 <p>
-                  Typical review time is <span className="font-semibold">1–3 business days</span>.
-                  We may contact you if we need clarification on any part of your application.
+                  The team may be in touch if clarification is needed on any part of the application.
                 </p>
               </>
             )}
@@ -76,16 +92,16 @@ export default async function ContractorApplicationSuccessPage({ searchParams }:
               <ul className="text-xs sm:text-sm text-slate-300 space-y-1">
                 {paymentPending ? (
                   <>
-                    <li>• Our team contacts you to arrange payment</li>
+                    <li>• Team contacts you to arrange payment</li>
                     <li>• Payment confirmed and account activated</li>
-                    <li>• Compliance team reviews your documentation</li>
+                    <li>• Compliance team reviews documentation</li>
                     <li>• Leads switch on once onboarding is finished</li>
                   </>
                 ) : (
                   <>
-                    <li>• Compliance team reviews your documentation</li>
+                    <li>• Compliance team reviews documentation</li>
                     <li>• Background and reference checks are completed</li>
-                    <li>• You receive onboarding + training access</li>
+                    <li>• Onboarding and training access is activated</li>
                     <li>• Leads switch on once onboarding is finished</li>
                   </>
                 )}
