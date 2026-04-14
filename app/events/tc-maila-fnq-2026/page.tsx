@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Wind } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
-import { PrivacyCollectionNotice } from '@/components/privacy/PrivacyCollectionNotice';
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 
 /**
  * DR-474: TC Maila FNQ Emergency Page — updated 9 April 2026
@@ -191,7 +191,7 @@ export default function TCMailaFNQ2026Page() {
                     TC Maila Forecast Track Map (IDQ65002)
                   </a>
                 </p>
-                <PrivacyCollectionNotice />
+                <App3CollectionNotice />
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>{' '}
                   Queensland Police, SES, or BOM will issue an official all-clear for each affected area.

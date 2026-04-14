@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Wind } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
-import { PrivacyCollectionNotice } from '@/components/privacy/PrivacyCollectionNotice';
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 
 /**
  * DR-500: Ex-TC Alfred FNQ Recovery — Final PERILS AU$1.877 Billion
@@ -239,7 +239,7 @@ export default function AlfredFNQ2026Page() {
                     discovery, not from event date.
                   </li>
                 </ul>
-                <PrivacyCollectionNotice />
+                <App3CollectionNotice />
               </>
             ),
           },
