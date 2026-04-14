@@ -50,7 +50,7 @@ export default function FacilitiesManagersPage() {
         { label: 'Facilities Managers' },
       ]}
       stats={[
-        { label: 'Response Time', value: '< 60 min' },
+        { label: 'Response Time', value: 'Priority' },
         { label: 'Available', value: '24/7/365' },
         { label: 'Coverage', value: 'Australia-Wide' },
         { label: 'Certification', value: 'IICRC' },

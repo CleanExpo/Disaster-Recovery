@@ -88,7 +88,7 @@ export default function HowItWorksPage() {
         { label: 'How It Works' },
       ]}
       stats={[
-        { label: 'Response Time', value: '< 60 min' },
+        { label: 'Response Time', value: 'Priority' },
         { label: 'Emergency Make-Safe', value: '$2,750' },
         { label: 'Certified Network', value: 'IICRC' },
         { label: 'Available', value: '24/7/365' },

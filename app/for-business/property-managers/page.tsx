@@ -75,7 +75,7 @@ export default function PropertyManagersPage() {
           { label: 'Property Managers' },
         ]}
         stats={[
-          { label: 'Response Time', value: '< 60 min' },
+          { label: 'Response Time', value: 'Priority' },
           { label: 'Available', value: '24/7/365' },
           { label: 'Coverage', value: 'Australia-Wide' },
           { label: 'Documentation', value: 'Full Reports' },

@@ -23,7 +23,7 @@ const faqSchema = JSON.stringify({
       name: 'Should I cover broken storm windows with temporary boarding before the restoration contractor arrives?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes — temporary boarding is critical. A broken window exposes the interior to further rain ingress, wind damage to contents, and wildlife and unauthorised entry. Use heavy-duty polythene sheeting or timber ply secured over the opening. Do not use single sheets of glass to replace broken panes temporarily — only safety glass or polycarbonate. NRPG can provide emergency boarding as part of storm make-safe, typically within 60-90 minutes.',
+        text: 'Yes — temporary boarding is critical. A broken window exposes the interior to further rain ingress, wind damage to contents, and wildlife and unauthorised entry. Use heavy-duty polythene sheeting or timber ply secured over the opening. Do not use single sheets of glass to replace broken panes temporarily — only safety glass or polycarbonate. NRPG can provide emergency boarding as part of storm make-safe — lodge a claim and a coordinator will connect you with the nearest available contractor.',
       },
     },
     {

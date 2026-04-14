@@ -46,7 +46,7 @@ export default function CommercialCleanersPage() {
         { label: 'Commercial Cleaners' },
       ]}
       stats={[
-        { label: 'Response Time', value: '< 60 min' },
+        { label: 'Response Time', value: 'Priority' },
         { label: 'Available', value: '24/7/365' },
         { label: 'Your Client', value: 'Stays Yours' },
         { label: 'Coverage', value: 'Australia-Wide' },

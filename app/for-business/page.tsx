@@ -54,7 +54,7 @@ export default function ForBusinessPage() {
         { label: 'For Business' },
       ]}
       stats={[
-        { label: 'Response Time', value: '< 60 min' },
+        { label: 'Response Time', value: 'Priority' },
         { label: 'Available', value: '24/7/365' },
         { label: 'Coverage', value: 'Australia-Wide' },
         { label: 'Certified', value: 'IICRC' },
