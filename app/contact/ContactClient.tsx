@@ -3,6 +3,7 @@
 
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -397,6 +398,14 @@ function ModernContactPageOriginal() {
                         placeholder="Please describe the damage or emergency situation..."
                       />
                     </motion.div>
+
+                    {/* APP 3 Collection Notice */}
+                    <p className="text-xs text-gray-400 leading-relaxed">
+                      By submitting this form, you consent to Disaster Recovery Australia collecting your contact details to respond to your enquiry. Handled in accordance with the{' '}
+                      <Link href="/privacy-policy" className="underline hover:text-gray-300">
+                        Privacy Policy
+                      </Link>.
+                    </p>
 
                     {/* Submit Button */}
                     <motion.button
