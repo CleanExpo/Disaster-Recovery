@@ -292,6 +292,16 @@ const PRIORITY_MAP: Record<string, number> = {
   '/get-help': 0.8,
   '/government-funding': 0.7,
   '/whos-first': 0.8,
+  // State hub pages — DR-608
+  '/qld': 0.95,
+  '/nsw': 0.9,
+  '/vic': 0.85,
+  '/wa': 0.85,
+  '/sa': 0.8,
+  // IICRC authority pages — DR-608
+  '/standards/iicrc-s500-water-damage': 0.85,
+  '/standards/iicrc-s520-mold-remediation': 0.85,
+  '/standards/iicrc-s700-fire-smoke': 0.85,
 };
 
 // Change frequency mapping by route prefix
@@ -356,6 +366,16 @@ const FREQUENCY_MAP: Record<string, MetadataRoute.Sitemap[0]['changeFrequency']>
   '/get-help': 'weekly',
   '/government-funding': 'monthly',
   '/whos-first': 'weekly',
+  // State hub pages — DR-608
+  '/qld': 'daily',
+  '/nsw': 'weekly',
+  '/vic': 'weekly',
+  '/wa': 'weekly',
+  '/sa': 'monthly',
+  // IICRC authority pages — DR-608
+  '/standards/iicrc-s500-water-damage': 'monthly',
+  '/standards/iicrc-s520-mold-remediation': 'monthly',
+  '/standards/iicrc-s700-fire-smoke': 'monthly',
   '/flood-damage-restoration-cairns': 'daily',
   '/flood-damage-restoration-townsville': 'daily',
   '/guides/locations/cairns/cairns-tc-maila-recovery': 'daily',

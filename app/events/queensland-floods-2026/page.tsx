@@ -18,6 +18,7 @@
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice'
 
 export const metadata: Metadata = {
   title: 'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery Australia',
@@ -485,11 +486,9 @@ export default function QueenslandFloods2026Page() {
             <p className="text-slate-300 mb-2 leading-relaxed">
               Government relief closes 27 April. Lodge your claim now — it takes 90 seconds on mobile.
             </p>
-            <p className="text-slate-400 text-xs mb-8">
-              <strong>Privacy Notice:</strong> Personal information collected through this service is used solely
-              for the purpose of connecting you with a restoration contractor and is handled in accordance with
-              the Privacy Act 1988 (Cth). We do not sell your information to third parties.
-            </p>
+            <div className="mb-8 text-left">
+              <App3CollectionNotice />
+            </div>
             <Link
               href="/claim"
               className="inline-flex items-center gap-2 px-10 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-colors text-lg"

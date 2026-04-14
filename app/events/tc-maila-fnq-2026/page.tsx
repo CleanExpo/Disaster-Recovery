@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Wind } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
-import { PrivacyCollectionNotice } from '@/components/privacy/PrivacyCollectionNotice';
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 
 /**
  * DR-474: TC Maila FNQ Emergency Page — updated 9 April 2026
@@ -90,6 +90,37 @@ const serviceSchema = {
   },
 };
 
+// DR-622: Event schema for AI Overview capture and Google Events search
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Tropical Cyclone Maila — FNQ 2026',
+  description:
+    'Tropical Cyclone Maila is active in the Coral Sea and may impact the Far North Queensland coast. NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes for cyclone damage restoration and insurance claim support.',
+  startDate: '2026-04-01',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: 'Far North Queensland',
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'QLD',
+      addressCountry: 'AU',
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Disaster Recovery Australia',
+    url: 'https://disasterrecovery.com.au',
+  },
+  about: [
+    { '@type': 'Thing', name: 'Tropical Cyclone Maila' },
+    { '@type': 'Thing', name: 'Cyclone Damage Restoration' },
+    { '@type': 'Thing', name: 'Insurance Claims' },
+  ],
+};
+
 export default function TCMailaFNQ2026Page() {
   return (
     <>
@@ -102,6 +133,11 @@ export default function TCMailaFNQ2026Page() {
         id="tcmaila-service"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="tcmaila-event"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
       />
       <AgGuidePageTemplate
         category="Emergency Response"
@@ -155,7 +191,7 @@ export default function TCMailaFNQ2026Page() {
                     TC Maila Forecast Track Map (IDQ65002)
                   </a>
                 </p>
-                <PrivacyCollectionNotice />
+                <App3CollectionNotice />
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>{' '}
                   Queensland Police, SES, or BOM will issue an official all-clear for each affected area.
@@ -222,7 +258,7 @@ export default function TCMailaFNQ2026Page() {
                     wind-driven rain ingress from all affected areas.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Structural drying to IICRC S500:2025:</strong> Psychrometric drying logs and
+                    <strong>Structural drying to <a href="/standards/iicrc-s500-water-damage">IICRC S500:2025</a>:</strong> Psychrometric drying logs and
                     full moisture mapping documentation for insurer compliance.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>

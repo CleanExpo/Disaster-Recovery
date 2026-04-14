@@ -36,12 +36,12 @@ export function AntigravityHero() {
         <div className="ag-hero-text-block">
           <div className="ag-status-pill ag-slide-up-1">
             <span className="ag-pulse-dot" />
-            Automating immediate contractor connections across ANZ
+            Policyholder-first disaster recovery across Australia
           </div>
 
           <h1 className="ag-hero-h1 ag-slide-up-2">
-            Emergency Disaster Restoration Australia.<br />
-            <span className="ag-gradient-text">Restore Your Property. Reclaim Your Life.</span>
+            Who First.<br />
+            <span className="ag-gradient-text">Policyholder first, always.</span>
           </h1>
 
           <p className="ag-hero-national-tagline ag-slide-up-2" style={{
@@ -51,13 +51,12 @@ export function AntigravityHero() {
             letterSpacing: '0.03em',
             marginBottom: '0.25rem',
           }}>
-            National Vetted Professional Restoration Services Australia Wide
+            We work for you, not your insurer. Every day, until you're whole again.
           </p>
 
           <p className="ag-hero-subtext ag-slide-up-3">
-            When disaster strikes, every minute counts. Connect instantly with the NRPG
-            network of elite, IICRC-certified restoration specialists for rapid emergency
-            response and full claims documentation.
+            When disaster strikes, every minute counts. Connect with IICRC-certified restoration specialists
+            who document everything to insurance standard — and answer to you, not the insurer.
           </p>
 
           <div className="ag-hero-actions ag-slide-up-4">
