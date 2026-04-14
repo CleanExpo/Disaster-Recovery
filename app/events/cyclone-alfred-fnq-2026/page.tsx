@@ -104,6 +104,42 @@ const serviceSchema = {
   },
 };
 
+// DR-622: Event schema for AI Overview capture and Google Events search
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Ex-Tropical Cyclone Alfred — Queensland + NSW Recovery 2026',
+  description:
+    'Ex-TC Alfred (March 2026): final PERILS insured loss AU$1.877 billion, 132,000 ICA claims. NRPG IICRC-certified contractors supporting late, disputed, and supplementary Alfred claims across Queensland and northern NSW.',
+  startDate: '2026-03-01',
+  endDate: '2026-03-31',
+  eventStatus: 'https://schema.org/EventRescheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: [
+    {
+      '@type': 'State',
+      name: 'Queensland',
+      addressCountry: 'AU',
+    },
+    {
+      '@type': 'State',
+      name: 'New South Wales',
+      addressCountry: 'AU',
+    },
+  ],
+  organizer: {
+    '@type': 'Organization',
+    name: 'Disaster Recovery Australia',
+    url: 'https://disasterrecovery.com.au',
+  },
+  about: [
+    { '@type': 'Thing', name: 'Ex-Tropical Cyclone Alfred' },
+    { '@type': 'Thing', name: 'Cyclone Damage Restoration' },
+    { '@type': 'Thing', name: 'Insurance Claims' },
+    { '@type': 'Thing', name: 'ARPC Cyclone Pool' },
+  ],
+};
+
 export default function AlfredFNQ2026Page() {
   return (
     <>
@@ -116,6 +152,11 @@ export default function AlfredFNQ2026Page() {
         id="alfredFNQ-service"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="alfredFNQ-event"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
       />
       <AgGuidePageTemplate
         category="Event Recovery"
@@ -177,7 +218,9 @@ export default function AlfredFNQ2026Page() {
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Mould now appearing:</strong> Properties where drying was incomplete or not
-                    performed to IICRC S500:2025 standards are presenting mould months after the event.
+                    performed to <a href="/standards/iicrc-s500-water-damage">IICRC S500:2025</a> standards are presenting mould months after the event.
+                    Where mould has taken hold, remediation to{' '}
+                    <a href="/standards/iicrc-s520-mold-remediation">IICRC S520</a> is required.
                     If mould arose from water ingress during Alfred, this is a supplementary claim.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
