@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Wind } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
+import { PrivacyCollectionNotice } from '@/components/privacy/PrivacyCollectionNotice';
 
 /**
  * DR-500: Ex-TC Alfred FNQ Recovery — Final PERILS AU$1.877 Billion
@@ -195,10 +196,7 @@ export default function AlfredFNQ2026Page() {
                     discovery, not from event date.
                   </li>
                 </ul>
-                <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.875rem', color: '#555' }}>
-                  NRPG collects your contact and property details to coordinate contractor matching and
-                  insurance documentation. See our <a href="/privacy">Privacy Policy</a> for full details.
-                </p>
+                <PrivacyCollectionNotice />
               </>
             ),
           },
