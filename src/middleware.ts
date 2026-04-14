@@ -137,12 +137,22 @@ export async function middleware(request: NextRequest) {
     );
   }
 
-  // ── RBAC: protect /admin routes ──────────────────────────────────────────
-  if (path.startsWith('/admin')) {
-    const token = await getToken({
-      req: request,
-      secret: process.env.NEXTAUTH_SECRET,
-    });
+  // ── RBAC: protect /admin and /contractor routes ──────────────────────────
+  const isProtected =
+    path.startsWith('/admin') || path.startsWith('/contractor');
+
+  if (isProtected) {
+    // Safely resolve the JWT — if NEXTAUTH_SECRET is absent or token is malformed,
+    // treat as unauthenticated rather than letting an uncaught error return 500.
+    let token: Awaited<ReturnType<typeof getToken>> = null;
+    try {
+      token = await getToken({
+        req: request,
+        secret: process.env.NEXTAUTH_SECRET,
+      });
+    } catch {
+      token = null;
+    }
 
     if (!token) {
       // Not authenticated — redirect to login
@@ -151,8 +161,9 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    if (!isAdminRole(token.role as string | undefined)) {
-      // Authenticated but not an admin — redirect to home with error
+    // /admin routes additionally require an admin role
+    const tokenRole = typeof token === 'object' ? (token as Record<string, unknown>).role as string | undefined : undefined;
+    if (path.startsWith('/admin') && !isAdminRole(tokenRole)) {
       const homeUrl = new URL('/', request.url);
       homeUrl.searchParams.set('error', 'AccessDenied');
       return NextResponse.redirect(homeUrl);
