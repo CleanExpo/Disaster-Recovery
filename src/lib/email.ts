@@ -156,6 +156,45 @@ export const emailTemplates = {
 
   // ── Contractor lifecycle ───────────────────────────────────────────────
 
+  /** DR-587: Application received — sent immediately after successful DB write, before payment */
+  contractorApplicationReceived: (name: string, applicationId: string, applicantEmail: string) => ({
+    subject: 'Your NRPG contractor application has been received',
+    html: wrap(`
+      <h2>Application received, ${name}.</h2>
+      <p>The NRPG team has received your contractor application. No action is needed from you right now.</p>
+      <div class="callout">
+        <strong>Application reference:</strong> ${applicationId}<br/>
+        <strong>Email on file:</strong> ${applicantEmail}
+      </div>
+      <h3>What happens next</h3>
+      <ol style="line-height:2;color:#475569;padding-left:20px">
+        <li>The NRPG compliance team reviews your application.</li>
+        <li>Background and reference checks are completed.</li>
+        <li>An email is sent to <strong>${applicantEmail}</strong> within <strong>5–7 business days</strong> with the outcome.</li>
+        <li>Once approved, onboarding materials and training access are activated.</li>
+      </ol>
+      <p style="font-size:13px;color:#666">
+        Questions? Contact the support team at
+        <a href="${SITE_URL}/contact" style="color:#1a56db">${SITE_URL}/contact</a>.
+      </p>
+      <p style="margin-top:24px;font-size:12px;color:#999">Reference: ${applicationId}</p>
+    `),
+    text: [
+      `Application received, ${name}.`,
+      '',
+      `Application reference: ${applicationId}`,
+      `Email on file: ${applicantEmail}`,
+      '',
+      'What happens next:',
+      '1. The NRPG compliance team reviews your application.',
+      '2. Background and reference checks are completed.',
+      `3. An email is sent to ${applicantEmail} within 5–7 business days with the outcome.`,
+      '4. Once approved, onboarding materials and training access are activated.',
+      '',
+      `Support: ${SITE_URL}/contact`,
+    ].join('\n'),
+  }),
+
   contractorWelcome: (name: string, applicationId: string) => ({
     subject: 'Application Received — Welcome to National Recovery Partners Group',
     html: wrap(`

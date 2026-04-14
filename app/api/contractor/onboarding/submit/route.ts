@@ -86,10 +86,13 @@ export async function POST(request: Request) {
 
       contractorId = contractor.id;
 
-      // Fire-and-forget welcome email — non-fatal if SMTP not configured
+      // DR-587: Fire-and-forget confirmation email — non-fatal if Resend not configured
       if (email && contactName) {
-        sendEmail(email, emailTemplates.contractorWelcome(contactName, record.id)).catch(() => {
-          // Silently swallow — email is informational, not critical path
+        sendEmail(
+          email,
+          emailTemplates.contractorApplicationReceived(contactName, record.id, email),
+        ).catch(() => {
+          // Non-fatal — DB write is the source of truth; email failure does not block the flow
         });
       }
     }
