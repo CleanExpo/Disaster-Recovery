@@ -50,7 +50,7 @@ export default function CouncilsPage() {
         { label: 'Local Councils' },
       ]}
       stats={[
-        { label: 'Response Time', value: '< 60 min' },
+        { label: 'Response Time', value: 'Rapid' },
         { label: 'Available', value: '24/7/365' },
         { label: 'Coverage', value: 'Australia-Wide' },
         { label: 'Certification', value: 'IICRC' },
@@ -258,12 +258,12 @@ export default function CouncilsPage() {
                 no delays.
               </p>
 
-              <h3>On-Site Within 60 Minutes</h3>
+              <h3>Rapid Emergency Response</h3>
               <p>
-                Once the claim is lodged, a certified contractor will contact you within 60
-                minutes and can be on-site within the hour. For council assets, where damage
-                may affect public safety or building security, rapid attendance is critical.
-                Our contractors arrive equipped for immediate water extraction, temporary
+                Once the claim is lodged, a recovery coordinator reviews it and connects you
+                with a certified contractor in the affected area. For council assets where
+                damage may affect public safety or building security, prompt attendance is
+                critical. Contractors arrive equipped for immediate water extraction, temporary
                 weatherproofing, boarding, and containment — whatever the situation demands.
               </p>
 

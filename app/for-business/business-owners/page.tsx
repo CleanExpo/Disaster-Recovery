@@ -93,7 +93,7 @@ export default function BusinessOwnersPage() {
           { label: 'Business Owners' },
         ]}
         stats={[
-          { label: 'Response Time', value: '< 60 min' },
+          { label: 'Response Time', value: 'Priority' },
           { label: 'Available', value: '24/7/365' },
           { label: 'Business Focus', value: 'Minimal Downtime' },
           { label: 'Documentation', value: 'Full Claims Support' },
@@ -151,14 +151,14 @@ export default function BusinessOwnersPage() {
                   claim and one less thing to replace before you can reopen.
                 </p>
 
-                <h3>5. Contact Disaster Recovery — priority response target</h3>
+                <h3>5. Contact Disaster Recovery — priority response</h3>
                 <p>
                   <Link href="/claim"><strong>Lodge an emergency claim online</strong></Link>.
-                  Our IICRC-certified contractors from the national NRPG network arrive within 60
-                  minutes, 24 hours a day, 365 days a year. We begin emergency make-safe
-                  immediately: water extraction, containment, drying equipment deployment and
-                  structural assessment. You do not need insurer approval — work starts the moment
-                  we arrive.
+                  A recovery coordinator will review the claim and connect you with an
+                  IICRC-certified contractor from the national NRPG network, available
+                  24 hours a day, 365 days a year. The contractor begins emergency make-safe
+                  on arrival: water extraction, containment, drying equipment deployment and
+                  structural assessment. Work starts without waiting for insurer approval.
                 </p>
 
                 <h3>6. Notify your landlord or property manager</h3>

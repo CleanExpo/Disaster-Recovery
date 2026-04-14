@@ -101,7 +101,7 @@ export function EnhancedChatBot() {
     };
 
     if (input.includes('water') || input.includes('flood')) {
-      response.text = "Water damage requires immediate action! I'm connecting you with the nearest certified contractor. They'll arrive within 60 minutes.";
+      response.text = "Water damage requires immediate action. Lodge a claim now and a recovery coordinator will connect you with a certified IICRC contractor in your area.";
       response.options = ['Share Property Details', 'Upload Photos', 'Lodge Claim Online'];
     } else if (input.includes('fire') || input.includes('smoke')) {
       response.text = "Fire damage restoration specialist needed. Our network handles everything from assessment to complete restoration.";
