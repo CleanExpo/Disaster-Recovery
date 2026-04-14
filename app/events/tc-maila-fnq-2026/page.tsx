@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Wind } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
+import { PrivacyCollectionNotice } from '@/components/privacy/PrivacyCollectionNotice';
 
 /**
  * DR-474: TC Maila FNQ Emergency Page — updated 9 April 2026
@@ -154,12 +155,7 @@ export default function TCMailaFNQ2026Page() {
                     TC Maila Forecast Track Map (IDQ65002)
                   </a>
                 </p>
-                <p style={{ marginTop: '0.75rem', fontSize: '0.875rem', color: '#555' }}>
-                  By submitting a claim at disasterrecovery.com.au/claim, NRPG collects your name,
-                  contact details, and property information for the purpose of matching you with an
-                  IICRC-certified contractor and coordinating insurance documentation. See our{' '}
-                  <a href="/privacy">Privacy Policy</a> for full details.
-                </p>
+                <PrivacyCollectionNotice />
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>{' '}
                   Queensland Police, SES, or BOM will issue an official all-clear for each affected area.
@@ -192,10 +188,7 @@ export default function TCMailaFNQ2026Page() {
                     drying logs and full scope documentation required for insurer sign-off. Lodge now at{' '}
                     <a href="/claim">disasterrecovery.com.au/claim</a> to be first in the dispatch
                     queue — response times subject to location, demand, and post-clearance access
-                    conditions. <em style={{ fontSize: '0.85em', color: '#666' }}>
-                      NRPG collects your contact and property details to coordinate contractor
-                      matching. See our <a href="/privacy">Privacy Policy</a>.
-                    </em>
+                    conditions.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Keep all emergency accommodation receipts.</strong> If your property is
