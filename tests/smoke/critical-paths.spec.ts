@@ -60,7 +60,7 @@ test.describe('Tier 1: Liveness', () => {
       '/guides/iicrc/s700-2025-fire-smoke-restoration',
       '/guides/iicrc/s500-2025-water-damage-restoration',
       '/guides/iicrc/s520-2025-mould-remediation',
-      '/guides/iicrc/s220-floor-coverings',
+      '/guides/iicrc/s220-floor-covering-restoration',
     ];
     for (const path of guides) {
       const response = await request.get(path);
