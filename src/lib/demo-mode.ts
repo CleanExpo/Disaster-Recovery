@@ -15,7 +15,7 @@ export const DEMO_DATA = {
     businessInfo: {
       companyName: 'Demo Restoration Services Pty Ltd',
       tradingName: 'Demo Restorations',
-      abn: '12345678901',
+      abn: '51824753556',
       acn: '123456789',
       businessType: 'COMPANY',
       yearEstablished: 2015,
@@ -136,7 +136,7 @@ export const DEMO_DATA = {
       accountName: 'Demo Restoration Services Pty Ltd',
       bsb: '123-456',
       accountNumber: '12345678',
-      abn: '12345678901',
+      abn: '51824753556',
       gstRegistered: true,
       paymentTerms: '30 days',
       preferredPaymentMethod: 'EFT'
