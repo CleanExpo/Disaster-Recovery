@@ -235,13 +235,13 @@ function TrackClaimPageOriginal() {
           <p className="text-sm text-gray-700">Submitted {timeElapsed}</p>
         </div>
 
-        {/* 60-Minute Guarantee Alert */}
+        {/* 60-Minute Response Alert */}
         {timeRemaining !== null && (
           <Alert className="mb-6 bg-orange-50 border-orange-200">
             <Clock className="h-4 w-4 text-orange-600" />
             <AlertDescription className="text-orange-800">
-              <strong>60-Minute Guarantee:</strong> Your contractor will call you within{' '}
-              <strong className="text-red-600">{timeRemaining} minutes</strong>
+              <strong>60-Minute Response Target:</strong> Your contractor aims to call you within{' '}
+              <strong className="text-red-600">{timeRemaining} minutes</strong> in metro areas.
             </AlertDescription>
           </Alert>
         )}
