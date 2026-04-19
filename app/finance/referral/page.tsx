@@ -6,6 +6,13 @@ export const metadata: Metadata = generateSEO({
   title: 'Request a Finance Referral | Equipped Commercial Finance',
   description:
     'Submit a short, secure referral to Equipped Commercial Finance. Disaster Recovery is not the lender — this form only captures the minimum needed for a call back from Equipped.',
+  keywords: [
+    'finance referral',
+    'Equipped Commercial Finance referral',
+    'business recovery finance',
+    'equipment finance application',
+    'disaster recovery finance request',
+  ],
   canonical: '/finance/referral',
 });
 

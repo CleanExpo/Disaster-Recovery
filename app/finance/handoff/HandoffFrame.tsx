@@ -19,7 +19,7 @@ export function HandoffFrame({ token, referralId }: { token: string; referralId:
 
   useEffect(() => {
     const iframe = iframeRef.current;
-    if (!iframe) return;
+    if (!iframe) return undefined;
 
     function onLoad() {
       try {
