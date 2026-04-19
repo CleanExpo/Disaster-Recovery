@@ -81,7 +81,7 @@ export function getEmergencySections({ emergencyType, context }: EmergencySectio
             <li><strong>Transparent pricing</strong> — Normal contractor rate of $85/hr ($120/hr for emergency callouts) plus materials.</li>
             <li><strong>No after-hours surcharge</strong> — Same rates 24/7, 365 days a year.</li>
             <li><strong>No weekend or public holiday penalties</strong> — Disasters do not take holidays, and neither do our pricing commitments.</li>
-            <li><strong>Insurance claims support</strong> — We provide all documentation your insurer requires. Payment plans available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.</li>
+            <li><strong>Insurance claims support</strong> — We provide all documentation your insurer requires. Payment plans available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.</li>
           </ul>
           <p>
             This no-surcharge policy applies to all emergency callouts Australia-wide, across all

@@ -32,7 +32,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How is billing handled for warehouse restoration?',
-      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the warehouse owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, stock losses, equipment damage, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance." },
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the warehouse owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, stock losses, equipment damage, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance." },
     },
     {
       '@type': 'Question',
@@ -206,7 +206,7 @@ export default function WarehouseRoofLeakRestorationPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for high-value commercial restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for high-value commercial restorations.
               </p>
             </div>
           ),
@@ -227,7 +227,7 @@ export default function WarehouseRoofLeakRestorationPage() {
         },
         {
           question: 'How is billing handled for warehouse restoration?',
-          answer: 'We bill you directly — the warehouse owner or tenant — so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, stock losses, equipment damage, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the warehouse owner or tenant — so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, stock losses, equipment damage, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'What if we discover more damage after the roof is repaired?',

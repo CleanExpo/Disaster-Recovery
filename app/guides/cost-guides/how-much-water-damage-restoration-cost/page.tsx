@@ -51,7 +51,7 @@ const faqSchema = {
       name: 'Are payment plans available for water damage restoration?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au) to help manage the cost of restoration while you await your insurance reimbursement. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works. Your contractor then provides a formal contract with transparent pricing for the full scope of restoration.',
+        text: 'Yes. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au) to help manage the cost of restoration while you await your insurance reimbursement. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works. Your contractor then provides a formal contract with transparent pricing for the full scope of restoration.',
       },
     },
   ],
@@ -180,8 +180,8 @@ export default function HowMuchWaterDamageRestorationCostPage() {
               </ul>
               <p style={{ marginTop: '1rem' }}>
                 Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage the upfront cost while you wait for your insurance reimbursement.
               </p>
@@ -241,7 +241,7 @@ export default function HowMuchWaterDamageRestorationCostPage() {
         {
           question: 'Are payment plans available for water damage restoration?',
           answer:
-            'Yes. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au) to help manage the cost of restoration while you await your insurance reimbursement. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works. Your contractor then provides a formal contract with transparent pricing for the full scope of restoration.',
+            'Yes. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au) to help manage the cost of restoration while you await your insurance reimbursement. The Disaster Recovery platform requires a $2,750 initial commitment ($550 platform fee plus $2,200 contractor credit) to begin emergency make-safe works. Your contractor then provides a formal contract with transparent pricing for the full scope of restoration.',
         },
       ]}
       relatedGuides={[

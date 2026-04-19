@@ -52,7 +52,7 @@ export default function SunshineCoastHotelRestorationPage() {
         name: 'How is billing handled for hotel and resort restoration?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly \u2014 the hotel owner, management company, or body corporate \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, FF&E losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          text: 'We bill you directly \u2014 the hotel owner, management company, or body corporate \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, FF&E losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       },
     ],
@@ -173,7 +173,7 @@ export default function SunshineCoastHotelRestorationPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for large hospitality restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for large hospitality restorations.
               </p>
             </div>
           ),
@@ -198,7 +198,7 @@ export default function SunshineCoastHotelRestorationPage() {
         },
         {
           question: 'How is billing handled for hotel and resort restoration?',
-          answer: 'We bill you directly — the hotel owner, management company, or body corporate — so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, FF&E losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the hotel owner, management company, or body corporate — so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, FF&E losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

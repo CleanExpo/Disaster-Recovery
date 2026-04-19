@@ -43,7 +43,7 @@ const faqSchema = {
       name: 'How much does professional bathroom mould removal cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The cost depends on the size of the affected area, the extent of substrate damage, and whether the moisture source requires structural repairs (such as fixing a roof leak or installing ventilation). We bill you directly \u2014 not your insurer \u2014 so work begins immediately without waiting for approval. We provide full claims documentation including photos, scope of works, and reports so you can submit your insurance claim. Payment plans are available through Blue Fire Finance.',
+        text: 'The cost depends on the size of the affected area, the extent of substrate damage, and whether the moisture source requires structural repairs (such as fixing a roof leak or installing ventilation). We bill you directly \u2014 not your insurer \u2014 so work begins immediately without waiting for approval. We provide full claims documentation including photos, scope of works, and reports so you can submit your insurance claim. Payment plans are available through Equipped Commercial Finance.',
       },
     },
     {
@@ -152,7 +152,7 @@ export default function BlackMouldBathroomCeilingPage() {
                 We bill you directly for all remediation work. Full claims documentation — including photos, scope of
                 works, and lab reports — is provided so you can submit your insurance claim with confidence. Payment
                 plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
               </p>
             </>
           ),
@@ -224,7 +224,7 @@ export default function BlackMouldBathroomCeilingPage() {
         },
         {
           question: 'How much does professional bathroom mould removal cost?',
-          answer: 'The cost depends on the size of the affected area, the extent of substrate damage, and whether the moisture source requires structural repairs (such as fixing a roof leak or installing ventilation). We bill you directly — not your insurer — so work begins immediately without waiting for approval. We provide full claims documentation including photos, scope of works, and reports so you can submit your insurance claim. Payment plans are available through Blue Fire Finance.',
+          answer: 'The cost depends on the size of the affected area, the extent of substrate damage, and whether the moisture source requires structural repairs (such as fixing a roof leak or installing ventilation). We bill you directly — not your insurer — so work begins immediately without waiting for approval. We provide full claims documentation including photos, scope of works, and reports so you can submit your insurance claim. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'Will my exhaust fan prevent mould on the bathroom ceiling?',

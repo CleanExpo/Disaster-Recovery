@@ -526,7 +526,7 @@ function WaterDamageGuidePageOriginal() {
             },
             {
               q: 'How much does water damage restoration cost in Australia?',
-              a: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000. The Disaster Recovery platform fee is $550, with $2,200 held for your contractor and credited toward restoration work. Payment plans are available through Blue Fire Finance.'
+              a: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000. The Disaster Recovery platform fee is $550, with $2,200 held for your contractor and credited toward restoration work. Payment plans are available through Equipped Commercial Finance.'
             },
             {
               q: 'Is water damage covered by insurance in Australia?',

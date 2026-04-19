@@ -205,7 +205,7 @@ export default function StormDamageRoofLeakRepairPage() {
               </ol>
               <p>
                 <strong>The NRPG advantage:</strong> We bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided — photos, moisture readings, scope of works, and treatment records — giving you everything your insurer needs for reimbursement. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>{' '}
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>{' '}
                 if you need to manage cash flow during the claims process.
               </p>
             </div>

@@ -52,7 +52,7 @@ export default function WollongongCoastalStormDamagePage() {
         name: 'How is billing handled for storm damage restoration in the Illawarra?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories, emergency make-safe, restoration works, and salt/mould remediation to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories, emergency make-safe, restoration works, and salt/mould remediation to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       },
     ],
@@ -179,7 +179,7 @@ export default function WollongongCoastalStormDamagePage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for storm damage restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for storm damage restorations.
               </p>
             </div>
           ),
@@ -204,7 +204,7 @@ export default function WollongongCoastalStormDamagePage() {
         },
         {
           question: 'How is billing handled for storm damage restoration in the Illawarra?',
-          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories, emergency make-safe, restoration works, and salt/mould remediation to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories, emergency make-safe, restoration works, and salt/mould remediation to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

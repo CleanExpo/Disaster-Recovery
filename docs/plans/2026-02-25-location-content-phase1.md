@@ -39,7 +39,7 @@ Brookwater, Eagle Farm, and Indooroopilly have no page files. They're noindexed 
 ### CLAUDE.md billing rules
 - NEVER use "direct-bill", "no upfront costs", "pay only your excess"
 - CORRECT: "We bill you directly", "Work begins immediately", "Full claims documentation provided"
-- Payment plans: Blue Fire Finance link
+- Payment plans: Equipped Commercial Finance link
 
 ### JSON-LD safety note
 All JSON-LD structured data uses `JSON.stringify()` on hardcoded objects built from trusted server-side data (static JSON files compiled at build time). No user input is ever interpolated into these objects. This is the standard Next.js pattern for structured data as used throughout `app/layout.tsx`.
@@ -494,7 +494,7 @@ export function generateHistoricalEventsSection(data: LocationData): ContentSect
 - The intro section MUST produce structurally different paragraphs per archetype. For example, the cyclone-belt intro mentions cyclone season dates and preparedness; the bushfire-risk intro mentions BAL ratings and ember attack zones; the high-rainfall intro mentions annual rainfall figures and flooding history.
 - Reference `data.historicalEvents` with specific years, event names, and insurance costs. These are the primary uniqueness signals Google will see.
 - Reference `data.climate` with specific numbers (e.g. "Brisbane receives an average of 1,149mm of rainfall annually").
-- **CLAUDE.md billing rules apply:** Use "We bill you directly" not "direct-bill". Use "Full claims documentation provided" not "no upfront costs". Include Blue Fire Finance link where payment plans are mentioned.
+- **CLAUDE.md billing rules apply:** Use "We bill you directly" not "direct-bill". Use "Full claims documentation provided" not "no upfront costs". Include Equipped Commercial Finance link where payment plans are mentioned.
 
 **Step 2: Commit**
 
@@ -531,7 +531,7 @@ Generate 5-6 FAQs per city:
 1. **Response time** (always present) — mentions city name, regions, 24/7 availability
 2. **Primary risk** (always present) — references `data.risks.primary[0]` with description and insurance stats
 3. **Historical events** (conditional) — references `data.historicalEvents[0]` with year, event name, cost
-4. **Insurance** (always present) — uses CLAUDE.md compliant language ("We bill you directly", Blue Fire Finance link)
+4. **Insurance** (always present) — uses CLAUDE.md compliant language ("We bill you directly", Equipped Commercial Finance link)
 5. **Suburb coverage** (always present) — lists first 6 suburbs from data
 6. **Seasonal/cyclone/bushfire** (conditional) — cyclone season dates OR BAL rating depending on city profile
 

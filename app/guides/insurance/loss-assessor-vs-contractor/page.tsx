@@ -64,7 +64,7 @@ export default function LossAssessorVsContractorPage() {
         name: 'How does Disaster Recovery handle insurance claims without a loss assessor?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Disaster Recovery contractors provide full claims documentation including pre-work photographic evidence, moisture mapping data, thermal imaging reports, detailed scope of works with line-item costings, daily progress reports, and a comprehensive completion report. We bill you directly, and you submit this documentation to your insurer to claim reimbursement. This documentation package is designed to meet insurer requirements without needing a loss assessor for standard claims. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au) if needed while your claim is processed.',
+          text: 'Disaster Recovery contractors provide full claims documentation including pre-work photographic evidence, moisture mapping data, thermal imaging reports, detailed scope of works with line-item costings, daily progress reports, and a comprehensive completion report. We bill you directly, and you submit this documentation to your insurer to claim reimbursement. This documentation package is designed to meet insurer requirements without needing a loss assessor for standard claims. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au) if needed while your claim is processed.',
         },
       },
     ],
@@ -235,7 +235,7 @@ export default function LossAssessorVsContractorPage() {
                 This level of documentation is what insurers need to process a claim efficiently. In most straightforward claims, this documentation eliminates the need for a loss assessor entirely — because the evidence is comprehensive, professional, and defensible.
               </p>
               <p>
-                Work begins immediately without waiting for insurer approval. After make-safe, your contractor provides a formal contract with full terms and conditions. We bill you directly, and you use the documentation to claim reimbursement from your insurer. Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> if you need to manage cash flow while your claim is processed.
+                Work begins immediately without waiting for insurer approval. After make-safe, your contractor provides a formal contract with full terms and conditions. We bill you directly, and you use the documentation to claim reimbursement from your insurer. Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> if you need to manage cash flow while your claim is processed.
               </p>
             </div>
           ),
@@ -260,7 +260,7 @@ export default function LossAssessorVsContractorPage() {
         },
         {
           question: 'How does Disaster Recovery handle insurance claims without a loss assessor?',
-          answer: 'Disaster Recovery contractors provide full claims documentation including pre-work photographic evidence, moisture mapping data, thermal imaging reports, detailed scope of works with line-item costings, daily progress reports, and a comprehensive completion report. We bill you directly, and you submit this documentation to your insurer to claim reimbursement. This documentation package is designed to meet insurer requirements without needing a loss assessor for standard claims. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au) if needed while your claim is processed.',
+          answer: 'Disaster Recovery contractors provide full claims documentation including pre-work photographic evidence, moisture mapping data, thermal imaging reports, detailed scope of works with line-item costings, daily progress reports, and a comprehensive completion report. We bill you directly, and you submit this documentation to your insurer to claim reimbursement. This documentation package is designed to meet insurer requirements without needing a loss assessor for standard claims. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au) if needed while your claim is processed.',
         },
       ]}
       relatedGuides={[

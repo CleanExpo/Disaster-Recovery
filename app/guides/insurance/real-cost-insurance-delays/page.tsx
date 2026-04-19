@@ -232,8 +232,8 @@ export default function RealCostInsuranceDelaysPage() {
                 your NRPG contractor provides a formal contract with terms and conditions
                 for the full restoration scope. Full claims documentation is provided to
                 support your insurance reimbursement. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 if needed.
               </p>

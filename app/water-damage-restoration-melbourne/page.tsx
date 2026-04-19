@@ -173,7 +173,7 @@ export default function WaterDamageRestorationMelbournePage() {
                   Our platform charges a $550 platform fee plus $2,200 contractor credit ($2,750 total) to begin emergency
                   make-safe. Your assigned contractor then provides a formal contract with transparent pricing for the full
                   scope of works. Payment plans are available through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
                 </p>
               </>
             ),

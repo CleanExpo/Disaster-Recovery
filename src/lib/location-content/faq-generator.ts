@@ -36,7 +36,7 @@ export function generateLocationFAQs(data: LocationData): FAQEntry[] {
   // 4. Insurance (always)
   faqs.push({
     question: `How does insurance work for disaster recovery in ${city}?`,
-    answer: `We bill you directly — not your insurer — so work begins immediately without waiting for approval. Our contractors provide full claims documentation including photos, moisture reports, scope of works, and completion certificates to support your insurance reimbursement. After the initial make-safe, your contractor provides a formal contract with clear terms. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au).`,
+    answer: `We bill you directly — not your insurer — so work begins immediately without waiting for approval. Our contractors provide full claims documentation including photos, moisture reports, scope of works, and completion certificates to support your insurance reimbursement. After the initial make-safe, your contractor provides a formal contract with clear terms. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au).`,
   });
 
   // 5. Suburb coverage (always)

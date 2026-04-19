@@ -258,8 +258,8 @@ export default function DocumentWaterDamageInsurancePage() {
               <p style={{ marginTop: '1rem' }}>
                 Everything your insurer needs is included — you control the process from start to
                 finish. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>
                 .
               </p>

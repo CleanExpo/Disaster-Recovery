@@ -42,7 +42,7 @@ This is a compliance-critical distinction. The correct billing flow is:
 2. **Client claims reimbursement** from their insurance carrier
 3. **DR provides full documentation** (photos, scope of works, reports) to support the client's claim
 4. **After make-safe**, the NRPG Contractor provides a formal contract with terms and conditions to the client
-5. **Payment plans** are available via [Blue Fire Finance](https://www.bluefirefinance.com.au)
+5. **Payment plans** are available via [Equipped Commercial Finance](https://equippedcf.com.au)
 
 **DR/NRPG do NOT work directly with insurance companies** — no insurer is on the Vetted Supplier List currently.
 
@@ -57,12 +57,12 @@ This is a compliance-critical distinction. The correct billing flow is:
 - ✅ "Work begins immediately" — no waiting for insurer approval
 - ✅ "You control the process" — no scope disputes or insurer delays
 - ✅ "Full claims documentation provided" — we give the client everything their insurer needs
-- ✅ "Payment plans available through Blue Fire Finance" — link to https://www.bluefirefinance.com.au
+- ✅ "Payment plans available through Equipped Commercial Finance" — link to https://equippedcf.com.au
 - ✅ "Contractor provides a formal contract" — after make-safe, clear terms and conditions
 
-#### **Blue Fire Finance Link Format (JSX/HTML):**
+#### **Equipped Commercial Finance Link Format (JSX/HTML):**
 ```html
-<a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>
+<a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>
 ```
 
 ### **Technical Architecture**

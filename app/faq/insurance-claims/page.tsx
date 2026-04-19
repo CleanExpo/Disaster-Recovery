@@ -5,7 +5,7 @@ import { AgFAQPageTemplate } from '@/components/antigravity';
 const faqs = [
   {
     "question": "How does billing and payment work?",
-    "answer": "Our contractors bill you (the property owner) directly, which means work can begin immediately without waiting for insurer approval. Once work is complete, we provide all documentation — scope of works, photos, reports — that your insurer needs to process your reimbursement claim. Flexible payment plans are available through our finance partner, <a href=\"https://www.bluefirefinance.com.au\" target=\"_blank\" rel=\"noopener noreferrer\">Blue Fire Finance</a>."
+    "answer": "Our contractors bill you (the property owner) directly, which means work can begin immediately without waiting for insurer approval. Once work is complete, we provide all documentation — scope of works, photos, reports — that your insurer needs to process your reimbursement claim. Flexible payment plans are available through our finance partner, <a href=\"https://equippedcf.com.au\" target=\"_blank\" rel=\"noopener noreferrer\">Equipped Commercial Finance</a>."
   },
   {
     "question": "What if my claim is denied?",
