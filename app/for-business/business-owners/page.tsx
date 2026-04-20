@@ -45,7 +45,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: 'How does payment work — do I pay or does my insurance?',
     answer:
-      'We bill you directly — the business owner or tenant — not your insurer. This is actually a significant advantage: it means work starts immediately without waiting for insurer approval, loss adjuster visits or scope negotiations. We provide full documentation so you can submit our invoices to your insurer for reimbursement. Payment plans are also available through Blue Fire Finance for larger restorations.',
+      'We bill you directly — the business owner or tenant — not your insurer. This is actually a significant advantage: it means work starts immediately without waiting for insurer approval, loss adjuster visits or scope negotiations. We provide full documentation so you can submit our invoices to your insurer for reimbursement. Payment plans are also available through Equipped Commercial Finance for larger restorations.',
   },
   {
     question: 'What is the emergency make-safe fee?',
@@ -584,11 +584,11 @@ export default function BusinessOwnersPage() {
                   to spread the cost while waiting for your insurance reimbursement, payment plans
                   are available through{' '}
                   <a
-                    href="https://www.bluefirefinance.com.au"
+                    href="https://equippedcf.com.au"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <strong>Blue Fire Finance</strong>
+                    <strong>Equipped Commercial Finance</strong>
                   </a>
                   . This allows you to get the restoration done now and manage cash flow while your
                   insurer processes the claim. Many business owners find this particularly useful

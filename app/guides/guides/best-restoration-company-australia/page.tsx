@@ -44,7 +44,7 @@ export default function BestRestorationCompanyAustraliaPage() {
         name: 'How much does disaster restoration typically cost in Australia?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Costs vary significantly depending on the damage type, extent and property size. A minor water leak in a single room may cost a few thousand dollars; a whole-house fire restoration can run to tens of thousands. We bill you directly with a transparent, written scope of works, and payment plans are available through Blue Fire Finance (bluefirefinance.com.au). Full documentation is provided to support your insurance reimbursement claim.',
+          text: 'Costs vary significantly depending on the damage type, extent and property size. A minor water leak in a single room may cost a few thousand dollars; a whole-house fire restoration can run to tens of thousands. We bill you directly with a transparent, written scope of works, and payment plans are available through Equipped Commercial Finance (equippedcf.com.au). Full documentation is provided to support your insurance reimbursement claim.',
         },
       },
       {
@@ -205,8 +205,8 @@ export default function BestRestorationCompanyAustraliaPage() {
                 We bill you directly, which means work begins immediately with no waiting for
                 insurer approval. You control the process and there are no scope disputes with
                 third parties. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>
                 .
               </p>
@@ -276,7 +276,7 @@ export default function BestRestorationCompanyAustraliaPage() {
         {
           question: 'How much does disaster restoration typically cost in Australia?',
           answer:
-            'Costs vary significantly depending on the damage type, extent and property size. A minor water leak in a single room may cost a few thousand dollars; a whole-house fire restoration can run to tens of thousands. We bill you directly with a transparent, written scope of works, and payment plans are available through Blue Fire Finance (bluefirefinance.com.au). Full documentation is provided to support your insurance reimbursement claim.',
+            'Costs vary significantly depending on the damage type, extent and property size. A minor water leak in a single room may cost a few thousand dollars; a whole-house fire restoration can run to tens of thousands. We bill you directly with a transparent, written scope of works, and payment plans are available through Equipped Commercial Finance (equippedcf.com.au). Full documentation is provided to support your insurance reimbursement claim.',
         },
         {
           question: 'Can I choose my own restoration company or do I have to use my insurer\'s preferred supplier?',

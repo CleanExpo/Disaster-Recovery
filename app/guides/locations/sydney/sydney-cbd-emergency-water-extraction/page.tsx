@@ -43,7 +43,7 @@ const faqSchema = {
       name: 'How is billing handled for CBD water extraction?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We bill you directly \u2014 the tenant, building owner, or body corporate \u2014 so work begins immediately without waiting for insurer approval. After make-safe and initial extraction, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, fitout damage, contents and IT losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+        text: 'We bill you directly \u2014 the tenant, building owner, or body corporate \u2014 so work begins immediately without waiting for insurer approval. After make-safe and initial extraction, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, fitout damage, contents and IT losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
       },
     },
     {
@@ -173,7 +173,7 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for large commercial restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for large commercial restorations.
               </p>
             </div>
           ),
@@ -194,7 +194,7 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
         },
         {
           question: 'How is billing handled for CBD water extraction?',
-          answer: 'We bill you directly — the tenant, building owner, or body corporate — so work begins immediately without waiting for insurer approval. After make-safe and initial extraction, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, fitout damage, contents and IT losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the tenant, building owner, or body corporate — so work begins immediately without waiting for insurer approval. After make-safe and initial extraction, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, fitout damage, contents and IT losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'What if the water has reached the basement car park and server room?',

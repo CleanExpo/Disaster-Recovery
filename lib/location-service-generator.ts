@@ -411,7 +411,7 @@ export class LocationServiceGenerator {
       'IICRC certified technicians',
       '100% satisfaction guarantee',
       'Transparent pricing — we bill you directly',
-      'Payment plans available via Blue Fire Finance'
+      'Payment plans available via Equipped Commercial Finance'
     ];
 
     // Add a suburb-specific bullet if data available

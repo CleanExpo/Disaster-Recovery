@@ -1152,7 +1152,7 @@ function MouldRemediationGuidePageOriginal() {
             },
             {
               q: 'How much does mould removal cost in Australia?',
-              a: 'Professional mould remediation in Australia typically costs $1,500–$8,000+ depending on the extent and location. Small areas (under 1 sqm, surface mould on accessible walls) cost $500–$1,500. Moderate infestations (1–10 sqm, behind walls or in ceiling cavities) cost $2,000–$5,000. Large-scale remediation (structural mould, entire rooms, HVAC contamination) can exceed $8,000–$15,000. The Disaster Recovery platform fee is $550 with $2,200 held for your contractor. Costs increase when mould is in concealed areas requiring demolition for access. Payment plans are available through Blue Fire Finance.'
+              a: 'Professional mould remediation in Australia typically costs $1,500–$8,000+ depending on the extent and location. Small areas (under 1 sqm, surface mould on accessible walls) cost $500–$1,500. Moderate infestations (1–10 sqm, behind walls or in ceiling cavities) cost $2,000–$5,000. Large-scale remediation (structural mould, entire rooms, HVAC contamination) can exceed $8,000–$15,000. The Disaster Recovery platform fee is $550 with $2,200 held for your contractor. Costs increase when mould is in concealed areas requiring demolition for access. Payment plans are available through Equipped Commercial Finance.'
             },
             {
               q: 'Does insurance cover mould removal in Australia?',

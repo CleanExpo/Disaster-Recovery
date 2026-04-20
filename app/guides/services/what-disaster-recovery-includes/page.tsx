@@ -45,7 +45,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
         name: 'How does payment work if I am claiming on insurance?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You pay the contractor and we provide full claims documentation \u2014 photos, moisture logs, scope of works, progress reports \u2014 so you can claim reimbursement from your insurer with complete evidence. If you need to manage cash flow while waiting, payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You pay the contractor and we provide full claims documentation \u2014 photos, moisture logs, scope of works, progress reports \u2014 so you can claim reimbursement from your insurer with complete evidence. If you need to manage cash flow while waiting, payment plans are available through Equipped Commercial Finance (equippedcf.com.au).',
         },
       },
       {
@@ -201,7 +201,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
           ),
         },
         {
-          heading: 'Payment Options and Blue Fire Finance',
+          heading: 'Payment Options and Equipped Commercial Finance',
           body: (
             <div className="space-y-4">
               <p>
@@ -228,8 +228,8 @@ export default function WhatDisasterRecoveryIncludesPage() {
               </ul>
               <p>
                 If you need to manage cash flow while waiting for your insurance reimbursement, payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>.{' '}
-                Blue Fire Finance offers flexible terms that can bridge the gap between paying your contractor and receiving funds from your insurer.
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>.{' '}
+                Equipped Commercial Finance offers flexible terms that can bridge the gap between paying your contractor and receiving funds from your insurer.
               </p>
               <p>
                 Many property owners use finance because insurance reimbursement timelines vary from 2 weeks to several months depending on the insurer, claim complexity, and documentation completeness. Our documentation is designed to minimise processing time, but finance provides certainty regardless of insurer timelines.
@@ -253,7 +253,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
         },
         {
           question: 'How does payment work if I am claiming on insurance?',
-          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. You pay the contractor and we provide full claims documentation — photos, moisture logs, scope of works, progress reports — so you can claim reimbursement from your insurer with complete evidence. If you need to manage cash flow while waiting, payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. You pay the contractor and we provide full claims documentation — photos, moisture logs, scope of works, progress reports — so you can claim reimbursement from your insurer with complete evidence. If you need to manage cash flow while waiting, payment plans are available through Equipped Commercial Finance (equippedcf.com.au).',
         },
         {
           question: 'What documentation will I receive for my insurance claim?',

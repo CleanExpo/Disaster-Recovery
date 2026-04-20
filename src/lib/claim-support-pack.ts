@@ -541,7 +541,7 @@ function buildHtmlEmail(
             immediately with no insurer approval delays. Your contractor provides full documentation
             (photos, scope of works, reports) that you submit to your insurer for reimbursement.
             Payment plans are available through
-            <a href="https://www.bluefirefinance.com.au" style="color:#856404;font-weight:bold;">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" style="color:#856404;font-weight:bold;">Equipped Commercial Finance</a>.
           </p>
         </td></tr>
       </table>
@@ -687,7 +687,7 @@ HOW BILLING WORKS
 Your contractor bills you directly — not your insurance company.
 Work starts immediately with no insurer approval delays.
 Full documentation provided for your insurance reimbursement claim.
-Payment plans: https://www.bluefirefinance.com.au
+Payment plans: https://equippedcf.com.au
 
 ============================================================
 

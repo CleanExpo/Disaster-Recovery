@@ -140,7 +140,7 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
             We work with clients insured by all major Australian providers. We bill you directly — allowing
             immediate work commencement — and provide comprehensive documentation to support your insurance
             claim for reimbursement. Payment plans available through{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
           <h3>What types of damage do you repair in {city}?</h3>
           <p>

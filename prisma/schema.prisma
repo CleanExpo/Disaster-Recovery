@@ -2052,3 +2052,46 @@ model SubContractorEngagement {
   @@index([primaryContractorId])
   @@index([status])
 }
+
+// =============================================================================
+// DR-FINANCE (Phase 1): Equipped Commercial Finance referral audit log
+// =============================================================================
+
+/// Immutable audit log of finance referrals handed off to Equipped Commercial
+/// Finance (SME Consulting Group Pty Ltd t/as Equipped Commercial Finance).
+///
+/// Compliance rationale (Phase 1):
+/// - DR acts only as a referrer under reg 25 of the National Consumer Credit
+///   Protection Regulations 2010 (Cth). This table stores ONLY the minimum
+///   needed to prove what disclosure + consent was shown at submission time.
+/// - No income / liabilities / credit history / affordability data is ever
+///   written here — that only exists inside Equipped's regulated environment.
+/// - The full payload that was sent to Equipped is NOT stored; only its SHA-256
+///   hash. That hash is enough to prove-or-deny what left our side without
+///   creating a new PII honeypot on DR infrastructure.
+/// - Rows are append-only; there is no `updatedAt`. Corrections are new rows.
+model FinanceReferral {
+  id                          String   @id @default(uuid())
+  createdAt                   DateTime @default(now())
+  country                     String   // "AU" | "NZ" (NZ pathway is Phase 2)
+  customerType                String   // "business" | "consumer"
+  fundingBand                 String   // "<10k" | "10-25k" | "25-50k" | "50-100k" | "100-250k" | ">250k"
+  disasterCategory            String   // "water" | "fire" | "storm" | "mould" | "biohazard" | "other"
+  source                      String   // e.g. "disasterrecovery.com.au/finance"
+  disclosureVersion           String   // version ID of the referrer-disclosure shown at submit time
+  privacyNoticeVersion        String   // version ID of the privacy collection statement shown at submit time
+  consentShareEquipped        Boolean  // must be true for the row to exist
+  consentReferralDisclosure   Boolean  // must be true for the row to exist
+  consentMarketing            Boolean  @default(false)
+  payloadHash                 String   // SHA-256 of the JSON payload sent to Equipped (proof-of-transmission)
+  ip                          String?
+  userAgent                   String?  @db.Text
+  receiver                    String   // e.g. "equippedcf.com.au"
+  handoffAck                  Boolean  @default(false) // flipped when Equipped's embed posts ACK
+  statusWebhookLastStatus     String?  // mirror of latest status webhook ("received" | "contacted" | "approved" | ...)
+  statusWebhookLastAt         DateTime?
+
+  @@index([createdAt])
+  @@index([country, customerType])
+  @@index([receiver, createdAt])
+}

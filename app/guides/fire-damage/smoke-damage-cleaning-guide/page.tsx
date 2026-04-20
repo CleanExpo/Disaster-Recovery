@@ -44,7 +44,7 @@ export default function SmokeDamageCleaningGuidePage() {
         name: 'How much does smoke damage cleaning cost in Australia?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Costs vary depending on the extent of damage, residue type and property size. Minor kitchen fire cleanup may start from a few thousand dollars, while whole-house restoration after a structural fire can run to tens of thousands. We bill you directly with a transparent scope of works, and payment plans are available through Blue Fire Finance (bluefirefinance.com.au). Full documentation is provided for your insurance claim.',
+          text: 'Costs vary depending on the extent of damage, residue type and property size. Minor kitchen fire cleanup may start from a few thousand dollars, while whole-house restoration after a structural fire can run to tens of thousands. We bill you directly with a transparent scope of works, and payment plans are available through Equipped Commercial Finance (equippedcf.com.au). Full documentation is provided for your insurance claim.',
         },
       },
       {
@@ -254,8 +254,8 @@ export default function SmokeDamageCleaningGuidePage() {
               <p style={{ marginTop: '1rem' }}>
                 We bill you directly — no waiting for insurer approval means work begins
                 immediately. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>
                 .
               </p>
@@ -282,7 +282,7 @@ export default function SmokeDamageCleaningGuidePage() {
         {
           question: 'How much does smoke damage cleaning cost in Australia?',
           answer:
-            'Costs vary depending on the extent of damage, residue type and property size. Minor kitchen fire cleanup may start from a few thousand dollars, while whole-house restoration after a structural fire can run to tens of thousands. We bill you directly with a transparent scope of works, and payment plans are available through Blue Fire Finance (bluefirefinance.com.au). Full documentation is provided for your insurance claim.',
+            'Costs vary depending on the extent of damage, residue type and property size. Minor kitchen fire cleanup may start from a few thousand dollars, while whole-house restoration after a structural fire can run to tens of thousands. We bill you directly with a transparent scope of works, and payment plans are available through Equipped Commercial Finance (equippedcf.com.au). Full documentation is provided for your insurance claim.',
         },
         {
           question: 'Should I try to clean smoke damage myself before the professionals arrive?',

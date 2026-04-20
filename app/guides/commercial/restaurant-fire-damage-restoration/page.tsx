@@ -32,7 +32,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How is billing handled for restaurant fire restoration?',
-      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the restaurant owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide full claims documentation (photos, scope of works, equipment inventory, progress reports) to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance." },
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the restaurant owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide full claims documentation (photos, scope of works, equipment inventory, progress reports) to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance." },
     },
     {
       '@type': 'Question',
@@ -197,7 +197,7 @@ export default function RestaurantFireDamageRestorationPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for commercial restorations. You control the process and claim reimbursement from your insurer using the comprehensive documentation we provide.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for commercial restorations. You control the process and claim reimbursement from your insurer using the comprehensive documentation we provide.
               </p>
             </div>
           ),
@@ -218,7 +218,7 @@ export default function RestaurantFireDamageRestorationPage() {
         },
         {
           question: 'How is billing handled for restaurant fire restoration?',
-          answer: 'We bill you directly — the restaurant owner or tenant — so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide full claims documentation (photos, scope of works, equipment inventory, progress reports) to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the restaurant owner or tenant — so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide full claims documentation (photos, scope of works, equipment inventory, progress reports) to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'What about lost food stock — is that covered by insurance?',

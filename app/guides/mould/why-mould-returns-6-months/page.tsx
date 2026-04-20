@@ -56,7 +56,7 @@ export default function WhyMouldReturnsPage() {
         name: 'Is mould remediation covered by insurance in Australia?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'It depends on the cause. Mould resulting from a sudden, insured event (such as a burst pipe or storm damage) is generally covered under home insurance. Mould caused by gradual deterioration, poor maintenance, or chronic condensation is typically excluded. Through Disaster Recovery, we bill you directly so remediation begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance for costs not covered by insurance.',
+          text: 'It depends on the cause. Mould resulting from a sudden, insured event (such as a burst pipe or storm damage) is generally covered under home insurance. Mould caused by gradual deterioration, poor maintenance, or chronic condensation is typically excluded. Through Disaster Recovery, we bill you directly so remediation begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance for costs not covered by insurance.',
         },
       },
     ],
@@ -313,8 +313,8 @@ export default function WhyMouldReturnsPage() {
                 your insurer everything they need to process your reimbursement. After the
                 make-safe, your contractor provides a formal contract with terms and conditions
                 for the full remediation scope. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage costs.
               </p>
@@ -346,7 +346,7 @@ export default function WhyMouldReturnsPage() {
         {
           question: 'Is mould remediation covered by insurance in Australia?',
           answer:
-            'It depends on the cause. Mould resulting from a sudden, insured event (such as a burst pipe or storm damage) is generally covered under home insurance. Mould caused by gradual deterioration, poor maintenance, or chronic condensation is typically excluded. Through Disaster Recovery, we bill you directly so remediation begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance for costs not covered by insurance.',
+            'It depends on the cause. Mould resulting from a sudden, insured event (such as a burst pipe or storm damage) is generally covered under home insurance. Mould caused by gradual deterioration, poor maintenance, or chronic condensation is typically excluded. Through Disaster Recovery, we bill you directly so remediation begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance for costs not covered by insurance.',
         },
       ]}
       relatedGuides={[

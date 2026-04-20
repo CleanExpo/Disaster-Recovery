@@ -554,8 +554,8 @@ function OnlineClaimPageOriginal() {
             <div className="flex items-center gap-2">
               <span className="text-blue-500">└─</span>
               <span>Payment plans available via{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">
+                  Equipped Commercial Finance
                 </a>
               </span>
             </div>
@@ -1163,8 +1163,8 @@ function OnlineClaimPageOriginal() {
                 <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
                   <p className="text-sm text-indigo-900">
                     <strong>Need to spread the cost?</strong> Flexible payment plans available through{' '}
-                    <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-indigo-600 font-semibold hover:underline">
-                      Blue Fire Finance
+                    <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-indigo-600 font-semibold hover:underline">
+                      Equipped Commercial Finance
                     </a>.
                   </p>
                 </div>

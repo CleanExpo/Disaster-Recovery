@@ -38,7 +38,7 @@ const faqData = [
   },
   {
     question: 'What is the emergency make-safe fee?',
-    answer: 'The emergency make-safe fee is $2,750, which covers a $550 platform fee and $2,200 held for the attending contractor. This covers the emergency dispatch, initial damage assessment, water extraction or temporary weatherproofing, and insurance-compliant documentation. Full restoration is scoped and quoted separately after the emergency is stabilised. Payment plans are available through Blue Fire Finance.',
+    answer: 'The emergency make-safe fee is $2,750, which covers a $550 platform fee and $2,200 held for the attending contractor. This covers the emergency dispatch, initial damage assessment, water extraction or temporary weatherproofing, and insurance-compliant documentation. Full restoration is scoped and quoted separately after the emergency is stabilised. Payment plans are available through Equipped Commercial Finance.',
   },
 ];
 
@@ -293,8 +293,8 @@ export default function PropertyManagersPage() {
                 <p>
                   If the building owner or your agency needs to manage cash flow while the insurance claim is
                   being processed, flexible payment plans are available through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
-                    Blue Fire Finance
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
+                    Equipped Commercial Finance
                   </a>. This allows restoration work to proceed without delay while the financial side is
                   resolved at a manageable pace.
                 </p>

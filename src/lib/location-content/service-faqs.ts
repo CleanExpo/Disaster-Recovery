@@ -162,7 +162,7 @@ export const defaultServiceFAQs: ServiceFAQGenerator = (city, suburb) => [
   },
   {
     question: `How does billing and insurance work for disaster recovery in ${locationText(city, suburb)}?`,
-    answer: `We bill you directly — not your insurer — so work begins immediately without waiting for approval. Our contractors provide full claims documentation including photos, moisture reports, scope of works, and completion certificates to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.`,
+    answer: `We bill you directly — not your insurer — so work begins immediately without waiting for approval. Our contractors provide full claims documentation including photos, moisture reports, scope of works, and completion certificates to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance.`,
   },
   {
     question: `Are your ${locationText(city, suburb)} contractors certified and insured?`,

@@ -215,12 +215,12 @@ export default function CouncilsPage() {
                 Full restoration is scoped and quoted separately once the emergency is
                 stabilised. Payment plans are available through{' '}
                 <a
-                  href="https://www.bluefirefinance.com.au"
+                  href="https://equippedcf.com.au"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline font-medium"
                 >
-                  Blue Fire Finance
+                  Equipped Commercial Finance
                 </a>{' '}
                 for larger restoration projects.{' '}
                 <Link href="/insurance/emergency-make-safe-guide" className="text-blue-600 hover:underline font-medium">

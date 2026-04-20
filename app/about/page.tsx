@@ -68,7 +68,7 @@ const aboutFAQs = [
   },
   {
     question: 'How does billing work with Disaster Recovery?',
-    answer: 'Your matched contractor bills you directly — not your insurer. This means work begins immediately without waiting for insurer approval. We provide comprehensive documentation to support your insurance reimbursement claim. Payment plans are available through Blue Fire Finance.',
+    answer: 'Your matched contractor bills you directly — not your insurer. This means work begins immediately without waiting for insurer approval. We provide comprehensive documentation to support your insurance reimbursement claim. Payment plans are available through Equipped Commercial Finance.',
   },
   {
     question: 'How quickly can a contractor respond?',
@@ -233,7 +233,7 @@ export default function AboutPage() {
                 <li><strong>Submit your claim online</strong> — Describe the damage, upload photos, and provide your location. Our system is available 24/7.</li>
                 <li><strong>Instant contractor matching</strong> — Our platform identifies IICRC-certified contractors within your area who specialise in your type of damage.</li>
                 <li><strong>Rapid response</strong> — Matched contractors respond directly. Emergency jobs receive priority dispatching.</li>
-                <li><strong>Transparent billing & payment</strong> — Your contractor provides a formal contract and invoices you directly. We supply all documentation for your insurance reimbursement claim. Payment plans available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Blue Fire Finance</a>.</li>
+                <li><strong>Transparent billing & payment</strong> — Your contractor provides a formal contract and invoices you directly. We supply all documentation for your insurance reimbursement claim. Payment plans available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Equipped Commercial Finance</a>.</li>
                 <li><strong>Quality assurance</strong> — All work is performed to IICRC standards with full documentation for your insurance claim.</li>
               </ol>
               <p className="mt-4">

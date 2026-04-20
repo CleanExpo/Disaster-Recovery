@@ -45,7 +45,7 @@ const factsFAQs = [
   },
   {
     question: 'How does Disaster Recovery bill for services?',
-    answer: 'Contractors bill the client (property owner) directly. This means work begins immediately without waiting for insurer approval. Disaster Recovery provides comprehensive documentation to support the client\'s insurance reimbursement claim. Payment plans are available through Blue Fire Finance.',
+    answer: 'Contractors bill the client (property owner) directly. This means work begins immediately without waiting for insurer approval. Disaster Recovery provides comprehensive documentation to support the client\'s insurance reimbursement claim. Payment plans are available through Equipped Commercial Finance.',
   },
 ];
 
@@ -122,7 +122,7 @@ export default function FactsPage() {
                     { fact: 'Minimum service fee', value: '$2,200 AUD', source: 'NRPG' },
                     { fact: 'Target emergency response', value: '60 minutes (metropolitan areas)', source: 'NRPG' },
                     { fact: 'Service categories', value: '10+ (water, fire, mould, storm, flood, biohazard, sewage, bushfire, cyclone, emergency)', source: 'NRPG' },
-                    { fact: 'Payment plans', value: 'Available via Blue Fire Finance', source: 'NRPG' },
+                    { fact: 'Payment plans', value: 'Available via Equipped Commercial Finance', source: 'NRPG' },
                   ].map(({ fact, value, source }) => (
                     <div key={fact} className="border border-gray-700 rounded-lg p-4">
                       <div className="text-sm text-gray-400 mb-1">{fact}</div>

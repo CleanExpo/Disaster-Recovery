@@ -266,8 +266,8 @@ export default function FloodDamageRestorationPerthPage() {
                   These are estimates only. Your assigned NRPG contractor provides a formal itemised
                   scope of works and contract after on-site assessment. Payment plans are available
                   through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                    Blue Fire Finance
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                    Equipped Commercial Finance
                   </a>
                   .
                 </p>
