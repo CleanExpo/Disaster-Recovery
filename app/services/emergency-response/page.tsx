@@ -9,7 +9,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: '24/7 Emergency Response Services',
-  description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
+  description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. Target 60-minute metropolitan response; regional times vary.',
   provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
   areaServed: { '@type': 'Country', name: 'Australia' },
   serviceType: 'Emergency Response',
@@ -19,7 +19,7 @@ const serviceSchema = {
 
 export const metadata: Metadata = {
   title: '24/7 Emergency Response | 1-Hour Response',
-  description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
+  description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. Target 60-minute metropolitan response; regional times vary.',
   keywords: [
     'emergency response services',
     '24/7 emergency response',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '24/7 Online Emergency Response Services',
-    description: 'Professional emergency response team available 24/7. 1-hour response time for disaster recovery emergencies.',
+    description: 'Professional emergency response team available 24/7. Target 60-minute metropolitan response for disaster recovery emergencies.',
   },
   alternates: {
     canonical: '/services/emergency-services' },
@@ -98,7 +98,7 @@ export default function EmergencyResponsePage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: '24/7 Online Emergency Response Services',
-        subtitle: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
+        subtitle: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. Target 60-minute metropolitan response; regional times vary.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

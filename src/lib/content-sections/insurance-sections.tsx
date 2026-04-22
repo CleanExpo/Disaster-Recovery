@@ -119,8 +119,9 @@ export function getInsuranceSections({ insurerName, insurerSlug }: InsuranceSect
           <h3>Can I choose my own restorer with {insurerName}?</h3>
           <p>
             Yes. Under Australian consumer law, you have the right to choose your own restoration
-            provider. As an approved provider, nominating us often results in faster approvals and
-            a smoother process with {insurerName}.
+            provider. Network contractors with pre-formatted documentation can help streamline claim
+            processing with {insurerName}. Policyholders may nominate their preferred restorer under
+            most policies.
           </p>
         </>
       ),

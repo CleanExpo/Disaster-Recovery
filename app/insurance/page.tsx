@@ -208,7 +208,7 @@ export default function InsurancePage() {
           heroImage: '/images/generated/disaster-recovery/hero-insurance-claims.webp',
           icon: <Shield className="h-12 w-12" />,
           title: 'Insurance Claims Assistance',
-          subtitle: 'Every insurer. Every industry. From residential homes to offshore rigs — full claims documentation for all Australian insurance providers.',
+          subtitle: 'A broad network servicing residential, commercial, strata and specialist industrial restoration. Claim documentation formatted for major Australian insurer panels. Offshore and marine losses referred to appropriately qualified partners.',
         }}
         cta={{ text: 'Get Emergency Help', href: '/claim' }}
         breadcrumbs={[

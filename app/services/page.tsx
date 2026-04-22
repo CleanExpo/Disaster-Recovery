@@ -149,7 +149,7 @@ const emergencyCommercialServices: ServiceLink[] = [
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    description: '24/7 rapid emergency response with fast arrival times Australia-wide.',
+    description: '24/7 emergency response via the national contractor network. Arrival times are metro-prioritised.',
   },
   {
     title: 'Commercial Services',

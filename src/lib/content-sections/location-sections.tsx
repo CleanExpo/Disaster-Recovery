@@ -44,15 +44,15 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
             damage repair.
           </p>
           <p>
-            As an approved provider for all major Australian insurers, we handle all claims
-            documentation on your behalf — providing everything your insurer needs to process your reimbursement. Our local {city} teams
-            understand the unique challenges properties face in this area, from {risks[0]} to {risks[1]},
-            and carry the specialist equipment needed for any scale of restoration.
+            Network contractors prepare claim documentation formatted to the requirements of major
+            Australian insurer panels, so you have everything you need to support your claim. Our local
+            {city} teams understand the challenges properties face in this area, from {risks[0]} to
+            {risks[1]}, and carry the specialist equipment needed for a range of restoration scales.
           </p>
           <p>
             Whether you need emergency board-up at 2am or a comprehensive restoration plan for a
-            commercial property, our {city} contractors are IICRC-certified and ready to respond within
-            60 minutes across the local area.
+            commercial property, {city} network contractors hold current IICRC certification and target
+            a 60-minute metropolitan response; regional times vary.
           </p>
         </>
       ),
@@ -118,9 +118,11 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
             </p>
           )}
           <p>
-            All our {city} contractors hold current IICRC certification, WorkSafe licences, and are
-            approved by major insurers including AAMI, Suncorp, Allianz, NRMA, QBE, and more. We
-            bill you directly so work begins immediately, then provide full documentation to support your insurance claim.
+            Network contractors in {city} are required to hold current IICRC certification and
+            WorkSafe licences as a condition of network participation. Claim documentation is
+            formatted to the requirements of major Australian insurer panels. The attending
+            contractor invoices you directly (or your insurer, where direct-bill arrangements apply)
+            so work can begin without waiting for reimbursement flows.
           </p>
         </>
       ),
@@ -146,7 +148,8 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
           <p>
             Our {city} network handles water damage, fire and smoke damage, mould remediation,
             storm and cyclone damage, flood recovery, sewage cleanup, biohazard decontamination,
-            and trauma scene restoration. No job is too large or too small.
+            and trauma scene restoration. The network handles residential, commercial and
+            large-loss restoration; job suitability is confirmed at triage.
           </p>
           <h3>Are your {city} technicians certified?</h3>
           <p>
