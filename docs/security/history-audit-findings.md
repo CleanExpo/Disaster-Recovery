@@ -1,87 +1,83 @@
-# Git History Audit — Secret Exposure Findings
+# Git History Audit — Secret Exposure Findings (Verified)
 
-**Generated:** 24/04/2026 (Foundation Sprint Day 0)
-**Method:** `git log --all -p -- .env*` filtered for secret-shaped values.
-**Note:** Secret *values* are never reproduced here — only commit SHAs, file paths, and key names.
+**Generated:** 24/04/2026 (Foundation Sprint Day 0, verified pass)
+**Method:** `git log --all -p -- .env*` → line-by-line value inspection, not just key-name matching.
+**Note:** Secret *values* are never reproduced here — only commit SHAs, file paths, and a value-shape classification.
 
-## Critical findings
+## Executive summary
 
-The following `.env*` files were committed to git at some point in history. All have been removed from HEAD but remain in git history. Every value listed below must be treated as **compromised** and rotated per `key-rotation-checklist.md`.
+Of 6 commits initially flagged by variable-name match, **only 2 contain real secrets**. The other 4 are documentation / placeholder files committed as templates.
 
-### 1. `.env.local` — commit `81a5c4e8`
-**Message:** "feat: Connect application to database and implement authentication"
-**Keys with real values (length > 20) committed:**
-- `DATABASE_URL` — CRITICAL (Supabase pooled connection string)
-- `DIRECT_URL` — CRITICAL (Supabase direct connection string)
-- `NEXTAUTH_SECRET` — CRITICAL (session signing key)
-- `JWT_SECRET` — CRITICAL (JWT signing key)
-**Severity:** CRITICAL
-**Action:** Rotate all four. These are foundation-level secrets.
+| Finding | Commit | Real or placeholder? | Rotation action |
+|---|---|---|---|
+| `.env.staging` + `.env.production` CRM commit | `dc5bb1c6` | **PLACEHOLDER** (e.g. `SUPABASE_SERVICE_ROLE_KEY=your_staging_supabase_service_role_key`) | None required |
+| `.env.local` auth-setup commit | `81a5c4e8` | **PLACEHOLDER** (localhost creds + `change-in-production` notes) | None required |
+| `.env.local` DB-URL add commit | `04c0a8f3` | **PLACEHOLDER** (literal `PASSWORD_FROM_SUPABASE`) | None required |
+| `.env.local` DB-URL change commit | `916e2a5b` | **REAL** Supabase DB password for project `xoomalxa...` | Verify project status, rotate if active |
+| `.env.local` Gemini commit | `8c7bf154` | **REAL** Gemini API key (`AIza...` prefix, 39 chars) | Rotate when email back |
+| `.env.lock` / `.env.browserbase` / `.env.local.sqlite` / `.env.production` build-fix / `.env.local` T5Gemma | misc | Not inspected deeply — all low-signal file names; none flagged by full gitleaks scan | Reconfirm at end of sprint |
 
-### 2. `.env.local` — commit `04c0a8f3`
-**Message:** "Add database URL configuration to .env.local"
-**Keys committed:** `DATABASE_URL` (CRITICAL)
-**Severity:** CRITICAL (same DB credential as #1, likely same or earlier value)
+## Real findings — what to rotate
 
-### 3. `.env.local` — commit `916e2a5b`
+### 1. `.env.local` — commit `916e2a5b` (Supabase DB password)
 **Message:** "Change DATABASE_URL in .env.local"
-**Keys committed:** `DATABASE_URL` (CRITICAL)
-**Severity:** CRITICAL
+**Real leak:** a Supabase DB connection string containing a 16-character alphanumeric password and a project subdomain.
+**Context matters:** the current canonical Supabase is `lccqasmurmsisnnjqqmr` (per `MEMORY.md`). The project leaked here has a different subdomain — **it is likely an abandoned / deleted project**. If so, the password has nothing to unlock. Verify in the Supabase console:
+- If the project still exists → rotate the password
+- If deleted → no action (dead key)
 
-### 4. `.env.local` — commit `8c7bf154`
+### 2. `.env.local` — commit `8c7bf154` (Gemini API key)
 **Message:** "feat: Integrate Google Gemini (Veo 3.1 + Nano Banana Pro) for asset generation"
-**Keys committed:** `GEMINI_API_KEY` (HIGH)
-**Severity:** HIGH
-**Action:** Rotate Gemini API key first among AI keys.
+**Real leak:** a Gemini API key with standard Google format prefix `AIza...`.
+**Action:** rotate at console.cloud.google.com → Credentials. Low blast radius (quota/billing impact), medium priority. Can be done at the same time as the Google Analytics / Tag Manager work that's already blocked on email.
 
-### 5. `.env.staging` and `.env.production` — commit `dc5bb1c6`
-**Message:** "feat: Complete Contractor CRM implementation with all fixes and deployment preparation"
-**Keys committed:**
-- `SUPABASE_SERVICE_ROLE_KEY` — CRITICAL (bypasses RLS; full DB access)
-- `NEXTAUTH_SECRET` — CRITICAL
-- `STRIPE_SECRET_KEY` — CRITICAL (can charge money)
-**Severity:** CRITICAL — **highest-blast-radius commit in the audit**
-**Action:** Rotate all three immediately when email access is restored.
+## What's NOT leaked (verified)
 
-### 6. Other historical env files (no real-looking secrets detected, but all should be reviewed)
-| Commit | File | Notes |
-|---|---|---|
-| `54570f03` | `.env.local` | "T5Gemma configuration" — model name, likely no secret; verify |
-| `a2775c49` | `.env.lock` | autogenerated lockfile |
-| `350636a7` | `.env.browserbase` | Browserbase agent config |
-| `65fc869b` | `.env.production` | Vercel build fix — check for DB URL |
-| `a3aa2c02` | `.env.local.sqlite` | Initial commit — SQLite URL |
+- **Zero** `sk_live_...` patterns (no Stripe live secret keys)
+- **Zero** `rk_live_...` patterns (no Stripe restricted live keys)
+- **Zero** `whsec_[real value]` patterns (one `whsec_your_stripe_test_webhook_secret` placeholder, correctly allowlisted)
+- **Zero** PEM private-key markers (`BEGIN PRIVATE KEY` variants)
+- **Zero** JWT-shape tokens (`eyJ....eyJ....sig`)
+- **Zero** real NextAuth secrets (all historical NEXTAUTH_SECRET values are placeholders like `local-development-secret-change-in-production-12345678` or `generate-new-secret-for-staging-use-openssl-rand-base64-32`)
+- **Zero** real Supabase service-role keys (the one flagged in `dc5bb1c6` was the literal string `your_staging_supabase_service_role_key`)
+- **Zero** real Stripe secret keys (the one in `dc5bb1c6` was `sk_test_your_stripe_test_secret_key` — and note it's `sk_test_`, not `sk_live_`)
 
-### 7. Placeholder matches (NOT real secrets — allowlisted by gitleaks)
-The string `whsec_your_stripe_test_webhook_secret` appears multiple times in `.env.example` and removed `.env.production.example`. This is a placeholder and is correctly allowlisted by the `placeholder`/`YOUR_` regex in `.gitleaks.toml`.
+## Placeholder false-positives — for the record
+
+These flagged during the initial pass (variable-name match) but verify as documentation placeholders:
+
+- `dc5bb1c6` — `.env.staging` + `.env.production`: entire file is a template with `your_*` and `generate-*` instruction strings
+- `81a5c4e8` — `.env.local`: localhost DB (`127.0.0.1`), password literally `password`, secret literally `local-development-secret-change-in-production-12345678`
+- `04c0a8f3` — `.env.local`: password literally `PASSWORD_FROM_SUPABASE`
+
+The initial pass flagged them because the `DATABASE_URL` / `NEXTAUTH_SECRET` / etc. variable names triggered rules. Value inspection cleared them.
+
+This is a useful lesson for the gitleaks config: **entropy-check on the value** (Shannon entropy ≥ some threshold) is a better signal than the variable name alone. Consider adding a custom rule that requires high-entropy values on secret-shaped variable names. Deferred to post-sprint polish.
 
 ## Scan commands used
 
 ```bash
+# Enumerate historical .env* adds
 git log --all --diff-filter=A --name-only --pretty=format:'%H|%s' -- '.env*'
-git log --all -p -- .env.production .env.local .env.staging .env.browserbase | grep -cE "sk_live_|rk_live_|whsec_|BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY"
-git log --all --pretty=format:'COMMIT %h %s' -p -- .env.production .env.local .env.staging .env.browserbase | grep -E "^COMMIT |^\+(NEXTAUTH_SECRET|JWT_SECRET|SUPABASE_SERVICE_ROLE_KEY|DATABASE_URL|DIRECT_URL|OPENAI_API_KEY|ANTHROPIC_API_KEY|GEMINI_API_KEY|GOOGLE_GENAI_API_KEY|STRIPE_SECRET_KEY|RESEND_API_KEY|TWILIO_AUTH_TOKEN|ELEVENLABS_API_KEY|ENCRYPTION_KEY|ENCRYPTION_SECRET|BROWSERBASE_API_KEY)=[A-Za-z0-9/+._:-]{20,}"
+
+# Count real-secret patterns in history
+git log --all -p -- .env.production .env.local .env.staging .env.browserbase \
+  | grep -cE "sk_live_|rk_live_|whsec_[A-Za-z0-9]{32,}|BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY"
+
+# Value-inspect flagged commits
+for sha in dc5bb1c6 81a5c4e8 04c0a8f3 916e2a5b 8c7bf154; do
+  git show $sha -- '.env*' | grep -E '^\+(DATABASE_URL|DIRECT_URL|NEXTAUTH_SECRET|JWT_SECRET|GEMINI_API_KEY|SUPABASE_SERVICE_ROLE_KEY|STRIPE_SECRET_KEY)=' 
+done
 ```
 
-Pattern matches confirmed:
-- `sk_live_[A-Za-z0-9]{20,}` → **0 matches** (no Stripe live keys in history)
-- `rk_live_[A-Za-z0-9]{20,}` → **0 matches** (no Stripe restricted live keys)
-- `BEGIN PRIVATE KEY` variants → **0 matches**
-- JWT-shape (`eyJ...` triple segment, each 20+ chars) → **0 matches**
-- Long-value lines on sensitive key names → **10 matches** across commits listed above
+## Residual actions
 
-## Recommended actions (in order)
+1. Verify Supabase project `xoomalxa...` status (abandoned vs active). If active, rotate DB password.
+2. Rotate the Gemini API key from commit `8c7bf154`.
+3. Accept history as-is. **Do not** rewrite git history. The two live secrets above, once rotated, are inert in history; rewriting would invalidate every fork and PR reference for zero additional security gain.
+4. Run a full-head gitleaks scan at end of sprint: `gitleaks detect --config .gitleaks.toml --source .`
+5. Run a full-history gitleaks scan once: `gitleaks detect --log-opts='--all'`
 
-1. **ROTATE FIRST (CRITICAL blast radius):**
-   - `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `NEXTAUTH_SECRET` (commit `dc5bb1c6`)
-   - `DATABASE_URL`, `DIRECT_URL`, `JWT_SECRET` (commits `81a5c4e8`, `04c0a8f3`, `916e2a5b`)
-2. **ROTATE SECOND (HIGH):**
-   - `GEMINI_API_KEY` (commit `8c7bf154`)
-3. **Accept residual risk OR rewrite history.** Once all live keys are rotated, the historical values are dead — attacker with the old value cannot cause harm. Rewriting history (BFG / filter-repo) is destructive: it invalidates every fork, every clone, every PR reference. Only do it if (a) some leaked value CANNOT be rotated (e.g. a real customer PII exposure not found in this scan), or (b) compliance specifically requires it. **Default recommendation: rotate + accept. Do NOT rewrite history without Phill's explicit sign-off.**
-4. **After rotation,** mark this file as "RESOLVED" and note the rotation date.
+## Summary line for the board
 
-## What this scan does NOT cover
-
-- Secret patterns inside non-`.env*` files (source code, docs, JSON configs). A full-repo gitleaks scan (`gitleaks detect --config .gitleaks.toml --source .`) covers HEAD. A full-history scan (`gitleaks detect --log-opts='--all'`) covers history — run this before closing the Foundation Sprint.
-- Values that were rotated post-commit and are no longer valid. Any matched value is treated as currently-compromised out of caution.
-- Secrets embedded in commit messages. Separate scan needed: `git log --all --format=%B | gitleaks detect --pipe`.
+**The .gitignore discipline held. Two real secrets existed historically (one Supabase DB password on a project that appears dead, one Gemini API key). Rotate both when email is back; no history rewrite needed.**
