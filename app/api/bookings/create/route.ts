@@ -5,39 +5,7 @@ import { calculateLeadScore, getLeadPriority, assignLeadToTeam, getResponseTime 
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { encrypt, isConfigured } from '@/lib/encryption';
 import { rateLimit } from '@/lib/rate-limit';
-
-const bookingSchema = z.object({
-  // Service Details
-  serviceType: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'structural', 'biohazard', 'other']),
-  urgency: z.enum(['emergency', 'urgent', 'routine']),
-  propertyType: z.enum(['residential', 'commercial', 'industrial']),
-  estimatedDamage: z.string(),
-
-  // Schedule
-  date: z.string(),
-  time: z.string(),
-
-  // Contact Information
-  firstName: z.string().min(2, 'First name is required'),
-  lastName: z.string().min(2, 'Last name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8 }$/, 'Invalid Australian phone number'),
-  preferredContact: z.enum(['phone', 'email', 'both']),
-
-  // Address
-  streetAddress: z.string().min(5, 'Street address is required'),
-  suburb: z.string().min(2, 'Suburb is required'),
-  state: z.enum(['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT']),
-  postcode: z.string().regex(/^\d{4}$/, 'Invalid Australian postcode'),
-
-  // Additional Information
-  hasInsurance: z.boolean(),
-  insuranceProvider: z.string().optional(),
-  claimNumber: z.string().optional(),
-  additionalNotes: z.string().optional(),
-  photos: z.array(z.string()).optional(),
-  accessInstructions: z.string().optional(),
-});
+import { bookingCreateSchema } from '@/lib/validation/schemas';
 
 // Map urgency level to Booking.emergencyResponseLevel
 function mapUrgencyToResponseLevel(urgency: string): string {
@@ -75,7 +43,7 @@ function buildScheduledDate(date: string, time: string): Date | null {
 }
 
 // Build a description from form fields that have no direct Booking column
-function buildDescription(data: z.infer<typeof bookingSchema>): string {
+function buildDescription(data: z.infer<typeof bookingCreateSchema>): string {
   const parts = [
     `Service: ${data.serviceType}`,
     `Property: ${data.propertyType}`,
@@ -125,7 +93,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Validate the request body
-    const validatedData = bookingSchema.parse(body);
+    const validatedData = bookingCreateSchema.parse(body);
 
     // Calculate lead score
     const leadScore = calculateLeadScore({

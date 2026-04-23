@@ -1,6 +1,10 @@
 // Demo storage using localStorage for persistence
 // In production, this would use a real database
 
+// TODO (Foundation Sprint follow-up): this interface duplicates claim-shape
+// information that now has a canonical source at src/lib/validation/schemas.ts
+// (see claimSubmitSchema + ClaimSubmitInput). Candidate for unification in a
+// dedicated dedup PR — out of scope for the Day 7-8 primitive-registry change.
 interface ClaimData {
   [key: string]: any;
 }

@@ -4,17 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam } from '@/lib/lead-scoring';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
-
-const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8 }$/, 'Invalid Australian phone number'),
-  service: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'biohazard', 'other']),
-  urgency: z.enum(['emergency', 'urgent', 'planning', 'routine']),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-  propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),
-  hasInsurance: z.boolean().optional(),
-  preferredContact: z.enum(['phone', 'email', 'both']).optional() });
+import { contactSubmitSchema } from '@/lib/validation/schemas';
 
 export async function POST(request: NextRequest) {
   const ip =
@@ -37,7 +27,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate the request body
-    const validatedData = contactSchema.parse(body);
+    const validatedData = contactSubmitSchema.parse(body);
     
     // Calculate lead score
     const leadScore = calculateLeadScore({
