@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = '8 April 2026'
+const LAST_UPDATED = '23 April 2026'
 const ENTITY = 'National Restoration Professionals Group Pty Ltd'
 const ABN = '85 151 794 142'
 const TRADING_AS = 'Disaster Recovery Australia'
@@ -139,10 +139,65 @@ export default function PrivacyPolicyPage() {
           body: (
             <>
               <p>
-                Some of the technology providers we use to operate our platform may store or process data outside Australia — including cloud infrastructure providers operating in the United States and other jurisdictions. Where we disclose personal information to overseas recipients, we take reasonable steps to ensure those recipients handle your information in a manner consistent with the Australian Privacy Principles, including through contractual data processing agreements.
+                Personal information we collect is processed by the following providers. Where a provider operates outside Australia, we take reasonable steps to ensure they handle your information consistently with the Australian Privacy Principles, including through contractual data processing agreements.
+              </p>
+              <div style={{ marginTop: '1rem', overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                  <thead>
+                    <tr style={{ background: '#F1F5F9', textAlign: 'left' }}>
+                      <th style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #CBD5E1' }}>Provider</th>
+                      <th style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #CBD5E1' }}>Country</th>
+                      <th style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #CBD5E1' }}>Function</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Vercel</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States, European Union</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Web hosting, serverless compute</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Supabase</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Australia (ap-southeast-2)</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Primary database</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Anthropic</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>AI content generation for internal ops</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>OpenAI</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>AI services (where used)</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Google</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Global</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Analytics, Tag Manager, Gemma translation API</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Microsoft</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Global</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Clarity session recording (opt-in only)</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Meta</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Pixel tracking (opt-in only, when enabled)</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Stripe</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Payment processing</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Twilio / ElevenLabs</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Voice telephony and AI call transcription</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem' }}>Cloudflare</td><td style={{ padding: '0.5rem 0.75rem' }}>Global</td><td style={{ padding: '0.5rem 0.75rem' }}>CDN and DNS</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Session recording disclosure.</strong> If you consent to product-experience cookies via our cookie banner, Microsoft Clarity records anonymised mouse movement, clicks, scrolling and page interactions for usability analysis. Recordings exclude fields marked sensitive (payment card, passwords). Session recordings are retained on a 90-day rolling deletion. Clarity is off by default; it activates only if you opt in.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                By using our platform, you consent to the potential disclosure of your personal information to overseas recipients for the purpose of operating our services, where such disclosure is necessary.
+                By using our platform, you consent to the disclosure of your personal information to the overseas recipients above where reasonably necessary to provide our services. Opt-in cookies (Clarity, Meta Pixel) do not activate unless you accept them via the cookie banner.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: 'Voice AI Assistant (Sarah) and Telephony',
+          background: 'light',
+          body: (
+            <>
+              <p>
+                When you call our intake line, your call may be answered by <strong>Sarah</strong>, an AI voice assistant built on <strong>ElevenLabs Conversational AI (Flash v2.5)</strong>. Telephony is carried by <strong>Twilio</strong>. Both ElevenLabs and Twilio are United States-headquartered providers, and voice audio, transcripts, and associated metadata are processed on servers located in the United States (Twilio edge infrastructure may also be configured to route through Australian points of presence; core processing remains in the US).
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Informed consent at call open (APP 8):</strong> At the start of every call, before any audio is streamed to ElevenLabs, Sarah plays a short opening utterance that discloses (i) you are speaking to an AI assistant, (ii) the call is recorded and transcribed, and (iii) audio and transcripts are processed by overseas providers in the United States. You are asked to say &quot;yes&quot; or press 1 to continue. If you do not consent, or if you stay on the line, the call is immediately transferred to a human operator and no audio is streamed to the AI provider.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>What the voice channel collects:</strong> your name, phone number (via caller line identification), email address (spelled out during the call), postcode and property address, description of the damage, and insurance information (insurer name, policy number, claim number). This is the same categories of information collected through our web claim form — the voice channel is simply an alternative intake path.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Recording and retention:</strong> calls are recorded and machine-transcribed. Default retention is <strong>30 days for audio recordings</strong>, <strong>90 days for transcripts</strong>, and <strong>7 years for the redacted audit log</strong> (call metadata, consent outcome, claim reference — with direct identifiers removed). These retention windows align with our claim-record obligations under APP 11 and with the minimum retention needed to resolve billing and dispute matters with our carriers.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>How to withdraw consent:</strong> you may decline consent at the opening prompt (no audio leaves Twilio for the AI provider), or you may request a human transfer at any point during the call by saying &quot;human&quot; or &quot;operator&quot; — Sarah is configured to transfer on that request at every turn.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Automated decision-making (APP 1.7, commences 10 December 2026):</strong> Sarah collects information and books appointments; she does not make decisions that produce a legal or similarly significant effect on you. All contractor-assignment, scope-of-work, and insurance decisions remain with the assigned human contractor and your insurer, consistent with the &quot;AI-Assisted Features and Automated Processing&quot; section below. We are preparing for the APP 1.7 transparency requirements ahead of the 10 December 2026 commencement date.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                Disclosure to ElevenLabs and Twilio is made in accordance with APP 8 (cross-border disclosure) and is governed by data processing agreements with each provider. Review of this consent mechanism by privacy counsel is part of our pre-go-live checklist.
               </p>
             </>
           ),
@@ -165,6 +220,26 @@ export default function PrivacyPolicyPage() {
               </p>
               <p style={{ marginTop: '1rem' }}>
                 This disclosure is made in accordance with <strong>APP 3</strong> (transparency about collection practices) and <strong>APP 8</strong> (cross-border disclosure), and reflects our commitment to transparency ahead of the Privacy Act amendments taking effect 1 July 2026.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: 'New Zealand Consumers — Privacy Act 2020',
+          body: (
+            <>
+              <p>
+                If you are in New Zealand or submit a claim for a property located in New Zealand, the New Zealand <strong>Privacy Act 2020</strong> and its 13 Information Privacy Principles (IPPs) apply to our handling of your personal information, in addition to the Australian Privacy Act and APPs.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>IPP 3 collection notice.</strong> When you submit a claim from New Zealand we collect your name, contact details, property address, damage description, and (where provided) insurance information for the purposes of matching you with a restoration contractor and enabling the contractor to contact you and liaise with your insurer. Collection is from you directly. Providing this information is voluntary, but without it we cannot match your claim.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>IPP 12 cross-border disclosure.</strong> Your personal information is transferred to Australia for storage and processing and may be disclosed to contractors, insurers, and service providers located in Australia and overseas as set out above. We take reasonable steps to ensure overseas recipients handle your information consistently with the Privacy Act 2020.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Access, correction, and complaints.</strong> You may request access to or correction of your personal information at any time. If you are dissatisfied with our response, you may complain to the Office of the Privacy Commissioner at{' '}
+                <a href="https://www.privacy.org.nz" target="_blank" rel="noopener noreferrer" style={{ color: '#1D4ED8', textDecoration: 'underline' }}>privacy.org.nz</a>.
               </p>
             </>
           ),
@@ -251,7 +326,7 @@ export default function PrivacyPolicyPage() {
                 We may update this Privacy Policy from time to time. When we make material changes, we will update the &quot;Last updated&quot; date at the top of this page. We encourage you to review this policy periodically.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                This policy was last reviewed and updated on <strong>{LAST_UPDATED}</strong> to reflect the removal of the Privacy Act small business exemption effective 1 July 2026, and in response to the OAIC&apos;s 2026 privacy compliance sweep targeting property-adjacent service sectors.
+                This policy was last reviewed and updated on <strong>{LAST_UPDATED}</strong> to add a New Zealand Privacy Act 2020 section (IPP 3 collection notice and IPP 12 cross-border disclosure) for consumers submitting claims from New Zealand. Earlier updates addressed the removal of the Privacy Act small business exemption effective 1 July 2026 and the OAIC&apos;s 2026 privacy compliance sweep.
               </p>
             </>
           ),

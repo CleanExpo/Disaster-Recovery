@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = '8 April 2026'
+const LAST_UPDATED = '23 April 2026'
 const TRADING_AS = 'Disaster Recovery Australia'
 const CONTACT_URL = '/contact'
 const PRIVACY_URL = '/privacy'
@@ -109,6 +109,26 @@ export default function CookiePolicyPage() {
               </div>
 
               <div style={{ marginTop: '1.25rem' }}>
+                <h4 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Product Experience Cookies (off by default)</h4>
+                <p style={{ fontSize: '0.9rem', color: '#374151' }}>
+                  These cookies are only set if you opt in via our cookie banner. They power anonymised session replay and heatmap analysis so we can improve the claim form and other interactive surfaces.
+                </p>
+                <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem', lineHeight: 2, fontSize: '0.9rem' }}>
+                  <li><strong>Microsoft Clarity (_clck, _clsk, CLID)</strong> — anonymised session replay, heatmaps, and page interaction analytics. Data is anonymised before transmission. <a href="https://privacy.microsoft.com/en-au/privacystatement" target="_blank" rel="noopener noreferrer" style={{ color: '#1D4ED8', textDecoration: 'underline' }}>Microsoft Privacy Statement</a>.</li>
+                </ul>
+              </div>
+
+              <div style={{ marginTop: '1.25rem' }}>
+                <h4 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Marketing Cookies (off by default)</h4>
+                <p style={{ fontSize: '0.9rem', color: '#374151' }}>
+                  These cookies are only set if you opt in via our cookie banner. We use them for ad retargeting on Facebook and Instagram if and when we run paid campaigns. They are not active unless you accept the Marketing tier.
+                </p>
+                <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem', lineHeight: 2, fontSize: '0.9rem' }}>
+                  <li><strong>Meta (Facebook) Pixel (_fbp, fr)</strong> — ad retargeting and campaign performance measurement. <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" style={{ color: '#1D4ED8', textDecoration: 'underline' }}>Meta Privacy Policy</a>.</li>
+                </ul>
+              </div>
+
+              <div style={{ marginTop: '1.25rem' }}>
                 <h4 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Third-Party Payment Cookies</h4>
                 <p style={{ fontSize: '0.9rem', color: '#374151' }}>
                   Where you proceed to payment, Stripe (our payment processor) sets its own cookies to enable secure payment processing and fraud prevention. These cookies are governed by{' '}
@@ -118,7 +138,7 @@ export default function CookiePolicyPage() {
               </div>
 
               <p style={{ marginTop: '1.25rem', padding: '0.75rem 1rem', background: '#F0FDF4', borderRadius: '0.375rem', borderLeft: '4px solid #16A34A', fontSize: '0.9rem' }}>
-                <strong>We do not use advertising or targeting cookies.</strong> We do not display advertisements on our website and we do not share data with ad networks or data brokers for marketing purposes.
+                <strong>All optional cookies are off by default.</strong> Analytics, product experience, and marketing cookies only activate when you opt in via the cookie banner on first visit. You can change your choices anytime using the Cookie Preferences link in our footer.
               </p>
             </>
           ),
@@ -172,6 +192,13 @@ export default function CookiePolicyPage() {
               </div>
 
               <div style={{ marginTop: '1.25rem' }}>
+                <h4 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Our Cookie Banner</h4>
+                <p style={{ fontSize: '0.9rem' }}>
+                  On your first visit, our cookie banner lets you accept, reject, or fine-tune each cookie tier (Analytics, Product experience, Marketing, AI Translation). Your choice is stored locally on your device. You can change your choice anytime using the Cookie Preferences link in our footer. We use Google Consent Mode v2 so that analytics and marketing tags respect your choice immediately, without reload.
+                </p>
+              </div>
+
+              <div style={{ marginTop: '1.25rem' }}>
                 <h4 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Do Not Track</h4>
                 <p style={{ fontSize: '0.9rem' }}>
                   Some browsers transmit a &quot;Do Not Track&quot; signal to websites. Because there is no agreed standard for how websites should respond, our website does not currently alter its behaviour in response to Do Not Track signals. If a standard is adopted, we will review our approach.
@@ -212,7 +239,12 @@ export default function CookiePolicyPage() {
         {
           question: 'Do you use advertising cookies?',
           answer:
-            'No. We do not use advertising or targeting cookies and we do not share data with ad networks or data brokers for marketing purposes.',
+            'Only if you opt in. Our Marketing tier (Meta Pixel) is off by default and only activates when you accept it via the cookie banner. We do not sell data or share it with data brokers.',
+        },
+        {
+          question: 'What are product-experience cookies?',
+          answer:
+            'Microsoft Clarity anonymously records how visitors interact with our claim form and pages so we can improve usability. Nothing is recorded unless you opt in via our cookie banner, and session recordings are automatically anonymised.',
         },
         {
           question: 'What happens if I disable cookies?',
