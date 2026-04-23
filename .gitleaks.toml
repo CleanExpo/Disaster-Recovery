@@ -5,13 +5,14 @@ useDefault = true
 
 [allowlist]
 description = "Known false positives"
+# NB: gitleaks allowlist.paths takes REGEX not globs.
 paths = [
-  ".env.example",
-  ".env.sample",
-  "**/fixtures/**",
-  "**/__tests__/**/*.test.ts",
-  "**/__tests__/**/*.test.js",
-  "docs/**/*.md"
+  '''\.env\.example$''',
+  '''\.env\.sample$''',
+  '''(^|/)fixtures/''',
+  '''(^|/)__tests__/.*\.test\.(ts|js|tsx|jsx)$''',
+  '''(^|/)docs/.*\.md$''',
+  '''(^|/)proposals/.*\.md$''',
 ]
 regexes = [
   # allow example placeholders
