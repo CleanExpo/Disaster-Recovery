@@ -1079,8 +1079,8 @@ function ContractorApplicationContent() {
               <AlertCircle className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" aria-hidden />
               <div>
                 <h3 className="font-semibold text-white mb-1">Need help?</h3>
-                <p className="text-slate-400 text-sm">
-                  Your progress is saved automatically. You can leave and come back anytime.
+                <p className="text-amber-300 text-sm">
+                  Complete all steps in one session — your progress will be lost if you refresh or close this tab.
                   For support, visit our <a href="/contact" className="text-blue-400 hover:underline">contact page</a>.
                 </p>
               </div>

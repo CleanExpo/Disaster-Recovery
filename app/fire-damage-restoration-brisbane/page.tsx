@@ -204,7 +204,7 @@ export default function FireDamageRestorationBrisbanePage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb across Greater Brisbane, from the CBD to the outer
+                  Our contractor network services suburbs across Greater Brisbane, from the CBD to the outer
                   growth corridors.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

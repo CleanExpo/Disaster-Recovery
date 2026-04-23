@@ -56,7 +56,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Storm & Natural Disaster Recovery',
-  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response nationwide.',
+  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
   provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
   areaServed: { '@type': 'Country', name: 'Australia' },
   serviceType: 'Storm Damage Restoration',
@@ -66,7 +66,7 @@ const serviceSchema = {
 
 export const metadata: Metadata = {
   title: 'Storm & Natural Disaster Recovery | Emergency Response',
-  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response nationwide.',
+  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
   keywords: [
     'storm damage restoration',
     'cyclone damage repair',
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Storm & Natural Disaster Recovery Services | 24/7',
-    description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response nationwide.',
+    description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
   },
   twitter: {
     card: 'summary_large_image',
@@ -117,7 +117,7 @@ export default function StormDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Storm & Natural Disaster Recovery',
-        subtitle: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response nationwide.',
+        subtitle: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"
