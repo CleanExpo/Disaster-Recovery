@@ -167,7 +167,7 @@ export class MCPManagementAgent extends EventEmitter {
       
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
         timestamp: new Date(),
         duration
       };
@@ -356,7 +356,7 @@ export class MCPManagementAgent extends EventEmitter {
       console.log(`\n🎉 Orchestration completed successfully!`);
       return results;
     } catch (error) {
-      console.error(`❌ Orchestration failed: ${error.message}`);
+      console.error(`❌ Orchestration failed: ${error instanceof Error ? error.message : String(error)}`);
       throw error;
     }
   }
@@ -444,7 +444,7 @@ export class MCPManagementAgent extends EventEmitter {
       } catch (error) {
         health.mcps[name] = {
           status: 'offline',
-          error: error.message,
+          error: error instanceof Error ? error.message : String(error),
           lastCheck: new Date()
         };
         health.status = 'degraded';
@@ -511,7 +511,7 @@ export class MCPManagementAgent extends EventEmitter {
       diagnostics.checks.push({
         test: 'connectivity',
         passed: false,
-        details: error.message
+        details: error instanceof Error ? error.message : String(error)
       });
     }
     
@@ -579,7 +579,7 @@ if (require.main === module) {
       
       await mcpAgent.shutdown();
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Error:', error instanceof Error ? error.message : String(error));
       process.exit(1);
     }
   })();
