@@ -174,6 +174,35 @@ export default function PrivacyPolicyPage() {
           ),
         },
         {
+          heading: 'Voice AI Assistant (Sarah) and Telephony',
+          background: 'light',
+          body: (
+            <>
+              <p>
+                When you call our intake line, your call may be answered by <strong>Sarah</strong>, an AI voice assistant built on <strong>ElevenLabs Conversational AI (Flash v2.5)</strong>. Telephony is carried by <strong>Twilio</strong>. Both ElevenLabs and Twilio are United States-headquartered providers, and voice audio, transcripts, and associated metadata are processed on servers located in the United States (Twilio edge infrastructure may also be configured to route through Australian points of presence; core processing remains in the US).
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Informed consent at call open (APP 8):</strong> At the start of every call, before any audio is streamed to ElevenLabs, Sarah plays a short opening utterance that discloses (i) you are speaking to an AI assistant, (ii) the call is recorded and transcribed, and (iii) audio and transcripts are processed by overseas providers in the United States. You are asked to say &quot;yes&quot; or press 1 to continue. If you do not consent, or if you stay on the line, the call is immediately transferred to a human operator and no audio is streamed to the AI provider.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>What the voice channel collects:</strong> your name, phone number (via caller line identification), email address (spelled out during the call), postcode and property address, description of the damage, and insurance information (insurer name, policy number, claim number). This is the same categories of information collected through our web claim form — the voice channel is simply an alternative intake path.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Recording and retention:</strong> calls are recorded and machine-transcribed. Default retention is <strong>30 days for audio recordings</strong>, <strong>90 days for transcripts</strong>, and <strong>7 years for the redacted audit log</strong> (call metadata, consent outcome, claim reference — with direct identifiers removed). These retention windows align with our claim-record obligations under APP 11 and with the minimum retention needed to resolve billing and dispute matters with our carriers.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>How to withdraw consent:</strong> you may decline consent at the opening prompt (no audio leaves Twilio for the AI provider), or you may request a human transfer at any point during the call by saying &quot;human&quot; or &quot;operator&quot; — Sarah is configured to transfer on that request at every turn.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Automated decision-making (APP 1.7, commences 10 December 2026):</strong> Sarah collects information and books appointments; she does not make decisions that produce a legal or similarly significant effect on you. All contractor-assignment, scope-of-work, and insurance decisions remain with the assigned human contractor and your insurer, consistent with the &quot;AI-Assisted Features and Automated Processing&quot; section below. We are preparing for the APP 1.7 transparency requirements ahead of the 10 December 2026 commencement date.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                Disclosure to ElevenLabs and Twilio is made in accordance with APP 8 (cross-border disclosure) and is governed by data processing agreements with each provider. Review of this consent mechanism by privacy counsel is part of our pre-go-live checklist.
+              </p>
+            </>
+          ),
+        },
+        {
           heading: 'AI-Assisted Features and Automated Processing',
           body: (
             <>
