@@ -30,7 +30,11 @@ export type ComplianceEventType =
   | 'referral_fee_received'
   | 'kyc_triggered'
   | 'smr_lodged'
-  | 'tttr_lodged';
+  | 'tttr_lodged'
+  | 'booking_created'
+  | 'auth_login_attempt'
+  | 'auth_login_success'
+  | 'auth_login_failure';
 
 export type ComplianceCorrelationType =
   | 'claim'
