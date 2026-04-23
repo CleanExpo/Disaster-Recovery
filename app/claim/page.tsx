@@ -64,6 +64,44 @@ function ClaimPageSSRFallback() {
       <section className="py-12">
         <div className="container mx-auto px-6 max-w-2xl">
 
+          {/* DR-542 — Life-safety carve-out. ALWAYS visible above the form and
+              above the APP 3 notice. Users in active distress (flood entering,
+              roof off, fire) must be routed to 000 before we collect any data. */}
+          <div
+            role="alert"
+            className="mb-6 rounded-lg border-2 border-red-600 bg-red-50 p-4"
+          >
+            <p className="text-sm font-bold text-red-900 mb-1">
+              In immediate life-safety danger?
+            </p>
+            <a
+              href="tel:000"
+              className="inline-flex items-center justify-center min-h-[48px] w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
+              aria-label="Call 000 emergency services now"
+            >
+              Dial 000 now
+            </a>
+            <p className="mt-2 text-xs text-red-900 leading-relaxed">
+              Fire, rising floodwater, structural collapse, gas leak, injury, or exposed live wiring — call 000 first. You can lodge the claim after you are safe.
+            </p>
+          </div>
+
+          {/* DR-542 — Prefer-to-call fallback. Prominent so users who can't type
+              one-handed on mobile have an immediate voice option. */}
+          <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
+              <p className="text-xs text-blue-800">Our 24/7 intake line will take your claim over the phone.</p>
+            </div>
+            <a
+              href="tel:1300309361"
+              className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+              aria-label="Call Disaster Recovery on 1300 309 361"
+            >
+              Call 1300 309 361
+            </a>
+          </div>
+
           {/* APP 3 Collection Notice — full statutory version, rendered on server */}
           <div className="mb-8">
             <App3CollectionNotice variant="full" />
