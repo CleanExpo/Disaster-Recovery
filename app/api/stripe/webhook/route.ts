@@ -5,6 +5,7 @@ import Stripe from 'stripe';
 import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
 import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 async function handleWebhook(req: NextRequest) {
   const body = await req.text();
@@ -87,6 +88,30 @@ async function handleWebhook(req: NextRequest) {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
+
+        // DR-712 — consumer platform-fee payment. Discriminated by dr_fee_type metadata
+        // set by /api/payments/create-session. Logs the fee-received compliance event
+        // with hashed customer email; does NOT touch contractor tables.
+        if (session.metadata?.dr_fee_type === 'platform_fee') {
+          const claimId = session.metadata.dr_claim_id ?? 'unknown';
+          const customerEmail = session.customer_details?.email ?? session.customer_email ?? '';
+          await logComplianceEvent({
+            eventType: 'referral_fee_received',
+            correlationId: claimId,
+            correlationType: 'finance_referral',
+            entityType: 'customer',
+            entityIdentifier: customerEmail || undefined,
+            amountCents: session.amount_total ?? undefined,
+            amountCurrency: session.currency ?? undefined,
+            metadata: {
+              stripe_session_id: session.id,
+              payment_intent: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+              customer_email_hash: customerEmail ? hashIdentifier(customerEmail) : null,
+              source_channel: session.metadata.dr_source_channel ?? null,
+            },
+          });
+          break;
+        }
 
         if (session.metadata?.type === 'onboarding' && session.metadata?.contractorId) {
           const contractorId = session.metadata.contractorId;
@@ -223,8 +248,75 @@ async function handleWebhook(req: NextRequest) {
         break;
       }
 
+      case 'checkout.session.expired': {
+        // DR-712 — consumer session expired before payment. Audit only.
+        const session = event.data.object as Stripe.Checkout.Session;
+        if (session.metadata?.dr_fee_type === 'platform_fee') {
+          await logComplianceEvent({
+            eventType: 'finance_referral_handoff',
+            correlationId: session.metadata.dr_claim_id ?? 'unknown',
+            correlationType: 'finance_referral',
+            entityType: 'customer',
+            metadata: {
+              stripe_session_id: session.id,
+              outcome: 'session_expired',
+              expires_at: session.expires_at,
+            },
+          });
+        }
+        break;
+      }
+
+      case 'charge.dispute.created': {
+        // DR-712 — chargeback raised. TODO page compliance-lead.
+        const dispute = event.data.object as Stripe.Dispute;
+        const pi = typeof dispute.payment_intent === 'string' ? dispute.payment_intent : null;
+        // eslint-disable-next-line no-console
+        console.error('[stripe.dispute] chargeback raised', {
+          dispute_id: dispute.id,
+          payment_intent: pi,
+          amount: dispute.amount,
+          currency: dispute.currency,
+          reason: dispute.reason,
+        });
+        await logComplianceEvent({
+          eventType: 'referral_fee_received',
+          correlationId: pi ?? dispute.id,
+          correlationType: 'finance_referral',
+          entityType: 'customer',
+          amountCents: dispute.amount,
+          amountCurrency: dispute.currency ?? undefined,
+          metadata: {
+            stripe_dispute_id: dispute.id,
+            payment_intent: pi,
+            outcome: 'dispute_created',
+            dispute_reason: dispute.reason,
+          },
+        });
+        break;
+      }
+
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
+
+        // DR-712 — consumer payment failure. Log then break without touching contractor tables.
+        if (paymentIntent.metadata?.dr_fee_type === 'platform_fee') {
+          await logComplianceEvent({
+            eventType: 'finance_referral_handoff',
+            correlationId: paymentIntent.metadata.dr_claim_id ?? 'unknown',
+            correlationType: 'finance_referral',
+            entityType: 'customer',
+            amountCents: paymentIntent.amount,
+            amountCurrency: paymentIntent.currency,
+            metadata: {
+              payment_intent: paymentIntent.id,
+              outcome: 'payment_failed',
+              failure_message: paymentIntent.last_payment_error?.message ?? null,
+              failure_code: paymentIntent.last_payment_error?.code ?? null,
+            },
+          });
+          break;
+        }
 
         if (paymentIntent.metadata?.type === 'onboarding') {
           const contractorId = paymentIntent.metadata.contractorId;
