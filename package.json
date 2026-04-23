@@ -17,7 +17,10 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "check:scripts": "node -e \"const p=require('./package.json');const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK \u2014 all required scripts present:',required.join(', '));\""
+    "check:scripts": "node -e \"const p=require('./package.json');const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\" \"app/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\" \"app/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prepare": "husky"
   },
   "prisma": {
     "seed": "tsx scripts/core/seed.ts"
@@ -143,6 +146,8 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@modelcontextprotocol/server-memory": "^2025.8.4",
     "@modelcontextprotocol/server-sequential-thinking": "^2025.7.1",
     "@playwright/mcp": "^0.0.70",
@@ -161,11 +166,14 @@
     "eslint-config-next": "^15.5.15",
     "figlet": "^1.8.2",
     "glob": "^11.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "ora": "^8.2.0",
     "p-queue": "^8.1.0",
     "picomatch": "^4.0.3",
     "playwright": "^1.55.0",
     "postcss": "^8.4.40",
+    "prettier": "^3.8.3",
     "prisma": "^5.22.0",
     "puppeteer": "^24.17.0",
     "tailwindcss": "^3.4.7",
@@ -176,5 +184,14 @@
     "form-data": ">=4.0.5",
     "minimatch": ">=9.0.5",
     "path-to-regexp": ">=8.2.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "next lint --fix --file"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }
