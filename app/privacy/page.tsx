@@ -139,10 +139,36 @@ export default function PrivacyPolicyPage() {
           body: (
             <>
               <p>
-                Some of the technology providers we use to operate our platform may store or process data outside Australia — including cloud infrastructure providers operating in the United States and other jurisdictions. Where we disclose personal information to overseas recipients, we take reasonable steps to ensure those recipients handle your information in a manner consistent with the Australian Privacy Principles, including through contractual data processing agreements.
+                Personal information we collect is processed by the following providers. Where a provider operates outside Australia, we take reasonable steps to ensure they handle your information consistently with the Australian Privacy Principles, including through contractual data processing agreements.
+              </p>
+              <div style={{ marginTop: '1rem', overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                  <thead>
+                    <tr style={{ background: '#F1F5F9', textAlign: 'left' }}>
+                      <th style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #CBD5E1' }}>Provider</th>
+                      <th style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #CBD5E1' }}>Country</th>
+                      <th style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #CBD5E1' }}>Function</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Vercel</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States, European Union</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Web hosting, serverless compute</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Supabase</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Australia (ap-southeast-2)</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Primary database</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Anthropic</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>AI content generation for internal ops</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>OpenAI</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>AI services (where used)</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Google</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Global</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Analytics, Tag Manager, Gemma translation API</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Microsoft</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Global</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Clarity session recording (opt-in only)</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Meta</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Pixel tracking (opt-in only, when enabled)</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Stripe</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Payment processing</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Twilio / ElevenLabs</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>United States</td><td style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #E2E8F0' }}>Voice telephony and AI call transcription</td></tr>
+                    <tr><td style={{ padding: '0.5rem 0.75rem' }}>Cloudflare</td><td style={{ padding: '0.5rem 0.75rem' }}>Global</td><td style={{ padding: '0.5rem 0.75rem' }}>CDN and DNS</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Session recording disclosure.</strong> If you consent to product-experience cookies via our cookie banner, Microsoft Clarity records anonymised mouse movement, clicks, scrolling and page interactions for usability analysis. Recordings exclude fields marked sensitive (payment card, passwords). Session recordings are retained on a 90-day rolling deletion. Clarity is off by default; it activates only if you opt in.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                By using our platform, you consent to the potential disclosure of your personal information to overseas recipients for the purpose of operating our services, where such disclosure is necessary.
+                By using our platform, you consent to the disclosure of your personal information to the overseas recipients above where reasonably necessary to provide our services. Opt-in cookies (Clarity, Meta Pixel) do not activate unless you accept them via the cookie banner.
               </p>
             </>
           ),
