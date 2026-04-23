@@ -146,7 +146,7 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
           <p>
             Our {city} network handles water damage, fire and smoke damage, mould remediation,
             storm and cyclone damage, flood recovery, sewage cleanup, biohazard decontamination,
-            and trauma scene restoration. No job is too large or too small.
+            and trauma scene restoration. The network handles residential, commercial and large-loss restoration; job suitability is confirmed at triage.
           </p>
           <h3>Are your {city} technicians certified?</h3>
           <p>
