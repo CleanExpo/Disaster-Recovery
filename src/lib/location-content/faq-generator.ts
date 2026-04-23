@@ -69,7 +69,7 @@ export function generateLocationFAQs(data: LocationData): FAQEntry[] {
     default:
       faqs.push({
         question: `What types of disaster damage do you repair in ${city}?`,
-        answer: `Our ${city} network handles water damage restoration, fire and smoke damage, mould remediation, storm damage repair, flood recovery, sewage cleanup, biohazard decontamination, and trauma scene restoration. All contractors are IICRC-certified with current ${stateFullName} licences. No job is too large or too small.`,
+        answer: `Our ${city} network handles water damage restoration, fire and smoke damage, mould remediation, storm damage repair, flood recovery, sewage cleanup, biohazard decontamination, and trauma scene restoration. All contractors are IICRC-certified with current ${stateFullName} licences. The network handles residential, commercial and large-loss restoration; job suitability is confirmed at triage.`,
       });
   }
 

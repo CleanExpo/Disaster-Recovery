@@ -78,7 +78,7 @@ const faqSchema = {
       name: 'What Melbourne suburbs do you cover?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Our contractor network covers every suburb across Greater Melbourne \u2014 from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
+        text: 'Our contractor network services suburbs across Greater Melbourne \u2014 from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
       },
     },
     {
@@ -216,7 +216,7 @@ export default function WaterDamageRestorationMelbournePage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb across Greater Melbourne, from the Mornington Peninsula
+                  Our contractor network services suburbs across Greater Melbourne, from the Mornington Peninsula
                   to the Yarra Ranges, from Werribee to Frankston.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
@@ -295,7 +295,7 @@ export default function WaterDamageRestorationMelbournePage() {
           },
           {
             question: 'What Melbourne suburbs do you cover?',
-            answer: 'Our contractor network covers every suburb across Greater Melbourne — from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
+            answer: 'Our contractor network services suburbs across Greater Melbourne — from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
           },
           {
             question: 'How long does water damage restoration take in Melbourne?',

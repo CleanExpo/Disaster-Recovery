@@ -12,6 +12,7 @@ import DemoModeIndicator from '@/components/DemoModeIndicator'
 import DemoModeBanner from '@/components/demo/DemoModeBanner'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
+import { ConsentModeInit } from '@/components/analytics/ConsentModeInit'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import MobileNav from '@/components/mobile/MobileNav'
 import MobileFAB from '@/components/mobile/MobileFAB'
@@ -346,6 +347,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
         </a>
+        <ConsentModeInit />
         <GoogleTagManager />
         <MicrosoftClarity />
           <LayoutChrome>
