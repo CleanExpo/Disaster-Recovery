@@ -212,7 +212,7 @@ export default function StormDamageRestorationGoldCoastPage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb across the Gold Coast, from the northern growth corridors
+                  Our contractor network services suburbs across the Gold Coast, from the northern growth corridors
                   to the southern border suburbs, from the beachfront strip to the hinterland ranges.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

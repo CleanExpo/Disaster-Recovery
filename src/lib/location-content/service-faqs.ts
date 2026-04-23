@@ -129,7 +129,7 @@ export const serviceFAQs: Record<string, ServiceFAQGenerator> = {
     },
     {
       question: `What storm damage repairs do you handle in ${locationText(city, suburb)}?`,
-      answer: `Our contractors handle all storm damage including emergency tarping and board-up, roof repair and replacement, fallen tree removal, hail damage repair, window and door replacement, gutter and downpipe repair, water damage from storm ingress, and structural assessment. No job is too large or too small.`,
+      answer: `Our contractors handle all storm damage including emergency tarping and board-up, roof repair and replacement, fallen tree removal, hail damage repair, window and door replacement, gutter and downpipe repair, water damage from storm ingress, and structural assessment. The network handles residential, commercial and large-loss restoration; job suitability is confirmed at triage.`,
     },
     {
       question: `Does insurance cover storm damage in ${locationText(city, suburb)}?`,
@@ -158,7 +158,7 @@ export const defaultServiceFAQs: ServiceFAQGenerator = (city, suburb) => [
   },
   {
     question: `What types of disaster damage do you handle in ${locationText(city, suburb)}?`,
-    answer: `Our ${city} contractor network handles water damage restoration, fire and smoke damage, mould remediation, storm damage repair, flood recovery, sewage cleanup, biohazard decontamination, and emergency make-safe. All contractors are IICRC-certified with current state licences. No job is too large or too small.`,
+    answer: `Our ${city} contractor network handles water damage restoration, fire and smoke damage, mould remediation, storm damage repair, flood recovery, sewage cleanup, biohazard decontamination, and emergency make-safe. All contractors are IICRC-certified with current state licences. The network handles residential, commercial and large-loss restoration; job suitability is confirmed at triage.`,
   },
   {
     question: `How does billing and insurance work for disaster recovery in ${locationText(city, suburb)}?`,

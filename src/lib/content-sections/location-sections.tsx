@@ -15,7 +15,13 @@ const STATE_FULL_NAMES: Record<string, string> = {
   TAS: 'Tasmania',
   NT: 'Northern Territory',
   ACT: 'Australian Capital Territory',
+  // New Zealand regions (served via NZ contractor network)
+  AKL: 'Auckland Region, New Zealand',
+  WGN: 'Wellington Region, New Zealand',
+  CHC: 'Canterbury Region, New Zealand',
 };
+
+const NZ_STATE_CODES = new Set(['AKL', 'WGN', 'CHC']);
 
 const CLIMATE_RISKS: Record<string, string[]> = {
   NSW: ['coastal storms', 'flash flooding', 'bushfire ember attack', 'severe hailstorms'],
@@ -26,6 +32,9 @@ const CLIMATE_RISKS: Record<string, string[]> = {
   TAS: ['severe storms', 'flooding', 'wind damage', 'cold-weather pipe bursts'],
   NT: ['cyclone destruction', 'monsoonal flooding', 'extreme heat damage', 'termite damage post-storm'],
   ACT: ['severe hailstorms', 'bushfire proximity', 'flash flooding', 'frost-related pipe bursts'],
+  AKL: ['severe storms', 'flash flooding', 'high-humidity mould', 'wind-driven rain damage'],
+  WGN: ['high winds', 'flash flooding', 'earthquake-related damage', 'storm surge'],
+  CHC: ['earthquake-related damage', 'flash flooding', 'severe storms', 'cold-weather pipe bursts'],
 };
 
 export function getLocationSections({ city, state, suburbs }: LocationSectionParams): ContentSection[] {
@@ -146,7 +155,7 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
           <p>
             Our {city} network handles water damage, fire and smoke damage, mould remediation,
             storm and cyclone damage, flood recovery, sewage cleanup, biohazard decontamination,
-            and trauma scene restoration. No job is too large or too small.
+            and trauma scene restoration. The network handles residential, commercial and large-loss restoration; job suitability is confirmed at triage.
           </p>
           <h3>Are your {city} technicians certified?</h3>
           <p>
