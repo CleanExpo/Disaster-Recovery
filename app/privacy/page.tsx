@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = '8 April 2026'
+const LAST_UPDATED = '23 April 2026'
 const ENTITY = 'National Restoration Professionals Group Pty Ltd'
 const ABN = '85 151 794 142'
 const TRADING_AS = 'Disaster Recovery Australia'
@@ -170,6 +170,26 @@ export default function PrivacyPolicyPage() {
           ),
         },
         {
+          heading: 'New Zealand Consumers — Privacy Act 2020',
+          body: (
+            <>
+              <p>
+                If you are in New Zealand or submit a claim for a property located in New Zealand, the New Zealand <strong>Privacy Act 2020</strong> and its 13 Information Privacy Principles (IPPs) apply to our handling of your personal information, in addition to the Australian Privacy Act and APPs.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>IPP 3 collection notice.</strong> When you submit a claim from New Zealand we collect your name, contact details, property address, damage description, and (where provided) insurance information for the purposes of matching you with a restoration contractor and enabling the contractor to contact you and liaise with your insurer. Collection is from you directly. Providing this information is voluntary, but without it we cannot match your claim.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>IPP 12 cross-border disclosure.</strong> Your personal information is transferred to Australia for storage and processing and may be disclosed to contractors, insurers, and service providers located in Australia and overseas as set out above. We take reasonable steps to ensure overseas recipients handle your information consistently with the Privacy Act 2020.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Access, correction, and complaints.</strong> You may request access to or correction of your personal information at any time. If you are dissatisfied with our response, you may complain to the Office of the Privacy Commissioner at{' '}
+                <a href="https://www.privacy.org.nz" target="_blank" rel="noopener noreferrer" style={{ color: '#1D4ED8', textDecoration: 'underline' }}>privacy.org.nz</a>.
+              </p>
+            </>
+          ),
+        },
+        {
           heading: 'How We Protect Your Information (APP 11)',
           background: 'light',
           body: (
@@ -251,7 +271,7 @@ export default function PrivacyPolicyPage() {
                 We may update this Privacy Policy from time to time. When we make material changes, we will update the &quot;Last updated&quot; date at the top of this page. We encourage you to review this policy periodically.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                This policy was last reviewed and updated on <strong>{LAST_UPDATED}</strong> to reflect the removal of the Privacy Act small business exemption effective 1 July 2026, and in response to the OAIC&apos;s 2026 privacy compliance sweep targeting property-adjacent service sectors.
+                This policy was last reviewed and updated on <strong>{LAST_UPDATED}</strong> to add a New Zealand Privacy Act 2020 section (IPP 3 collection notice and IPP 12 cross-border disclosure) for consumers submitting claims from New Zealand. Earlier updates addressed the removal of the Privacy Act small business exemption effective 1 July 2026 and the OAIC&apos;s 2026 privacy compliance sweep.
               </p>
             </>
           ),
