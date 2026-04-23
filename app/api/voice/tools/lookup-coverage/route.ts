@@ -10,7 +10,7 @@
 import { NextResponse } from 'next/server';
 import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput } from '@/lib/voice/output-filter';
-import { logEvent } from '@/lib/compliance/events';
+import { logComplianceEvent } from '@/lib/voice/route-helpers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
   const raw = { covered, typical_response_hours };
   const filtered = filterToolOutput(raw, ['covered', 'typical_response_hours']);
 
-  await logEvent({
+  await logComplianceEvent({
     session_id: pre.sessionId,
     event_type: 'voice_tool_invoked',
     tool_name: 'lookup_coverage',

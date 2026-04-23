@@ -11,7 +11,7 @@ import { randomUUID } from 'crypto';
 import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput } from '@/lib/voice/output-filter';
 import { saveDraft } from '@/lib/voice/draft-store';
-import { logEvent } from '@/lib/compliance/events';
+import { logComplianceEvent } from '@/lib/voice/route-helpers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
   const raw = { draft_id, next_step: 'sms_signature' as const };
   const filtered = filterToolOutput(raw, ['draft_id', 'next_step']);
 
-  await logEvent({
+  await logComplianceEvent({
     session_id: pre.sessionId,
     event_type: 'voice_tool_invoked',
     tool_name: 'create_draft_claim',

@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
 import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput, sanitiseSmsBody } from '@/lib/voice/output-filter';
 import { getDraft } from '@/lib/voice/draft-store';
-import { logEvent } from '@/lib/compliance/events';
+import { logComplianceEvent } from '@/lib/voice/route-helpers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
   const { draft_id, phone } = pre.body;
   const draft = getDraft(draft_id);
   if (!draft) {
-    await logEvent({
+    await logComplianceEvent({
       session_id: pre.sessionId,
       event_type: 'voice_tool_invoked',
       tool_name: 'send_payment_link',
@@ -106,7 +106,7 @@ export async function POST(request: Request) {
         body: params.toString(),
       });
       if (!res.ok) {
-        await logEvent({
+        await logComplianceEvent({
           session_id: pre.sessionId,
           event_type: 'voice_tool_invoked',
           tool_name: 'send_payment_link',
@@ -116,7 +116,7 @@ export async function POST(request: Request) {
         return NextResponse.json(filterToolOutput({ sent: false }, ['sent']));
       }
     } catch (err) {
-      await logEvent({
+      await logComplianceEvent({
         session_id: pre.sessionId,
         event_type: 'voice_tool_invoked',
         tool_name: 'send_payment_link',
@@ -126,7 +126,7 @@ export async function POST(request: Request) {
       return NextResponse.json(filterToolOutput({ sent: false }, ['sent']));
     }
   } else {
-    await logEvent({
+    await logComplianceEvent({
       session_id: pre.sessionId,
       event_type: 'sms_queued_sans_twilio',
       tool_name: 'send_payment_link',
@@ -135,7 +135,7 @@ export async function POST(request: Request) {
     });
   }
 
-  await logEvent({
+  await logComplianceEvent({
     session_id: pre.sessionId,
     event_type: 'voice_tool_invoked',
     tool_name: 'send_payment_link',

@@ -8,7 +8,7 @@
 import { NextResponse } from 'next/server';
 import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput } from '@/lib/voice/output-filter';
-import { logEvent } from '@/lib/compliance/events';
+import { logComplianceEvent } from '@/lib/voice/route-helpers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
 
   const { reason } = pre.body;
 
-  await logEvent({
+  await logComplianceEvent({
     session_id: pre.sessionId,
     actor: 'voice_agent',
     event_type: 'voice_escalation_requested',
