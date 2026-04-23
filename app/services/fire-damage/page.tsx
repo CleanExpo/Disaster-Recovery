@@ -66,7 +66,7 @@ const serviceSchema = {
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Restoration | 24/7 IICRC',
-  description: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
+  description: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
   keywords: [
     'fire damage restoration',
     'smoke damage cleanup',
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Fire & Smoke Damage Restoration | IICRC Certified',
-    description: 'Expert fire damage restoration services. IICRC S700:2025 certified technicians. 24/7 emergency response nationwide.',
+    description: 'Expert fire damage restoration services. IICRC S700:2025 certified technicians. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
     images: ['/images/optimised/damage/3D image of a house fire.png'] },
   alternates: {
     canonical: '/services/fire-damage' },
@@ -123,7 +123,7 @@ export default function FireDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Fire & Smoke Damage Restoration',
-        subtitle: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
+        subtitle: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

@@ -7,7 +7,7 @@ import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice'
 export const metadata: Metadata = {
   title: 'Lodge a Claim | Disaster Recovery Australia',
   description:
-    'Submit your property damage claim online 24/7. Matched with IICRC-certified restoration contractors across Australia. Make a claim in under 90 seconds.',
+    'Submit your property damage claim online 24/7. Matched with IICRC-certified restoration contractors across Australia. Most users complete claim intake in under two minutes.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/claim',
   },
@@ -36,11 +36,12 @@ function ClaimPageSSRFallback() {
           </p>
           <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
             Who First.{' '}
-            <span className="text-blue-400">Make a claim in under 90 seconds.</span>
+            <span className="text-blue-400">Most claims lodged in under two minutes.</span>
           </h1>
           <p className="text-slate-300 text-lg mb-6 leading-relaxed">
-            Working for you, not your insurer. IICRC-certified contractors matched to your
-            location — every step documented to insurance standard.
+            We help you document your claim and match you with IICRC-certified contractors
+            near your location. We are not a party to your insurance policy and do not
+            provide claims advocacy or financial advice.
           </p>
           <div className="flex flex-wrap gap-3 text-sm text-slate-400">
             <span className="flex items-center gap-1">
