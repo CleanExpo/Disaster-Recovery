@@ -161,10 +161,13 @@ async function tryTripKillSwitch(reason: string, sessionId: string): Promise<voi
     // Obfuscate the path so TS doesn't try to resolve the (possibly absent) module
     // at compile time. The kill-switch module ships on DR-715's branch.
     const modulePath = './kill-switch';
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mod: any = await (Function('p', 'return import(p)') as (p: string) => Promise<any>)(
-      modulePath,
-    ).catch(() => null);
+    // NB: @typescript-eslint plugin isn't configured in this repo's ESLint setup,
+    // so we use `unknown` + type assertion rather than `any` with a disable directive
+    // that would reference a non-existent rule and fail lint.
+    const importer = Function('p', 'return import(p)') as (p: string) => Promise<unknown>;
+    const mod = (await importer(modulePath).catch(() => null)) as
+      | { tripCircuitBreaker?: (reason: string, ctx: { sessionId: string }) => Promise<void> }
+      | null;
     if (mod && typeof mod.tripCircuitBreaker === 'function') {
       await mod.tripCircuitBreaker(reason, { sessionId });
     }
