@@ -6,7 +6,7 @@ Uses terms drawn from the v1 seed of UBIQUITOUS_LANGUAGE.md at repo root.
 # Ubiquitous Language — DR Worked Example
 
 A concrete example of running the `ubiquitous-language` skill against a typical
-Disaster Recovery Australia intake/dispatch conversation.
+Disaster Recovery intake/dispatch conversation.
 
 ## Input conversation (condensed)
 
@@ -28,29 +28,29 @@ Disaster Recovery Australia intake/dispatch conversation.
 
 ### Claim lifecycle
 
-| Term               | Definition                                                                        | Aliases to avoid                    |
-| ------------------ | --------------------------------------------------------------------------------- | ----------------------------------- |
-| **Enquiry**        | Light-touch contact form submission — no property committed yet.                  | Lead (when unscored)                |
-| **Lead**           | An enquiry that ops has scored and assigned to a team for follow-up.              | Prospect, opportunity               |
-| **Claim**          | A completed claim-intake submission with property + damage + insurance details.   | Job (that's downstream), case       |
-| **Draft claim**    | Partially completed claim data (voice intake, mid-flow form) not yet finalised.   | Incomplete claim, stub              |
-| **Job**            | An accepted, dispatched piece of restoration work.                                | Service call, contract, work order  |
-| **Make-safe**      | Emergency stabilisation (board-up, tarp, water extraction) distinct from remediation. | Emergency response (ambiguous) |
-| **Remediation**    | The main restoration work (drying, mould removal, reconstruction).                | Cleanup, repair                     |
-| **Restoration**    | Umbrella term covering make-safe + remediation + reconstruction.                  | Works, project                      |
-| **Scope of works** | The costed plan produced at assessment.                                           | Quote, estimate (too generic)       |
+| Term               | Definition                                                                            | Aliases to avoid                   |
+| ------------------ | ------------------------------------------------------------------------------------- | ---------------------------------- |
+| **Enquiry**        | Light-touch contact form submission — no property committed yet.                      | Lead (when unscored)               |
+| **Lead**           | An enquiry that ops has scored and assigned to a team for follow-up.                  | Prospect, opportunity              |
+| **Claim**          | A completed claim-intake submission with property + damage + insurance details.       | Job (that's downstream), case      |
+| **Draft claim**    | Partially completed claim data (voice intake, mid-flow form) not yet finalised.       | Incomplete claim, stub             |
+| **Job**            | An accepted, dispatched piece of restoration work.                                    | Service call, contract, work order |
+| **Make-safe**      | Emergency stabilisation (board-up, tarp, water extraction) distinct from remediation. | Emergency response (ambiguous)     |
+| **Remediation**    | The main restoration work (drying, mould removal, reconstruction).                    | Cleanup, repair                    |
+| **Restoration**    | Umbrella term covering make-safe + remediation + reconstruction.                      | Works, project                     |
+| **Scope of works** | The costed plan produced at assessment.                                               | Quote, estimate (too generic)      |
 
 ### Parties
 
-| Term              | Definition                                                               | Aliases to avoid                      |
-| ----------------- | ------------------------------------------------------------------------ | ------------------------------------- |
-| **Client**        | The end consumer filing a claim.                                         | Customer, user, insured               |
-| **Contractor**    | A network-approved business providing restoration services.              | Supplier, vendor, partner             |
-| **Applicant**     | A contractor mid-onboarding; becomes a Contractor on approval.           | Candidate                             |
-| **Member**        | Explicit B2B term used in the membership agreement only.                 | (never in user-facing copy)           |
-| **Partner**       | External capitalised partners only (Equipped, insurer panels).           | (never for contractors)               |
-| **Loss adjuster** | The insurer's appointed assessor.                                        | Assessor (too generic)                |
-| **Operator**      | DR internal staff handling a claim.                                      | Agent, admin                          |
+| Term              | Definition                                                     | Aliases to avoid            |
+| ----------------- | -------------------------------------------------------------- | --------------------------- |
+| **Client**        | The end consumer filing a claim.                               | Customer, user, insured     |
+| **Contractor**    | A network-approved business providing restoration services.    | Supplier, vendor, partner   |
+| **Applicant**     | A contractor mid-onboarding; becomes a Contractor on approval. | Candidate                   |
+| **Member**        | Explicit B2B term used in the membership agreement only.       | (never in user-facing copy) |
+| **Partner**       | External capitalised partners only (Equipped, insurer panels). | (never for contractors)     |
+| **Loss adjuster** | The insurer's appointed assessor.                              | Assessor (too generic)      |
+| **Operator**      | DR internal staff handling a claim.                            | Agent, admin                |
 
 ## Relationships
 

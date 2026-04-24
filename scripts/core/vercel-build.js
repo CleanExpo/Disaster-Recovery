@@ -24,7 +24,7 @@ function executeCommand(command, options = {}) {
   try {
     const result = execSync(command, {
       stdio: 'inherit',
-      ...options
+      ...options,
     });
     console.log(`✅ Successfully executed: ${command}\n`);
     return result;
@@ -40,7 +40,9 @@ console.log('🔧 Setting up build environment...\n');
 
 // DATABASE_URL should be set via environment variables (Vercel Dashboard or .env.local)
 if (!process.env.DATABASE_URL) {
-  console.warn('⚠️ DATABASE_URL is not set. Prisma generate will still work (no DB connection needed), but db push will fail.');
+  console.warn(
+    '⚠️ DATABASE_URL is not set. Prisma generate will still work (no DB connection needed), but db push will fail.',
+  );
 }
 
 // Clean previous builds
@@ -58,7 +60,7 @@ try {
 if (!isVercel && !fs.existsSync('node_modules')) {
   console.log('📥 Installing dependencies...');
   executeCommand('npm ci', {
-    env: { ...process.env }
+    env: { ...process.env },
   });
 }
 
@@ -67,27 +69,27 @@ console.log('\n🔨 Generating Prisma client...');
 try {
   // Always use the main schema file which has all models
   const schemaFile = 'prisma/schema.prisma';
-  
+
   console.log(`Using schema file: ${schemaFile}`);
-  
+
   const prismaEnv = {
     ...process.env,
-    PRISMA_SCHEMA_PATH: schemaFile
+    PRISMA_SCHEMA_PATH: schemaFile,
   };
-  
+
   // Generate Prisma client
   executeCommand('npx prisma generate', {
-    env: prismaEnv
+    env: prismaEnv,
   });
-  
+
   console.log('✅ Prisma client generated successfully');
-  
+
   // Push database schema if in development
   if (!isVercel && process.env.NODE_ENV !== 'production') {
     try {
       console.log('📊 Pushing database schema...');
       executeCommand('npx prisma db push --accept-data-loss', {
-        env: prismaEnv
+        env: prismaEnv,
       });
     } catch (error) {
       console.warn('⚠️ Could not push database schema (this is okay for production builds)');
@@ -110,38 +112,37 @@ try {
     NODE_OPTIONS: '--max-old-space-size=4096',
     NEXT_TELEMETRY_DISABLED: '1',
     // Force production build on Vercel
-    NODE_ENV: isVercel ? 'production' : (process.env.NODE_ENV || 'production')
+    NODE_ENV: isVercel ? 'production' : process.env.NODE_ENV || 'production',
   };
-  
+
   // Log memory usage before build
   const memUsage = process.memoryUsage();
   console.log('Memory usage before build:');
   console.log(`  RSS: ${Math.round(memUsage.rss / 1024 / 1024)} MB`);
   console.log(`  Heap Used: ${Math.round(memUsage.heapUsed / 1024 / 1024)} MB`);
   console.log(`  Heap Total: ${Math.round(memUsage.heapTotal / 1024 / 1024)} MB`);
-  
+
   executeCommand('npx next build', {
-    env: buildEnv
+    env: buildEnv,
   });
-  
+
   // Log memory usage after build
   const memUsageAfter = process.memoryUsage();
   console.log('\nMemory usage after build:');
   console.log(`  RSS: ${Math.round(memUsageAfter.rss / 1024 / 1024)} MB`);
   console.log(`  Heap Used: ${Math.round(memUsageAfter.heapUsed / 1024 / 1024)} MB`);
   console.log(`  Heap Total: ${Math.round(memUsageAfter.heapTotal / 1024 / 1024)} MB`);
-  
+
   console.log('\n✅ Build completed successfully!');
-  
+
   // List build output
   if (fs.existsSync('.next')) {
     const stats = fs.statSync('.next');
     console.log(`\n📊 Build output size: ${Math.round(stats.size / 1024)} KB`);
   }
-  
 } catch (error) {
   console.error('\n❌ Build failed:', error.message);
-  
+
   // Provide more detailed error information
   if (error.stdout) {
     console.error('Build stdout:', error.stdout.toString());
@@ -149,34 +150,34 @@ try {
   if (error.stderr) {
     console.error('Build stderr:', error.stderr.toString());
   }
-  
+
   // Check for common issues
   console.log('\n🔍 Checking for common issues...');
-  
+
   // Check if node_modules exists
   if (!fs.existsSync('node_modules')) {
     console.error('❌ node_modules directory not found. Run: npm install');
   }
-  
+
   // Check if package-lock.json exists
   if (!fs.existsSync('package-lock.json')) {
     console.error('❌ package-lock.json not found. Run: npm install');
   }
-  
+
   // Check TypeScript configuration
   if (fs.existsSync('tsconfig.json')) {
     console.log('✅ tsconfig.json found');
   } else {
     console.error('❌ tsconfig.json not found');
   }
-  
+
   // Check for Next.js configuration
   if (fs.existsSync('next.config.mjs') || fs.existsSync('next.config.js')) {
     console.log('✅ Next.js configuration found');
   } else {
     console.error('❌ Next.js configuration not found');
   }
-  
+
   process.exit(1);
 }
 

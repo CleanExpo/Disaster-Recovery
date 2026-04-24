@@ -29,20 +29,40 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': 'https://disasterrecovery.com.au/locations/vic/#localbusiness',
-  name: 'Disaster Recovery Australia — Victoria',
+  name: 'Disaster Recovery — Victoria',
   url: 'https://disasterrecovery.com.au/locations/vic',
   description:
     '24/7 emergency disaster recovery across Victoria. IICRC-certified contractor network for bushfire, storm, flood, and water damage restoration.',
   priceRange: '$$',
   areaServed: [
-    { '@type': 'City', name: 'Melbourne', containedInPlace: { '@type': 'State', name: 'Victoria' } },
+    {
+      '@type': 'City',
+      name: 'Melbourne',
+      containedInPlace: { '@type': 'State', name: 'Victoria' },
+    },
     { '@type': 'City', name: 'Geelong', containedInPlace: { '@type': 'State', name: 'Victoria' } },
     { '@type': 'City', name: 'Ballarat', containedInPlace: { '@type': 'State', name: 'Victoria' } },
     { '@type': 'City', name: 'Bendigo', containedInPlace: { '@type': 'State', name: 'Victoria' } },
-    { '@type': 'City', name: 'Cranbourne', containedInPlace: { '@type': 'State', name: 'Victoria' } },
-    { '@type': 'City', name: 'Dandenong', containedInPlace: { '@type': 'State', name: 'Victoria' } },
-    { '@type': 'City', name: 'Frankston', containedInPlace: { '@type': 'State', name: 'Victoria' } },
-    { '@type': 'City', name: 'Shepparton', containedInPlace: { '@type': 'State', name: 'Victoria' } },
+    {
+      '@type': 'City',
+      name: 'Cranbourne',
+      containedInPlace: { '@type': 'State', name: 'Victoria' },
+    },
+    {
+      '@type': 'City',
+      name: 'Dandenong',
+      containedInPlace: { '@type': 'State', name: 'Victoria' },
+    },
+    {
+      '@type': 'City',
+      name: 'Frankston',
+      containedInPlace: { '@type': 'State', name: 'Victoria' },
+    },
+    {
+      '@type': 'City',
+      name: 'Shepparton',
+      containedInPlace: { '@type': 'State', name: 'Victoria' },
+    },
   ],
   address: {
     '@type': 'PostalAddress',
@@ -87,15 +107,18 @@ const sections = [
     body: (
       <div>
         <p style={{ marginBottom: '1rem', lineHeight: 1.8 }}>
-          Victoria&apos;s disaster profile is dominated by bushfire, severe storm, and flooding.
-          The state experiences some of Australia&apos;s most intense fire weather conditions,
-          with the south-east, Grampians, and ranges consistently rated extreme fire danger
-          during summer. Melbourne and Geelong are exposed to rapid-onset severe storms capable
-          of generating hail, damaging winds, and flash flooding in low-lying suburbs.
-          Riverine flooding affects Shepparton, Bendigo, and Ballarat after sustained rainfall.
+          Victoria&apos;s disaster profile is dominated by bushfire, severe storm, and flooding. The
+          state experiences some of Australia&apos;s most intense fire weather conditions, with the
+          south-east, Grampians, and ranges consistently rated extreme fire danger during summer.
+          Melbourne and Geelong are exposed to rapid-onset severe storms capable of generating hail,
+          damaging winds, and flash flooding in low-lying suburbs. Riverine flooding affects
+          Shepparton, Bendigo, and Ballarat after sustained rainfall.
         </p>
         <ul style={{ paddingLeft: '1.5rem', lineHeight: 2 }}>
-          <li>Bushfire and ember attack — Dandenong Ranges, Yarra Valley, Grampians, and East Gippsland</li>
+          <li>
+            Bushfire and ember attack — Dandenong Ranges, Yarra Valley, Grampians, and East
+            Gippsland
+          </li>
           <li>Severe storm cells, hail, and damaging winds — Melbourne metropolitan area</li>
           <li>Flash flooding — inner Melbourne, Dandenong, and Frankston low-lying areas</li>
           <li>Riverine flooding — Goulburn, Murray, and Loddon floodplains</li>
@@ -110,11 +133,17 @@ const sections = [
     body: (
       <div>
         <p style={{ marginBottom: '1.5rem', lineHeight: 1.8 }}>
-          The following declared events have active recovery operations in Victoria.
-          If your property was affected, lodge a claim through the event page for priority dispatch.
+          The following declared events have active recovery operations in Victoria. If your
+          property was affected, lodge a claim through the event page for priority dispatch.
         </p>
-        <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-          {VIC_EVENTS.map(ev => (
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          }}
+        >
+          {VIC_EVENTS.map((ev) => (
             <Link
               key={ev.href}
               href={ev.href}
@@ -127,11 +156,24 @@ const sections = [
                 border: '1px solid rgba(220, 80, 20, 0.15)',
               }}
             >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: '#c0390a', marginBottom: '0.4rem' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontWeight: 700,
+                  color: '#c0390a',
+                  marginBottom: '0.4rem',
+                }}
+              >
                 <AlertTriangle style={{ width: '1rem', height: '1rem', flexShrink: 0 }} />
                 {ev.label}
               </span>
-              <span style={{ fontSize: '0.875rem', color: 'var(--ag-text-muted)', lineHeight: 1.5 }}>{ev.desc}</span>
+              <span
+                style={{ fontSize: '0.875rem', color: 'var(--ag-text-muted)', lineHeight: 1.5 }}
+              >
+                {ev.desc}
+              </span>
             </Link>
           ))}
         </div>
@@ -146,8 +188,14 @@ const sections = [
           IICRC-certified contractors operate across the Melbourne metropolitan area and key
           regional Victorian centres. Select your city for local availability and suburb coverage.
         </p>
-        <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
-          {VIC_CITIES.map(city => (
+        <div
+          style={{
+            display: 'grid',
+            gap: '0.75rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+          }}
+        >
+          {VIC_CITIES.map((city) => (
             <Link
               key={city.href}
               href={city.href}
@@ -179,17 +227,43 @@ const sections = [
     body: (
       <div>
         <ol style={{ paddingLeft: '1.5rem', lineHeight: 2.2 }}>
-          <li><strong>Call 000</strong> if there is immediate risk to life or the property is structurally unsafe.</li>
-          <li><strong>Lodge a claim</strong> through this platform — takes under 90 seconds on mobile.</li>
-          <li><strong>Document all damage</strong> before any clean-up — photos, video, and written notes.</li>
-          <li><strong>Contact your insurer</strong> to notify them of the event. Do not accept a cash settlement before a full independent assessment.</li>
-          <li><strong>Prevent further damage</strong> only as safe — temporary tarps, water extraction. Keep all receipts as these costs are claimable.</li>
-          <li><strong>Do not dispose</strong> of damaged items until the insurer or loss assessor has inspected them.</li>
+          <li>
+            <strong>Call 000</strong> if there is immediate risk to life or the property is
+            structurally unsafe.
+          </li>
+          <li>
+            <strong>Lodge a claim</strong> through this platform — takes under 90 seconds on mobile.
+          </li>
+          <li>
+            <strong>Document all damage</strong> before any clean-up — photos, video, and written
+            notes.
+          </li>
+          <li>
+            <strong>Contact your insurer</strong> to notify them of the event. Do not accept a cash
+            settlement before a full independent assessment.
+          </li>
+          <li>
+            <strong>Prevent further damage</strong> only as safe — temporary tarps, water
+            extraction. Keep all receipts as these costs are claimable.
+          </li>
+          <li>
+            <strong>Do not dispose</strong> of damaged items until the insurer or loss assessor has
+            inspected them.
+          </li>
         </ol>
-        <p style={{ marginTop: '1rem', lineHeight: 1.8, padding: '1rem', background: '#f0f7ff', borderRadius: '0.5rem', borderLeft: '4px solid var(--ag-primary-blue)' }}>
-          For bushfire damage, IICRC S700:2025 governs smoke and soot remediation. For
-          associated water damage from firefighting, IICRC S500:2025 applies. Contractors in
-          the network hold certifications to both standards.
+        <p
+          style={{
+            marginTop: '1rem',
+            lineHeight: 1.8,
+            padding: '1rem',
+            background: '#f0f7ff',
+            borderRadius: '0.5rem',
+            borderLeft: '4px solid var(--ag-primary-blue)',
+          }}
+        >
+          For bushfire damage, IICRC S700:2025 governs smoke and soot remediation. For associated
+          water damage from firefighting, IICRC S500:2025 applies. Contractors in the network hold
+          certifications to both standards.
         </p>
       </div>
     ),
@@ -226,12 +300,36 @@ export default function VictoriaPage() {
         ]}
         sections={sections}
         relatedPages={[
-          { title: 'Bushfire Restoration', href: '/services/fire-damage-restoration', description: 'Smoke, soot, and structural fire damage assessment and restoration.' },
-          { title: 'Storm Damage Repair', href: '/services/storm-damage-repair', description: 'Emergency tarping, debris removal, and full reinstatement.' },
-          { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'IICRC S500:2025 compliant water extraction and structural drying.' },
-          { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520:2025 certified mould assessment and removal.' },
-          { title: 'Lodge a Claim', href: '/claim', description: 'Start your insurance claim in under 90 seconds.' },
-          { title: 'How Claims Work', href: '/guides/how-insurance-claims-work-australia', description: 'Step-by-step guide to lodging and managing a property insurance claim.' },
+          {
+            title: 'Bushfire Restoration',
+            href: '/services/fire-damage-restoration',
+            description: 'Smoke, soot, and structural fire damage assessment and restoration.',
+          },
+          {
+            title: 'Storm Damage Repair',
+            href: '/services/storm-damage-repair',
+            description: 'Emergency tarping, debris removal, and full reinstatement.',
+          },
+          {
+            title: 'Water Damage Restoration',
+            href: '/services/water-damage-restoration',
+            description: 'IICRC S500:2025 compliant water extraction and structural drying.',
+          },
+          {
+            title: 'Mould Remediation',
+            href: '/services/mould-remediation',
+            description: 'IICRC S520:2025 certified mould assessment and removal.',
+          },
+          {
+            title: 'Lodge a Claim',
+            href: '/claim',
+            description: 'Start your insurance claim in under 90 seconds.',
+          },
+          {
+            title: 'How Claims Work',
+            href: '/guides/how-insurance-claims-work-australia',
+            description: 'Step-by-step guide to lodging and managing a property insurance claim.',
+          },
         ]}
       />
     </>

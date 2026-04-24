@@ -1,7 +1,7 @@
-# Ubiquitous Language — Disaster Recovery Australia
+# Ubiquitous Language — Disaster Recovery
 
-*Version 1 seed — generated 2026-04-24 from the DR-724 Foundation Audit.*
-*Format follows the `ubiquitous-language` skill (`.claude/skills/ubiquitous-language/SKILL.md`).*
+_Version 1 seed — generated 2026-04-24 from the DR-724 Foundation Audit._
+_Format follows the `ubiquitous-language` skill (`.claude/skills/ubiquitous-language/SKILL.md`)._
 
 This is the canonical DR domain vocabulary. When code, copy, CRM labels, or
 claim-flow wording disagrees with this glossary, **the glossary wins** and the
@@ -10,41 +10,41 @@ raise an ADR under `docs/adr/` if a term's meaning changes.
 
 ## Claim lifecycle
 
-| Term               | Definition                                                                             | Aliases to avoid                                  |
-| ------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| **Enquiry**        | Light-touch contact form submission (no property yet committed).                       | Lead (ambiguous before scoring)                   |
-| **Lead**           | An **Enquiry** that Ops has scored and assigned to a team for follow-up.               | Prospect, opportunity                             |
-| **Claim**          | A completed claim-intake submission with property + damage + insurance details.        | Job (that's downstream), case, ticket             |
-| **Draft claim**    | Claim data captured mid-flow (voice intake, partially completed form), not finalised.  | Incomplete claim, stub claim                      |
-| **Job**            | An accepted, dispatched piece of restoration work.                                     | Service call (too narrow), contract (too legal)   |
-| **Make-safe**      | Emergency stabilisation (board-up, tarp, water extraction) — distinct from remediation.| Emergency response (ambiguous), first response    |
-| **Remediation**    | The main restoration work (drying, mould removal, reconstruction).                     | Cleanup, repair                                   |
-| **Restoration**    | Umbrella term covering **Make-safe** + **Remediation** + reconstruction.               | Works, project                                    |
-| **Scope of works** | The costed plan of everything the **Contractor** will do, produced at assessment.      | Quote, estimate (too generic), SOW (abbreviation) |
+| Term               | Definition                                                                              | Aliases to avoid                                  |
+| ------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **Enquiry**        | Light-touch contact form submission (no property yet committed).                        | Lead (ambiguous before scoring)                   |
+| **Lead**           | An **Enquiry** that Ops has scored and assigned to a team for follow-up.                | Prospect, opportunity                             |
+| **Claim**          | A completed claim-intake submission with property + damage + insurance details.         | Job (that's downstream), case, ticket             |
+| **Draft claim**    | Claim data captured mid-flow (voice intake, partially completed form), not finalised.   | Incomplete claim, stub claim                      |
+| **Job**            | An accepted, dispatched piece of restoration work.                                      | Service call (too narrow), contract (too legal)   |
+| **Make-safe**      | Emergency stabilisation (board-up, tarp, water extraction) — distinct from remediation. | Emergency response (ambiguous), first response    |
+| **Remediation**    | The main restoration work (drying, mould removal, reconstruction).                      | Cleanup, repair                                   |
+| **Restoration**    | Umbrella term covering **Make-safe** + **Remediation** + reconstruction.                | Works, project                                    |
+| **Scope of works** | The costed plan of everything the **Contractor** will do, produced at assessment.       | Quote, estimate (too generic), SOW (abbreviation) |
 
 ## Parties
 
-| Term              | Definition                                                                    | Aliases to avoid                              |
-| ----------------- | ----------------------------------------------------------------------------- | --------------------------------------------- |
-| **Client**        | The end consumer filing a **Claim**.                                          | Customer (too commercial), user (too software), insured (varies) |
-| **Contractor**    | A network-approved business providing restoration services.                   | Supplier, vendor, partner                     |
-| **Applicant**     | A **Contractor** mid-onboarding; becomes a **Contractor** on approval.        | Candidate                                     |
-| **Member**        | Explicit B2B term used in the membership agreement only (Contractor = Member there). | (never in user-facing copy)            |
-| **Partner**       | External capitalised partners only (Equipped Commercial Finance, insurer panels). | (never used for contractors)              |
-| **Loss adjuster** | The insurer's appointed assessor.                                             | Assessor (too generic)                        |
-| **Operator**      | DR internal staff handling a **Claim**.                                       | Agent, admin, rep                             |
+| Term              | Definition                                                                           | Aliases to avoid                                                 |
+| ----------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| **Client**        | The end consumer filing a **Claim**.                                                 | Customer (too commercial), user (too software), insured (varies) |
+| **Contractor**    | A network-approved business providing restoration services.                          | Supplier, vendor, partner                                        |
+| **Applicant**     | A **Contractor** mid-onboarding; becomes a **Contractor** on approval.               | Candidate                                                        |
+| **Member**        | Explicit B2B term used in the membership agreement only (Contractor = Member there). | (never in user-facing copy)                                      |
+| **Partner**       | External capitalised partners only (Equipped Commercial Finance, insurer panels).    | (never used for contractors)                                     |
+| **Loss adjuster** | The insurer's appointed assessor.                                                    | Assessor (too generic)                                           |
+| **Operator**      | DR internal staff handling a **Claim**.                                              | Agent, admin, rep                                                |
 
 ## Compliance
 
-| Term                 | Definition                                                                          | Aliases to avoid                           |
-| -------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------ |
-| **IICRC-certified**  | Verified against the IICRC register. Do NOT use "insurance approved" (see DR-535).  | Insurance approved, insurer endorsed       |
-| **APP**              | Australian Privacy Principles (Privacy Act 1988 Cth).                               | (spell out on first use)                   |
-| **NDB**              | Notifiable Data Breaches scheme (Part IIIC of the Privacy Act).                     | Breach notification scheme                 |
-| **CGA**              | Consumer Guarantees Act 1993 (NZ).                                                  | NZ consumer law                            |
-| **FTA**              | Fair Trading Act 1986 (NZ).                                                         | NZ fair trading law                        |
-| **IPP**              | Information Privacy Principles (NZ Privacy Act 2020).                               | NZ privacy principles                      |
-| **Reg 25**           | Regulation 25 of NCCP Regulations 2010 (credit referrer exemption used for Equipped). | Referral reg, credit carve-out           |
+| Term                | Definition                                                                            | Aliases to avoid                     |
+| ------------------- | ------------------------------------------------------------------------------------- | ------------------------------------ |
+| **IICRC-certified** | Verified against the IICRC register. Do NOT use "insurance approved" (see DR-535).    | Insurance approved, insurer endorsed |
+| **APP**             | Australian Privacy Principles (Privacy Act 1988 Cth).                                 | (spell out on first use)             |
+| **NDB**             | Notifiable Data Breaches scheme (Part IIIC of the Privacy Act).                       | Breach notification scheme           |
+| **CGA**             | Consumer Guarantees Act 1993 (NZ).                                                    | NZ consumer law                      |
+| **FTA**             | Fair Trading Act 1986 (NZ).                                                           | NZ fair trading law                  |
+| **IPP**             | Information Privacy Principles (NZ Privacy Act 2020).                                 | NZ privacy principles                |
+| **Reg 25**          | Regulation 25 of NCCP Regulations 2010 (credit referrer exemption used for Equipped). | Referral reg, credit carve-out       |
 
 ## Relationships
 
@@ -82,9 +82,9 @@ raise an ADR under `docs/adr/` if a term's meaning changes.
 
 ## Flagged ambiguities (resolve in next `ubiquitous-language` session)
 
-- **"Brand" vs "tradename" vs "operating name"** — DR trades as *Disaster
-  Recovery Australia*; the entity is *National Restoration Professionals
-  Group Pty Ltd (NRPG)*. Pick one term for each of: the consumer-facing
+- **"Brand" vs "tradename" vs "operating name"** — DR trades as _Disaster
+  Recovery Australia_; the entity is _National Restoration Professionals
+  Group Pty Ltd (NRPG)_. Pick one term for each of: the consumer-facing
   brand, the contractual counterparty, and the GBP listing.
 - **"Platform fee" vs "service fee" vs "booking fee"** — all three appear
   across Stripe Checkout, footer copy, and the membership agreement. Pick
@@ -96,5 +96,5 @@ raise an ADR under `docs/adr/` if a term's meaning changes.
 
 ---
 
-*Attribution: format from Matt Pocock's `ubiquitous-language` skill (MIT).
-See `.claude/skills/LICENSE`.*
+_Attribution: format from Matt Pocock's `ubiquitous-language` skill (MIT).
+See `.claude/skills/LICENSE`._

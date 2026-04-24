@@ -6,7 +6,7 @@
 
 ## Context
 
-Disaster Recovery Australia serves CALD communities across AU/NZ.
+Disaster Recovery serves CALD communities across AU/NZ.
 ABS 2021 data shows 28% of disaster-affected households speak a language other than English at home.
 
 ## Decision
@@ -22,6 +22,7 @@ Use Google's Gemma 4 model via Google Generative AI API for server-side translat
 - RTL: Arabic, Urdu, Hebrew, Farsi, Pashto via DirectionProvider
 
 ## Phase 1 (live): gemini-1.5-flash
+
 ## Phase 2 (pending DPA DR-430): gemma-3-27b-it via Vertex AI
 
 ## Consequences

@@ -2,26 +2,19 @@
   "mcpServers": {
     "puppeteer": {
       "command": "npx",
-      "args": [
-        "-y",
-        "puppeteer-mcp-server"
-      ],
+      "args": ["-y", "puppeteer-mcp-server"],
       "env": {}
     },
     "context7": {
       "command": "node",
-      "args": [
-        "D:\\Disaster Recovery\\context7\\dist\\index.js"
-      ],
+      "args": ["D:\\Disaster Recovery\\context7\\dist\\index.js"],
       "env": {
         "NODE_ENV": "production"
       }
     },
     "sequential-thinking": {
       "command": "node",
-      "args": [
-        "D:\\Disaster Recovery\\WSL-Deployment-Sequential-Thinking\\dist\\cli.js"
-      ],
+      "args": ["D:\\Disaster Recovery\\WSL-Deployment-Sequential-Thinking\\dist\\cli.js"],
       "env": {
         "NODE_ENV": "production"
       }

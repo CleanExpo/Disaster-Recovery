@@ -7,63 +7,63 @@
  * Schema: Event + LocalBusiness + FAQPage
  */
 
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
-export type EventType = 'cyclone' | 'flood' | 'storm' | 'bushfire'
-export type EventPhase = 'pre-landfall' | 'recovery'
+export type EventType = 'cyclone' | 'flood' | 'storm' | 'bushfire';
+export type EventPhase = 'pre-landfall' | 'recovery';
 
 export interface FinancialAssistanceItem {
-  name: string
-  description: string
-  amounts?: string
-  deadline?: string
-  hotline?: string
-  applicationUrl?: string
-  provider: string
+  name: string;
+  description: string;
+  amounts?: string;
+  deadline?: string;
+  hotline?: string;
+  applicationUrl?: string;
+  provider: string;
 }
 
 export interface DisasterEventPageProps {
   // Event identity
-  eventName: string
-  eventType: EventType
-  eventPhase: EventPhase
-  state: string
-  stateAbbr: string
-  year: number
+  eventName: string;
+  eventType: EventType;
+  eventPhase: EventPhase;
+  state: string;
+  stateAbbr: string;
+  year: number;
 
   // IICRC standard reference
-  iicrcStandard: string
+  iicrcStandard: string;
 
   // Affected areas
-  affectedLGAs: string[]
-  remoteLGAs?: string[]
+  affectedLGAs: string[];
+  remoteLGAs?: string[];
 
   // Financial assistance programs
-  financialAssistance: FinancialAssistanceItem[]
+  financialAssistance: FinancialAssistanceItem[];
 
   // Government recovery hotline
-  governmentHotline?: string
-  governmentApplicationUrl?: string
-  governmentApplicationLabel?: string
+  governmentHotline?: string;
+  governmentApplicationUrl?: string;
+  governmentApplicationLabel?: string;
 
   // SEO
-  metaTitle: string
-  metaDescription: string
-  slug: string
+  metaTitle: string;
+  metaDescription: string;
+  slug: string;
 
   // Optional — shows ESHA urgency banner
-  eshaDeadline?: string
-  eshaLGAs?: string[]
+  eshaDeadline?: string;
+  eshaLGAs?: string[];
 
   // Optional — displays a severity/status note in the hero (e.g. "Category 5 — 215 km/h sustained winds")
-  alertNote?: string
+  alertNote?: string;
 
   // Optional — overrides the default remote LGA contractor availability note
-  remoteLGANote?: string
+  remoteLGANote?: string;
 
   // Optional — shows a 000 emergency warning at the very top of the page
-  showEmergencyWarning?: boolean
+  showEmergencyWarning?: boolean;
 }
 
 const EVENT_TYPE_LABELS: Record<EventType, string> = {
@@ -71,12 +71,12 @@ const EVENT_TYPE_LABELS: Record<EventType, string> = {
   flood: 'Flood',
   storm: 'Storm',
   bushfire: 'Bushfire',
-}
+};
 
 const EVENT_PHASE_LABELS: Record<EventPhase, { label: string; badgeColour: string }> = {
   'pre-landfall': { label: 'WARNING ACTIVE — Prepare Now', badgeColour: 'bg-amber-600' },
-  'recovery': { label: 'RECOVERY ACTIVE', badgeColour: 'bg-blue-700' },
-}
+  recovery: { label: 'RECOVERY ACTIVE', badgeColour: 'bg-blue-700' },
+};
 
 function buildEventSchema(props: DisasterEventPageProps) {
   return {
@@ -92,14 +92,14 @@ function buildEventSchema(props: DisasterEventPageProps) {
     },
     organizer: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
+      name: 'Disaster Recovery',
       url: 'https://disasterrecovery.com.au',
     },
-  }
+  };
 }
 
 function buildFAQSchema(props: DisasterEventPageProps) {
-  const isFloodOrCyclone = props.eventType === 'cyclone' || props.eventType === 'flood'
+  const isFloodOrCyclone = props.eventType === 'cyclone' || props.eventType === 'flood';
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -109,7 +109,7 @@ function buildFAQSchema(props: DisasterEventPageProps) {
         name: `How quickly can a restoration contractor attend in ${props.state}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Disaster Recovery Australia-network contractors aim to attend within 60 minutes in major urban areas of ${props.state}. Response times in regional and remote areas may vary — confirm availability for your location when you lodge your claim.`,
+          text: `Disaster Recovery-network contractors aim to attend within 60 minutes in major urban areas of ${props.state}. Response times in regional and remote areas may vary — confirm availability for your location when you lodge your claim.`,
         },
       },
       {
@@ -120,27 +120,33 @@ function buildFAQSchema(props: DisasterEventPageProps) {
           text: 'Coverage depends on your specific policy. Most standard home and contents policies cover sudden water damage from storms and cyclones. Flood damage may require separate flood cover. Our contractors provide insurance-standard documentation to support your claim.',
         },
       },
-      ...(isFloodOrCyclone ? [{
-        '@type': 'Question',
-        name: 'What should I do first after cyclone or flood damage?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Ensure the property is structurally safe before re-entering. Do not turn on electricity if water has entered the building. Document all damage with photos and video before any clean-up. Contact your insurer to lodge a claim, then engage an ${props.iicrcStandard}-qualified restoration contractor.`,
-        },
-      }] : []),
+      ...(isFloodOrCyclone
+        ? [
+            {
+              '@type': 'Question',
+              name: 'What should I do first after cyclone or flood damage?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: `Ensure the property is structurally safe before re-entering. Do not turn on electricity if water has entered the building. Document all damage with photos and video before any clean-up. Contact your insurer to lodge a claim, then engage an ${props.iicrcStandard}-qualified restoration contractor.`,
+              },
+            },
+          ]
+        : []),
       {
         '@type': 'Question',
         name: 'What is the deadline for emergency hardship assistance?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: props.financialAssistance
-            .filter(a => a.deadline)
-            .map(a => `${a.name}: ${a.deadline}`)
-            .join('. ') || 'Check the relevant government website for current application deadlines.',
+          text:
+            props.financialAssistance
+              .filter((a) => a.deadline)
+              .map((a) => `${a.name}: ${a.deadline}`)
+              .join('. ') ||
+            'Check the relevant government website for current application deadlines.',
         },
       },
     ],
-  }
+  };
 }
 
 export default function DisasterEventPage(props: DisasterEventPageProps) {
@@ -163,34 +169,46 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
     slug,
     remoteLGANote,
     showEmergencyWarning = false,
-  } = props
+  } = props;
 
-  const phaseConfig = EVENT_PHASE_LABELS[eventPhase]
-  const eventLabel = EVENT_TYPE_LABELS[eventType]
-  const isRecovery = eventPhase === 'recovery'
+  const phaseConfig = EVENT_PHASE_LABELS[eventPhase];
+  const eventLabel = EVENT_TYPE_LABELS[eventType];
+  const isRecovery = eventPhase === 'recovery';
 
-  const eventSchema = buildEventSchema(props)
-  const faqSchema = buildFAQSchema(props)
+  const eventSchema = buildEventSchema(props);
+  const faqSchema = buildFAQSchema(props);
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': `https://disasterrecovery.com.au/${slug}`,
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
-    areaServed: props.affectedLGAs.map(lga => ({ '@type': 'City', name: lga })),
-    knowsAbout: [props.iicrcStandard, `${EVENT_TYPE_LABELS[props.eventType]} damage restoration`, 'Insurance claims documentation'],
-  }
+    areaServed: props.affectedLGAs.map((lga) => ({ '@type': 'City', name: lga })),
+    knowsAbout: [
+      props.iicrcStandard,
+      `${EVENT_TYPE_LABELS[props.eventType]} damage restoration`,
+      'Insurance claims documentation',
+    ],
+  };
 
   return (
     <>
       {/* Schema.org Structured Data — trusted static data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       <div className="min-h-screen bg-white">
-
         {/* 000 Emergency Warning */}
         {showEmergencyWarning && (
           <div className="bg-red-700 text-white py-3 px-4 text-center" role="alert">
@@ -208,10 +226,25 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
         {eshaDeadline && (
           <div className="bg-red-700 text-white py-3 px-4 text-center">
             <p className="text-sm font-bold">
-              ESHA APPLICATION DEADLINE: {new Date(eshaDeadline).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
-              {' '} — Apply before the deadline to access emergency hardship assistance.
+              ESHA APPLICATION DEADLINE:{' '}
+              {new Date(eshaDeadline).toLocaleDateString('en-AU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}{' '}
+              — Apply before the deadline to access emergency hardship assistance.
               {governmentApplicationUrl && (
-                <> {' '}<a href={governmentApplicationUrl} target="_blank" rel="noopener noreferrer" className="underline ml-1">Apply now</a></>
+                <>
+                  {' '}
+                  <a
+                    href={governmentApplicationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline ml-1"
+                  >
+                    Apply now
+                  </a>
+                </>
               )}
             </p>
           </div>
@@ -221,20 +254,22 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
         <section className="bg-slate-900 text-white py-8 md:py-24">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="mb-3 flex flex-wrap items-center gap-3">
-              <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${phaseConfig.badgeColour}`}>
+              <span
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${phaseConfig.badgeColour}`}
+              >
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 {phaseConfig.label}
               </span>
               {alertNote && (
-                <span className="text-sm font-semibold text-amber-300">
-                  {alertNote}
-                </span>
+                <span className="text-sm font-semibold text-amber-300">{alertNote}</span>
               )}
             </div>
             <h1 className="font-display text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
               {eventLabel} {eventName}
               <br />
-              <span className="text-blue-400">{state} {year}</span>
+              <span className="text-blue-400">
+                {state} {year}
+              </span>
             </h1>
             {/* CTAs before description — primary action visible on mobile without scroll (≤3-tap crisis protocol) */}
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -255,9 +290,8 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
             </div>
             <p className="text-xl text-slate-300 max-w-2xl mb-0 leading-relaxed">
               {isRecovery
-                ? `If your property has been damaged by ${eventLabel.toLowerCase()} ${eventName}, Disaster Recovery Australia-network ${iicrcStandard}-qualified contractors are ready to attend. Document your damage and lodge your insurance claim today.`
-                : `${eventLabel} ${eventName} is approaching ${state}. Prepare now — secure your property, document pre-event condition, and get claim-ready. Disaster Recovery Australia-network contractors are on standby across the affected region.`
-              }
+                ? `If your property has been damaged by ${eventLabel.toLowerCase()} ${eventName}, Disaster Recovery-network ${iicrcStandard}-qualified contractors are ready to attend. Document your damage and lodge your insurance claim today.`
+                : `${eventLabel} ${eventName} is approaching ${state}. Prepare now — secure your property, document pre-event condition, and get claim-ready. Disaster Recovery-network contractors are on standby across the affected region.`}
             </p>
           </div>
         </section>
@@ -270,7 +304,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                 Affected Areas — Declared {eventLabel} Event
               </h2>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-                {affectedLGAs.map(lga => (
+                {affectedLGAs.map((lga) => (
                   <div
                     key={lga}
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg border ${
@@ -279,9 +313,24 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                         : 'bg-white border-slate-200 text-slate-700'
                     }`}
                   >
-                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <svg
+                      className="w-4 h-4 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
                     </svg>
                     <span className="font-medium text-sm">{lga}</span>
                     {remoteLGAs.includes(lga) && (
@@ -294,7 +343,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                 <p className="mt-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">
                   <strong>Note for remote areas ({remoteLGAs.join(', ')}):</strong>{' '}
                   {remoteLGANote ??
-                    'Contractor availability in remote regions may be limited. Disaster Recovery Australia will confirm coverage and estimated response times when you lodge your claim.'}
+                    'Contractor availability in remote regions may be limited. Disaster Recovery will confirm coverage and estimated response times when you lodge your claim.'}
                 </p>
               )}
             </div>
@@ -309,16 +358,22 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                 Government Financial Assistance
               </h2>
               <p className="text-slate-600 mb-8">
-                The following assistance programs have been activated for this event. Verify eligibility and application deadlines directly with the relevant government agency.
+                The following assistance programs have been activated for this event. Verify
+                eligibility and application deadlines directly with the relevant government agency.
               </p>
               <div className="space-y-4">
                 {financialAssistance.map((item, idx) => (
-                  <div key={idx} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                  <div
+                    key={idx}
+                    className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm"
+                  >
                     <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="font-bold text-lg text-slate-900">{item.name}</h3>
-                          <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">{item.provider}</span>
+                          <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                            {item.provider}
+                          </span>
                         </div>
                         <p className="text-slate-600 text-sm mb-3">{item.description}</p>
                         <div className="flex flex-wrap gap-4 text-sm">
@@ -337,7 +392,12 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                           {item.hotline && (
                             <div>
                               <span className="text-slate-500">Hotline: </span>
-                              <a href={`tel:${item.hotline.replace(/\s/g, '')}`} className="font-semibold text-blue-600 hover:underline">{item.hotline}</a>
+                              <a
+                                href={`tel:${item.hotline.replace(/\s/g, '')}`}
+                                className="font-semibold text-blue-600 hover:underline"
+                              >
+                                {item.hotline}
+                              </a>
                             </div>
                           )}
                         </div>
@@ -350,8 +410,18 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                           className="inline-flex items-center gap-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors flex-shrink-0"
                         >
                           Apply
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
                           </svg>
                         </a>
                       )}
@@ -370,7 +440,9 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               How to Lodge Your Insurance Claim
             </h2>
             <p className="text-blue-200 mb-10">
-              Follow these steps for the strongest possible insurance outcome. Work completed by {iicrcStandard.split('(')[0].trim()}-certified contractors is accepted by all major Australian insurers.
+              Follow these steps for the strongest possible insurance outcome. Work completed by{' '}
+              {iicrcStandard.split('(')[0].trim()}-certified contractors is accepted by all major
+              Australian insurers.
             </p>
             <ol className="grid md:grid-cols-4 gap-6">
               {[
@@ -392,7 +464,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                 {
                   n: '4',
                   title: 'Engage Certified Contractor',
-                  body: `Submit your claim through Disaster Recovery Australia to be matched with an ${iicrcStandard}-certified contractor. All work is documented to insurance standards.`,
+                  body: `Submit your claim through Disaster Recovery to be matched with an ${iicrcStandard}-certified contractor. All work is documented to insurance standards.`,
                 },
               ].map(({ n, title, body }) => (
                 <li key={n} className="flex flex-col items-center text-center gap-3">
@@ -411,7 +483,12 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               >
                 Start Your Claim
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </div>
@@ -423,14 +500,29 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="flex flex-col sm:flex-row items-start gap-4 bg-white border border-slate-200 rounded-xl p-6">
               <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                <svg
+                  className="w-5 h-5 text-blue-700"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 mb-1">Industry Standard: {iicrcStandard}</h3>
+                <h3 className="font-bold text-slate-900 mb-1">
+                  Industry Standard: {iicrcStandard}
+                </h3>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  All Disaster Recovery Australia-network contractors working on this event type follow {iicrcStandard} protocols. This certification is the recognised industry standard for {eventLabel.toLowerCase()} damage restoration in Australia and is accepted by all major insurers.
+                  All Disaster Recovery-network contractors working on this event type follow{' '}
+                  {iicrcStandard} protocols. This certification is the recognised industry standard
+                  for {eventLabel.toLowerCase()} damage restoration in Australia and is accepted by
+                  all major insurers.
                 </p>
               </div>
             </div>
@@ -447,7 +539,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               {[
                 {
                   q: `How quickly can a restoration contractor attend in ${state}?`,
-                  a: `Disaster Recovery Australia-network contractors aim to attend within 60 minutes in major urban areas of ${state}. Response times in regional and remote areas may vary — confirm availability for your location when you lodge your claim.`,
+                  a: `Disaster Recovery-network contractors aim to attend within 60 minutes in major urban areas of ${state}. Response times in regional and remote areas may vary — confirm availability for your location when you lodge your claim.`,
                 },
                 {
                   q: `Will my insurance cover ${eventLabel.toLowerCase()} damage?`,
@@ -459,9 +551,10 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                 },
                 {
                   q: 'How do I apply for government financial assistance?',
-                  a: financialAssistance.length > 0
-                    ? `Multiple assistance programs are available for this event. See the Financial Assistance section above for program names, amounts, deadlines, and application links.${governmentHotline ? ` You can also call the Government Recovery Hotline: ${governmentHotline}.` : ''}`
-                    : `Contact your state government disaster recovery hotline for information on available assistance programs.`,
+                  a:
+                    financialAssistance.length > 0
+                      ? `Multiple assistance programs are available for this event. See the Financial Assistance section above for program names, amounts, deadlines, and application links.${governmentHotline ? ` You can also call the Government Recovery Hotline: ${governmentHotline}.` : ''}`
+                      : `Contact your state government disaster recovery hotline for information on available assistance programs.`,
                 },
               ].map(({ q, a }) => (
                 <div key={q} className="bg-white border border-slate-200 rounded-xl p-6">
@@ -480,10 +573,14 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               Ready to Start Your Recovery?
             </h2>
             <p className="text-slate-300 mb-2 leading-relaxed">
-              Submit your claim online. Disaster Recovery Australia will match you with a certified contractor in your area.
+              Submit your claim online. Disaster Recovery will match you with a certified contractor
+              in your area.
             </p>
             <p className="text-slate-400 text-xs mb-8">
-              <strong>Privacy Notice:</strong> Personal information collected through this service is used solely for the purpose of connecting you with a restoration contractor and is handled in accordance with the Privacy Act 1988 (Cth). We do not sell your information to third parties.
+              <strong>Privacy Notice:</strong> Personal information collected through this service
+              is used solely for the purpose of connecting you with a restoration contractor and is
+              handled in accordance with the Privacy Act 1988 (Cth). We do not sell your information
+              to third parties.
             </p>
             <Link
               href="/claim"
@@ -491,7 +588,12 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
             >
               Submit Emergency Claim
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </Link>
           </div>
@@ -508,8 +610,19 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
             href="/claim"
             className="flex items-center justify-center gap-3 w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold py-4 px-6 text-base transition-colors"
           >
-            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <svg
+              className="w-5 h-5 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
             </svg>
             {isRecovery ? 'Lodge Emergency Claim' : 'Get Claim-Ready Now'}
           </Link>
@@ -525,14 +638,24 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
             href="/claim"
             className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold rounded-full shadow-2xl transition-colors text-sm"
           >
-            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <svg
+              className="w-4 h-4 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
             </svg>
             {isRecovery ? 'Lodge Emergency Claim' : 'Get Claim-Ready Now'}
           </Link>
         </div>
-
       </div>
     </>
-  )
+  );
 }

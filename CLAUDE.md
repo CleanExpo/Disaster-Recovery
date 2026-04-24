@@ -1,4 +1,4 @@
-# CLAUDE.md — Disaster Recovery Australia
+# CLAUDE.md — Disaster Recovery
 
 Behavioural guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
@@ -31,6 +31,7 @@ Behavioural guidelines to reduce common LLM coding mistakes. Merge with project-
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
+
 - State your assumptions explicitly. If uncertain, ask.
 - If multiple interpretations exist, present them - don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
@@ -53,12 +54,14 @@ Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, sim
 **Touch only what you must. Clean up only your own mess.**
 
 When editing existing code:
+
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
 - If you notice unrelated dead code, mention it - don't delete it.
 
 When your changes create orphans:
+
 - Remove imports/variables/functions that YOUR changes made unused.
 - Don't remove pre-existing dead code unless asked.
 
@@ -69,11 +72,13 @@ The test: Every changed line should trace directly to the user's request.
 **Define success criteria. Loop until verified.**
 
 Transform tasks into verifiable goals:
+
 - "Add validation" → "Write tests for invalid inputs, then make them pass"
 - "Fix the bug" → "Write a test that reproduces it, then make it pass"
 - "Refactor X" → "Ensure tests pass before and after"
 
 For multi-step tasks, state a brief plan:
+
 ```
 1. [Step] → verify: [check]
 2. [Step] → verify: [check]
@@ -86,17 +91,17 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## 0. Where things live (read the right file first)
 
-| Topic                            | File                                                        |
-| -------------------------------- | ----------------------------------------------------------- |
-| Domain vocabulary                | @UBIQUITOUS_LANGUAGE.md + @.context/domain-models.md        |
-| Business rules (billing, quoting)| @.claude/rules/business-rules.md                            |
-| Compliance (ACL, APP, AML/CTF)   | @.claude/rules/compliance.md                                |
-| Australian English (spelling)    | @.claude/rules/australian-english.md                        |
-| Privacy + data classes           | @.claude/rules/privacy.md                                   |
-| Dev environment quirks           | @.claude/rules/dev-environment.md                           |
-| Architectural decisions (ADRs)   | @docs/adr/                                                  |
-| Project memory (drifts, debt)    | @MEMORY.md                                                  |
-| History + brand notes            | @docs/history/brand-and-history.md                          |
+| Topic                             | File                                                 |
+| --------------------------------- | ---------------------------------------------------- |
+| Domain vocabulary                 | @UBIQUITOUS_LANGUAGE.md + @.context/domain-models.md |
+| Business rules (billing, quoting) | @.claude/rules/business-rules.md                     |
+| Compliance (ACL, APP, AML/CTF)    | @.claude/rules/compliance.md                         |
+| Australian English (spelling)     | @.claude/rules/australian-english.md                 |
+| Privacy + data classes            | @.claude/rules/privacy.md                            |
+| Dev environment quirks            | @.claude/rules/dev-environment.md                    |
+| Architectural decisions (ADRs)    | @docs/adr/                                           |
+| Project memory (drifts, debt)     | @MEMORY.md                                           |
+| History + brand notes             | @docs/history/brand-and-history.md                   |
 
 If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those files — nothing was deleted.
 
@@ -105,26 +110,26 @@ If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those
 ## 1. Project identity
 
 - **Legal entity:** National Restoration Professionals Group Pty Ltd (NRPG)
-- **Consumer brand:** Disaster Recovery Australia
+- **Consumer brand:** Disaster Recovery
 - **Model:** Network-orchestrator — DR does NOT do restoration work; IICRC-certified contractors do, and they bill the client directly.
 - **Geography:** Australia + New Zealand
 - **Language:** Australian English, always — see @.claude/rules/australian-english.md
 
 ## 2. Tech stack
 
-| Layer      | Choice                                                                |
-| ---------- | --------------------------------------------------------------------- |
-| Framework  | Next.js 15 (App Router)                                               |
-| Language   | TypeScript (strict, `useUnknownInCatchVariables` on — DR-Day-4)       |
-| DB         | PostgreSQL (Supabase) via Prisma ORM                                  |
-| Validation | Zod (shared registry at `src/lib/validation.ts` — single API source)  |
-| Auth       | Supabase Auth + custom contractor-auth adapter                        |
-| Styling    | Tailwind CSS + Antigravity design system (`src/styles/*.css`)         |
-| Payments   | Stripe Checkout (DR-586/712 flag-gated)                               |
-| Voice      | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)          |
-| Deploy     | Vercel (authoritative — Vercel wins over local builds)                |
-| Observability | Sentry scaffold + request logger + compliance_events (DR-Day-9)    |
-| CI gates   | Husky + Prettier + commitlint + lint-staged + typecheck + gitleaks    |
+| Layer         | Choice                                                               |
+| ------------- | -------------------------------------------------------------------- |
+| Framework     | Next.js 15 (App Router)                                              |
+| Language      | TypeScript (strict, `useUnknownInCatchVariables` on — DR-Day-4)      |
+| DB            | PostgreSQL (Supabase) via Prisma ORM                                 |
+| Validation    | Zod (shared registry at `src/lib/validation.ts` — single API source) |
+| Auth          | Supabase Auth + custom contractor-auth adapter                       |
+| Styling       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)        |
+| Payments      | Stripe Checkout (DR-586/712 flag-gated)                              |
+| Voice         | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)         |
+| Deploy        | Vercel (authoritative — Vercel wins over local builds)               |
+| Observability | Sentry scaffold + request logger + compliance_events (DR-Day-9)      |
+| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck + gitleaks   |
 
 ## 3. Commands
 
@@ -193,18 +198,21 @@ npm run check:scripts   # verify all scripts resolve
 ## 5. Architectural rules (the hard ones)
 
 ### 5.1 Claim shape — single source of truth
+
 - **DB truth:** `prisma/schema.prisma` (`Claim`, `Enquiry`, `Lead`, `Job`, `Contractor` models).
 - **API truth:** `src/lib/validation.ts` (Zod). Every API route MUST validate input/output via this registry.
 - 3 legacy TS interfaces still duplicate claim shape. They have TODO markers; dedup is a separate follow-up. See @docs/adr/ADR-002-claim-shape-single-source-of-truth.md.
 - NEVER invent a fourth shape. Add to `src/lib/validation.ts` or extend Prisma — don't ship a new type-file.
 
 ### 5.2 Voice agent — closed-world + consent-gated
+
 - Sarah voice agent is a CLOSED-WORLD system: specific prompt + 5-tool surface + HMAC auth + output filter + 5-layer kill switch.
 - First caller utterance after pickup MUST be the APP 8 consent prompt (see `compliance.md`).
 - All voice flows are flag-gated (`NEXT_PUBLIC_VOICE_AGENT_ENABLED`); off by default in prod.
 - See @docs/adr/ADR-003-voice-agent-consent-and-data-boundary-model.md.
 
 ### 5.3 Feature flags — convention
+
 - Name: `NEXT_PUBLIC_<FEATURE>_ENABLED` — reads as `'true'` only.
 - Default: OFF. Flag-gated code MUST be zero-impact when the flag is off.
 - Kill switches are SEPARATE from feature flags (see `privacy.md` for the voice 5-layer kill switch).
@@ -212,11 +220,13 @@ npm run check:scripts   # verify all scripts resolve
 - See @docs/adr/ADR-004-feature-flag-strategy.md.
 
 ### 5.4 Observability + compliance events
+
 - Every API route that mutates state logs to `compliance_events` (structured, redacted, retention-tagged).
 - PII MUST pass through `src/lib/compliance/*` redactor before hitting logs.
 - Sentry scaffold is in place; fill breadcrumbs, not raw payloads.
 
 ### 5.5 Prohibitions (non-negotiable)
+
 - Do NOT create a fourth claim shape.
 - Do NOT send PII into AI prompts without the minimise-PII layer (see ADR-001).
 - Do NOT write US English ANYWHERE. See `.claude/rules/australian-english.md`.
@@ -264,5 +274,5 @@ Re-read this file. If the answer still isn't here, check @MEMORY.md, then the re
 
 ---
 
-*Last rewritten: 2026-04-24 (Foundation Sprint Day 10 — context engineering).
-Prior version (65-line generic scaffold) archived in git history at parent commit.*
+_Last rewritten: 2026-04-24 (Foundation Sprint Day 10 — context engineering).
+Prior version (65-line generic scaffold) archived in git history at parent commit._

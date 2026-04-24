@@ -5,10 +5,10 @@ export function PrivacyNotice() {
     <div className="rounded-xl border border-slate-600/50 bg-slate-800/40 p-4 text-xs text-slate-400 space-y-2">
       <p className="font-medium text-slate-300">Privacy — Collection Notice (APP 3 &amp; 5)</p>
       <p>
-        By submitting this application, you consent to Disaster Recovery Australia collecting your
-        business and personal information to assess your application for the NRPG contractor
-        network. Information collected includes your name, ABN, business details, insurance
-        certificates, licensing documents, bank account details, and uploaded identity documents.
+        By submitting this application, you consent to Disaster Recovery collecting your business
+        and personal information to assess your application for the NRPG contractor network.
+        Information collected includes your name, ABN, business details, insurance certificates,
+        licensing documents, bank account details, and uploaded identity documents.
       </p>
       <p>
         This information will be used to verify eligibility, conduct background checks, and — if

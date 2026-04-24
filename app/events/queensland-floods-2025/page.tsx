@@ -10,24 +10,24 @@
  * ACL s18 compliant — no unverified statistics.
  */
 
-import type { Metadata } from 'next'
-import DisasterEventPage from '@/components/events/DisasterEventPage'
+import type { Metadata } from 'next';
+import DisasterEventPage from '@/components/events/DisasterEventPage';
 
 export const metadata: Metadata = {
-  title: 'Queensland Floods 2025 — Insurance Claims & Recovery | Disaster Recovery Australia',
+  title: 'Queensland Floods 2025 — Insurance Claims & Recovery | Disaster Recovery',
   description:
     'Queensland Floods 2025. ICA Significant Event declared. Extended ESHA and Structural Assistance Grants still open for eligible homeowners in declared LGAs. IICRC-certified restoration contractors across all affected regions.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/queensland-floods-2025',
   },
   openGraph: {
-    title: 'Queensland Floods 2025 — Recovery & Insurance Claims | Disaster Recovery Australia',
+    title: 'Queensland Floods 2025 — Recovery & Insurance Claims | Disaster Recovery',
     description:
       'Queensland Floods 2025 recovery support. Extended ESHA open until 27 April. Structural Assistance Grants up to $80,000 available. IICRC-certified contractors across all declared LGAs.',
     url: 'https://disasterrecovery.com.au/events/queensland-floods-2025',
     type: 'website',
   },
-}
+};
 
 export default function QueenslandFloods2025Page() {
   return (
@@ -40,9 +40,8 @@ export default function QueenslandFloods2025Page() {
       year={2025}
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration)"
       slug="events/queensland-floods-2025"
-      metaTitle="Queensland Floods 2025 — Insurance Claims & Recovery | Disaster Recovery Australia"
+      metaTitle="Queensland Floods 2025 — Insurance Claims & Recovery | Disaster Recovery"
       metaDescription="Queensland Floods 2025. ICA Significant Event. Extended ESHA and Structural Assistance Grants available. IICRC-certified restoration contractors across all declared LGAs."
-
       affectedLGAs={[
         'Brisbane',
         'Gold Coast',
@@ -56,9 +55,7 @@ export default function QueenslandFloods2025Page() {
         'Toowoomba',
       ]}
       remoteLGAs={[]}
-
       governmentHotline="1800 173 349"
-
       financialAssistance={[
         {
           name: 'Extended Essential Household Assistance (ESHA)',
@@ -67,7 +64,8 @@ export default function QueenslandFloods2025Page() {
             'Extended ESHA remains open for eligible residents in 10 declared LGAs. Provides assistance to replace essential household contents destroyed or damaged by the Queensland Floods. General ESHA applications closed 7 April 2026 — extended ESHA deadline applies.',
           deadline: '27 April 2026',
           hotline: '1800 173 349',
-          applicationUrl: 'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance',
+          applicationUrl:
+            'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance',
         },
         {
           name: 'Personal Hardship Assistance',
@@ -76,7 +74,8 @@ export default function QueenslandFloods2025Page() {
             'Financial assistance for individuals and families experiencing personal hardship as a direct result of the Queensland Floods. Covers essential needs including food, clothing, and temporary accommodation.',
           deadline: '27 April 2026',
           hotline: '1800 173 349',
-          applicationUrl: 'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance',
+          applicationUrl:
+            'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance',
         },
         {
           name: 'Structural Assistance Grant',
@@ -85,7 +84,8 @@ export default function QueenslandFloods2025Page() {
             'For repair of a disaster-damaged dwelling to make it safe and habitable. The largest grant available to homeowners affected by the Queensland Floods. Requires inspection to confirm damage level and eligibility.',
           amounts: 'Up to $80,000',
           hotline: '1800 173 349',
-          applicationUrl: 'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply',
+          applicationUrl:
+            'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply',
         },
         {
           name: 'Australian Government Disaster Recovery Payment',
@@ -106,9 +106,8 @@ export default function QueenslandFloods2025Page() {
           hotline: '180 22 66',
         },
       ]}
-
       governmentApplicationUrl="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply"
       governmentApplicationLabel="Queensland Flood Financial Assistance — QLD Government"
     />
-  )
+  );
 }

@@ -1,11 +1,11 @@
-# Privacy + Data Classification — Disaster Recovery Australia
+# Privacy + Data Classification — Disaster Recovery
 
 > Data-class taxonomy + agent-context rules. Linked from @CLAUDE.md §0.
 >
 > **NOT LEGAL ADVICE — interim scaffold pending counsel validation.**
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10). Derived from
-DR-716 research + DR-713/714 implementation.*
+_Last updated: 2026-04-24 (Foundation Sprint Day 10). Derived from
+DR-716 research + DR-713/714 implementation._
 
 ---
 
@@ -14,13 +14,13 @@ DR-716 research + DR-713/714 implementation.*
 Every piece of data in this codebase belongs to exactly one class.
 When unsure, classify UP (more restrictive), not down.
 
-| Class                     | Examples                                                          | Where it may appear                            | May enter AI context? |
-| ------------------------- | ----------------------------------------------------------------- | ---------------------------------------------- | --------------------- |
-| **PUBLIC**                | Service page copy, pricing ranges, IICRC registration numbers, NAP info. | Rendered pages, public API, indexed by Google. | Yes — no restriction.  |
-| **CUSTOMER_TO_CUSTOMER**  | Non-personal claim descriptions scrubbed of PII (e.g. "water damage, Brisbane 4000"). | Analytics aggregates, content-gen prompts after PII minimisation. | Yes — after redactor. |
-| **INTERNAL**              | Contractor territory maps, service-area heuristics, lead-scoring rules, suburb risk tiers. | Server code, protected dashboards.             | Yes, but only in server-side calls — NEVER to a browser or third-party. |
-| **CONFIDENTIAL**          | Client PII, contractor identities + commissions, pricing BY contractor, `compliance_events` contents, Prisma rows with personal fields. | DB, authenticated portal routes, server logs (redacted). | NO — unless explicitly scoped + consented. |
-| **SECRET**                | Stripe keys, Supabase service role key, Twilio tokens, Google Places API key, Equipped finance terms, HMAC secrets, SMTP creds. | Vercel env vars only.                          | NEVER.                 |
+| Class                    | Examples                                                                                                                                | Where it may appear                                               | May enter AI context?                                                   |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **PUBLIC**               | Service page copy, pricing ranges, IICRC registration numbers, NAP info.                                                                | Rendered pages, public API, indexed by Google.                    | Yes — no restriction.                                                   |
+| **CUSTOMER_TO_CUSTOMER** | Non-personal claim descriptions scrubbed of PII (e.g. "water damage, Brisbane 4000").                                                   | Analytics aggregates, content-gen prompts after PII minimisation. | Yes — after redactor.                                                   |
+| **INTERNAL**             | Contractor territory maps, service-area heuristics, lead-scoring rules, suburb risk tiers.                                              | Server code, protected dashboards.                                | Yes, but only in server-side calls — NEVER to a browser or third-party. |
+| **CONFIDENTIAL**         | Client PII, contractor identities + commissions, pricing BY contractor, `compliance_events` contents, Prisma rows with personal fields. | DB, authenticated portal routes, server logs (redacted).          | NO — unless explicitly scoped + consented.                              |
+| **SECRET**               | Stripe keys, Supabase service role key, Twilio tokens, Google Places API key, Equipped finance terms, HMAC secrets, SMTP creds.         | Vercel env vars only.                                             | NEVER.                                                                  |
 
 ---
 
@@ -100,17 +100,17 @@ back.
 
 ## 5. Compliance_events logging — per route type
 
-| Route type                  | event_type               | Required fields                          |
-| --------------------------- | ------------------------ | ---------------------------------------- |
-| Claim-intake                | `claim_submitted`        | claimId, redactedShape, consent, ipHash  |
-| Claim update (portal)       | `claim_updated`          | claimId, fields (names only), actorId    |
-| Voice tool call             | `voice_tool_call`        | sessionId, toolName, consentFlag, ts     |
-| Reg 25 finance referral     | `reg25_referral`         | clientId, destination, ts                |
-| Contractor onboarding step  | `contractor_<step>`      | applicantId, stepName (no raw PII)       |
-| Payment (Stripe)            | `payment_<status>`       | stripeSessionId, amount, currency        |
-| Privacy-notice shown        | `privacy_notice_shown`   | surface (web/voice), ipHash / sessionId  |
-| Data deletion request       | `data_deletion_request`  | clientId, requestedAt, scope             |
-| Data breach suspicion       | `breach_suspected`       | summary, actorId (NEVER delete this row) |
+| Route type                 | event_type              | Required fields                          |
+| -------------------------- | ----------------------- | ---------------------------------------- |
+| Claim-intake               | `claim_submitted`       | claimId, redactedShape, consent, ipHash  |
+| Claim update (portal)      | `claim_updated`         | claimId, fields (names only), actorId    |
+| Voice tool call            | `voice_tool_call`       | sessionId, toolName, consentFlag, ts     |
+| Reg 25 finance referral    | `reg25_referral`        | clientId, destination, ts                |
+| Contractor onboarding step | `contractor_<step>`     | applicantId, stepName (no raw PII)       |
+| Payment (Stripe)           | `payment_<status>`      | stripeSessionId, amount, currency        |
+| Privacy-notice shown       | `privacy_notice_shown`  | surface (web/voice), ipHash / sessionId  |
+| Data deletion request      | `data_deletion_request` | clientId, requestedAt, scope             |
+| Data breach suspicion      | `breach_suspected`      | summary, actorId (NEVER delete this row) |
 
 Helpers in `src/lib/compliance/*`. NEVER build a second logger.
 

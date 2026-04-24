@@ -1,5 +1,5 @@
 /**
- * Disaster Recovery Australia — Service Worker
+ * Disaster Recovery — Service Worker
  * iOS App Store Phase 2 PR #4 (RA-1633) — life-safety offline shell.
  *
  * Strategy:
@@ -97,7 +97,7 @@ self.addEventListener('fetch', (event) => {
         const cached = await cache.match('/offline');
         if (cached) return cached;
         return new Response(
-          '<h1>You are offline</h1><p>Call 000 in an emergency, or 1300 309 361 for Disaster Recovery Australia.</p>',
+          '<h1>You are offline</h1><p>Call 000 in an emergency, or 1300 309 361 for Disaster Recovery.</p>',
           { headers: { 'Content-Type': 'text/html; charset=utf-8' } }
         );
       })

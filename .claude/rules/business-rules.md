@@ -1,28 +1,28 @@
-# Business Rules — Disaster Recovery Australia
+# Business Rules — Disaster Recovery
 
 > How the business actually works — billing, pricing, quoting, who can
 > do what. Linked from @CLAUDE.md §0.
 >
 > **NOT LEGAL ADVICE — interim scaffold pending counsel validation.**
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10).*
+_Last updated: 2026-04-24 (Foundation Sprint Day 10)._
 
 ---
 
 ## 1. The model in one sentence
 
-Disaster Recovery Australia is a NETWORK ORCHESTRATOR. IICRC-certified
+Disaster Recovery is a NETWORK ORCHESTRATOR. IICRC-certified
 `Contractors` do the restoration work and bill the `Client` directly.
 DR does not do restoration and does not bill on behalf of anyone.
 
 ## 2. Who bills who (hard)
 
-| Flow                              | Billing?                              |
-| --------------------------------- | ------------------------------------- |
-| Restoration work (claim)          | Contractor → Client directly.         |
-| Platform / network access         | Contractor → DR (subscription).       |
-| Insurance cover                   | Client ↔ their insurer (DR not party).|
-| Finance (Equipped referral)       | Equipped → Client (Reg 25 referral).  |
+| Flow                        | Billing?                               |
+| --------------------------- | -------------------------------------- |
+| Restoration work (claim)    | Contractor → Client directly.          |
+| Platform / network access   | Contractor → DR (subscription).        |
+| Insurance cover             | Client ↔ their insurer (DR not party). |
+| Finance (Equipped referral) | Equipped → Client (Reg 25 referral).   |
 
 DR does NOT:
 
@@ -47,13 +47,13 @@ DR DOES:
 
 ### Who can quote what
 
-| Actor              | May quote                                | May NOT quote                         |
-| ------------------ | ---------------------------------------- | ------------------------------------- |
-| Public site copy   | Indicative RANGES sourced from data.     | Firm prices for a specific job.       |
-| Cost estimator     | Range + disclaimer, pre-fills to `/claim`.| Fixed quote.                         |
-| Voice agent (Sarah)| Nothing price-related — escalates.        | Any price claim whatsoever.           |
-| Contractor (on-site) | Firm `Scope of works` with GST.         | (no restriction — this is their job)  |
-| Operator (DR)      | Nothing price-related to clients directly.| Any price claim to clients.          |
+| Actor                | May quote                                  | May NOT quote                        |
+| -------------------- | ------------------------------------------ | ------------------------------------ |
+| Public site copy     | Indicative RANGES sourced from data.       | Firm prices for a specific job.      |
+| Cost estimator       | Range + disclaimer, pre-fills to `/claim`. | Fixed quote.                         |
+| Voice agent (Sarah)  | Nothing price-related — escalates.         | Any price claim whatsoever.          |
+| Contractor (on-site) | Firm `Scope of works` with GST.            | (no restriction — this is their job) |
+| Operator (DR)        | Nothing price-related to clients directly. | Any price claim to clients.          |
 
 ### Published price ranges
 
