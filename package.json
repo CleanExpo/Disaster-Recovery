@@ -11,13 +11,15 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write \"src/lib/validation/**/*.{ts,tsx,js,jsx,json}\"",
+    "format:check": "prettier --check \"src/lib/validation/**/*.{ts,tsx,js,jsx,json}\"",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "check:scripts": "node -e \"const p=require('./package.json');const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK \u2014 all required scripts present:',required.join(', '));\""
+    "check:scripts": "node -e \"const p=require('./package.json');const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\""
   },
   "prisma": {
     "seed": "tsx scripts/core/seed.ts"
@@ -166,6 +168,7 @@
     "picomatch": "^4.0.3",
     "playwright": "^1.55.0",
     "postcss": "^8.4.40",
+    "prettier": "^3.8.3",
     "prisma": "^5.22.0",
     "puppeteer": "^24.17.0",
     "tailwindcss": "^3.4.7",
