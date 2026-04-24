@@ -8,6 +8,7 @@ import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
 import OfflineBanner from '@/components/claim/OfflineBanner';
+import UseCurrentLocationButton from '@/components/claim/UseCurrentLocationButton';
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -728,6 +729,17 @@ function OnlineClaimPageOriginal() {
                     <Home className="h-4 w-4" />
                     Property Information
                   </h3>
+                  <UseCurrentLocationButton
+                    onAutofill={(fields) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        propertyAddress: fields.address || prev.propertyAddress,
+                        suburb: fields.suburb || prev.suburb,
+                        state: fields.state || prev.state,
+                        postcode: fields.postcode || prev.postcode,
+                      }))
+                    }
+                  />
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="md:col-span-2">
                       <Label htmlFor="claim-propertyAddress">Property Address *</Label>
