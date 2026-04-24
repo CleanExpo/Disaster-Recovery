@@ -54,7 +54,7 @@ export interface ServiceData {
 
 export class LocationServiceGenerator {
   // Major Australian cities and their suburbs
-  private static locations = {
+  private static locations: Record<string, { city: string; state: string; suburbs: string[]; regions: string[]; population: number }> = {
     sydney: {
       city: 'Sydney',
       state: 'NSW',
@@ -181,7 +181,7 @@ export class LocationServiceGenerator {
   };
 
   // Services we offer
-  private static services = {
+  private static services: Record<string, { type: string; category: string; urgency: 'emergency' | 'urgent' | 'standard'; keywords: string[]; variations: string[] }> = {
     'water-damage-restoration': {
       type: 'Water Damage Restoration',
       category: 'water',

@@ -401,7 +401,7 @@ const browser = await puppeteer.launch({
 const page = await browser.newPage();
 await page.setViewport({ width: 1280, height: 720 });
 
-${testCase.steps.map(step => {
+${testCase.steps.map((step: any) => {
   switch (step.action) {
     case 'navigate':
       return `await page.goto('${step.value}');`;
@@ -426,7 +426,7 @@ const driver = await new Builder()
   .build();
 
 try {
-${testCase.steps.map(step => {
+${testCase.steps.map((step: any) => {
   switch (step.action) {
     case 'navigate':
       return `  await driver.get('${step.value}');`;

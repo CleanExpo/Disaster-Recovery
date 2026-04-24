@@ -38,7 +38,7 @@ export class HealthMonitor extends EventEmitter {
   private metrics: Map<string, any>;
   private history: HealthStatus[] = [];
   private maxHistorySize = 1000;
-  private thresholds = {
+  private thresholds: Record<string, { warning: number; critical: number }> = {
     cpu: { warning: 70, critical: 90 },
     memory: { warning: 80, critical: 95 },
     errorRate: { warning: 5, critical: 10 },

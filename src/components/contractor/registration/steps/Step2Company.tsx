@@ -56,7 +56,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   const [directors, setDirectors] = useState<Director[]>(
     data.company?.directors?.map(d => ({
       name: `${d.firstName} ${d.lastName}`,
-      phone: d.phone,
+      phone: d.phone ?? '',
       email: d.email
     })) || [{ name: '', phone: '', email: '' }]
   );

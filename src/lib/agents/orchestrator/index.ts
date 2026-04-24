@@ -221,7 +221,7 @@ export class MasterOrchestrator extends EventEmitter {
   }
 
   private identifyPatterns(): any[] {
-    const patterns = [];
+    const patterns: any[] = [];
     const taskHistory = this.taskQueue.getHistory();
     
     // Identify recurring task patterns

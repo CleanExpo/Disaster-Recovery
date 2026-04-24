@@ -136,7 +136,7 @@ export async function GET(request: NextRequest) {
         totalSize: formatSize(data.size),
         avgSize: formatSize(data.avgSize),
         percentage: `${((data.size / stats.totalSize) * 100).toFixed(1)}%` })),
-      recommendations: [] };
+      recommendations: [] as string[] };
 
     // Add recommendations
     if (stats.largeImages.length > 0) {

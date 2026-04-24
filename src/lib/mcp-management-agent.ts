@@ -22,6 +22,7 @@ interface MCPRegistry {
   playwright: MCPConfig;
   context7: MCPConfig;
   'sequential-thinking': MCPConfig;
+  [key: string]: MCPConfig | undefined;
 }
 
 interface WorkflowStep {
@@ -45,7 +46,7 @@ interface MCPResponse {
 
 // Main MCP Management Agent Class
 export class MCPManagementAgent extends EventEmitter {
-  private mcpRegistry: MCPRegistry;
+  private mcpRegistry: MCPRegistry = {} as MCPRegistry;
   private processes: Map<string, ChildProcess>;
   private configPath: string;
   private initialized: boolean = false;
@@ -167,7 +168,7 @@ export class MCPManagementAgent extends EventEmitter {
       
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
         timestamp: new Date(),
         duration
       };
@@ -356,7 +357,7 @@ export class MCPManagementAgent extends EventEmitter {
       console.log(`\n🎉 Orchestration completed successfully!`);
       return results;
     } catch (error) {
-      console.error(`❌ Orchestration failed: ${error.message}`);
+      console.error(`❌ Orchestration failed: ${error instanceof Error ? error.message : String(error)}`);
       throw error;
     }
   }
@@ -394,9 +395,10 @@ export class MCPManagementAgent extends EventEmitter {
    * Get status of all MCPs
    */
   async getStatus(): Promise<Record<string, any>> {
-    const status = {};
-    
+    const status: Record<string, any> = {};
+
     for (const [name, config] of Object.entries(this.mcpRegistry)) {
+      if (!config) continue;
       status[name] = {
         name: config.name,
         description: config.description,
@@ -405,7 +407,7 @@ export class MCPManagementAgent extends EventEmitter {
         process: this.processes.has(name) ? 'running' : 'idle'
       };
     }
-    
+
     return status;
   }
 
@@ -423,19 +425,19 @@ export class MCPManagementAgent extends EventEmitter {
    * Check health of all MCPs
    */
   private async checkHealth(): Promise<any> {
-    const health = {
+    const health: { timestamp: Date; status: string; mcps: Record<string, any> } = {
       timestamp: new Date(),
       status: 'healthy',
       mcps: {}
     };
-    
-    for (const [name, config] of Object.entries(this.mcpRegistry)) {
+
+    for (const [name] of Object.entries(this.mcpRegistry)) {
       try {
         const startTime = Date.now();
         // Simple ping test
         await this.executeMCP(name, 'ping', {});
         const latency = Date.now() - startTime;
-        
+
         health.mcps[name] = {
           status: 'online',
           latency,
@@ -444,7 +446,7 @@ export class MCPManagementAgent extends EventEmitter {
       } catch (error) {
         health.mcps[name] = {
           status: 'offline',
-          error: error.message,
+          error: error instanceof Error ? error.message : String(error),
           lastCheck: new Date()
         };
         health.status = 'degraded';
@@ -460,22 +462,30 @@ export class MCPManagementAgent extends EventEmitter {
   async troubleshoot(mcpName: string): Promise<any> {
     console.log(`🔧 Troubleshooting ${mcpName}...`);
     
-    const diagnostics = {
+    const diagnostics: { mcp: string; timestamp: Date; checks: Array<{ test: string; passed: boolean; details: any }> } = {
       mcp: mcpName,
       timestamp: new Date(),
       checks: []
     };
-    
+
     // Check configuration
     diagnostics.checks.push({
       test: 'configuration',
       passed: !!this.mcpRegistry[mcpName],
       details: this.mcpRegistry[mcpName] || 'Not found in registry'
     });
-    
+
     // Check file existence (for local MCPs)
     if (mcpName !== 'playwright') {
-      const path = this.mcpRegistry[mcpName]?.args[0];
+      const path = this.mcpRegistry[mcpName]?.args?.[0];
+      if (!path) {
+        diagnostics.checks.push({
+          test: 'file_exists',
+          passed: false,
+          details: 'No path configured'
+        });
+        return diagnostics;
+      }
       try {
         await fs.access(path);
         diagnostics.checks.push({
@@ -511,7 +521,7 @@ export class MCPManagementAgent extends EventEmitter {
       diagnostics.checks.push({
         test: 'connectivity',
         passed: false,
-        details: error.message
+        details: error instanceof Error ? error.message : String(error)
       });
     }
     
@@ -579,7 +589,7 @@ if (require.main === module) {
       
       await mcpAgent.shutdown();
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Error:', error instanceof Error ? error.message : String(error));
       process.exit(1);
     }
   })();

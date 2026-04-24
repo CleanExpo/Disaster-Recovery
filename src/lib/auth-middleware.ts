@@ -223,9 +223,9 @@ export function withRateLimit(
 /**
  * Input validation middleware
  */
-export function withValidation<T>(
-  handler: (req: NextRequest, validatedData: T) => Promise<NextResponse>,
-  schema: z.ZodSchema<T>,
+export function withValidation<S extends z.ZodTypeAny>(
+  handler: (req: NextRequest, validatedData: z.infer<S>) => Promise<NextResponse>,
+  schema: S,
   options: {
     validateQuery?: boolean;
     validateBody?: boolean;
