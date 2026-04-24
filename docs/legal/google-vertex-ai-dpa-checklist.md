@@ -22,12 +22,14 @@ existing Google API Terms of Service. Phase 2 requires the full Vertex AI DPA.
 ## DPA Checklist
 
 ### 1. Parties and Scope
-- [ ] Confirm contracting entity is "Disaster Recovery Australia Pty Ltd" (or correct legal name)
+
+- [ ] Confirm contracting entity is "Disaster Recovery Pty Ltd" (or correct legal name)
 - [ ] Confirm scope covers Vertex AI (not just Google Cloud in general)
 - [ ] Confirm the DPA covers server-side inference requests (not just data storage)
 
 ### 2. Data Processing Details
-- [ ] Document the categories of personal data that *could* reach Vertex AI
+
+- [ ] Document the categories of personal data that _could_ reach Vertex AI
   - Note: `minimisePII()` layer strips names, emails, phone numbers before translation
   - Residual risk: free-text fields (disaster description, address fragments) may remain
 - [ ] Document the purpose: UI string translation for CALD community accessibility
@@ -35,28 +37,34 @@ existing Google API Terms of Service. Phase 2 requires the full Vertex AI DPA.
 - [ ] Confirm no training data use: Vertex AI enterprise terms prohibit use of customer data for model training — verify this clause is present
 
 ### 3. Sub-processors
+
 - [ ] Obtain Google's current sub-processor list for Vertex AI
 - [ ] Confirm all sub-processors are in jurisdictions acceptable under APP 8
 - [ ] Document notification mechanism for sub-processor changes
 
 ### 4. Security Measures
+
 - [ ] Confirm Google's ISO 27001 / SOC 2 Type II certifications are current
 - [ ] Confirm data is encrypted in transit (TLS 1.2+) and at rest (AES-256)
 - [ ] Confirm our API calls use a dedicated service account with least-privilege IAM
 
 ### 5. Data Subject Rights
+
 - [ ] Confirm mechanism for honouring erasure requests (minimal — inference data not stored by us)
 - [ ] Confirm Google's obligations for data subject requests passed through from DRA
 
 ### 6. Cross-Border Transfer Mechanism
+
 - [ ] Confirm Standard Contractual Clauses (SCCs) or equivalent are included for AU→US transfer
 - [ ] Note: Google Cloud has an australia-southeast1 region — consider requesting region lock
 
 ### 7. Breach Notification
+
 - [ ] Confirm Google's obligation to notify DRA within 72 hours of a data breach
 - [ ] Confirm DRA's internal escalation path from Google notification → CEO → OAIC
 
 ### 8. Termination and Return of Data
+
 - [ ] Confirm data deletion timeline on contract termination
 - [ ] Confirm no copies retained by Google after deletion
 

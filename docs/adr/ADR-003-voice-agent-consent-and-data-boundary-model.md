@@ -3,16 +3,17 @@
 **Status:** Accepted
 **Date:** 2026-04-24
 **Deciders:** DR-706 / DR-709 / DR-710 / DR-713 / DR-714 / DR-724
-+ Foundation Sprint Day 10 documentation pass
-**Related:** @.claude/rules/compliance.md §3, @.claude/rules/privacy.md
-§4, @.claude/rules/business-rules.md §6, @docs/adr/ADR-001-gemma4-multilingual.md
+
+- Foundation Sprint Day 10 documentation pass
+  **Related:** @.claude/rules/compliance.md §3, @.claude/rules/privacy.md
+  §4, @.claude/rules/business-rules.md §6, @docs/adr/ADR-001-gemma4-multilingual.md
 
 ---
 
 ## Context
 
 Sarah is the LLM-powered voice agent that answers inbound calls to
-Disaster Recovery Australia and captures a draft `Claim`. Voice agents
+Disaster Recovery and captures a draft `Claim`. Voice agents
 create a cluster of privacy, compliance, and trust-boundary risks that
 a web form does not:
 
@@ -109,6 +110,7 @@ See @.claude/rules/privacy.md §1-2.
 ## Consequences
 
 **Enables:**
+
 - Sarah can be deployed safely because every turn goes through the
   same five checks. Any failure is loggable + reversible.
 - The consent gate gives APP 8 coverage without needing per-turn
@@ -120,6 +122,7 @@ See @.claude/rules/privacy.md §1-2.
   other four layers.
 
 **Locks us into:**
+
 - Sarah can NEVER quote a price or look up a contractor. If a future
   product wants that, it is a new agent with a new ADR, not a patch to
   Sarah.
@@ -130,6 +133,7 @@ See @.claude/rules/privacy.md §1-2.
   review (DR-713 ownership).
 
 **Follow-up debt:**
+
 - Red-team test suite for Layer 4 (prompt-injection cases) — tracked.
 - Output filter false-negative audit (Layer 5) — tracked.
 - Model-swap ADR when we migrate from current Layer 4 backend to

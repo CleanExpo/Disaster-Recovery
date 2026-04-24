@@ -26,7 +26,7 @@ class InstructionComplianceEngine:
     def analyze_project_context(self) -> Dict[str, Any]:
         """Analyze real project structure and .env variables"""
         context = {
-            'project_type': 'Real Data Investor Pitch Deck Website - Disaster Recovery Australia',
+            'project_type': 'Real Data Investor Pitch Deck Website - Disaster Recovery',
             'security_level': 'Production Grade - Vercel Deployment',
             'env_location': 'Vercel .env and .env.local',
             'real_data_requirement': True,

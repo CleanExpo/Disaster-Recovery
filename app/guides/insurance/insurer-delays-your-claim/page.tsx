@@ -28,8 +28,7 @@ export const metadata: Metadata = {
   keywords:
     'insurer delays claim Australia, insurance claim not progressing, AFCA delay complaint, IDR insurance complaint, insurer slow to respond, General Insurance Code of Practice timeframes, AFCA claim delay 2025',
   alternates: {
-    canonical:
-      'https://disasterrecovery.com.au/guides/insurance/insurer-delays-your-claim',
+    canonical: 'https://disasterrecovery.com.au/guides/insurance/insurer-delays-your-claim',
   },
   openGraph: {
     title: 'What to Do When Your Insurer Delays Your Claim',
@@ -46,10 +45,10 @@ const articleSchema = {
   headline: 'What to Do When Your Insurer Delays Your Claim',
   datePublished: '2026-04-10',
   dateModified: '2026-04-10',
-  author: { '@type': 'Organization', name: 'Disaster Recovery Australia' },
+  author: { '@type': 'Organization', name: 'Disaster Recovery' },
   publisher: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
   },
   description:
@@ -89,7 +88,7 @@ const faqSchema = {
       name: 'When can I go to AFCA about a delay?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'You can go to AFCA after receiving the insurer\'s IDR response (if you are not satisfied), or if the insurer has not responded to your IDR complaint within 30 calendar days. AFCA is free for complainants. You have two years from the date of the IDR response to lodge. AFCA can order the insurer to decide your claim and may award interest for unreasonable delay.',
+        text: "You can go to AFCA after receiving the insurer's IDR response (if you are not satisfied), or if the insurer has not responded to your IDR complaint within 30 calendar days. AFCA is free for complainants. You have two years from the date of the IDR response to lodge. AFCA can order the insurer to decide your claim and may award interest for unreasonable delay.",
       },
     },
     {
@@ -105,7 +104,7 @@ const faqSchema = {
       name: 'Does the General Insurance Code of Practice have legal force?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The General Insurance Code of Practice is enforceable through the Insurance Council of Australia. Breaches can result in sanctions, public reporting, and compensation to affected policyholders. AFCA also applies the Code when determining whether an insurer\'s conduct was fair and reasonable. The Code has been strengthened following the 2022 flood catastrophe and subsequent reviews.',
+        text: "Yes. The General Insurance Code of Practice is enforceable through the Insurance Council of Australia. Breaches can result in sanctions, public reporting, and compensation to affected policyholders. AFCA also applies the Code when determining whether an insurer's conduct was fair and reasonable. The Code has been strengthened following the 2022 flood catastrophe and subsequent reviews.",
       },
     },
   ],
@@ -143,10 +142,10 @@ export default function InsurerDelaysYourClaimPage() {
               <>
                 <p>
                   In 2025, the Australian Financial Complaints Authority (AFCA) received{' '}
-                  <strong>111,373 complaints</strong> — the highest number in its history, up 14%
-                  on the prior year. The single largest complaint category was{' '}
-                  <strong>delay in claim handling: 9,274 complaints</strong>. AFCA secured
-                  $643 million in compensation for consumers — a 120% increase year on year.
+                  <strong>111,373 complaints</strong> — the highest number in its history, up 14% on
+                  the prior year. The single largest complaint category was{' '}
+                  <strong>delay in claim handling: 9,274 complaints</strong>. AFCA secured $643
+                  million in compensation for consumers — a 120% increase year on year.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   These figures reflect a pattern that has been building since the 2022 Australian
@@ -157,9 +156,9 @@ export default function InsurerDelaysYourClaimPage() {
                   resolved.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  If your property damage claim is not progressing, you are not alone — and you
-                  have rights under Australian law and the General Insurance Code of Practice that
-                  most policyholders are unaware of.
+                  If your property damage claim is not progressing, you are not alone — and you have
+                  rights under Australian law and the General Insurance Code of Practice that most
+                  policyholders are unaware of.
                 </p>
               </>
             ),
@@ -169,8 +168,7 @@ export default function InsurerDelaysYourClaimPage() {
             body: (
               <>
                 <p>
-                  The{' '}
-                  <strong>General Insurance Code of Practice (the Code)</strong> sets mandatory
+                  The <strong>General Insurance Code of Practice (the Code)</strong> sets mandatory
                   timeframes that all subscribing insurers must meet. It is enforced by the
                   Insurance Council of Australia and can be applied by AFCA in dispute
                   determinations.
@@ -183,7 +181,9 @@ export default function InsurerDelaysYourClaimPage() {
                     marginTop: '1rem',
                   }}
                 >
-                  <table style={{ width: '100%', fontSize: '0.875rem', borderCollapse: 'collapse' }}>
+                  <table
+                    style={{ width: '100%', fontSize: '0.875rem', borderCollapse: 'collapse' }}
+                  >
                     <thead>
                       <tr style={{ backgroundColor: '#1e293b', color: 'white' }}>
                         <th style={{ padding: '0.75rem 1rem', textAlign: 'left', fontWeight: 600 }}>
@@ -275,13 +275,13 @@ export default function InsurerDelaysYourClaimPage() {
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Every contact you have made</strong> — dates, times, who you spoke to,
-                    what was said. If communications have been by phone, follow up each call with
-                    an email confirming the conversation.
+                    what was said. If communications have been by phone, follow up each call with an
+                    email confirming the conversation.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Every commitment your insurer made</strong> — &quot;we will send an
-                    assessor within five days,&quot; &quot;a decision will be made by the end of
-                    the month&quot; — and whether they were met.
+                    assessor within five days,&quot; &quot;a decision will be made by the end of the
+                    month&quot; — and whether they were met.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>What the delay has cost you</strong> — alternative accommodation,
@@ -296,8 +296,8 @@ export default function InsurerDelaysYourClaimPage() {
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Save copies of all written communications. Do not rely on verbal commitments
-                  alone — request everything in writing.
+                  Save copies of all written communications. Do not rely on verbal commitments alone
+                  — request everything in writing.
                 </p>
               </>
             ),
@@ -309,9 +309,9 @@ export default function InsurerDelaysYourClaimPage() {
                 <p>
                   <strong>Internal Dispute Resolution (IDR)</strong> is the formal complaints
                   process your insurer is required to operate under ASIC Regulatory Guide 271 and
-                  the General Insurance Code of Practice. It is not the same as ringing your
-                  claims manager — it is a separate complaints channel that triggers specific
-                  legal obligations.
+                  the General Insurance Code of Practice. It is not the same as ringing your claims
+                  manager — it is a separate complaints channel that triggers specific legal
+                  obligations.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   To lodge an IDR complaint, write to your insurer and:
@@ -341,15 +341,16 @@ export default function InsurerDelaysYourClaimPage() {
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Send the complaint to your insurer&apos;s <strong>complaints team</strong> —
-                  not your claims handler. The complaints team email or postal address will be on
-                  your policy documents or the insurer&apos;s website under &quot;Complaints&quot;
-                  or &quot;Dispute Resolution.&quot;
+                  Send the complaint to your insurer&apos;s <strong>complaints team</strong> — not
+                  your claims handler. The complaints team email or postal address will be on your
+                  policy documents or the insurer&apos;s website under &quot;Complaints&quot; or
+                  &quot;Dispute Resolution.&quot;
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  <strong>Your insurer must respond to your IDR complaint within 30 calendar
-                  days.</strong> If they do not, you can go directly to AFCA without waiting for
-                  the IDR response.
+                  <strong>
+                    Your insurer must respond to your IDR complaint within 30 calendar days.
+                  </strong>{' '}
+                  If they do not, you can go directly to AFCA without waiting for the IDR response.
                 </p>
               </>
             ),
@@ -373,28 +374,25 @@ export default function InsurerDelaysYourClaimPage() {
                     attach your delay timeline, IDR complaint, and all correspondence at lodgement.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>You have two years</strong> from the date of the IDR response to
-                    lodge with AFCA.
+                    <strong>You have two years</strong> from the date of the IDR response to lodge
+                    with AFCA.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>What AFCA can order for delay:</strong> that the claim be decided
-                    within a specific timeframe; interest on amounts owed for the delay period;
+                    <strong>What AFCA can order for delay:</strong> that the claim be decided within
+                    a specific timeframe; interest on amounts owed for the delay period;
                     compensation for non-financial loss (distress and inconvenience) up to $5,500.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  AFCA&apos;s 2025 data shows that delay complaints are increasingly being
-                  resolved in the complainant&apos;s favour — particularly where the insurer
-                  cannot demonstrate that its handling met the Code&apos;s timeframe requirements.
-                  The combination of your written timeline and a clear IDR record is your strongest
+                  AFCA&apos;s 2025 data shows that delay complaints are increasingly being resolved
+                  in the complainant&apos;s favour — particularly where the insurer cannot
+                  demonstrate that its handling met the Code&apos;s timeframe requirements. The
+                  combination of your written timeline and a clear IDR record is your strongest
                   evidence.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   For more detail on the full AFCA complaint process, see the{' '}
-                  <a href="/guides/insurance/afca-complaint-guide">
-                    AFCA Complaint Guide
-                  </a>
-                  .
+                  <a href="/guides/insurance/afca-complaint-guide">AFCA Complaint Guide</a>.
                 </p>
               </>
             ),
@@ -408,15 +406,13 @@ export default function InsurerDelaysYourClaimPage() {
                   starting any work. This is not correct under Australian law.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  <strong>Section 56 of the Insurance Contracts Act 1984</strong> imposes a duty
-                  to mitigate on the insured. This means you are legally required to take
-                  reasonable steps to prevent further damage — and you are entitled to do so.
-                  Reasonable mitigation costs are claimable, even if incurred before the insurer
-                  authorises repairs.
+                  <strong>Section 56 of the Insurance Contracts Act 1984</strong> imposes a duty to
+                  mitigate on the insured. This means you are legally required to take reasonable
+                  steps to prevent further damage — and you are entitled to do so. Reasonable
+                  mitigation costs are claimable, even if incurred before the insurer authorises
+                  repairs.
                 </p>
-                <p style={{ marginTop: '1rem' }}>
-                  In practice, this means:
-                </p>
+                <p style={{ marginTop: '1rem' }}>In practice, this means:</p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Make-safe work</strong> — tarping a damaged roof, extracting standing
@@ -440,8 +436,8 @@ export default function InsurerDelaysYourClaimPage() {
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   Full rebuilding and structural repairs are generally more complex — insurers
-                  typically require scope approval before permanent repairs. However, the
-                  mitigation steps above should not wait.
+                  typically require scope approval before permanent repairs. However, the mitigation
+                  steps above should not wait.
                 </p>
               </>
             ),
@@ -451,13 +447,11 @@ export default function InsurerDelaysYourClaimPage() {
             body: (
               <>
                 <p>
-                  If the delay involves a dispute about scope — what damage the insurer is
-                  prepared to cover — an independent assessment from a qualified restoration
-                  contractor provides AFCA and your IDR with technically credible evidence.
+                  If the delay involves a dispute about scope — what damage the insurer is prepared
+                  to cover — an independent assessment from a qualified restoration contractor
+                  provides AFCA and your IDR with technically credible evidence.
                 </p>
-                <p style={{ marginTop: '1rem' }}>
-                  An independent scope of works:
-                </p>
+                <p style={{ marginTop: '1rem' }}>An independent scope of works:</p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
                     Documents what work is required and why, with reference to Australian
@@ -468,9 +462,8 @@ export default function InsurerDelaysYourClaimPage() {
                     factual basis for comparison against the insurer&apos;s position.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    Demonstrates that any scope gap is due to the insurer&apos;s delay —
-                    secondary damage that has developed since the initial loss event is
-                    documented separately.
+                    Demonstrates that any scope gap is due to the insurer&apos;s delay — secondary
+                    damage that has developed since the initial loss event is documented separately.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
@@ -506,7 +499,7 @@ export default function InsurerDelaysYourClaimPage() {
           {
             question: 'What is an IDR complaint and how do I lodge one?',
             answer:
-              "IDR stands for Internal Dispute Resolution — the formal complaints process every insurer is required to maintain. To lodge one, contact your insurer in writing (email is acceptable), state you are making a formal complaint about the delay, include your claim number and a clear description of what has not happened and by when. The insurer must respond to your IDR complaint within 30 calendar days.",
+              'IDR stands for Internal Dispute Resolution — the formal complaints process every insurer is required to maintain. To lodge one, contact your insurer in writing (email is acceptable), state you are making a formal complaint about the delay, include your claim number and a clear description of what has not happened and by when. The insurer must respond to your IDR complaint within 30 calendar days.',
           },
           {
             question: 'When can I go to AFCA about a delay?',

@@ -5,14 +5,14 @@ import OnlineClaimPage from './ClaimFormClient';
 import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 
 export const metadata: Metadata = {
-  title: 'Lodge a Claim | Disaster Recovery Australia',
+  title: 'Lodge a Claim | Disaster Recovery',
   description:
     'Submit your property damage claim online 24/7. Matched with IICRC-certified restoration contractors across Australia. Most users complete claim intake in under two minutes.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/claim',
   },
   openGraph: {
-    title: 'Lodge a Claim | Disaster Recovery Australia',
+    title: 'Lodge a Claim | Disaster Recovery',
     description:
       'Submit your property damage claim online 24/7. Matched with IICRC-certified restoration contractors across Australia.',
     type: 'website',
@@ -39,9 +39,9 @@ function ClaimPageSSRFallback() {
             <span className="text-blue-400">Most claims lodged in under two minutes.</span>
           </h1>
           <p className="text-slate-300 text-lg mb-6 leading-relaxed">
-            We help you document your claim and match you with IICRC-certified contractors
-            near your location. We are not a party to your insurance policy and do not
-            provide claims advocacy or financial advice.
+            We help you document your claim and match you with IICRC-certified contractors near your
+            location. We are not a party to your insurance policy and do not provide claims advocacy
+            or financial advice.
           </p>
           <div className="flex flex-wrap gap-3 text-sm text-slate-400">
             <span className="flex items-center gap-1">
@@ -63,17 +63,11 @@ function ClaimPageSSRFallback() {
       {/* Static form fallback — rendered server-side, replaced by dynamic form on hydration */}
       <section className="py-12">
         <div className="container mx-auto px-6 max-w-2xl">
-
           {/* DR-542 — Life-safety carve-out. ALWAYS visible above the form and
               above the APP 3 notice. Users in active distress (flood entering,
               roof off, fire) must be routed to 000 before we collect any data. */}
-          <div
-            role="alert"
-            className="mb-6 rounded-lg border-2 border-red-600 bg-red-50 p-4"
-          >
-            <p className="text-sm font-bold text-red-900 mb-1">
-              In immediate life-safety danger?
-            </p>
+          <div role="alert" className="mb-6 rounded-lg border-2 border-red-600 bg-red-50 p-4">
+            <p className="text-sm font-bold text-red-900 mb-1">In immediate life-safety danger?</p>
             <a
               href="tel:000"
               className="inline-flex items-center justify-center min-h-[48px] w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
@@ -82,7 +76,8 @@ function ClaimPageSSRFallback() {
               Dial 000 now
             </a>
             <p className="mt-2 text-xs text-red-900 leading-relaxed">
-              Fire, rising floodwater, structural collapse, gas leak, injury, or exposed live wiring — call 000 first. You can lodge the claim after you are safe.
+              Fire, rising floodwater, structural collapse, gas leak, injury, or exposed live wiring
+              — call 000 first. You can lodge the claim after you are safe.
             </p>
           </div>
 
@@ -91,7 +86,9 @@ function ClaimPageSSRFallback() {
           <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
-              <p className="text-xs text-blue-800">Our 24/7 intake line will take your claim over the phone.</p>
+              <p className="text-xs text-blue-800">
+                Our 24/7 intake line will take your claim over the phone.
+              </p>
             </div>
             <a
               href="tel:1300309361"
@@ -169,7 +166,10 @@ function ClaimPageSSRFallback() {
                 />
               </div>
               <div>
-                <label htmlFor="damageType" className="block text-sm font-medium text-slate-700 mb-1">
+                <label
+                  htmlFor="damageType"
+                  className="block text-sm font-medium text-slate-700 mb-1"
+                >
                   Damage type
                 </label>
                 <select
@@ -188,7 +188,10 @@ function ClaimPageSSRFallback() {
                 </select>
               </div>
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-slate-700 mb-1">
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium text-slate-700 mb-1"
+                >
                   Describe the damage
                 </label>
                 <textarea
@@ -219,7 +222,7 @@ function ClaimPageSSRFallback() {
           </div>
 
           <p className="mt-6 text-center text-xs text-slate-500">
-            Disaster Recovery Australia connects you with independent IICRC-certified contractors.{' '}
+            Disaster Recovery connects you with independent IICRC-certified contractors.{' '}
             <Link href="/privacy" className="underline">
               Privacy Policy
             </Link>

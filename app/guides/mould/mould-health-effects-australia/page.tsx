@@ -9,14 +9,14 @@
  * not legal advice. Readers should seek independent legal advice.
  */
 
-import type { Metadata } from 'next'
-import Script from 'next/script'
-import { Shield } from 'lucide-react'
-import { AgGuidePageTemplate } from '@/components/antigravity'
-import { NAP } from '@/lib/constants'
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import { Shield } from 'lucide-react';
+import { AgGuidePageTemplate } from '@/components/antigravity';
+import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Mould Health Effects — What Australians Need to Know | Disaster Recovery Australia',
+  title: 'Mould Health Effects — What Australians Need to Know | Disaster Recovery',
   description:
     'Health effects of mould exposure in Australian homes and workplaces. When mould becomes dangerous, legal obligations for landlords, and when to call a professional.',
   keywords: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: `${NAP.url}/guides/mould/mould-health-effects-australia`,
     type: 'website',
   },
-}
+};
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -52,7 +52,7 @@ const localBusinessSchema = {
     name: 'Mould Health and Safety',
   },
   sameAs: NAP.sameAs,
-}
+};
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -63,7 +63,7 @@ const serviceSchema = {
   serviceType: 'Mould Assessment and Remediation',
   description:
     'Professional mould assessment for Australian homes and workplaces. Air quality testing, species identification, scope of remediation, and IICRC S520-certified documentation for insurance and tenancy disputes.',
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -110,7 +110,7 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 export default function MouldHealthEffectsAustraliaPage() {
   return (
@@ -150,44 +150,49 @@ export default function MouldHealthEffectsAustraliaPage() {
             body: (
               <>
                 <p>
-                  Australia&apos;s warm and humid climate in many regions supports a range of indoor mould species.
-                  The species present in a property indicates the type and duration of moisture conditions that allowed
-                  mould to establish.
+                  Australia&apos;s warm and humid climate in many regions supports a range of indoor
+                  mould species. The species present in a property indicates the type and duration
+                  of moisture conditions that allowed mould to establish.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Cladosporium</strong> — the most commonly identified indoor mould in Australia. Appears
-                    as dark green, brown, or black patches. Found on surfaces with moderate moisture exposure including
-                    bathroom grout, window frames, and fabrics. Indicates recurring condensation or humidity rather
-                    than acute water damage.
+                    <strong>Cladosporium</strong> — the most commonly identified indoor mould in
+                    Australia. Appears as dark green, brown, or black patches. Found on surfaces
+                    with moderate moisture exposure including bathroom grout, window frames, and
+                    fabrics. Indicates recurring condensation or humidity rather than acute water
+                    damage.
                   </li>
                   <li>
-                    <strong>Aspergillus</strong> — a large genus with many species; common in homes and workplaces.
-                    Some Aspergillus species are opportunistic pathogens for immunocompromised individuals. Aspergillus
-                    fumigatus is one species of particular concern in clinical settings. Found in high-humidity areas
-                    and on water-damaged building materials.
+                    <strong>Aspergillus</strong> — a large genus with many species; common in homes
+                    and workplaces. Some Aspergillus species are opportunistic pathogens for
+                    immunocompromised individuals. Aspergillus fumigatus is one species of
+                    particular concern in clinical settings. Found in high-humidity areas and on
+                    water-damaged building materials.
                   </li>
                   <li>
-                    <strong>Penicillium</strong> — blue-green mould commonly found on water-damaged building materials,
-                    carpets, and soft furnishings. Indicates sustained moisture exposure. Some species produce
-                    mycotoxins under certain conditions.
+                    <strong>Penicillium</strong> — blue-green mould commonly found on water-damaged
+                    building materials, carpets, and soft furnishings. Indicates sustained moisture
+                    exposure. Some species produce mycotoxins under certain conditions.
                   </li>
                   <li>
-                    <strong>Stachybotrys chartarum (black mould)</strong> — less common than other species because
-                    it requires sustained, heavy saturation of cellulose-based materials (paper, drywall, timber) to
-                    establish and grow. Its presence indicates prolonged serious water damage that was not remediated.
-                    Produces mycotoxins under certain conditions.
+                    <strong>Stachybotrys chartarum (black mould)</strong> — less common than other
+                    species because it requires sustained, heavy saturation of cellulose-based
+                    materials (paper, drywall, timber) to establish and grow. Its presence indicates
+                    prolonged serious water damage that was not remediated. Produces mycotoxins
+                    under certain conditions.
                   </li>
                   <li>
-                    <strong>Alternaria</strong> — a common outdoor mould that colonises indoor surfaces after water
-                    damage, particularly on shower surrounds, window frames, and fabric. Often an indicator of
-                    post-flood contamination where outdoor mould spore load was introduced with floodwater.
+                    <strong>Alternaria</strong> — a common outdoor mould that colonises indoor
+                    surfaces after water damage, particularly on shower surrounds, window frames,
+                    and fabric. Often an indicator of post-flood contamination where outdoor mould
+                    spore load was introduced with floodwater.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Professional mould assessment identifies species present, which informs the remediation approach.
-                  AIEH recommends treating all visible mould regardless of species rather than making health risk
-                  determinations based on visual species identification alone.
+                  Professional mould assessment identifies species present, which informs the
+                  remediation approach. AIEH recommends treating all visible mould regardless of
+                  species rather than making health risk determinations based on visual species
+                  identification alone.
                 </p>
               </>
             ),
@@ -198,40 +203,44 @@ export default function MouldHealthEffectsAustraliaPage() {
             body: (
               <>
                 <p>
-                  The health effects of mould exposure vary by individual sensitivity, the species present, and the
-                  duration and intensity of exposure. Any health concerns should be assessed by a medical professional.
+                  The health effects of mould exposure vary by individual sensitivity, the species
+                  present, and the duration and intensity of exposure. Any health concerns should be
+                  assessed by a medical professional.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Low-level exposure</strong> — minor respiratory irritation (coughing, sneezing),
-                    eye irritation, and skin sensitivity in susceptible individuals. Symptoms often resolve when the
-                    individual leaves the affected space. Most commonly associated with surface mould in bathrooms
-                    or on window frames with intermittent condensation.
+                    <strong>Low-level exposure</strong> — minor respiratory irritation (coughing,
+                    sneezing), eye irritation, and skin sensitivity in susceptible individuals.
+                    Symptoms often resolve when the individual leaves the affected space. Most
+                    commonly associated with surface mould in bathrooms or on window frames with
+                    intermittent condensation.
                   </li>
                   <li>
-                    <strong>Moderate exposure</strong> — allergic sensitisation can develop with repeated exposure
-                    to moderate mould levels. Once sensitised, an individual may react to much lower spore counts.
-                    Associated with persistent mould in living areas, bedrooms, or poorly ventilated spaces with
-                    ongoing moisture problems.
+                    <strong>Moderate exposure</strong> — allergic sensitisation can develop with
+                    repeated exposure to moderate mould levels. Once sensitised, an individual may
+                    react to much lower spore counts. Associated with persistent mould in living
+                    areas, bedrooms, or poorly ventilated spaces with ongoing moisture problems.
                   </li>
                   <li>
-                    <strong>Prolonged high-level exposure</strong> — asthma exacerbation, chronic respiratory
-                    symptoms, fatigue, and — in severe cases — hypersensitivity pneumonitis. AIEH guidance recommends
-                    relocation from heavily mould-affected properties for individuals experiencing symptoms. Consult
-                    a medical professional about any ongoing health concerns.
+                    <strong>Prolonged high-level exposure</strong> — asthma exacerbation, chronic
+                    respiratory symptoms, fatigue, and — in severe cases — hypersensitivity
+                    pneumonitis. AIEH guidance recommends relocation from heavily mould-affected
+                    properties for individuals experiencing symptoms. Consult a medical professional
+                    about any ongoing health concerns.
                   </li>
                   <li>
-                    <strong>Immunocompromised individuals</strong> — people with weakened immune systems (including
-                    those undergoing chemotherapy, transplant recipients, and individuals with HIV/AIDS) face higher
-                    risk at lower mould levels. Aspergillus fumigatus can cause invasive aspergillosis in
-                    immunocompromised individuals exposed to elevated spore counts. Medical guidance should be sought
-                    before re-occupying a mould-affected property.
+                    <strong>Immunocompromised individuals</strong> — people with weakened immune
+                    systems (including those undergoing chemotherapy, transplant recipients, and
+                    individuals with HIV/AIDS) face higher risk at lower mould levels. Aspergillus
+                    fumigatus can cause invasive aspergillosis in immunocompromised individuals
+                    exposed to elevated spore counts. Medical guidance should be sought before
+                    re-occupying a mould-affected property.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
                   <em>
-                    This information is general in nature. Consult a medical professional for advice about your
-                    specific health situation.
+                    This information is general in nature. Consult a medical professional for advice
+                    about your specific health situation.
                   </em>
                 </p>
               </>
@@ -242,45 +251,49 @@ export default function MouldHealthEffectsAustraliaPage() {
             body: (
               <>
                 <p>
-                  All Australian states and territories impose habitability obligations on landlords through their
-                  Residential Tenancies Act. Mould that makes a property unsafe or unfit for habitation is a
-                  maintenance obligation the landlord must address.
+                  All Australian states and territories impose habitability obligations on landlords
+                  through their Residential Tenancies Act. Mould that makes a property unsafe or
+                  unfit for habitation is a maintenance obligation the landlord must address.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  State-by-state obligations (general guidance only — seek independent legal advice):
+                  State-by-state obligations (general guidance only — seek independent legal
+                  advice):
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>New South Wales</strong> — RTRA s52 requires landlords to provide and maintain the
-                    property in a reasonable state of repair. The 2020 reforms introduced minimum habitability
-                    standards. Urgent repairs (including serious mould) must be attended to within 24 hours.
+                    <strong>New South Wales</strong> — RTRA s52 requires landlords to provide and
+                    maintain the property in a reasonable state of repair. The 2020 reforms
+                    introduced minimum habitability standards. Urgent repairs (including serious
+                    mould) must be attended to within 24 hours.
                   </li>
                   <li>
-                    <strong>Victoria</strong> — RTRA s65B introduced minimum rental standards in 2021, including
-                    requirements for adequate ventilation and absence of damp or mould. Landlords must respond to
-                    urgent repairs within 24 hours and non-urgent repairs within 14 days.
+                    <strong>Victoria</strong> — RTRA s65B introduced minimum rental standards in
+                    2021, including requirements for adequate ventilation and absence of damp or
+                    mould. Landlords must respond to urgent repairs within 24 hours and non-urgent
+                    repairs within 14 days.
                   </li>
                   <li>
-                    <strong>Queensland</strong> — RTRA s185 requires the property to be fit for habitation and in
-                    good repair. The 2023 amendments strengthened minimum housing standards. Urgent repairs must be
-                    completed within a reasonable time.
+                    <strong>Queensland</strong> — RTRA s185 requires the property to be fit for
+                    habitation and in good repair. The 2023 amendments strengthened minimum housing
+                    standards. Urgent repairs must be completed within a reasonable time.
                   </li>
                   <li>
-                    <strong>Western Australia</strong> — RTRA s42A requires the landlord to ensure the property
-                    is in a reasonable state of repair and fit for habitation. Urgent repairs (those affecting
-                    habitability) must be attended to promptly.
+                    <strong>Western Australia</strong> — RTRA s42A requires the landlord to ensure
+                    the property is in a reasonable state of repair and fit for habitation. Urgent
+                    repairs (those affecting habitability) must be attended to promptly.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  If a landlord fails to remediate mould after being notified in writing, tenants may be able to
-                  arrange emergency repairs and claim the cost from the landlord, seek a rent reduction, or apply
-                  to VCAT (VIC), QCAT (QLD), NCAT (NSW), or the relevant state tribunal for orders requiring repairs.
+                  If a landlord fails to remediate mould after being notified in writing, tenants
+                  may be able to arrange emergency repairs and claim the cost from the landlord,
+                  seek a rent reduction, or apply to VCAT (VIC), QCAT (QLD), NCAT (NSW), or the
+                  relevant state tribunal for orders requiring repairs.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <em>
-                    This section provides general information about legal frameworks only. It is not legal advice.
-                    Seek independent legal advice from a tenancy advocate or solicitor for advice about your
-                    specific situation.
+                    This section provides general information about legal frameworks only. It is not
+                    legal advice. Seek independent legal advice from a tenancy advocate or solicitor
+                    for advice about your specific situation.
                   </em>
                 </p>
               </>
@@ -292,37 +305,40 @@ export default function MouldHealthEffectsAustraliaPage() {
             body: (
               <>
                 <p>
-                  Not all mould requires a professional remediation contractor. Small areas of surface mould on
-                  non-porous surfaces in well-ventilated areas can sometimes be cleaned by occupants with appropriate
-                  PPE. The following situations warrant a professional assessment:
+                  Not all mould requires a professional remediation contractor. Small areas of
+                  surface mould on non-porous surfaces in well-ventilated areas can sometimes be
+                  cleaned by occupants with appropriate PPE. The following situations warrant a
+                  professional assessment:
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Visible mould exceeds 0.1m²</strong> — at this scale, disturbing mould without
-                    containment risks spreading spores throughout the property. Professional containment and HEPA
-                    air filtration is required.
+                    <strong>Visible mould exceeds 0.1m²</strong> — at this scale, disturbing mould
+                    without containment risks spreading spores throughout the property. Professional
+                    containment and HEPA air filtration is required.
                   </li>
                   <li>
-                    <strong>Musty odour without visible mould</strong> — musty odour indicates active mould growth
-                    that is not yet visible — typically inside wall cavities, under flooring, or in ceiling spaces.
-                    Thermal imaging and air quality testing can locate the source.
+                    <strong>Musty odour without visible mould</strong> — musty odour indicates
+                    active mould growth that is not yet visible — typically inside wall cavities,
+                    under flooring, or in ceiling spaces. Thermal imaging and air quality testing
+                    can locate the source.
                   </li>
                   <li>
-                    <strong>Symptoms resolve when leaving the property</strong> — if respiratory symptoms, headaches,
-                    or fatigue improve when you are away from the property and return when you come back, mould or
-                    other indoor air quality issues may be the cause. Professional air quality testing can identify
-                    elevated spore counts.
+                    <strong>Symptoms resolve when leaving the property</strong> — if respiratory
+                    symptoms, headaches, or fatigue improve when you are away from the property and
+                    return when you come back, mould or other indoor air quality issues may be the
+                    cause. Professional air quality testing can identify elevated spore counts.
                   </li>
                   <li>
-                    <strong>HVAC smell</strong> — a musty or earthy smell when the HVAC system runs indicates mould
-                    contamination in the ductwork or on coils. Running a contaminated system distributes spores
-                    throughout every room served by the system.
+                    <strong>HVAC smell</strong> — a musty or earthy smell when the HVAC system runs
+                    indicates mould contamination in the ductwork or on coils. Running a
+                    contaminated system distributes spores throughout every room served by the
+                    system.
                   </li>
                   <li>
-                    <strong>Post-flood or post-leak assessment</strong> — any property that has experienced flooding
-                    or a significant water leak should be assessed for mould within 72 hours if structural drying
-                    has not been completed. Mould can establish on wet building materials within 24–72 hours under
-                    warm, humid conditions.
+                    <strong>Post-flood or post-leak assessment</strong> — any property that has
+                    experienced flooding or a significant water leak should be assessed for mould
+                    within 72 hours if structural drying has not been completed. Mould can establish
+                    on wet building materials within 24–72 hours under warm, humid conditions.
                   </li>
                 </ul>
               </>
@@ -357,11 +373,17 @@ export default function MouldHealthEffectsAustraliaPage() {
           },
         ]}
         relatedGuides={[
-          { title: 'IICRC S520 Mould Standard', href: '/guides/mould/iicrc-s520-mould-remediation-standard' },
+          {
+            title: 'IICRC S520 Mould Standard',
+            href: '/guides/mould/iicrc-s520-mould-remediation-standard',
+          },
           { title: 'Mould Insurance Coverage', href: '/guides/insurance/mould-insurance-coverage' },
-          { title: 'Rental Property Water Damage', href: '/guides/property/rental-property-water-damage' },
+          {
+            title: 'Rental Property Water Damage',
+            href: '/guides/property/rental-property-water-damage',
+          },
         ]}
       />
     </>
-  )
+  );
 }

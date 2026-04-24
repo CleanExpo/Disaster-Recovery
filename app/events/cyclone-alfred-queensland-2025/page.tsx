@@ -13,24 +13,24 @@
  * ACL s18 compliant — no unverified statistics.
  */
 
-import type { Metadata } from 'next'
-import DisasterEventPage from '@/components/events/DisasterEventPage'
+import type { Metadata } from 'next';
+import DisasterEventPage from '@/components/events/DisasterEventPage';
 
 export const metadata: Metadata = {
-  title: 'Ex-Cyclone Alfred Queensland 2025 — Insurance Claims & Recovery | Disaster Recovery Australia',
+  title: 'Ex-Cyclone Alfred Queensland 2025 — Insurance Claims & Recovery | Disaster Recovery',
   description:
     'Ex-Tropical Cyclone Alfred hit SE Queensland and northern NSW in February 2025. ICA Insurance Catastrophe declared. IICRC-certified restoration contractors for water damage, storm damage, and insurance claims support across all 16 declared LGAs.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/cyclone-alfred-queensland-2025',
   },
   openGraph: {
-    title: 'Ex-Cyclone Alfred QLD 2025 — Insurance Claims & Restoration | Disaster Recovery Australia',
+    title: 'Ex-Cyclone Alfred QLD 2025 — Insurance Claims & Restoration | Disaster Recovery',
     description:
       'Insurance Catastrophe declared for ex-TC Alfred. 132,000+ insurance claims lodged. AU$1.877B final insured losses (PERILS). Expert restoration contractors across SE Queensland — water damage, storm damage, and claims support.',
     url: 'https://disasterrecovery.com.au/events/cyclone-alfred-queensland-2025',
     type: 'website',
   },
-}
+};
 
 export default function CycloneAlfredQLD2025Page() {
   return (
@@ -43,9 +43,8 @@ export default function CycloneAlfredQLD2025Page() {
       year={2025}
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration)"
       slug="events/cyclone-alfred-queensland-2025"
-      metaTitle="Ex-Cyclone Alfred Queensland 2025 — Insurance Claims & Recovery | Disaster Recovery Australia"
+      metaTitle="Ex-Cyclone Alfred Queensland 2025 — Insurance Claims & Recovery | Disaster Recovery"
       metaDescription="Ex-Tropical Cyclone Alfred SE Queensland 2025. ICA Insurance Catastrophe declared. IICRC-certified restoration contractors, insurance claims support, across all declared LGAs."
-
       // Declared under DRFA per QRA (published 11 March 2025)
       affectedLGAs={[
         'Brisbane',
@@ -66,9 +65,7 @@ export default function CycloneAlfredQLD2025Page() {
         'Toowoomba',
       ]}
       remoteLGAs={[]}
-
       governmentHotline="1800 173 349"
-
       financialAssistance={[
         {
           name: 'Structural Assistance Grant',
@@ -76,7 +73,8 @@ export default function CycloneAlfredQLD2025Page() {
           description:
             'For repair of a disaster-damaged dwelling to make it safe and habitable. The largest grant available to homeowners affected by TC Alfred.',
           amounts: 'Up to $80,000',
-          applicationUrl: 'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025',
+          applicationUrl:
+            'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025',
           hotline: '1800 173 349',
         },
         {
@@ -85,7 +83,8 @@ export default function CycloneAlfredQLD2025Page() {
           description:
             'Assistance to replace essential household contents destroyed or damaged by TC Alfred.',
           amounts: 'Up to $1,765 for individuals | Up to $5,300 for families',
-          applicationUrl: 'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025',
+          applicationUrl:
+            'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025',
           hotline: '1800 173 349',
         },
         {
@@ -94,7 +93,8 @@ export default function CycloneAlfredQLD2025Page() {
           description:
             'Support for reconnection of essential services (power, water, gas) damaged by TC Alfred.',
           amounts: 'Up to $5,000',
-          applicationUrl: 'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025',
+          applicationUrl:
+            'https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025',
           hotline: '1800 173 349',
         },
         {
@@ -116,9 +116,8 @@ export default function CycloneAlfredQLD2025Page() {
           hotline: '180 22 66',
         },
       ]}
-
       governmentApplicationUrl="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply/tc-alfred-march-2025"
       governmentApplicationLabel="TC Alfred Financial Assistance — QLD Government"
     />
-  )
+  );
 }

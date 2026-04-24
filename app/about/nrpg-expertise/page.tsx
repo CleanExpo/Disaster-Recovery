@@ -34,7 +34,7 @@ const articleSchema = JSON.stringify({
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
     logo: 'https://disasterrecovery.com.au/logo.png',
   },
@@ -92,8 +92,8 @@ const faqItems = [
     a: 'All NRPG contractors must hold current IICRC certification in their service category, minimum $20 million public liability insurance, WorkSafe accreditation, and compliance with relevant Australian Standards. Specialist categories (asbestos, HAZMAT) require additional licences.',
   },
   {
-    q: 'How does NRPG differ from an insurer\'s preferred repairer?',
-    a: 'An insurer\'s preferred repairer is selected by and accountable to the insurer. NRPG contractors are selected by and accountable to the policyholder. The contractor works to restore the property to the standard required by IICRC methodology — documented for the policyholder\'s claim.',
+    q: "How does NRPG differ from an insurer's preferred repairer?",
+    a: "An insurer's preferred repairer is selected by and accountable to the insurer. NRPG contractors are selected by and accountable to the policyholder. The contractor works to restore the property to the standard required by IICRC methodology — documented for the policyholder's claim.",
   },
   {
     q: 'Does NRPG operate Australia-wide?',
@@ -175,16 +175,14 @@ const stages = [
     label: 'Documentation Package',
     timeframe: 'Day 2–3',
     nrpg: 'IICRC assessment, photographic evidence, inventory, and cost estimate are compiled into a formal claim package. Formal written summary cites applicable coverage and Australian Standards.',
-    policyholder:
-      'Review the claim package before it is submitted to the insurer.',
+    policyholder: 'Review the claim package before it is submitted to the insurer.',
   },
   {
     num: '4',
     label: 'Restoration Work',
     timeframe: 'Day 3 onwards',
     nrpg: 'Contractor carries out remediation to IICRC standard. Work is documented at each stage. Policyholder receives a formal invoice from the contractor.',
-    policyholder:
-      'Confirm access is available. Review progress at each stage.',
+    policyholder: 'Confirm access is available. Review progress at each stage.',
   },
   {
     num: '5',
@@ -216,7 +214,7 @@ const standards = [
     label: 'Fire & Smoke Restoration',
     relevance:
       'Defines smoke damage categories, required cleaning procedures, and HVAC remediation scope. Establishes that smoke odour and residue remediation are measurable, documentable, and claimable.',
-    nrpg: 'All fire and smoke assessments reference S700:2025. Assessment reports document damage category and required remediation scope per S700, supporting the policyholder\'s claim submission.',
+    nrpg: "All fire and smoke assessments reference S700:2025. Assessment reports document damage category and required remediation scope per S700, supporting the policyholder's claim submission.",
   },
 ];
 
@@ -267,13 +265,14 @@ export default function NRPGExpertisePage() {
             </nav>
 
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-              NRPG Expertise &amp; Authority<br />
+              NRPG Expertise &amp; Authority
+              <br />
               <span className="text-blue-200">IICRC-Certified Restoration Network, Australia</span>
             </h1>
             <p className="text-lg text-blue-100 mb-6 max-w-2xl">
               National Restoration Property Group connects policyholders with IICRC-certified
-              contractors. Independent from insurers. Policyholder-first — from first contact through
-              documentation and completion.
+              contractors. Independent from insurers. Policyholder-first — from first contact
+              through documentation and completion.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -307,7 +306,6 @@ export default function NRPGExpertisePage() {
         </section>
 
         <div className="max-w-4xl mx-auto px-4 py-12 space-y-12">
-
           {/* Who NRPG Is */}
           <section aria-labelledby="who-heading">
             <h2 id="who-heading" className="text-2xl font-bold text-gray-900 mb-4">
@@ -315,25 +313,26 @@ export default function NRPGExpertisePage() {
             </h2>
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
               <p className="text-gray-700 leading-relaxed">
-                National Restoration Property Group (NRPG) is Australia&apos;s IICRC-certified contractor
-                network for property damage restoration. NRPG connects policyholders, tenants, and property
-                managers with independently operating contractors who hold IICRC certification, current
-                public liability insurance, and the specialist licences required for their service categories.
+                National Restoration Property Group (NRPG) is Australia&apos;s IICRC-certified
+                contractor network for property damage restoration. NRPG connects policyholders,
+                tenants, and property managers with independently operating contractors who hold
+                IICRC certification, current public liability insurance, and the specialist licences
+                required for their service categories.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                NRPG does not manage insurer decisions and does not act as a claims agent. The network
-                provides what policyholders need most: a certified contractor who documents the damage to
-                the required IICRC standard — giving the policyholder the evidence needed to support their
-                insurance reimbursement claim.
+                NRPG does not manage insurer decisions and does not act as a claims agent. The
+                network provides what policyholders need most: a certified contractor who documents
+                the damage to the required IICRC standard — giving the policyholder the evidence
+                needed to support their insurance reimbursement claim.
               </p>
               <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
                 <p className="text-sm font-semibold text-[#0052CC] mb-2">
                   &ldquo;Who First&rdquo; — the NRPG principle
                 </p>
                 <p className="text-sm text-gray-700">
-                  Policyholder first, always. NRPG contractors are selected by and accountable to the
-                  policyholder — not the insurer, not a preferred vendor panel. There are no hidden
-                  insurer relationships and no steering toward insurer-nominated repairers.
+                  Policyholder first, always. NRPG contractors are selected by and accountable to
+                  the policyholder — not the insurer, not a preferred vendor panel. There are no
+                  hidden insurer relationships and no steering toward insurer-nominated repairers.
                 </p>
               </div>
             </div>
@@ -387,7 +386,10 @@ export default function NRPGExpertisePage() {
             </p>
             <div className="space-y-4">
               {standards.map(({ code, label, relevance, nrpg }) => (
-                <div key={code} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <div
+                  key={code}
+                  className="bg-white rounded-xl shadow-sm border border-gray-100 p-6"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-xs bg-blue-50 text-[#0052CC] border border-blue-100 px-2 py-1 rounded font-medium">
                       IICRC {code}
@@ -456,7 +458,7 @@ export default function NRPGExpertisePage() {
                   {
                     label: 'IICRC Certification',
                     detail:
-                      'Current IICRC credentials in the contractor\'s active service categories (S500, S520, S700, FSRT, or equivalent). Certificates must be current — lapsed certification results in suspension from the network.',
+                      "Current IICRC credentials in the contractor's active service categories (S500, S520, S700, FSRT, or equivalent). Certificates must be current — lapsed certification results in suspension from the network.",
                   },
                   {
                     label: 'Public Liability Insurance',
@@ -517,7 +519,7 @@ export default function NRPGExpertisePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 {
-                  title: 'About Disaster Recovery Australia',
+                  title: 'About Disaster Recovery',
                   href: '/about',
                   desc: 'Platform overview — who manages the network and how it operates.',
                 },

@@ -29,20 +29,52 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': 'https://disasterrecovery.com.au/locations/wa/#localbusiness',
-  name: 'Disaster Recovery Australia — Western Australia',
+  name: 'Disaster Recovery — Western Australia',
   url: 'https://disasterrecovery.com.au/locations/wa',
   description:
     '24/7 emergency disaster recovery across Western Australia. IICRC-certified contractor network for cyclone, bushfire, storm, and water damage restoration.',
   priceRange: '$$',
   areaServed: [
-    { '@type': 'City', name: 'Perth', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Armadale', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Bunbury', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Fremantle', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Joondalup', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Mandurah', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Midland', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
-    { '@type': 'City', name: 'Rockingham', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
+    {
+      '@type': 'City',
+      name: 'Perth',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Armadale',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Bunbury',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Fremantle',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Joondalup',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Mandurah',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Midland',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
+    {
+      '@type': 'City',
+      name: 'Rockingham',
+      containedInPlace: { '@type': 'State', name: 'Western Australia' },
+    },
   ],
   address: {
     '@type': 'PostalAddress',
@@ -88,11 +120,11 @@ const sections = [
       <div>
         <p style={{ marginBottom: '1rem', lineHeight: 1.8 }}>
           Western Australia spans a vast geographic range from the tropical cyclone belt of the
-          Pilbara and Kimberley to the fire-prone south-west. Tropical cyclones tracking south
-          along the WA coast are the state&apos;s highest-consequence disaster type, capable of
-          delivering storm surge, 200+ km/h winds, and days of intense rainfall. The Perth
-          metropolitan area is exposed to severe thunderstorm events, bushfire from the Darling
-          Scarp, and occasional flash flooding in low-lying suburbs.
+          Pilbara and Kimberley to the fire-prone south-west. Tropical cyclones tracking south along
+          the WA coast are the state&apos;s highest-consequence disaster type, capable of delivering
+          storm surge, 200+ km/h winds, and days of intense rainfall. The Perth metropolitan area is
+          exposed to severe thunderstorm events, bushfire from the Darling Scarp, and occasional
+          flash flooding in low-lying suburbs.
         </p>
         <ul style={{ paddingLeft: '1.5rem', lineHeight: 2 }}>
           <li>Tropical cyclone wind damage and storm surge — Pilbara, Kimberley, and coastal WA</li>
@@ -110,11 +142,17 @@ const sections = [
     body: (
       <div>
         <p style={{ marginBottom: '1.5rem', lineHeight: 1.8 }}>
-          The following declared events have active recovery operations in Western Australia.
-          If your property was affected, lodge a claim through the event page for priority dispatch.
+          The following declared events have active recovery operations in Western Australia. If
+          your property was affected, lodge a claim through the event page for priority dispatch.
         </p>
-        <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-          {WA_EVENTS.map(ev => (
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          }}
+        >
+          {WA_EVENTS.map((ev) => (
             <Link
               key={ev.href}
               href={ev.href}
@@ -127,11 +165,24 @@ const sections = [
                 border: '1px solid rgba(220, 80, 20, 0.15)',
               }}
             >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: '#c0390a', marginBottom: '0.4rem' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontWeight: 700,
+                  color: '#c0390a',
+                  marginBottom: '0.4rem',
+                }}
+              >
                 <AlertTriangle style={{ width: '1rem', height: '1rem', flexShrink: 0 }} />
                 {ev.label}
               </span>
-              <span style={{ fontSize: '0.875rem', color: 'var(--ag-text-muted)', lineHeight: 1.5 }}>{ev.desc}</span>
+              <span
+                style={{ fontSize: '0.875rem', color: 'var(--ag-text-muted)', lineHeight: 1.5 }}
+              >
+                {ev.desc}
+              </span>
             </Link>
           ))}
         </div>
@@ -146,8 +197,14 @@ const sections = [
           IICRC-certified contractors operate across the Perth metropolitan area and regional WA
           centres. Select your city for local service availability and suburb-level coverage.
         </p>
-        <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
-          {WA_CITIES.map(city => (
+        <div
+          style={{
+            display: 'grid',
+            gap: '0.75rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+          }}
+        >
+          {WA_CITIES.map((city) => (
             <Link
               key={city.href}
               href={city.href}
@@ -179,17 +236,43 @@ const sections = [
     body: (
       <div>
         <ol style={{ paddingLeft: '1.5rem', lineHeight: 2.2 }}>
-          <li><strong>Call 000</strong> if there is immediate risk to life or the property is structurally unsafe.</li>
-          <li><strong>Lodge a claim</strong> through this platform — takes under 90 seconds on mobile.</li>
-          <li><strong>Document all damage</strong> before any clean-up — photos, video, and written notes.</li>
-          <li><strong>Contact your insurer</strong> to notify them. Do not accept a cash settlement before a full assessment.</li>
-          <li><strong>Prevent further damage</strong> only as safe — temporary tarps, water extraction. Keep all receipts as these costs are claimable.</li>
-          <li><strong>Do not dispose</strong> of damaged items until the insurer or loss assessor has inspected them.</li>
+          <li>
+            <strong>Call 000</strong> if there is immediate risk to life or the property is
+            structurally unsafe.
+          </li>
+          <li>
+            <strong>Lodge a claim</strong> through this platform — takes under 90 seconds on mobile.
+          </li>
+          <li>
+            <strong>Document all damage</strong> before any clean-up — photos, video, and written
+            notes.
+          </li>
+          <li>
+            <strong>Contact your insurer</strong> to notify them. Do not accept a cash settlement
+            before a full assessment.
+          </li>
+          <li>
+            <strong>Prevent further damage</strong> only as safe — temporary tarps, water
+            extraction. Keep all receipts as these costs are claimable.
+          </li>
+          <li>
+            <strong>Do not dispose</strong> of damaged items until the insurer or loss assessor has
+            inspected them.
+          </li>
         </ol>
-        <p style={{ marginTop: '1rem', lineHeight: 1.8, padding: '1rem', background: '#f0f7ff', borderRadius: '0.5rem', borderLeft: '4px solid var(--ag-primary-blue)' }}>
+        <p
+          style={{
+            marginTop: '1rem',
+            lineHeight: 1.8,
+            padding: '1rem',
+            background: '#f0f7ff',
+            borderRadius: '0.5rem',
+            borderLeft: '4px solid var(--ag-primary-blue)',
+          }}
+        >
           For cyclone damage in WA, the ARPC Cyclone Reinsurance Pool applies. Your insurer is
-          required to pass pool premium savings to policyholders in cyclone-exposed regions.
-          IICRC S220 governs structural drying following cyclone damage.
+          required to pass pool premium savings to policyholders in cyclone-exposed regions. IICRC
+          S220 governs structural drying following cyclone damage.
         </p>
       </div>
     ),
@@ -226,12 +309,36 @@ export default function WesternAustraliaPage() {
         ]}
         sections={sections}
         relatedPages={[
-          { title: 'Cyclone Damage Restoration', href: '/services/cyclone-damage-restoration', description: 'Structural drying and reinstatement for cyclone-affected properties.' },
-          { title: 'Bushfire Restoration', href: '/services/fire-damage-restoration', description: 'Smoke, soot, and structural fire damage assessment and restoration.' },
-          { title: 'Storm Damage Repair', href: '/services/storm-damage-repair', description: 'Emergency tarping, debris removal, and full reinstatement.' },
-          { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'IICRC S500:2025 compliant water extraction and structural drying.' },
-          { title: 'Lodge a Claim', href: '/claim', description: 'Start your insurance claim in under 90 seconds.' },
-          { title: 'How Claims Work', href: '/guides/how-insurance-claims-work-australia', description: 'Step-by-step guide to lodging and managing a property insurance claim.' },
+          {
+            title: 'Cyclone Damage Restoration',
+            href: '/services/cyclone-damage-restoration',
+            description: 'Structural drying and reinstatement for cyclone-affected properties.',
+          },
+          {
+            title: 'Bushfire Restoration',
+            href: '/services/fire-damage-restoration',
+            description: 'Smoke, soot, and structural fire damage assessment and restoration.',
+          },
+          {
+            title: 'Storm Damage Repair',
+            href: '/services/storm-damage-repair',
+            description: 'Emergency tarping, debris removal, and full reinstatement.',
+          },
+          {
+            title: 'Water Damage Restoration',
+            href: '/services/water-damage-restoration',
+            description: 'IICRC S500:2025 compliant water extraction and structural drying.',
+          },
+          {
+            title: 'Lodge a Claim',
+            href: '/claim',
+            description: 'Start your insurance claim in under 90 seconds.',
+          },
+          {
+            title: 'How Claims Work',
+            href: '/guides/how-insurance-claims-work-australia',
+            description: 'Step-by-step guide to lodging and managing a property insurance claim.',
+          },
         ]}
       />
     </>

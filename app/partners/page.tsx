@@ -5,14 +5,28 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Insurance Partners | Priority Emergency Claims',
-  description: 'Disaster Recovery partners with major Australian insurers for priority emergency claims processing. NRMA, Suncorp, and Clean Claims partnerships.',
+  description:
+    'Disaster Recovery partners with major Australian insurers for priority emergency claims processing. NRMA, Suncorp, and Clean Claims partnerships.',
   alternates: { canonical: 'https://disasterrecovery.com.au/partners' },
 };
 
 const partners = [
-  { title: 'Clean Claims', href: '/partners/clean-claims', description: 'Strategic technology partner for digital claims processing and contractor matching.' },
-  { title: 'NRMA Policyholders', href: '/partners/nrma', description: 'Priority emergency restoration matching for NRMA insurance policyholders.' },
-  { title: 'Suncorp Group', href: '/partners/suncorp', description: 'Priority emergency response for Suncorp, AAMI, GIO, and Apia policyholders.' },
+  {
+    title: 'Clean Claims',
+    href: '/partners/clean-claims',
+    description:
+      'Strategic technology partner for digital claims processing and contractor matching.',
+  },
+  {
+    title: 'NRMA Policyholders',
+    href: '/partners/nrma',
+    description: 'Priority emergency restoration matching for NRMA insurance policyholders.',
+  },
+  {
+    title: 'Suncorp Group',
+    href: '/partners/suncorp',
+    description: 'Priority emergency response for Suncorp, AAMI, GIO, and Apia policyholders.',
+  },
 ];
 
 export default function PartnersHubPage() {
@@ -22,13 +36,11 @@ export default function PartnersHubPage() {
         gradient: 'linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%)',
         icon: <Handshake className="h-12 w-12" />,
         title: 'Our Partners',
-        subtitle: 'We partner with major Australian insurers and technology providers to deliver faster emergency response and streamlined claims processing.',
+        subtitle:
+          'We partner with major Australian insurers and technology providers to deliver faster emergency response and streamlined claims processing.',
       }}
       cta={{ text: 'Lodge a Claim', href: '/claim' }}
-      breadcrumbs={[
-        { label: 'Home', href: '/' },
-        { label: 'Partners' },
-      ]}
+      breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Partners' }]}
       sections={[
         {
           heading: 'Strategic Partnerships',
@@ -47,9 +59,7 @@ export default function PartnersHubPage() {
                   <h3 className="text-white font-semibold text-sm mb-1 group-hover:text-blue-400 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-gray-400 text-xs leading-relaxed">
-                    {item.description}
-                  </p>
+                  <p className="text-gray-400 text-xs leading-relaxed">{item.description}</p>
                 </Link>
               ))}
             </div>
@@ -57,11 +67,27 @@ export default function PartnersHubPage() {
         },
       ]}
       relatedPages={[
-        { title: 'Insurance Claims', href: '/insurance', description: 'Understanding disaster insurance claims in Australia.' },
-        { title: 'Is It Covered?', href: '/is-it-covered', description: 'Check if your damage type is covered by your policy.' },
-        { title: 'How It Works', href: '/how-it-works', description: 'Step-by-step guide to using our platform.' },
-        { title: 'About Us', href: '/about', description: 'Learn about Disaster Recovery Australia.' },
-        { title: 'Lodge a Claim', href: '/claim', description: 'Start your emergency claim online now.' },
+        {
+          title: 'Insurance Claims',
+          href: '/insurance',
+          description: 'Understanding disaster insurance claims in Australia.',
+        },
+        {
+          title: 'Is It Covered?',
+          href: '/is-it-covered',
+          description: 'Check if your damage type is covered by your policy.',
+        },
+        {
+          title: 'How It Works',
+          href: '/how-it-works',
+          description: 'Step-by-step guide to using our platform.',
+        },
+        { title: 'About Us', href: '/about', description: 'Learn about Disaster Recovery.' },
+        {
+          title: 'Lodge a Claim',
+          href: '/claim',
+          description: 'Start your emergency claim online now.',
+        },
       ]}
     />
   );
