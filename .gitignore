@@ -113,3 +113,6 @@ _archive/
 !.env.training.example
 
 .env*.local
+
+# Test coverage
+coverage/

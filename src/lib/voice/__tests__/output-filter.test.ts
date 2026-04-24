@@ -1,59 +1,52 @@
 // NOT LEGAL ADVICE — flag-gated scaffold.
-//
-// Plain-TS smoke test for output filter + SMS sanitiser.
-// Run via: npx tsx src/lib/voice/__tests__/output-filter.test.ts
-// Exits non-zero on failure.
+// Unit tests for output filter + SMS sanitiser (Vitest).
 
+import { describe, it, expect } from 'vitest';
 import { filterToolOutput, sanitiseSmsBody } from '../output-filter';
 
-let failed = 0;
+describe('filterToolOutput', () => {
+  it('drops unexpected keys and keeps allowed ones', () => {
+    const filtered = filterToolOutput(
+      { covered: true, typical_response_hours: 1, secret: 'hidden' },
+      ['covered', 'typical_response_hours'],
+    );
+    expect(filtered.covered).toBe(true);
+    expect(filtered.typical_response_hours).toBe(1);
+    expect('secret' in filtered).toBe(false);
+  });
 
-function assert(cond: boolean, msg: string) {
-  if (!cond) {
-    // eslint-disable-next-line no-console
-    console.error('FAIL:', msg);
-    failed += 1;
-  } else {
-    // eslint-disable-next-line no-console
-    console.log('ok  —', msg);
-  }
-}
+  it('returns an empty object when given a non-object input', () => {
+    const filtered = filterToolOutput(
+      null as unknown as Record<string, unknown>,
+      ['a'],
+    );
+    expect(filtered).toEqual({});
+  });
 
-// filterToolOutput drops unexpected keys
-{
-  const filtered = filterToolOutput(
-    { covered: true, typical_response_hours: 1, secret: 'hidden' },
-    ['covered', 'typical_response_hours']
-  );
-  assert(filtered.covered === true, 'covered preserved');
-  assert(filtered.typical_response_hours === 1, 'typical_response_hours preserved');
-  assert(!('secret' in filtered), 'secret key stripped');
-}
+  it('shallow-clones nested plain objects for allowed keys', () => {
+    const meta = { a: 1, b: 2 };
+    const filtered = filterToolOutput({ meta, other: 'x' }, ['meta']);
+    expect(filtered.meta).toEqual({ a: 1, b: 2 });
+    expect(filtered.meta).not.toBe(meta); // shallow clone
+    expect('other' in filtered).toBe(false);
+  });
+});
 
-// sanitiseSmsBody redacts known secrets
-{
-  const out = sanitiseSmsBody('sk_live_abc123DEF tap here for claim');
-  assert(!out.includes('sk_live_abc123DEF'), 'sk_live_ redacted');
-  assert(out.includes('[REDACTED]'), 'redaction marker present');
-}
+describe('sanitiseSmsBody', () => {
+  it('redacts sk_live_ secret prefixes', () => {
+    const out = sanitiseSmsBody('sk_live_abc123DEF tap here for claim');
+    expect(out).not.toContain('sk_live_abc123DEF');
+    expect(out).toContain('[REDACTED]');
+  });
 
-// sanitiseSmsBody redacts UUIDs
-{
-  const out = sanitiseSmsBody('claim 550e8400-e29b-41d4-a716-446655440000 ready');
-  assert(!out.includes('550e8400-e29b-41d4-a716-446655440000'), 'uuid redacted');
-}
+  it('redacts UUIDs', () => {
+    const out = sanitiseSmsBody('claim 550e8400-e29b-41d4-a716-446655440000 ready');
+    expect(out).not.toContain('550e8400-e29b-41d4-a716-446655440000');
+  });
 
-// sanitiseSmsBody preserves innocuous text
-{
-  const out = sanitiseSmsBody('Disaster Recovery: tap here https://example.com');
-  assert(out.includes('Disaster Recovery'), 'innocuous text preserved');
-  assert(out.includes('https://example.com'), 'url preserved');
-}
-
-if (failed > 0) {
-  // eslint-disable-next-line no-console
-  console.error(`\n${failed} test(s) failed`);
-  process.exit(1);
-}
-// eslint-disable-next-line no-console
-console.log('\nall tests passed');
+  it('preserves innocuous text and URLs', () => {
+    const out = sanitiseSmsBody('Disaster Recovery: tap here https://example.com');
+    expect(out).toContain('Disaster Recovery');
+    expect(out).toContain('https://example.com');
+  });
+});
