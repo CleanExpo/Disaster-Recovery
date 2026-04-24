@@ -11,21 +11,21 @@ export type ProgramKey =
   | 'qld-floods-2026-personal-hardship'
   | 'qld-floods-2026-structural-assistance'
   | 'narelle-wa-emergency-hardship'
-  | 'alfred-fnq-qld-assistance'
+  | 'alfred-fnq-qld-assistance';
 
-export type DeadlineState = 'active' | 'closing-soon' | 'closed' | 'extended'
+export type DeadlineState = 'active' | 'closing-soon' | 'closed' | 'extended';
 
 export interface ProgramDeadline {
-  key: ProgramKey
-  name: string
-  openDate: string        // ISO date YYYY-MM-DD
-  closeDate: string       // ISO date YYYY-MM-DD (exclusive — state becomes 'closed' at 00:00 AEST this day)
-  extendedCloseDate?: string
-  lgaList: string[]
-  sourceUrl: string
-  lastVerifiedAt: string  // ISO date YYYY-MM-DD
-  closedCopy?: string     // Override copy for the closed state
-  successorProgramKey?: ProgramKey
+  key: ProgramKey;
+  name: string;
+  openDate: string; // ISO date YYYY-MM-DD
+  closeDate: string; // ISO date YYYY-MM-DD (exclusive — state becomes 'closed' at 00:00 AEST this day)
+  extendedCloseDate?: string;
+  lgaList: string[];
+  sourceUrl: string;
+  lastVerifiedAt: string; // ISO date YYYY-MM-DD
+  closedCopy?: string; // Override copy for the closed state
+  successorProgramKey?: ProgramKey;
 }
 
 export const PROGRAM_DEADLINES: Record<ProgramKey, ProgramDeadline> = {
@@ -37,7 +37,8 @@ export const PROGRAM_DEADLINES: Record<ProgramKey, ProgramDeadline> = {
     lgaList: ['Bundaberg', 'North Burnett', 'South Burnett', 'Fraser Coast'],
     sourceUrl: 'https://www.qld.gov.au/community/disasters-emergencies/financial-assistance',
     lastVerifiedAt: '2026-04-25',
-    closedCopy: 'Extended ESHA has closed. Contact us for referral to ongoing recovery support services.',
+    closedCopy:
+      'Extended ESHA has closed. Contact us for referral to ongoing recovery support services.',
   },
   'qld-floods-2026-personal-hardship': {
     key: 'qld-floods-2026-personal-hardship',
@@ -47,7 +48,8 @@ export const PROGRAM_DEADLINES: Record<ProgramKey, ProgramDeadline> = {
     lgaList: ['Bundaberg', 'North Burnett', 'South Burnett', 'Fraser Coast'],
     sourceUrl: 'https://www.qld.gov.au/community/disasters-emergencies/financial-assistance',
     lastVerifiedAt: '2026-04-25',
-    closedCopy: 'Personal Hardship Assistance has closed. Contact us for referral to other support pathways.',
+    closedCopy:
+      'Personal Hardship Assistance has closed. Contact us for referral to other support pathways.',
   },
   'qld-floods-2026-structural-assistance': {
     key: 'qld-floods-2026-structural-assistance',
@@ -57,7 +59,8 @@ export const PROGRAM_DEADLINES: Record<ProgramKey, ProgramDeadline> = {
     lgaList: ['Bundaberg', 'North Burnett', 'South Burnett', 'Fraser Coast'],
     sourceUrl: 'https://www.qld.gov.au/community/disasters-emergencies/financial-assistance',
     lastVerifiedAt: '2026-04-25',
-    closedCopy: 'Structural Assistance Grants have closed. Contact us for referral to other repair support services.',
+    closedCopy:
+      'Structural Assistance Grants have closed. Contact us for referral to other repair support services.',
   },
   'narelle-wa-emergency-hardship': {
     key: 'narelle-wa-emergency-hardship',
@@ -77,9 +80,10 @@ export const PROGRAM_DEADLINES: Record<ProgramKey, ProgramDeadline> = {
     lgaList: ['Cairns', 'Tablelands', 'Mareeba', 'Cook', 'Douglas'],
     sourceUrl: 'https://www.qld.gov.au/community/disasters-emergencies/financial-assistance',
     lastVerifiedAt: '2026-04-25',
-    closedCopy: 'QLD government assistance programs for Alfred-affected LGAs have closed. Insurance claims have no deadline — contact us for claim support.',
+    closedCopy:
+      'QLD government assistance programs for Alfred-affected LGAs have closed. Insurance claims have no deadline — contact us for claim support.',
   },
-}
+};
 
 /**
  * Compute the deadline state for a program relative to a given date.
@@ -89,50 +93,59 @@ export const PROGRAM_DEADLINES: Record<ProgramKey, ProgramDeadline> = {
  */
 export function getDeadlineState(
   programKey: ProgramKey,
-  now: Date = new Date()
-): { state: DeadlineState; program: ProgramDeadline; daysRemaining: number; closeDateLabel: string } {
-  const program = PROGRAM_DEADLINES[programKey]
+  now: Date = new Date(),
+): {
+  state: DeadlineState;
+  program: ProgramDeadline;
+  daysRemaining: number;
+  closeDateLabel: string;
+} {
+  const program = PROGRAM_DEADLINES[programKey];
 
   // closeDate is the last day applications are accepted (inclusive).
   // At 00:00 AEST on closeDate+1, the state becomes 'closed'.
-  const closeDay = new Date(program.extendedCloseDate ?? program.closeDate)
+  const closeDay = new Date(program.extendedCloseDate ?? program.closeDate);
   // Treat closeDate as end-of-day AEST (UTC+10 = UTC+600min)
   const closeDayEnd = new Date(
-    Date.UTC(closeDay.getUTCFullYear(), closeDay.getUTCMonth(), closeDay.getUTCDate(), 14, 0, 0) // 00:00 AEST next day
-  )
+    Date.UTC(closeDay.getUTCFullYear(), closeDay.getUTCMonth(), closeDay.getUTCDate(), 14, 0, 0), // 00:00 AEST next day
+  );
 
-  const msRemaining = closeDayEnd.getTime() - now.getTime()
-  const daysRemaining = Math.ceil(msRemaining / (1000 * 60 * 60 * 24))
+  const msRemaining = closeDayEnd.getTime() - now.getTime();
+  const daysRemaining = Math.ceil(msRemaining / (1000 * 60 * 60 * 24));
 
-  const activeCloseDate = program.extendedCloseDate ?? program.closeDate
+  const activeCloseDate = program.extendedCloseDate ?? program.closeDate;
   const closeDateLabel = new Date(activeCloseDate).toLocaleDateString('en-AU', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
     timeZone: 'Australia/Brisbane',
-  })
+  });
 
-  let state: DeadlineState
+  let state: DeadlineState;
   if (daysRemaining <= 0) {
-    state = 'closed'
+    state = 'closed';
   } else if (program.extendedCloseDate) {
-    state = 'extended'
+    state = 'extended';
   } else if (daysRemaining <= 7) {
-    state = 'closing-soon'
+    state = 'closing-soon';
   } else {
-    state = 'active'
+    state = 'active';
   }
 
-  return { state, program, daysRemaining, closeDateLabel }
+  return { state, program, daysRemaining, closeDateLabel };
 }
 
 /** Convenience: return a short status string suitable for use in metadata descriptions. */
 export function deadlineStatusText(programKey: ProgramKey, now: Date = new Date()): string {
-  const { state, closeDateLabel, daysRemaining } = getDeadlineState(programKey, now)
+  const { state, closeDateLabel, daysRemaining } = getDeadlineState(programKey, now);
   switch (state) {
-    case 'closed': return 'This program has closed.'
-    case 'extended': return `Extended — applications close ${closeDateLabel} AEST.`
-    case 'closing-soon': return `Closing soon — ${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining. Apply by ${closeDateLabel} AEST.`
-    default: return `Applications close ${closeDateLabel} AEST.`
+    case 'closed':
+      return 'This program has closed.';
+    case 'extended':
+      return `Extended — applications close ${closeDateLabel} AEST.`;
+    case 'closing-soon':
+      return `Closing soon — ${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining. Apply by ${closeDateLabel} AEST.`;
+    default:
+      return `Applications close ${closeDateLabel} AEST.`;
   }
 }

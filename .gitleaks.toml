@@ -13,6 +13,9 @@ paths = [
   '''(^|/)__tests__/.*\.test\.(ts|js|tsx|jsx)$''',
   '''(^|/)docs/.*\.md$''',
   '''(^|/)proposals/.*\.md$''',
+  # deadlines.ts contains ProgramKey slugs (e.g. "qld-floods-2026-structural-assistance")
+  # that trip the generic-api-key rule — these are TypeScript string literals, not secrets.
+  '''src/lib/deadlines\.ts$''',
 ]
 regexes = [
   # allow example placeholders
