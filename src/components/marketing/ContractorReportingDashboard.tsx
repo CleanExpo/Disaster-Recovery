@@ -13,6 +13,7 @@ import type {
   MarketingOpportunity,
   TerritoryPerformance 
 } from '@/types/marketing-analytics';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ContractorReportingDashboardProps {
   contractorId: string;
@@ -173,7 +174,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
 
       setReportingData(mockData);
     } catch (error) {
-      console.error('Error loading reporting data:', error);
+      clientLogger.error('Error loading reporting data:', { source: 'marketing/ContractorReportingDashboard' }, error);
     } finally {
       setLoading(false);
     }

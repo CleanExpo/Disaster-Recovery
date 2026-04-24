@@ -32,6 +32,7 @@ import { SubscriptionManager } from './sections/SubscriptionManager';
 import { SupportTickets } from './sections/SupportTickets';
 import { AuditLogs } from './sections/AuditLogs';
 import { ComplianceOverview } from './sections/ComplianceOverview';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface AdminDashboardProps {
   user?: any;
@@ -68,7 +69,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
       const data = await response.json();
       setStats(data);
     } catch (error) {
-      console.error('Failed to fetch dashboard stats:', error);
+      clientLogger.error('Failed to fetch dashboard stats:', { source: 'dashboard/AdminDashboard' }, error);
     }
   };
 
@@ -78,7 +79,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
       const data = await response.json();
       setNotifications(data);
     } catch (error) {
-      console.error('Failed to fetch notifications:', error);
+      clientLogger.error('Failed to fetch notifications:', { source: 'dashboard/AdminDashboard' }, error);
     }
   };
 

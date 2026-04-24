@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken as verifyAccessToken, UserRole } from '@/lib/jwt-auth';
+import { clientLogger } from '@/lib/observability/client-logger';
 import { z } from 'zod';
 
 export interface AuthenticatedRequest extends NextRequest {
@@ -125,7 +126,7 @@ export function withAuth(
       return await handler(authReq);
       
     } catch (error) {
-      console.error('Auth middleware error:', error);
+      clientLogger.error('Auth middleware error:', { source: 'lib/auth-middleware' }, error);
       return NextResponse.json(
         { 
           success: false, 
@@ -276,7 +277,7 @@ export function withValidation<S extends z.ZodTypeAny>(
         );
       }
       
-      console.error('Validation middleware error:', error);
+      clientLogger.error('Validation middleware error:', { source: 'lib/auth-middleware' }, error);
       return NextResponse.json(
         {
           success: false,

@@ -33,6 +33,7 @@ import {
   Eye
 } from 'lucide-react';
 import { DataSubjectRequest } from '@/types/privacy';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface DataSubjectRequestsProps {
   userId?: string;
@@ -117,7 +118,7 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
       const data = await response.json();
       setRequests(data);
     } catch (error) {
-      console.error('Failed to fetch DSARs:', error);
+      clientLogger.error('Failed to fetch DSARs:', { source: 'privacy/DataSubjectRequests' }, error);
     } finally {
       setLoading(false);
     }
@@ -143,7 +144,7 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
         setLegalBasis('');
       }
     } catch (error) {
-      console.error('Failed to submit DSAR:', error);
+      clientLogger.error('Failed to submit DSAR:', { source: 'privacy/DataSubjectRequests' }, error);
     }
   };
 
@@ -159,7 +160,7 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
         fetchRequests();
       }
     } catch (error) {
-      console.error('Failed to update DSAR status:', error);
+      clientLogger.error('Failed to update DSAR status:', { source: 'privacy/DataSubjectRequests' }, error);
     }
   };
 
@@ -173,7 +174,7 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
       a.download = `dsar-${requestId}-${new Date().toISOString()}.zip`;
       a.click();
     } catch (error) {
-      console.error('Failed to download DSAR data:', error);
+      clientLogger.error('Failed to download DSAR data:', { source: 'privacy/DataSubjectRequests' }, error);
     }
   };
 

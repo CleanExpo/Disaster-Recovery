@@ -7,6 +7,7 @@ import { spawn, ChildProcess } from 'child_process';
 import { EventEmitter } from 'events';
 import * as path from 'path';
 import * as fs from 'fs/promises';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // MCP Types
 interface MCPConfig {
@@ -76,9 +77,9 @@ export class MCPManagementAgent extends EventEmitter {
       this.initialized = true;
       this.emit('initialized', { timestamp: new Date() });
       
-      console.log('✅ MCP Management Agent initialized successfully');
+      clientLogger.info('✅ MCP Management Agent initialized successfully', { source: 'lib/mcp-management-agent' });
     } catch (error) {
-      console.error('❌ Failed to initialize MCP Management Agent:', error);
+      clientLogger.error('❌ Failed to initialize MCP Management Agent:', { source: 'lib/mcp-management-agent' }, error);
       throw error;
     }
   }
@@ -112,11 +113,11 @@ export class MCPManagementAgent extends EventEmitter {
       } else {
         // Check if file exists
         await fs.access(path);
-        console.log(`✅ ${name} MCP verified at ${path}`);
+        clientLogger.info(`✅ ${name} MCP verified at ${path}`, { source: 'lib/mcp-management-agent' });
         return true;
       }
     } catch (error) {
-      console.warn(`⚠️ ${name} MCP not found at ${path}`);
+      clientLogger.warn(`⚠️ ${name} MCP not found at ${path}`, { source: 'lib/mcp-management-agent' });
       return false;
     }
   }
@@ -137,7 +138,7 @@ export class MCPManagementAgent extends EventEmitter {
         throw new Error(`MCP ${mcpName} not found in registry`);
       }
 
-      console.log(`🚀 Executing ${mcpName}.${action}...`);
+      clientLogger.info(`🚀 Executing ${mcpName}.${action}...`, { source: 'lib/mcp-management-agent' });
       
       // Route to appropriate MCP handler
       let result;
@@ -330,14 +331,14 @@ export class MCPManagementAgent extends EventEmitter {
         throw new Error(`Workflow ${workflowName} not found`);
       }
 
-      console.log(`🎭 Starting orchestration: ${workflowName}`);
-      console.log(`📝 ${workflow.description}`);
+      clientLogger.info(`🎭 Starting orchestration: ${workflowName}`, { source: 'lib/mcp-management-agent' });
+      clientLogger.info(`📝 ${workflow.description}`, { source: 'lib/mcp-management-agent' });
 
       const results = [];
       
       // Execute each step
       for (const [index, step] of workflow.steps.entries()) {
-        console.log(`\n📍 Step ${index + 1}/${workflow.steps.length}: ${step.mcp}.${step.action}`);
+        clientLogger.info(`\n📍 Step ${index + 1}/${workflow.steps.length}: ${step.mcp}.${step.action}`, { source: 'lib/mcp-management-agent' });
         
         // Replace context variables in params
         const params = this.replaceContextVariables(step.params, context, results);
@@ -347,17 +348,17 @@ export class MCPManagementAgent extends EventEmitter {
         results.push(result);
         
         if (!result.success) {
-          console.error(`❌ Step failed: ${result.error}`);
+          clientLogger.error(`❌ Step failed: ${result.error}`, { source: 'lib/mcp-management-agent' });
           throw new Error(`Workflow failed at step ${index + 1}: ${result.error}`);
         }
         
-        console.log(`✅ Step completed in ${result.duration}ms`);
+        clientLogger.info(`✅ Step completed in ${result.duration}ms`, { source: 'lib/mcp-management-agent' });
       }
 
-      console.log(`\n🎉 Orchestration completed successfully!`);
+      clientLogger.info(`\n🎉 Orchestration completed successfully!`, { source: 'lib/mcp-management-agent' });
       return results;
     } catch (error) {
-      console.error(`❌ Orchestration failed: ${error instanceof Error ? error.message : String(error)}`);
+      clientLogger.error(`❌ Orchestration failed: ${error instanceof Error ? error.message : String(error)}`, { source: 'lib/mcp-management-agent' });
       throw error;
     }
   }
@@ -460,7 +461,7 @@ export class MCPManagementAgent extends EventEmitter {
    * Troubleshoot MCP issues
    */
   async troubleshoot(mcpName: string): Promise<any> {
-    console.log(`🔧 Troubleshooting ${mcpName}...`);
+    clientLogger.info(`🔧 Troubleshooting ${mcpName}...`, { source: 'lib/mcp-management-agent' });
     
     const diagnostics: { mcp: string; timestamp: Date; checks: Array<{ test: string; passed: boolean; details: any }> } = {
       mcp: mcpName,
@@ -532,18 +533,18 @@ export class MCPManagementAgent extends EventEmitter {
    * Cleanup and shutdown
    */
   async shutdown(): Promise<void> {
-    console.log('🛑 Shutting down MCP Management Agent...');
+    clientLogger.info('🛑 Shutting down MCP Management Agent...', { source: 'lib/mcp-management-agent' });
     
     // Kill all processes
     for (const [name, process] of this.processes.entries()) {
-      console.log(`Terminating ${name} process...`);
+      clientLogger.info(`Terminating ${name} process...`, { source: 'lib/mcp-management-agent' });
       process.kill();
     }
     
     this.processes.clear();
     this.removeAllListeners();
     
-    console.log('✅ MCP Management Agent shut down successfully');
+    clientLogger.info('✅ MCP Management Agent shut down successfully', { source: 'lib/mcp-management-agent' });
   }
 }
 
@@ -562,34 +563,34 @@ if (require.main === module) {
       switch (command) {
         case 'status':
           const status = await mcpAgent.getStatus();
-          console.log(JSON.stringify(status, null, 2));
+          clientLogger.info(JSON.stringify(status, null, 2), { source: 'lib/mcp-management-agent' });
           break;
           
         case 'execute':
           const [mcp, action, ...params] = args;
           const result = await mcpAgent.executeMCP(mcp, action, params[0] ? JSON.parse(params[0]) : undefined);
-          console.log(JSON.stringify(result, null, 2));
+          clientLogger.info(JSON.stringify(result, null, 2), { source: 'lib/mcp-management-agent' });
           break;
           
         case 'orchestrate':
           const [workflow, ...context] = args;
           const results = await mcpAgent.orchestrate(workflow, context[0] ? JSON.parse(context[0]) : undefined);
-          console.log(JSON.stringify(results, null, 2));
+          clientLogger.info(JSON.stringify(results, null, 2), { source: 'lib/mcp-management-agent' });
           break;
           
         case 'troubleshoot':
           const diagnostics = await mcpAgent.troubleshoot(args[0]);
-          console.log(JSON.stringify(diagnostics, null, 2));
+          clientLogger.info(JSON.stringify(diagnostics, null, 2), { source: 'lib/mcp-management-agent' });
           break;
           
         default:
-          console.log('Usage: mcp-management-agent <command> [args]');
-          console.log('Commands: status, execute, orchestrate, troubleshoot');
+          clientLogger.info('Usage: mcp-management-agent <command> [args]', { source: 'lib/mcp-management-agent' });
+          clientLogger.info('Commands: status, execute, orchestrate, troubleshoot', { source: 'lib/mcp-management-agent' });
       }
       
       await mcpAgent.shutdown();
     } catch (error) {
-      console.error('Error:', error instanceof Error ? error.message : String(error));
+      clientLogger.error('Error:', { source: 'lib/mcp-management-agent' }, error instanceof Error ? error.message : String(error));
       process.exit(1);
     }
   })();

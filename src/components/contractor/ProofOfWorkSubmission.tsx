@@ -8,6 +8,7 @@ import type {
   ProofOfWorkEvidenceInput,
   ProofOfWorkInput,
 } from '@/lib/validation/schemas';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Component-local: evidence always has a client-generated id here, and the
 // verificationStatus defaults to 'PENDING' for newly drafted claims.
@@ -151,7 +152,7 @@ export default function ProofOfWorkSubmission({
       alert('Proof of work claims submitted successfully!');
       
     } catch (error) {
-      console.error('Error submitting claims:', error);
+      clientLogger.error('Error submitting claims:', { source: 'contractor/ProofOfWorkSubmission' }, error);
       alert(error instanceof Error ? error.message : 'Failed to submit claims');
     } finally {
       setSubmitting(false);

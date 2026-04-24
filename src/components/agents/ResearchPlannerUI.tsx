@@ -21,6 +21,7 @@ import {
   Loader2,
   Sparkles
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface AgentCapability {
   name: string;
@@ -58,7 +59,7 @@ export function ResearchPlannerUI() {
         setAgentStatus(data.status || []);
       }
     } catch (error) {
-      console.error('Failed to fetch agent status:', error);
+      clientLogger.error('Failed to fetch agent status:', { source: 'agents/ResearchPlannerUI' }, error);
     }
   };
 

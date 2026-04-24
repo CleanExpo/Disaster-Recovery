@@ -35,6 +35,7 @@ import {
   UserCheck,
   ShieldCheck,
   ShieldAlert, MessageSquare} from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface BackgroundCheck {
   id: string;
@@ -107,7 +108,7 @@ export function BackgroundChecks() {
       const data = await response.json();
       setChecks(data);
     } catch (error) {
-      console.error('Failed to fetch background checks:', error);
+      clientLogger.error('Failed to fetch background checks:', { source: 'sections/BackgroundChecks' }, error);
     } finally {
       setLoading(false);
     }
@@ -119,7 +120,7 @@ export function BackgroundChecks() {
       const data = await response.json();
       setReferences(data);
     } catch (error) {
-      console.error('Failed to fetch references:', error);
+      clientLogger.error('Failed to fetch references:', { source: 'sections/BackgroundChecks' }, error);
     }
   };
 
@@ -168,7 +169,7 @@ export function BackgroundChecks() {
         setSelectedContractor(null);
       }
     } catch (error) {
-      console.error('Failed to initiate background check:', error);
+      clientLogger.error('Failed to initiate background check:', { source: 'sections/BackgroundChecks' }, error);
     }
   };
 
@@ -191,7 +192,7 @@ export function BackgroundChecks() {
         setReviewNotes('');
       }
     } catch (error) {
-      console.error('Failed to submit review:', error);
+      clientLogger.error('Failed to submit review:', { source: 'sections/BackgroundChecks' }, error);
     }
   };
 
@@ -205,7 +206,7 @@ export function BackgroundChecks() {
         fetchReferences();
       }
     } catch (error) {
-      console.error('Failed to contact reference:', error);
+      clientLogger.error('Failed to contact reference:', { source: 'sections/BackgroundChecks' }, error);
     }
   };
 

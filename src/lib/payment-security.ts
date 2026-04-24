@@ -340,7 +340,7 @@ export class PaymentAuditLogger {
     };
     
     // Log to console (in production, use proper logging service)
-    console.log('PAYMENT_AUDIT:', JSON.stringify(logEntry));
+    clientLogger.info('PAYMENT_AUDIT:', { source: 'lib/payment-security', data: JSON.stringify(logEntry) });
     
     // In production, also log to database for compliance
     // await prisma.paymentAuditLog.create({ data: logEntry });
@@ -360,7 +360,7 @@ export class PaymentAuditLogger {
       ...data
     };
     
-    console.warn('PAYMENT_SECURITY_ALERT:', JSON.stringify(logEntry));
+    clientLogger.warn('PAYMENT_SECURITY_ALERT:', { source: 'lib/payment-security', data: JSON.stringify(logEntry) });
     
     // In production, trigger alerts for high-risk activities
     if (data.riskScore > 50) {
@@ -368,3 +368,4 @@ export class PaymentAuditLogger {
     }
   }
 }
+import { clientLogger } from '@/lib/observability/client-logger';

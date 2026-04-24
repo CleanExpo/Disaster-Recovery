@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import LeadCaptureForm from '@/components/forms/LeadCaptureForm'
 import { FeedbackForm } from '@/components/support/FeedbackForm'
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface DemoStep {
   id: string
@@ -162,7 +163,7 @@ export default function FormDemonstration() {
         })
       }
     } catch (error) {
-      console.log('Audio narration not available, continuing silently')
+      clientLogger.info('Audio narration not available, continuing silently', { source: 'demo/FormDemonstration' })
     }
   }
 
