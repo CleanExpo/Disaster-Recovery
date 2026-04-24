@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
 import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
@@ -7,33 +6,8 @@ import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
 import { dispatchClaimStatusNotification } from '@/lib/notifications';
 import { rateLimit } from '@/lib/rate-limit';
 import { getCallerIdentity } from '@/lib/auth/require-session';
+import { claimSubmitSchema } from '@/lib/validation/schemas';
 import fs from 'node:fs/promises';
-
-const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
-
-const ClaimSubmitSchema = z.object({
-  fullName:            z.string().min(1).max(200),
-  email:               z.string().email().max(254),
-  phone:               z.string().min(6).max(20).optional(),
-  propertyAddress:     z.string().min(1).max(300),
-  suburb:              z.string().min(1).max(100).optional(),
-  state:               z.enum(ALLOWED_STATES as [string, ...string[]]).optional(),
-  postcode:            z.string().regex(/^\d{4}$/).optional(),
-  damageTypes:         z.array(z.string().max(100)).min(1).max(20),
-  damageDescription:   z.string().min(1).max(5000),
-  urgencyLevel:        z.enum(['emergency','urgent','standard']).optional(),
-  policyNumber:        z.string().max(100).optional(),
-  insuranceCompany:    z.string().max(200).optional(),
-  insuranceClaimNumber:z.string().max(100).optional(),
-  accessInstructions:  z.string().max(500).optional(),
-  paymentConfirmed:    z.boolean().optional(),
-  // Internal fields — validated loosely
-  bookingId:           z.string().max(100).optional(),
-  clientId:            z.string().max(254).optional(),
-  tenantId:            z.string().max(100).optional(),
-  damagePhotos:        z.array(z.string().url().max(500)).max(20).optional(),
-  uploadedDocuments:   z.array(z.string().url().max(500)).max(20).optional(),
-});
 import path from 'node:path';
 
 // Fixed platform fee (optional at submission stage)
@@ -199,7 +173,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const raw = await request.json();
-    const parsed = ClaimSubmitSchema.safeParse(raw);
+    const parsed = claimSubmitSchema.safeParse(raw);
     if (!parsed.success) {
       return NextResponse.json({
         success: false,
