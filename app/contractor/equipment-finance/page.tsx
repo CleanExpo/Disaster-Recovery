@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Truck } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import EquippedLicensingBlock from '@/components/finance/EquippedLicensingBlock';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
@@ -117,21 +118,7 @@ export default function ContractorEquipmentFinancePage() {
         },
         {
           heading: 'Equipped Commercial Finance — licensing',
-          body: (
-            <div className="space-y-3 text-sm text-slate-700">
-              <p>
-                Equipped Commercial Finance is operated by SME Consulting Group Pty Ltd
-                (ABN 53 662 478 408). Equipped holds the relevant Australian Credit Licence or acts as an
-                authorised credit representative, and is a member of the Australian Financial Complaints
-                Authority (AFCA). Licensing and membership numbers are stated in Equipped&apos;s Credit Guide,
-                linked below.
-              </p>
-              <p className="text-xs text-slate-500">
-                {/* TODO(equipped-phase1): replace with verified ACL, ACR and AFCA numbers once the Credit Guide PDF is extracted. */}
-                ACL / ACR number: see Credit Guide. AFCA member number: see Credit Guide.
-              </p>
-            </div>
-          ),
+          body: <EquippedLicensingBlock variant="contractor" />,
         },
         {
           heading: 'Disclosures',
