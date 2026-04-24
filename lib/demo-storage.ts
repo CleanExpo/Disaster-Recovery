@@ -1,9 +1,14 @@
 // Demo storage using localStorage for persistence
 // In production, this would use a real database
 
-interface ClaimData {
-  [key: string]: any;
-}
+import type { ClaimTracking } from '@/lib/validation/schemas';
+
+// Loose shape for demo storage: tracking fields are authoritative, but
+// demo flows historically stash arbitrary extras on the record. Index
+// signature preserves that behaviour while giving the typed fields
+// (id, status, createdAt, client, property, damage, contractor, workflow)
+// real autocomplete.
+export type ClaimData = Partial<ClaimTracking> & Record<string, any>;
 
 class DemoStorage {
   private storageKey = 'demoClaimsDB';

@@ -4,33 +4,18 @@ import { useState, useEffect } from 'react';
 import { Upload, FileText, Image, Calendar, MapPin, DollarSign, AlertTriangle, CheckCircle, Plus, X, Eye } from 'lucide-react';
 import DocumentUpload from './DocumentUpload';
 
-interface ProofOfWorkEvidence {
-  id: string;
-  type: 'BEFORE_PHOTO' | 'AFTER_PHOTO' | 'INVOICE' | 'COMPLETION_CERTIFICATE' | 'CLIENT_TESTIMONIAL' | 'INSURANCE_REPORT';
-  url: string;
-  description: string;
-  uploadedAt: string;
-}
+import type {
+  ProofOfWorkEvidenceInput,
+  ProofOfWorkInput,
+} from '@/lib/validation/schemas';
 
-interface ProofOfWorkClaim {
-  id?: string;
-  workType: string;
-  projectName: string;
-  clientName: string;
-  clientContact: string;
-  projectAddress: string;
-  completionDate: string;
-  projectValue: number;
-  projectDescription: string;
-  damageType: string[];
-  propertyType: 'RESIDENTIAL' | 'COMMERCIAL' | 'INDUSTRIAL' | 'INSTITUTIONAL';
-  emergencyResponse: boolean;
-  insuranceClaim: boolean;
-  insuranceCompany?: string;
+// Component-local: evidence always has a client-generated id here, and the
+// verificationStatus defaults to 'PENDING' for newly drafted claims.
+type ProofOfWorkEvidence = ProofOfWorkEvidenceInput & { id: string };
+type ProofOfWorkClaim = Omit<ProofOfWorkInput, 'evidence' | 'verificationStatus'> & {
   evidence: ProofOfWorkEvidence[];
   verificationStatus: 'PENDING' | 'VERIFIED' | 'REJECTED';
-  verificationNotes?: string;
-}
+};
 
 interface ProofOfWorkSubmissionProps {
   contractorId: string;
