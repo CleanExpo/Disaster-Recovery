@@ -121,3 +121,32 @@ export const proofOfWorkSchema = z.object({
 });
 
 export type ProofOfWorkInput = z.infer<typeof proofOfWorkSchema>;
+
+// ----- Native device token registration (iOS/Android Capacitor) -----
+//
+// DR-725 Phase 2 PR #1. Posted by src/lib/native-bridge.ts ->
+// registerPushNotifications() after APNs/FCM returns a token.
+//
+// Data-class note: device tokens are CONFIDENTIAL (.claude/rules/privacy.md
+// §1). They are not PII on their own but become correlated identifiers
+// when joined with a claim or user. Never log in full.
+
+export const nativePlatformSchema = z.enum(['ios', 'android']);
+
+export const deviceTokenRegistrationSchema = z.object({
+  /** Platform-supplied push token. APNs hex (64+ chars) or FCM token. */
+  token: z.string().min(32).max(4096),
+  platform: nativePlatformSchema,
+  /** Optional stable device identifier for dedup on re-register. */
+  deviceId: z.string().min(1).max(128).optional(),
+  /** Optional claim ID if registration happens mid-flow. */
+  claimId: z.string().min(1).max(128).optional(),
+  /** App bundle identifier — authoritative check on the server. */
+  appId: z.literal('au.com.disasterrecovery.app'),
+  /** App version for compatibility audits (e.g. 1.0.0+12). */
+  appVersion: z.string().min(1).max(32),
+});
+
+export type DeviceTokenRegistrationInput = z.infer<
+  typeof deviceTokenRegistrationSchema
+>;

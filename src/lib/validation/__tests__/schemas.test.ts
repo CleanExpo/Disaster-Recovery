@@ -13,6 +13,8 @@ import {
   proofOfWorkEvidenceSchema,
   propertyTypeSchema,
   verificationStatusSchema,
+  deviceTokenRegistrationSchema,
+  nativePlatformSchema,
 } from '../schemas';
 
 const validClient = {
@@ -225,5 +227,62 @@ describe('proofOfWorkSchema', () => {
       uploadedAt: 'x',
     });
     expect(res.success).toBe(false);
+  });
+});
+
+describe('deviceTokenRegistrationSchema', () => {
+  const validAPNsToken = 'a'.repeat(64); // APNs tokens are 64 hex chars.
+
+  const validPayload = {
+    token: validAPNsToken,
+    platform: 'ios' as const,
+    appId: 'au.com.disasterrecovery.app' as const,
+    appVersion: '1.0.0+1',
+  };
+
+  it('accepts a minimal iOS registration', () => {
+    const res = deviceTokenRegistrationSchema.safeParse(validPayload);
+    expect(res.success).toBe(true);
+  });
+
+  it('accepts an Android registration with optional fields', () => {
+    const res = deviceTokenRegistrationSchema.safeParse({
+      ...validPayload,
+      platform: 'android',
+      token: 'f'.repeat(163),
+      deviceId: 'abc-123',
+      claimId: 'claim-xyz',
+    });
+    expect(res.success).toBe(true);
+  });
+
+  it('rejects an unknown platform', () => {
+    const res = deviceTokenRegistrationSchema.safeParse({
+      ...validPayload,
+      platform: 'windows',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects a different appId (bundle spoof protection)', () => {
+    const res = deviceTokenRegistrationSchema.safeParse({
+      ...validPayload,
+      appId: 'com.attacker.fake',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects a token shorter than 32 chars', () => {
+    const res = deviceTokenRegistrationSchema.safeParse({
+      ...validPayload,
+      token: 'short',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('nativePlatformSchema only accepts ios or android', () => {
+    expect(nativePlatformSchema.safeParse('ios').success).toBe(true);
+    expect(nativePlatformSchema.safeParse('android').success).toBe(true);
+    expect(nativePlatformSchema.safeParse('web').success).toBe(false);
   });
 });
