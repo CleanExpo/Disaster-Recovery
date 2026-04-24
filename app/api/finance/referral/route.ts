@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SignJWT } from 'jose';
 import { randomUUID, createHash } from 'crypto';
+import { prisma } from '@/lib/prisma';
 import { requestLogger } from '@/lib/observability';
 
 export const runtime = 'nodejs';
@@ -81,23 +82,33 @@ export async function POST(req: NextRequest) {
   const email = stringField(body.email, 200);
   const postcode = stringField(body.postcode, 4);
   const purpose = stringField(body.purpose, 500);
-  const customer_type = typeof body.customer_type === 'string' && (CUSTOMER_TYPES as readonly string[]).includes(body.customer_type)
-    ? (body.customer_type as typeof CUSTOMER_TYPES[number])
-    : null;
-  const disaster_category = typeof body.disaster_category === 'string' && (DISASTER_CATS as readonly string[]).includes(body.disaster_category)
-    ? (body.disaster_category as typeof DISASTER_CATS[number])
-    : null;
-  const funding_band = typeof body.funding_band === 'string' && (FUNDING_BANDS as readonly string[]).includes(body.funding_band)
-    ? (body.funding_band as typeof FUNDING_BANDS[number])
-    : null;
-  const preferred_contact = typeof body.preferred_contact === 'string' && (CONTACT_SLOTS as readonly string[]).includes(body.preferred_contact)
-    ? (body.preferred_contact as typeof CONTACT_SLOTS[number])
-    : null;
+  const customer_type =
+    typeof body.customer_type === 'string' &&
+    (CUSTOMER_TYPES as readonly string[]).includes(body.customer_type)
+      ? (body.customer_type as (typeof CUSTOMER_TYPES)[number])
+      : null;
+  const disaster_category =
+    typeof body.disaster_category === 'string' &&
+    (DISASTER_CATS as readonly string[]).includes(body.disaster_category)
+      ? (body.disaster_category as (typeof DISASTER_CATS)[number])
+      : null;
+  const funding_band =
+    typeof body.funding_band === 'string' &&
+    (FUNDING_BANDS as readonly string[]).includes(body.funding_band)
+      ? (body.funding_band as (typeof FUNDING_BANDS)[number])
+      : null;
+  const preferred_contact =
+    typeof body.preferred_contact === 'string' &&
+    (CONTACT_SLOTS as readonly string[]).includes(body.preferred_contact)
+      ? (body.preferred_contact as (typeof CONTACT_SLOTS)[number])
+      : null;
   const consent_share_equipped = body.consent_share_equipped === true;
   const consent_referral_disclosure = body.consent_referral_disclosure === true;
   const consent_marketing = body.consent_marketing === true;
-  const job_reference = typeof body.job_reference === 'string' ? body.job_reference.trim().slice(0, 120) || null : null;
-  const abn = typeof body.abn === 'string' ? body.abn.replace(/\s+/g, '').slice(0, 14) || null : null;
+  const job_reference =
+    typeof body.job_reference === 'string' ? body.job_reference.trim().slice(0, 120) || null : null;
+  const abn =
+    typeof body.abn === 'string' ? body.abn.replace(/\s+/g, '').slice(0, 14) || null : null;
 
   const missing: string[] = [];
   if (!full_name) missing.push('full_name');
@@ -160,9 +171,7 @@ export async function POST(req: NextRequest) {
     .sign(new TextEncoder().encode(secret));
 
   // Audit log: payload HASH (not plaintext) + header metadata.
-  const payloadHash = createHash('sha256')
-    .update(JSON.stringify(equippedPayload))
-    .digest('hex');
+  const payloadHash = createHash('sha256').update(JSON.stringify(equippedPayload)).digest('hex');
 
   const auditEntry = {
     referral_id: referralId,
@@ -183,14 +192,41 @@ export async function POST(req: NextRequest) {
     receiver: 'equippedcf.com.au',
   };
 
-  // TODO(DR-finance-phase1.5): persist auditEntry to Prisma FinanceReferral model
-  //   once schema migration lands. Until then, log to stdout so Railway/Vercel
-  //   captures the audit trail without blocking the pilot.
-  //
-  //   prisma.financeReferral.create({ data: auditEntry })
-  //
-  // Surface-treatment (RA-1109): the log line below is the terminal state signal
-  // for ops. A referral that reaches this point is persisted to the audit stream.
+  // L9 (2026-04-29): persist to FinanceReferral table. Best-effort —
+  // if the migration hasn't been deployed yet (e.g. Equipped flag still
+  // off and ops hasn't run `prisma migrate deploy`), the stdout audit
+  // line below remains the fallback record-of-transmission.
+  // See docs/prd/loops/2026-04-29-finance-referral-persistence/.
+  try {
+    await prisma.financeReferral.create({
+      data: {
+        id: referralId,
+        country: 'AU',
+        customerType: customer_type!,
+        fundingBand: funding_band!,
+        disasterCategory: disaster_category!,
+        source: equippedPayload.source,
+        disclosureVersion: equippedPayload.disclosure_version,
+        privacyNoticeVersion: equippedPayload.privacy_notice_version,
+        consentShareEquipped: true,
+        consentReferralDisclosure: true,
+        consentMarketing: consent_marketing,
+        payloadHash,
+        ip: auditEntry.ip,
+        userAgent: auditEntry.user_agent,
+        receiver: auditEntry.receiver,
+      },
+    });
+  } catch (err) {
+    log.error('finance.referral persistence failed', {
+      referralId,
+      error: err instanceof Error ? err.message : String(err),
+    });
+    // continue — stdout audit log below remains the fallback record.
+  }
+
+  // Surface-treatment (RA-1109): structured stdout fallback. Mirrors the
+  // Prisma row above; preserved as belt-and-braces for ops visibility.
   log.info('finance.referral audit', auditEntry);
 
   return NextResponse.json({
