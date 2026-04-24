@@ -3,6 +3,7 @@
 import React, { Component, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, Home, Mail } from 'lucide-react';
 import Link from 'next/link';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Props {
   children: ReactNode;
@@ -47,7 +48,7 @@ class ErrorBoundary extends Component<Props, State> {
     
     // Log to console in development
     if (process.env.NODE_ENV === 'development') {
-      console.error('ErrorBoundary caught an error:', error, errorInfo);
+      clientLogger.error('ErrorBoundary caught an error:', { source: 'error-boundary/ErrorBoundary', data: error }, errorInfo);
     }
 
     // Log to external service in production
@@ -116,7 +117,7 @@ class ErrorBoundary extends Component<Props, State> {
       }
     } else {
       // Development only - log to console for debugging
-      console.error('Error captured by boundary:', errorData);
+      clientLogger.error('Error captured by boundary:', { source: 'error-boundary/ErrorBoundary' }, errorData);
     }
   };
 

@@ -27,48 +27,9 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-// TODO (Foundation Sprint follow-up): this interface duplicates claim-shape
-// information that now has a canonical source at src/lib/validation/schemas.ts
-// (see claimSubmitSchema + ClaimSubmitInput). Candidate for unification in a
-// dedicated dedup PR — out of scope for the Day 7-8 primitive-registry change.
-interface ClaimData {
-  id: string;
-  status: string;
-  createdAt: string;
-  client: {
-    fullName: string;
-    phone: string;
-    email: string;
-  };
-  property: {
-    address: string;
-    suburb: string;
-    state: string;
-    postcode: string;
-  };
-  damage: {
-    types: string[];
-    urgencyLevel: string;
-    description: string;
-  };
-  contractor: {
-    companyName: string | null;
-    contactPerson: string | null;
-    directPhone: string | null;
-    assignedAt: string | null;
-    acceptedAt: string | null;
-  };
-  workflow: {
-    paymentProcessed: boolean;
-    contractorAssigned: boolean;
-    contractorAccepted: boolean;
-    initialContactMade: boolean;
-    jobScheduled: boolean;
-    makeSafeCompleted: boolean;
-    documentationProvided: boolean;
-    claimFinalized: boolean;
-  };
-}
+import type { ClaimTracking } from '@/lib/validation/schemas';
+
+type ClaimData = ClaimTracking;
 
 const workflowSteps = [
   { key: 'paymentProcessed', label: 'Payment Processed', icon: DollarSign },

@@ -1,41 +1,20 @@
-# Build outputs
-.next/
-.vercel/
-node_modules/
-dist/
-build/
-coverage/
-.cache/
-test-results/
-
-# Generated
-prisma/migrations/
-public/~partytown/
-**/*.generated.*
-
-# Don't format config files that upstream tools own
+node_modules
+.next
+out
+dist
+build
+coverage
+playwright-report
+test-results
+.vercel
+prisma/migrations
+public
+*.min.js
+*.min.css
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
 
-# Large content files (let authors format as they wish)
-data/**/*.json
-proposals/**/*.md
-
-# Legacy excluded from tsconfig (same list as tsconfig.json "exclude")
-audio-system/**
-audio-system.backup/**
-bots/**
-bots.backup/**
-cli/**
-CRM_Reference/**
-docker/**
-health-check/**
-NRP-CRM/**
-Portals/**
-lib/**
-components/**
-src/crm/**
-
-# Markdown files in docs/ — opinionated formatting causes diff churn
-docs/**/*.md
+# Foundation Sprint: format:check is scoped narrowly (see package.json
+# "format:check" script). As teams adopt Prettier module-by-module,
+# remove entries from here and widen the format:check glob.

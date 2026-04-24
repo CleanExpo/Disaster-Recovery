@@ -48,12 +48,9 @@ export async function logComplianceEvent(input: VoiceToolLog): Promise<void> {
   }
 }
 
-export type PreflightResult<T> = {
-  ok: boolean;
-  body?: T;
-  sessionId?: string | null;
-  response?: NextResponse;
-};
+export type PreflightResult<T> =
+  | { ok: true; body: T; sessionId: string | null; response?: undefined }
+  | { ok: false; response: NextResponse; body?: undefined; sessionId?: string | null };
 
 export async function preflight<T>(
   request: Request,

@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 /**
  * Mock SMS Service
  * Simulates SMS sending for demo purposes
@@ -18,7 +19,7 @@ class MockSMSService {
     };
     
     this.sentMessages.push(sms);
-    console.log('Mock SMS Sent:', { to, message: message.substring(0, 50) + '...' });
+    clientLogger.info('Mock SMS Sent:', { source: 'mock/mockSMS', data: { to, message: message.substring(0, 50) + '...' } });
 
     return { success: true, messageId: sms.id };
   }

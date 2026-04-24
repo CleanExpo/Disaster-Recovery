@@ -6,6 +6,7 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { Prisma } from '@prisma/client';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export class APIError extends Error {
   statusCode: number;
@@ -76,7 +77,7 @@ export function errorResponse(
   
   // Log error for monitoring
   if (statusCode >= 500) {
-    console.error('[API Error]', {
+    clientLogger.error('[API Error]', { source: 'lib/api-error-handler' }, {
       message,
       statusCode,
       code,
@@ -284,7 +285,7 @@ export async function logAPIRequest(
     };
     
     if (process.env.NODE_ENV === 'development') {
-      console.log('[API Request]', logEntry);
+      clientLogger.info('[API Request]', { source: 'lib/api-error-handler', data: logEntry });
     }
     
     // Store in database if available
@@ -300,7 +301,7 @@ export async function logAPIRequest(
       }).catch(console.error);
     }
   } catch (err) {
-    console.error('Failed to log API request:', err);
+    clientLogger.error('Failed to log API request:', { source: 'lib/api-error-handler' }, err);
   }
 }
 

@@ -81,7 +81,7 @@ export interface GBPPostPayload {
 /**
  * Map our CTA text to GBP's enum action types.
  */
-export function mapCtaAction(ctaText: string): GBPPostPayload['callToAction']['actionType'] {
+export function mapCtaAction(ctaText: string): NonNullable<GBPPostPayload['callToAction']>['actionType'] {
   const lower = ctaText.toLowerCase();
   if (lower.includes('book') || lower.includes('start')) return 'BOOK';
   if (lower.includes('get') || lower.includes('help') || lower.includes('emergency')) return 'GET_OFFER';

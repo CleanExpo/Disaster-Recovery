@@ -13,6 +13,7 @@ import type {
   ShareType,
   Document 
 } from '@/types/document-management';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface SecureDocumentSharingProps {
   documentId?: string;
@@ -131,7 +132,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
       setShares(mockShares);
     } catch (error) {
-      console.error('Error loading shares:', error);
+      clientLogger.error('Error loading shares:', { source: 'documents/SecureDocumentSharing' }, error);
     } finally {
       setLoading(false);
     }
@@ -170,7 +171,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
       setSelectedDocument(mockDocument);
     } catch (error) {
-      console.error('Error loading document:', error);
+      clientLogger.error('Error loading document:', { source: 'documents/SecureDocumentSharing' }, error);
     }
   };
 
@@ -213,7 +214,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
         message: ''
       });
     } catch (error) {
-      console.error('Error creating share:', error);
+      clientLogger.error('Error creating share:', { source: 'documents/SecureDocumentSharing' }, error);
     }
   };
 
@@ -231,7 +232,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
           : share
       ));
     } catch (error) {
-      console.error('Error revoking share:', error);
+      clientLogger.error('Error revoking share:', { source: 'documents/SecureDocumentSharing' }, error);
     }
   };
 

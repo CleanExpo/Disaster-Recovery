@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Eye, EyeOff, Info, Send, CheckCircle, RefreshCw, Lock, AlertCircle, Shield } from 'lucide-react';
 import type { ContractorOnboardingData } from '@/types/contractor';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Step1AccountProps {
   data: Partial<ContractorOnboardingData>;
@@ -81,7 +82,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
       const result = await response.json();
       setCompanyNameAvailable(result.available);
     } catch (error) {
-      console.error('Company name check failed:', error);
+      clientLogger.error('Company name check failed:', { source: 'steps/Step1Account' }, error);
     } finally {
       setIsCheckingCompanyName(false);
     }
@@ -113,7 +114,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
         }
       }
     } catch (error) {
-      console.error('Failed to send verification:', error);
+      clientLogger.error('Failed to send verification:', { source: 'steps/Step1Account' }, error);
     }
   };
 
@@ -140,7 +141,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
         }
       }
     } catch (error) {
-      console.error('Verification failed:', error);
+      clientLogger.error('Verification failed:', { source: 'steps/Step1Account' }, error);
     }
   };
 

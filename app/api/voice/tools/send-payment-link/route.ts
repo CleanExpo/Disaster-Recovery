@@ -52,8 +52,7 @@ async function createStripeCheckoutUrl(draft_id: string): Promise<string | null>
     });
     return session.url || null;
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.warn('[send_payment_link] stripe error', err);
+    console.error(JSON.stringify({ level: 'warn', source: 'api/voice/tools/send-payment-link', msg: 'stripe error', error: err instanceof Error ? err.message : String(err) }));
     return null;
   }
 }

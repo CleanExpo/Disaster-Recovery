@@ -28,6 +28,7 @@ import {
   Megaphone
 } from 'lucide-react';
 import type { Partner, PartnerCategory, PartnerTier } from '@/types/partner-affiliate';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface SignupStep {
   id: number;
@@ -175,7 +176,7 @@ export default function AffiliateSignup() {
 
   const handleSubmit = () => {
     if (validateStep(currentStep)) {
-      console.log('Submitting partner application:', formData);
+      clientLogger.info('Submitting partner application:', { source: 'partners/AffiliateSignup', data: formData });
     }
   };
 

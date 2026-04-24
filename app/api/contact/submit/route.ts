@@ -4,9 +4,22 @@ import { prisma } from '@/lib/prisma';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam } from '@/lib/lead-scoring';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
-import { contactSubmitSchema } from '@/lib/validation/schemas';
+import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
+
+const contactSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Invalid email address'),
+  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8 }$/, 'Invalid Australian phone number'),
+  service: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'biohazard', 'other']),
+  urgency: z.enum(['emergency', 'urgent', 'planning', 'routine']),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
+  propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),
+  hasInsurance: z.boolean().optional(),
+  preferredContact: z.enum(['phone', 'email', 'both']).optional() });
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contact/submit' });
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('x-real-ip') ??
@@ -63,6 +76,24 @@ export async function POST(request: NextRequest) {
 
     const submissionId = enquiry.id;
 
+    log.info('contact enquiry received', { enquiryId: submissionId, service: validatedData.service, urgency: validatedData.urgency });
+
+    await logComplianceEvent({
+      eventType: 'claim_intake_created',
+      correlationId: submissionId,
+      correlationType: 'claim',
+      entityType: 'customer',
+      entityIdentifier: validatedData.email,
+      metadata: {
+        source: 'contact_form',
+        is_enquiry: true,
+        service: validatedData.service,
+        urgency: validatedData.urgency,
+        priority,
+        request_id: log.requestId,
+      },
+    });
+
     // Send notification email to team
     const notificationEmail = emailTemplates.leadNotification({
       id: submissionId,
@@ -98,7 +129,7 @@ export async function POST(request: NextRequest) {
       sendEmail('team@disasterrecovery.com.au', notificationEmail),
       sendEmail(validatedData.email, confirmationEmail),
     ]).catch(error => {
-      console.error('Email sending error:', error);
+      log.error('email sending error', { error: error instanceof Error ? error.message : String(error) });
     });
     
     // Return success response
@@ -112,9 +143,8 @@ export async function POST(request: NextRequest) {
                         priority === 'medium' ? '1 hour' : '4 hours' }, { status: 200 });
     
   } catch (error) {
-    console.error('Contact form error:', error);
-    
     if (error instanceof z.ZodError) {
+      log.warn('contact validation failed', { issues: error.errors.length });
       return NextResponse.json({
         success: false,
         message: 'Validation error',
@@ -122,7 +152,10 @@ export async function POST(request: NextRequest) {
           field: e.path.join('.'),
           message: e.message })) }, { status: 400 });
     }
-    
+
+    log.error('contact enquiry failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contact/submit' }, extra: { requestId: log.requestId } });
+
     return NextResponse.json({
       success: false,
       message: 'An error occurred processing your request. Please try again.' }, { status: 500 });

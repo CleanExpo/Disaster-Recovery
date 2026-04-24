@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Notification {
   id: string;
@@ -142,7 +143,7 @@ export function useNotifications({
           }),
         });
       } catch (err) {
-        console.error('Push subscription failed:', err);
+        clientLogger.error('Push subscription failed', { source: 'useNotifications' }, err);
       }
     }
 

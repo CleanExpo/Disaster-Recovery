@@ -5,6 +5,7 @@ import chokidar, { type FSWatcher } from 'chokidar';
 import PQueue from 'p-queue';
 import sharp from 'sharp';
 import crypto from 'crypto';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -99,12 +100,12 @@ export class ImageOptimizationService {
    */
   public async start(directories?: string[]): Promise<void> {
     if (this.isRunning) {
-      console.log('🔄 Image optimization service already running');
+      clientLogger.info('🔄 Image optimization service already running', { source: 'lib/imageOptimizationService' });
       return;
     }
     
     this.isRunning = true;
-    console.log('🚀 Starting autonomous image optimization service...');
+    clientLogger.info('🚀 Starting autonomous image optimization service...', { source: 'lib/imageOptimizationService' });
     
     // Default directories to watch
     const watchDirs = directories || [
@@ -123,12 +124,12 @@ export class ImageOptimizationService {
     });
     
     if (existingDirs.length === 0) {
-      console.log('⚠️ No directories to watch');
+      clientLogger.info('⚠️ No directories to watch', { source: 'lib/imageOptimizationService' });
       return;
     }
     
     // Initial optimization of existing images
-    console.log('🔍 Scanning existing images...');
+    clientLogger.info('🔍 Scanning existing images...', { source: 'lib/imageOptimizationService' });
     for (const dir of existingDirs) {
       await this.optimizeDirectory(dir);
     }
@@ -146,10 +147,10 @@ export class ImageOptimizationService {
     this.watcher
       .on('add', (filePath) => this.handleFileChange(filePath, 'added'))
       .on('change', (filePath) => this.handleFileChange(filePath, 'changed'))
-      .on('error', (error) => console.error('❌ Watcher error:', error));
+      .on('error', (error) => clientLogger.error('❌ Watcher error:', { source: 'lib/imageOptimizationService' }, error));
     
-    console.log('✅ Image optimization service started');
-    console.log(`👁️ Watching directories: ${existingDirs.join(', ')}`);
+    clientLogger.info('✅ Image optimization service started', { source: 'lib/imageOptimizationService' });
+    clientLogger.info(`👁️ Watching directories: ${existingDirs.join(', ')}`, { source: 'lib/imageOptimizationService' });
   }
   
   /**
@@ -163,7 +164,7 @@ export class ImageOptimizationService {
     
     await this.queue.onIdle();
     this.isRunning = false;
-    console.log('🛑 Image optimization service stopped');
+    clientLogger.info('🛑 Image optimization service stopped', { source: 'lib/imageOptimizationService' });
   }
   
   /**
@@ -174,14 +175,14 @@ export class ImageOptimizationService {
       return;
     }
     
-    console.log(`📸 Image ${event}: ${path.basename(filePath)}`);
+    clientLogger.info(`📸 Image ${event}: ${path.basename(filePath)}`, { source: 'lib/imageOptimizationService' });
     
     // Add to queue for optimization
     this.queue.add(async () => {
       try {
         await this.optimizeImage(filePath);
       } catch (error) {
-        console.error(`❌ Failed to optimize ${filePath}:`, error);
+        clientLogger.error(`❌ Failed to optimize ${filePath}:`, { source: 'lib/imageOptimizationService' }, error);
       }
     });
   }
@@ -252,7 +253,7 @@ export class ImageOptimizationService {
       
       // Skip if file is too small
       if (fileSizeKB < IMAGE_OPTIMIZATION_CONFIG.minFileSizeKB) {
-        console.log(`⏭️ Skipping ${path.basename(filePath)} (too small: ${fileSizeKB.toFixed(1)}KB)`);
+        clientLogger.info(`⏭️ Skipping ${path.basename(filePath)} (too small: ${fileSizeKB.toFixed(1)}KB)`, { source: 'lib/imageOptimizationService' });
         return;
       }
       
@@ -260,7 +261,7 @@ export class ImageOptimizationService {
       const profileName = this.getOptimizationProfile(filePath);
       const profile = IMAGE_OPTIMIZATION_CONFIG.profiles[profileName];
       
-      console.log(`🔧 Optimizing ${path.basename(filePath)} with profile: ${profileName}`);
+      clientLogger.info(`🔧 Optimizing ${path.basename(filePath)} with profile: ${profileName}`, { source: 'lib/imageOptimizationService' });
       
       // Read original image
       const buffer = await readFile(filePath);
@@ -268,7 +269,7 @@ export class ImageOptimizationService {
       // Calculate hash to check if already optimized
       const hash = crypto.createHash('md5').update(buffer).digest('hex');
       if (this.optimizedCache.has(hash)) {
-        console.log(`✅ Already optimized: ${path.basename(filePath)}`);
+        clientLogger.info(`✅ Already optimized: ${path.basename(filePath)}`, { source: 'lib/imageOptimizationService' });
         return;
       }
       
@@ -336,12 +337,12 @@ export class ImageOptimizationService {
         // Cache the optimization
         this.optimizedCache.set(hash, filePath);
         
-        console.log(`✅ Optimized ${path.basename(filePath)}: ${originalSizeKB.toFixed(1)}KB → ${optimizedSizeKB.toFixed(1)}KB (-${savings}%)`);
+        clientLogger.info(`✅ Optimized ${path.basename(filePath)}: ${originalSizeKB.toFixed(1)}KB → ${optimizedSizeKB.toFixed(1)}KB (-${savings}%)`, { source: 'lib/imageOptimizationService' });
       } else {
-        console.log(`⏭️ Skipping ${path.basename(filePath)} (already optimal)`);
+        clientLogger.info(`⏭️ Skipping ${path.basename(filePath)} (already optimal)`, { source: 'lib/imageOptimizationService' });
       }
     } catch (error) {
-      console.error(`❌ Error optimizing ${filePath}:`, error);
+      clientLogger.error(`❌ Error optimizing ${filePath}:`, { source: 'lib/imageOptimizationService' }, error);
     }
   }
   
@@ -368,7 +369,7 @@ export class ImageOptimizationService {
       // Wait for queue to process
       await this.queue.onIdle();
     } catch (error) {
-      console.error(`❌ Error optimizing directory ${dirPath}:`, error);
+      clientLogger.error(`❌ Error optimizing directory ${dirPath}:`, { source: 'lib/imageOptimizationService' }, error);
     }
   }
   

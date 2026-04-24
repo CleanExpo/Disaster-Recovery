@@ -1,131 +1,229 @@
 /**
- * Plain-TS smoke tests for src/lib/validation/schemas.ts.
- *
- * Run: npx tsx src/lib/validation/__tests__/schemas.test.ts
- *
- * Deliberately not pulling in Vitest / Jest — this file is an assertion
- * script so it can run without adding a test runner to the Day 7-8 PR.
+ * Unit tests for Zod schema registry.
  */
 
+import { describe, it, expect } from 'vitest';
 import {
-  abnSchema,
-  australianPhoneSchema,
-  australianPostcodeSchema,
-  bookingCreateSchema,
+  claimClientSchema,
+  claimPropertySchema,
+  claimDamageSchema,
   claimSubmitSchema,
-  contactSubmitSchema,
-  emailSchema,
+  claimTrackingSchema,
+  proofOfWorkSchema,
+  proofOfWorkEvidenceSchema,
+  propertyTypeSchema,
+  verificationStatusSchema,
 } from '../schemas';
 
-let passed = 0;
-let failed = 0;
-
-function ok(name: string, cond: boolean, detail?: string) {
-  if (cond) {
-    passed += 1;
-    // eslint-disable-next-line no-console
-    console.log(`  ok   ${name}`);
-  } else {
-    failed += 1;
-    // eslint-disable-next-line no-console
-    console.error(`  FAIL ${name}${detail ? ` — ${detail}` : ''}`);
-  }
-}
-
-function assertParses<T>(name: string, schema: { safeParse: (v: unknown) => { success: boolean; error?: unknown } }, value: unknown) {
-  const r = schema.safeParse(value);
-  ok(name, r.success, r.success ? undefined : JSON.stringify(r.error));
-}
-
-function assertRejects<T>(name: string, schema: { safeParse: (v: unknown) => { success: boolean } }, value: unknown) {
-  const r = schema.safeParse(value);
-  ok(name, !r.success, r.success ? 'expected rejection but passed' : undefined);
-}
-
-// eslint-disable-next-line no-console
-console.log('\naustralianPhoneSchema');
-assertParses('mobile with spaces', australianPhoneSchema, '0412 345 678');
-assertParses('mobile with +61', australianPhoneSchema, '+61412345678');
-assertParses('Sydney landline', australianPhoneSchema, '0298765432');
-assertParses('1300 number', australianPhoneSchema, '1300 123 456');
-assertRejects('too short', australianPhoneSchema, '123');
-assertRejects('non-numeric', australianPhoneSchema, 'abc');
-assertRejects('too long', australianPhoneSchema, '1234567890123');
-
-// eslint-disable-next-line no-console
-console.log('\nemailSchema');
-{
-  const r = emailSchema.safeParse('  Phill@Example.COM  ');
-  ok('trims and lowercases', r.success && (r as any).data === 'phill@example.com');
-}
-assertRejects('not an email', emailSchema, 'not-an-email');
-
-// eslint-disable-next-line no-console
-console.log('\nabnSchema');
-assertParses('valid ABN 51 824 753 556', abnSchema, '51824753556');
-assertParses('valid ABN with spaces', abnSchema, '51 824 753 556');
-assertRejects('10 digits', abnSchema, '5182475355');
-assertRejects('invalid checksum', abnSchema, '11111111111');
-
-// eslint-disable-next-line no-console
-console.log('\naustralianPostcodeSchema');
-assertParses('Brisbane 4000', australianPostcodeSchema, '4000');
-assertRejects('letters', australianPostcodeSchema, 'ABCD');
-assertRejects('3 digits', australianPostcodeSchema, '400');
-
-// eslint-disable-next-line no-console
-console.log('\nclaimSubmitSchema');
-assertParses('valid claim', claimSubmitSchema, {
-  fullName: 'Phill McGurk',
-  email: 'phill@example.com',
+const validClient = {
+  fullName: 'Joe Smith',
   phone: '0412345678',
-  propertyAddress: '1 Test St',
+  email: 'joe@example.com',
+};
+
+const validProperty = {
+  address: '42 Smith St',
   suburb: 'Brisbane',
   state: 'QLD',
   postcode: '4000',
-  damageTypes: ['water'],
-  damageDescription: 'Burst pipe in kitchen.',
-  urgencyLevel: 'emergency',
-});
-assertRejects('missing damageTypes', claimSubmitSchema, {
-  fullName: 'Phill McGurk',
-  email: 'phill@example.com',
-  propertyAddress: '1 Test St',
-  damageDescription: 'Burst pipe.',
+};
+
+const validDamage = {
+  types: ['water'],
+  urgencyLevel: 'urgent',
+  description: 'burst pipe',
+};
+
+describe('claimClientSchema', () => {
+  it('accepts a valid client payload', () => {
+    expect(claimClientSchema.safeParse(validClient).success).toBe(true);
+  });
+
+  it('rejects an invalid email', () => {
+    const res = claimClientSchema.safeParse({ ...validClient, email: 'not-an-email' });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects an empty fullName', () => {
+    const res = claimClientSchema.safeParse({ ...validClient, fullName: '' });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects an empty phone', () => {
+    const res = claimClientSchema.safeParse({ ...validClient, phone: '' });
+    expect(res.success).toBe(false);
+  });
 });
 
-// eslint-disable-next-line no-console
-console.log('\ncontactSubmitSchema');
-assertParses('valid contact', contactSubmitSchema, {
-  name: 'Phill McGurk',
-  email: 'phill@example.com',
-  phone: '0412 345 678',
-  message: 'Need urgent help with water damage.',
-  service: 'water',
-  urgency: 'emergency',
+describe('claimPropertySchema', () => {
+  it('accepts a valid property payload', () => {
+    expect(claimPropertySchema.safeParse(validProperty).success).toBe(true);
+  });
+
+  it('rejects missing postcode', () => {
+    const { postcode: _, ...rest } = validProperty;
+    const res = claimPropertySchema.safeParse(rest);
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects empty suburb', () => {
+    const res = claimPropertySchema.safeParse({ ...validProperty, suburb: '' });
+    expect(res.success).toBe(false);
+  });
 });
 
-// eslint-disable-next-line no-console
-console.log('\nbookingCreateSchema');
-assertParses('valid booking', bookingCreateSchema, {
-  serviceType: 'water',
-  urgency: 'urgent',
-  propertyType: 'residential',
-  estimatedDamage: '5000',
-  date: '2026-05-01',
-  time: '09:00',
-  firstName: 'Phill',
-  lastName: 'McGurk',
-  email: 'phill@example.com',
-  phone: '0412345678',
-  preferredContact: 'phone',
-  streetAddress: '1 Test Street',
-  suburb: 'Brisbane',
-  state: 'QLD',
-  postcode: '4000',
-  hasInsurance: true,
+describe('claimDamageSchema', () => {
+  it('accepts a valid damage payload', () => {
+    expect(claimDamageSchema.safeParse(validDamage).success).toBe(true);
+  });
+
+  it('accepts an empty types array', () => {
+    expect(claimDamageSchema.safeParse({ ...validDamage, types: [] }).success).toBe(true);
+  });
+
+  it('rejects when types is not an array', () => {
+    const res = claimDamageSchema.safeParse({ ...validDamage, types: 'water' });
+    expect(res.success).toBe(false);
+  });
 });
 
-// eslint-disable-next-line no-console
-console.log(`\n${passed} passed, ${failed} failed`);
-if (failed > 0) process.exit(1);
+describe('claimSubmitSchema', () => {
+  it('accepts a fully valid claim', () => {
+    const res = claimSubmitSchema.safeParse({
+      client: validClient,
+      property: validProperty,
+      damage: validDamage,
+    });
+    expect(res.success).toBe(true);
+  });
+
+  it('rejects when the client block is missing', () => {
+    const res = claimSubmitSchema.safeParse({
+      property: validProperty,
+      damage: validDamage,
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects when a nested field is invalid (bad email)', () => {
+    const res = claimSubmitSchema.safeParse({
+      client: { ...validClient, email: 'bad' },
+      property: validProperty,
+      damage: validDamage,
+    });
+    expect(res.success).toBe(false);
+  });
+});
+
+describe('claimTrackingSchema', () => {
+  it('accepts a claim with server-assigned tracking fields', () => {
+    const res = claimTrackingSchema.safeParse({
+      client: validClient,
+      property: validProperty,
+      damage: validDamage,
+      id: 'claim-123',
+      status: 'pending',
+      createdAt: '2026-04-24T00:00:00Z',
+      contractor: {
+        companyName: null,
+        contactPerson: null,
+        directPhone: null,
+        assignedAt: null,
+        acceptedAt: null,
+      },
+      workflow: {
+        paymentProcessed: false,
+        contractorAssigned: false,
+        contractorAccepted: false,
+        initialContactMade: false,
+        jobScheduled: false,
+        makeSafeCompleted: false,
+        documentationProvided: false,
+        claimFinalized: false,
+      },
+    });
+    expect(res.success).toBe(true);
+  });
+
+  it('rejects when workflow flags are missing', () => {
+    const res = claimTrackingSchema.safeParse({
+      client: validClient,
+      property: validProperty,
+      damage: validDamage,
+      id: 'claim-123',
+      status: 'pending',
+      createdAt: '2026-04-24T00:00:00Z',
+      contractor: {
+        companyName: null,
+        contactPerson: null,
+        directPhone: null,
+        assignedAt: null,
+        acceptedAt: null,
+      },
+      workflow: { paymentProcessed: false },
+    });
+    expect(res.success).toBe(false);
+  });
+});
+
+describe('propertyTypeSchema / verificationStatusSchema', () => {
+  it('accepts each valid property type', () => {
+    for (const t of ['RESIDENTIAL', 'COMMERCIAL', 'INDUSTRIAL', 'INSTITUTIONAL']) {
+      expect(propertyTypeSchema.safeParse(t).success).toBe(true);
+    }
+  });
+
+  it('rejects an unknown property type', () => {
+    expect(propertyTypeSchema.safeParse('PALACE').success).toBe(false);
+  });
+
+  it('accepts verification statuses', () => {
+    for (const s of ['PENDING', 'VERIFIED', 'REJECTED']) {
+      expect(verificationStatusSchema.safeParse(s).success).toBe(true);
+    }
+  });
+});
+
+describe('proofOfWorkSchema', () => {
+  const validPoW = {
+    workType: 'water_mitigation',
+    projectName: 'Smith residence',
+    clientName: 'Joe',
+    clientContact: 'joe@example.com',
+    projectAddress: '42 Smith St',
+    completionDate: '2026-01-15',
+    projectValue: 12000,
+    projectDescription: 'Extraction + drying',
+    damageType: ['water'],
+    propertyType: 'RESIDENTIAL' as const,
+    emergencyResponse: true,
+    insuranceClaim: true,
+    evidence: [
+      {
+        type: 'BEFORE_PHOTO' as const,
+        url: 'https://example.com/1.jpg',
+        description: 'before',
+        uploadedAt: '2026-01-10',
+      },
+    ],
+  };
+
+  it('accepts a valid proof-of-work payload', () => {
+    expect(proofOfWorkSchema.safeParse(validPoW).success).toBe(true);
+  });
+
+  it('rejects a non-numeric projectValue', () => {
+    const res = proofOfWorkSchema.safeParse({ ...validPoW, projectValue: 'lots' });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects an evidence item with an unknown type', () => {
+    const res = proofOfWorkEvidenceSchema.safeParse({
+      type: 'SELFIE',
+      url: 'x',
+      description: 'x',
+      uploadedAt: 'x',
+    });
+    expect(res.success).toBe(false);
+  });
+});

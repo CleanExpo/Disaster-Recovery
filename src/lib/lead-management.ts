@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface LeadValueFactors {
   score: number;
@@ -169,7 +170,7 @@ export async function assignLeadToPartner(criteria: PartnerSearchCriteria) {
     return null;
     
   } catch (error) {
-    console.error('Error assigning lead to partner:', error);
+    clientLogger.error('Error assigning lead to partner:', { source: 'lib/lead-management' }, error);
     return null;
   }
 }
@@ -305,7 +306,7 @@ export async function trackLeadEvent(
         break;
     }
   } catch (error) {
-    console.error('Error tracking lead event:', error);
+    clientLogger.error('Error tracking lead event:', { source: 'lib/lead-management' }, error);
   }
 }
 

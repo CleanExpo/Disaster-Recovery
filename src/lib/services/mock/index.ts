@@ -29,7 +29,7 @@ export const getService = (serviceName: string) => {
   const isMockMode = !isProductionMode();
   
   if (isMockMode) {
-    console.log(`🎭 Using MOCK ${serviceName} service (Demo Mode)`);
+    clientLogger.info(`🎭 Using MOCK ${serviceName} service (Demo Mode)`, { source: 'mock/index' });
   }
   
   const services: Record<string, any> = {
@@ -77,3 +77,4 @@ export const getDemoModeStatus = () => {
     }
   };
 };
+import { clientLogger } from '@/lib/observability/client-logger';

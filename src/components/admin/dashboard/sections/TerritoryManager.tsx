@@ -23,6 +23,7 @@ import {
   Target,
   Shield
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Territory {
   id: string;
@@ -70,7 +71,7 @@ export function TerritoryManager() {
       const data = await response.json();
       setTerritories(data);
     } catch (error) {
-      console.error('Failed to fetch territories:', error);
+      clientLogger.error('Failed to fetch territories:', { source: 'sections/TerritoryManager' }, error);
     }
   };
 
@@ -80,7 +81,7 @@ export function TerritoryManager() {
       const data = await response.json();
       setConflicts(data);
     } catch (error) {
-      console.error('Failed to check conflicts:', error);
+      clientLogger.error('Failed to check conflicts:', { source: 'sections/TerritoryManager' }, error);
     }
   };
 
@@ -124,7 +125,7 @@ export function TerritoryManager() {
         setResolutionNotes('');
       }
     } catch (error) {
-      console.error('Failed to resolve conflict:', error);
+      clientLogger.error('Failed to resolve conflict:', { source: 'sections/TerritoryManager' }, error);
     }
   };
 
@@ -139,7 +140,7 @@ export function TerritoryManager() {
         checkForConflicts();
       }
     } catch (error) {
-      console.error('Failed to approve overlap:', error);
+      clientLogger.error('Failed to approve overlap:', { source: 'sections/TerritoryManager' }, error);
     }
   };
 

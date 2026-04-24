@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requestLogger } from '@/lib/observability';
 
 interface TimeSlot {
   time: string;
@@ -8,6 +9,7 @@ interface TimeSlot {
 }
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/bookings/availability' });
   const searchParams = request.nextUrl.searchParams;
   const date = searchParams.get('date');
   const urgency = searchParams.get('urgency');
@@ -57,7 +59,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     // If DB query fails, default to empty (all slots available)
-    console.error('Failed to query bookings for availability:', error);
+    log.error('failed to query bookings for availability', { error: error instanceof Error ? error.message : String(error) });
     existingBookings = [];
   }
 

@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { 
-  generateAccessToken, 
-  generateRefreshToken, 
+import {
+  generateAccessToken,
+  generateRefreshToken,
   verifyPassword,
   hashPassword,
   UserRole,
-  getRolePermissions 
+  getRolePermissions
 } from '@/lib/jwt-auth';
+import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
+import { randomUUID } from 'node:crypto';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -39,9 +42,20 @@ const getDemoUsers = () => {
 };
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/auth/login' });
+  const correlationId = randomUUID();
+
+  await logComplianceEvent({
+    eventType: 'auth_login_attempt',
+    correlationId,
+    correlationType: 'system',
+    entityType: 'system',
+    metadata: { request_id: log.requestId },
+  });
+
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validatedData = loginSchema.parse(body);
     
@@ -56,7 +70,8 @@ export async function POST(request: NextRequest) {
       //   where: { email: validatedData.email.toLowerCase() }
       // });
     } catch (error) {
-      console.error('Database user lookup failed:', error);
+      log.error('database user lookup failed', { error: error instanceof Error ? error.message : String(error) });
+      captureException(error, { tags: { route: '/api/auth/login', stage: 'db_lookup' }, extra: { requestId: log.requestId } });
     }
     
     // Fallback to demo users only in development
@@ -65,15 +80,33 @@ export async function POST(request: NextRequest) {
     }
     
     if (!user) {
+      log.warn('login failed: unknown user', { email: validatedData.email });
+      await logComplianceEvent({
+        eventType: 'auth_login_failure',
+        correlationId,
+        correlationType: 'system',
+        entityType: 'system',
+        entityIdentifier: validatedData.email,
+        metadata: { reason: 'unknown_user', request_id: log.requestId },
+      });
       return NextResponse.json({
         success: false,
         message: 'Invalid email or password' }, { status: 401 });
     }
-    
+
     // Verify password
     const isPasswordValid = await verifyPassword(validatedData.password, user.password);
-    
+
     if (!isPasswordValid) {
+      log.warn('login failed: bad password', { userId: user.id });
+      await logComplianceEvent({
+        eventType: 'auth_login_failure',
+        correlationId,
+        correlationType: 'system',
+        entityType: 'system',
+        entityIdentifier: validatedData.email,
+        metadata: { reason: 'bad_password', user_id: user.id, request_id: log.requestId },
+      });
       return NextResponse.json({
         success: false,
         message: 'Invalid email or password' }, { status: 401 });
@@ -93,7 +126,17 @@ export async function POST(request: NextRequest) {
     
     const accessToken = await generateAccessToken(userPayload);
     const refreshToken = await generateRefreshToken(user.id);
-    
+
+    log.info('login successful', { userId: user.id, role: user.role });
+    await logComplianceEvent({
+      eventType: 'auth_login_success',
+      correlationId,
+      correlationType: 'system',
+      entityType: 'system',
+      entityIdentifier: validatedData.email,
+      metadata: { user_id: user.id, role: user.role, request_id: log.requestId },
+    });
+
     // Return success response with tokens
     return NextResponse.json({
       success: true,
@@ -110,8 +153,9 @@ export async function POST(request: NextRequest) {
       permissions }, { status: 200 });
     
   } catch (error) {
-    console.error('Login error:', error);
-    
+    log.error('login error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/auth/login' }, extra: { requestId: log.requestId } });
+
     if (error instanceof z.ZodError) {
       return NextResponse.json({
         success: false,

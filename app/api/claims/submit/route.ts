@@ -6,7 +6,8 @@ import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
 import { dispatchClaimStatusNotification } from '@/lib/notifications';
 import { rateLimit } from '@/lib/rate-limit';
 import { getCallerIdentity } from '@/lib/auth/require-session';
-import { claimSubmitSchema } from '@/lib/validation/schemas';
+import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -155,6 +156,7 @@ async function readFallbackClaim(claimId: string): Promise<TrackClaimPayload | n
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/claims/submit' });
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('x-real-ip') ??
@@ -175,6 +177,14 @@ export async function POST(request: NextRequest) {
     const raw = await request.json();
     const parsed = claimSubmitSchema.safeParse(raw);
     if (!parsed.success) {
+      log.warn('claim intake validation failed', { issues: parsed.error.issues.length });
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: { outcome: 'validation_failed', request_id: log.requestId, issues: parsed.error.issues.length },
+      });
       return NextResponse.json({
         success: false,
         error: 'Invalid request',
@@ -182,6 +192,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
     const body = parsed.data;
+    log.info('claim intake received', { email: body.email, postcode: body.postcode, urgency: body.urgencyLevel });
 
     // Platform fee is server-authoritative — never trust client-supplied amount
     const totalClaimAmount = PLATFORM_FEE;
@@ -205,7 +216,7 @@ export async function POST(request: NextRequest) {
     // ENCRYPTION_SECRET is set in Vercel Production (DR-491). Claims without access instructions
     // do not require encryption and proceed normally regardless.
     if (body.accessInstructions && !isConfigured() && process.env.NODE_ENV !== 'development') {
-      console.error('[security] DR-390: ENCRYPTION_SECRET is not configured. Cannot store access instructions without encryption in production.');
+      log.error('ENCRYPTION_SECRET is not configured; cannot store access instructions', { ref: 'DR-390' });
       return NextResponse.json({
         success: false,
         error: 'Server configuration error',
@@ -241,6 +252,20 @@ export async function POST(request: NextRequest) {
       });
       trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, paymentConfirmed);
 
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: claim.id,
+        correlationType: 'claim',
+        entityType: 'customer',
+        entityIdentifier: body.email,
+        metadata: {
+          damage_types: body.damageTypes,
+          urgency: body.urgencyLevel,
+          payment_confirmed: paymentConfirmed,
+          request_id: log.requestId,
+        },
+      });
+
       // DR-389: Dispatch initial SUBMITTED notification (non-blocking)
       void dispatchClaimStatusNotification({
         claimId: claim.id,
@@ -253,9 +278,20 @@ export async function POST(request: NextRequest) {
         await writeFallbackClaim(trackClaim);
       } catch (fsError) {
         // Vercel serverless filesystem is read-only — log but don't propagate
-        console.error('Fallback file write failed (read-only serverless filesystem):', fsError);
+        log.error('fallback file write failed', { error: fsError instanceof Error ? fsError.message : String(fsError) });
       }
-      console.error('Claim DB write failed, continuing with in-memory fallback ID:', dbError);
+      log.error('claim DB write failed; continuing with fallback id', {
+        fallbackId,
+        error: dbError instanceof Error ? dbError.message : String(dbError),
+      });
+      captureException(dbError, { tags: { route: '/api/claims/submit', stage: 'db_write' }, extra: { requestId: log.requestId, fallbackId } });
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: { outcome: 'db_write_failed', request_id: log.requestId, fallback_id: fallbackId },
+      });
     }
 
     // Send Claim Support Pack email (non-blocking — failures don't block the claim)
@@ -276,7 +312,7 @@ export async function POST(request: NextRequest) {
       await sendEmail(body.email, supportPackEmail);
     } catch (emailError) {
       // Log but don't fail the claim — email is supplementary
-      console.error('Claim Support Pack email failed (non-critical):', emailError);
+      log.error('claim support pack email failed (non-critical)', { error: emailError instanceof Error ? emailError.message : String(emailError) });
     }
 
     return NextResponse.json({
@@ -302,7 +338,8 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
 
   } catch (error) {
-    console.error('Error processing claim:', error);
+    log.error('claim intake failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/claims/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       error: 'Failed to process claim',
@@ -319,6 +356,7 @@ export async function POST(request: NextRequest) {
 // The JWT is validated server-side — callers cannot forge their role by
 // setting request headers.
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/claims/submit' });
   const { searchParams } = new URL(request.url);
   const claimId = searchParams.get('id');
 
@@ -362,7 +400,7 @@ export async function GET(request: NextRequest) {
       } catch (decryptErr) {
         // Log but do not expose — return null so the caller knows the field exists
         // but the value cannot be delivered (e.g. key rotation in progress).
-        console.error(`[security] DR-390: Failed to decrypt accessInstructions for claim ${claimId} (caller: ${callerId}):`, decryptErr);
+        log.error('failed to decrypt accessInstructions', { ref: 'DR-390', claimId, callerId, error: decryptErr instanceof Error ? decryptErr.message : String(decryptErr) });
       }
     }
 
@@ -377,7 +415,8 @@ export async function GET(request: NextRequest) {
       }),
     });
   } catch (error) {
-    console.error('Error fetching claim:', error);
+    log.error('error fetching claim', { error: error instanceof Error ? error.message : String(error), claimId });
+    captureException(error, { tags: { route: '/api/claims/submit' }, extra: { requestId: log.requestId } });
     const fallback = await readFallbackClaim(claimId);
     if (fallback) {
       return NextResponse.json({

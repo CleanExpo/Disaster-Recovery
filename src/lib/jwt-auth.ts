@@ -1,6 +1,7 @@
 import { SignJWT, jwtVerify } from 'jose';
 import { NextRequest } from 'next/server';
 import bcrypt from 'bcryptjs';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Secret key for JWT signing (in production, use environment variable)
 const getJwtSecretKey = () => {
@@ -125,7 +126,7 @@ export async function verifyAuth(request: NextRequest): Promise<TokenPayload | n
     const payload = await verifyToken(token);
     return payload;
   } catch (error) {
-    console.error('Auth verification error:', error);
+    clientLogger.error('Auth verification error:', { source: 'lib/jwt-auth' }, error);
     return null;
   }
 }

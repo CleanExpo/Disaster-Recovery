@@ -16,7 +16,7 @@ export function ComprehensiveSEO({ location = 'Australia', service, pageType = '
   const enhancedSchema = {
     ...schemas,
     "@graph": [
-      ...(schemas["@graph"] || []),
+      ...((schemas as Record<string, any>)["@graph"] || []),
       {
         "@type": "OnDemandService",
         "name": "Disaster Recovery Australia - UBER Model",

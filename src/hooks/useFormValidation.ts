@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { z, ZodError, ZodSchema } from 'zod';
 import { CustomValidators } from '@/lib/validation';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ValidationError {
   field: string;
@@ -125,7 +126,7 @@ export function useFormValidation<T extends Record<string, any>>(
       try {
         await onSubmit(values);
       } catch (error) {
-        console.error('Form submission error:', error);
+        clientLogger.error('Form submission error', { source: 'useFormValidation' }, error);
       }
     }
     

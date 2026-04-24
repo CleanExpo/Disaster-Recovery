@@ -25,6 +25,7 @@ import {
   Camera,
   Lock
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ProfileOverviewProps {
   profile: any;
@@ -51,7 +52,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
       if (onUpdate) onUpdate(editedData);
       setIsEditing(false);
     } catch (error) {
-      console.error('Failed to save profile:', error);
+      clientLogger.error('Failed to save profile:', { source: 'sections/ProfileOverview' }, error);
     }
   };
 
@@ -76,7 +77,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
       const { logoUrl } = await response.json();
       setEditedData({ ...editedData, companyLogo: logoUrl });
     } catch (error) {
-      console.error('Failed to upload logo:', error);
+      clientLogger.error('Failed to upload logo:', { source: 'sections/ProfileOverview' }, error);
     } finally {
       setUploadingLogo(false);
     }
@@ -86,7 +87,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
     if (!twoFactorEnabled) {
       // Show 2FA setup modal
       setShow2FASetup(true);
-      console.log('Setting up 2FA...');
+      clientLogger.info('Setting up 2FA...', { source: 'sections/ProfileOverview' });
     } else {
       // Disable 2FA with confirmation
       if (confirm('Are you sure you want to disable two-factor authentication?')) {

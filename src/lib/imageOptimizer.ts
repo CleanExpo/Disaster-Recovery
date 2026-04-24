@@ -28,7 +28,7 @@ export class ImageOptimizer {
   ): Promise<Buffer> {
     // For now, return the original buffer
     // In production, use a cloud service like Cloudinary or client-side optimization
-    console.log('Image optimization skipped (Sharp removed for Vercel compatibility)');
+    clientLogger.info('Image optimization skipped (Sharp removed for Vercel compatibility)', { source: 'lib/imageOptimizer' });
     return buffer;
   }
 
@@ -62,7 +62,7 @@ export class ImageOptimizer {
         optimizedSize: stats.size, // Same size since no optimization
       };
     } catch (error) {
-      console.error('Error processing image:', error);
+      clientLogger.error('Error processing image:', { source: 'lib/imageOptimizer' }, error);
       throw error;
     }
   }
@@ -133,7 +133,7 @@ export class ImageOptimizer {
         }
       }
     } catch (error) {
-      console.error('Batch optimization error:', error);
+      clientLogger.error('Batch optimization error:', { source: 'lib/imageOptimizer' }, error);
     }
     
     return results;
@@ -176,3 +176,4 @@ export class ImageOptimizer {
 // 4. CDN-based image transformation services
 
 export default ImageOptimizer;
+import { clientLogger } from '@/lib/observability/client-logger';

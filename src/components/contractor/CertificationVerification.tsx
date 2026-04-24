@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Upload, Shield, CheckCircle, AlertTriangle, Clock, X, ExternalLink, Calendar, FileText, Award } from 'lucide-react';
 import DocumentUpload from './DocumentUpload';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Certification {
   id: string;
@@ -132,7 +133,7 @@ export default function CertificationVerification({
         setCertifications(data.certifications || []);
       }
     } catch (error) {
-      console.error('Error loading certifications:', error);
+      clientLogger.error('Error loading certifications:', { source: 'contractor/CertificationVerification' }, error);
     }
   };
 
@@ -162,7 +163,7 @@ export default function CertificationVerification({
         alert(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      console.error('Error adding certification:', error);
+      clientLogger.error('Error adding certification:', { source: 'contractor/CertificationVerification' }, error);
       alert('Failed to add certification');
     } finally {
       setLoading(false);
@@ -189,7 +190,7 @@ export default function CertificationVerification({
         alert(`Verification error: ${errorData.error}`);
       }
     } catch (error) {
-      console.error('Error verifying certification:', error);
+      clientLogger.error('Error verifying certification:', { source: 'contractor/CertificationVerification' }, error);
       alert('Failed to verify certification');
     } finally {
       setVerifying(null);
@@ -209,7 +210,7 @@ export default function CertificationVerification({
         alert('Failed to remove certification');
       }
     } catch (error) {
-      console.error('Error removing certification:', error);
+      clientLogger.error('Error removing certification:', { source: 'contractor/CertificationVerification' }, error);
       alert('Failed to remove certification');
     }
   };
@@ -251,7 +252,7 @@ export default function CertificationVerification({
         alert(`Submission error: ${errorData.error}`);
       }
     } catch (error) {
-      console.error('Error submitting certifications:', error);
+      clientLogger.error('Error submitting certifications:', { source: 'contractor/CertificationVerification' }, error);
       alert('Failed to submit certifications');
     } finally {
       setLoading(false);

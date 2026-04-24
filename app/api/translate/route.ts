@@ -19,6 +19,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { SUPPORTED_LANGUAGES } from '@/lib/supported-languages';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const translateSchema = z.object({
   texts: z.array(z.string().max(2000)).min(1).max(50),
@@ -91,6 +92,7 @@ function buildPrompt(texts: string[], targetLanguage: string): string {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/translate' });
   try {
     const body = await request.json();
     const { texts, targetLanguage } = translateSchema.parse(body);
@@ -145,7 +147,7 @@ export async function POST(request: NextRequest) {
       }
     } catch {
       // Fallback: return originals if parsing fails
-      console.error('[translate] Failed to parse model response:', raw);
+      log.error('failed to parse model response', { raw });
       translations = texts;
     }
 
@@ -157,7 +159,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    console.error('[translate] Error:', error);
+    log.error('translate error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/translate' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Translation service unavailable' },
       { status: 503 }

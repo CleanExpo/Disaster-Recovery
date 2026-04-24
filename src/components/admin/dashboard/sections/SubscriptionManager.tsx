@@ -36,6 +36,7 @@ import {
   Play,
   Pause
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Subscription {
   id: string;
@@ -109,7 +110,7 @@ export function SubscriptionManager() {
       const data = await response.json();
       setSubscriptions(data);
     } catch (error) {
-      console.error('Failed to fetch subscriptions:', error);
+      clientLogger.error('Failed to fetch subscriptions:', { source: 'sections/SubscriptionManager' }, error);
     } finally {
       setLoading(false);
     }
@@ -121,7 +122,7 @@ export function SubscriptionManager() {
       const data = await response.json();
       setPayments(data);
     } catch (error) {
-      console.error('Failed to fetch payments:', error);
+      clientLogger.error('Failed to fetch payments:', { source: 'sections/SubscriptionManager' }, error);
     }
   };
 
@@ -166,7 +167,7 @@ export function SubscriptionManager() {
         fetchSubscriptions();
       }
     } catch (error) {
-      console.error('Failed to update subscription status:', error);
+      clientLogger.error('Failed to update subscription status:', { source: 'sections/SubscriptionManager' }, error);
     }
   };
 
@@ -191,7 +192,7 @@ export function SubscriptionManager() {
         setRefundReason('');
       }
     } catch (error) {
-      console.error('Failed to process refund:', error);
+      clientLogger.error('Failed to process refund:', { source: 'sections/SubscriptionManager' }, error);
     }
   };
 

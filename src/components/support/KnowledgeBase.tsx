@@ -28,6 +28,7 @@ import {
   Home, MessageSquare, Mail} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { KnowledgeArticle, ArticleCategory, SearchResult } from '@/types/support';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Mock categories
 const mockCategories: ArticleCategory[] = [
@@ -219,7 +220,7 @@ export function KnowledgeBase() {
 
   const handleArticleFeedback = (articleId: string, helpful: boolean) => {
     // In production, this would update the backend
-    console.log(`Article ${articleId} marked as ${helpful ? 'helpful' : 'not helpful'}`);
+    clientLogger.info(`Article ${articleId} marked as ${helpful ? 'helpful' : 'not helpful'}`, { source: 'support/KnowledgeBase' });
   };
 
   const getCategoryIcon = (iconName: string) => {

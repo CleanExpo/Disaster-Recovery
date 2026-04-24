@@ -32,6 +32,7 @@ export interface SMSDeliveryStatus {
   deliveredAt?: Date;
   errorMessage?: string;
 }
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Rate limiting configuration
 const RATE_LIMITS = {
@@ -83,7 +84,7 @@ class SMSService {
       // Send immediately
       return await this.sendImmediate(processedMessage);
     } catch (error) {
-      console.error('SMS sending error:', error);
+      clientLogger.error('SMS sending error:', { source: 'notifications/sms-service' }, error);
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error'
@@ -95,10 +96,10 @@ class SMSService {
   private async sendImmediate(message: SMSMessage): Promise<SMSDeliveryResult> {
     if (!this.provider) {
       // Mock implementation for development
-      console.log('SMS Mock Send:', {
+      clientLogger.info('SMS Mock Send:', { source: 'notifications/sms-service', data: {
         to: message.to,
         message: message.message.substring(0, 50) + '...'
-      });
+      } });
       
       return {
         success: true,

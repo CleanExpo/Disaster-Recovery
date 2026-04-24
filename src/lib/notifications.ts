@@ -20,6 +20,7 @@ export interface ClaimStatusChangePayload {
   /** Optional human-readable override for the notification body */
   message?: string;
 }
+import { clientLogger } from '@/lib/observability/client-logger';
 
 /** Maps internal status codes to user-facing copy. */
 const STATUS_COPY: Record<string, { title: string; message: string }> = {
@@ -104,6 +105,6 @@ export async function dispatchClaimStatusNotification(
     });
   } catch (err) {
     // Non-fatal — a notification failure must never block a claim status update.
-    console.error('[DR-389] Failed to write ClaimNotification:', err);
+    clientLogger.error('[DR-389] Failed to write ClaimNotification:', { source: 'lib/notifications' }, err);
   }
 }

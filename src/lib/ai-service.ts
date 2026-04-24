@@ -31,7 +31,7 @@ class AIServiceError extends Error {
 export class AIService implements IAIService {
   private config: AIServiceConfig;
   private cache: Map<string, AICacheEntry> = new Map();
-  private metrics: AIMetrics;
+  private metrics!: AIMetrics; // Initialized via initializeMetrics() in constructor
   private circuitBreakers: Map<AIProvider, {
     failures: number;
     lastFailure: Date;

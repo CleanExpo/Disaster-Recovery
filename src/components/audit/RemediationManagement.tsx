@@ -17,6 +17,7 @@ import type {
   Priority,
   FindingSeverity
 } from '@/types/audit-compliance';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface RemediationManagementProps {
   auditId?: string;
@@ -146,7 +147,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
 
       setRemediationPlans(mockPlans);
     } catch (error) {
-      console.error('Error loading remediation plans:', error);
+      clientLogger.error('Error loading remediation plans:', { source: 'audit/RemediationManagement' }, error);
     } finally {
       setLoading(false);
     }
@@ -173,7 +174,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           : plan
       ));
     } catch (error) {
-      console.error('Error creating task:', error);
+      clientLogger.error('Error creating task:', { source: 'audit/RemediationManagement' }, error);
     }
   };
 
@@ -196,7 +197,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           : plan
       ));
     } catch (error) {
-      console.error('Error updating task status:', error);
+      clientLogger.error('Error updating task status:', { source: 'audit/RemediationManagement' }, error);
     }
   };
 
@@ -224,7 +225,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           : plan
       ));
     } catch (error) {
-      console.error('Error adding comment:', error);
+      clientLogger.error('Error adding comment:', { source: 'audit/RemediationManagement' }, error);
     }
   };
 
