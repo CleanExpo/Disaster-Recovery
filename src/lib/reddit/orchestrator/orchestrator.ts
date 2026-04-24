@@ -15,6 +15,7 @@ import { postToReddit } from './poster';
 import { checkRecentPostPerformance } from './performance-tracker';
 import type { OrchestratorOptions, OrchestratorRunResult, VisualAsset } from './types';
 import type { PostCategory } from '../reddit-types';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -63,7 +64,7 @@ export async function runDailyOrchestrator(
       feedback = perfResult.feedback;
     } catch {
       // Performance tracking is non-critical
-      console.warn('[orchestrator] Performance tracking failed, continuing without feedback');
+      clientLogger.warn('[orchestrator] Performance tracking failed, continuing without feedback', { source: 'orchestrator/orchestrator' });
     }
 
     // 4. Create post record
@@ -116,7 +117,7 @@ export async function runDailyOrchestrator(
         },
       });
     } catch (err) {
-      console.warn('[orchestrator] Visual generation failed:', err);
+      clientLogger.warn('[orchestrator] Visual generation failed:', { source: 'orchestrator/orchestrator', data: err });
     }
 
     // 7. Run safety pipeline

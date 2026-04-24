@@ -34,6 +34,7 @@ import {
   FileX,
   Loader2
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Document {
   id: string;
@@ -88,7 +89,7 @@ export function DocumentVerification() {
       const data = await response.json();
       setDocuments(data);
     } catch (error) {
-      console.error('Failed to fetch documents:', error);
+      clientLogger.error('Failed to fetch documents:', { source: 'sections/DocumentVerification' }, error);
     } finally {
       setLoading(false);
     }
@@ -142,7 +143,7 @@ export function DocumentVerification() {
         setVerificationAction(null);
       }
     } catch (error) {
-      console.error('Failed to verify document:', error);
+      clientLogger.error('Failed to verify document:', { source: 'sections/DocumentVerification' }, error);
     }
   };
 
@@ -155,7 +156,7 @@ export function DocumentVerification() {
       const data = await response.json();
       setAiSuggestions(data);
     } catch (error) {
-      console.error('Failed to run AI analysis:', error);
+      clientLogger.error('Failed to run AI analysis:', { source: 'sections/DocumentVerification' }, error);
     } finally {
       setLoading(false);
     }

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { sendEmail } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
 import { env } from '@/lib/env';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const deleteAccountSchema = z.object({
   full_name: z.string().min(2, 'Full name is required'),
@@ -16,6 +17,7 @@ const deleteAccountSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/restoreassist/delete-account' });
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('x-real-ip') ??
@@ -107,7 +109,8 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Internal server error';
-    console.error('[restoreassist/delete-account] Error:', message);
+    log.error('delete-account error', { error: message });
+    captureException(err, { tags: { route: '/api/restoreassist/delete-account' }, extra: { requestId: log.requestId } });
     return NextResponse.json({ success: false, message: 'Failed to submit request. Please try again.' }, { status: 500 });
   }
 }

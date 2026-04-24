@@ -13,6 +13,7 @@ import type {
   MarketingOpportunity,
   TerritoryPerformance 
 } from '@/types/marketing-analytics';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ContractorReportingDashboardProps {
   contractorId: string;
@@ -173,7 +174,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
 
       setReportingData(mockData);
     } catch (error) {
-      console.error('Error loading reporting data:', error);
+      clientLogger.error('Error loading reporting data:', { source: 'marketing/ContractorReportingDashboard' }, error);
     } finally {
       setLoading(false);
     }
@@ -214,7 +215,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-700">Total Leads Generated</p>
-            <p className="text-3xl font-bold text-gray-900">{reportingData?.summary.totalLeads}</p>
+            <p className="text-3xl font-bold text-gray-900">{reportingData?.summary?.totalLeads}</p>
             <p className="text-sm text-green-600 mt-2">
               <TrendingUp className="w-4 h-4 inline mr-1" />
               +12% vs last period
@@ -231,7 +232,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
           <div>
             <p className="text-sm text-gray-700">Total Revenue</p>
             <p className="text-3xl font-bold text-gray-900">
-              {formatCurrency(reportingData?.summary.totalRevenue || 0)}
+              {formatCurrency(reportingData?.summary?.totalRevenue || 0)}
             </p>
             <p className="text-sm text-green-600 mt-2">
               <TrendingUp className="w-4 h-4 inline mr-1" />
@@ -249,7 +250,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
           <div>
             <p className="text-sm text-gray-700">Marketing ROI</p>
             <p className="text-3xl font-bold text-gray-900">
-              {formatPercentage(reportingData?.summary.roi || 0)}
+              {formatPercentage(reportingData?.summary?.roi || 0)}
             </p>
             <p className="text-sm text-green-600 mt-2">
               <TrendingUp className="w-4 h-4 inline mr-1" />
@@ -266,7 +267,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-700">Territory Rank</p>
-            <p className="text-3xl font-bold text-gray-900">#{reportingData?.summary.territoryRank}</p>
+            <p className="text-3xl font-bold text-gray-900">#{reportingData?.summary?.territoryRank}</p>
             <p className="text-sm text-green-600 mt-2">
               <Star className="w-4 h-4 inline mr-1" />
               Top 25% performer
@@ -388,7 +389,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <div>
           <h4 className="font-medium text-gray-900 mb-4">Market Position</h4>
           <div className="space-y-3">
-            {reportingData?.territoryInsights.competitorAnalysis.map((competitor, index) => (
+            {reportingData?.territoryInsights?.competitorAnalysis?.map((competitor: any, index: number) => (
               <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center space-x-3">
                   <span className="font-medium text-gray-900">#{index + 1}</span>
@@ -410,15 +411,15 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
           <div className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <span className="text-gray-700">Your Territory:</span>
-              <span className="font-medium text-gray-900">{reportingData?.territoryInsights.yourTerritory}</span>
+              <span className="font-medium text-gray-900">{reportingData?.territoryInsights?.yourTerritory}</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
               <span className="text-gray-700">Current Rank:</span>
-              <span className="font-medium text-gray-900">#{reportingData?.territoryInsights.rank} of {reportingData?.territoryInsights.totalContractors}</span>
+              <span className="font-medium text-gray-900">#{reportingData?.territoryInsights?.rank} of {reportingData?.territoryInsights?.totalContractors}</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
               <span className="text-gray-700">Market Share:</span>
-              <span className="font-medium text-gray-900">{formatPercentage(reportingData?.territoryInsights.marketShare || 0)}</span>
+              <span className="font-medium text-gray-900">{formatPercentage(reportingData?.territoryInsights?.marketShare || 0)}</span>
             </div>
           </div>
         </div>
@@ -434,7 +435,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       </div>
       
       <div className="space-y-6">
-        {reportingData?.marketingOpportunities.map((opportunity) => (
+        {reportingData?.marketingOpportunities?.map((opportunity) => (
           <div key={opportunity.id} className="border border-gray-200 rounded-lg p-6">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
@@ -457,22 +458,22 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div className="text-center p-3 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-700">Estimated Cost</p>
-                <p className="text-lg font-semibold text-gray-900">{formatCurrency(opportunity.estimatedCost)}</p>
+                <p className="text-lg font-semibold text-gray-900">{formatCurrency(opportunity.estimatedCost ?? 0)}</p>
               </div>
               <div className="text-center p-3 bg-green-50 rounded-lg">
                 <p className="text-sm text-gray-700">Potential Revenue</p>
-                <p className="text-lg font-semibold text-green-600">{formatCurrency(opportunity.potentialRevenue)}</p>
+                <p className="text-lg font-semibold text-green-600">{formatCurrency(opportunity.potentialRevenue ?? 0)}</p>
               </div>
               <div className="text-center p-3 bg-purple-50 rounded-lg">
                 <p className="text-sm text-gray-700">Estimated ROI</p>
-                <p className="text-lg font-semibold text-purple-600">{formatPercentage(opportunity.estimatedROI)}</p>
+                <p className="text-lg font-semibold text-purple-600">{formatPercentage(opportunity.estimatedROI ?? 0)}</p>
               </div>
             </div>
 
             <div className="mb-4">
               <h5 className="font-medium text-gray-900 mb-2">Benefits:</h5>
               <ul className="space-y-1">
-                {opportunity.benefits.map((benefit, index) => (
+                {opportunity.benefits?.map((benefit, index) => (
                   <li key={index} className="text-sm text-gray-700 flex items-center">
                     <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
                     {benefit}
@@ -485,7 +486,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               <div className="flex items-center space-x-4 text-sm text-gray-700">
                 <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-1" />
-                  Deadline: {new Date(opportunity.deadline).toLocaleDateString()}
+                  Deadline: {opportunity.deadline ? new Date(opportunity.deadline).toLocaleDateString() : 'TBD'}
                 </div>
               </div>
               <div className="flex space-x-2">

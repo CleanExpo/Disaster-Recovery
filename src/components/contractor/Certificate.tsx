@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { Award, Download, Calendar, Shield, Star } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface CertificateProps {
   courseName: string;
@@ -50,7 +51,7 @@ export default function Certificate({
       pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       pdf.save(`NRP_Certificate_${certificateId}.pdf`);
     } catch (error) {
-      console.error('Error generating certificate:', error);
+      clientLogger.error('Error generating certificate:', { source: 'contractor/Certificate' }, error);
     }
   };
 

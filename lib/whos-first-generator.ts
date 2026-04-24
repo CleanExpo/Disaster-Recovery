@@ -109,7 +109,7 @@ export class WhosFirstGenerator {
   }
 
   private static generateQuestion(damageType: string, variation: string, timeFactor: string, propertyType: string): string {
-    const timeContext = {
+    const timeContext: Record<string, string> = {
       'immediate': 'happening right now',
       'within-hours': 'just happened',
       'next-day': 'discovered this morning',
@@ -125,7 +125,7 @@ export class WhosFirstGenerator {
   }
 
   private static generateSituation(damageType: string, variation: string, timeFactor: string, propertyType: string): string {
-    const situations = {
+    const situations: Record<string, Record<string, string>> = {
       'water-damage': {
         'burst-pipe': `A pipe has burst in your ${propertyType} property, causing water to flood multiple rooms. The water is spreading quickly and you're not sure whether to turn off the mains, call a plumber, or contact insurance first.`,
         'flooding': `Your ${propertyType} is experiencing significant flooding. Water levels are rising and you need immediate help but don't know who handles what - emergency services, insurance, or restoration.`,
@@ -154,7 +154,7 @@ export class WhosFirstGenerator {
       'We work 24/7 because disasters don\'t wait for business hours',
     ];
 
-    const specificReasons = {
+    const specificReasons: Record<string, string[]> = {
       'water-damage': [
         'We stop water spread while preserving insurance evidence',
         'We prevent mould growth with immediate moisture control',
@@ -181,7 +181,7 @@ export class WhosFirstGenerator {
   }
 
   private static generateWrongFirstCalls(damageType: string): { who: string; consequence: string }[] {
-    const commonMistakes = {
+    const commonMistakes: Record<string, Array<{ who: string; consequence: string }>> = {
       'water-damage': [
         { who: 'Plumber', consequence: 'Fixes pipe but misses drying requirements, mould risk increases, insurance documentation incomplete' },
         { who: 'Insurance Company', consequence: 'Delays mitigation while claim processes, damage worsens, higher restoration costs' },
@@ -249,7 +249,7 @@ export class WhosFirstGenerator {
   }
 
   private static generateHealthSafety(damageType: string, variation: string): string[] {
-    const hazards = {
+    const hazards: Record<string, string[]> = {
       'water-damage': [
         'Electrical hazards from water contact',
         'Slip and fall risks',
@@ -286,7 +286,7 @@ export class WhosFirstGenerator {
   private static generateCostImpact(damageType: string, propertyType: string): { withUs: string; withoutUs: string; savings: string } {
     const residential = propertyType === 'residential' || propertyType === 'home' || propertyType === 'house';
     
-    const impacts = {
+    const impacts: Record<string, { withUs: string; withoutUs: string; savings: string }> = {
       'water-damage': {
         withUs: residential ? '$3,000-$8,000' : '$10,000-$50,000',
         withoutUs: residential ? '$8,000-$25,000' : '$50,000-$200,000',
@@ -336,7 +336,7 @@ export class WhosFirstGenerator {
       },
     ];
 
-    const specificFAQs = {
+    const specificFAQs: Record<string, Array<{ question: string; answer: string }>> = {
       'water-damage': [
         {
           question: 'Should I turn off the water mains?',

@@ -150,7 +150,7 @@ export async function analyzePageForImages(pagePath: string): Promise<{
   const existingImages = findExistingImages(content);
   
   // Determine required images based on type
-  const requiredImages = PAGE_IMAGE_REQUIREMENTS[pageType] || {};
+  const requiredImages = (PAGE_IMAGE_REQUIREMENTS as Record<string, Record<string, any>>)[pageType] || {};
   
   // Calculate missing images
   const missingImages = [];
@@ -198,7 +198,7 @@ export function generateOptimal3DPrompt(
   
   // Service-specific elements
   if (service) {
-    const servicePrompts = {
+    const servicePrompts: Record<string, string> = {
       'water-damage': 'powerful water extraction equipment in action, industrial dehumidifiers with visible air flow, moisture meters showing readings, ',
       'fire-damage': 'smoke damage restoration with HEPA filtration systems, soot removal equipment, thermal foggers creating visible cleaning mist, ',
       'mould-remediation': 'HEPA air scrubbers with visible filtration, containment barriers with negative pressure, technicians in full PPE suits, ',
@@ -216,7 +216,7 @@ export function generateOptimal3DPrompt(
   
   // Location-specific elements
   if (location) {
-    const locationContext = {
+    const locationContext: Record<string, string> = {
       'sydney': 'Sydney Harbor Bridge or Opera House subtly visible in background, ',
       'melbourne': 'Melbourne city skyline with Eureka Tower, Victorian architecture elements, ',
       'brisbane': 'Brisbane River and Story Bridge context, subtropical Queensland setting, ',

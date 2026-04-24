@@ -157,7 +157,7 @@ function SchedulePageOriginal() {
       // Saturday - limited slots
       setAvailableSlots(timeSlots.map((slot, idx) => ({
         ...slot,
-        available: idx < 6 || slot.emergency
+        available: idx < 6 || Boolean(slot.emergency)
       })));
     } else {
       setAvailableSlots(timeSlots);

@@ -72,7 +72,7 @@ export function generateTitle(
   businessType?: string
 ): string {
   const locationName = location.suburb || location.city;
-  const serviceVariations = {
+  const serviceVariations: Record<string, string[]> = {
     'water-damage-restoration': ['Water Damage Restoration', 'Flood Restoration', 'Water Extraction'],
     'flood-damage-restoration': ['Flood Damage Restoration', 'Flood Recovery', 'Flood Cleanup'],
     'mould-remediation': ['Mould Remediation', 'Mould Removal', 'Mould Treatment'],
@@ -193,7 +193,7 @@ export function generateContent(
 }
 
 function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: typeof PROPERTY_TYPES[0], locationName: string): string {
-  const serviceDescriptions = {
+  const serviceDescriptions: Record<string, string> = {
     'water-damage-restoration': `
       <p>Water damage requires immediate professional attention to prevent secondary damage such as mould growth and structural deterioration. Our comprehensive water damage restoration services include:</p>
       <ul>
@@ -295,7 +295,7 @@ function generateWhyChooseUsContent(service: typeof SERVICE_TYPES[0], propertyTy
 }
 
 function generateProcessContent(service: typeof SERVICE_TYPES[0]): string {
-  const processes = {
+  const processes: Record<string, string[]> = {
     'water-damage-restoration': [
       'Emergency Response & Assessment',
       'Water Extraction & Removal',
@@ -340,7 +340,7 @@ function generateProcessContent(service: typeof SERVICE_TYPES[0]): string {
   ];
 
   let processHtml = '<div class="grid md:grid-cols-2 gap-4 my-6">';
-  steps.forEach((step, index) => {
+  steps.forEach((step: string, index: number) => {
     processHtml += `
       <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
         <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
@@ -376,7 +376,7 @@ function generateEmergencyContent(locationName: string, service: typeof SERVICE_
 }
 
 function getClimateDescription(state: string): string {
-  const climates = {
+  const climates: Record<string, string> = {
     'NSW': 'a temperate climate with varying seasonal conditions',
     'VIC': 'a temperate oceanic climate with distinct seasons',
     'QLD': 'a subtropical climate with high humidity and storm activity',

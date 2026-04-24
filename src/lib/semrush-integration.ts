@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 // SEMrush API Integration for keyword research and competitive analysis
 
 interface SEMrushConfig {
@@ -133,7 +134,7 @@ export const semrushEndpoints = {
 // Fetch keyword data from SEMrush
 export async function fetchKeywordData(keyword: string) {
   if (!SEMRUSH_API_KEY) {
-    console.warn('SEMrush API key not configured');
+    clientLogger.warn('SEMrush API key not configured', { source: 'lib/semrush-integration' });
     return null;
   }
 
@@ -152,7 +153,7 @@ export async function fetchKeywordData(keyword: string) {
     const data = await response.text();
     return parseCSVResponse(data);
   } catch (error) {
-    console.error('Error fetching SEMrush data:', error);
+    clientLogger.error('Error fetching SEMrush data:', { source: 'lib/semrush-integration' }, error);
     return null;
   }
 }
@@ -188,7 +189,7 @@ export async function getCompetitorAnalysis(domain: string) {
     const data = await response.text();
     return parseCSVResponse(data);
   } catch (error) {
-    console.error('Error fetching competitor data:', error);
+    clientLogger.error('Error fetching competitor data:', { source: 'lib/semrush-integration' }, error);
     return null;
   }
 }

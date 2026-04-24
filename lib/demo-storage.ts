@@ -1,13 +1,14 @@
 // Demo storage using localStorage for persistence
 // In production, this would use a real database
 
-// TODO (Foundation Sprint follow-up): this interface duplicates claim-shape
-// information that now has a canonical source at src/lib/validation/schemas.ts
-// (see claimSubmitSchema + ClaimSubmitInput). Candidate for unification in a
-// dedicated dedup PR — out of scope for the Day 7-8 primitive-registry change.
-interface ClaimData {
-  [key: string]: any;
-}
+import type { ClaimTracking } from '@/lib/validation/schemas';
+
+// Loose shape for demo storage: tracking fields are authoritative, but
+// demo flows historically stash arbitrary extras on the record. Index
+// signature preserves that behaviour while giving the typed fields
+// (id, status, createdAt, client, property, damage, contractor, workflow)
+// real autocomplete.
+export type ClaimData = Partial<ClaimTracking> & Record<string, any>;
 
 class DemoStorage {
   private storageKey = 'demoClaimsDB';

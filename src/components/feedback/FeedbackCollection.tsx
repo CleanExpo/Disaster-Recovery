@@ -133,7 +133,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
       flagged: ratings.overall <= 2 || comments.negative.length > 0,
       publishedAsTestimonial: agreedToTestimonial && ratings.overall >= 4,
       googleReviewSubmitted: false,
-      npsScore,
+      npsScore: npsScore ?? undefined,
       tags: [],
       metadata: {
         source: 'portal',

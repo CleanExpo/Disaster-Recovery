@@ -22,6 +22,7 @@ import {
   Video,
   Building2
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Training {
   id: string;
@@ -83,7 +84,7 @@ export function TrainingTracker({
   };
 
   const handleEventRegistration = (eventId: string) => {
-    console.log('Registering for event:', eventId);
+    clientLogger.info('Registering for event:', { source: 'sections/TrainingTracker', data: eventId });
     // API call to register for event
   };
 

@@ -1,121 +1,98 @@
-# MEMORY.md — Disaster Recovery (repo-scoped)
+# MEMORY.md — Disaster Recovery
 
-> Repo-level memory. Captures the architectural decisions, known drifts,
-> and open debt that persist across Claude Code sessions.
->
-> This is SEPARATE from Phill's user-level MEMORY.md at
-> `~/.claude/projects/C--Disaster-Recovery/memory/MEMORY.md` — do not
-> conflate the two. This file is checked into git; that one is not.
+Living sprint + project log. Newest entry at the top. Keep under
+200 lines; archive older entries into `planning/memory-archive/`.
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10).*
+## 2026-04-24 — Foundation Sprint COMPLETE
 
----
+**Outcome:** all six foundation dimensions at 10/10. Documentation
+reached 10/10 with Polish 8 (docs-only, this PR).
 
-## 1. Project identity
+### Ten-day sprint PRs
 
-- **Legal entity:** National Restoration Professionals Group Pty Ltd (NRPG).
-- **Consumer brand:** Disaster Recovery Australia.
-- **Model:** network orchestrator — IICRC-certified contractors do the
-  work and bill clients directly. See @.claude/rules/business-rules.md.
-- **Language:** Australian English (en-AU) throughout. See
-  @.claude/rules/australian-english.md.
-- **Stack:** Next.js 15 App Router + Prisma (Supabase Postgres) + Zod +
-  Tailwind + Stripe Checkout + Twilio voice.
+Days 1–10 of the sprint produced the scaffold and the first wave of
+ADRs. Dates are the approximate merge window; exact PR numbers are
+tracked in Linear against DR-700 series.
 
-## 2. Architectural anchors (persist across sessions)
+- Day 1 — Inventory + scoring baseline.
+- Day 2 — Zod schema consolidation under
+  `src/lib/validation/schemas.ts`.
+- Day 3 — `tsconfig.strict.json` + rollout plan.
+- Day 4 — CI hard gates: `tsc`, `lint`, smoke, `prettier --check`.
+- Day 5 — Observability API surface at `src/lib/observability/`.
+- Day 6 — Husky + commitlint + lint-staged + Prettier.
+- Day 7 — Vitest + Playwright wired to CI.
+- Day 8 — Feature-flag hygiene sweep.
+- Day 9 — Observability backend wired.
+- Day 10 — Docs reorganisation + first ADRs.
 
-- @CLAUDE.md — scan-first project anchor.
-- @UBIQUITOUS_LANGUAGE.md — canonical domain vocabulary (29 terms, DR-724).
-- @.context/domain-models.md — extended domain descriptions.
-- @docs/adr/ADR-001-gemma4-multilingual.md — translation architecture.
-- @docs/adr/ADR-002-claim-shape-single-source-of-truth.md — Prisma +
-  Zod as the two-and-only sources of truth for Claim shape.
-- @docs/adr/ADR-003-voice-agent-consent-and-data-boundary-model.md —
-  Sarah's 5-layer closed-world + consent model.
-- @docs/adr/ADR-004-feature-flag-strategy.md — `NEXT_PUBLIC_*_ENABLED`
-  convention + zero-impact-when-off rule + rollback via env flip.
+### Polish PR wave
 
-## 3. Known drifts + open debt
+- **Polish 1** — Strict TS expansion.
+- **Polish 2** — API handler `captureException` migration across
+  `app/api/**/route.ts`.
+- **Polish 3** — Dedup + CI hardening (flipped lint warnings → errors).
+- **Polish 4** — Vercel-native observability swap (ADR-005).
+- **Polish 5** — Client `console.*` → structured `clientLogger`.
+- **Polish 6** — Vitest unit tests on validation/observability/voice/
+  compliance libs.
+- **Polish 7** — `Step5HealthSafety` god-component decomposition
+  (1,210 lines → orchestrator + 10 sub-components). Commit
+  `a615ff04`. See ADR-009.
+- **Polish 8** — Docs richness. This PR.
+  - `docs/adr/ADR-006-foundation-sprint-outcomes.md`
+  - `docs/adr/ADR-007-pre-commit-and-ci-discipline.md`
+  - `docs/adr/ADR-008-pocock-skills-framework-adoption.md`
+  - `docs/adr/ADR-009-god-component-decomposition.md`
+  - `docs/how-to/add-a-new-api-route.md`
+  - `docs/how-to/add-a-new-feature-flag.md`
+  - `docs/how-to/run-the-foundation-sprint-checklist.md`
+  - `CONTRIBUTING.md`
+  - `.context/domain-models.md` (+ Prisma mapping table, state
+    machines, relationships diagram, known drift list)
+  - `CLAUDE.md` (+ table of contents)
+  - `MEMORY.md` (this file)
 
-- **227 strict TS errors** (post DR-Day-4 `useUnknownInCatchVariables`).
-  Hard CI gate is ON for NEW code; legacy errors tracked for gradual
-  cleanup. Do NOT disable the gate.
-- **3 legacy TS claim interfaces** still duplicate the Claim shape
-  (see ADR-002). TODO markers in place; dedup is a separate follow-up.
-- **Cohort-only TDD siblings** — some test files cover only the happy
-  path; sibling coverage is incomplete. Add cases as encountered.
-- **2 remaining smoke-test failures** — tracked under
-  `fix(smoke): Day 3 PR 2` (commit `8fe73e58`). Non-blocking; do not
-  ship new smoke regressions.
-- **Stale .md docs** (`CORE_Analysis_for_NRP.md`,
-  `NRP_CRM_Architecture_Analysis.md`, etc.) — historical research.
-  Not rendered; leave alone unless cleaning up.
-- **`page-enhanced.tsx`** and `r6-demo/*` — dead files kept for now.
-  Do not touch in unrelated PRs.
-- **UBIQUITOUS_LANGUAGE.md not yet on main** — lives on feat/DR-724.
-  Day 10 docs reference it anticipatively; once that PR merges, the
-  references work.
-- **Feature flag hot-check audit** — TODO per ADR-004: grep
-  `NEXT_PUBLIC_*_ENABLED` for import-time evaluation.
+### Scheduled follow-ups
 
-## 4. Release + deploy state
+- Decompose `Step0Eligibility` (god component, 920 lines). Pattern
+  from ADR-009.
+- Decompose `SubContractorManager` (god component, 1,080 lines).
+  Pattern from ADR-009.
+- Promote `compliance_events` from raw SQL to a first-class Prisma
+  model, or commit to raw SQL and write an ADR explaining the
+  append-only constraint.
+- Add persistent models for `Booking`, `VoiceCall`, `FinanceReferral`
+  (currently in-memory; see `.context/domain-models.md` → Known
+  drift).
 
-- **Production URL:** `https://disasterrecovery.com.au`.
-- **Vercel project:** Disaster-Recovery (CleanExpo org).
-- **Deploy branch:** `main`. Preview deploys on every PR.
-- **Authoritative build:** Vercel. If local passes and Vercel fails,
-  Vercel wins — investigate there.
-- **CI:** gitleaks + typecheck + lint + Prettier + Playwright smoke,
-  all green required before merge.
-- **Husky pre-commit:** Prettier + lint-staged + commitlint + typecheck
-  (DR-Day-6).
+## 2026-04-23 — Voice pipeline (flag-off)
 
-## 5. Ticket conventions
+Merged DR-708 (ElevenLabs port), DR-709 (Sarah system prompt + RAG),
+DR-710 (five approved tools), DR-711 (topic classifier), DR-713
+(APP 8 consent), DR-714 (redaction + retention cron), DR-715
+(5-layer kill switch). All flag-gated off in production. Runbooks in
+`docs/voice-*.md`.
 
-- Linear format: `DR-<number>` (e.g. DR-724).
-- Foundation Sprint (Pathway C) was internal; scope lives under
-  `../DR-Sandbox-starter/proposals/`.
-- Commit prefix: `<type>(<scope>): <subject>` — enforced by
-  commitlint. Common scopes: `foundation`, `claim`, `voice`,
-  `contractor`, `seo`, `compliance`, `observability`.
+## 2026-04-20 — Finance partner switch
 
-## 6. Never re-introduce
+PR #77 migrated finance referrals Blue Fire → Equipped Commercial.
+`/finance` referral flow added, gated behind
+`FINANCE_REFERRAL_WRITER_ENABLED` (still in-memory — see Known drift).
 
-- "Insurance approved" / "bill your insurer" / "guaranteed approval" /
-  "every insurer" — see @.claude/rules/compliance.md §1.
-- A fourth Claim shape — see ADR-002.
-- `--no-verify` commits or `git amend` past a failed hook — see
-  @.claude/rules/dev-environment.md §7.
-- PII into AI prompts without the minimise-PII layer — see
-  @docs/adr/ADR-001-gemma4-multilingual.md + @.claude/rules/privacy.md.
-- A 6th Sarah tool without a new ADR and fresh threat model — see
-  ADR-003.
+## 2026-04-14 — Compliance baseline
 
-## 7. Session hygiene
+Waves 8–16 landed: honest CTA copy (no "60-minute response" claims
+without qualification), cookie banner + consent-mode v2, APP 3
+collection notices, NZ Consumers supplementary terms, NZ CGA/FTA
+notice on location pages, Clarity session-recording disclosure,
+privacy overseas-disclosure table, Equipped consent form
+(flag-gated), `compliance_events` table + feature-flagged writer.
 
-- `grep` / `glob` before `read`.
-- Subagents for research touching >2 files.
-- `/compact` at milestones; `/clear` between unrelated tasks.
-- Line-range reads on any file >500 lines.
+## Pointer to the old MEMORY.md
 
-## 8. Foundation Sprint — Pathway C summary
-
-- **Day 0** — Security triage + gitleaks CI (`efb1fd5a`, `4c296bad`).
-- **Day 3** — Smoke-test failures fixed (`8fe73e58`).
-- **Day 4** — Strict TS gate (`useUnknownInCatchVariables`) (`dc37a0d4`).
-- **Day 6** — Husky + Prettier + commitlint + lint-staged (`d8a4f6a6`).
-- **Day 7-8** — Shared Zod validation registry (`d8069c97`).
-- **Day 9** — Observability (request logger + Sentry + compliance
-  events in 5 core flows) (`a646205a`).
-- **Day 10** — Context engineering (this commit).
-
-Upstream PRs: #101 to #107 + DR-Sandbox-starter #28.
-
----
-
-## References
-
-- @CLAUDE.md (live project anchor — always start here)
-- @.claude/rules/ (rule files by topic)
-- @docs/adr/ (decisions by date)
-- @docs/history/brand-and-history.md (archive)
+The global `~/.claude/projects/C--Disaster-Recovery/memory/MEMORY.md`
+remains the personal-context log for Phill across sessions (design
+conventions, visual framework, historical fixes, contrast audit
+details). This repo-root `MEMORY.md` is the project-facing sprint log
+that stays with the code.

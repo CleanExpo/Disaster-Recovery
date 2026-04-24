@@ -33,6 +33,7 @@ import {
   Eye,
   Download, MessageSquare} from 'lucide-react';
 import { DataBreach } from '@/types/privacy';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export function DataBreachNotification() {
   const [breaches, setBreaches] = useState<DataBreach[]>([]);
@@ -82,7 +83,7 @@ export function DataBreachNotification() {
       const data = await response.json();
       setBreaches(data);
     } catch (error) {
-      console.error('Failed to fetch breaches:', error);
+      clientLogger.error('Failed to fetch breaches:', { source: 'privacy/DataBreachNotification' }, error);
     } finally {
       setLoading(false);
     }
@@ -110,7 +111,7 @@ export function DataBreachNotification() {
         });
       }
     } catch (error) {
-      console.error('Failed to report breach:', error);
+      clientLogger.error('Failed to report breach:', { source: 'privacy/DataBreachNotification' }, error);
     }
   };
 
@@ -132,7 +133,7 @@ export function DataBreachNotification() {
         });
       }
     } catch (error) {
-      console.error('Failed to send notifications:', error);
+      clientLogger.error('Failed to send notifications:', { source: 'privacy/DataBreachNotification' }, error);
     }
   };
 
@@ -148,7 +149,7 @@ export function DataBreachNotification() {
         fetchBreaches();
       }
     } catch (error) {
-      console.error('Failed to update investigation status:', error);
+      clientLogger.error('Failed to update investigation status:', { source: 'privacy/DataBreachNotification' }, error);
     }
   };
 

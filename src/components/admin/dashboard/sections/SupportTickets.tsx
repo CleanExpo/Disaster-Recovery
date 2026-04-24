@@ -31,6 +31,7 @@ import {
   Paperclip,
   Star
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Ticket {
   id: string;
@@ -78,7 +79,7 @@ export function SupportTickets() {
       const data = await response.json();
       setTickets(data);
     } catch (error) {
-      console.error('Failed to fetch tickets:', error);
+      clientLogger.error('Failed to fetch tickets:', { source: 'sections/SupportTickets' }, error);
     } finally {
       setLoading(false);
     }
@@ -124,7 +125,7 @@ export function SupportTickets() {
         setShowReplyModal(false);
       }
     } catch (error) {
-      console.error('Failed to send reply:', error);
+      clientLogger.error('Failed to send reply:', { source: 'sections/SupportTickets' }, error);
     }
   };
 
@@ -140,7 +141,7 @@ export function SupportTickets() {
         fetchTickets();
       }
     } catch (error) {
-      console.error('Failed to update ticket status:', error);
+      clientLogger.error('Failed to update ticket status:', { source: 'sections/SupportTickets' }, error);
     }
   };
 

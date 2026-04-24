@@ -1,303 +1,234 @@
-# Domain Models — Disaster Recovery Australia
+# Disaster Recovery — Domain Models
 
-> Extended domain descriptions. This is the file every Claude Code session
-> working on domain-adjacent code should load FIRST. The canonical term
-> glossary lives in @UBIQUITOUS_LANGUAGE.md — this file expands each term
-> into its shape, lifecycle, related terms, and aliases to avoid.
->
-> When glossary and code disagree, the glossary wins (drift = bug).
+> **NOT LEGAL ADVICE.** This document names domain concepts for engineering
+> reference. Compliance obligations (ACL, CGA/FTA, APP, IICRC S500/S520) are
+> resolved in `/legal/**` source-of-truth pages and in the organisation's
+> counsel opinions, not here.
 
-**NOT LEGAL ADVICE — interim scaffold pending counsel validation.**
+This file is the canonical mapping between DR's ubiquitous language
+(see `UBIQUITOUS_LANGUAGE.md` at repo root, 29 canonical terms) and the
+code that implements each concept. If you are making a schema change,
+start here. If you are writing a new API contract, start here.
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10).*
+## Quick index
 
----
+- [Prisma mapping table](#prisma-mapping-table) — each domain concept →
+  the Prisma model (or explicit absence) that represents it.
+- [State machines](#state-machines) — claim, contractor, job lifecycles.
+- [Relationships diagram](#relationships-diagram) — ASCII map of how the
+  core entities connect.
+- [Known drift](#known-drift) — open items where the code does not yet
+  match the model.
+- [Cross-references](#cross-references) — ADRs, Zod schemas, rule files.
 
-## How to use this file
+## Prisma mapping table
 
-Every domain model below has five parts:
+| Domain concept       | Prisma model / location                                           | Notes                                                                                                |
+| -------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Claim**            | `InsuranceClaimAU` in `prisma/schema.prisma`                      | Canonical claim entity. AU-specific. NZ claims reuse the same model with `country: 'NZ'` and CGA fields populated. |
+| **Contractor**       | `User` with `role = 'contractor'` + `Contractor` profile          | Auth via `User`; domain data on `Contractor`. Applications flow through `ContractorApplication` before `Contractor` is created. |
+| **Contractor application** | `ContractorApplication`                                    | Seven-step onboarding. Step data persisted incrementally. Becomes a `Contractor` on final approval.  |
+| **Booking**          | *(no persistent model yet — see [Known drift](#known-drift))*     | Currently an in-memory concept in the `/claim` flow. Persists as a `Claim` with `status: 'submitted'`. |
+| **Invoice**          | `Invoice`, `ContractorInvoice`                                    | `Invoice` for agency-side billing; `ContractorInvoice` for contractor subscriptions and payouts.     |
+| **Agency**           | `Agency`                                                          | Owning organisation (parent of `User`, `Client`, `Contractor`).                                      |
+| **Client**           | `Client`                                                          | End-customer / policyholder. Linked from `InsuranceClaimAU.clientId`.                                |
+| **Lead**             | `Lead`, `LeadTracking`, `LeadNote`                                | Pre-claim funnel entity. A converted `Lead` produces a `Client` + `InsuranceClaimAU`.                |
+| **Voice call**       | *(no persistent model yet — see [Known drift](#known-drift))*     | DR-708 pipeline is flag-off; transcripts planned to persist via DR-714 redaction + retention cron.   |
+| **Finance referral** | *(in-memory only — see [Known drift](#known-drift))*              | DR-689 Equipped consent form is flag-gated, no API wiring, no persistent store yet.                  |
+| **Compliance event** | `compliance_events` table via raw SQL / Prisma `ComplianceEvent`  | DR-624 writer is feature-flagged. Append-only, structured for APP 12 access requests.                |
+| **Consent record**   | `Consent`, `ConsentEvent`                                         | APP 3 (collection) + APP 8 (overseas disclosure) + consent-mode v2 surface.                          |
+| **Partner**          | `Partner`, `PartnerBilling`, `PartnerPayment`                     | Commercial partnerships (finance, insurance, referral networks).                                     |
+| **Enquiry**          | `Enquiry`                                                         | General contact-form submissions that have not been qualified into a `Lead`.                         |
+| **Notification**     | `Notification`                                                    | User-facing in-app notifications. SMS/email delivery handled out-of-band.                            |
+| **Certification**    | `ContractorCertification`                                         | IICRC S500/S520, WHS tickets, insurance evidence. Expiry-driven reminders.                           |
+| **Territory**        | `ContractorTerritory`                                             | Service area geofencing. Joined to suburb data for claim routing.                                    |
+| **KPI**              | `ContractorKPI`                                                   | Response time, completion rate, client rating aggregates.                                            |
+| **Audit**            | `Audit`                                                           | Generic audit trail for admin-triggered state changes.                                               |
 
-1. **Canonical definition** — one sentence, authoritative.
-2. **Shape** — which Prisma model (or Zod schema) it maps to.
-3. **Lifecycle** — the state transitions it moves through.
-4. **Related terms** — what it links to in the domain graph.
-5. **Aliases to avoid** — words that mean the same thing but should not
-   appear in code, copy, or CRM labels.
+### How to use this table
 
-If you find yourself inventing a new term, stop — either the term is
-already here (find it, use it) or it's a drift (raise an ADR).
+- **Before adding a new API route:** find the domain concept in this
+  table. If it has a model, import it. If it says "no persistent model
+  yet", decide whether this route is the one that finally adds
+  persistence — if so, open a schema change ticket first (see ADR-008
+  on `design-an-interface`).
+- **Before proposing a schema change:** update this table in the same
+  PR. Drift between this doc and `prisma/schema.prisma` is a review
+  blocker.
 
----
+## State machines
 
-## Claim lifecycle models
-
-### Enquiry
-
-- **Canonical definition:** Light-touch contact form submission — someone
-  has given us their name and a rough problem, but no property has been
-  committed yet.
-- **Shape:** `Enquiry` model (`prisma/schema.prisma`). Fields: `id`,
-  `name`, `contact`, `message`, `source`, `createdAt`. NO property fields.
-- **Lifecycle:** `new` → `scored` (Operator assigns a score) → transitions
-  to a `Lead` record. An `Enquiry` is never directly dispatched.
-- **Related:** precedes `Lead`; does not yet link to `Claim` or `Job`.
-- **Aliases to avoid:** "Lead" (ambiguous before scoring), "prospect",
-  "opportunity", "ticket".
-
-### Lead
-
-- **Canonical definition:** An `Enquiry` that Operations has scored and
-  assigned to a team for follow-up.
-- **Shape:** `Lead` model. Contains `enquiryId` FK + `score`, `assignedTo`,
-  `stage`. Note the related `LeadTracking` and `LeadNote` rows.
-- **Lifecycle:** `new` → `contacted` → `qualified` → (either) `converted`
-  (becomes a `Claim` when the client completes intake) / `lost` / `parked`.
-- **Related:** one-to-one with `Enquiry`; one-to-zero-or-one with `Claim`
-  (via client-completed intake).
-- **Aliases to avoid:** "Prospect", "opportunity", "warm contact".
-
-### Claim
-
-- **Canonical definition:** A completed claim-intake submission with
-  property details, damage details, and insurance details captured.
-- **Shape:** Prisma `Claim` model (created Day 7-8 as part of validation
-  consolidation). Also validated by the `claimSchema` in
-  `src/lib/validation.ts` — that Zod schema is the API-layer source of
-  truth. See @docs/adr/ADR-002-claim-shape-single-source-of-truth.md.
-- **Lifecycle:** `draft` → `submitted` → `assigned` (a `Contractor` is
-  matched; a `Job` record is created) → `active` → `completed` / `cancelled`.
-- **Related:** `Lead` (upstream), `Job` (downstream, 1:1 once assigned),
-  `Contractor` (via `Job`), `Client`.
-- **Aliases to avoid:** "Job" (that's downstream), "case", "ticket",
-  "incident".
-
-### Draft claim
-
-- **Canonical definition:** Claim data captured mid-flow — voice intake
-  in progress, a partially completed form, a page refresh — not yet
-  finalised.
-- **Shape:** Either a `Claim` row with `status = 'draft'`, or a voice-agent
-  session record awaiting commit (see Sarah tools).
-- **Lifecycle:** `draft` → `submitted` (promotes to a full `Claim`) /
-  `abandoned` (TTL-expired).
-- **Related:** becomes a `Claim` on submission. Does NOT become a `Job`
-  directly.
-- **Aliases to avoid:** "Incomplete claim", "stub claim", "pending claim".
-
-### Job
-
-- **Canonical definition:** An accepted, dispatched piece of restoration
-  work — i.e. a `Claim` after a `Contractor` has been assigned and
-  accepted.
-- **Shape:** `Job` links `claimId` ↔ `contractorId` with a lifecycle of
-  its own. The Prisma row for the customer-facing record stays `Claim`;
-  the `Job` is a linked row.
-- **Lifecycle:** `dispatched` → `accepted` → `make-safe` → `scope-of-works`
-  → `remediation` → `reconstruction` → `completed`. Any stage can
-  transition to `on-hold` or `cancelled`.
-- **Related:** 1:1 with `Claim` (once assigned), N:1 with `Contractor`.
-- **Aliases to avoid:** "Service call" (too narrow), "contract" (too
-  legal), "work order" (too ERP).
-
-### Make-safe
-
-- **Canonical definition:** Emergency stabilisation work — board-up,
-  tarp, water extraction — distinct from the bulk of the remediation.
-- **Shape:** A stage within a `Job`, not its own record. Has its own SLA
-  (typically within 24h of dispatch for emergencies).
-- **Lifecycle:** `pending` → `on-site` → `complete`. Must complete before
-  `scope-of-works` can begin.
-- **Related:** first stage of `Job`; distinct from `Remediation`.
-- **Aliases to avoid:** "Emergency response" (ambiguous), "first response",
-  "stabilisation" (OK in technical copy, not in public).
-
-### Scope of works
-
-- **Canonical definition:** The costed plan of everything the `Contractor`
-  will do, produced at assessment.
-- **Shape:** Document + structured line-items attached to a `Job`. Feeds
-  the client invoice (contractor bills client directly — see
-  @.claude/rules/business-rules.md).
-- **Lifecycle:** `draft` → `submitted` → `client-approved` /
-  `insurer-approved` (where applicable) → `locked` (changes become
-  variations).
-- **Related:** produced during `Job`; precedes `Remediation`.
-- **Aliases to avoid:** "Quote" or "estimate" (too generic — a scope of
-  works is costed AND contractually specific), "SOW" (abbreviation only).
-
-### Remediation
-
-- **Canonical definition:** The main restoration work — drying, mould
-  removal, reconstruction prep.
-- **Shape:** Stage within a `Job`.
-- **Lifecycle:** `pending` → `in-progress` → `complete`.
-- **Related:** follows `Scope of works`; precedes reconstruction.
-- **Aliases to avoid:** "Cleanup" (too casual), "repair" (too generic).
-
-### Restoration
-
-- **Canonical definition:** The umbrella term covering `Make-safe` +
-  `Remediation` + reconstruction. This is the public-facing word.
-- **Shape:** Not a DB field — a concept. In public copy, "restoration
-  work" refers to the whole `Job`.
-- **Related:** superset of `Make-safe`, `Remediation`, reconstruction.
-- **Aliases to avoid:** "Works", "project", "fix-up".
-
----
-
-## Party models
-
-### Client
-
-- **Canonical definition:** The end consumer filing a `Claim`.
-- **Shape:** `Client` model. Has `userId` (Supabase Auth) for the portal.
-- **Lifecycle:** `anonymous` (pre-claim) → `registered` (claim filed) →
-  `active` (during job) → `archived` (post-job, 7-year retention).
-- **Related:** 1:N with `Claim`. Not the same as a B2B `Partner`.
-- **Aliases to avoid:** "Customer" (too commercial), "user" (too
-  software-centric), "insured" (varies — not every claim goes through
-  insurance).
-
-### Contractor
-
-- **Canonical definition:** A network-approved business providing
-  restoration services, who bills the `Client` directly.
-- **Shape:** `Contractor` + `ContractorCompany` + ~20 related tables
-  (`ContractorApplication`, `ContractorCertification`,
-  `ContractorInsurance`, `ContractorPayment`, `ContractorSubscription`,
-  `ContractorTerritory`, etc.).
-- **Lifecycle:** An `Applicant` becomes a `Contractor` on approval. A
-  `Contractor` can be `active` / `suspended` / `terminated`.
-- **Related:** N:N with `Job`; 1:N with `Applicant` pre-approval.
-- **Aliases to avoid:** "Supplier", "vendor", "partner" (capital-P
-  `Partner` is reserved — see below).
-
-### Applicant
-
-- **Canonical definition:** A `Contractor` mid-onboarding; becomes a
-  `Contractor` on approval.
-- **Shape:** `ContractorApplication` + `OnboardingProgress` +
-  `ModuleProgress` + `CompetencyTestResult`.
-- **Lifecycle:** `application-started` → `documents-submitted` →
-  `background-check` → `competency-tested` → `approved` / `rejected`.
-- **Related:** promoted to `Contractor` on approval.
-- **Aliases to avoid:** "Candidate", "prospective contractor", "recruit".
-
-### Member
-
-- **Canonical definition:** Explicit B2B term used in the membership
-  agreement ONLY — where `Contractor` = `Member`.
-- **Shape:** Not a DB concept — a legal-document term.
-- **Related:** a `Contractor` viewed through the lens of the membership
-  agreement.
-- **Aliases to avoid:** NEVER use "Member" in user-facing copy. Use
-  "Contractor" everywhere outside the signed membership agreement.
-
-### Partner
-
-- **Canonical definition:** Capital-P external entities we sign paper with
-  — Equipped Commercial Finance, insurer panels (Suncorp, IAG, QBE, etc.).
-- **Shape:** `Partner` + `PartnerBilling` + `PartnerPayment` in Prisma.
-- **Related:** Distinct from `Contractor`. "Partner contractor" is a
-  phrase that should never appear in copy.
-- **Aliases to avoid:** Never call individual contractors "partners".
-
-### Loss adjuster
-
-- **Canonical definition:** The insurer's appointed assessor.
-- **Shape:** Not a DR-owned entity — external party we reference on
-  a `Claim`.
-- **Related:** attached to `Claim` via `lossAdjusterRef` field.
-- **Aliases to avoid:** "Assessor" (too generic — could be a DR
-  competency assessor).
-
-### Operator
-
-- **Canonical definition:** DR internal staff handling a `Claim` or
-  dispatching a `Job`.
-- **Shape:** `User` with operator role.
-- **Related:** attached to `Lead` (scoring) and `Claim` (triage).
-- **Aliases to avoid:** "Agent" (ambiguous with voice agent), "admin"
-  (too broad), "rep".
-
-### Insurance Company
-
-- **Canonical definition:** The client's home-insurance carrier.
-- **Shape:** Stored as a string on `Claim`; not an FK (we don't model
-  every insurer). Canonical list lives in `src/lib/constants.ts`.
-- **Related:** linked informationally on a `Claim`. DR does NOT bill the
-  insurer (see @.claude/rules/business-rules.md).
-- **Aliases to avoid:** "Insurer" is acceptable; "insurance provider" and
-  "insurance carrier" are not (inconsistent with local usage).
-
----
-
-## Classification models
-
-### Damage Type
-
-- **Canonical definition:** The category of damage that triggered the
-  claim.
-- **Shape:** Enum-ish string on `Claim.damageType`. Canonical values:
-  `water`, `fire`, `flood`, `storm`, `mould`, `biohazard`, `vehicle-impact`,
-  `sewage`, `trauma`, `other`.
-- **Related:** drives service-page matching, video matching (see
-  `data/seo/video-config.ts`), and contractor-skill matching.
-- **Aliases to avoid:** "Incident type" (too insurance-jargon),
-  "disaster type" (too dramatic for non-catastrophic damage).
-
-### Urgency Level
-
-- **Canonical definition:** How quickly a response is needed. Voice agent
-  currently uses a 3-way split (emergency / urgent / routine).
-- **Shape:** Enum on `Claim.urgency`. Canonical values: `emergency` (life
-  safety / active water) → `urgent` (within 24h) → `routine` (scheduled).
-- **Lifecycle:** Set at intake, can be re-classified by Operator.
-- **Related:** drives SLA on `Make-safe` stage of `Job`.
-- **Aliases to avoid:** The canonical set is `emergency`/`urgent`/`routine`.
-  "Immediate", "ASAP", "rush", "critical" should not appear in code.
-
----
-
-## Relationship diagram (text)
+### Claim lifecycle
 
 ```
-Enquiry  ──(score)──>  Lead  ──(intake)──>  Claim  ──(assign)──>  Job
-                                              │                     │
-                                              │                     ├── Make-safe
-                                              │                     ├── Scope of works
-                                              │                     ├── Remediation
-                                              │                     └── Reconstruction
-  Applicant  ──(approve)──>  Contractor  ──(dispatched to)──>  Job
-                                              │
-                                              └──(bills directly)──>  Client
-  Partner  (Equipped / insurer panels — never "partner contractor")
-  Loss adjuster  (insurer-side, attached to Claim)
-  Operator  (DR internal staff, attached to Lead + Claim)
+submitted ──▶ triaged ──▶ dispatched ──▶ in_progress ──▶ completed ──▶ invoiced
+     │             │              │              │              │
+     │             │              │              │              └─▶ disputed
+     │             │              │              └─▶ cancelled
+     │             │              └─▶ redispatched (loop back to triaged)
+     │             └─▶ ineligible
+     └─▶ withdrawn
 ```
 
----
+- **`submitted`** — claim created via `/claim` form. Minimum viable
+  record: client contact, incident type, loss address, consent flags.
+- **`triaged`** — internal review complete. Severity, category, and
+  response window assigned. Transition logs a `compliance_event` with
+  APP 3 lineage.
+- **`dispatched`** — a matching contractor has been notified and
+  accepted. `Contractor.id` attached to `InsuranceClaimAU`.
+- **`in_progress`** — contractor is onsite or actively working the
+  job. First contractor status update flips this state.
+- **`completed`** — contractor has submitted proof-of-work and the
+  client has signed off.
+- **`invoiced`** — `Invoice` record created and delivered. Payment
+  tracking handoff to finance.
+- **Terminal off-happy-path states** — `disputed`, `cancelled`,
+  `ineligible`, `withdrawn`. Each writes a distinct compliance event.
 
-## Flagged ambiguities
+### Contractor lifecycle
 
-Same three open items carried from `UBIQUITOUS_LANGUAGE.md`. Resolve via
-ADR + next `ubiquitous-language` skill run:
+```
+applicant ──▶ under_review ──▶ approved ──▶ active ──▶ suspended
+     │              │              │           │           │
+     │              │              │           │           └─▶ reinstated (→ active)
+     │              │              │           └─▶ offboarded (terminal)
+     │              │              └─▶ rejected (terminal)
+     │              └─▶ more_info_requested (loop back to applicant)
+     └─▶ abandoned (no action 30+ days)
+```
 
-- **Brand vs tradename vs operating name.** DR trades as *Disaster
-  Recovery Australia*; legal entity is *National Restoration
-  Professionals Group Pty Ltd*. Decide canonical term for: consumer
-  brand, contracting counterparty, GBP listing.
-- **Platform fee / service fee / booking fee.** Three terms appear across
-  Stripe Checkout, footer copy, and the membership agreement. Pick one
-  before DR-586 ships.
-- **Emergency / urgent / immediate.** The voice agent uses a 3-way split
-  — confirm canonical values and whether synonyms are aliases or genuine
-  distinct SLAs.
+- **`applicant`** — `ContractorApplication` exists; `Contractor` does not.
+- **`under_review`** — all seven onboarding steps submitted; DR team
+  reviewing.
+- **`approved`** — manual approval. `Contractor` created, `User.role`
+  flipped.
+- **`active`** — receiving dispatch, appears in match pool.
+- **`suspended`** — temporary hold (KPI breach, insurance lapse,
+  complaint under investigation). Does not receive dispatch.
 
----
+### Job lifecycle (contractor-side view of a claim)
 
-## Changelog
+```
+assigned ──▶ accepted ──▶ in_progress ──▶ completed ──▶ invoiced ──▶ paid
+     │            │              │              │              │
+     │            │              │              │              └─▶ payment_disputed
+     │            │              │              └─▶ remediation_required
+     │            │              └─▶ paused (client unavailable, access issue)
+     │            └─▶ declined (loops back, claim re-enters dispatch)
+     └─▶ rescinded (admin pulled the assignment)
+```
 
-- **2026-04-24** — File created (Foundation Sprint Day 10). Expands all
-  29 terms from `UBIQUITOUS_LANGUAGE.md` (DR-724) into model-level
-  descriptions.
+## Relationships diagram
+
+```
+                     ┌─────────┐
+                     │ Agency  │
+                     └────┬────┘
+                          │ owns
+            ┌─────────────┼─────────────┐
+            ▼             ▼             ▼
+        ┌───────┐    ┌────────┐    ┌───────────┐
+        │ User  │    │ Client │    │ Contractor│
+        └───┬───┘    └────┬───┘    └─────┬─────┘
+            │             │              │
+            │ creates     │ files        │ services
+            │             ▼              │
+            │      ┌──────────────────┐  │
+            └─────▶│ InsuranceClaimAU │◀─┘
+                   └────────┬─────────┘
+                            │
+                 ┌──────────┼──────────┐
+                 ▼          ▼          ▼
+           ┌─────────┐ ┌────────┐ ┌──────────────┐
+           │ Invoice │ │ Audit  │ │ Consent      │
+           └─────────┘ └────────┘ │ ConsentEvent │
+                                  └──────────────┘
+
+   ┌──────────────────────────┐       ┌─────────────────────┐
+   │ ContractorApplication    │──────▶│ Contractor (on      │
+   │ (7-step onboarding)      │       │  approval)          │
+   └──────────────────────────┘       └──────────┬──────────┘
+                                                 │
+                              ┌──────────────────┼──────────────────┐
+                              ▼                  ▼                  ▼
+                  ┌──────────────────┐ ┌──────────────────┐ ┌────────────────┐
+                  │ Certification    │ │ Territory        │ │ KPI            │
+                  └──────────────────┘ └──────────────────┘ └────────────────┘
+
+   ┌──────┐       ┌───────┐        ┌─────────┐
+   │ Lead │──────▶│ Client│───────▶│ Claim   │   (qualification funnel)
+   └──────┘       └───────┘        └─────────┘
+```
+
+Not shown above: `Enquiry` (pre-Lead), `Notification` (cross-cutting),
+`Partner*` (commercial), `compliance_events` (append-only audit).
+
+## Known drift
+
+Open items where the ubiquitous language includes a concept that the
+code does not yet persist or fully model. Each item links to an ADR
+or ticket tracking the resolution.
+
+- **God components not yet decomposed.** ADR-009 decomposes Step5;
+  `Step0Eligibility` and `SubContractorManager` are scheduled. Until
+  those PRs land, their domain surface lives inline in a single file.
+- **Booking has no persistent model.** The `/claim` form creates a
+  `Claim` directly with `status: 'submitted'`. A future `Booking` model
+  would sit between the form and the claim (scheduling, slot holds,
+  deferred payment capture). Tracked under the claim-flow epic.
+- **FinanceReferral is in-memory only.** DR-689 shipped the Equipped
+  consent form behind a feature flag with no API wiring. Persistence
+  will arrive when the partner DPA finalises. See ADR on finance
+  partner switch in PR #77.
+- **VoiceCall has no persistent model.** DR-708 pipeline is flag-off.
+  DR-714 scaffolds redaction + retention cron but the transcript
+  storage model is still pending. Kill-switch (DR-715) is live.
+- **Compliance events schema is append-only raw SQL.** The Prisma
+  client reads it via a typed view; writes go via a raw SQL helper
+  feature-flagged behind `COMPLIANCE_EVENTS_WRITER_ENABLED`. A future
+  ADR will decide whether to promote to a first-class Prisma model or
+  keep as raw SQL for append-only guarantees.
+- **Territory geofencing uses string suburb names, not geometries.**
+  Service-area matching is coarse. A future `Territory` enhancement
+  would use PostGIS polygons.
+
+## Cross-references
+
+### ADRs
+
+- [ADR-001](../docs/adr/ADR-001-gemma4-multilingual.md) — multilingual
+  translation architecture.
+- [ADR-005](../docs/adr/ADR-005-vercel-native-observability.md) —
+  observability surface used by every API handler.
+- [ADR-006](../docs/adr/ADR-006-foundation-sprint-outcomes.md) —
+  ten-day plan + polish PR wave context.
+- [ADR-007](../docs/adr/ADR-007-pre-commit-and-ci-discipline.md) —
+  CI gates every schema change must pass.
+- [ADR-008](../docs/adr/ADR-008-pocock-skills-framework-adoption.md) —
+  `design-an-interface` lives on top of this doc.
+- [ADR-009](../docs/adr/ADR-009-god-component-decomposition.md) —
+  pattern for splitting large components.
+
+### Zod schemas (API contracts)
+
+- `src/lib/validation/schemas.ts` — every API contract. If a concept
+  in the Prisma table above gets a new route, its Zod schema goes here
+  first.
+- `src/lib/validation/__tests__/` — schema unit tests (Polish 6).
+
+### Agent-facing rules
+
+- `.claude/rules/schema-changes.md` — short form of "when to update
+  this file".
+- `.claude/rules/ci-discipline.md` — short form of ADR-007.
+- `.claude/rules/component-size.md` — short form of ADR-009.
+
+### Root-level docs
+
+- `UBIQUITOUS_LANGUAGE.md` — 29 canonical terms, compliance-load-bearing
+  flags.
+- `MEMORY.md` — living sprint + post-sprint log.
+- `CLAUDE.md` — agent entry point, links back here.
+- `CONTRIBUTING.md` — repo layout, branch and commit conventions, PR
+  workflow.

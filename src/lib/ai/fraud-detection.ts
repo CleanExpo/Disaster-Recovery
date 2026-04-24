@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { OpenAI } from 'openai';
 import { prisma } from '@/lib/prisma';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Initialize OpenAI client only if API key is available
 const openai = process.env.OPENAI_API_KEY 
@@ -119,7 +120,7 @@ class FraudDetectionService {
       return result;
 
     } catch (error) {
-      console.error('Error in fraud detection analysis:', error);
+      clientLogger.error('Error in fraud detection analysis:', { source: 'ai/fraud-detection' }, error);
       
       // Return conservative result on error
       return {

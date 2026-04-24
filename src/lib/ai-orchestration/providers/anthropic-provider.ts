@@ -13,7 +13,7 @@ export class AnthropicProvider {
     const apiKey = process.env.ANTHROPIC_API_KEY || '';
     
     if (!apiKey) {
-      console.warn('Anthropic API key not configured');
+      clientLogger.warn('Anthropic API key not configured', { source: 'providers/anthropic-provider' });
     }
     
     this.client = new Anthropic({
@@ -102,7 +102,7 @@ export class AnthropicProvider {
           latency };
       }
     } catch (error) {
-      console.error('Anthropic API error:', error);
+      clientLogger.error('Anthropic API error:', { source: 'providers/anthropic-provider' }, error);
       throw new Error(`Anthropic request failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
@@ -207,8 +207,9 @@ export class AnthropicProvider {
         maxTokens: 10 });
       return true;
     } catch (error) {
-      console.error('Anthropic connection test failed:', error);
+      clientLogger.error('Anthropic connection test failed:', { source: 'providers/anthropic-provider' }, error);
       return false;
     }
   }
 }
+import { clientLogger } from '@/lib/observability/client-logger';

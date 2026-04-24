@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export function PerformanceMonitor() {
   useEffect(() => {
@@ -75,7 +76,7 @@ export function PerformanceMonitor() {
           clsObserver.disconnect();
         };
       } catch (e) {
-        console.error('Performance monitoring error:', e);
+        clientLogger.error('Performance monitoring error:', { source: 'components/performance-monitor' }, e);
       }
     }
     return undefined;

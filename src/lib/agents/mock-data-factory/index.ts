@@ -287,7 +287,7 @@ export class MockDataFactory {
   }
 
   private generateDisasterDescription(type: string, severity: string): string {
-    const descriptions = {
+    const descriptions: Record<string, Record<string, string>> = {
       'Water Damage': {
         minor: 'Small water leak affecting one room',
         moderate: 'Burst pipe causing flooding in multiple rooms',

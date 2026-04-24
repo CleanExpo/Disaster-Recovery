@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/elevenlabs-tts' });
   try {
     const { text, voice_id = 'EXAVITQu4vr4xnSDxMaL', model_id = 'eleven_multilingual_v2' } = await request.json();
 
@@ -34,7 +36,7 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('ElevenLabs API error:', response.status, errorText);
+      log.error('ElevenLabs API error', { status: response.status, errorText });
       return NextResponse.json({ error: 'Failed to generate speech' }, { status: response.status });
     }
 
@@ -48,7 +50,8 @@ export async function POST(request: NextRequest) {
       } });
 
   } catch (error) {
-    console.error('ElevenLabs TTS error:', error);
+    log.error('ElevenLabs TTS error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/elevenlabs-tts' }, extra: { requestId: log.requestId } });
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

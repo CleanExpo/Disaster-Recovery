@@ -12,6 +12,7 @@
 
 import { NextResponse } from 'next/server';
 import { RETENTION_POLICY } from '@/lib/voice/retention';
+import { requestLogger } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -23,6 +24,7 @@ interface CronResult {
 }
 
 export async function GET(req: Request): Promise<NextResponse> {
+  const log = requestLogger(req, { route: '/api/cron/voice-retention' });
   // Auth gate
   const auth = req.headers.get('authorization') ?? '';
   const expected = `Bearer ${process.env.CRON_SECRET ?? ''}`;
@@ -72,8 +74,7 @@ export async function GET(req: Request): Promise<NextResponse> {
     ts: new Date().toISOString(),
     counts: result,
   };
-  // eslint-disable-next-line no-console
-  console.log('[voice-retention-cron]', JSON.stringify(complianceEvent));
+  log.info('voice-retention-cron run', complianceEvent);
 
   return NextResponse.json(result);
 }

@@ -182,7 +182,7 @@ class MockDataGenerator {
           state: ['NSW', 'VIC', 'QLD', 'WA', 'SA'][Math.floor(Math.random() * 5)]
         },
         damageDescription: damageDescriptions[Math.floor(Math.random() * damageDescriptions.length)],
-        insuranceCompany: insuranceCompanies[Math.floor(Math.random() * insuranceCompanies.length)],
+        insuranceCompany: insuranceCompanies[Math.floor(Math.random() * insuranceCompanies.length)] ?? undefined,
         claimNumber: Math.random() < 0.6 ? `CLM${100000 + i}` : undefined,
         estimatedValue: 5000 + Math.floor(Math.random() * 45000),
         status: isCompleted ? 'completed' : isAssigned ? 'in_progress' : isPaid ? 'assigned' : 'new',
