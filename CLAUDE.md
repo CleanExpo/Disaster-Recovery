@@ -1,8 +1,30 @@
 # CLAUDE.md
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+Behavioural guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+
+## Table of contents
+
+- `.context/domain-models.md` — domain concepts, Prisma mappings, state
+  machines, known drift.
+- `UBIQUITOUS_LANGUAGE.md` — 29 canonical terms (DR-724).
+- `CONTRIBUTING.md` — repo layout, branch + commit conventions, PR
+  workflow, escape-hatch policy.
+- `MEMORY.md` — living sprint + project log.
+- `docs/adr/` — architectural decision records:
+  - ADR-001 — Gemma 4 multilingual translation.
+  - ADR-005 — Vercel-native observability.
+  - ADR-006 — Foundation Sprint outcomes.
+  - ADR-007 — Pre-commit + CI discipline.
+  - ADR-008 — Pocock five-skills framework adoption.
+  - ADR-009 — God-component decomposition pattern.
+- `docs/how-to/` — practical playbooks:
+  - `add-a-new-api-route.md`
+  - `add-a-new-feature-flag.md`
+  - `run-the-foundation-sprint-checklist.md`
+- `.claude/rules/` — crisp agent-facing directives (short form of the
+  ADRs above).
 
 ## 1. Think Before Coding
 
