@@ -16,6 +16,7 @@
  */
 
 import type { Metadata } from 'next';
+import OfflineDial000Button from '@/components/offline/OfflineDial000Button';
 
 export const metadata: Metadata = {
   title: 'Offline | Disaster Recovery Australia',
@@ -79,13 +80,7 @@ export default function OfflinePage() {
           <p className="text-sm font-bold text-red-900 mb-2">
             In immediate life-safety danger?
           </p>
-          <a
-            href="tel:000"
-            className="inline-flex items-center justify-center min-h-[48px] w-full px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
-            aria-label="Call 000 emergency services now"
-          >
-            Dial 000 now
-          </a>
+          <OfflineDial000Button />
           <p className="mt-2 text-xs text-red-900 leading-relaxed">
             Fire, rising floodwater, structural collapse, gas leak, injury,
             or exposed live wiring — call 000 first. You can lodge the claim

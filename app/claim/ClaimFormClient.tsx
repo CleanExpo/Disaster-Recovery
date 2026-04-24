@@ -8,8 +8,15 @@ import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
 import OfflineBanner from '@/components/claim/OfflineBanner';
+import OfflineQueueBanner from '@/components/claim/OfflineQueueBanner';
 import UseCurrentLocationButton from '@/components/claim/UseCurrentLocationButton';
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
+import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
+import {
+  enqueueClaim,
+  replayQueue,
+  isOfflineQueueEnabled,
+} from '@/lib/offline-queue';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -120,6 +127,8 @@ function OnlineClaimPageOriginal() {
   const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [replayToast, setReplayToast] = useState<string | null>(null);
+  const [queuedOffline, setQueuedOffline] = useState(false);
   const [claimId, setClaimId] = useState<string | null>(null);
   const [estimate, setEstimate] = useState<{ low: number; high: number } | null>(null);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
@@ -247,6 +256,19 @@ function OnlineClaimPageOriginal() {
       }
     });
     setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
+    // Once-on-mount replay: if the app was killed mid-queue last session, drain now.
+    if (isOfflineQueueEnabled() && typeof navigator !== 'undefined' && navigator.onLine) {
+      replayQueue()
+        .then((result) => {
+          if (result.successes > 0) {
+            setReplayToast('Claim sent — queued offline earlier.');
+            window.setTimeout(() => setReplayToast(null), 6000);
+          }
+        })
+        .catch(() => {
+          /* ignore — banner surfaces any residual items */
+        });
+    }
   }, []);
 
   // Online/offline event listeners
@@ -258,6 +280,18 @@ function OnlineClaimPageOriginal() {
       if (unsynced.length > 0) {
         // Drafts exist; they will be submitted when the user completes the form
         setSavedLocally(true);
+      }
+      // Replay any queued offline claim submissions. Flag-gated internally.
+      if (isOfflineQueueEnabled()) {
+        try {
+          const result = await replayQueue();
+          if (result.successes > 0) {
+            setReplayToast('Claim sent — queued offline earlier.');
+            window.setTimeout(() => setReplayToast(null), 6000);
+          }
+        } catch {
+          /* swallow — banner will show any stuck items */
+        }
       }
     };
     const handleOffline = () => {
@@ -342,6 +376,29 @@ function OnlineClaimPageOriginal() {
     setSubmitting(true);
     setSubmissionError(null);
 
+    // Offline-first: if the iOS native-bridge flag is on AND we detect
+    // the device is offline, queue the submission for later replay
+    // instead of posting. RA-1633 Phase 2 PR #5.
+    if (isOfflineQueueEnabled()) {
+      const online = await bridgeIsOnline();
+      if (!online) {
+        const enq = await enqueueClaim({
+          ...formData,
+          paymentConfirmed: false,
+          paymentAmount: 0,
+        });
+        setSubmitting(false);
+        if (enq.ok) {
+          setQueuedOffline(true);
+          setReplayToast('Saved offline — we\u2019ll send it as soon as you\u2019re back online.');
+          window.setTimeout(() => setReplayToast(null), 6000);
+          return;
+        }
+        // Enqueue failed — fall through to the normal online path as a
+        // last resort (may still fail, but we surface a real error).
+      }
+    }
+
     try {
       const response = await fetch('/api/claims/submit', {
         method: 'POST',
@@ -358,6 +415,8 @@ function OnlineClaimPageOriginal() {
       if (result.success) {
         setClaimId(result.claimId);
         await clearDraft();
+        // Phase 2 PR #6 — Medium haptic on submit success (RA-1633). No-op on web.
+        void mediumTap();
         setStep(5); // Success step
       } else {
         setSubmissionError(result.message || 'Failed to submit claim');
@@ -468,6 +527,7 @@ function OnlineClaimPageOriginal() {
           </p>
           <a
             href="tel:000"
+            onClick={() => { void heavyTap(); }}
             className="inline-flex items-center justify-center min-h-[48px] w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
             aria-label="Call 000 emergency services now"
           >
@@ -545,6 +605,30 @@ function OnlineClaimPageOriginal() {
 
         {/* Offline banner */}
         <OfflineBanner isOffline={isOffline} savedLocally={savedLocally} />
+
+        {/* Offline queue status — only renders when queue/dead-letter > 0. */}
+        <OfflineQueueBanner />
+
+        {/* Transient toast — queue replayed / item queued. */}
+        {replayToast && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mb-4 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm text-emerald-900"
+          >
+            {replayToast}
+          </div>
+        )}
+
+        {queuedOffline && !replayToast && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mb-4 rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm text-blue-900"
+          >
+            Your claim is saved on this device and will be sent automatically when you&rsquo;re back online.
+          </div>
+        )}
 
         {/* Saved locally indicator (when offline) */}
         {isOffline && savedLocally && (

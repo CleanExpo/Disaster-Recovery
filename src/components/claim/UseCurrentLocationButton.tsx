@@ -18,7 +18,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { getCurrentPosition, isNative } from '@/lib/native-bridge';
+import { getCurrentPosition, isNative, tap, mediumTap } from '@/lib/native-bridge';
 
 type AddressResult = {
   street: string;
@@ -87,6 +87,8 @@ export default function UseCurrentLocationButton({
 
   const handleTap = async () => {
     if (busy) return;
+    // Phase 2 PR #6 — light haptic on press (RA-1633). No-op on web.
+    void tap();
     setBusy(true);
     try {
       const position = isNative()
@@ -115,6 +117,8 @@ export default function UseCurrentLocationButton({
         return;
       }
 
+      // Phase 2 PR #6 — medium haptic on successful autofill (RA-1633). No-op on web.
+      void mediumTap();
       onAutofill({
         address: result.address.street,
         suburb: result.address.suburb,
