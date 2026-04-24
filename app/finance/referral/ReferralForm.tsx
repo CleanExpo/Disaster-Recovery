@@ -1,9 +1,21 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type CustomerType = 'business' | 'consumer';
+type ReferralChannel = 'contractor' | 'default';
+
+/**
+ * Map a `?channel=` query value to the source string Equipped receives.
+ * Exported for unit tests.
+ */
+export function resolveReferralSource(channel: string | null | undefined): string {
+  if (channel === 'contractor') {
+    return 'disasterrecovery.com.au/contractor/equipment-finance';
+  }
+  return 'disasterrecovery.com.au/finance';
+}
 type DisasterCategory = 'water' | 'fire' | 'storm' | 'mould' | 'biohazard' | 'other';
 type FundingBand = '<10k' | '10-25k' | '25-50k' | '50-100k' | '100-250k' | '>250k';
 type PreferredContact = 'asap' | 'morning' | 'afternoon' | 'evening';
@@ -24,13 +36,19 @@ interface ReferralPayload {
   consent_share_equipped: boolean;
   consent_referral_disclosure: boolean;
   consent_marketing: boolean;
+  source: string;
 }
 
 export function ReferralForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const channel = searchParams?.get('channel') ?? null;
+  const source = resolveReferralSource(channel);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [customerType, setCustomerType] = useState<CustomerType>('business');
+  const [customerType, setCustomerType] = useState<CustomerType>(
+    channel === 'contractor' ? 'business' : 'business',
+  );
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -54,6 +72,7 @@ export function ReferralForm() {
       consent_share_equipped: fd.get('consent_share_equipped') === 'on',
       consent_referral_disclosure: fd.get('consent_referral_disclosure') === 'on',
       consent_marketing: fd.get('consent_marketing') === 'on',
+      source,
     };
 
     if (!payload.consent_share_equipped || !payload.consent_referral_disclosure) {
