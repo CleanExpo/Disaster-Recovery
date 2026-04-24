@@ -15,6 +15,7 @@ import {
   verificationStatusSchema,
   deviceTokenRegistrationSchema,
   nativePlatformSchema,
+  reverseGeocodeRequestSchema,
   claimPhotoUploadSchema,
 } from '../schemas';
 
@@ -288,7 +289,36 @@ describe('deviceTokenRegistrationSchema', () => {
   });
 });
 
+describe('reverseGeocodeRequestSchema', () => {
+  it('accepts a valid lat/lng pair', () => {
+    const res = reverseGeocodeRequestSchema.safeParse({ lat: -27.4698, lng: 153.0251 });
+    expect(res.success).toBe(true);
+  });
+
+  it('rejects lat out of range', () => {
+    const res = reverseGeocodeRequestSchema.safeParse({ lat: 91, lng: 0 });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects lng out of range', () => {
+    const res = reverseGeocodeRequestSchema.safeParse({ lat: 0, lng: -181 });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects non-number coordinates', () => {
+    const res = reverseGeocodeRequestSchema.safeParse({ lat: '-27.4698', lng: '153.0251' });
+    expect(res.success).toBe(false);
+  });
+
+  it('accepts the boundary values', () => {
+    expect(reverseGeocodeRequestSchema.safeParse({ lat: -90, lng: -180 }).success).toBe(true);
+    expect(reverseGeocodeRequestSchema.safeParse({ lat: 90, lng: 180 }).success).toBe(true);
+  });
+});
+
 describe('claimPhotoUploadSchema', () => {
+  // Base64 of n raw bytes has ceil(n/3)*4 chars; we size the body so the
+  // decoded length lands in the 10KB-20MB valid window.
   function makeDataUrl(rawBytes: number, mime = 'jpeg'): string {
     const chars = Math.ceil((rawBytes * 4) / 3);
     const padded = chars + ((4 - (chars % 4)) % 4);
