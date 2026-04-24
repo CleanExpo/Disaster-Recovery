@@ -15,6 +15,18 @@ const DISASTER_CATS = ['water', 'fire', 'storm', 'mould', 'biohazard', 'other'] 
 const CONTACT_SLOTS = ['asap', 'morning', 'afternoon', 'evening'] as const;
 const CUSTOMER_TYPES = ['business', 'consumer'] as const;
 
+/**
+ * Whitelist of permitted `source` values the form may send. Anything else
+ * is ignored and we fall back to the default consumer/commercial surface.
+ * Contractor channel lands here when the NRPG contractor equipment-finance
+ * page hands off to `/finance/referral?channel=contractor`.
+ */
+const ALLOWED_SOURCES = new Set<string>([
+  'disasterrecovery.com.au/finance',
+  'disasterrecovery.com.au/contractor/equipment-finance',
+]);
+const DEFAULT_SOURCE = 'disasterrecovery.com.au/finance';
+
 interface IncomingPayload {
   full_name?: unknown;
   mobile?: unknown;
@@ -31,6 +43,17 @@ interface IncomingPayload {
   consent_share_equipped?: unknown;
   consent_referral_disclosure?: unknown;
   consent_marketing?: unknown;
+  source?: unknown;
+}
+
+/**
+ * Resolve the `source` field from an incoming body. Unknown / missing
+ * values fall back to the default `/finance` surface; a contractor-channel
+ * submission must send the exact matching string.
+ */
+export function resolveIncomingSource(raw: unknown): string {
+  if (typeof raw !== 'string') return DEFAULT_SOURCE;
+  return ALLOWED_SOURCES.has(raw) ? raw : DEFAULT_SOURCE;
 }
 
 function bad(message: string, status = 400) {
@@ -111,7 +134,7 @@ export async function POST(req: NextRequest) {
     purpose,
     funding_band,
     preferred_contact,
-    source: 'disasterrecovery.com.au/finance',
+    source: resolveIncomingSource(body.source),
     disclosure_version: '2026-04-20.v1',
     privacy_notice_version: '2026-04-20.v1',
     issued_at: new Date().toISOString(),
