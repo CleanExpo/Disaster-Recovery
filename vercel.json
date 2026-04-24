@@ -2,6 +2,7 @@
   "framework": "nextjs",
   "installCommand": "npm install --force --legacy-peer-deps --include=dev",
   "buildCommand": "npx prisma@5 generate && node scripts/core/force-build-pages.cjs && node scripts/core/generate-sitemap.cjs && next build",
+  "ignoreCommand": "bash scripts/vercel-ignore-build.sh",
   "public": true,
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=8192",
