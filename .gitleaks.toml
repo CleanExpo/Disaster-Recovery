@@ -1,4 +1,4 @@
-title = "Disaster Recovery Australia — gitleaks config"
+title = "Disaster Recovery — gitleaks config"
 
 [extend]
 useDefault = true

@@ -1,9 +1,9 @@
-# Dev Environment — Disaster Recovery Australia
+# Dev Environment — Disaster Recovery
 
 > Build quirks, tooling expectations, and the things that will burn an
 > hour if nobody tells you. Linked from @CLAUDE.md §0.
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10).*
+_Last updated: 2026-04-24 (Foundation Sprint Day 10)._
 
 ---
 
@@ -103,6 +103,7 @@ Scopes commonly used: `foundation`, `claim`, `voice`, `contractor`,
 `seo`, `compliance`, `observability`, `audits`, `finance`, `payments`.
 
 Example:
+
 ```
 feat(voice): DR-710 HMAC-auth the 5-tool surface
 ```
@@ -140,8 +141,8 @@ A merge requires all gates green.
 - The old `r6-demo/*` tree has dead files; don't "clean up" them in
   unrelated PRs.
 - Some service pages use `AgContentPageTemplate` (supports `heroImage`
-  + `ctaImage` props); guide pages use `AgGuidePageTemplate` (auto
-  Article + FAQPage JSON-LD when `faqs` prop is passed).
+  - `ctaImage` props); guide pages use `AgGuidePageTemplate` (auto
+    Article + FAQPage JSON-LD when `faqs` prop is passed).
 
 ## 12. Recommended editor setup
 

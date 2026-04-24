@@ -9,88 +9,93 @@ interface ComprehensiveSEOProps {
   pageType?: 'home' | 'service' | 'location' | 'contact';
 }
 
-export function ComprehensiveSEO({ location = 'Australia', service, pageType = 'home' }: ComprehensiveSEOProps) {
+export function ComprehensiveSEO({
+  location = 'Australia',
+  service,
+  pageType = 'home',
+}: ComprehensiveSEOProps) {
   const schemas = generateAllSchemas(pageType, location, '2000');
-  
+
   // Enhanced schema for the UBER model
   const enhancedSchema = {
     ...schemas,
-    "@graph": [
-      ...((schemas as Record<string, any>)["@graph"] || []),
+    '@graph': [
+      ...((schemas as Record<string, any>)['@graph'] || []),
       {
-        "@type": "OnDemandService",
-        "name": "Disaster Recovery Australia - UBER Model",
-        "description": "Revolutionary transparent disaster recovery connecting clients directly with vetted contractors",
-        "provider": {
-          "@type": "Organization",
-          "name": "National Restoration Professionals Group",
-          "url": "https://disasterrecovery.com.au"
+        '@type': 'OnDemandService',
+        name: 'Disaster Recovery - UBER Model',
+        description:
+          'Revolutionary transparent disaster recovery connecting clients directly with vetted contractors',
+        provider: {
+          '@type': 'Organization',
+          name: 'National Restoration Professionals Group',
+          url: 'https://disasterrecovery.com.au',
         },
-        "areaServed": {
-          "@type": "Country",
-          "name": "Australia"
+        areaServed: {
+          '@type': 'Country',
+          name: 'Australia',
         },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Emergency Restoration Services",
-          "itemListElement": [
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Emergency Restoration Services',
+          itemListElement: [
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Water Damage Restoration",
-                "description": "24/7 emergency water damage restoration with transparent pricing"
-              }
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Water Damage Restoration',
+                description: '24/7 emergency water damage restoration with transparent pricing',
+              },
             },
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Fire Damage Restoration",
-                "description": "Complete fire and smoke damage restoration services"
-              }
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Fire Damage Restoration',
+                description: 'Complete fire and smoke damage restoration services',
+              },
             },
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Mould Remediation",
-                "description": "Professional mould removal and prevention services"
-              }
-            }
-          ]
-        }
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Mould Remediation',
+                description: 'Professional mould removal and prevention services',
+              },
+            },
+          ],
+        },
       },
       {
-        "@type": "FAQPage",
-        "mainEntity": [
+        '@type': 'FAQPage',
+        mainEntity: [
           {
-            "@type": "Question",
-            "name": "How does the UBER model work for disaster recovery?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We connect you directly with vetted contractors in your area. You see transparent pricing, understand what your insurance covers, and make informed decisions about your restoration."
-            }
+            '@type': 'Question',
+            name: 'How does the UBER model work for disaster recovery?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'We connect you directly with vetted contractors in your area. You see transparent pricing, understand what your insurance covers, and make informed decisions about your restoration.',
+            },
           },
           {
-            "@type": "Question",
-            "name": "What if my insurance doesn't cover everything?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our contractors explain exactly what's covered and what isn't. You can choose to pay the difference for non-covered items or upgrades. Complete transparency, your choice."
-            }
+            '@type': 'Question',
+            name: "What if my insurance doesn't cover everything?",
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: "Our contractors explain exactly what's covered and what isn't. You can choose to pay the difference for non-covered items or upgrades. Complete transparency, your choice.",
+            },
           },
           {
-            "@type": "Question",
-            "name": "Is there a Site Manager Fee?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "For complex projects over $100k, contractors may offer optional Site Manager services (5-8% fee) for enhanced project management and policy navigation. This is completely optional and transparent."
-            }
-          }
-        ]
-      }
-    ]
+            '@type': 'Question',
+            name: 'Is there a Site Manager Fee?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'For complex projects over $100k, contractors may offer optional Site Manager services (5-8% fee) for enhanced project management and policy navigation. This is completely optional and transparent.',
+            },
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -99,16 +104,19 @@ export function ComprehensiveSEO({ location = 'Australia', service, pageType = '
         id="schema-markup"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(enhancedSchema)
+          __html: JSON.stringify(enhancedSchema),
         }}
       />
-      
+
       {/* Hidden content for SEO crawlers */}
       <div className="sr-only" aria-hidden="true">
         <h2>24/7 Emergency Contact</h2>
         <p>Visit disasterrecovery.com.au/claim for immediate emergency response</p>
         <h2>Service Areas</h2>
-        <p>Servicing all of Australia including Sydney, Melbourne, Brisbane, Perth, Adelaide, Gold Coast, Newcastle, Canberra, and all regional areas</p>
+        <p>
+          Servicing all of Australia including Sydney, Melbourne, Brisbane, Perth, Adelaide, Gold
+          Coast, Newcastle, Canberra, and all regional areas
+        </p>
         <h2>Services Offered</h2>
         <ul>
           <li>Water damage restoration emergency response</li>

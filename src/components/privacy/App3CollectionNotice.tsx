@@ -23,7 +23,7 @@
  * Note: This is the DRAFT template generated under DR-641 (GAP-065).
  * Legal counsel review is required before operational reliance.
  * ABN 85 151 794 142 is the ABN for the consumer-facing DR platform entity
- * (National Restoration Professionals Group Pty Ltd, trading as Disaster Recovery Australia).
+ * (National Restoration Professionals Group Pty Ltd, trading as Disaster Recovery).
  */
 
 import Link from 'next/link';
@@ -34,7 +34,7 @@ interface App3CollectionNoticeProps {
 }
 
 const ENTITY = 'National Restoration Professionals Group Pty Ltd (ABN 85 151 794 142)';
-const TRADING_AS = 'Disaster Recovery Australia';
+const TRADING_AS = 'Disaster Recovery';
 
 export function App3CollectionNotice({
   variant = 'compact',
@@ -49,17 +49,15 @@ export function App3CollectionNotice({
         }
       >
         <p>
-          <strong>Privacy notice:</strong>{' '}
-          {ENTITY}, trading as <strong>{TRADING_AS}</strong>, collects your name, contact
-          details, and property information when you lodge a claim to match you with a
-          certified IICRC restoration contractor. Personal information is disclosed to the
-          assigned contractor and processed under the{' '}
-          <em>Privacy Act 1988</em> (Cth). It is not sold or shared for marketing purposes.{' '}
+          <strong>Privacy notice:</strong> {ENTITY}, trading as <strong>{TRADING_AS}</strong>,
+          collects your name, contact details, and property information when you lodge a claim to
+          match you with a certified IICRC restoration contractor. Personal information is disclosed
+          to the assigned contractor and processed under the <em>Privacy Act 1988</em> (Cth). It is
+          not sold or shared for marketing purposes.{' '}
           <Link href="/privacy" className="underline font-medium">
             Privacy Policy
           </Link>
-          .{' '}
-          Complaints may be lodged with the OAIC at{' '}
+          . Complaints may be lodged with the OAIC at{' '}
           <a
             href="https://www.oaic.gov.au"
             target="_blank"
@@ -94,60 +92,56 @@ export function App3CollectionNotice({
       <div>
         <p className="font-medium mb-1">Purpose of collection</p>
         <p>
-          Personal information is collected to: (a) match your restoration claim with a
-          certified IICRC contractor in the Disaster Recovery Australia network; (b) allow
-          that contractor to contact you, inspect your property, and perform restoration
-          work; (c) enable the contractor to liaise with your insurer and produce
-          insurance-standard documentation on your behalf; and (d) facilitate platform
-          administration, invoicing, and dispute resolution.
+          Personal information is collected to: (a) match your restoration claim with a certified
+          IICRC contractor in the Disaster Recovery network; (b) allow that contractor to contact
+          you, inspect your property, and perform restoration work; (c) enable the contractor to
+          liaise with your insurer and produce insurance-standard documentation on your behalf; and
+          (d) facilitate platform administration, invoicing, and dispute resolution.
         </p>
       </div>
 
       <div>
         <p className="font-medium mb-1">Information collected</p>
         <p>
-          Name, contact details (phone and email), property address and postcode, damage
-          type and description, insurance provider name and policy number (if provided),
-          and payment card details (processed by Stripe — not stored by Disaster Recovery
-          Australia).
+          Name, contact details (phone and email), property address and postcode, damage type and
+          description, insurance provider name and policy number (if provided), and payment card
+          details (processed by Stripe — not stored by Disaster Recovery Australia).
         </p>
       </div>
 
       <div>
         <p className="font-medium mb-1">Disclosure to third parties</p>
         <p>
-          Personal information may be disclosed to: (a) the IICRC-certified restoration
-          contractor assigned to your claim; (b) your insurer, where you instruct or
-          authorise that disclosure; (c) cloud infrastructure and platform service
-          providers who process data on our behalf under confidentiality obligations; and
-          (d) regulatory and law enforcement bodies where required by law.
+          Personal information may be disclosed to: (a) the IICRC-certified restoration contractor
+          assigned to your claim; (b) your insurer, where you instruct or authorise that disclosure;
+          (c) cloud infrastructure and platform service providers who process data on our behalf
+          under confidentiality obligations; and (d) regulatory and law enforcement bodies where
+          required by law.
         </p>
       </div>
 
       <div>
         <p className="font-medium mb-1">Cross-border disclosure</p>
         <p>
-          Platform infrastructure services may be located outside Australia. Where
-          personal information is disclosed to overseas recipients, Disaster Recovery
-          Australia takes reasonable steps to ensure those recipients comply with the
-          Australian Privacy Principles.
+          Platform infrastructure services may be located outside Australia. Where personal
+          information is disclosed to overseas recipients, Disaster Recovery Australia takes
+          reasonable steps to ensure those recipients comply with the Australian Privacy Principles.
         </p>
       </div>
 
       <div>
         <p className="font-medium mb-1">Consequences of not providing information</p>
         <p>
-          Providing the requested personal information is voluntary. Without it, Disaster
-          Recovery Australia cannot match your claim with a contractor or facilitate
-          restoration services.
+          Providing the requested personal information is voluntary. Without it, Disaster Recovery
+          Australia cannot match your claim with a contractor or facilitate restoration services.
         </p>
       </div>
 
       <div>
         <p className="font-medium mb-1">Access and correction</p>
         <p>
-          You have the right to access and correct personal information held about you.
-          Submit requests via our{' '}
+          You have the right to access and correct personal information held about you. Submit
+          requests via our{' '}
           <Link href="/contact" className="underline font-medium">
             contact form
           </Link>
@@ -162,13 +156,12 @@ export function App3CollectionNotice({
       <div>
         <p className="font-medium mb-1">Privacy complaints</p>
         <p>
-          Privacy complaints should be directed to Disaster Recovery Australia in the
-          first instance via our{' '}
+          Privacy complaints should be directed to Disaster Recovery in the first instance via our{' '}
           <Link href="/contact" className="underline font-medium">
             contact form
           </Link>
-          . If not resolved to your satisfaction, you may contact the Office of the
-          Australian Information Commissioner (OAIC) at{' '}
+          . If not resolved to your satisfaction, you may contact the Office of the Australian
+          Information Commissioner (OAIC) at{' '}
           <a
             href="https://www.oaic.gov.au"
             target="_blank"

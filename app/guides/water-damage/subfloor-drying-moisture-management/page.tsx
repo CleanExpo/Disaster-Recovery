@@ -8,14 +8,14 @@
  * ACL s18 compliant — no unverified statistics.
  */
 
-import type { Metadata } from 'next'
-import Script from 'next/script'
-import { Droplets } from 'lucide-react'
-import { AgGuidePageTemplate } from '@/components/antigravity'
-import { NAP } from '@/lib/constants'
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import { Droplets } from 'lucide-react';
+import { AgGuidePageTemplate } from '@/components/antigravity';
+import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Subfloor Drying and Moisture Management — IICRC S500:2025 Guide | Disaster Recovery Australia',
+  title: 'Subfloor Drying and Moisture Management — IICRC S500:2025 Guide | Disaster Recovery',
   description:
     'How IICRC S500:2025 certified contractors dry subfloors and manage moisture after flooding. Queenslander, slab-on-ground, and suspended timber floor drying methods.',
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: `${NAP.url}/guides/water-damage/subfloor-drying-moisture-management`,
     type: 'website',
   },
-}
+};
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -50,7 +50,7 @@ const localBusinessSchema = {
     name: 'Water Damage Restoration',
   },
   sameAs: NAP.sameAs,
-}
+};
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -61,7 +61,7 @@ const serviceSchema = {
   serviceType: 'Subfloor Drying and Moisture Management',
   description:
     'IICRC S500:2025-certified subfloor drying for Australian construction types. Commercial drying mats, injection drying, desiccant dehumidification, and daily moisture monitoring to equilibrium moisture content targets.',
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -100,7 +100,7 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 export default function SubfloorDryingMoistureManagementPage() {
   return (
@@ -140,40 +140,46 @@ export default function SubfloorDryingMoistureManagementPage() {
             body: (
               <>
                 <p>
-                  Australia has several distinct residential construction types, each requiring a different subfloor
-                  drying methodology after flooding. A one-size-fits-all approach to subfloor drying leads to
-                  incomplete drying, secondary mould, and structural deterioration.
+                  Australia has several distinct residential construction types, each requiring a
+                  different subfloor drying methodology after flooding. A one-size-fits-all approach
+                  to subfloor drying leads to incomplete drying, secondary mould, and structural
+                  deterioration.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Raised timber (Queenslander)</strong> — common in Queensland, Northern NSW, and NT; timber
-                    subfloor joists and bearers are suspended above ground on stumps or piers. Flood water can flow
-                    beneath the structure, saturating timber members. Subfloor drying mats, cross-ventilation
-                    enhancement, and desiccant dehumidifiers placed below the floor are the primary method. Drying
-                    time is typically 5–10 days depending on saturation level and ambient humidity.
+                    <strong>Raised timber (Queenslander)</strong> — common in Queensland, Northern
+                    NSW, and NT; timber subfloor joists and bearers are suspended above ground on
+                    stumps or piers. Flood water can flow beneath the structure, saturating timber
+                    members. Subfloor drying mats, cross-ventilation enhancement, and desiccant
+                    dehumidifiers placed below the floor are the primary method. Drying time is
+                    typically 5–10 days depending on saturation level and ambient humidity.
                   </li>
                   <li>
-                    <strong>Slab-on-ground</strong> — common in Victoria, South Australia, and WA; a concrete slab
-                    poured directly on compacted earth. Flood water saturates the slab and the ground beneath it.
-                    Moisture migrates upward through the slab slowly — this construction type typically requires
-                    10–21 days to reach equilibrium moisture content targets. Drying mats placed on the slab surface
-                    are the primary extraction method.
+                    <strong>Slab-on-ground</strong> — common in Victoria, South Australia, and WA; a
+                    concrete slab poured directly on compacted earth. Flood water saturates the slab
+                    and the ground beneath it. Moisture migrates upward through the slab slowly —
+                    this construction type typically requires 10–21 days to reach equilibrium
+                    moisture content targets. Drying mats placed on the slab surface are the primary
+                    extraction method.
                   </li>
                   <li>
-                    <strong>Suspended concrete</strong> — common in multi-storey and modern construction; behaves
-                    similarly to slab-on-ground in terms of moisture retention but with better access from below.
+                    <strong>Suspended concrete</strong> — common in multi-storey and modern
+                    construction; behaves similarly to slab-on-ground in terms of moisture retention
+                    but with better access from below.
                   </li>
                   <li>
-                    <strong>Encapsulated subfloor</strong> — a vapour barrier installed under the floor creates a
-                    sealed chamber that can trap moisture if the barrier is breached during flooding. Assessment
-                    requires access through the barrier or floor covering to measure moisture in the substrate below.
+                    <strong>Encapsulated subfloor</strong> — a vapour barrier installed under the
+                    floor creates a sealed chamber that can trap moisture if the barrier is breached
+                    during flooding. Assessment requires access through the barrier or floor
+                    covering to measure moisture in the substrate below.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Climate significantly affects drying timelines. Tropical Far North Queensland with high ambient
-                  humidity and warm temperatures presents different drying conditions than Melbourne with cool,
-                  temperate conditions. Desiccant dehumidifiers are typically preferred in high-humidity tropical
-                  environments where refrigerant (LGR) units struggle to operate efficiently.
+                  Climate significantly affects drying timelines. Tropical Far North Queensland with
+                  high ambient humidity and warm temperatures presents different drying conditions
+                  than Melbourne with cool, temperate conditions. Desiccant dehumidifiers are
+                  typically preferred in high-humidity tropical environments where refrigerant (LGR)
+                  units struggle to operate efficiently.
                 </p>
               </>
             ),
@@ -184,37 +190,41 @@ export default function SubfloorDryingMoistureManagementPage() {
             body: (
               <>
                 <p>
-                  Accurate moisture measurement is the foundation of effective subfloor drying. IICRC S500:2025
-                  certified contractors use a combination of instruments to establish baseline readings before drying
-                  begins and to track daily progress to drying goals.
+                  Accurate moisture measurement is the foundation of effective subfloor drying.
+                  IICRC S500:2025 certified contractors use a combination of instruments to
+                  establish baseline readings before drying begins and to track daily progress to
+                  drying goals.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Thermal imaging cameras</strong> — reveal temperature differentials across floor and wall
-                    surfaces caused by evaporative cooling from damp materials. Used for rapid mapping of affected
-                    areas that may not be visible. Thermal imaging does not provide a moisture content reading —
-                    it identifies areas requiring instrument measurement.
+                    <strong>Thermal imaging cameras</strong> — reveal temperature differentials
+                    across floor and wall surfaces caused by evaporative cooling from damp
+                    materials. Used for rapid mapping of affected areas that may not be visible.
+                    Thermal imaging does not provide a moisture content reading — it identifies
+                    areas requiring instrument measurement.
                   </li>
                   <li>
-                    <strong>Pin-type moisture meters</strong> — inserted into timber subfloor members to measure
-                    moisture content as a percentage. IICRC S500:2025 specifies target moisture content ranges for
-                    timber by species; readings above these targets indicate incomplete drying.
+                    <strong>Pin-type moisture meters</strong> — inserted into timber subfloor
+                    members to measure moisture content as a percentage. IICRC S500:2025 specifies
+                    target moisture content ranges for timber by species; readings above these
+                    targets indicate incomplete drying.
                   </li>
                   <li>
-                    <strong>Non-invasive capacitance meters</strong> — placed on the surface of concrete or flooring
-                    to measure moisture content without drilling. Suitable for daily monitoring on slab-on-ground
-                    construction.
+                    <strong>Non-invasive capacitance meters</strong> — placed on the surface of
+                    concrete or flooring to measure moisture content without drilling. Suitable for
+                    daily monitoring on slab-on-ground construction.
                   </li>
                   <li>
-                    <strong>Tramex CME5 and equivalent</strong> — a specialist concrete moisture meter providing
-                    non-invasive readings on concrete slabs. Used to track moisture migration upward through slab
-                    thickness during the drying process.
+                    <strong>Tramex CME5 and equivalent</strong> — a specialist concrete moisture
+                    meter providing non-invasive readings on concrete slabs. Used to track moisture
+                    migration upward through slab thickness during the drying process.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Daily readings are required under IICRC S500:2025 protocols, taken at the same reference points
-                  each day. Progress is documented in drying logs that form part of the insurance claim file. Drying
-                  is not considered complete until all readings reach target moisture content for the material type.
+                  Daily readings are required under IICRC S500:2025 protocols, taken at the same
+                  reference points each day. Progress is documented in drying logs that form part of
+                  the insurance claim file. Drying is not considered complete until all readings
+                  reach target moisture content for the material type.
                 </p>
               </>
             ),
@@ -224,40 +234,43 @@ export default function SubfloorDryingMoistureManagementPage() {
             body: (
               <>
                 <p>
-                  Equipment selection for subfloor drying depends on the construction type, the extent of saturation,
-                  ambient conditions, and access constraints. IICRC S500:2025 certified contractors calculate
-                  equipment requirements based on the affected area and material types rather than applying a standard
-                  equipment count.
+                  Equipment selection for subfloor drying depends on the construction type, the
+                  extent of saturation, ambient conditions, and access constraints. IICRC S500:2025
+                  certified contractors calculate equipment requirements based on the affected area
+                  and material types rather than applying a standard equipment count.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Subfloor drying mats</strong> — sealed mats placed on concrete slab surfaces create a
-                    controlled drying chamber that draws moisture upward through the slab. Mats are connected to a
-                    dehumidifier that extracts moisture-laden air from the chamber. Highly effective for slab-on-ground
-                    construction where drying from above is the only practical option.
+                    <strong>Subfloor drying mats</strong> — sealed mats placed on concrete slab
+                    surfaces create a controlled drying chamber that draws moisture upward through
+                    the slab. Mats are connected to a dehumidifier that extracts moisture-laden air
+                    from the chamber. Highly effective for slab-on-ground construction where drying
+                    from above is the only practical option.
                   </li>
                   <li>
-                    <strong>Desiccant dehumidifiers</strong> — use a desiccant rotor to adsorb moisture from air
-                    and regenerate continuously. More effective than LGR refrigerant dehumidifiers in cool
-                    temperatures and high-humidity environments typical of subfloor spaces. Required for tropical
-                    North Queensland subfloor drying where ambient humidity is high.
+                    <strong>Desiccant dehumidifiers</strong> — use a desiccant rotor to adsorb
+                    moisture from air and regenerate continuously. More effective than LGR
+                    refrigerant dehumidifiers in cool temperatures and high-humidity environments
+                    typical of subfloor spaces. Required for tropical North Queensland subfloor
+                    drying where ambient humidity is high.
                   </li>
                   <li>
-                    <strong>Injection drying through ports</strong> — small access ports drilled through skirting
-                    boards or floor coverings allow drying air to be injected directly into wall cavities and void
-                    spaces adjacent to the subfloor. Addresses moisture trapped behind wall linings that cannot be
-                    reached by surface equipment.
+                    <strong>Injection drying through ports</strong> — small access ports drilled
+                    through skirting boards or floor coverings allow drying air to be injected
+                    directly into wall cavities and void spaces adjacent to the subfloor. Addresses
+                    moisture trapped behind wall linings that cannot be reached by surface
+                    equipment.
                   </li>
                   <li>
-                    <strong>Cross-ventilation enhancement</strong> — for raised timber construction, commercial
-                    axial fans are positioned to draw outside air through the underfloor space, accelerating natural
-                    ventilation drying of timber members. Used in combination with dehumidification rather than as
-                    a stand-alone method.
+                    <strong>Cross-ventilation enhancement</strong> — for raised timber construction,
+                    commercial axial fans are positioned to draw outside air through the underfloor
+                    space, accelerating natural ventilation drying of timber members. Used in
+                    combination with dehumidification rather than as a stand-alone method.
                   </li>
                   <li>
-                    <strong>Foil barrier isolation</strong> — temporary foil barriers divide large subfloor areas
-                    into smaller drying zones, concentrating dehumidifier output on each zone in sequence. Improves
-                    drying efficiency in large-footprint buildings.
+                    <strong>Foil barrier isolation</strong> — temporary foil barriers divide large
+                    subfloor areas into smaller drying zones, concentrating dehumidifier output on
+                    each zone in sequence. Improves drying efficiency in large-footprint buildings.
                   </li>
                 </ul>
               </>
@@ -269,39 +282,45 @@ export default function SubfloorDryingMoistureManagementPage() {
             body: (
               <>
                 <p>
-                  One of the most consequential decisions in subfloor drying is whether to remove floor coverings
-                  or attempt drying with coverings in place. IICRC S500:2025 provides guidance on this decision,
-                  which depends on covering type, the duration of water exposure, and the subfloor substrate.
+                  One of the most consequential decisions in subfloor drying is whether to remove
+                  floor coverings or attempt drying with coverings in place. IICRC S500:2025
+                  provides guidance on this decision, which depends on covering type, the duration
+                  of water exposure, and the subfloor substrate.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
                   <li>
-                    <strong>Salvageability assessment</strong> — the covering is assessed for whether it can survive
-                    the drying process without permanent damage. Carpet over underlay typically retains contamination
-                    and is almost always removed. Engineered timber and solid hardwood are assessed on a case-by-case
-                    basis. Tiles and vinyl planks can often remain in place.
+                    <strong>Salvageability assessment</strong> — the covering is assessed for
+                    whether it can survive the drying process without permanent damage. Carpet over
+                    underlay typically retains contamination and is almost always removed.
+                    Engineered timber and solid hardwood are assessed on a case-by-case basis. Tiles
+                    and vinyl planks can often remain in place.
                   </li>
                   <li>
-                    <strong>Removal vs dry-in-place</strong> — coverings left in place significantly slow drying of
-                    the subfloor below and increase the risk of mould developing between the covering and the
-                    substrate. Removal is generally recommended when water has been present for more than 24–48 hours,
-                    when the subfloor is timber, or when the covering is carpet or underlay.
+                    <strong>Removal vs dry-in-place</strong> — coverings left in place significantly
+                    slow drying of the subfloor below and increase the risk of mould developing
+                    between the covering and the substrate. Removal is generally recommended when
+                    water has been present for more than 24–48 hours, when the subfloor is timber,
+                    or when the covering is carpet or underlay.
                   </li>
                   <li>
-                    <strong>Subfloor mould risk</strong> — mould can develop between a floor covering and the
-                    subfloor within 24–72 hours under warm, humid conditions. If floor coverings are retained during
-                    drying and mould develops below them, the cost and scope of remediation increases substantially.
-                    IICRC S500:2025 recognises this risk in its guidance on flooring decisions.
+                    <strong>Subfloor mould risk</strong> — mould can develop between a floor
+                    covering and the subfloor within 24–72 hours under warm, humid conditions. If
+                    floor coverings are retained during drying and mould develops below them, the
+                    cost and scope of remediation increases substantially. IICRC S500:2025
+                    recognises this risk in its guidance on flooring decisions.
                   </li>
                   <li>
-                    <strong>Documentation for insurance</strong> — the decision to remove or retain floor coverings
-                    must be documented in the scope of works with the rationale recorded. If coverings are removed
-                    and cannot be salvaged, replacement is a covered loss under most building and contents policies.
+                    <strong>Documentation for insurance</strong> — the decision to remove or retain
+                    floor coverings must be documented in the scope of works with the rationale
+                    recorded. If coverings are removed and cannot be salvaged, replacement is a
+                    covered loss under most building and contents policies.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  If you are concerned that a previous water damage restoration left floor coverings in place when
-                  they should have been removed, an independent IICRC S500:2025 moisture assessment can determine
-                  current subfloor moisture levels and whether secondary mould has developed below the covering.
+                  If you are concerned that a previous water damage restoration left floor coverings
+                  in place when they should have been removed, an independent IICRC S500:2025
+                  moisture assessment can determine current subfloor moisture levels and whether
+                  secondary mould has developed below the covering.
                 </p>
               </>
             ),
@@ -330,11 +349,20 @@ export default function SubfloorDryingMoistureManagementPage() {
           },
         ]}
         relatedGuides={[
-          { title: 'IICRC S500 Water Damage Standard', href: '/guides/water-damage/iicrc-s500-water-damage-restoration-standard' },
-          { title: 'Structural Drying Process', href: '/guides/services/structural-drying-process' },
-          { title: 'Flood Damage Hardwood Floors', href: '/guides/flood-damage/flood-damage-hardwood-floors' },
+          {
+            title: 'IICRC S500 Water Damage Standard',
+            href: '/guides/water-damage/iicrc-s500-water-damage-restoration-standard',
+          },
+          {
+            title: 'Structural Drying Process',
+            href: '/guides/services/structural-drying-process',
+          },
+          {
+            title: 'Flood Damage Hardwood Floors',
+            href: '/guides/flood-damage/flood-damage-hardwood-floors',
+          },
         ]}
       />
     </>
-  )
+  );
 }

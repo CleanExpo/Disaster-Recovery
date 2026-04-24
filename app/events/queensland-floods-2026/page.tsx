@@ -22,20 +22,21 @@ import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice'
 import { DeadlineBand } from '@/components/DeadlineBand'
 
 export const metadata: Metadata = {
-  title: 'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery Australia',
+  title:
+    'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery',
   description:
     'Government assistance programs available. Check page for current deadlines. Queensland Floods 2026 — Tropical Low 29U, Bundaberg, Burnett River catchment. 2,000+ ICA claims. IICRC-certified restoration contractors. Lodge your claim now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
   },
   openGraph: {
-    title: 'QLD Floods 2026 — Bundaberg & Burnett River Recovery | Disaster Recovery Australia',
+    title: 'QLD Floods 2026 — Bundaberg & Burnett River Recovery | Disaster Recovery',
     description:
       'Queensland Floods 2026 (Tropical Low 29U). Bundaberg and Burnett River catchment most affected. Government assistance programs available — check page for current deadlines. NRPG IICRC-certified contractors ready now.',
     url: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
     type: 'website',
   },
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -82,7 +83,7 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 const eventSchema = {
   '@context': 'https://schema.org',
@@ -98,10 +99,10 @@ const eventSchema = {
   },
   organizer: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
   },
-}
+};
 
 export default function QueenslandFloods2026Page() {
   return (
@@ -116,7 +117,6 @@ export default function QueenslandFloods2026Page() {
       />
 
       <div className="min-h-screen bg-white">
-
         {/* ── 000 Emergency Warning ── */}
         <div className="bg-red-700 text-white py-3 px-4 text-center" role="alert">
           <p className="text-sm font-bold">
@@ -132,7 +132,9 @@ export default function QueenslandFloods2026Page() {
         <div className="bg-amber-50 border-b border-amber-400">
           <div className="container mx-auto px-6 max-w-5xl py-4">
             <div className="flex items-start gap-3">
-              <span className="text-xl flex-shrink-0" role="img" aria-label="Warning">⏰</span>
+              <span className="text-xl flex-shrink-0" role="img" aria-label="Warning">
+                ⏰
+              </span>
               <p className="text-amber-900 font-semibold text-sm md:text-base">
                 Government assistance programs — Extended ESHA, Personal Hardship,
                 and Structural Grants. Check current deadline status below.
@@ -156,7 +158,8 @@ export default function QueenslandFloods2026Page() {
               <span className="text-blue-400">Work for you, not your insurer.</span>
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mb-2 leading-relaxed">
-              Tropical Low 29U and related March 2026 flood events impacted Bundaberg, the Burnett River catchment, and surrounding LGAs across Queensland.
+              Tropical Low 29U and related March 2026 flood events impacted Bundaberg, the Burnett
+              River catchment, and surrounding LGAs across Queensland.
             </p>
             <p className="text-base text-slate-400 max-w-2xl mb-8">
               Government assistance programs available — check current status below. NRPG coordinates IICRC-certified restoration and supports your claim.
@@ -191,8 +194,8 @@ export default function QueenslandFloods2026Page() {
               Three programs may be available. Apply for each you are eligible for.
             </p>
             <p className="text-slate-600 text-sm mb-6">
-              58 Local Government Areas are declared under the Disaster Recovery Funding Arrangements (DRFA). For
-              the full list of eligible LGAs, visit{' '}
+              58 Local Government Areas are declared under the Disaster Recovery Funding
+              Arrangements (DRFA). For the full list of eligible LGAs, visit{' '}
               <a
                 href="https://www.qra.qld.gov.au"
                 target="_blank"
@@ -202,13 +205,15 @@ export default function QueenslandFloods2026Page() {
                 qra.qld.gov.au
               </a>{' '}
               or call the Queensland Reconstruction Authority on{' '}
-              <a href="tel:1800173349" className="underline text-blue-700 hover:text-blue-900 font-medium">
+              <a
+                href="tel:1800173349"
+                className="underline text-blue-700 hover:text-blue-900 font-medium"
+              >
                 1800 173 349
               </a>
               .
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-
               {/* Card A: Extended ESHA */}
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col">
                 <div className="flex items-center justify-between mb-3">
@@ -216,14 +221,13 @@ export default function QueenslandFloods2026Page() {
                     Exceptional Circumstances
                   </span>
                 </div>
-                <h3 className="font-bold text-slate-900 text-lg mb-1">
-                  Extended ESHA
-                </h3>
+                <h3 className="font-bold text-slate-900 text-lg mb-1">Extended ESHA</h3>
                 <p className="text-green-700 font-bold text-xl mb-3">Up to $5,000</p>
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                  Extended Household and Structural Assistance under Exceptional Circumstances — covers temporary
-                  accommodation, essential household items, meals, transport, medical prescriptions, and childcare
-                  for eligible residents in the 10 declared LGAs.
+                  Extended Household and Structural Assistance under Exceptional Circumstances —
+                  covers temporary accommodation, essential household items, meals, transport,
+                  medical prescriptions, and childcare for eligible residents in the 10 declared
+                  LGAs. Available until 27 April 2026.
                 </p>
                 <div className="mb-4">
                   <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
@@ -242,7 +246,10 @@ export default function QueenslandFloods2026Page() {
                       'North Burnett',
                       'Western Downs',
                     ].map((lga) => (
-                      <span key={lga} className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                      <span
+                        key={lga}
+                        className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded"
+                      >
                         {lga}
                       </span>
                     ))}
@@ -283,7 +290,10 @@ export default function QueenslandFloods2026Page() {
                     disaster.qld.gov.au
                   </a>{' '}
                   or call the QRA on{' '}
-                  <a href="tel:1800173349" className="underline text-purple-700 hover:text-purple-900">
+                  <a
+                    href="tel:1800173349"
+                    className="underline text-purple-700 hover:text-purple-900"
+                  >
                     1800 173 349
                   </a>
                   . [Source: disaster.qld.gov.au]
@@ -312,9 +322,9 @@ export default function QueenslandFloods2026Page() {
                 </h3>
                 <p className="text-green-700 font-bold text-xl mb-3">Up to $80,000</p>
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                  Covers structural damage, electrical and plumbing repairs, drying and mould remediation, and
-                  professional assessment reports. Eligible works must exceed $5,000. Primary residence only.
-                  [Source:{' '}
+                  Covers structural damage, electrical and plumbing repairs, drying and mould
+                  remediation, and professional assessment reports. Eligible works must exceed
+                  $5,000. Primary residence only. [Source:{' '}
                   <a
                     href="https://www.disaster.qld.gov.au"
                     target="_blank"
@@ -336,7 +346,6 @@ export default function QueenslandFloods2026Page() {
                   </a>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -368,8 +377,13 @@ export default function QueenslandFloods2026Page() {
                   body: 'From drying and mould remediation (IICRC S500:2025/S520:2025 standards) to final rebuild — one contact, one timeline.',
                 },
               ].map(({ number, title, body }) => (
-                <div key={number} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                  <div className="text-4xl font-black text-blue-100 mb-3 font-display">{number}</div>
+                <div
+                  key={number}
+                  className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm"
+                >
+                  <div className="text-4xl font-black text-blue-100 mb-3 font-display">
+                    {number}
+                  </div>
                   <h3 className="font-bold text-slate-900 text-lg mb-3">{title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{body}</p>
                 </div>
@@ -392,9 +406,22 @@ export default function QueenslandFloods2026Page() {
                 'Contents & Personal Items',
                 'Professional Assessment & Reports',
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 bg-white border border-slate-200 rounded-lg px-5 py-4">
-                  <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <div
+                  key={item}
+                  className="flex items-start gap-3 bg-white border border-slate-200 rounded-lg px-5 py-4"
+                >
+                  <svg
+                    className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
                   <span className="text-slate-700 font-medium text-sm">{item}</span>
                 </div>
@@ -406,17 +433,25 @@ export default function QueenslandFloods2026Page() {
         {/* ── Trust Signals ── */}
         <section className="py-12 bg-blue-900 text-white">
           <div className="container mx-auto px-6 max-w-5xl">
-            <h2 className="font-display text-2xl font-bold text-white mb-8">
-              Why NRPG
-            </h2>
+            <h2 className="font-display text-2xl font-bold text-white mb-8">Why NRPG</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 'Tropical Low 29U and related March 2026 flood events generated 2,000+ ICA claims across Queensland, with Bundaberg and the Burnett River catchment among the most impacted areas [Insurance Council of Australia].',
                 'NRPG restoration partners are IICRC-certified and comply with S500:2025 (Water Damage Restoration) and S520:2025 (Mould Remediation) standards.',
               ].map((signal, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  <svg
+                    className="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
                   </svg>
                   <p className="text-blue-100 text-sm leading-relaxed">{signal}</p>
                 </div>
@@ -481,13 +516,17 @@ export default function QueenslandFloods2026Page() {
             >
               Lodge Your Claim Now
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </Link>
           </div>
         </section>
-
       </div>
     </>
-  )
+  );
 }

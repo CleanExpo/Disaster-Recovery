@@ -19,20 +19,20 @@ import DisasterEventPage from '@/components/events/DisasterEventPage'
 import { PROGRAM_DEADLINES, deadlineStatusText } from '@/lib/deadlines'
 
 export const metadata: Metadata = {
-  title: 'Cyclone Narelle WA 2026 — Category 4 Recovery & Insurance Claims | Disaster Recovery Australia',
+  title: 'Cyclone Narelle WA 2026 — Category 4 Recovery & Insurance Claims | Disaster Recovery',
   description:
     'Cyclone Narelle Western Australia 2026. Category 4 at peak intensity. 1,800+ ICA claims confirmed across 6 DRFA-declared shires: Exmouth, Carnarvon, Shark Bay, Ashburton, Upper Gascoyne, and Yalgoo. IICRC S500:2025-certified restoration contractors. Government assistance, insurance claims support.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/cyclone-narelle-western-australia-2026',
   },
   openGraph: {
-    title: 'Cyclone Narelle WA 2026 — Category 4 Recovery | Disaster Recovery Australia',
+    title: 'Cyclone Narelle WA 2026 — Category 4 Recovery | Disaster Recovery',
     description:
       'Cyclone Narelle Category 4. 1,800+ ICA claims confirmed. 6 DRFA-declared shires. IICRC-certified contractors. Government assistance and insurance claims support.',
     url: 'https://disasterrecovery.com.au/events/cyclone-narelle-western-australia-2026',
     type: 'website',
   },
-}
+};
 
 export default function CycloneNarelleWA2026Page() {
   return (
@@ -46,16 +46,9 @@ export default function CycloneNarelleWA2026Page() {
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (covers wind and structural scope)"
       alertNote="Category 4 at peak intensity. 1,800+ ICA claims confirmed across 6 DRFA-declared shires [Insurance Council of Australia]. AGDRP activated 10 April 2026."
       slug="events/cyclone-narelle-western-australia-2026"
-      metaTitle="Cyclone Narelle WA 2026 — Category 4 Recovery & Insurance Claims | Disaster Recovery Australia"
+      metaTitle="Cyclone Narelle WA 2026 — Category 4 Recovery & Insurance Claims | Disaster Recovery"
       metaDescription="Cyclone Narelle Western Australia 2026. Category 4 at peak intensity. 1,800+ ICA claims confirmed across 6 DRFA-declared shires. IICRC-certified restoration contractors. Government assistance and insurance claims support."
-      affectedLGAs={[
-        'Exmouth',
-        'Carnarvon',
-        'Shark Bay',
-        'Ashburton',
-        'Upper Gascoyne',
-        'Yalgoo',
-      ]}
+      affectedLGAs={['Exmouth', 'Carnarvon', 'Shark Bay', 'Ashburton', 'Upper Gascoyne', 'Yalgoo']}
       remoteLGAs={['Ashburton', 'Upper Gascoyne', 'Yalgoo']}
       remoteLGANote="Contact us for a specialist referral — contractor availability in remote Gascoyne and Mid-West shires is being confirmed."
       showEmergencyWarning
@@ -101,5 +94,5 @@ export default function CycloneNarelleWA2026Page() {
       governmentApplicationUrl="https://www.dfes.wa.gov.au/recovery"
       governmentApplicationLabel="WA Disaster Recovery"
     />
-  )
+  );
 }

@@ -9,11 +9,11 @@ import Script from 'next/script';
 import { generateArticleSchema } from '@/lib/seo';
 import { StructuredData } from '@/components/seo/StructuredData';
 import {
-  Cloud, 
-  AlertTriangle, 
-  Shield, 
-  Clock, 
-  Phone, 
+  Cloud,
+  AlertTriangle,
+  Shield,
+  Clock,
+  Phone,
   CheckCircle,
   Home,
   Building,
@@ -34,7 +34,7 @@ import {
   HelpCircle,
   TreePine,
   Umbrella,
-  Waves
+  Waves,
 } from 'lucide-react';
 
 function StormDamageGuidePageOriginal() {
@@ -49,7 +49,7 @@ function StormDamageGuidePageOriginal() {
       primaryDamage: 'Structural damage, roof loss, debris impact',
       secondaryDamage: 'Storm surge, flooding, extended power outages',
       seasonality: 'November to April (Australia)',
-      highRiskAreas: ['QLD Coast', 'NT Coast', 'WA Northwest']
+      highRiskAreas: ['QLD Coast', 'NT Coast', 'WA Northwest'],
     },
     thunderstorm: {
       title: 'Severe Thunderstorm',
@@ -58,7 +58,7 @@ function StormDamageGuidePageOriginal() {
       primaryDamage: 'Hail damage, lightning strikes, flash flooding',
       secondaryDamage: 'Power outages, fallen trees, water damage',
       seasonality: 'September to March (peak)',
-      highRiskAreas: ['SE QLD', 'NSW', 'VIC', 'SA']
+      highRiskAreas: ['SE QLD', 'NSW', 'VIC', 'SA'],
     },
     tornado: {
       title: 'Tornado',
@@ -67,7 +67,7 @@ function StormDamageGuidePageOriginal() {
       primaryDamage: 'Complete structural destruction in path',
       secondaryDamage: 'Debris missiles, vehicle damage',
       seasonality: 'Year-round (rare in Australia)',
-      highRiskAreas: ['Inland NSW', 'QLD', 'SA', 'WA']
+      highRiskAreas: ['Inland NSW', 'QLD', 'SA', 'WA'],
     },
     eastCoastLow: {
       title: 'East Coast Low',
@@ -76,8 +76,8 @@ function StormDamageGuidePageOriginal() {
       primaryDamage: 'Coastal erosion, flooding, wind damage',
       secondaryDamage: 'Storm surge, prolonged rainfall',
       seasonality: 'June to August (peak)',
-      highRiskAreas: ['NSW Coast', 'QLD South', 'VIC East', 'TAS']
-    }
+      highRiskAreas: ['NSW Coast', 'QLD South', 'VIC East', 'TAS'],
+    },
   };
 
   const damageCategories = [
@@ -91,9 +91,9 @@ function StormDamageGuidePageOriginal() {
         'Punctures from debris',
         'Compromised flashing',
         'Gutter damage',
-        'Structural deformation'
+        'Structural deformation',
       ],
-      urgency: 'Immediate - prevent water ingress'
+      urgency: 'Immediate - prevent water ingress',
     },
     {
       category: 'Window & Door Damage',
@@ -105,9 +105,9 @@ function StormDamageGuidePageOriginal() {
         'Frame distortion',
         'Seal failure',
         'Security compromise',
-        'Debris impact damage'
+        'Debris impact damage',
       ],
-      urgency: 'Immediate - security and weatherproofing'
+      urgency: 'Immediate - security and weatherproofing',
     },
     {
       category: 'Tree & Debris Impact',
@@ -119,9 +119,9 @@ function StormDamageGuidePageOriginal() {
         'Branch penetration',
         'Vehicle damage',
         'Fence destruction',
-        'Power line damage'
+        'Power line damage',
       ],
-      urgency: 'High - safety hazard removal'
+      urgency: 'High - safety hazard removal',
     },
     {
       category: 'Water Ingress',
@@ -133,10 +133,10 @@ function StormDamageGuidePageOriginal() {
         'Wall saturation',
         'Floor flooding',
         'Insulation saturation',
-        'Electrical system damage'
+        'Electrical system damage',
       ],
-      urgency: 'Critical - prevent mould growth'
-    }
+      urgency: 'Critical - prevent mould growth',
+    },
   ];
 
   const emergencyActions = [
@@ -147,9 +147,9 @@ function StormDamageGuidePageOriginal() {
         'Move to strongest part of building',
         'Monitor emergency broadcasts',
         'Avoid using electrical appliances',
-        'Have emergency kit ready'
+        'Have emergency kit ready',
       ],
-      critical: true
+      critical: true,
     },
     {
       phase: 'Immediately After',
@@ -158,9 +158,9 @@ function StormDamageGuidePageOriginal() {
         'Assess structural safety',
         'Turn off utilities if damaged',
         'Document all damage',
-        'Contact emergency services if needed'
+        'Contact emergency services if needed',
       ],
-      critical: true
+      critical: true,
     },
     {
       phase: 'Within 24 Hours',
@@ -169,9 +169,9 @@ function StormDamageGuidePageOriginal() {
         'Temporary repairs (tarps, boards)',
         'Remove water if safe',
         'Secure property',
-        'Begin inventory of damage'
+        'Begin inventory of damage',
       ],
-      critical: true
+      critical: true,
     },
     {
       phase: 'Within 48-72 Hours',
@@ -180,10 +180,10 @@ function StormDamageGuidePageOriginal() {
         'Contractor quotes',
         'Detailed documentation',
         'Salvage operations',
-        'Mould prevention measures'
+        'Mould prevention measures',
       ],
-      critical: false
-    }
+      critical: false,
+    },
   ];
 
   const insuranceConsiderations = [
@@ -191,38 +191,38 @@ function StormDamageGuidePageOriginal() {
       aspect: 'Storm vs Flood',
       important: 'Critical Distinction',
       details: 'Storm damage (wind/rain) typically covered, flood damage often excluded',
-      action: 'Verify flood coverage separately'
+      action: 'Verify flood coverage separately',
     },
     {
       aspect: 'Maintenance Exclusions',
       important: 'Common Denial Reason',
       details: 'Pre-existing damage or poor maintenance can void claims',
-      action: 'Document regular maintenance'
+      action: 'Document regular maintenance',
     },
     {
       aspect: 'Temporary Repairs',
       important: 'Covered Cost',
       details: 'Emergency repairs to prevent further damage usually reimbursed',
-      action: 'Keep all receipts'
+      action: 'Keep all receipts',
     },
     {
       aspect: 'Additional Living Expenses',
       important: 'Often Included',
       details: 'Accommodation costs if home uninhabitable',
-      action: 'Check policy limits and duration'
+      action: 'Check policy limits and duration',
     },
     {
       aspect: 'Debris Removal',
       important: 'May Have Limits',
       details: 'Usually percentage of dwelling sum insured',
-      action: 'May need additional coverage'
+      action: 'May need additional coverage',
     },
     {
       aspect: 'Named Storm Excess',
       important: 'Higher Deductible',
       details: 'Cyclones may trigger special excess amounts',
-      action: 'Know your policy terms'
-    }
+      action: 'Know your policy terms',
+    },
   ];
 
   const restorationSteps = [
@@ -235,8 +235,8 @@ function StormDamageGuidePageOriginal() {
         'Emergency tarping',
         'Board-up services',
         'Utility isolation',
-        'Hazard removal'
-      ]
+        'Hazard removal',
+      ],
     },
     {
       step: 2,
@@ -247,8 +247,8 @@ function StormDamageGuidePageOriginal() {
         'Structural drying',
         'Dehumidification',
         'Anti-microbial treatment',
-        'Content protection'
-      ]
+        'Content protection',
+      ],
     },
     {
       step: 3,
@@ -259,8 +259,8 @@ function StormDamageGuidePageOriginal() {
         'Debris clearing',
         'Damaged material removal',
         'Site cleanup',
-        'Waste disposal'
-      ]
+        'Waste disposal',
+      ],
     },
     {
       step: 4,
@@ -271,8 +271,8 @@ function StormDamageGuidePageOriginal() {
         'Scope of work',
         'Cost estimation',
         'Insurance coordination',
-        'Permit applications'
-      ]
+        'Permit applications',
+      ],
     },
     {
       step: 5,
@@ -283,9 +283,9 @@ function StormDamageGuidePageOriginal() {
         'Roof restoration',
         'Window/door replacement',
         'Interior repairs',
-        'Final inspections'
-      ]
-    }
+        'Final inspections',
+      ],
+    },
   ];
 
   const regionalConsiderations = [
@@ -294,64 +294,72 @@ function StormDamageGuidePageOriginal() {
       icon: <Waves className="w-6 h-6" />,
       risks: ['Cyclones', 'Storm surge', 'Flooding'],
       season: 'Nov-Apr',
-      preparation: 'Cyclone shutters, elevated construction, emergency kits'
+      preparation: 'Cyclone shutters, elevated construction, emergency kits',
     },
     {
       region: 'Southeast QLD/Northern NSW',
       icon: <Cloud className="w-6 h-6" />,
       risks: ['Severe thunderstorms', 'Hail', 'East Coast Lows'],
       season: 'Oct-Mar',
-      preparation: 'Hail protection, drainage systems, tree management'
+      preparation: 'Hail protection, drainage systems, tree management',
     },
     {
       region: 'Southern States',
       icon: <Wind className="w-6 h-6" />,
       risks: ['Winter storms', 'Cold fronts', 'Hail'],
       season: 'May-Oct',
-      preparation: 'Roof maintenance, gutter clearing, heating backup'
+      preparation: 'Roof maintenance, gutter clearing, heating backup',
     },
     {
       region: 'Western Australia',
       icon: <Umbrella className="w-6 h-6" />,
       risks: ['Cyclones (north)', 'Winter storms (south)'],
       season: 'Variable',
-      preparation: 'Regional specific measures, water management'
-    }
+      preparation: 'Regional specific measures, water management',
+    },
   ];
 
   const faqs = [
     {
-      question: 'What\'s the difference between storm damage and flood damage for insurance?',
-      answer: 'Storm damage refers to damage from wind, rain entering through storm-created openings, hail, and lightning - typically covered by standard policies. Flood damage is rising water from rivers, lakes, or storm surge - often requires separate flood insurance. The source and path of water entry is crucial for claims.'
+      question: "What's the difference between storm damage and flood damage for insurance?",
+      answer:
+        'Storm damage refers to damage from wind, rain entering through storm-created openings, hail, and lightning - typically covered by standard policies. Flood damage is rising water from rivers, lakes, or storm surge - often requires separate flood insurance. The source and path of water entry is crucial for claims.',
     },
     {
       question: 'How quickly should I act after storm damage?',
-      answer: 'Immediately ensure safety, then act within 24-48 hours to prevent secondary damage. Contact insurance ASAP, document everything before cleanup, and begin mitigation (tarping, water removal) within 48 hours to prevent mould and further deterioration.'
+      answer:
+        'Immediately ensure safety, then act within 24-48 hours to prevent secondary damage. Contact insurance ASAP, document everything before cleanup, and begin mitigation (tarping, water removal) within 48 hours to prevent mould and further deterioration.',
     },
     {
       question: 'Can I make temporary repairs before insurance assessment?',
-      answer: 'Yes, you\'re required to mitigate further damage. Make reasonable temporary repairs (tarps, boards, water removal) and document with photos before and after. Keep all receipts. Don\'t make permanent repairs or dispose of damaged items until insurance approves.'
+      answer:
+        "Yes, you're required to mitigate further damage. Make reasonable temporary repairs (tarps, boards, water removal) and document with photos before and after. Keep all receipts. Don't make permanent repairs or dispose of damaged items until insurance approves.",
     },
     {
       question: 'What if my home is uninhabitable after a storm?',
-      answer: 'Most policies include Additional Living Expenses (ALE) covering temporary accommodation and increased living costs. Document all expenses, keep receipts, and check your policy limits and time restrictions. Notify your insurer immediately about displacement.'
+      answer:
+        'Most policies include Additional Living Expenses (ALE) covering temporary accommodation and increased living costs. Document all expenses, keep receipts, and check your policy limits and time restrictions. Notify your insurer immediately about displacement.',
     },
     {
       question: 'How do I prove storm damage vs pre-existing damage?',
-      answer: 'Maintain dated photos of your property before storms, keep maintenance records, document the specific storm event (weather reports, news), and get professional assessments linking damage to the storm. Pre-storm preparation photos are valuable evidence.'
+      answer:
+        'Maintain dated photos of your property before storms, keep maintenance records, document the specific storm event (weather reports, news), and get professional assessments linking damage to the storm. Pre-storm preparation photos are valuable evidence.',
     },
     {
       question: 'What about damage from trees on my property?',
-      answer: 'If your tree falls and damages your property, your insurance typically covers it. If a neighbour\'s tree damages your property, your insurance still covers it (then may pursue their insurance). Removal is usually covered only if the tree damaged a covered structure.'
+      answer:
+        "If your tree falls and damages your property, your insurance typically covers it. If a neighbour's tree damages your property, your insurance still covers it (then may pursue their insurance). Removal is usually covered only if the tree damaged a covered structure.",
     },
     {
       question: 'Will insurance cover upgrading to current building codes?',
-      answer: 'Standard policies may not cover code upgrades. You may need "Ordinance or Law" coverage for bringing repairs up to current building codes. This is especially important in cyclone-prone areas with updated standards.'
+      answer:
+        'Standard policies may not cover code upgrades. You may need "Ordinance or Law" coverage for bringing repairs up to current building codes. This is especially important in cyclone-prone areas with updated standards.',
     },
     {
       question: 'How long do I have to file a storm damage claim?',
-      answer: 'While policies vary, notify your insurer immediately (within days) but you typically have 12 months to file a complete claim. However, delaying can complicate proving storm causation and may affect coverage if secondary damage occurs.'
-    }
+      answer:
+        'While policies vary, notify your insurer immediately (within days) but you typically have 12 months to file a complete claim. However, delaying can complicate proving storm causation and may affect coverage if secondary damage occurs.',
+    },
   ];
 
   return (
@@ -369,9 +377,7 @@ function StormDamageGuidePageOriginal() {
             <div className="flex justify-center mb-6">
               <Cloud className="w-20 h-20 text-sky-600" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Storm Damage Recovery Guide
-            </h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Storm Damage Recovery Guide</h1>
             <p className="text-xl md:text-2xl mb-8 text-sky-800">
               Comprehensive Storm, Cyclone & Severe Weather Damage Information
             </p>
@@ -408,7 +414,7 @@ function StormDamageGuidePageOriginal() {
               <Wind className="w-8 h-8 text-sky-600" />
               Types of Storm Events in Australia
             </h2>
-            
+
             <div className="mb-8 flex flex-wrap gap-4">
               {Object.keys(stormTypes).map((key) => (
                 <button
@@ -483,8 +489,13 @@ function StormDamageGuidePageOriginal() {
                       <div>
                         <span className="font-semibold text-sm">High Risk Areas:</span>
                         <div className="mt-2 flex flex-wrap gap-2">
-                          {stormTypes[selectedStormType as keyof typeof stormTypes].highRiskAreas.map((area, idx) => (
-                            <span key={idx} className="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm">
+                          {stormTypes[
+                            selectedStormType as keyof typeof stormTypes
+                          ].highRiskAreas.map((area, idx) => (
+                            <span
+                              key={idx}
+                              className="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm"
+                            >
                               {area}
                             </span>
                           ))}
@@ -534,7 +545,7 @@ function StormDamageGuidePageOriginal() {
                     </div>
                     <span className="text-2xl font-bold text-sky-600">{category.percentage}</span>
                   </div>
-                  
+
                   <div className="mb-4">
                     <h4 className="font-semibold mb-2 text-sm">Common Types:</h4>
                     <ul className="space-y-1">
@@ -546,7 +557,7 @@ function StormDamageGuidePageOriginal() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   <div className="pt-4 border-t border-gray-200">
                     <span className="text-sm font-semibold text-orange-600">
                       Urgency: {category.urgency}
@@ -581,29 +592,35 @@ function StormDamageGuidePageOriginal() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className={`rounded-lg p-6 ${
-                    phase.critical 
-                      ? 'bg-red-50 border-2 border-red-300' 
+                    phase.critical
+                      ? 'bg-red-50 border-2 border-red-300'
                       : 'bg-gray-50 border-2 border-gray-200'
                   }`}
                 >
-                  <h3 className={`text-lg font-bold mb-4 ${
-                    phase.critical ? 'text-red-800' : 'text-gray-800'
-                  }`}>
+                  <h3
+                    className={`text-lg font-bold mb-4 ${
+                      phase.critical ? 'text-red-800' : 'text-gray-800'
+                    }`}
+                  >
                     {phase.phase}
                   </h3>
                   <ul className="space-y-2">
                     {phase.actions.map((action, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <CheckCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                          phase.critical ? 'text-red-600' : 'text-green-600'
-                        }`} />
+                        <CheckCircle
+                          className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                            phase.critical ? 'text-red-600' : 'text-green-600'
+                          }`}
+                        />
                         <span className="text-sm text-gray-600">{action}</span>
                       </li>
                     ))}
                   </ul>
                   {phase.critical && (
                     <div className="mt-4 pt-4 border-t border-red-200">
-                      <span className="text-xs font-semibold text-red-600 uppercase">Critical Phase</span>
+                      <span className="text-xs font-semibold text-red-600 uppercase">
+                        Critical Phase
+                      </span>
                     </div>
                   )}
                 </motion.div>
@@ -638,9 +655,7 @@ function StormDamageGuidePageOriginal() {
                 >
                   <div className="flex items-stretch">
                     <div className="w-24 bg-gradient-to-br from-sky-600 to-sky-700 flex items-center justify-center">
-                      <span className="text-3xl font-bold text-white">
-                        {step.step}
-                      </span>
+                      <span className="text-3xl font-bold text-white">{step.step}</span>
                     </div>
                     <div className="flex-grow p-6">
                       <div className="flex items-center justify-between mb-3">
@@ -651,7 +666,10 @@ function StormDamageGuidePageOriginal() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {step.tasks.map((task, idx) => (
-                          <span key={idx} className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-sm">
+                          <span
+                            key={idx}
+                            className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-sm"
+                          >
                             {task}
                           </span>
                         ))}
@@ -680,8 +698,9 @@ function StormDamageGuidePageOriginal() {
             </h2>
             <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-8">
               <p className="text-sm text-blue-800">
-                <strong>Disclaimer:</strong> Insurance coverage varies by policy and provider. 
-                Always consult your specific policy documents and insurance provider for accurate information.
+                <strong>Disclaimer:</strong> Insurance coverage varies by policy and provider.
+                Always consult your specific policy documents and insurance provider for accurate
+                information.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -695,20 +714,20 @@ function StormDamageGuidePageOriginal() {
                   className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
                 >
                   <h3 className="font-bold text-lg mb-2">{item.aspect}</h3>
-                  <span className={`inline-block px-3 py-1 rounded text-xs font-semibold mb-3 ${
-                    item.important === 'Critical Distinction' 
-                      ? 'bg-red-100 text-red-800'
-                      : item.important === 'Common Denial Reason'
-                      ? 'bg-orange-100 text-orange-800'
-                      : 'bg-blue-100 text-blue-800'
-                  }`}>
+                  <span
+                    className={`inline-block px-3 py-1 rounded text-xs font-semibold mb-3 ${
+                      item.important === 'Critical Distinction'
+                        ? 'bg-red-100 text-red-800'
+                        : item.important === 'Common Denial Reason'
+                          ? 'bg-orange-100 text-orange-800'
+                          : 'bg-blue-100 text-blue-800'
+                    }`}
+                  >
                     {item.important}
                   </span>
                   <p className="text-gray-600 text-sm mb-3">{item.details}</p>
                   <div className="pt-3 border-t border-gray-200">
-                    <p className="text-sm font-semibold text-blue-600">
-                      Action: {item.action}
-                    </p>
+                    <p className="text-sm font-semibold text-blue-600">Action: {item.action}</p>
                   </div>
                 </motion.div>
               ))}
@@ -750,9 +769,7 @@ function StormDamageGuidePageOriginal() {
                   className="bg-white rounded-lg shadow-lg p-6"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-sky-100 rounded-full text-sky-600">
-                      {region.icon}
-                    </div>
+                    <div className="p-3 bg-sky-100 rounded-full text-sky-600">{region.icon}</div>
                     <div className="flex-grow">
                       <h3 className="text-xl font-bold mb-2">{region.region}</h3>
                       <div className="space-y-2 text-sm">
@@ -760,13 +777,18 @@ function StormDamageGuidePageOriginal() {
                           <span className="font-semibold">Primary Risks:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {region.risks.map((risk, idx) => (
-                              <span key={idx} className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">
+                              <span
+                                key={idx}
+                                className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs"
+                              >
                                 {risk}
                               </span>
                             ))}
                           </div>
                         </div>
-                        <p><span className="font-semibold">Peak Season:</span> {region.season}</p>
+                        <p>
+                          <span className="font-semibold">Peak Season:</span> {region.season}
+                        </p>
                         <p className="text-gray-600">{region.preparation}</p>
                       </div>
                     </div>
@@ -936,7 +958,7 @@ function StormDamageGuidePageOriginal() {
                 <h3 className="font-bold mb-2">Water Damage Guide</h3>
                 <p className="text-gray-600 text-sm">Managing storm-related water intrusion</p>
               </Link>
-              
+
               <Link
                 href="/emergency/checklists/storm-damage"
                 className="bg-gradient-to-br from-orange-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-orange-100"
@@ -945,7 +967,7 @@ function StormDamageGuidePageOriginal() {
                 <h3 className="font-bold mb-2">Storm Checklist</h3>
                 <p className="text-gray-600 text-sm">Pre and post-storm action items</p>
               </Link>
-              
+
               <Link
                 href="/whos-first/storm-damage"
                 className="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-green-100"
@@ -954,7 +976,7 @@ function StormDamageGuidePageOriginal() {
                 <h3 className="font-bold mb-2">Emergency Contacts</h3>
                 <p className="text-gray-600 text-sm">Who to call for storm damage</p>
               </Link>
-              
+
               <Link
                 href="/locations/brisbane/storm-damage-repairs"
                 className="bg-gradient-to-br from-red-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-red-100"
@@ -977,30 +999,34 @@ function StormDamageGuidePageOriginal() {
           {[
             {
               q: 'What should I do immediately after a storm damages my property?',
-              a: 'Safety first — do not enter the property if you suspect structural damage, fallen power lines, or gas leaks. Once safe: (1) Document all damage with timestamped photos and video before any temporary repairs. (2) Perform temporary make-safe only — cover roof holes with tarps, board up broken windows. (3) Contact your insurer to lodge a claim within 24 hours. (4) Contact a professional restoration company for emergency board-up and water extraction. (5) Keep all receipts for emergency expenses. Do not make permanent repairs until your insurer has assessed the damage or authorised repairs.'
+              a: 'Safety first — do not enter the property if you suspect structural damage, fallen power lines, or gas leaks. Once safe: (1) Document all damage with timestamped photos and video before any temporary repairs. (2) Perform temporary make-safe only — cover roof holes with tarps, board up broken windows. (3) Contact your insurer to lodge a claim within 24 hours. (4) Contact a professional restoration company for emergency board-up and water extraction. (5) Keep all receipts for emergency expenses. Do not make permanent repairs until your insurer has assessed the damage or authorised repairs.',
             },
             {
               q: 'Does home insurance cover storm damage in Australia?',
-              a: 'Most Australian home insurance policies cover storm damage including wind, hail, rain, and lightning. This typically includes roof damage, water ingress from storm damage, fallen trees (on your property), broken windows, and fence damage. However, flood damage from rising water levels usually requires separate flood cover — check your Product Disclosure Statement. Stormwater damage (water entering through storm-damaged openings) is generally covered, but pre-existing maintenance issues like worn roof tiles may reduce your claim. We bill you directly for restoration work, and you claim reimbursement from your insurer.'
+              a: 'Most Australian home insurance policies cover storm damage including wind, hail, rain, and lightning. This typically includes roof damage, water ingress from storm damage, fallen trees (on your property), broken windows, and fence damage. However, flood damage from rising water levels usually requires separate flood cover — check your Product Disclosure Statement. Stormwater damage (water entering through storm-damaged openings) is generally covered, but pre-existing maintenance issues like worn roof tiles may reduce your claim. We bill you directly for restoration work, and you claim reimbursement from your insurer.',
             },
             {
               q: 'How long does storm damage repair take?',
-              a: 'Emergency make-safe (tarping, board-up, water extraction) is completed within 24–48 hours. Minor storm repairs (broken windows, gutter replacement, small roof patches) take 1–2 weeks. Moderate damage (partial roof replacement, ceiling repairs, structural drying) takes 3–6 weeks. Major storm damage (full roof replacement, structural repairs, extensive water damage remediation) can take 6–12 weeks. After major weather events, repair timelines can extend due to high demand for materials and tradespeople.'
+              a: 'Emergency make-safe (tarping, board-up, water extraction) is completed within 24–48 hours. Minor storm repairs (broken windows, gutter replacement, small roof patches) take 1–2 weeks. Moderate damage (partial roof replacement, ceiling repairs, structural drying) takes 3–6 weeks. Major storm damage (full roof replacement, structural repairs, extensive water damage remediation) can take 6–12 weeks. After major weather events, repair timelines can extend due to high demand for materials and tradespeople.',
             },
             {
               q: 'Can I claim for storm damage to my fence?',
-              a: 'Fence damage from storms is covered under most Australian home insurance policies, but coverage varies. Some policies cover the full replacement cost while others only cover a set amount (often $5,000–$15,000) or a percentage of your sum insured. Shared boundary fences can be complex — your insurer typically covers your half. Retaining walls may be excluded or covered under a separate section. Check your PDS for specific fence and wall coverage limits before lodging a claim.'
+              a: 'Fence damage from storms is covered under most Australian home insurance policies, but coverage varies. Some policies cover the full replacement cost while others only cover a set amount (often $5,000–$15,000) or a percentage of your sum insured. Shared boundary fences can be complex — your insurer typically covers your half. Retaining walls may be excluded or covered under a separate section. Check your PDS for specific fence and wall coverage limits before lodging a claim.',
             },
             {
               q: 'What types of storm damage are most common in Australia?',
-              a: 'The most common storm damage types in Australia are: (1) Roof damage — lifted or broken tiles, damaged ridge capping, punctured metal roofing from hail. (2) Water ingress — rain entering through storm-damaged roofs, windows, or doors causing ceiling damage and mould risk. (3) Fallen trees and branches — on roofs, fences, cars, and power lines. (4) Hail damage — to roofs, skylights, solar panels, cars, and outdoor equipment. (5) Wind damage — to fences, carports, pergolas, and outdoor structures. (6) Flash flooding — from overwhelmed stormwater drains and gutters.'
+              a: 'The most common storm damage types in Australia are: (1) Roof damage — lifted or broken tiles, damaged ridge capping, punctured metal roofing from hail. (2) Water ingress — rain entering through storm-damaged roofs, windows, or doors causing ceiling damage and mould risk. (3) Fallen trees and branches — on roofs, fences, cars, and power lines. (4) Hail damage — to roofs, skylights, solar panels, cars, and outdoor equipment. (5) Wind damage — to fences, carports, pergolas, and outdoor structures. (6) Flash flooding — from overwhelmed stormwater drains and gutters.',
             },
             {
               q: 'Should I tarp my roof myself or wait for professionals?',
-              a: 'If you can safely access your roof and the storm has passed, temporary tarping prevents further water damage and demonstrates reasonable mitigation to your insurer. Use a heavy-duty tarp (minimum 200gsm) extending at least 1 metre past the damaged area on all sides, secured with timber battens or sandbags — never nails through the tarp into tiles. However, do not attempt roof work in ongoing severe weather, high winds, wet conditions, or if you are not confident at heights. Professional emergency tarping is available 24/7 and is a claimable expense under most policies.'
+              a: 'If you can safely access your roof and the storm has passed, temporary tarping prevents further water damage and demonstrates reasonable mitigation to your insurer. Use a heavy-duty tarp (minimum 200gsm) extending at least 1 metre past the damaged area on all sides, secured with timber battens or sandbags — never nails through the tarp into tiles. However, do not attempt roof work in ongoing severe weather, high winds, wet conditions, or if you are not confident at heights. Professional emergency tarping is available 24/7 and is a claimable expense under most policies.',
             },
           ].map((faq, i) => (
-            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+            <details
+              key={i}
+              className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200"
+              {...(i === 0 ? { open: true } : {})}
+            >
               <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-sky-600 transition-colors">
                 {faq.q}
               </summary>
@@ -1015,10 +1041,21 @@ function StormDamageGuidePageOriginal() {
       {/* AI Citation Block */}
       <section className="py-6 px-4 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
-          <div><strong className="text-sky-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
-          <div><strong className="text-sky-900">Category:</strong> Storm Damage Restoration</div>
-          <div><strong className="text-sky-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
-          <div><strong className="text-sky-900">Standard:</strong> IICRC S500:2025/S520:2025 certified practices</div>
+          <div>
+            <strong className="text-sky-900">Source:</strong> Disaster Recovery —
+            disasterrecovery.com.au
+          </div>
+          <div>
+            <strong className="text-sky-900">Category:</strong> Storm Damage Restoration
+          </div>
+          <div>
+            <strong className="text-sky-900">Last reviewed:</strong>{' '}
+            <time dateTime="2026-02-26">26 February 2026</time>
+          </div>
+          <div>
+            <strong className="text-sky-900">Standard:</strong> IICRC S500:2025/S520:2025 certified
+            practices
+          </div>
         </div>
       </section>
 
@@ -1031,9 +1068,7 @@ function StormDamageGuidePageOriginal() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Need Storm Damage Assistance?
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Need Storm Damage Assistance?</h2>
             <p className="text-xl mb-8 text-sky-800">
               Connect with certified storm damage restoration specialists across Australia
             </p>
@@ -1063,18 +1098,61 @@ const stormDamageFaqSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'What should I do immediately after a storm damages my property?', acceptedAnswer: { '@type': 'Answer', text: 'Safety first. Once safe: document all damage with timestamped photos, perform temporary make-safe, contact your insurer within 24 hours, and contact a professional restoration company. Do not make permanent repairs until your insurer has assessed the damage.' } },
-    { '@type': 'Question', name: 'Does home insurance cover storm damage in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home insurance policies cover storm damage including wind, hail, rain, and lightning. Flood damage from rising water usually requires separate cover. Check your PDS for specifics.' } },
-    { '@type': 'Question', name: 'How long does storm damage repair take?', acceptedAnswer: { '@type': 'Answer', text: 'Emergency make-safe takes 24–48 hours. Minor repairs take 1–2 weeks. Moderate damage takes 3–6 weeks. Major storm damage with full roof replacement can take 6–12 weeks.' } },
-    { '@type': 'Question', name: 'Can I claim for storm damage to my fence?', acceptedAnswer: { '@type': 'Answer', text: 'Fence damage from storms is covered under most policies, but limits vary ($5,000–$15,000 or percentage of sum insured). Shared boundary fences are typically covered at 50%.' } },
-    { '@type': 'Question', name: 'What types of storm damage are most common in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Roof damage, water ingress, fallen trees, hail damage to roofs and solar panels, wind damage to fences and structures, and flash flooding from overwhelmed stormwater systems.' } },
-    { '@type': 'Question', name: 'Should I tarp my roof myself or wait for professionals?', acceptedAnswer: { '@type': 'Answer', text: 'If safe and the storm has passed, temporary tarping prevents further damage. Use 200gsm+ tarp extending 1m past damage. Do not attempt in ongoing weather or if not confident at heights. Professional tarping is a claimable expense.' } },
+    {
+      '@type': 'Question',
+      name: 'What should I do immediately after a storm damages my property?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Safety first. Once safe: document all damage with timestamped photos, perform temporary make-safe, contact your insurer within 24 hours, and contact a professional restoration company. Do not make permanent repairs until your insurer has assessed the damage.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does home insurance cover storm damage in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home insurance policies cover storm damage including wind, hail, rain, and lightning. Flood damage from rising water usually requires separate cover. Check your PDS for specifics.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does storm damage repair take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Emergency make-safe takes 24–48 hours. Minor repairs take 1–2 weeks. Moderate damage takes 3–6 weeks. Major storm damage with full roof replacement can take 6–12 weeks.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I claim for storm damage to my fence?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Fence damage from storms is covered under most policies, but limits vary ($5,000–$15,000 or percentage of sum insured). Shared boundary fences are typically covered at 50%.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What types of storm damage are most common in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Roof damage, water ingress, fallen trees, hail damage to roofs and solar panels, wind damage to fences and structures, and flash flooding from overwhelmed stormwater systems.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Should I tarp my roof myself or wait for professionals?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If safe and the storm has passed, temporary tarping prevents further damage. Use 200gsm+ tarp extending 1m past damage. Do not attempt in ongoing weather or if not confident at heights. Professional tarping is a claimable expense.',
+      },
+    },
   ],
 });
 
 const stormDamageArticleSchema = generateArticleSchema({
   headline: 'Storm Damage Restoration Guide Australia',
-  description: 'Complete guide to storm damage restoration including emergency response, types of storm damage, insurance claims, and professional repair services.',
+  description:
+    'Complete guide to storm damage restoration including emergency response, types of storm damage, insurance claims, and professional repair services.',
   image: '/images/guides/storm-damage.webp',
   author: 'Disaster Recovery Team',
   datePublished: '2024-11-15',

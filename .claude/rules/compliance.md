@@ -1,10 +1,10 @@
-# Compliance Rules — Disaster Recovery Australia
+# Compliance Rules — Disaster Recovery
 
 > Hard rules. These are non-negotiable. Linked from @CLAUDE.md §0.
 >
 > **NOT LEGAL ADVICE — interim scaffold pending counsel validation.**
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10).*
+_Last updated: 2026-04-24 (Foundation Sprint Day 10)._
 
 ---
 
@@ -14,21 +14,21 @@ These are either misleading, non-compliant with ACL s18/s29, or cause
 false-endorsement risk. Refactors in 2026-02/03 removed them from
 public-facing pages; do not re-introduce.
 
-| Banned phrase                     | Why                                                | Use instead                      |
-| --------------------------------- | -------------------------------------------------- | -------------------------------- |
-| "Insurance approved"              | Implies endorsement by insurer panel — we don't have one. | "IICRC-certified"          |
-| "Insurance approved contractors"  | Same issue                                         | "IICRC-certified contractors"    |
-| "Bill your insurer"               | DR does NOT bill the insurer — contractor bills client directly. | "Your contractor bills you directly" |
-| "Guaranteed approval"             | ACL s18 (misleading) + financial-product implication. | "Eligibility subject to assessment" |
-| "Every insurer"                   | Overstatement — ACL s29 false representation.       | "Most major Australian insurers" |
-| "Fastest response"                | Puffery with no evidence base — ACL s29.            | "Rapid response" (generic OK)    |
-| "Lowest prices"                   | Same puffery risk.                                  | No replacement — drop claim.     |
-| "All insurers accept our quotes"  | Misleading — insurer acceptance varies.             | Drop claim entirely.             |
-| "Fully accredited by <insurer>"   | False endorsement unless you have the paper.        | "IICRC-certified"                |
-| "100% insurance coverage"         | Misleading — coverage depends on policy.            | Drop claim.                      |
-| "Same-day guarantee"              | Unverifiable SLA.                                   | "Emergency response within X hours where possible" |
-| "Free inspection"                 | If there's any hidden cost it's ACL s29.            | Only if genuinely $0 end-to-end. |
-| "Partner contractor"              | `Partner` is capital-P only (Equipped / insurer panels). | "Contractor"              |
+| Banned phrase                    | Why                                                              | Use instead                                        |
+| -------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------- |
+| "Insurance approved"             | Implies endorsement by insurer panel — we don't have one.        | "IICRC-certified"                                  |
+| "Insurance approved contractors" | Same issue                                                       | "IICRC-certified contractors"                      |
+| "Bill your insurer"              | DR does NOT bill the insurer — contractor bills client directly. | "Your contractor bills you directly"               |
+| "Guaranteed approval"            | ACL s18 (misleading) + financial-product implication.            | "Eligibility subject to assessment"                |
+| "Every insurer"                  | Overstatement — ACL s29 false representation.                    | "Most major Australian insurers"                   |
+| "Fastest response"               | Puffery with no evidence base — ACL s29.                         | "Rapid response" (generic OK)                      |
+| "Lowest prices"                  | Same puffery risk.                                               | No replacement — drop claim.                       |
+| "All insurers accept our quotes" | Misleading — insurer acceptance varies.                          | Drop claim entirely.                               |
+| "Fully accredited by <insurer>"  | False endorsement unless you have the paper.                     | "IICRC-certified"                                  |
+| "100% insurance coverage"        | Misleading — coverage depends on policy.                         | Drop claim.                                        |
+| "Same-day guarantee"             | Unverifiable SLA.                                                | "Emergency response within X hours where possible" |
+| "Free inspection"                | If there's any hidden cost it's ACL s29.                         | Only if genuinely $0 end-to-end.                   |
+| "Partner contractor"             | `Partner` is capital-P only (Equipped / insurer panels).         | "Contractor"                                       |
 
 If you need to add a phrase, add it here AND add a regex to any content
 lint in CI. Never silent-fix.
@@ -45,12 +45,14 @@ lint in CI. Never silent-fix.
   cut the claim.
 
 ### Testimonials + reviews
+
 - Must be real + verifiable. If we can't produce the signed consent on
   request, it doesn't ship.
 - Star rating on the site pulls from GBP via `app/api/rating/route.ts` —
   never hard-code a rating.
 
 ### Price claims
+
 - Every price must be sourced (CSV table, sourced-stat block, or an
   ADR). Fabricated price ranges are ACL s29 — and the 2026-02/25
   Conversion Audit (commits `a2f3584f`, `af153412`) sourced each one.
@@ -78,11 +80,11 @@ See also @.claude/rules/privacy.md for the data-class taxonomy.
 
 First caller utterance after pickup, BEFORE Sarah takes any input:
 
-> *"Hi, you've reached Disaster Recovery Australia. This call may be
+> _"Hi, you've reached Disaster Recovery. This call may be
 > handled by an AI assistant and recorded so we can help you. Your
 > information may be processed by our technology providers overseas
 > under the Australian Privacy Principles. Is that OK to continue? You
-> can press 0 at any time to speak to a person."*
+> can press 0 at any time to speak to a person."_
 
 If the caller says no / presses 0, route straight to a human — NO LLM
 processing. This wording is enforced in `src/lib/ai/sarah-prompt.ts` +
@@ -131,6 +133,7 @@ wording neutral enough that it is accurate in both jurisdictions.
   breach notification.
 
 ### Currency + tax
+
 - NZ prices shown on NZ pages: NZD with `NZ$` prefix.
 - Australian pages: AUD with `$` prefix (not `A$`).
 - Never mix on the same page.
@@ -171,7 +174,7 @@ Every API route that mutates state MUST append to `compliance_events`:
   tool name, caller session id, consent-flag at tool call time.
 - **Finance referral routes:** event_type = `reg25_referral`, client
   id, timestamp, destination.
-- **Contractor onboarding mutations:** event_type = `contractor_*`,
+- **Contractor onboarding mutations:** event*type = `contractor*\*`,
   with applicant id + field name, no raw PII.
 
 See `src/lib/compliance/*` for the helpers. NEVER log raw PII — run it

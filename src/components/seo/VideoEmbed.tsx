@@ -4,7 +4,11 @@ import Script from 'next/script';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import type { VideoConfig } from '../../../data/seo/video-config';
-import { getYouTubeThumbnail, getYouTubeEmbedUrl, getYouTubeWatchUrl } from '../../../data/seo/video-config';
+import {
+  getYouTubeThumbnail,
+  getYouTubeEmbedUrl,
+  getYouTubeWatchUrl,
+} from '../../../data/seo/video-config';
 
 interface VideoEmbedProps {
   video: VideoConfig;
@@ -37,7 +41,7 @@ export default function VideoEmbed({ video, heading }: VideoEmbedProps) {
     embedUrl: getYouTubeEmbedUrl(video.youtubeId),
     publisher: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
+      name: 'Disaster Recovery',
       logo: {
         '@type': 'ImageObject',
         url: 'https://disasterrecovery.com.au/logos/3D NRP Logo.png',
@@ -48,9 +52,7 @@ export default function VideoEmbed({ video, heading }: VideoEmbedProps) {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {heading && (
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">{heading}</h2>
-        )}
+        {heading && <h2 className="text-2xl font-bold text-gray-900 mb-6">{heading}</h2>}
         <div className="rounded-xl overflow-hidden shadow-lg">
           <LiteYouTubeEmbed
             id={video.youtubeId}

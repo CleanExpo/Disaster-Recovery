@@ -9,14 +9,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Resources | Disaster Recovery Australia',
+  title: 'Resources | Disaster Recovery',
   description:
-    'Guides, pricing references, and professional resources for property owners, strata managers, and restoration contractors. Free downloads from Disaster Recovery Australia.',
+    'Guides, pricing references, and professional resources for property owners, strata managers, and restoration contractors. Free downloads from Disaster Recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/resources',
   },
   openGraph: {
-    title: 'Resources | Disaster Recovery Australia',
+    title: 'Resources | Disaster Recovery',
     description:
       'Free guides and resources for property owners dealing with water, fire, mould, and storm damage.',
     type: 'website',
@@ -43,10 +43,19 @@ const resources: ResourceCard[] = [
 ];
 
 const guideLinks = [
-  { label: 'Water Damage Restoration', href: '/guides/water-damage/iicrc-s500-water-damage-restoration-standard' },
+  {
+    label: 'Water Damage Restoration',
+    href: '/guides/water-damage/iicrc-s500-water-damage-restoration-standard',
+  },
   { label: 'Mould Remediation', href: '/guides/mould/iicrc-s520-mould-remediation-standard' },
-  { label: 'Fire and Smoke Restoration', href: '/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard' },
-  { label: 'How to Make an Insurance Claim', href: '/guides/how-to-make-an-insurance-claim-australia' },
+  {
+    label: 'Fire and Smoke Restoration',
+    href: '/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard',
+  },
+  {
+    label: 'How to Make an Insurance Claim',
+    href: '/guides/how-to-make-an-insurance-claim-australia',
+  },
   { label: 'AFCA Complaint Guide', href: '/guides/insurance/afca-complaint-guide' },
 ];
 
@@ -80,7 +89,9 @@ export default function ResourcesPage() {
                 href={resource.href}
                 className="block rounded-xl border border-slate-200 p-6 hover:border-blue-400 hover:shadow-md transition-all"
               >
-                <span className={`inline-block text-xs font-semibold px-2 py-1 rounded mb-3 ${resource.tagColour}`}>
+                <span
+                  className={`inline-block text-xs font-semibold px-2 py-1 rounded mb-3 ${resource.tagColour}`}
+                >
                   {resource.tag}
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{resource.title}</h3>

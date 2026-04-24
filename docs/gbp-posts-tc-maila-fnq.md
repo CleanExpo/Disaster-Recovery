@@ -1,4 +1,5 @@
 # GBP Posts — TC Maila FNQ Emergency
+
 **Linear:** DR-453  
 **Cadence:** 2x weekly minimum  
 **Account:** disasterrecovery8@gmail.com  
@@ -8,7 +9,7 @@
 
 ## How to Post
 
-1. Go to [business.google.com](https://business.google.com) → Disaster Recovery Australia
+1. Go to [business.google.com](https://business.google.com) → Disaster Recovery
 2. Click **Add Update** → **What's new** (for tips) or **Event** (for the cyclone response post)
 3. Paste post text below
 4. Add the call-to-action button: **Book** → disasterrecovery.com.au
@@ -18,10 +19,12 @@
 ---
 
 ## POST 1 — Publish: Wednesday 9 April 2026
+
 **Type:** What's New  
 **Category:** Emergency response
 
 ### Post Text:
+
 ```
 🌀 TC Maila CAT 5 — FNQ Emergency Response Active
 
@@ -45,10 +48,12 @@ Do NOT enter a damaged property until emergency services confirm it is safe.
 ---
 
 ## POST 2 — Publish: Friday 11 April 2026
+
 **Type:** What's New  
 **Category:** Claim tips
 
 ### Post Text:
+
 ```
 🏠 After TC Maila — 5 Steps to Protect Your Insurance Claim
 
@@ -70,10 +75,12 @@ Lodge at disasterrecovery.com.au — our team handles the paperwork.
 ---
 
 ## POST 3 — Publish: Monday 14 April 2026
+
 **Type:** What's New  
 **Category:** Mould warning
 
 ### Post Text:
+
 ```
 ⚠️ FNQ Mould Warning — Act Within 48 Hours
 
@@ -99,10 +106,12 @@ Lodge at disasterrecovery.com.au — 60-minute response across FNQ.
 ---
 
 ## POST 4 — Publish: Wednesday 16 April 2026
+
 **Type:** What's New  
 **Category:** Insurance guidance
 
 ### Post Text:
+
 ```
 📋 Understanding Your TC Maila Insurance Claim — Common Pitfalls
 
@@ -129,6 +138,7 @@ Lodge at disasterrecovery.com.au
 ## Ongoing Cadence Template (week 3+)
 
 Rotate between these 4 content pillars:
+
 1. **Active event updates** — BOM forecast links, current response status
 2. **Claim tips** — step-by-step policyholder guidance
 3. **IICRC education** — why certified matters, what S500:2025 means
@@ -138,4 +148,4 @@ Post every **Tuesday and Thursday** for maximum GBP freshness signal.
 
 ---
 
-*Prepared by Claude Code agent — DR-453 | 9 April 2026*
+_Prepared by Claude Code agent — DR-453 | 9 April 2026_

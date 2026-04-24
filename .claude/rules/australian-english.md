@@ -1,11 +1,11 @@
-# Australian English — Disaster Recovery Australia
+# Australian English — Disaster Recovery
 
 > The rule is en-AU. Everywhere. Code comments, docs, commits, UI copy,
 > CRM labels, emails, Slack, commit messages. No exceptions.
 >
 > Linked from @CLAUDE.md §0.
 
-*Last updated: 2026-04-24 (Foundation Sprint Day 10).*
+_Last updated: 2026-04-24 (Foundation Sprint Day 10)._
 
 ---
 
@@ -21,36 +21,36 @@ When in doubt, the Macquarie Dictionary is the tie-breaker.
 
 ## 2. Spelling deltas (common offenders)
 
-| US English (DO NOT use)   | Australian English (use this) |
-| ------------------------- | ----------------------------- |
-| organize, organization    | organise, organisation        |
-| recognize                 | recognise                     |
-| specialize, specialization| specialise, specialisation    |
-| authorize, authorization  | authorise, authorisation      |
-| prioritize                | prioritise                    |
-| analyze                   | analyse                       |
-| color                     | colour                        |
-| favor, favorite           | favour, favourite             |
-| behavior                  | behaviour                     |
-| neighbor, neighborhood    | neighbour, neighbourhood      |
-| harbor                    | harbour                       |
-| center, centered          | centre, centred               |
-| meter (distance)          | metre                         |
-| liter                     | litre                         |
-| theater                   | theatre                       |
-| fiber                     | fibre                         |
-| defense                   | defence                       |
-| license (verb + noun)     | licence (noun), license (verb)|
-| practice (verb + noun)    | practise (verb), practice (noun) |
-| program (software OK)     | programme (broadcast/event)   |
-| traveled, traveling       | travelled, travelling         |
-| catalog                   | catalogue                     |
-| dialog (software UI OK)   | dialogue (conversation)       |
-| gray                      | grey                          |
-| jewelry                   | jewellery                     |
-| airplane                  | aeroplane                     |
-| aluminum                  | aluminium                     |
-| mom                       | mum                           |
+| US English (DO NOT use)    | Australian English (use this)    |
+| -------------------------- | -------------------------------- |
+| organize, organization     | organise, organisation           |
+| recognize                  | recognise                        |
+| specialize, specialization | specialise, specialisation       |
+| authorize, authorization   | authorise, authorisation         |
+| prioritize                 | prioritise                       |
+| analyze                    | analyse                          |
+| color                      | colour                           |
+| favor, favorite            | favour, favourite                |
+| behavior                   | behaviour                        |
+| neighbor, neighborhood     | neighbour, neighbourhood         |
+| harbor                     | harbour                          |
+| center, centered           | centre, centred                  |
+| meter (distance)           | metre                            |
+| liter                      | litre                            |
+| theater                    | theatre                          |
+| fiber                      | fibre                            |
+| defense                    | defence                          |
+| license (verb + noun)      | licence (noun), license (verb)   |
+| practice (verb + noun)     | practise (verb), practice (noun) |
+| program (software OK)      | programme (broadcast/event)      |
+| traveled, traveling        | travelled, travelling            |
+| catalog                    | catalogue                        |
+| dialog (software UI OK)    | dialogue (conversation)          |
+| gray                       | grey                             |
+| jewelry                    | jewellery                        |
+| airplane                   | aeroplane                        |
+| aluminum                   | aluminium                        |
+| mom                        | mum                              |
 
 **Noun / verb trap:** `licence`/`practice` are NOUNS; `license`/`practise`
 are VERBS. Get this wrong and it looks like a typo.

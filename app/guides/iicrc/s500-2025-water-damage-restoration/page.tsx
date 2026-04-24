@@ -14,9 +14,10 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration — What to Expect from an IICRC-Certified Contractor',
   description:
-    'What an IICRC-certified water damage contractor does on site: inspection, extraction, structural drying, daily monitoring, and insurance-standard documentation. Disaster Recovery Australia.',
+    'What an IICRC-certified water damage contractor does on site: inspection, extraction, structural drying, daily monitoring, and insurance-standard documentation. Disaster Recovery.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/guides/water-damage/iicrc-s500-water-damage-restoration-standard',
+    canonical:
+      'https://disasterrecovery.com.au/guides/water-damage/iicrc-s500-water-damage-restoration-standard',
   },
   openGraph: {
     title: 'Water Damage Restoration — IICRC-Certified Contractor Process',
@@ -67,7 +68,7 @@ const faqSchema = {
       name: 'Can I request an independent assessment if I dispute the scope?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. If you believe the scope prepared by an insurer-appointed contractor does not capture the full extent of damage, you can request an independent assessment through Disaster Recovery Australia. An independent IICRC-certified contractor will assess the property and prepare their own moisture map and scope of works in a format suitable for AFCA review if you need to escalate a dispute.',
+        text: 'Yes. If you believe the scope prepared by an insurer-appointed contractor does not capture the full extent of damage, you can request an independent assessment through Disaster Recovery. An independent IICRC-certified contractor will assess the property and prepare their own moisture map and scope of works in a format suitable for AFCA review if you need to escalate a dispute.',
       },
     },
   ],
@@ -100,7 +101,7 @@ export default function S5002025WaterDamageRestorationPage() {
             body: (
               <>
                 <p>
-                  Every contractor in the Disaster Recovery Australia network holds current IICRC
+                  Every contractor in the Disaster Recovery network holds current IICRC
                   certification in water damage restoration. Certification is independently assessed
                   and must be renewed — it confirms that a contractor has demonstrated the knowledge
                   required to professionally remediate water-damaged properties.
@@ -130,8 +131,7 @@ export default function S5002025WaterDamageRestorationPage() {
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Structural drying setup</strong> — positioning air movers and
-                    dehumidifiers to create controlled drying conditions across all affected
-                    areas
+                    dehumidifiers to create controlled drying conditions across all affected areas
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Daily monitoring</strong> — recording moisture readings each day to
@@ -139,8 +139,8 @@ export default function S5002025WaterDamageRestorationPage() {
                   </li>
                   <li>
                     <strong>Final clearance and documentation</strong> — confirming that moisture
-                    readings across all affected areas have reached target levels, and producing
-                    the documentation your insurer needs
+                    readings across all affected areas have reached target levels, and producing the
+                    documentation your insurer needs
                   </li>
                 </ul>
               </>
@@ -152,10 +152,18 @@ export default function S5002025WaterDamageRestorationPage() {
               <>
                 <p>Before a contractor starts work, ask:</p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', listStyleType: 'disc' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Can you show me your current IICRC certification number?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Will you provide a moisture map from the initial inspection?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>How often will you monitor drying progress and provide readings?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>What documentation will you produce for my insurer?</li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Can you show me your current IICRC certification number?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Will you provide a moisture map from the initial inspection?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    How often will you monitor drying progress and provide readings?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    What documentation will you produce for my insurer?
+                  </li>
                   <li>How will you confirm when drying is complete?</li>
                 </ul>
               </>
@@ -166,11 +174,11 @@ export default function S5002025WaterDamageRestorationPage() {
             body: (
               <p>
                 After a cyclone, flood, or significant storm event, properties may have multiple
-                sources of water intrusion — roof damage, stormwater ingress, and rising
-                floodwater can all be present simultaneously. A certified contractor assesses all
-                sources and affected areas, not just the most visible damage. In post-disaster
-                conditions, prompt assessment is important: the longer water remains in building
-                materials, the greater the risk of secondary damage including mould growth.
+                sources of water intrusion — roof damage, stormwater ingress, and rising floodwater
+                can all be present simultaneously. A certified contractor assesses all sources and
+                affected areas, not just the most visible damage. In post-disaster conditions,
+                prompt assessment is important: the longer water remains in building materials, the
+                greater the risk of secondary damage including mould growth.
               </p>
             ),
           },
@@ -181,8 +189,8 @@ export default function S5002025WaterDamageRestorationPage() {
                 If an insurer-appointed contractor has produced a scope of works you believe
                 understates the damage, an independent certified contractor can assess the property
                 and prepare a separate scope. This independent documentation provides the evidence
-                base for disputing a claim through AFCA (Australian Financial Complaints
-                Authority). Disaster Recovery Australia can arrange an independent assessment.
+                base for disputing a claim through AFCA (Australian Financial Complaints Authority).
+                Disaster Recovery can arrange an independent assessment.
               </p>
             ),
           },
