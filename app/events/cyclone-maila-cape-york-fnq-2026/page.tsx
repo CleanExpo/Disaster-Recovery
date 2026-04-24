@@ -14,8 +14,10 @@ export const metadata: Metadata = {
     'cyclone maila property damage',
     'arpc cyclone reinsurance qld',
   ],
+  // DR-745: canonical winner is tc-maila-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-cape-york-fnq-2026',
+    canonical: 'https://disasterrecovery.com.au/events/tc-maila-fnq-2026',
   },
   openGraph: {
     title: 'Tropical Cyclone Maila: Cape York Peninsula Claim Guide 2026',
