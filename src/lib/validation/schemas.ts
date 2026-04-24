@@ -11,35 +11,67 @@
 import { z } from 'zod';
 
 // ----- Claim submission (user-facing intake) -----
+//
+// FLAT wire shape. This matches what `app/claim/ClaimFormClient.tsx` POSTs
+// to `/api/claims/submit` and what the route persists to
+// `prisma.insuranceClaimAU`. Keep fields in sync with the route handler.
+//
+// The nested `client` / `property` / `damage` grouping lives on
+// `claimTrackingSchema` below — that is the server-augmented OUTPUT shape
+// returned by the GET endpoint and consumed by the track page.
 
-export const claimClientSchema = z.object({
-  fullName: z.string().min(1),
-  phone: z.string().min(1),
-  email: z.string().email(),
-});
-
-export const claimPropertySchema = z.object({
-  address: z.string().min(1),
-  suburb: z.string().min(1),
-  state: z.string().min(1),
-  postcode: z.string().min(1),
-});
-
-export const claimDamageSchema = z.object({
-  types: z.array(z.string()),
-  urgencyLevel: z.string(),
-  description: z.string(),
-});
+const AU_STATES = ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA', 'NZ'] as const;
 
 export const claimSubmitSchema = z.object({
-  client: claimClientSchema,
-  property: claimPropertySchema,
-  damage: claimDamageSchema,
+  fullName: z.string().min(1).max(200),
+  email: z.string().email().max(254),
+  phone: z.string().min(6).max(20).optional(),
+  propertyAddress: z.string().min(1).max(300),
+  suburb: z.string().min(1).max(100).optional(),
+  state: z.enum(AU_STATES).optional(),
+  postcode: z.string().regex(/^\d{4}$/).optional(),
+  damageTypes: z.array(z.string().max(100)).min(1).max(20),
+  damageDescription: z.string().min(1).max(5000),
+  urgencyLevel: z.enum(['emergency', 'urgent', 'standard']).optional(),
+  policyNumber: z.string().max(100).optional(),
+  insuranceCompany: z.string().max(200).optional(),
+  insuranceClaimNumber: z.string().max(100).optional(),
+  accessInstructions: z.string().max(500).optional(),
+  paymentConfirmed: z.boolean().optional(),
+  bookingId: z.string().max(100).optional(),
+  clientId: z.string().max(254).optional(),
+  tenantId: z.string().max(100).optional(),
+  damagePhotos: z.array(z.string().url().max(500)).max(20).optional(),
+  uploadedDocuments: z.array(z.string().url().max(500)).max(20).optional(),
 });
 
 export type ClaimSubmitInput = z.infer<typeof claimSubmitSchema>;
 
-// ----- Claim tracking (server-augmented view) -----
+// ----- Claim tracking (server-augmented OUTPUT view) -----
+//
+// Nested shape returned by GET /api/claims/submit and rendered by
+// `app/track/[claimId]/TrackClient.tsx`. Deliberately distinct from the
+// flat submit schema above — the track page groups fields by section
+// (client / property / damage / contractor / workflow) for presentation.
+
+export const trackingClientSchema = z.object({
+  fullName: z.string().min(1),
+  phone: z.string(),
+  email: z.string(),
+});
+
+export const trackingPropertySchema = z.object({
+  address: z.string(),
+  suburb: z.string(),
+  state: z.string(),
+  postcode: z.string(),
+});
+
+export const trackingDamageSchema = z.object({
+  types: z.array(z.string()),
+  urgencyLevel: z.string(),
+  description: z.string(),
+});
 
 export const claimContractorSchema = z.object({
   companyName: z.string().nullable(),
@@ -60,10 +92,13 @@ export const claimWorkflowSchema = z.object({
   claimFinalized: z.boolean(),
 });
 
-export const claimTrackingSchema = claimSubmitSchema.extend({
+export const claimTrackingSchema = z.object({
   id: z.string(),
   status: z.string(),
   createdAt: z.string(),
+  client: trackingClientSchema,
+  property: trackingPropertySchema,
+  damage: trackingDamageSchema,
   contractor: claimContractorSchema,
   workflow: claimWorkflowSchema,
 });
