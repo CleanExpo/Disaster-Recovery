@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SignJWT } from 'jose';
 import { randomUUID, createHash } from 'crypto';
 import { prisma } from '@/lib/prisma';
+import { signEquippedHandoffToken } from '@/lib/finance/jwt-handoff';
 import { requestLogger } from '@/lib/observability';
 
 export const runtime = 'nodejs';
@@ -153,22 +153,23 @@ export async function POST(req: NextRequest) {
 
   // Sign a short-lived JWT for the iframe/postMessage handoff.
   // Uses JWT_SECRET_KEY if set (already wired for jwt-auth.ts), otherwise a dev fallback.
+  // L6 (2026-04-30): centralised in src/lib/finance/jwt-handoff.ts; adds `kid`
+  // header for forward-compatible key rotation.
   const secret = process.env.JWT_SECRET_KEY || 'dev-only-jwt-secret-change-me';
-  const handoff_token = await new SignJWT({
-    ref: referralId,
-    email,
-    mobile,
-    name: full_name,
-    amt: funding_band,
-    typ: customer_type,
-    src: 'disasterrecovery.com.au',
-  })
-    .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
-    .setIssuedAt()
-    .setIssuer('disasterrecovery.com.au')
-    .setAudience('equippedcf.com.au')
-    .setExpirationTime('15m')
-    .sign(new TextEncoder().encode(secret));
+  const kid = process.env.EQUIPPED_JWT_KID || 'dr-2026-04';
+  const handoff_token = await signEquippedHandoffToken({
+    secret,
+    kid,
+    claims: {
+      ref: referralId,
+      email: email!,
+      mobile,
+      name: full_name!,
+      amt: funding_band ?? undefined,
+      typ: customer_type ?? undefined,
+      src: 'disasterrecovery.com.au',
+    },
+  });
 
   // Audit log: payload HASH (not plaintext) + header metadata.
   const payloadHash = createHash('sha256').update(JSON.stringify(equippedPayload)).digest('hex');
