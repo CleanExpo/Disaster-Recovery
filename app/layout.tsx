@@ -28,6 +28,8 @@ import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema'
 import RegisterServiceWorker from './register-sw'
 import { DirectionProvider } from '@/components/providers/DirectionProvider'
 import { ConsentBanner } from '@/components/privacy/ConsentBanner'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -374,6 +376,8 @@ export default function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-98HWF2NV95'}');
           `}
         </Script>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

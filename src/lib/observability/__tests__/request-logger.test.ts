@@ -4,7 +4,7 @@
  */
 
 import { requestLogger } from '../request-logger';
-import { captureException, captureMessage } from '../sentry';
+import { captureException, captureMessage } from '../vercel';
 
 let failures = 0;
 function assert(cond: unknown, label: string): void {
@@ -59,9 +59,8 @@ function makeRequest(headers: Record<string, string> = {}): Request {
   assert(!threw, 'log methods do not throw');
 }
 
-// 5. captureException is a no-op when SENTRY_DSN is unset.
+// 5. Vercel observability wrappers do not throw without an active OTel span.
 {
-  // SENTRY_DSN is assumed unset in test env.
   let threw = false;
   try {
     captureException(new Error('x'));
@@ -70,7 +69,7 @@ function makeRequest(headers: Record<string, string> = {}): Request {
   } catch {
     threw = true;
   }
-  assert(!threw, 'sentry stub functions do not throw');
+  assert(!threw, 'vercel observability wrappers do not throw');
 }
 
 if (failures > 0) {
