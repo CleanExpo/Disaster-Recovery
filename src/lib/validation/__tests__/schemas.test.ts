@@ -4,9 +4,6 @@
 
 import { describe, it, expect } from 'vitest';
 import {
-  claimClientSchema,
-  claimPropertySchema,
-  claimDamageSchema,
   claimSubmitSchema,
   claimTrackingSchema,
   proofOfWorkSchema,
@@ -19,112 +16,77 @@ import {
   claimPhotoUploadSchema,
 } from '../schemas';
 
-const validClient = {
+// Flat wire shape — matches `app/claim/ClaimFormClient.tsx` POST body.
+const validSubmit = {
+  fullName: 'Joe Smith',
+  email: 'joe@example.com',
+  phone: '0412345678',
+  propertyAddress: '42 Smith St',
+  suburb: 'Brisbane',
+  state: 'QLD' as const,
+  postcode: '4000',
+  damageTypes: ['Water/Flood Damage'],
+  damageDescription: 'burst pipe in kitchen',
+  urgencyLevel: 'urgent' as const,
+};
+
+// Nested output shape — matches GET /api/claims/submit response.
+const validTrackingClient = {
   fullName: 'Joe Smith',
   phone: '0412345678',
   email: 'joe@example.com',
 };
 
-const validProperty = {
+const validTrackingProperty = {
   address: '42 Smith St',
   suburb: 'Brisbane',
   state: 'QLD',
   postcode: '4000',
 };
 
-const validDamage = {
+const validTrackingDamage = {
   types: ['water'],
   urgencyLevel: 'urgent',
   description: 'burst pipe',
 };
 
-describe('claimClientSchema', () => {
-  it('accepts a valid client payload', () => {
-    expect(claimClientSchema.safeParse(validClient).success).toBe(true);
+describe('claimSubmitSchema (flat wire shape)', () => {
+  it('accepts a valid flat payload as the /claim form sends it', () => {
+    expect(claimSubmitSchema.safeParse(validSubmit).success).toBe(true);
   });
 
-  it('rejects an invalid email', () => {
-    const res = claimClientSchema.safeParse({ ...validClient, email: 'not-an-email' });
+  it('rejects a missing required field (damageDescription)', () => {
+    const { damageDescription: _drop, ...rest } = validSubmit;
+    const res = claimSubmitSchema.safeParse(rest);
     expect(res.success).toBe(false);
   });
 
-  it('rejects an empty fullName', () => {
-    const res = claimClientSchema.safeParse({ ...validClient, fullName: '' });
-    expect(res.success).toBe(false);
-  });
-
-  it('rejects an empty phone', () => {
-    const res = claimClientSchema.safeParse({ ...validClient, phone: '' });
-    expect(res.success).toBe(false);
-  });
-});
-
-describe('claimPropertySchema', () => {
-  it('accepts a valid property payload', () => {
-    expect(claimPropertySchema.safeParse(validProperty).success).toBe(true);
-  });
-
-  it('rejects missing postcode', () => {
-    const { postcode: _, ...rest } = validProperty;
-    const res = claimPropertySchema.safeParse(rest);
-    expect(res.success).toBe(false);
-  });
-
-  it('rejects empty suburb', () => {
-    const res = claimPropertySchema.safeParse({ ...validProperty, suburb: '' });
-    expect(res.success).toBe(false);
-  });
-});
-
-describe('claimDamageSchema', () => {
-  it('accepts a valid damage payload', () => {
-    expect(claimDamageSchema.safeParse(validDamage).success).toBe(true);
-  });
-
-  it('accepts an empty types array', () => {
-    expect(claimDamageSchema.safeParse({ ...validDamage, types: [] }).success).toBe(true);
-  });
-
-  it('rejects when types is not an array', () => {
-    const res = claimDamageSchema.safeParse({ ...validDamage, types: 'water' });
-    expect(res.success).toBe(false);
-  });
-});
-
-describe('claimSubmitSchema', () => {
-  it('accepts a fully valid claim', () => {
+  it('rejects the legacy nested shape (client/property/damage)', () => {
     const res = claimSubmitSchema.safeParse({
-      client: validClient,
-      property: validProperty,
-      damage: validDamage,
-    });
-    expect(res.success).toBe(true);
-  });
-
-  it('rejects when the client block is missing', () => {
-    const res = claimSubmitSchema.safeParse({
-      property: validProperty,
-      damage: validDamage,
+      client: validTrackingClient,
+      property: validTrackingProperty,
+      damage: validTrackingDamage,
     });
     expect(res.success).toBe(false);
   });
 
-  it('rejects when a nested field is invalid (bad email)', () => {
-    const res = claimSubmitSchema.safeParse({
-      client: { ...validClient, email: 'bad' },
-      property: validProperty,
-      damage: validDamage,
-    });
+  it('rejects a malformed email', () => {
+    const res = claimSubmitSchema.safeParse({ ...validSubmit, email: 'not-an-email' });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects an unknown state', () => {
+    const res = claimSubmitSchema.safeParse({ ...validSubmit, state: 'XX' });
     expect(res.success).toBe(false);
   });
 });
 
-describe('claimTrackingSchema', () => {
+describe('claimTrackingSchema (nested output shape)', () => {
   it('accepts a claim with server-assigned tracking fields', () => {
     const res = claimTrackingSchema.safeParse({
-      client: validClient,
-      property: validProperty,
-      damage: validDamage,
+      client: validTrackingClient,
+      property: validTrackingProperty,
+      damage: validTrackingDamage,
       id: 'claim-123',
       status: 'pending',
       createdAt: '2026-04-24T00:00:00Z',
@@ -151,9 +113,9 @@ describe('claimTrackingSchema', () => {
 
   it('rejects when workflow flags are missing', () => {
     const res = claimTrackingSchema.safeParse({
-      client: validClient,
-      property: validProperty,
-      damage: validDamage,
+      client: validTrackingClient,
+      property: validTrackingProperty,
+      damage: validTrackingDamage,
       id: 'claim-123',
       status: 'pending',
       createdAt: '2026-04-24T00:00:00Z',

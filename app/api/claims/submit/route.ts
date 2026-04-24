@@ -8,37 +8,9 @@ import { rateLimit } from '@/lib/rate-limit';
 import { getCallerIdentity } from '@/lib/auth/require-session';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
-import { z } from 'zod';
+import { claimSubmitSchema } from '@/lib/validation/schemas';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-
-const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
-
-// Local flat schema kept for route-body compatibility — the shared claimSubmitSchema
-// in src/lib/validation/schemas.ts uses a nested shape that does not match the
-// fields written to prisma.insuranceClaimAU below. Follow-up: reconcile shapes.
-const claimSubmitSchema = z.object({
-  fullName:            z.string().min(1).max(200),
-  email:               z.string().email().max(254),
-  phone:               z.string().min(6).max(20).optional(),
-  propertyAddress:     z.string().min(1).max(300),
-  suburb:              z.string().min(1).max(100).optional(),
-  state:               z.enum(ALLOWED_STATES as [string, ...string[]]).optional(),
-  postcode:            z.string().regex(/^\d{4}$/).optional(),
-  damageTypes:         z.array(z.string().max(100)).min(1).max(20),
-  damageDescription:   z.string().min(1).max(5000),
-  urgencyLevel:        z.enum(['emergency','urgent','standard']).optional(),
-  policyNumber:        z.string().max(100).optional(),
-  insuranceCompany:    z.string().max(200).optional(),
-  insuranceClaimNumber:z.string().max(100).optional(),
-  accessInstructions:  z.string().max(500).optional(),
-  paymentConfirmed:    z.boolean().optional(),
-  bookingId:           z.string().max(100).optional(),
-  clientId:            z.string().max(254).optional(),
-  tenantId:            z.string().max(100).optional(),
-  damagePhotos:        z.array(z.string().url().max(500)).max(20).optional(),
-  uploadedDocuments:   z.array(z.string().url().max(500)).max(20).optional(),
-});
 
 // Fixed platform fee (optional at submission stage)
 const PLATFORM_FEE = 2750.00;
