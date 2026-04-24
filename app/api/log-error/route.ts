@@ -5,6 +5,7 @@ import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/log-error' });
+  let body: Record<string, unknown>;
   try {
     body = (await req.json()) as Record<string, unknown>;
   } catch {
