@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false, // Will enable gradually
+    "strict": false, // Phased migration. Full flip deferred — produces 227 errors (primarily strictNullChecks + noImplicitAny). Individual flags enabled below.
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -41,13 +41,15 @@
       ]
     },
     // Strict mode flags - enabling gradually
-    "noImplicitAny": false, // Phase 3: Enable after fixing existing issues
-    "strictNullChecks": false, // Phase 2: Enable after noImplicitThis
-    "strictFunctionTypes": true, // Phase 1: ENABLED - Ensures function parameters are checked
-    "strictBindCallApply": true, // Phase 1: ENABLED - Type checks for bind, call, apply
-    "strictPropertyInitialization": false, // Phase 3: Requires strictNullChecks first
-    "noImplicitThis": true, // Phase 1: ENABLED - Requires explicit this typing
-    "alwaysStrict": true, // Phase 1: ENABLED - Ensures "use strict" in all files
+    // Individual strict flags (phased enablement). Each requires its own fix wave.
+    "noImplicitAny": false,               // Phase 3 (deferred — ~540 `any` annotations in src/)
+    "strictNullChecks": false,            // Phase 2 (deferred — ~200 call-site fixes expected)
+    "strictFunctionTypes": true,          // Phase 1 — ENABLED
+    "strictBindCallApply": true,          // Phase 1 — ENABLED
+    "strictPropertyInitialization": false,// Phase 3 — requires strictNullChecks
+    "noImplicitThis": true,               // Phase 1 — ENABLED
+    "alwaysStrict": true,                 // Phase 1 — ENABLED
+    "useUnknownInCatchVariables": true,   // Phase 1.5 — ENABLED 2026-04-24 (Foundation Sprint Day 4). 6 catch-block error.message accesses narrowed.
     
     // Additional type checking flags
     "noUnusedLocals": false, // Phase 4: Enable after main strict flags
