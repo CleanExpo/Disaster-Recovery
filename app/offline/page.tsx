@@ -1,151 +1,147 @@
-'use client'
+/**
+ * Offline shell — iOS App Store Phase 2 PR #4 (RA-1633).
+ *
+ * Life-safety offline fallback. Precached by the service worker and returned
+ * as the offline fallback for any navigation when the network fails.
+ *
+ * Design constraints:
+ *  - Zero external fetches at runtime: no remote fonts, images, or JS.
+ *  - Server Component by default (static HTML). The only interactivity is
+ *    the `tel:` links, which work without JavaScript.
+ *  - Copy follows the DR-542 life-safety pattern on `/claim` — same 000
+ *    button + 1300 309 361 fallback.
+ *  - Inlines a short APP 3 collection notice (we cannot fetch the full
+ *    component at runtime when offline).
+ *  - Australian English only.
+ */
 
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Offline | Disaster Recovery Australia',
+  description:
+    'Offline life-safety shell. Call 000 in an emergency, or 1300 309 361 to speak to Disaster Recovery Australia.',
+  robots: { index: false, follow: false },
+  alternates: { canonical: 'https://disasterrecovery.com.au/offline' },
+};
 
 export default function OfflinePage() {
-  const [isOnline, setIsOnline] = useState(false)
-
-  useEffect(() => {
-    setIsOnline(navigator.onLine)
-
-    const handleOnline = () => setIsOnline(true)
-    const handleOffline = () => setIsOnline(false)
-
-    window.addEventListener('online', handleOnline)
-    window.addEventListener('offline', handleOffline)
-
-    return () => {
-      window.removeEventListener('online', handleOnline)
-      window.removeEventListener('offline', handleOffline)
-    }
-  }, [])
-
-  const handleRetry = () => {
-    window.location.href = '/claim/start'
-  }
-
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6 py-12">
-      {/* Logo / brand mark */}
-      <div className="mb-8 text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-blue-900 mb-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-10 h-10"
+    <main className="min-h-screen bg-white px-6 py-10 flex flex-col items-center">
+      <div className="w-full max-w-xl">
+        {/* Brand mark — inline SVG so it works with zero network */}
+        <div className="text-center mb-6">
+          <div
             aria-hidden="true"
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-900"
           >
-            <path d="M1 6l4 4 4-4 4 4 4-4 4 4" />
-            <path d="M1 12l4 4 4-4 4 4 4-4 4 4" />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-9 h-9"
+            >
+              <path d="M1 6l4 4 4-4 4 4 4-4 4 4" />
+              <path d="M1 12l4 4 4-4 4 4 4-4 4 4" />
+            </svg>
+          </div>
+          <p className="mt-3 text-lg font-bold text-blue-900">
+            Disaster Recovery Australia
+          </p>
         </div>
-        <h1 className="text-2xl font-bold text-blue-900">
-          Disaster Recovery Australia
-        </h1>
-      </div>
 
-      {/* Status indicator */}
-      <div className="w-full max-w-md bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <span
-            className={`inline-block w-3 h-3 rounded-full ${
-              isOnline ? 'bg-green-500' : 'bg-red-500'
-            }`}
-            aria-hidden="true"
-          />
-          <span className="font-semibold text-gray-800">
-            {isOnline ? 'Connection restored' : 'You are offline'}
-          </span>
+        {/* Connection status — AU English, plain copy. Static text; no client
+            state. If you want live reconnection copy, pair this shell with the
+            service-worker online/offline listener on the controlling page. */}
+        <div
+          role="status"
+          className="mb-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-center"
+        >
+          <p className="text-sm font-semibold text-amber-900">
+            You appear to be offline.
+          </p>
+          <p className="mt-1 text-xs text-amber-900 leading-relaxed">
+            Your safety comes first — call the numbers below if you are in
+            danger. This page works without a connection.
+          </p>
         </div>
-        <p className="text-sm text-gray-600">
-          {isOnline
-            ? 'Your connection is back. You can continue your claim.'
-            : 'No internet connection detected. Some features may be unavailable in your area.'}
-        </p>
-      </div>
 
-      {/* Main message */}
-      <div className="w-full max-w-md text-center mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-3">
-          Need help right now?
-        </h2>
-        <p className="text-gray-600 mb-4">
-          If you are in immediate danger, call{' '}
-          <strong>Triple Zero (000)</strong> first.
-        </p>
-        <p className="text-gray-600">
-          When your connection returns, your claim form will be available.
-          Your browser has cached the key pages for offline access.
-        </p>
-      </div>
-
-      {/* Emergency contact numbers */}
-      <div className="w-full max-w-md bg-blue-900 text-white rounded-xl p-6 mb-6">
-        <h3 className="font-bold text-lg mb-4 text-center">
-          Key Emergency Numbers
-        </h3>
-        <ul className="space-y-3">
-          <li className="flex items-center justify-between">
-            <span className="text-blue-200 text-sm">Police / Fire / Ambulance</span>
-            <a
-              href="tel:000"
-              className="text-white font-bold text-xl hover:text-blue-200 transition-colors"
-              aria-label="Call Triple Zero"
-            >
-              000
-            </a>
-          </li>
-          <li className="flex items-center justify-between">
-            <span className="text-blue-200 text-sm">State Emergency Service</span>
-            <a
-              href="tel:132500"
-              className="text-white font-bold text-xl hover:text-blue-200 transition-colors"
-              aria-label="Call State Emergency Service"
-            >
-              13 25 00
-            </a>
-          </li>
-          <li className="flex items-center justify-between">
-            <span className="text-blue-200 text-sm">Disaster Recovery AU</span>
-            <a
-              href="tel:1800000000"
-              className="text-white font-bold text-xl hover:text-blue-200 transition-colors"
-              aria-label="Call Disaster Recovery Australia"
-            >
-              1800 DR HELP
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      {/* Action buttons */}
-      <div className="w-full max-w-md flex flex-col gap-3">
-        <button
-          onClick={handleRetry}
-          className="w-full py-4 bg-blue-900 text-white font-semibold rounded-xl hover:bg-blue-800 active:bg-blue-950 transition-colors text-lg"
+        {/* DR-542 — Life-safety carve-out. Copy mirrors the /claim page
+            verbatim so offline users see the same guidance. */}
+        <div
+          role="alert"
+          className="mb-6 rounded-lg border-2 border-red-600 bg-red-50 p-4"
         >
-          Try Again — Lodge My Claim
-        </button>
+          <p className="text-sm font-bold text-red-900 mb-2">
+            In immediate life-safety danger?
+          </p>
+          <a
+            href="tel:000"
+            className="inline-flex items-center justify-center min-h-[48px] w-full px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
+            aria-label="Call 000 emergency services now"
+          >
+            Dial 000 now
+          </a>
+          <p className="mt-2 text-xs text-red-900 leading-relaxed">
+            Fire, rising floodwater, structural collapse, gas leak, injury,
+            or exposed live wiring — call 000 first. You can lodge the claim
+            once you are safe.
+          </p>
+        </div>
 
-        <Link
-          href="/claim"
-          className="w-full py-4 bg-white text-blue-900 font-semibold rounded-xl border-2 border-blue-900 hover:bg-blue-50 active:bg-blue-100 transition-colors text-lg text-center"
+        {/* DR-542 — Prefer-to-call fallback. Same canonical number as /claim. */}
+        <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <p className="text-sm font-semibold text-blue-900 mb-1">
+            Prefer to talk to a person?
+          </p>
+          <p className="text-xs text-blue-900 mb-3">
+            Our 24/7 intake line will take your claim over the phone.
+          </p>
+          <a
+            href="tel:1300309361"
+            className="inline-flex items-center justify-center min-h-[48px] w-full px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            aria-label="Call Disaster Recovery on 1300 309 361"
+          >
+            Call 1300 309 361
+          </a>
+        </div>
+
+        {/* APP 3 short-form notice — inlined because the full component
+            cannot be fetched at runtime when offline. Keeps the statutory
+            minimums and points to /privacy once connectivity returns. */}
+        <section
+          aria-label="Collection notice"
+          className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs text-slate-700 leading-relaxed"
         >
-          Claim Overview
-        </Link>
-      </div>
+          <p className="font-semibold text-slate-900 mb-1">
+            How we handle your information
+          </p>
+          <p>
+            National Restoration Professionals Group Pty Ltd (ABN 85 151 794
+            142), trading as Disaster Recovery Australia, collects personal
+            information only to triage your claim, dispatch an
+            IICRC-certified contractor, and meet our legal obligations.
+          </p>
+          <p className="mt-2">
+            We collect under the Privacy Act 1988 (Cth) and the Australian
+            Privacy Principles. You may access, correct, or complain about
+            the handling of your information at any time — see our Privacy
+            Policy once you are back online.
+          </p>
+          <p className="mt-2 text-slate-500">
+            Not legal advice.
+          </p>
+        </section>
 
-      {/* Footer note */}
-      <p className="mt-8 text-xs text-gray-400 text-center max-w-xs">
-        This page is available offline. Key claim and contact pages are stored
-        on your device for use in low-coverage disaster zones.
-      </p>
-    </div>
-  )
+        {/* Footer note */}
+        <p className="mt-8 text-center text-xs text-slate-400">
+          This page is stored on your device so it works without a connection.
+        </p>
+      </div>
+    </main>
+  );
 }
