@@ -20,6 +20,9 @@ paths = [
 regexes = [
   # allow example placeholders
   '''(?i)(example|placeholder|YOUR_|xxx|test_|dummy_)''',
+  # ProgramKey slugs — disaster-event identifiers in the form <event>-<year>-<type>.
+  # These match the generic-api-key rule (dashes + year digits) but are not secrets.
+  '''(?i)(qld-floods-\d{4}|narelle-wa-emergency|alfred-fnq-qld|emergency-hardship|structural-assistance|personal-hardship|extended-esha)''',
 ]
 
 [[rules]]
