@@ -21,7 +21,7 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
-export const EQUIPPED_CONSENT_VERSION = 'v1.0-2026-04-23';
+export const EQUIPPED_CONSENT_VERSION = 'v1.1-2026-04-25';
 
 /**
  * Short-form consent copy shown to the consumer. Keep in lockstep with
