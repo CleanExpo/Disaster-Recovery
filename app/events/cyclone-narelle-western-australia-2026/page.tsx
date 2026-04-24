@@ -16,6 +16,7 @@
 
 import type { Metadata } from 'next'
 import DisasterEventPage from '@/components/events/DisasterEventPage'
+import { PROGRAM_DEADLINES, deadlineStatusText } from '@/lib/deadlines'
 
 export const metadata: Metadata = {
   title: 'Cyclone Narelle WA 2026 — Category 4 Recovery & Insurance Claims | Disaster Recovery Australia',
@@ -58,7 +59,7 @@ export default function CycloneNarelleWA2026Page() {
       remoteLGAs={['Ashburton', 'Upper Gascoyne', 'Yalgoo']}
       remoteLGANote="Contact us for a specialist referral — contractor availability in remote Gascoyne and Mid-West shires is being confirmed."
       showEmergencyWarning
-      eshaDeadline="2026-04-27"
+      eshaDeadline={PROGRAM_DEADLINES['narelle-wa-emergency-hardship'].closeDate}
       governmentHotline="1800 032 965"
       financialAssistance={[
         {
@@ -85,7 +86,7 @@ export default function CycloneNarelleWA2026Page() {
           description:
             'Immediate financial assistance to help meet essential needs following Cyclone Narelle. Available to eligible individuals and families in declared shires.',
           amounts: '$150 per person | max $750 per family',
-          deadline: '27 April 2026',
+          deadline: deadlineStatusText('narelle-wa-emergency-hardship'),
           hotline: '1800 032 965',
           applicationUrl: 'https://www.communities.wa.gov.au/disaster-relief',
         },
