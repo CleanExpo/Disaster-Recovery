@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const EQUIPPED_EMBED_ORIGIN = 'https://equippedcf.com.au';
+// L6 (2026-04-30): origin is env-configurable so staging can swap to
+// e.g. https://staging.equippedcf.com.au without a code change. The
+// origin guards both the iframe target and the postMessage targetOrigin.
+const EQUIPPED_EMBED_ORIGIN =
+  process.env.NEXT_PUBLIC_EQUIPPED_EMBED_ORIGIN || 'https://equippedcf.com.au';
 
 // Equipped hasn't stood up /embed yet — for Phase 1 we default to their public
 // quote form. When Equipped enables the embed endpoint, set
@@ -25,7 +29,7 @@ export function HandoffFrame({ token, referralId }: { token: string; referralId:
       try {
         iframe?.contentWindow?.postMessage(
           { type: 'dr.finance.prefill', token, referralId, version: 1 },
-          EQUIPPED_EMBED_ORIGIN
+          EQUIPPED_EMBED_ORIGIN,
         );
         setStatus('sent');
       } catch {
@@ -39,7 +43,9 @@ export function HandoffFrame({ token, referralId }: { token: string; referralId:
       if (data?.type === 'equipped.prefill.ack') {
         setStatus('acknowledged');
       } else if (data?.type === 'equipped.referral.status' && data.status) {
-        router.push(`/finance/thank-you?id=${encodeURIComponent(referralId)}&status=${encodeURIComponent(data.status)}`);
+        router.push(
+          `/finance/thank-you?id=${encodeURIComponent(referralId)}&status=${encodeURIComponent(data.status)}`,
+        );
       }
     }
 
