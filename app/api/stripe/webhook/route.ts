@@ -5,8 +5,11 @@ import Stripe from 'stripe';
 import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
 import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 async function handleWebhook(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/stripe/webhook' });
   const body = await req.text();
   const signature = req.headers.get('stripe-signature');
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
@@ -187,6 +190,23 @@ async function handleWebhook(req: NextRequest) {
           }
           await Promise.all(modulePromises);
 
+          log.info('stripe checkout completed', { contractorId, sessionId: session.id, amount: actualAmount });
+
+          await logComplianceEvent({
+            eventType: 'referral_fee_received',
+            correlationId: contractorId,
+            correlationType: 'contractor_membership',
+            entityType: 'contractor',
+            entityIdentifier: contractorId,
+            amountCents: actualAmount,
+            amountCurrency: (session.currency ?? 'aud').toUpperCase(),
+            metadata: {
+              stripe_session_id: session.id,
+              stripe_payment_intent: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+              request_id: log.requestId,
+            },
+          });
+
           // 5. Fire-and-forget payment confirmation email
           const contractor = await prisma.contractor.findUnique({
             where: { id: contractorId },
@@ -334,7 +354,8 @@ async function handleWebhook(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error processing webhook:', error);
+    log.error('stripe webhook processing failed', { error: error instanceof Error ? error.message : String(error), eventType: event?.type });
+    captureException(error, { tags: { route: '/api/stripe/webhook', eventType: event?.type ?? 'unknown' }, extra: { requestId: log.requestId } });
 
     PaymentAuditLogger.logSuspiciousActivity({
       ipAddress: clientIP,

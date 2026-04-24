@@ -7,6 +7,8 @@ import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
 import { dispatchClaimStatusNotification } from '@/lib/notifications';
 import { rateLimit } from '@/lib/rate-limit';
 import { getCallerIdentity } from '@/lib/auth/require-session';
+import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 import fs from 'node:fs/promises';
 
 const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
@@ -181,6 +183,7 @@ async function readFallbackClaim(claimId: string): Promise<TrackClaimPayload | n
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/claims/submit' });
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('x-real-ip') ??
@@ -201,6 +204,14 @@ export async function POST(request: NextRequest) {
     const raw = await request.json();
     const parsed = ClaimSubmitSchema.safeParse(raw);
     if (!parsed.success) {
+      log.warn('claim intake validation failed', { issues: parsed.error.issues.length });
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: { outcome: 'validation_failed', request_id: log.requestId, issues: parsed.error.issues.length },
+      });
       return NextResponse.json({
         success: false,
         error: 'Invalid request',
@@ -208,6 +219,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
     const body = parsed.data;
+    log.info('claim intake received', { email: body.email, postcode: body.postcode, urgency: body.urgencyLevel });
 
     // Platform fee is server-authoritative — never trust client-supplied amount
     const totalClaimAmount = PLATFORM_FEE;
@@ -267,6 +279,20 @@ export async function POST(request: NextRequest) {
       });
       trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, paymentConfirmed);
 
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: claim.id,
+        correlationType: 'claim',
+        entityType: 'customer',
+        entityIdentifier: body.email,
+        metadata: {
+          damage_types: body.damageTypes,
+          urgency: body.urgencyLevel,
+          payment_confirmed: paymentConfirmed,
+          request_id: log.requestId,
+        },
+      });
+
       // DR-389: Dispatch initial SUBMITTED notification (non-blocking)
       void dispatchClaimStatusNotification({
         claimId: claim.id,
@@ -279,9 +305,20 @@ export async function POST(request: NextRequest) {
         await writeFallbackClaim(trackClaim);
       } catch (fsError) {
         // Vercel serverless filesystem is read-only — log but don't propagate
-        console.error('Fallback file write failed (read-only serverless filesystem):', fsError);
+        log.error('fallback file write failed', { error: fsError instanceof Error ? fsError.message : String(fsError) });
       }
-      console.error('Claim DB write failed, continuing with in-memory fallback ID:', dbError);
+      log.error('claim DB write failed; continuing with fallback id', {
+        fallbackId,
+        error: dbError instanceof Error ? dbError.message : String(dbError),
+      });
+      captureException(dbError, { tags: { route: '/api/claims/submit', stage: 'db_write' }, extra: { requestId: log.requestId, fallbackId } });
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: { outcome: 'db_write_failed', request_id: log.requestId, fallback_id: fallbackId },
+      });
     }
 
     // Send Claim Support Pack email (non-blocking — failures don't block the claim)
@@ -328,7 +365,8 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
 
   } catch (error) {
-    console.error('Error processing claim:', error);
+    log.error('claim intake failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/claims/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       error: 'Failed to process claim',
