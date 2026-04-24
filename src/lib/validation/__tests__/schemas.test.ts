@@ -317,6 +317,8 @@ describe('reverseGeocodeRequestSchema', () => {
 });
 
 describe('claimPhotoUploadSchema', () => {
+  // Base64 of n raw bytes has ceil(n/3)*4 chars; we size the body so the
+  // decoded length lands in the 10KB-20MB valid window.
   function makeDataUrl(rawBytes: number, mime = 'jpeg'): string {
     const chars = Math.ceil((rawBytes * 4) / 3);
     const padded = chars + ((4 - (chars % 4)) % 4);
