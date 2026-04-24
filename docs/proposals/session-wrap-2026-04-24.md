@@ -89,9 +89,15 @@ Then enable DKIM signing in Microsoft 365 Defender (`security.microsoft.com/dkim
 
 Zero websites deployed. Let it auto-expire to save the renewal fee, or cancel now. Domains (2) on Siteground are separate products — leave those.
 
-### 5. Unused M365 subscription on `phill@disasterrecovery.com.au` GoDaddy
+### 5. `phill@disasterrecovery.com.au` GoDaddy — KEEP (ACTIVE)
 
-Customer #123895016 has 1 unused M365 sub. Either cancel for cost save, or keep as overflow for DR network.
+Customer #123895016 is the billing account for Phill's actively-used Disaster Recovery mailboxes:
+
+- `phill@disasterrecovery.com.au`
+- `admin@disasterrecovery.com.au`
+- `accounts@disasterrecovery.com.au`
+
+**DO NOT cancel this M365 subscription.** Earlier session note that called it "unused" was incorrect — the Subscriptions view looked empty because the earlier login landed on a billing-admin scope rather than the domain-owner scope. The mailboxes are active.
 
 ### 6. Schema debt (PR #133 flagged this)
 
