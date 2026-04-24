@@ -6,6 +6,7 @@ import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
 import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
+import { requestLogger, captureException } from '@/lib/observability';
 
 async function handleWebhook(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/stripe/webhook' });

@@ -77,7 +77,7 @@ function buildScheduledDate(date: string, time: string): Date | null {
 }
 
 // Build a description from form fields that have no direct Booking column
-function buildDescription(data: z.infer<typeof bookingCreateSchema>): string {
+function buildDescription(data: z.infer<typeof bookingSchema>): string {
   const parts = [
     `Service: ${data.serviceType}`,
     `Property: ${data.propertyType}`,
@@ -128,7 +128,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Validate the request body
-    const validatedData = bookingCreateSchema.parse(body);
+    const validatedData = bookingSchema.parse(body);
 
     // Calculate lead score
     const leadScore = calculateLeadScore({

@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate the request body
-    const validatedData = contactSubmitSchema.parse(body);
+    const validatedData = contactSchema.parse(body);
     
     // Calculate lead score
     const leadScore = calculateLeadScore({
