@@ -151,6 +151,25 @@ export type DeviceTokenRegistrationInput = z.infer<
   typeof deviceTokenRegistrationSchema
 >;
 
+// ----- Reverse geocode (native geolocation auto-fill) -----
+//
+// DR-725 iOS App epic, Phase 2 PR #3. Posted by the "Use my current
+// location" button on /claim so the server can call Google Geocoding
+// and pre-fill the address fields.
+//
+// Privacy note (.claude/rules/privacy.md APP 3 + APP 5): coordinates
+// are CONFIDENTIAL. Collect only on user tap. The route never logs the
+// payload — only `{ ok, hasResult }`.
+
+export const reverseGeocodeRequestSchema = z.object({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+});
+
+export type ReverseGeocodeRequestInput = z.infer<
+  typeof reverseGeocodeRequestSchema
+>;
+
 // ----- Native claim photo upload (iOS/Android Capacitor) -----
 //
 // DR-725 Phase 2 PR #2. Posted by src/lib/native-bridge.ts -> capturePhoto()
