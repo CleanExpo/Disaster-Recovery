@@ -1963,6 +1963,32 @@ model PushToken {
   @@index([claimId])
 }
 
+/// DR-725 iOS epic Phase 2 PR #2.
+/// Row-level ledger for photos captured via the native camera bridge and
+/// uploaded to the `claim-photos` Supabase Storage bucket. The bytes
+/// themselves live in object storage; this table holds the metadata.
+///
+/// Data-class: CONFIDENTIAL when joined to a claim (property PII).
+/// Never log the objectKey alongside client contact details.
+model ClaimPhotoAttachment {
+  id              String   @id @default(uuid())
+  claimId         String
+  /// Object key in the `claim-photos` Supabase Storage bucket.
+  /// Shape: `<claimId|unassigned>/<uuid>.<ext>`.
+  objectKey       String
+  platform        String   // "ios" | "android"
+  capturedAt      DateTime
+  geoLat          Float?
+  geoLng          Float?
+  geoAccuracyM    Float?
+  sizeBytes       Int
+  mimeType        String
+  createdAt       DateTime @default(now())
+
+  @@index([claimId])
+  @@index([createdAt])
+}
+
 /// Outbox for claim status change notifications.
 /// The polling endpoint reads these; the dispatch utility writes them.
 model ClaimNotification {

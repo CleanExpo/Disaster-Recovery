@@ -15,6 +15,7 @@ import {
   verificationStatusSchema,
   deviceTokenRegistrationSchema,
   nativePlatformSchema,
+  claimPhotoUploadSchema,
 } from '../schemas';
 
 const validClient = {
@@ -284,5 +285,92 @@ describe('deviceTokenRegistrationSchema', () => {
     expect(nativePlatformSchema.safeParse('ios').success).toBe(true);
     expect(nativePlatformSchema.safeParse('android').success).toBe(true);
     expect(nativePlatformSchema.safeParse('web').success).toBe(false);
+  });
+});
+
+describe('claimPhotoUploadSchema', () => {
+  function makeDataUrl(rawBytes: number, mime = 'jpeg'): string {
+    const chars = Math.ceil((rawBytes * 4) / 3);
+    const padded = chars + ((4 - (chars % 4)) % 4);
+    return `data:image/${mime};base64,${'A'.repeat(padded)}`;
+  }
+
+  const validPayload = {
+    photoDataUrl: makeDataUrl(100 * 1024),
+    platform: 'ios' as const,
+    appId: 'au.com.disasterrecovery.app' as const,
+    appVersion: '1.0.0+1',
+    capturedAt: '2026-04-24T10:00:00+10:00',
+  };
+
+  it('accepts a valid iOS payload without claimId or geo', () => {
+    const res = claimPhotoUploadSchema.safeParse(validPayload);
+    expect(res.success).toBe(true);
+  });
+
+  it('accepts a valid Android payload with claimId and geo', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      platform: 'android',
+      claimId: 'claim-abc-123',
+      geo: { lat: -27.4698, lng: 153.0251, accuracyMeters: 8.5 },
+    });
+    expect(res.success).toBe(true);
+  });
+
+  it('rejects a data URL without the data:image/ prefix', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      photoDataUrl: 'data:application/pdf;base64,AAAA',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects a photo smaller than 10KB', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      photoDataUrl: makeDataUrl(1024),
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects a photo larger than 20MB', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      photoDataUrl: makeDataUrl(21 * 1024 * 1024),
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects a spoofed appId (bundle identifier guard)', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      appId: 'com.attacker.fake',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects an unknown platform', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      platform: 'windows',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects a non-ISO-8601 capturedAt', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      capturedAt: '24/04/2026 10:00',
+    });
+    expect(res.success).toBe(false);
+  });
+
+  it('rejects geo with out-of-range latitude', () => {
+    const res = claimPhotoUploadSchema.safeParse({
+      ...validPayload,
+      geo: { lat: 123, lng: 0, accuracyMeters: 10 },
+    });
+    expect(res.success).toBe(false);
   });
 });

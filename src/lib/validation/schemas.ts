@@ -150,3 +150,64 @@ export const deviceTokenRegistrationSchema = z.object({
 export type DeviceTokenRegistrationInput = z.infer<
   typeof deviceTokenRegistrationSchema
 >;
+
+// ----- Native claim photo upload (iOS/Android Capacitor) -----
+//
+// DR-725 Phase 2 PR #2. Posted by src/lib/native-bridge.ts -> capturePhoto()
+// after the native camera returns a data URL.
+//
+// Data-class note: property photos + optional geo coordinates are
+// CONFIDENTIAL (.claude/rules/privacy.md §1 / §3). Never log the bytes —
+// only size + mime. Geo is only populated if the user granted Geolocation
+// permission separately (APP 3 collection-limitation discipline).
+
+/** 10 KB — reject anything smaller as likely garbage / truncation. */
+const CLAIM_PHOTO_MIN_BYTES = 10 * 1024;
+/** 20 MB — hard cap protects the server, the bucket, and the client's data allowance. */
+const CLAIM_PHOTO_MAX_BYTES = 20 * 1024 * 1024;
+
+/** data:image/<mime>;base64,<payload> — inbound from Capacitor Camera. */
+const DATA_URL_IMAGE_PREFIX = /^data:image\/[a-zA-Z0-9.+-]+;base64,/;
+
+function base64DecodedLength(dataUrl: string): number {
+  const commaIdx = dataUrl.indexOf(',');
+  if (commaIdx < 0) return 0;
+  const payload = dataUrl.slice(commaIdx + 1);
+  // Base64 decoded length = ceil(n/4) * 3 - padding
+  const padding = payload.endsWith('==') ? 2 : payload.endsWith('=') ? 1 : 0;
+  return Math.floor((payload.length * 3) / 4) - padding;
+}
+
+export const claimPhotoGeoSchema = z.object({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+  accuracyMeters: z.number().nonnegative(),
+});
+
+export const claimPhotoUploadSchema = z.object({
+  /** Must be a base64 data URL for an image MIME type, 10KB-20MB decoded. */
+  photoDataUrl: z
+    .string()
+    .refine((s) => DATA_URL_IMAGE_PREFIX.test(s), {
+      message: 'photoDataUrl must start with data:image/<mime>;base64,',
+    })
+    .refine(
+      (s) => {
+        const n = base64DecodedLength(s);
+        return n >= CLAIM_PHOTO_MIN_BYTES && n <= CLAIM_PHOTO_MAX_BYTES;
+      },
+      { message: 'photoDataUrl decoded size must be between 10KB and 20MB' },
+    ),
+  /** Optional — photos may be captured pre-claim and attached later. */
+  claimId: z.string().min(1).max(128).optional(),
+  platform: nativePlatformSchema,
+  /** App bundle identifier — authoritative check on the server (spoof guard). */
+  appId: z.literal('au.com.disasterrecovery.app'),
+  appVersion: z.string().min(1).max(32),
+  /** ISO 8601 capture timestamp from the device clock. */
+  capturedAt: z.string().datetime({ offset: true }),
+  /** Optional — only populated if user granted Geolocation permission. */
+  geo: claimPhotoGeoSchema.optional(),
+});
+
+export type ClaimPhotoUploadInput = z.infer<typeof claimPhotoUploadSchema>;
