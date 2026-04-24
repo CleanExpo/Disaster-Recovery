@@ -41,14 +41,46 @@ export function getPlatform(): 'ios' | 'android' | 'web' {
 }
 
 /**
- * Capture a photo for a damage claim. Falls back to HTML
- * `<input type="file" capture="environment">` on web.
+ * App bundle identifier — authoritative on the server as a spoof guard.
+ * Must match the literal in `claimPhotoUploadSchema`.
+ */
+const APP_BUNDLE_ID = 'au.com.disasterrecovery.app';
+
+/**
+ * App version reported to the server. Sourced from Capacitor App plugin
+ * when available; falls back to a stub so dev builds don't fail schema
+ * validation.
+ */
+async function resolveAppVersion(): Promise<string> {
+  try {
+    const { App } = await import('@capacitor/app');
+    const info = await App.getInfo();
+    return `${info.version}+${info.build}`;
+  } catch {
+    return '0.0.0+0';
+  }
+}
+
+/**
+ * Capture a photo for a damage claim and upload it to the server.
+ *
+ * Falls back to null on web (caller renders the web `<input type="file"
+ * capture="environment">` path). When the feature flag is off, this
+ * helper no-ops — no dynamic imports, no network calls.
  *
  * APP 3 note: the user must have already consented to photo upload
  * before this is called. Caller is responsible for the consent gate.
+ *
+ * @param opts.claimId — optional, associates the photo with an existing
+ *   claim. Omit when the user hasn't reached the claim-submit step yet.
+ * @param opts.geo — optional geo fix (lat/lng/accuracy). Only pass when
+ *   the user granted Geolocation permission separately.
  */
-export async function capturePhoto(): Promise<
-  { dataUrl: string; format: string } | null
+export async function capturePhoto(opts?: {
+  claimId?: string;
+  geo?: { lat: number; lng: number; accuracyMeters: number };
+}): Promise<
+  { dataUrl: string; format: string; uploadId: string | null } | null
 > {
   if (!isNative()) return null;
   try {
@@ -62,7 +94,39 @@ export async function capturePhoto(): Promise<
       correctOrientation: true,
     });
     if (!photo.dataUrl) return null;
-    return { dataUrl: photo.dataUrl, format: photo.format };
+
+    const platform = getPlatform();
+    if (platform === 'web') {
+      return { dataUrl: photo.dataUrl, format: photo.format, uploadId: null };
+    }
+
+    const appVersion = await resolveAppVersion();
+    let uploadId: string | null = null;
+    try {
+      const res = await fetch('/api/native/claim-photo-upload', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          photoDataUrl: photo.dataUrl,
+          claimId: opts?.claimId,
+          platform,
+          appId: APP_BUNDLE_ID,
+          appVersion,
+          capturedAt: new Date().toISOString(),
+          geo: opts?.geo,
+        }),
+      });
+      if (res.ok) {
+        const json = (await res.json()) as { ok?: boolean; id?: string };
+        if (json.ok && typeof json.id === 'string') {
+          uploadId = json.id;
+        }
+      }
+    } catch {
+      // Swallow — caller still gets the dataUrl for a later retry.
+    }
+
+    return { dataUrl: photo.dataUrl, format: photo.format, uploadId };
   } catch {
     return null;
   }
