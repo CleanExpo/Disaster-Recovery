@@ -199,14 +199,44 @@ export async function registerPushNotifications(): Promise<string | null> {
 }
 
 /**
- * Emit a short haptic tap — used on primary CTA buttons + claim submit
- * success. No-op on web.
+ * Emit a short haptic tap (Light impact) — used on primary CTA button
+ * presses. No-op on web.
  */
 export async function tap(): Promise<void> {
   if (!isNative()) return;
   try {
     const { Haptics, ImpactStyle } = await import('@capacitor/haptics');
     await Haptics.impact({ style: ImpactStyle.Light });
+  } catch {
+    // Swallow — haptics are cosmetic, never block.
+  }
+}
+
+/**
+ * Emit a Medium haptic — used to signal a successful outcome (e.g.
+ * location autofill succeeded, claim submit succeeded). No-op on web.
+ */
+export async function mediumTap(): Promise<void> {
+  if (!isNative()) return;
+  try {
+    const { Haptics, ImpactStyle } = await import('@capacitor/haptics');
+    await Haptics.impact({ style: ImpactStyle.Medium });
+  } catch {
+    // Swallow — haptics are cosmetic, never block.
+  }
+}
+
+/**
+ * Emit a Heavy haptic — reserved for life-safety affordances (e.g. the
+ * "Dial 000" button on /claim and the offline shell). Gives the user
+ * tactile confirmation that a high-consequence action has fired, even
+ * when they can't look at the screen. No-op on web.
+ */
+export async function heavyTap(): Promise<void> {
+  if (!isNative()) return;
+  try {
+    const { Haptics, ImpactStyle } = await import('@capacitor/haptics');
+    await Haptics.impact({ style: ImpactStyle.Heavy });
   } catch {
     // Swallow — haptics are cosmetic, never block.
   }
