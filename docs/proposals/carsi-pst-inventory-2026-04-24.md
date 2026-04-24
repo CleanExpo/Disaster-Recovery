@@ -65,3 +65,49 @@ A streaming byte-level scan (`scripts/pst-scan.py`, `scripts/pst-sanity.py`) rea
 ## Confidentiality
 
 The PST was opened **read-only** at all times. No content was transmitted off-machine, no Outlook store was added persistently (both COM attempts failed before any store was registered), and no email was sent or modified. The PST file timestamp and size are unchanged from pre-inspection.
+
+---
+
+## Update 24/04/2026 v2 — Python 3.11 + Aspose.Email
+
+**Verdict revised: RECOVERABLE — `@carsi.com.au` mail is present in the PST.**
+
+### What changed
+
+- Installed Python 3.11.9 via `winget install Python.Python.3.11`.
+- `libratom` / `libpff-python` still fail to build on Windows (no prebuilt C wheels; requires MSVC toolchain). Not viable without a heavier install.
+- Switched to **`Aspose.Email-for-Python-via-NET` 26.4**, which ships a prebuilt `win_amd64` wheel and reads Unicode PSTs natively via `aspose.email.storage.pst.PersonalStorage`.
+- New script: `scripts/pst-inventory-v3.py` — walks all folders, enumerates MAPI messages via `folder.enumerate_mapi_messages()`, counts sender + recipient SMTP addresses containing `carsi.com.au`. Read-only. Does not write message bodies.
+- Working venv lives at `tmp/pst-work/.venv-pst/` (not committed; `tmp/` is outside the public tree).
+
+### Findings (structural — what we can confirm)
+
+1. **PST opens cleanly.** 60 folders enumerated, folder tree traversed in full.
+2. **Dedicated `/Inbox/CARSI` folder exists.** Outlook had a rule or manual filing pattern putting CARSI-related mail into its own subfolder. (`content_count = 0` at the time of inspection — messages may have been moved to another folder, deleted, or the folder was created but not yet used at the snapshot point.)
+3. **At least one message from `support@carsi.com.au` confirmed**, dated `2023-07-29 11:04:21`, sitting in the main Inbox (not in the CARSI subfolder).
+
+### Findings (limitation — what we cannot confirm programmatically)
+
+Aspose.Email's free/evaluation tier caps message enumeration per `PersonalStorage` instance. The Inbox alone reports 5,414 items via `content_count`, but only **59 messages total across the whole PST** could be enumerated in this session. The one CARSI match surfaced inside that 59-message sample.
+
+Extrapolation from the sample is not meaningful — it is not a random sample, it is the first N items Aspose chooses to surface before hitting the evaluation cap. We can say definitively that `@carsi.com.au` mail exists; we cannot produce a total count, a full date range, or a top-sender breakdown without either:
+
+- An Aspose.Email commercial licence (unblocks full enumeration), OR
+- Repairing the Outlook profile and using Outlook search directly (`from:@carsi.com.au`, `to:@carsi.com.au`), which remains the fastest path to a complete count, OR
+- Installing Visual Studio Build Tools to compile `libpff-python` from source, then re-running a libratom-based inventory.
+
+### Confirmed addresses (from the 59-message evaluation sample)
+
+| Role      | Address                | Count | Earliest            | Latest              |
+| --------- | ---------------------- | ----- | ------------------- | ------------------- |
+| Sender    | `support@carsi.com.au` | 1     | 2023-07-29 11:04:21 | 2023-07-29 11:04:21 |
+| Recipient | (none in sample)       | 0     | —                   | —                   |
+
+### Files produced this update
+
+- `scripts/pst-inventory-v3.py` — Aspose.Email-based inventory, read-only, address+count only
+- `tmp/pst-work/.venv-pst/` — Python 3.11 venv with Aspose.Email installed (not committed)
+
+### Recommended next step
+
+Open Outlook, repair the profile if needed, then run Outlook search: `from:@carsi.com.au OR to:@carsi.com.au`. Given the dedicated `/Inbox/CARSI` folder and the confirmed 2023 message from `support@carsi.com.au`, there is mail to recover — this is no longer a speculative question.
