@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Professional male voice for investor pitches
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/elevenlabs/narrate' });
   try {
     // Check for API key
     if (!ELEVENLABS_API_KEY) {
-      console.error('ElevenLabs API key not configured');
+      log.error('ElevenLabs API key not configured');
       // Return a silent audio file if no API key
       return new NextResponse(null, {
         status: 200,
@@ -44,7 +46,7 @@ export async function POST(request: NextRequest) {
     );
 
     if (!response.ok) {
-      console.error('ElevenLabs API error:', response.status);
+      log.error('ElevenLabs API error', { status: response.status });
       // Return empty audio on error
       return new NextResponse(null, {
         status: 200,
@@ -62,7 +64,8 @@ export async function POST(request: NextRequest) {
         'Cache-Control': 'public, max-age=3600' } });
 
   } catch (error) {
-    console.error('Error generating narration:', error);
+    log.error('error generating narration', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/elevenlabs/narrate' }, extra: { requestId: log.requestId } });
     // Return empty response on error to not break the presentation
     return new NextResponse(null, {
       status: 200,

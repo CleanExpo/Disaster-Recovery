@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { existsSync } from 'fs';
+import { requestLogger, captureException } from '@/lib/observability';
 
 interface ImageStats {
   totalImages: number;
@@ -79,7 +80,7 @@ async function getDirectoryStats(dirPath: string): Promise<ImageStats> {
         }
       }
     } catch (error) {
-      console.error(`Error processing directory ${currentPath}:`, error);
+      console.error(JSON.stringify({ level: 'error', source: 'api/image-stats', msg: 'error processing directory', currentPath, error: error instanceof Error ? error.message : String(error) }));
     }
   }
 
@@ -97,6 +98,7 @@ async function getDirectoryStats(dirPath: string): Promise<ImageStats> {
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/image-stats' });
   try {
     const searchParams = request.nextUrl.searchParams;
     const directory = searchParams.get('dir') || path.join(process.cwd(), 'public', 'images');
@@ -160,7 +162,8 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error('Error getting image stats:', error);
+    log.error('error getting image stats', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/image-stats' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to get image statistics' },
       { status: 500 }

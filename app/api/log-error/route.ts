@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/log-error' });
   try {
     const session = await getServerSession();
     const body = await req.json();
@@ -69,7 +71,8 @@ export async function POST(req: NextRequest) {
   } catch (error: unknown) {
     const errMessage =
       error instanceof Error ? error.message : 'Unknown error';
-    console.error('Error logging application error:', errMessage);
+    log.error('error logging application error', { error: errMessage });
+    captureException(error, { tags: { route: '/api/log-error' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Internal server error while logging error' },
       { status: 500 }
@@ -78,6 +81,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/log-error' });
   try {
     const session = await getServerSession();
 
@@ -116,7 +120,8 @@ export async function GET(req: NextRequest) {
   } catch (error: unknown) {
     const errMessage =
       error instanceof Error ? error.message : 'Unknown error';
-    console.error('Error fetching error logs:', errMessage);
+    log.error('error fetching error logs', { error: errMessage });
+    captureException(error, { tags: { route: '/api/log-error' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

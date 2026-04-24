@@ -243,7 +243,7 @@ export async function POST(request: NextRequest) {
     // ENCRYPTION_SECRET is set in Vercel Production (DR-491). Claims without access instructions
     // do not require encryption and proceed normally regardless.
     if (body.accessInstructions && !isConfigured() && process.env.NODE_ENV !== 'development') {
-      console.error('[security] DR-390: ENCRYPTION_SECRET is not configured. Cannot store access instructions without encryption in production.');
+      log.error('ENCRYPTION_SECRET is not configured; cannot store access instructions', { ref: 'DR-390' });
       return NextResponse.json({
         success: false,
         error: 'Server configuration error',
@@ -339,7 +339,7 @@ export async function POST(request: NextRequest) {
       await sendEmail(body.email, supportPackEmail);
     } catch (emailError) {
       // Log but don't fail the claim — email is supplementary
-      console.error('Claim Support Pack email failed (non-critical):', emailError);
+      log.error('claim support pack email failed (non-critical)', { error: emailError instanceof Error ? emailError.message : String(emailError) });
     }
 
     return NextResponse.json({
@@ -383,6 +383,7 @@ export async function POST(request: NextRequest) {
 // The JWT is validated server-side — callers cannot forge their role by
 // setting request headers.
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/claims/submit' });
   const { searchParams } = new URL(request.url);
   const claimId = searchParams.get('id');
 
@@ -426,7 +427,7 @@ export async function GET(request: NextRequest) {
       } catch (decryptErr) {
         // Log but do not expose — return null so the caller knows the field exists
         // but the value cannot be delivered (e.g. key rotation in progress).
-        console.error(`[security] DR-390: Failed to decrypt accessInstructions for claim ${claimId} (caller: ${callerId}):`, decryptErr);
+        log.error('failed to decrypt accessInstructions', { ref: 'DR-390', claimId, callerId, error: decryptErr instanceof Error ? decryptErr.message : String(decryptErr) });
       }
     }
 
@@ -441,7 +442,8 @@ export async function GET(request: NextRequest) {
       }),
     });
   } catch (error) {
-    console.error('Error fetching claim:', error);
+    log.error('error fetching claim', { error: error instanceof Error ? error.message : String(error), claimId });
+    captureException(error, { tags: { route: '/api/claims/submit' }, extra: { requestId: log.requestId } });
     const fallback = await readFallbackClaim(claimId);
     if (fallback) {
       return NextResponse.json({

@@ -35,7 +35,7 @@ async function handleWebhook(req: NextRequest) {
 
   // SECURITY: Verify webhook secret is configured
   if (!process.env.STRIPE_WEBHOOK_SECRET) {
-    console.error('STRIPE_WEBHOOK_SECRET not configured');
+    log.error('STRIPE_WEBHOOK_SECRET not configured');
     return NextResponse.json(
       {
         success: false,
@@ -67,7 +67,7 @@ async function handleWebhook(req: NextRequest) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (error) {
-    console.error('Webhook signature verification failed:', error);
+    log.error('webhook signature verification failed', { error: error instanceof Error ? error.message : String(error) });
 
     PaymentAuditLogger.logSuspiciousActivity({
       ipAddress: clientIP,
@@ -106,7 +106,7 @@ async function handleWebhook(req: NextRequest) {
             });
 
             // Continue processing but flag for review
-            console.warn(`Webhook metadata validation failed for ${contractorId}: ${metadataValidation.reason}`);
+            log.warn('webhook metadata validation failed', { contractorId, reason: metadataValidation.reason });
           }
 
           // SECURITY: Validate payment amount matches expected

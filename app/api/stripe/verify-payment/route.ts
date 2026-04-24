@@ -11,6 +11,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe, isStripeConfigured } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -21,6 +22,7 @@ const schema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/stripe/verify-payment' });
   // Parse + validate body
   let body: unknown;
   try {
@@ -102,7 +104,8 @@ export async function POST(req: NextRequest) {
       currency: session.currency,
     });
   } catch (error) {
-    console.error('[verify-payment] Stripe error:', error);
+    log.error('stripe verify-payment error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/stripe/verify-payment' }, extra: { requestId: log.requestId } });
 
     // If session doesn't exist or is expired, Stripe throws a resource_missing error
     const stripeError = error as { type?: string; message?: string };

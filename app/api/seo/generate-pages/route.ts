@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateLocationCombinations, calculatePagePriority, getEstimatedSearchVolume } from '@/lib/seo/locations';
+import { requestLogger, captureException } from '@/lib/observability';
 
 function buildPageList(combinations: ReturnType<typeof generateLocationCombinations>) {
   return combinations.map((combo, index) => {
@@ -34,6 +35,7 @@ function buildPageList(combinations: ReturnType<typeof generateLocationCombinati
 }
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/seo/generate-pages' });
   try {
     const body = await req.json().catch(() => ({}));
     const limit = Math.min(1000, Math.max(1, Number(body.limit) || 100));
@@ -50,7 +52,8 @@ export async function POST(req: NextRequest) {
       message: `Generated ${generated.length} SEO pages (preview). View them in the list below.`,
     });
   } catch (error) {
-    console.error('Error in SEO generate-pages POST:', error);
+    log.error('error in seo generate-pages POST', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/seo/generate-pages' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to generate SEO pages', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
@@ -59,6 +62,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/seo/generate-pages' });
   try {
     const { searchParams } = new URL(req.url);
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
@@ -89,7 +93,8 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error fetching SEO pages:', error);
+    log.error('error fetching seo pages', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/seo/generate-pages' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to fetch SEO pages' },
       { status: 500 }

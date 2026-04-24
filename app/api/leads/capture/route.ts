@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { calculateLeadValue, assignLeadToPartner } from '@/lib/lead-management';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/leads/capture' });
   try {
     const data = await request.json();
     const ipAddress = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || '';
@@ -140,7 +142,8 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('Lead capture error:', error);
+    log.error('lead capture error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/leads/capture' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to process lead' },
       { status: 500 }

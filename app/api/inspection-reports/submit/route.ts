@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { InspectionReport } from '@/lib/templates/inspection-report-template';
 import { validateInspectionSubmission } from '@/lib/templates/inspection-submission-requirements';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/inspection-reports/submit' });
   try {
     const { report, workType }: { report: InspectionReport; workType: string } = await req.json();
 
@@ -82,9 +84,10 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error submitting inspection report:', error);
+    log.error('error submitting inspection report', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/inspection-reports/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error during report submission',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
@@ -94,6 +97,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/inspection-reports/submit' });
   try {
     const { searchParams } = new URL(req.url);
     const contractorId = searchParams.get('contractorId');
@@ -138,7 +142,8 @@ export async function GET(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error retrieving inspection reports:', error);
+    log.error('error retrieving inspection reports', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/inspection-reports/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to retrieve inspection reports' },
       { status: 500 }

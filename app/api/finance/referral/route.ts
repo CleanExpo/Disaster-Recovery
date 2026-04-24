@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SignJWT } from 'jose';
 import { randomUUID, createHash } from 'crypto';
+import { requestLogger } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -44,6 +45,7 @@ function stringField(v: unknown, max: number): string | null {
 }
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/finance/referral' });
   let body: IncomingPayload;
   try {
     body = (await req.json()) as IncomingPayload;
@@ -166,7 +168,7 @@ export async function POST(req: NextRequest) {
   //
   // Surface-treatment (RA-1109): the log line below is the terminal state signal
   // for ops. A referral that reaches this point is persisted to the audit stream.
-  console.log('[finance.referral]', JSON.stringify(auditEntry));
+  log.info('finance.referral audit', auditEntry);
 
   return NextResponse.json({
     ok: true,

@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
       sendEmail('team@disasterrecovery.com.au', notificationEmail),
       sendEmail(validatedData.email, confirmationEmail),
     ]).catch(error => {
-      console.error('Email sending error:', error);
+      log.error('email sending error', { error: error instanceof Error ? error.message : String(error) });
     });
     
     // Return success response

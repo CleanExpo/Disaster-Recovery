@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { getMockStripe } from '@/lib/services/mock/mockStripe';
 import { isProductionMode } from '@/lib/services/mock';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // Initialize Stripe with your secret key or use mock in demo mode
 const stripe = process.env.STRIPE_SECRET_KEY 
@@ -50,6 +51,7 @@ interface BookingData {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/payments/create-booking' });
   try {
     const bookingData: BookingData = await request.json();
     
@@ -89,7 +91,7 @@ export async function POST(request: NextRequest) {
             propertyAddress: `${bookingData.address}, ${bookingData.suburb}, ${bookingData.state} ${bookingData.postcode}` } });
       }
     } catch (error) {
-      console.error('Error creating/retrieving customer:', error);
+      log.error('error creating/retrieving customer', { error: error instanceof Error ? error.message : String(error) });
       throw error;
     }
 
@@ -152,8 +154,9 @@ export async function POST(request: NextRequest) {
           contractorAmount } });
     }
   } catch (error) {
-    console.error('Payment processing error:', error);
-    
+    log.error('payment processing error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/payments/create-booking' }, extra: { requestId: log.requestId } });
+
     if (error instanceof Stripe.errors.StripeError) {
       return NextResponse.json(
         { 
@@ -175,6 +178,7 @@ export async function POST(request: NextRequest) {
 
 // Webhook endpoint to handle Stripe events
 export async function PUT(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/payments/create-booking' });
   const body = await request.text();
   const sig = request.headers.get('stripe-signature');
 
@@ -194,7 +198,7 @@ export async function PUT(request: NextRequest) {
       process.env.STRIPE_WEBHOOK_SECRET || ''
     );
   } catch (err) {
-    console.error('Webhook signature verification failed:', err);
+    log.error('webhook signature verification failed', { error: err instanceof Error ? err.message : String(err) });
     return NextResponse.json(
       { success: false, message: 'Invalid signature' },
       { status: 400 }
@@ -226,7 +230,7 @@ export async function PUT(request: NextRequest) {
 
     case 'payment_intent.payment_failed':
       const failedPayment = event.data.object as Stripe.PaymentIntent;
-      console.error(`Payment failed for booking ${failedPayment.metadata.bookingId}`);
+      log.error('payment failed', { bookingId: failedPayment.metadata.bookingId });
       
       // Handle failed payment
       // await updateBookingStatus(failedPayment.metadata.bookingId, 'payment_failed');

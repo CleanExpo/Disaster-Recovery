@@ -2,11 +2,13 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
+import { requestLogger, captureException } from '@/lib/observability';
 import crypto from 'crypto';
 
 const PAYMENT_AMOUNT_AUD = 2475;
 
 export async function POST(request: Request) {
+  const log = requestLogger(request, { route: '/api/contractor/onboarding/submit' });
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('x-real-ip') ??
@@ -108,7 +110,8 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error('Error saving contractor application', error);
+    log.error('error saving contractor application', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractor/onboarding/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { success: false, message: 'Failed to save contractor application' },
       { status: 500 }
