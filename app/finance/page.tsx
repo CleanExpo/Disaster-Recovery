@@ -102,10 +102,31 @@ export default function FinanceLandingPage() {
           ),
         },
         {
+          heading: 'Equipped Commercial Finance — licensing',
+          body: (
+            <div className="space-y-3 text-sm text-slate-700">
+              <p>
+                Equipped Commercial Finance is operated by SME Consulting Group Pty Ltd
+                (ABN 53 662 478 408). Equipped holds the relevant Australian Credit Licence or acts as
+                an authorised credit representative, and is a member of the Australian Financial
+                Complaints Authority (AFCA). Licensing and membership numbers are stated in
+                Equipped&apos;s Credit Guide, linked below.
+              </p>
+              <p className="text-xs text-slate-500">
+                {/* TODO(equipped-phase1): replace with verified ACL, ACR and AFCA numbers once the Credit Guide PDF is extracted. */}
+                ACL / ACR number: see Credit Guide. AFCA member number: see Credit Guide.
+              </p>
+            </div>
+          ),
+        },
+        {
           heading: 'Disclosures',
           background: 'light',
           body: (
-            <div className="space-y-3 text-sm text-slate-600">
+            <div className="space-y-4 text-sm text-slate-600">
+              <p className="text-xs uppercase tracking-wide text-slate-500">
+                Not legal advice. Please read the documents below before continuing.
+              </p>
               <p>
                 Disaster Recovery is a referrer under reg 25 of the National Consumer Credit Protection Regulations 2010
                 (Cth). A referral fee may be paid to Disaster Recovery by Equipped Commercial Finance when a referral
@@ -120,6 +141,30 @@ export default function FinanceLandingPage() {
                 This is a Phase 1 referral service for Australian businesses. New Zealand and household consumer pathways
                 will be added once the relevant regulatory and partner arrangements are in place.
               </p>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>
+                  <a
+                    href="/finance/credit-guide-equipped-v17-202307.pdf"
+                    className="text-blue-700 underline hover:text-blue-900"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Credit Guide (Equipped Commercial Finance, V17)
+                  </a>{' '}
+                  — licensee details, fees, AFCA membership and complaint pathways.
+                </li>
+                <li>
+                  <a
+                    href="/finance/privacy-disclosure-statement-equippedcf-v2.pdf"
+                    className="text-blue-700 underline hover:text-blue-900"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Privacy Disclosure Statement (Equipped Commercial Finance)
+                  </a>{' '}
+                  — how Equipped collects, uses and discloses your personal information.
+                </li>
+              </ul>
             </div>
           ),
         },

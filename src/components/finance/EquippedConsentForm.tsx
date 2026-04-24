@@ -151,8 +151,17 @@ export function EquippedConsentForm({ consumer, onContinue, onDecline }: Equippe
           aria-describedby="equipped-consent-heading"
         />
         <span className="text-sm text-slate-800 dark:text-slate-200">
-          I have read the above and consent to Disaster Recovery sharing my details with Equipped
-          Commercial Finance for the purpose of a finance enquiry.
+          I have read the above and acknowledge Equipped&apos;s{' '}
+          <a
+            href="/finance/privacy-disclosure-statement-equippedcf-v2.pdf"
+            className="text-blue-600 underline hover:text-blue-800"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Privacy Disclosure Statement (PDF)
+          </a>
+          , and consent to Disaster Recovery sharing my details with Equipped Commercial Finance
+          for the purpose of a finance enquiry.
         </span>
       </label>
 
