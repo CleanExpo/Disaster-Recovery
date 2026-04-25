@@ -4,13 +4,15 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Investor Information',
-  description: 'Investor information for Disaster Recovery Australia. National disaster restoration claims distribution platform covering all Australian states and territories.',
+  description:
+    'Investor information for Disaster Recovery. National disaster restoration claims distribution platform covering all Australian states and territories.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/investors',
   },
   openGraph: {
     title: 'Investor Information',
-    description: 'Investor information for Disaster Recovery Australia — national claims distribution platform.',
+    description:
+      'Investor information for Disaster Recovery — national claims distribution platform.',
     type: 'website',
   },
 };
@@ -21,14 +23,11 @@ export default function InvestorsPage() {
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
         icon: <TrendingUp className="h-12 w-12" />,
-        title: "Investors",
-        subtitle: "",
+        title: 'Investors',
+        subtitle: '',
       }}
       cta={{ text: 'Investor Contact', href: '/contact' }}
-      breadcrumbs={[
-        { label: 'Home', href: '/' },
-        { label: "Investors" },
-      ]}
+      breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Investors' }]}
     />
   );
 }

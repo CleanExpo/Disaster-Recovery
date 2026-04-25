@@ -228,7 +228,7 @@ export default function ContentsPackOutStoragePage() {
               </ul>
               <p>
                 We bill you directly so work begins immediately without waiting for insurer approval. After the initial $2,750 commitment ($550 platform fee + $2,200 contractor credit), additional works including pack-out are quoted in the formal contract with full terms and conditions. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>.
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>.
               </p>
             </div>
           ),

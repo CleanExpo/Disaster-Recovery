@@ -14,6 +14,7 @@ import type {
   TemplateSettings,
   ValidationRule 
 } from '@/types/document-management';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface TemplateLibraryProps {
   userRole: 'admin' | 'contractor' | 'auditor';
@@ -279,7 +280,7 @@ Customer Signature: _________________________ Date: _____________`,
 
       setTemplates(mockTemplates);
     } catch (error) {
-      console.error('Error loading templates:', error);
+      clientLogger.error('Error loading templates:', { source: 'documents/TemplateLibrary' }, error);
     } finally {
       setLoading(false);
     }
@@ -325,7 +326,7 @@ Customer Signature: _________________________ Date: _____________`,
       setShowCreateModal(false);
       resetForm();
     } catch (error) {
-      console.error('Error creating template:', error);
+      clientLogger.error('Error creating template:', { source: 'documents/TemplateLibrary' }, error);
     }
   };
 
@@ -344,7 +345,7 @@ Customer Signature: _________________________ Date: _____________`,
 
       setTemplates(prev => [...prev, duplicatedTemplate]);
     } catch (error) {
-      console.error('Error duplicating template:', error);
+      clientLogger.error('Error duplicating template:', { source: 'documents/TemplateLibrary' }, error);
     }
   };
 
@@ -352,7 +353,7 @@ Customer Signature: _________________________ Date: _____________`,
     try {
       setTemplates(prev => prev.filter(t => t.id !== templateId));
     } catch (error) {
-      console.error('Error deleting template:', error);
+      clientLogger.error('Error deleting template:', { source: 'documents/TemplateLibrary' }, error);
     }
   };
 

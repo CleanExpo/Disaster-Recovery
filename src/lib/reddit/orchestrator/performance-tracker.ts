@@ -98,7 +98,7 @@ export async function checkRecentPostPerformance(): Promise<{
         },
       });
     } catch (error) {
-      console.warn(`[performance-tracker] Failed to fetch metrics for ${post.redditId}:`, error);
+      clientLogger.warn(`[performance-tracker] Failed to fetch metrics for ${post.redditId}:`, { source: 'orchestrator/performance-tracker', data: error });
     }
   }
 
@@ -106,6 +106,7 @@ export async function checkRecentPostPerformance(): Promise<{
 
   return { snapshots, feedback };
 }
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // ---------------------------------------------------------------------------
 // Internal

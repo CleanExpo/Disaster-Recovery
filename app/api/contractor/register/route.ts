@@ -360,8 +360,8 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
     });
     
   } catch (error) {
-    console.error('Registration error:', error);
-    
+    console.error(JSON.stringify({ level: 'error', source: 'api/contractor/register', msg: 'registration error', error: error instanceof Error ? error.message : String(error) }));
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { 

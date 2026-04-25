@@ -3,6 +3,7 @@ import { createOnboardingCheckoutSession, createStripeCustomer, isStripeConfigur
 import { prisma } from '@/lib/prisma';
 import { withValidation } from '@/lib/auth-middleware';
 import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
+import { requestLogger, captureException } from '@/lib/observability';
 import { z } from 'zod';
 
 // SECURITY: Strict validation schema for payment creation
@@ -14,6 +15,7 @@ const createPaymentSchema = z.object({
 });
 
 async function handleCreatePayment(req: NextRequest, validatedData: z.infer<typeof createPaymentSchema>) {
+  const log = requestLogger(req, { route: '/api/stripe/create-payment' });
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
   const userAgent = req.headers.get('user-agent') || 'unknown';
 
@@ -188,7 +190,8 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
     });
 
   } catch (error) {
-    console.error('Error creating payment session:', error);
+    log.error('error creating payment session', { error: error instanceof Error ? error.message : String(error), contractorId: validatedData.contractorId });
+    captureException(error, { tags: { route: '/api/stripe/create-payment' }, extra: { requestId: log.requestId } });
 
     PaymentAuditLogger.logPaymentAttempt({
       contractorId: validatedData.contractorId,

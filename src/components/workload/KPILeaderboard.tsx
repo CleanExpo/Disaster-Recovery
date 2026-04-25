@@ -13,6 +13,7 @@ import type {
   PerformanceBadge,
   PerformanceMetrics
 } from '@/types/workload-distribution';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface KPILeaderboardProps {
   contractors: Contractor[];
@@ -73,7 +74,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
 
       setPerformances(mockPerformances);
     } catch (error) {
-      console.error('Error loading performance data:', error);
+      clientLogger.error('Error loading performance data:', { source: 'workload/KPILeaderboard' }, error);
     } finally {
       setLoading(false);
     }

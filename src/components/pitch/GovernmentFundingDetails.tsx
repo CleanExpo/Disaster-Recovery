@@ -201,12 +201,16 @@ export default function GovernmentFundingDetails() {
                     <div>
                       <h3 className="text-lg font-bold text-white mb-4">Specialty Restoration Focus</h3>
                       <div className="space-y-2">
-                        {CPP40421_SPECIALISATIONS.specialisations[1].coverageAreas.map((area, index) => (
-                          <div key={index} className="flex items-center gap-2">
-                            <CheckCircle className="h-4 w-4 text-green-600" />
-                            <span className="text-gray-700 text-sm">{area}</span>
-                          </div>
-                        ))}
+                        {(() => {
+                          const spec = CPP40421_SPECIALISATIONS.specialisations[1];
+                          const areas: string[] = spec && 'coverageAreas' in spec ? (spec.coverageAreas ?? []) : [];
+                          return areas.map((area, index) => (
+                            <div key={index} className="flex items-center gap-2">
+                              <CheckCircle className="h-4 w-4 text-green-600" />
+                              <span className="text-gray-700 text-sm">{area}</span>
+                            </div>
+                          ));
+                        })()}
                       </div>
                     </div>
                   </div>

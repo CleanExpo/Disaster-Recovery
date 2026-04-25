@@ -31,7 +31,7 @@ export default function NRPBestPracticesGuidePage() {
         name: 'How does the billing process work for NRPG contractors?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'NRPG contractors bill the client (property owner) directly. Work begins immediately without waiting for insurer approval. You provide full claims documentation \u2014 photos, moisture logs, scope of works, and treatment records \u2014 so the client has everything their insurer needs for reimbursement. After the make-safe phase, you provide the client with a formal contract including terms and conditions for the full restoration scope. If clients need payment flexibility, direct them to Blue Fire Finance (bluefirefinance.com.au).',
+          text: 'NRPG contractors bill the client (property owner) directly. Work begins immediately without waiting for insurer approval. You provide full claims documentation \u2014 photos, moisture logs, scope of works, and treatment records \u2014 so the client has everything their insurer needs for reimbursement. After the make-safe phase, you provide the client with a formal contract including terms and conditions for the full restoration scope. If clients need payment flexibility, direct them to Equipped Commercial Finance (equippedcf.com.au).',
         },
       },
       {
@@ -172,7 +172,7 @@ export default function NRPBestPracticesGuidePage() {
               </ul>
               <p>
                 <strong>Billing communication:</strong> Be transparent about costs from the outset. Explain that you bill the client directly, that work begins immediately without waiting for insurer approval, and that you will provide full claims documentation to support their insurance reimbursement. If clients express concern about cash flow, direct them to{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>{' '}
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>{' '}
                 for payment plan options. After the make-safe phase, provide a formal contract with clear terms and conditions.
               </p>
             </div>
@@ -251,7 +251,7 @@ export default function NRPBestPracticesGuidePage() {
         },
         {
           question: 'How does the billing process work for NRPG contractors?',
-          answer: 'NRPG contractors bill the client (property owner) directly. Work begins immediately without waiting for insurer approval. You provide full claims documentation — photos, moisture logs, scope of works, and treatment records — so the client has everything their insurer needs for reimbursement. After the make-safe phase, you provide the client with a formal contract including terms and conditions for the full restoration scope. If clients need payment flexibility, direct them to Blue Fire Finance (bluefirefinance.com.au).',
+          answer: 'NRPG contractors bill the client (property owner) directly. Work begins immediately without waiting for insurer approval. You provide full claims documentation — photos, moisture logs, scope of works, and treatment records — so the client has everything their insurer needs for reimbursement. After the make-safe phase, you provide the client with a formal contract including terms and conditions for the full restoration scope. If clients need payment flexibility, direct them to Equipped Commercial Finance (equippedcf.com.au).',
         },
         {
           question: 'What happens if my IICRC certification lapses?',

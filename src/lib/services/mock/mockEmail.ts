@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 /**
  * Mock Email Service
  * Simulates email sending for demo purposes
@@ -41,11 +42,11 @@ class MockEmailService {
     this.sentEmails.push(email);
     
     // Log to console in demo mode
-    console.log('📧 Mock Email Sent:', {
+    clientLogger.info('📧 Mock Email Sent:', { source: 'mock/mockEmail', data: {
       to: email.to,
       subject: email.subject,
       preview: email.text?.substring(0, 100) + '...'
-    });
+    } });
     
     return {
       success: true,

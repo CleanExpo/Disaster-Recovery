@@ -609,7 +609,7 @@ export function NotificationPreferences() {
                     {(['compliance', 'billing', 'job', 'system', 'custom'] as NotificationType[]).map(type => (
                       <div key={type} className="flex items-center gap-2">
                         <Switch
-                          checked={preferences.emailDigest.includeTypes.includes(type)}
+                          checked={preferences.emailDigest?.includeTypes.includes(type) ?? false}
                           onCheckedChange={(checked) => {
                             setPreferences(prev => {
                               const types = checked

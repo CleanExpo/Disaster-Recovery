@@ -102,7 +102,7 @@ export function getFAQSections({ topic, questions }: FAQSectionParams): ContentS
             costs and insurance for {topicLabel.toLowerCase()}:
           </p>
           <ul>
-            <li><strong>Claims documentation</strong> — We provide all photos, reports, and documentation your insurer requires to process your reimbursement claim. Payment plans available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.</li>
+            <li><strong>Claims documentation</strong> — We provide all photos, reports, and documentation your insurer requires to process your reimbursement claim. Payment plans available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.</li>
             <li><strong>On-site assessments</strong> — We provide on-site assessments and written estimates before any chargeable work begins.</li>
             <li><strong>No call-out fees</strong> — Emergency assessments carry no call-out fee in metropolitan areas Australia-wide.</li>
             <li><strong>Transparent pricing</strong> — For non-insured work, we provide detailed written quotes with no hidden charges. Payment plans are available for larger jobs.</li>

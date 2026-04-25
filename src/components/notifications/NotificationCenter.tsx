@@ -50,6 +50,7 @@ import type {
   SystemNotification,
   CustomNotification
 } from '@/types/notifications';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Mock data for demonstration
 const mockNotifications: Notification[] = [
@@ -163,7 +164,7 @@ export function NotificationCenter() {
         window.location.href = action.url;
       } else if (action.type === 'button' && action.action) {
         // Handle button action
-        console.log('Handling action:', action.action);
+        clientLogger.info('Handling action:', { source: 'notifications/NotificationCenter', data: action.action });
       }
     }
     handleMarkAsRead(notification.id);

@@ -23,6 +23,7 @@ import {
   Info
 } from 'lucide-react';
 import type { ContractorOnboardingData } from '@/types/contractor';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Step2CompanyProps {
   data: Partial<ContractorOnboardingData>;
@@ -56,7 +57,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   const [directors, setDirectors] = useState<Director[]>(
     data.company?.directors?.map(d => ({
       name: `${d.firstName} ${d.lastName}`,
-      phone: d.phone,
+      phone: d.phone ?? '',
       email: d.email
     })) || [{ name: '', phone: '', email: '' }]
   );
@@ -145,7 +146,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
         alert('ABN verification failed. Please check your ABN.');
       }
     } catch (error) {
-      console.error('ABN verification error:', error);
+      clientLogger.error('ABN verification error:', { source: 'steps/Step2Company' }, error);
     } finally {
       setVerifyingAbn(false);
     }
@@ -175,7 +176,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
         setAddressVerified(true);
       }
     } catch (error) {
-      console.error('Address verification error:', error);
+      clientLogger.error('Address verification error:', { source: 'steps/Step2Company' }, error);
     }
   };
 

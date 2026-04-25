@@ -79,7 +79,7 @@ export function getCostSections({ city, serviceType }: CostSectionParams): Conte
             Our {city} contractors bill you directly, allowing work to begin immediately without
             waiting for insurer approval. For insured events, we provide full documentation to
             support your insurance claim for reimbursement. Payment plans are available through{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
           <p>
             All pricing includes GST, and our contractors do not charge call-out fees for emergency
@@ -141,7 +141,7 @@ export function getCostSections({ city, serviceType }: CostSectionParams): Conte
           <ul>
             <li><strong>We bill you directly</strong> — No waiting for insurer approval. Work begins as soon as the contract is signed.</li>
             <li><strong>Full claims documentation</strong> — We provide all photos, reports, and scope-of-works documentation your insurer requires for reimbursement.</li>
-            <li><strong>Payment plans available</strong> — Flexible finance through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a> if you need to spread the cost while awaiting reimbursement.</li>
+            <li><strong>Payment plans available</strong> — Flexible finance through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a> if you need to spread the cost while awaiting reimbursement.</li>
             <li><strong>On-site assessments</strong> — We provide on-site assessments and written estimates before any work begins.</li>
           </ul>
         </>

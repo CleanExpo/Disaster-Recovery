@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/leads' });
   try {
     // Verify authentication
     const user = await verifyAuth(request);
@@ -93,7 +95,8 @@ export async function GET(request: NextRequest) {
     }, { status: 200 });
 
   } catch (error) {
-    console.error('Leads API error:', error);
+    log.error('leads api error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractor/leads' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json({
       success: false,
@@ -104,6 +107,7 @@ export async function GET(request: NextRequest) {
 
 // Accept or decline a lead
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/leads' });
   try {
     const user = await verifyAuth(request);
 
@@ -218,7 +222,8 @@ export async function POST(request: NextRequest) {
     }, { status: 200 });
 
   } catch (error) {
-    console.error('Lead action error:', error);
+    log.error('lead action error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractor/leads' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json({
       success: false,

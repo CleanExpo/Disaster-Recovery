@@ -33,12 +33,29 @@ export const INSURER_CONTACTS: InsurerContact[] = [
   { name: 'Suncorp', phone: '13 25 24', claimsUrl: 'suncorp.com.au/insurance/claims.html' },
   { name: 'Allianz', phone: '13 10 13', claimsUrl: 'allianz.com.au/claims.html' },
   { name: 'QBE', phone: '133 723', claimsUrl: 'qbe.com/au/claims' },
-  { name: 'Budget Direct', phone: '1800 069 336', claimsUrl: 'budgetdirect.com.au/existing-customers/claims.html' },
+  {
+    name: 'Budget Direct',
+    phone: '1800 069 336',
+    claimsUrl: 'budgetdirect.com.au/existing-customers/claims.html',
+  },
   { name: 'GIO', phone: '13 10 10', claimsUrl: 'gio.com.au/claims.html' },
   { name: 'Youi', phone: '13 96 84', claimsUrl: 'youi.com.au/claiming' },
-  { name: 'CommInsure', phone: '13 1361', claimsUrl: 'commbank.com.au/support/claims-insurance.html' },
-  { name: 'ANZ Insurance', phone: '13 16 14', claimsUrl: 'anz.com.au/personal/insurance/make-a-claim/' },
-  { name: 'ICA Disaster Hotline', phone: '1800 734 621', claimsUrl: 'insurancecouncil.com.au', note: 'Use if you cannot find your insurer' },
+  {
+    name: 'CommInsure',
+    phone: '13 1361',
+    claimsUrl: 'commbank.com.au/support/claims-insurance.html',
+  },
+  {
+    name: 'ANZ Insurance',
+    phone: '13 16 14',
+    claimsUrl: 'anz.com.au/personal/insurance/make-a-claim/',
+  },
+  {
+    name: 'ICA Disaster Hotline',
+    phone: '1800 734 621',
+    claimsUrl: 'insurancecouncil.com.au',
+    note: 'Use if you cannot find your insurer',
+  },
 ];
 
 // ─── State Consumer Affairs / Fair Trading Contacts ─────────
@@ -52,13 +69,48 @@ export interface StateConsumerContact {
 
 export const STATE_CONSUMER_CONTACTS: StateConsumerContact[] = [
   { state: 'NSW', name: 'NSW Fair Trading', phone: '13 32 20', website: 'fairtrading.nsw.gov.au' },
-  { state: 'VIC', name: 'Consumer Affairs Victoria', phone: '1300 558 181', website: 'consumer.vic.gov.au' },
-  { state: 'QLD', name: 'QLD Fair Trading', phone: '13 74 68', website: 'qld.gov.au/law/fair-trading' },
-  { state: 'WA', name: 'WA Consumer Protection', phone: '1300 30 40 54', website: 'consumerprotection.wa.gov.au' },
-  { state: 'SA', name: 'Consumer and Business Services SA', phone: '131 882', website: 'cbs.sa.gov.au' },
-  { state: 'TAS', name: 'Consumer Affairs Tasmania', phone: '1300 654 499', website: 'cbos.tas.gov.au' },
-  { state: 'ACT', name: 'Access Canberra', phone: '13 22 81', website: 'accesscanberra.act.gov.au' },
-  { state: 'NT', name: 'NT Consumer Affairs', phone: '1800 019 319', website: 'consumeraffairs.nt.gov.au' },
+  {
+    state: 'VIC',
+    name: 'Consumer Affairs Victoria',
+    phone: '1300 558 181',
+    website: 'consumer.vic.gov.au',
+  },
+  {
+    state: 'QLD',
+    name: 'QLD Fair Trading',
+    phone: '13 74 68',
+    website: 'qld.gov.au/law/fair-trading',
+  },
+  {
+    state: 'WA',
+    name: 'WA Consumer Protection',
+    phone: '1300 30 40 54',
+    website: 'consumerprotection.wa.gov.au',
+  },
+  {
+    state: 'SA',
+    name: 'Consumer and Business Services SA',
+    phone: '131 882',
+    website: 'cbs.sa.gov.au',
+  },
+  {
+    state: 'TAS',
+    name: 'Consumer Affairs Tasmania',
+    phone: '1300 654 499',
+    website: 'cbos.tas.gov.au',
+  },
+  {
+    state: 'ACT',
+    name: 'Access Canberra',
+    phone: '13 22 81',
+    website: 'accesscanberra.act.gov.au',
+  },
+  {
+    state: 'NT',
+    name: 'NT Consumer Affairs',
+    phone: '1800 019 319',
+    website: 'consumeraffairs.nt.gov.au',
+  },
 ];
 
 // ─── Verified Expert Contacts ───────────────────────────────
@@ -71,7 +123,8 @@ export const VERIFIED_CONTACTS = {
     phone: '1800 931 678',
     hours: 'Mon–Fri 9am–5pm Melbourne time',
     when: 'If your claim is denied, your insurer delays unreasonably, the settlement seems too low, or your insurer does not follow the Code of Practice',
-    preStep: 'Raise the complaint with your insurer first. If unresolved after 30 days, then go to AFCA.',
+    preStep:
+      'Raise the complaint with your insurer first. If unresolved after 30 days, then go to AFCA.',
   },
   ils: {
     name: 'Insurance Law Service — Financial Rights Legal Centre',
@@ -130,21 +183,24 @@ export const CLAIM_STAGES: ClaimStage[] = [
     stage: 1,
     title: 'Make-Safe',
     status: 'YOU ARE HERE',
-    description: 'Your NRPG contractor will extract standing water or make the property safe, set up drying/remediation equipment, document damage with photos and moisture readings, and provide you with an initial scope report.',
+    description:
+      'Your NRPG contractor will extract standing water or make the property safe, set up drying/remediation equipment, document damage with photos and moisture readings, and provide you with an initial scope report.',
     clientRight: 'You have the right to be present during any assessment of your property.',
   },
   {
     stage: 2,
     title: 'Insurance Assessment',
     status: '',
-    description: 'Your insurer will appoint an assessor to inspect the damage. Under the General Insurance Code of Practice, your insurer must keep you informed of claim progress and tell you the reason if they deny or reduce your claim.',
+    description:
+      'Your insurer will appoint an assessor to inspect the damage. Under the General Insurance Code of Practice, your insurer must keep you informed of claim progress and tell you the reason if they deny or reduce your claim.',
     clientRight: 'You have the right to be present during any assessment of your property.',
   },
   {
     stage: 3,
     title: 'Scope of Works Approved',
     status: '',
-    description: "The assessor's findings determine what your insurer will fund. The restoration scope is agreed between your insurer and contractor.",
+    description:
+      "The assessor's findings determine what your insurer will fund. The restoration scope is agreed between your insurer and contractor.",
     clientRight: 'You have the right to request a written explanation of the scope.',
   },
   {
@@ -152,7 +208,8 @@ export const CLAIM_STAGES: ClaimStage[] = [
     title: 'Restoration Works',
     status: '',
     description: 'The contractor completes the agreed restoration to pre-loss condition.',
-    clientRight: "If you're unhappy with the quality of works, contact DR first, then Fair Trading in your state.",
+    clientRight:
+      "If you're unhappy with the quality of works, contact DR first, then Fair Trading in your state.",
   },
   {
     stage: 5,
@@ -168,37 +225,44 @@ export const KNOW_YOUR_RIGHTS = [
   {
     title: 'Your insurer must acknowledge your claim within 10 business days',
     source: 'General Insurance Code of Practice 2020, Section 9.4',
-    detail: 'After lodging a claim, your insurer must acknowledge it and provide a claim number within 10 business days.',
+    detail:
+      'After lodging a claim, your insurer must acknowledge it and provide a claim number within 10 business days.',
   },
   {
     title: 'Your insurer must decide your claim within 4 months',
     source: 'General Insurance Code of Practice 2020, Section 9.7',
-    detail: 'For non-complex claims, your insurer must make a decision within 4 months of receiving all necessary information.',
+    detail:
+      'For non-complex claims, your insurer must make a decision within 4 months of receiving all necessary information.',
   },
   {
     title: 'You can choose your own repairer',
     source: 'General Insurance Code of Practice 2020, Section 7.13',
-    detail: 'You have the right to choose your own repairer. Your insurer may recommend their preferred repairer, but the choice is yours.',
+    detail:
+      'You have the right to choose your own repairer. Your insurer may recommend their preferred repairer, but the choice is yours.',
   },
   {
     title: 'You can complain to AFCA for free',
     source: 'Australian Financial Complaints Authority Act 2018',
-    detail: 'If your claim is denied or you disagree with the outcome, AFCA provides free, independent dispute resolution. Claims up to $1.085 million.',
+    detail:
+      'If your claim is denied or you disagree with the outcome, AFCA provides free, independent dispute resolution. Claims up to $1.085 million.',
   },
   {
     title: 'Your insurer cannot unreasonably deny your claim',
     source: 'Insurance Contracts Act 1984, Section 54',
-    detail: 'Your insurer cannot deny or reduce your claim because of an unreasonable technicality. Section 54 protects policyholders from unfair claim handling.',
+    detail:
+      'Your insurer cannot deny or reduce your claim because of an unreasonable technicality. Section 54 protects policyholders from unfair claim handling.',
   },
   {
     title: 'You are entitled to written reasons for any denial',
     source: 'General Insurance Code of Practice 2020, Section 9.9',
-    detail: 'If your claim is denied, your insurer must explain the reasons in writing and tell you about the complaints process.',
+    detail:
+      'If your claim is denied, your insurer must explain the reasons in writing and tell you about the complaints process.',
   },
   {
     title: 'Financial hardship provisions apply',
     source: 'General Insurance Code of Practice 2020, Part 10',
-    detail: 'If you are experiencing financial hardship due to a disaster, your insurer must consider hardship arrangements and cannot pursue debt collection during this period.',
+    detail:
+      'If you are experiencing financial hardship due to a disaster, your insurer must consider hardship arrangements and cannot pursue debt collection during this period.',
   },
 ];
 
@@ -209,27 +273,32 @@ export const KNOW_YOUR_RIGHTS = [
 
 export const QUESTIONS_FOR_INSURER = [
   {
-    question: 'Please confirm in writing whether the damage at my property on [DATE] is covered under my policy.',
+    question:
+      'Please confirm in writing whether the damage at my property on [DATE] is covered under my policy.',
     why: 'A written confirmation creates a record. If your insurer later changes their position, you have evidence of the original response.',
     source: 'General Insurance Code of Practice 2020, Section 9.4',
   },
   {
-    question: 'What is the specific exclusion you are relying on if you decline any part of this claim?',
+    question:
+      'What is the specific exclusion you are relying on if you decline any part of this claim?',
     why: 'Your insurer must tell you the exact policy clause they are relying on — they cannot give a vague reason.',
     source: 'General Insurance Code of Practice 2020, Section 9.9',
   },
   {
-    question: 'What is your timeframe for appointing an assessor under the General Insurance Code of Practice?',
+    question:
+      'What is your timeframe for appointing an assessor under the General Insurance Code of Practice?',
     why: 'Under the Code, your insurer must keep you informed and act within reasonable timeframes.',
     source: 'General Insurance Code of Practice 2020, Section 9.7',
   },
   {
-    question: 'If I disagree with the assessment, what is your internal dispute resolution process?',
+    question:
+      'If I disagree with the assessment, what is your internal dispute resolution process?',
     why: 'Every insurer must have an internal dispute resolution (IDR) process. You must exhaust IDR before escalating to AFCA.',
     source: 'General Insurance Code of Practice 2020, Part 10',
   },
   {
-    question: 'How do I access the Australian Financial Complaints Authority (AFCA) if I am unsatisfied with the outcome?',
+    question:
+      'How do I access the Australian Financial Complaints Authority (AFCA) if I am unsatisfied with the outcome?',
     why: 'AFCA provides FREE, independent dispute resolution. Their decisions are BINDING on your insurer for claims up to $1.085 million.',
     source: 'Australian Financial Complaints Authority Act 2018',
   },
@@ -238,11 +307,20 @@ export const QUESTIONS_FOR_INSURER = [
 // ─── Document Checklist ─────────────────────────────────────
 
 export const DOCUMENT_CHECKLIST = [
-  { item: 'Dated photos and video of ALL damage — rooms, walls, floors, ceilings', priority: 'high' as const },
-  { item: 'Written list of damaged contents (brand, model, approximate age)', priority: 'high' as const },
+  {
+    item: 'Dated photos and video of ALL damage — rooms, walls, floors, ceilings',
+    priority: 'high' as const,
+  },
+  {
+    item: 'Written list of damaged contents (brand, model, approximate age)',
+    priority: 'high' as const,
+  },
   { item: 'Your insurance policy number and claim number', priority: 'high' as const },
   { item: 'Keep damaged items — your insurer may need to inspect them', priority: 'high' as const },
-  { item: 'Receipts for emergency purchases (accommodation, food, clothes)', priority: 'medium' as const },
+  {
+    item: 'Receipts for emergency purchases (accommodation, food, clothes)',
+    priority: 'medium' as const,
+  },
   { item: "Contractor's scope of works document and invoices", priority: 'medium' as const },
   { item: 'Any correspondence with your insurer (keep email copies)', priority: 'medium' as const },
   { item: 'Council or authority notices (if applicable)', priority: 'low' as const },
@@ -274,12 +352,14 @@ export function generateClaimSupportPackEmail(data: ClaimSupportPackData): {
   text: string;
 } {
   const stateKey = data.state?.toUpperCase() as keyof typeof VERIFIED_CONTACTS.legalAid.websites;
-  const legalAidUrl = VERIFIED_CONTACTS.legalAid.websites[stateKey] || VERIFIED_CONTACTS.legalAid.websites.QLD;
-  const stateConsumer = STATE_CONSUMER_CONTACTS.find(c => c.state === data.state?.toUpperCase()) || STATE_CONSUMER_CONTACTS[0];
+  const legalAidUrl =
+    VERIFIED_CONTACTS.legalAid.websites[stateKey] || VERIFIED_CONTACTS.legalAid.websites.QLD;
+  const stateConsumer =
+    STATE_CONSUMER_CONTACTS.find((c) => c.state === data.state?.toUpperCase()) ||
+    STATE_CONSUMER_CONTACTS[0];
 
-  const damageLabel = data.damageTypes?.length > 0
-    ? data.damageTypes.join(', ')
-    : 'Property damage';
+  const damageLabel =
+    data.damageTypes?.length > 0 ? data.damageTypes.join(', ') : 'Property damage';
 
   const registeredDate = new Date().toLocaleString('en-AU', {
     dateStyle: 'medium',
@@ -336,8 +416,12 @@ function buildHtmlEmail(
             <td style="color:#333;font-size:13px;">${esc(damageLabel)}</td></tr>
         <tr><td style="color:#666;font-size:13px;"><strong>Property</strong></td>
             <td style="color:#333;font-size:13px;">${esc(data.propertyAddress)}, ${esc(data.suburb)} ${esc(data.state)} ${esc(data.postcode)}</td></tr>
-        ${data.insuranceCompany ? `<tr><td style="color:#666;font-size:13px;"><strong>Insurer</strong></td>
-            <td style="color:#333;font-size:13px;">${esc(data.insuranceCompany)}</td></tr>` : ''}
+        ${
+          data.insuranceCompany
+            ? `<tr><td style="color:#666;font-size:13px;"><strong>Insurer</strong></td>
+            <td style="color:#333;font-size:13px;">${esc(data.insuranceCompany)}</td></tr>`
+            : ''
+        }
         <tr><td style="color:#666;font-size:13px;"><strong>Contractor Arrival</strong></td>
             <td style="color:#333;font-size:13px;"><strong>Within 60 minutes</strong></td></tr>
       </table>
@@ -360,12 +444,14 @@ function buildHtmlEmail(
             Call them on the number on your policy, or find your insurer below:
           </p>
           <table width="100%" cellpadding="4" cellspacing="0" style="margin:8px 0;">
-            ${INSURER_CONTACTS.map(ins => `
+            ${INSURER_CONTACTS.map(
+              (ins) => `
             <tr>
               <td style="color:#333;font-size:12px;padding:3px 0;width:140px;"><strong>${esc(ins.name)}</strong></td>
               <td style="color:#333;font-size:12px;padding:3px 0;width:120px;">${esc(ins.phone)}</td>
               <td style="font-size:12px;padding:3px 0;"><a href="https://${ins.claimsUrl}" style="color:#0052CC;">${esc(ins.claimsUrl)}</a></td>
-            </tr>`).join('')}
+            </tr>`,
+            ).join('')}
           </table>
           <p style="color:#555;font-size:12px;margin:8px 0 0;line-height:1.5;">
             <strong>TIP:</strong> Lodge your claim by phone AND follow up in writing (email) so you have a record.
@@ -381,11 +467,15 @@ function buildHtmlEmail(
             Before anything is moved or cleaned:
           </p>
           <table width="100%" cellpadding="4" cellspacing="0">
-            ${DOCUMENT_CHECKLIST.filter(d => d.priority === 'high').map(doc => `
+            ${DOCUMENT_CHECKLIST.filter((d) => d.priority === 'high')
+              .map(
+                (doc) => `
             <tr>
               <td style="width:20px;vertical-align:top;font-size:14px;color:#1565c0;">&#9744;</td>
               <td style="color:#333;font-size:13px;padding:2px 0;">${esc(doc.item)}</td>
-            </tr>`).join('')}
+            </tr>`,
+              )
+              .join('')}
           </table>
         </td></tr>
       </table>
@@ -408,7 +498,8 @@ function buildHtmlEmail(
       <h2 style="color:#1e3a5f;font-size:18px;border-bottom:2px solid #e8e8e8;padding-bottom:8px;">
         Your Claim Journey
       </h2>
-      ${CLAIM_STAGES.map((stage) => `
+      ${CLAIM_STAGES.map(
+        (stage) => `
       <table width="100%" cellpadding="0" cellspacing="0" style="margin:14px 0;">
         <tr>
           <td style="width:40px;vertical-align:top;padding-top:2px;">
@@ -421,7 +512,8 @@ function buildHtmlEmail(
             ${stage.clientRight ? `<p style="color:#0052CC;font-size:12px;margin:4px 0 0;font-style:italic;">${esc(stage.clientRight)}</p>` : ''}
           </td>
         </tr>
-      </table>`).join('')}
+      </table>`,
+      ).join('')}
     </td>
   </tr>
 
@@ -541,7 +633,7 @@ function buildHtmlEmail(
             immediately with no insurer approval delays. Your contractor provides full documentation
             (photos, scope of works, reports) that you submit to your insurer for reimbursement.
             Payment plans are available through
-            <a href="https://www.bluefirefinance.com.au" style="color:#856404;font-weight:bold;">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" style="color:#856404;font-weight:bold;">Equipped Commercial Finance</a>.
           </p>
         </td></tr>
       </table>
@@ -571,7 +663,7 @@ function buildHtmlEmail(
         above — they are free and independent.
       </p>
       <p style="color:#aaa;font-size:11px;margin:12px 0 0;">
-        &copy; 2026 Disaster Recovery Australia | Powered by NRPG<br>
+        &copy; 2026 Disaster Recovery | Powered by NRPG<br>
         National Restoration Professionals Group Pty Ltd | ABN 85 151 794 142<br>
         <a href="${SITE_URL}" style="color:#0052CC;">disasterrecovery.com.au</a>
       </p>
@@ -617,13 +709,15 @@ ACTION 1 — CONTACT YOUR INSURER NOW
 Your insurer needs to know about this damage as soon as possible.
 Call them on the number on your policy, or find your insurer:
 
-${INSURER_CONTACTS.map(ins => `  ${ins.name}: ${ins.phone} | ${ins.claimsUrl}`).join('\n')}
+${INSURER_CONTACTS.map((ins) => `  ${ins.name}: ${ins.phone} | ${ins.claimsUrl}`).join('\n')}
 
 TIP: Lodge your claim by phone AND follow up in writing (email) so you have a record.
 
 ACTION 2 — DOCUMENT YOUR DAMAGE
 Before anything is moved or cleaned:
-${DOCUMENT_CHECKLIST.filter(d => d.priority === 'high').map(doc => `  [ ] ${doc.item}`).join('\n')}
+${DOCUMENT_CHECKLIST.filter((d) => d.priority === 'high')
+  .map((doc) => `  [ ] ${doc.item}`)
+  .join('\n')}
 
 ACTION 3 — KNOW YOUR RIGHTS
 Read the Know Your Rights section below so you understand what to expect.
@@ -632,10 +726,14 @@ Read the Know Your Rights section below so you understand what to expect.
 YOUR CLAIM JOURNEY
 ============================================================
 
-${CLAIM_STAGES.map(stage => `STAGE ${stage.stage} — ${stage.title.toUpperCase()}${stage.status ? ` <-- ${stage.status}` : ''}
+${CLAIM_STAGES.map(
+  (
+    stage,
+  ) => `STAGE ${stage.stage} — ${stage.title.toUpperCase()}${stage.status ? ` <-- ${stage.status}` : ''}
 ${stage.description}
 ${stage.clientRight ? `Your right: ${stage.clientRight}` : ''}
-`).join('\n')}
+`,
+).join('\n')}
 
 ============================================================
 YOUR RIGHTS — FREE HELP CONTACTS
@@ -687,7 +785,7 @@ HOW BILLING WORKS
 Your contractor bills you directly — not your insurance company.
 Work starts immediately with no insurer approval delays.
 Full documentation provided for your insurance reimbursement claim.
-Payment plans: https://www.bluefirefinance.com.au
+Payment plans: https://equippedcf.com.au
 
 ============================================================
 
@@ -698,7 +796,7 @@ This email contains general information only and does not constitute
 legal, financial, or insurance advice. For advice specific to your
 claim, please contact the organisations listed above.
 
-(c) 2026 Disaster Recovery Australia | Powered by NRPG
+(c) 2026 Disaster Recovery | Powered by NRPG
 National Restoration Professionals Group Pty Ltd | ABN 85 151 794 142
 ${SITE_URL}
 `;

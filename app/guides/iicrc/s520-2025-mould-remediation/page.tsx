@@ -14,7 +14,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Mould Remediation — What to Expect from an IICRC-Certified Contractor',
   description:
-    'What an IICRC-certified mould remediation contractor does: assessment, containment, remediation, clearance testing, and insurance documentation. Disaster Recovery Australia.',
+    'What an IICRC-certified mould remediation contractor does: assessment, containment, remediation, clearance testing, and insurance documentation. Disaster Recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/guides/mould/iicrc-s520-mould-remediation-standard',
   },
@@ -100,16 +100,16 @@ export default function S5202025MouldRemediationPage() {
             body: (
               <>
                 <p>
-                  Contractors in the Disaster Recovery Australia network hold current IICRC
-                  certification in mould remediation. Certification confirms that a contractor
-                  has been independently assessed on the knowledge required to safely and
-                  effectively remediate mould-affected properties.
+                  Contractors in the Disaster Recovery network hold current IICRC certification in
+                  mould remediation. Certification confirms that a contractor has been independently
+                  assessed on the knowledge required to safely and effectively remediate
+                  mould-affected properties.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   Mould remediation is not the same as surface cleaning. A certified contractor
                   follows a structured process that addresses contamination at the source —
-                  including concealed mould in wall cavities and subfloors that is not visible
-                  from a surface inspection.
+                  including concealed mould in wall cavities and subfloors that is not visible from
+                  a surface inspection.
                 </p>
               </>
             ),
@@ -122,24 +122,24 @@ export default function S5202025MouldRemediationPage() {
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', listStyleType: 'disc' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Assessment</strong> — inspecting the full extent of mould growth,
-                    locating the underlying moisture source, and determining whether air or
-                    surface sampling is warranted
+                    locating the underlying moisture source, and determining whether air or surface
+                    sampling is warranted
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Containment</strong> — establishing physical barriers to prevent
-                    mould spores spreading to unaffected areas during remediation
+                    <strong>Containment</strong> — establishing physical barriers to prevent mould
+                    spores spreading to unaffected areas during remediation
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Remediation</strong> — removing materials that cannot be cleaned,
                     treating salvageable surfaces, and managing air quality throughout
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Moisture source resolution</strong> — confirming the underlying
-                    moisture problem is fixed so mould does not return
+                    <strong>Moisture source resolution</strong> — confirming the underlying moisture
+                    problem is fixed so mould does not return
                   </li>
                   <li>
-                    <strong>Clearance testing</strong> — post-remediation testing confirming
-                    mould levels are within acceptable limits before containment is removed
+                    <strong>Clearance testing</strong> — post-remediation testing confirming mould
+                    levels are within acceptable limits before containment is removed
                   </li>
                 </ul>
               </>
@@ -149,12 +149,12 @@ export default function S5202025MouldRemediationPage() {
             heading: 'Mould After Floods and Cyclones',
             body: (
               <p>
-                In warm, humid Australian conditions, mould can become established within 24 to
-                72 hours of water exposure. Properties affected by cyclone inundation, flash
-                flooding, or storm surge that were not dried promptly frequently develop mould in
-                wall cavities, under flooring, and in ceiling voids before it appears on surfaces.
-                A certified contractor conducts invasive assessment where needed — not just a
-                surface inspection — to find and address concealed mould growth.
+                In warm, humid Australian conditions, mould can become established within 24 to 72
+                hours of water exposure. Properties affected by cyclone inundation, flash flooding,
+                or storm surge that were not dried promptly frequently develop mould in wall
+                cavities, under flooring, and in ceiling voids before it appears on surfaces. A
+                certified contractor conducts invasive assessment where needed — not just a surface
+                inspection — to find and address concealed mould growth.
               </p>
             ),
           },
@@ -166,8 +166,8 @@ export default function S5202025MouldRemediationPage() {
                 from a certified contractor — assessment findings, scope of works, remediation
                 records, and clearance test results — establishes that mould arose from an insured
                 event and was professionally remediated. If your insurer disputes the extent of
-                mould damage or the required scope, this documentation is the evidence base for
-                an AFCA complaint.
+                mould damage or the required scope, this documentation is the evidence base for an
+                AFCA complaint.
               </p>
             ),
           },
@@ -177,10 +177,18 @@ export default function S5202025MouldRemediationPage() {
               <>
                 <p>Before a mould remediation contractor starts work, ask:</p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', listStyleType: 'disc' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Can you show me your current IICRC certification number?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Will you identify and address the underlying moisture source?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Will you set up containment before starting remediation?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Will you conduct or arrange clearance testing on completion?</li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Can you show me your current IICRC certification number?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Will you identify and address the underlying moisture source?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Will you set up containment before starting remediation?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Will you conduct or arrange clearance testing on completion?
+                  </li>
                   <li>What documentation will you provide for my insurer?</li>
                 </ul>
               </>

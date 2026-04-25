@@ -52,7 +52,7 @@ export default function NewYearsEveDisasterRecoveryPage() {
         name: 'How much does New Year\u2019s Eve emergency restoration cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Blue Fire Finance.',
+          text: 'The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Equipped Commercial Finance.',
         },
       },
     ],
@@ -207,8 +207,8 @@ export default function NewYearsEveDisasterRecoveryPage() {
               </p>
               <p style={{ marginTop: '1rem' }}>
                 Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage costs while awaiting your insurance outcome.
               </p>
@@ -240,7 +240,7 @@ export default function NewYearsEveDisasterRecoveryPage() {
         {
           question: "How much does New Year's Eve emergency restoration cost?",
           answer:
-            'The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Blue Fire Finance.',
+            'The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

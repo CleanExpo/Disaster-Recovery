@@ -78,7 +78,7 @@ const faqSchema = {
       name: 'What suburbs in Sydney do you cover for water damage restoration?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Our contractor network covers every suburb across Greater Sydney \u2014 from the Northern Beaches to Sutherland Shire, from the Eastern Suburbs to the Blue Mountains fringe. This includes Sydney CBD, Parramatta, Blacktown, Penrith, Liverpool, Chatswood, Hornsby, Manly, Bondi, Hurstville, and all suburbs in between.',
+        text: 'Our contractor network services suburbs across Greater Sydney \u2014 from the Northern Beaches to Sutherland Shire, from the Eastern Suburbs to the Blue Mountains fringe. This includes Sydney CBD, Parramatta, Blacktown, Penrith, Liverpool, Chatswood, Hornsby, Manly, Bondi, Hurstville, and all suburbs in between.',
       },
     },
     {
@@ -171,7 +171,7 @@ export default function WaterDamageRestorationSydneyPage() {
                   Our platform charges a $550 platform fee plus $2,200 contractor credit ($2,750 total) to begin emergency
                   make-safe. Your assigned contractor then provides a formal contract with transparent pricing for the full
                   scope of works. Payment plans are available through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
                 </p>
               </>
             ),
@@ -215,7 +215,7 @@ export default function WaterDamageRestorationSydneyPage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb across the Greater Sydney region, from the Northern Beaches
+                  Our contractor network services suburbs across the Greater Sydney region, from the Northern Beaches
                   to Sutherland Shire, from the Eastern Suburbs to the Blue Mountains fringe.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
@@ -293,7 +293,7 @@ export default function WaterDamageRestorationSydneyPage() {
           },
           {
             question: 'What suburbs in Sydney do you cover for water damage restoration?',
-            answer: 'Our contractor network covers every suburb across Greater Sydney — from the Northern Beaches to Sutherland Shire, from the Eastern Suburbs to the Blue Mountains fringe. This includes Sydney CBD, Parramatta, Blacktown, Penrith, Liverpool, Chatswood, Hornsby, Manly, Bondi, Hurstville, and all suburbs in between.',
+            answer: 'Our contractor network services suburbs across Greater Sydney — from the Northern Beaches to Sutherland Shire, from the Eastern Suburbs to the Blue Mountains fringe. This includes Sydney CBD, Parramatta, Blacktown, Penrith, Liverpool, Chatswood, Hornsby, Manly, Bondi, Hurstville, and all suburbs in between.',
           },
           {
             question: 'What should I do immediately after water damage in my Sydney property?',

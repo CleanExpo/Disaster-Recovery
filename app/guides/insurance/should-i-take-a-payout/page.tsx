@@ -343,7 +343,7 @@ export default function ShouldITakeAPayoutPage() {
                 If the damage is genuinely cosmetic, surface-level, and you are confident there is nothing hidden — a cash settlement can be a fast and practical solution. Use the contents claims strategy to maximise your total claim value, and make sure the offer covers like-for-like replacement.
               </p>
               <p>
-                If you choose to get the work done rather than accept a payout: work begins immediately without waiting for insurer approval. After make-safe, your contractor provides a formal contract with full terms and conditions. We bill you directly — you control the process and claim reimbursement from your insurer using the full claims documentation we provide. Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>.
+                If you choose to get the work done rather than accept a payout: work begins immediately without waiting for insurer approval. After make-safe, your contractor provides a formal contract with full terms and conditions. We bill you directly — you control the process and claim reimbursement from your insurer using the full claims documentation we provide. Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>.
               </p>
               <p className="mt-4">
                 <Link href="/claim" className="text-blue-400 hover:underline font-medium">

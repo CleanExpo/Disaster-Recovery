@@ -194,7 +194,7 @@ export default function OfficeWaterDamageBusinessInterruptionPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for commercial restorations. Full claims documentation &mdash; including moisture logs, progress reports, and itemised costings &mdash; is provided to support your property damage and business interruption claims.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for commercial restorations. Full claims documentation &mdash; including moisture logs, progress reports, and itemised costings &mdash; is provided to support your property damage and business interruption claims.
               </p>
             </div>
           ),

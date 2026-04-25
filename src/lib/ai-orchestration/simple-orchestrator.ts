@@ -56,11 +56,11 @@ export class SimpleOrchestrator {
     // Get routing decision
     const decision = await this.router.route(request);
     
-    console.log('🧠 Orchestration Decision:', {
+    clientLogger.info('🧠 Orchestration Decision:', { source: 'ai-orchestration/simple-orchestrator', data: {
       approach: decision.approach,
       model: decision.primaryModel,
       reasoning: decision.reasoning,
-      estimatedCost: `$${decision.estimatedCost.toFixed(4)}` });
+      estimatedCost: `$${decision.estimatedCost.toFixed(4)}` } });
     
     try {
       let response: AIResponse;
@@ -85,7 +85,7 @@ export class SimpleOrchestrator {
       return response;
       
     } catch (error) {
-      console.error('Primary execution failed, attempting fallback:', error);
+      clientLogger.error('Primary execution failed, attempting fallback:', { source: 'ai-orchestration/simple-orchestrator' }, error);
       
       // Try fallback models
       for (const fallbackModel of decision.fallbackModels) {
@@ -101,7 +101,7 @@ export class SimpleOrchestrator {
           
           return fallbackResponse;
         } catch (fallbackError) {
-          console.error(`Fallback ${fallbackModel} failed:`, fallbackError);
+          clientLogger.error(`Fallback ${fallbackModel} failed:`, { source: 'ai-orchestration/simple-orchestrator' }, fallbackError);
         }
       }
       
@@ -117,14 +117,14 @@ export class SimpleOrchestrator {
     request: AIRequest,
     decision: OrchestrationDecision
   ): Promise<AIResponse> {
-    console.log('🔄 Executing Sequential Thinking with GPT-OSS-120B...');
+    clientLogger.info('🔄 Executing Sequential Thinking with GPT-OSS-120B...', { source: 'ai-orchestration/simple-orchestrator' });
     
     const result = await this.openrouter.sequentialThinking(
       request.prompt,
       request.context || {},
       10, // max steps
       (step) => {
-        console.log(`  Step ${step.step}: ${step.thought.substring(0, 100)}... (confidence: ${step.confidence})`);
+        clientLogger.info(`  Step ${step.step}: ${step.thought.substring(0, 100)}... (confidence: ${step.confidence})`, { source: 'ai-orchestration/simple-orchestrator' });
       }
     );
     
@@ -151,7 +151,7 @@ export class SimpleOrchestrator {
     request: AIRequest,
     decision: OrchestrationDecision
   ): Promise<AIResponse> {
-    console.log('👥 Executing Multi-Agent Discussion...');
+    clientLogger.info('👥 Executing Multi-Agent Discussion...', { source: 'ai-orchestration/simple-orchestrator' });
     
     // For now, use sequential thinking as a placeholder
     // In production, implement full multi-agent system
@@ -165,7 +165,7 @@ export class SimpleOrchestrator {
     request: AIRequest,
     decision: OrchestrationDecision
   ): Promise<AIResponse> {
-    console.log(`⚡ Executing Direct with ${decision.primaryModel}...`);
+    clientLogger.info(`⚡ Executing Direct with ${decision.primaryModel}...`, { source: 'ai-orchestration/simple-orchestrator' });
     
     return this.executeWithModel(request, decision.primaryModel);
   }
@@ -272,3 +272,4 @@ export class SimpleOrchestrator {
 
 // Export singleton instance
 export const orchestrationService = new SimpleOrchestrator();
+import { clientLogger } from '@/lib/observability/client-logger';

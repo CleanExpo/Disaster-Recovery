@@ -78,7 +78,7 @@ const faqSchema = {
       name: 'What Melbourne suburbs do you cover?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Our contractor network covers every suburb across Greater Melbourne \u2014 from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
+        text: 'Our contractor network services suburbs across Greater Melbourne \u2014 from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
       },
     },
     {
@@ -173,7 +173,7 @@ export default function WaterDamageRestorationMelbournePage() {
                   Our platform charges a $550 platform fee plus $2,200 contractor credit ($2,750 total) to begin emergency
                   make-safe. Your assigned contractor then provides a formal contract with transparent pricing for the full
                   scope of works. Payment plans are available through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
                 </p>
               </>
             ),
@@ -216,7 +216,7 @@ export default function WaterDamageRestorationMelbournePage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb across Greater Melbourne, from the Mornington Peninsula
+                  Our contractor network services suburbs across Greater Melbourne, from the Mornington Peninsula
                   to the Yarra Ranges, from Werribee to Frankston.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
@@ -295,7 +295,7 @@ export default function WaterDamageRestorationMelbournePage() {
           },
           {
             question: 'What Melbourne suburbs do you cover?',
-            answer: 'Our contractor network covers every suburb across Greater Melbourne — from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
+            answer: 'Our contractor network services suburbs across Greater Melbourne — from the Mornington Peninsula to the Yarra Ranges, from Werribee to Frankston. This includes Melbourne CBD, Fitzroy, South Yarra, Footscray, Box Hill, Dandenong, Frankston, and all suburbs in between.',
           },
           {
             question: 'How long does water damage restoration take in Melbourne?',

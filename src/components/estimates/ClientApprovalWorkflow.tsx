@@ -29,6 +29,7 @@ import {
   DigitalSignature,
   LegalConsent 
 } from '@/types/estimate-generation';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ClientApprovalWorkflowProps {
   estimate: JobEstimate;
@@ -143,7 +144,7 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
   const sendVerificationCode = () => {
     // Simulate sending verification code
     const code = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log('Verification code sent:', code);
+    clientLogger.info('Verification code sent:', { source: 'estimates/ClientApprovalWorkflow', data: code });
     setSentCode(true);
     // In production, this would send an SMS or email
   };

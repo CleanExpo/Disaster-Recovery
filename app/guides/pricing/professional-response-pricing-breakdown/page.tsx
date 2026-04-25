@@ -48,7 +48,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
         name: 'What happens if restoration costs exceed the initial $2,750?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'After the emergency make-safe phase, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. Any works beyond the initial $2,200 contractor credit are quoted transparently before proceeding \u2014 you approve all additional costs in writing. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.',
+          text: 'After the emergency make-safe phase, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. Any works beyond the initial $2,200 contractor credit are quoted transparently before proceeding \u2014 you approve all additional costs in writing. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       },
       {
@@ -202,7 +202,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
               </p>
               <p>
                 Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>{' '}
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>{' '}
                 if you need to spread the cost while waiting for your insurance reimbursement.
               </p>
             </div>
@@ -254,7 +254,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
         },
         {
           question: 'What happens if restoration costs exceed the initial $2,750?',
-          answer: 'After the emergency make-safe phase, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. Any works beyond the initial $2,200 contractor credit are quoted transparently before proceeding — you approve all additional costs in writing. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'After the emergency make-safe phase, your contractor provides a formal contract with full terms and conditions for the complete restoration scope. Any works beyond the initial $2,200 contractor credit are quoted transparently before proceeding — you approve all additional costs in writing. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'Is professional restoration covered by insurance?',

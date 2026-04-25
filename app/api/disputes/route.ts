@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export interface DisputeRequest {
   bookingId: string;
@@ -27,6 +28,7 @@ export interface DisputeResponse {
 
 // GET - Retrieve dispute status
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/disputes' });
   const { searchParams } = new URL(request.url);
   const disputeId = searchParams.get('disputeId');
   const bookingId = searchParams.get('bookingId');
@@ -79,7 +81,8 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(dispute);
   } catch (error) {
-    console.error('Dispute retrieval error:', error);
+    log.error('dispute retrieval error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/disputes' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to retrieve dispute' },
       { status: 500 }
@@ -89,6 +92,7 @@ export async function GET(request: NextRequest) {
 
 // POST - Create new dispute
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/disputes' });
   try {
     const disputeData: DisputeRequest = await request.json();
 
@@ -145,7 +149,8 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error: any) {
-    console.error('Dispute creation error:', error);
+    log.error('dispute creation error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/disputes' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json(
       {
@@ -158,6 +163,7 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update dispute status
 export async function PUT(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/disputes' });
   try {
     const { disputeId, status, resolution, notes } = await request.json();
 
@@ -209,7 +215,8 @@ export async function PUT(request: NextRequest) {
     });
 
   } catch (error: any) {
-    console.error('Dispute update error:', error);
+    log.error('dispute update error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/disputes' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json(
       {

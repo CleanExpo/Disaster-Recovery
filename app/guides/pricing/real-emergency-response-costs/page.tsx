@@ -40,7 +40,7 @@ export default function RealEmergencyResponseCostsPage() {
         name: 'How do I pay for restoration if I am waiting for my insurance reimbursement?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly so work begins immediately without waiting for insurer approval. We provide full claims documentation \u2014 photos, moisture logs, scope of works, progress reports \u2014 to support your insurance reimbursement. If you need to manage cash flow while waiting, payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. We provide full claims documentation \u2014 photos, moisture logs, scope of works, progress reports \u2014 to support your insurance reimbursement. If you need to manage cash flow while waiting, payment plans are available through Equipped Commercial Finance (equippedcf.com.au).',
         },
       },
       {
@@ -196,7 +196,7 @@ export default function RealEmergencyResponseCostsPage() {
               </p>
               <p>
                 Full claims documentation is provided — photographs, moisture readings, thermal imaging, scope of works, daily progress reports — everything your insurer requires to process your reimbursement claim. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>{' '}
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>{' '}
                 if you need to manage cash flow while waiting for reimbursement.
               </p>
             </div>
@@ -228,7 +228,7 @@ export default function RealEmergencyResponseCostsPage() {
               </ol>
               <p>
                 <strong>Payment options:</strong> You can pay as the project progresses, or access payment plans through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>.{' '}
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>.{' '}
                 Many property owners use finance to bridge the gap between paying the contractor and receiving their insurance reimbursement.
               </p>
             </div>
@@ -246,7 +246,7 @@ export default function RealEmergencyResponseCostsPage() {
         },
         {
           question: 'How do I pay for restoration if I am waiting for my insurance reimbursement?',
-          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. We provide full claims documentation — photos, moisture logs, scope of works, progress reports — to support your insurance reimbursement. If you need to manage cash flow while waiting, payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. We provide full claims documentation — photos, moisture logs, scope of works, progress reports — to support your insurance reimbursement. If you need to manage cash flow while waiting, payment plans are available through Equipped Commercial Finance (equippedcf.com.au).',
         },
         {
           question: 'Why is fast response cheaper than waiting?',

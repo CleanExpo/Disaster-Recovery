@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 // Enhanced SEMrush API Integration with Real Functionality
 
 interface SEMrushAPIResponse {
@@ -65,7 +66,7 @@ class SEMrushAPI {
   // Domain Overview Report
   async getDomainOverview(domain: string): Promise<DomainMetrics | null> {
     if (!this.isConfigured()) {
-      console.warn('SEMrush API key not configured');
+      clientLogger.warn('SEMrush API key not configured', { source: 'lib/semrush-api' });
       return null;
     }
 
@@ -95,7 +96,7 @@ class SEMrushAPI {
         }
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return null;
@@ -133,7 +134,7 @@ class SEMrushAPI {
         }
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return null;
@@ -172,7 +173,7 @@ class SEMrushAPI {
           trends: row[9] ? row[9].split(',').map(Number) : [] }));
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return [];
@@ -213,7 +214,7 @@ class SEMrushAPI {
         }
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return null;
@@ -249,7 +250,7 @@ class SEMrushAPI {
           adwords_keywords: parseInt(row[6] || '0') }));
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return [];
@@ -285,7 +286,7 @@ class SEMrushAPI {
           results: parseInt(row[4] || '0') }));
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return [];
@@ -343,7 +344,7 @@ class SEMrushAPI {
           traffic_cost: parseFloat(row[3] || '0') }));
       }
     } catch (error) {
-      console.error('SEMrush API error:', error);
+      clientLogger.error('SEMrush API error:', { source: 'lib/semrush-api' }, error);
     }
     
     return [];

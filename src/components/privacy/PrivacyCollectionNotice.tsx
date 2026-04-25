@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/lib/language-context';
 
 const EN = {
-  body: 'National Restoration Professionals Group Pty Ltd (ABN 85 151 794 142), trading as Disaster Recovery Australia, collects your name, contact details, and property information when you lodge a claim to match you with a certified IICRC restoration contractor. Your information is disclosed to the assigned contractor and processed under the Privacy Act 1988 (Cth). It is not sold or shared for marketing purposes.',
+  body: 'National Restoration Professionals Group Pty Ltd (ABN 85 151 794 142), trading as Disaster Recovery, collects your name, contact details, and property information when you lodge a claim to match you with a certified IICRC restoration contractor. Your information is disclosed to the assigned contractor and processed under the Privacy Act 1988 (Cth). It is not sold or shared for marketing purposes.',
   policy: 'Privacy Policy',
   oaic: 'Complaints may be lodged with the OAIC at oaic.gov.au.',
 };
@@ -41,7 +41,9 @@ export function PrivacyCollectionNotice() {
     translate(Object.values(EN))
       .then((translated) => {
         const updated = {} as Keys;
-        keys.forEach((k, i) => { updated[k] = translated[i] ?? EN[k]; });
+        keys.forEach((k, i) => {
+          updated[k] = translated[i] ?? EN[k];
+        });
         setTexts(updated);
       })
       .catch(() => setTexts(EN))

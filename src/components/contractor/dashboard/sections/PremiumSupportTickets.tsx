@@ -443,7 +443,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                                       key={i}
                                       className={cn(
                                         "w-3 h-3",
-                                        i < ticket.satisfaction
+                                        i < (ticket.satisfaction ?? 0)
                                           ? "text-blue-600 fill-blue-600"
                                           : "text-gray-300"
                                       )}

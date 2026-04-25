@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { findNextContractor, OFFER_TIMEOUT_MINUTES } from '@/lib/contractor-matching';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { requestLogger, captureException } from '@/lib/observability';
 
 interface DistributeJobBody {
   jobId: string;
@@ -20,6 +21,7 @@ interface DistributeJobBody {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractors/distribute-job' });
   try {
     const body: DistributeJobBody = await request.json();
     const { jobId, jobType, latitude, longitude } = body;
@@ -121,7 +123,8 @@ export async function POST(request: NextRequest) {
       expiresAt: expiresAt.toISOString(),
     });
   } catch (error) {
-    console.error('distribute-job error:', error);
+    log.error('distribute-job error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractors/distribute-job' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       {
         success: false,

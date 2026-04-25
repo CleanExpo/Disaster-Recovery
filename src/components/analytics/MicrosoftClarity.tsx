@@ -12,6 +12,7 @@ export function MicrosoftClarity() {
   return (
     <Script
       id="microsoft-clarity"
+      type="text/partytown"
       strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: `

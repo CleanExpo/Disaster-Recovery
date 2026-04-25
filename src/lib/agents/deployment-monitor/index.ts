@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import { execSync } from 'child_process';
 import axios from 'axios';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface DeploymentStatus {
   id: string;
@@ -111,12 +112,12 @@ export class DeploymentMonitorAgent extends EventEmitter {
 
   public async startMonitoring() {
     if (this.isMonitoring) {
-      console.log('🔍 Already monitoring deployments');
+      clientLogger.info('🔍 Already monitoring deployments', { source: 'deployment-monitor/index' });
       return;
     }
 
     this.isMonitoring = true;
-    console.log('🚀 Deployment Monitor Agent Started');
+    clientLogger.info('🚀 Deployment Monitor Agent Started', { source: 'deployment-monitor/index' });
     
     // Initial check
     await this.checkDeployment();
@@ -136,7 +137,7 @@ export class DeploymentMonitorAgent extends EventEmitter {
   public stopMonitoring() {
     this.isMonitoring = false;
     this.emit('monitoring-stopped');
-    console.log('🛑 Deployment monitoring stopped');
+    clientLogger.info('🛑 Deployment monitoring stopped', { source: 'deployment-monitor/index' });
   }
 
   private async checkDeployment() {
@@ -145,14 +146,14 @@ export class DeploymentMonitorAgent extends EventEmitter {
       const deployment = await this.getLatestDeployment();
       
       if (!deployment) {
-        console.log('📭 No deployments found');
+        clientLogger.info('📭 No deployments found', { source: 'deployment-monitor/index' });
         return;
       }
 
       // Check if this is a new deployment
       if (deployment.id !== this.lastDeploymentId) {
         this.lastDeploymentId = deployment.id;
-        console.log(`\n🔄 New deployment detected: ${deployment.id}`);
+        clientLogger.info(`\n🔄 New deployment detected: ${deployment.id}`, { source: 'deployment-monitor/index' });
         this.emit('new-deployment', deployment);
       }
 
@@ -160,7 +161,7 @@ export class DeploymentMonitorAgent extends EventEmitter {
       await this.analyzeDeployment(deployment);
       
     } catch (error) {
-      console.error('❌ Error checking deployment:', error);
+      clientLogger.error('❌ Error checking deployment:', { source: 'deployment-monitor/index' }, error);
       this.emit('error', error);
     }
   }
@@ -207,43 +208,43 @@ export class DeploymentMonitorAgent extends EventEmitter {
   }
 
   private async analyzeDeployment(deployment: DeploymentStatus) {
-    console.log(`📊 Analyzing deployment ${deployment.id}`);
-    console.log(`   State: ${deployment.state}`);
+    clientLogger.info(`📊 Analyzing deployment ${deployment.id}`, { source: 'deployment-monitor/index' });
+    clientLogger.info(`   State: ${deployment.state}`, { source: 'deployment-monitor/index' });
     
     switch (deployment.state) {
       case 'BUILDING':
-        console.log('   🔨 Build in progress...');
+        clientLogger.info('   🔨 Build in progress...', { source: 'deployment-monitor/index' });
         this.emit('building', deployment);
         break;
         
       case 'READY':
-        console.log('   ✅ Deployment successful!');
+        clientLogger.info('   ✅ Deployment successful!', { source: 'deployment-monitor/index' });
         if (deployment.url) {
-          console.log(`   🌐 URL: https://${deployment.url}`);
+          clientLogger.info(`   🌐 URL: https://${deployment.url}`, { source: 'deployment-monitor/index' });
         }
         this.emit('success', deployment);
         break;
         
       case 'ERROR':
-        console.log('   ❌ Deployment failed!');
+        clientLogger.info('   ❌ Deployment failed!', { source: 'deployment-monitor/index' });
         await this.handleBuildError(deployment);
         break;
         
       case 'CANCELED':
-        console.log('   ⚠️ Deployment canceled');
+        clientLogger.info('   ⚠️ Deployment canceled', { source: 'deployment-monitor/index' });
         this.emit('canceled', deployment);
         break;
     }
   }
 
   private async handleBuildError(deployment: DeploymentStatus) {
-    console.log('\n🔍 Analyzing build errors...');
+    clientLogger.info('\n🔍 Analyzing build errors...', { source: 'deployment-monitor/index' });
     
     // Get build logs
     const logs = await this.getBuildLogs(deployment.id);
     
     if (!logs) {
-      console.log('   Unable to retrieve build logs');
+      clientLogger.info('   Unable to retrieve build logs', { source: 'deployment-monitor/index' });
       return;
     }
     
@@ -251,20 +252,20 @@ export class DeploymentMonitorAgent extends EventEmitter {
     const errors = this.parseErrors(logs);
     
     if (errors.length === 0) {
-      console.log('   No specific errors identified');
+      clientLogger.info('   No specific errors identified', { source: 'deployment-monitor/index' });
       return;
     }
     
-    console.log(`\n📋 Found ${errors.length} error(s):`);
+    clientLogger.info(`\n📋 Found ${errors.length} error(s):`, { source: 'deployment-monitor/index' });
     
     for (const error of errors) {
-      console.log(`\n   Type: ${error.type}`);
-      console.log(`   Message: ${error.message}`);
-      if (error.file) console.log(`   File: ${error.file}`);
-      if (error.suggestion) console.log(`   💡 Suggestion: ${error.suggestion}`);
+      clientLogger.info(`\n   Type: ${error.type}`, { source: 'deployment-monitor/index' });
+      clientLogger.info(`   Message: ${error.message}`, { source: 'deployment-monitor/index' });
+      if (error.file) clientLogger.info(`   File: ${error.file}`, { source: 'deployment-monitor/index' });
+      if (error.suggestion) clientLogger.info(`   💡 Suggestion: ${error.suggestion}`, { source: 'deployment-monitor/index' });
       
       if (error.autoFixable) {
-        console.log('   🔧 Attempting auto-fix...');
+        clientLogger.info('   🔧 Attempting auto-fix...', { source: 'deployment-monitor/index' });
         await this.attemptAutoFix(error);
       }
     }
@@ -358,17 +359,17 @@ export class DeploymentMonitorAgent extends EventEmitter {
         case 'runtime':
           return await this.fixRuntimeError(error);
         default:
-          console.log('   ⚠️ Auto-fix not available for this error type');
+          clientLogger.info('   ⚠️ Auto-fix not available for this error type', { source: 'deployment-monitor/index' });
           return false;
       }
     } catch (fixError) {
-      console.error('   ❌ Auto-fix failed:', fixError);
+      clientLogger.error('   ❌ Auto-fix failed:', { source: 'deployment-monitor/index' }, fixError);
       return false;
     }
   }
 
   private async fixDependencyError(error: BuildError): Promise<boolean> {
-    console.log('   📦 Fixing dependency error...');
+    clientLogger.info('   📦 Fixing dependency error...', { source: 'deployment-monitor/index' });
     
     // Extract module name from error message
     const moduleMatch = error.message.match(/['"](.+)['"]/);
@@ -377,32 +378,32 @@ export class DeploymentMonitorAgent extends EventEmitter {
       
       // Special handling for known problematic modules
       if (moduleName.includes('sharp')) {
-        console.log('   🔄 Removing sharp dependency...');
+        clientLogger.info('   🔄 Removing sharp dependency...', { source: 'deployment-monitor/index' });
         execSync('npm uninstall sharp', { stdio: 'inherit' });
         return true;
       }
       
       // Try to install missing module
-      console.log(`   📥 Installing ${moduleName}...`);
+      clientLogger.info(`   📥 Installing ${moduleName}...`, { source: 'deployment-monitor/index' });
       execSync(`npm install ${moduleName} --force`, { stdio: 'inherit' });
       return true;
     }
     
     // General dependency fix
-    console.log('   🔄 Running npm install --force...');
+    clientLogger.info('   🔄 Running npm install --force...', { source: 'deployment-monitor/index' });
     execSync('npm install --force --legacy-peer-deps', { stdio: 'inherit' });
     return true;
   }
 
   private async fixConfigError(error: BuildError): Promise<boolean> {
-    console.log('   ⚙️ Fixing configuration error...');
+    clientLogger.info('   ⚙️ Fixing configuration error...', { source: 'deployment-monitor/index' });
     
     if (error.message.includes('ENOENT')) {
       // Create missing directories
       const dirMatch = error.message.match(/no such file or directory, (?:open|scandir) '(.+)'/);
       if (dirMatch) {
         const missingPath = dirMatch[1];
-        console.log(`   📁 Creating missing path: ${missingPath}`);
+        clientLogger.info(`   📁 Creating missing path: ${missingPath}`, { source: 'deployment-monitor/index' });
         execSync(`mkdir -p "${missingPath}"`, { stdio: 'inherit' });
         return true;
       }
@@ -412,10 +413,10 @@ export class DeploymentMonitorAgent extends EventEmitter {
   }
 
   private async fixRuntimeError(error: BuildError): Promise<boolean> {
-    console.log('   🔧 Fixing runtime error...');
+    clientLogger.info('   🔧 Fixing runtime error...', { source: 'deployment-monitor/index' });
     
     if (error.message.toLowerCase().includes('memory')) {
-      console.log('   💾 Increasing memory limit...');
+      clientLogger.info('   💾 Increasing memory limit...', { source: 'deployment-monitor/index' });
       
       // Update vercel.json
       const vercelConfig = {
@@ -426,7 +427,7 @@ export class DeploymentMonitorAgent extends EventEmitter {
       
       // This would update vercel.json
       // For now, just log the suggestion
-      console.log('   💡 Add NODE_OPTIONS to vercel.json with --max-old-space-size=8192');
+      clientLogger.info('   💡 Add NODE_OPTIONS to vercel.json with --max-old-space-size=8192', { source: 'deployment-monitor/index' });
       return false;
     }
     
@@ -434,7 +435,7 @@ export class DeploymentMonitorAgent extends EventEmitter {
   }
 
   private async cancelDeployment(deploymentId: string): Promise<boolean> {
-    console.log(`\n🛑 Attempting to cancel deployment ${deploymentId}...`);
+    clientLogger.info(`\n🛑 Attempting to cancel deployment ${deploymentId}...`, { source: 'deployment-monitor/index' });
     
     try {
       if (this.vercelToken) {
@@ -449,17 +450,17 @@ export class DeploymentMonitorAgent extends EventEmitter {
         );
         
         if (response.status === 200) {
-          console.log('   ✅ Deployment canceled successfully');
+          clientLogger.info('   ✅ Deployment canceled successfully', { source: 'deployment-monitor/index' });
           return true;
         }
       } else {
         // Try using CLI
         execSync(`vercel rm ${deploymentId} -y`, { stdio: 'inherit' });
-        console.log('   ✅ Deployment canceled via CLI');
+        clientLogger.info('   ✅ Deployment canceled via CLI', { source: 'deployment-monitor/index' });
         return true;
       }
     } catch (error) {
-      console.log('   ⚠️ Unable to cancel deployment (may have already completed)');
+      clientLogger.info('   ⚠️ Unable to cancel deployment (may have already completed)', { source: 'deployment-monitor/index' });
       return false;
     }
     
@@ -467,7 +468,7 @@ export class DeploymentMonitorAgent extends EventEmitter {
   }
 
   public async quickCheck(): Promise<any> {
-    console.log('\n🔍 Running quick deployment check...\n');
+    clientLogger.info('\n🔍 Running quick deployment check...\n', { source: 'deployment-monitor/index' });
     
     const deployment = await this.getLatestDeployment();
     

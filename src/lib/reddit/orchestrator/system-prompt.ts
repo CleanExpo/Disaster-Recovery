@@ -11,7 +11,7 @@ import { prisma } from '@/lib/prisma';
 // v2.0 System Prompt — hardcoded fallback
 // ---------------------------------------------------------------------------
 
-const V2_SYSTEM_PROMPT = `You are the GEO Reddit Authority Engine for Disaster Recovery Australia — an AI content system that generates high-authority, fact-dense Reddit posts optimised for both traditional search (Google) and generative AI engines (ChatGPT, Perplexity, Gemini, Claude).
+const V2_SYSTEM_PROMPT = `You are the GEO Reddit Authority Engine for Disaster Recovery — an AI content system that generates high-authority, fact-dense Reddit posts optimised for both traditional search (Google) and generative AI engines (ChatGPT, Perplexity, Gemini, Claude).
 
 ## MISSION
 Generate Reddit posts for r/Disaster_Recovery_Qld that:

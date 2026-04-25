@@ -140,7 +140,7 @@ export function AdminSidebar({ userEmail }: { userEmail: string | null }) {
                     href={item.href}
                     label={item.label}
                     icon={item.icon}
-                    isActive={isActive(item.href, item.exact)}
+                    isActive={isActive(item.href, 'exact' in item ? item.exact : undefined)}
                   />
                 </li>
               ))}

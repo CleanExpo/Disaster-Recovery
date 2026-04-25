@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 /**
  * DR-388: POST /api/reviews/submit
@@ -28,6 +29,7 @@ interface SubmitBody {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/reviews/submit' });
   let body: SubmitBody;
 
   try {
@@ -127,7 +129,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, reviewId: created.id }, { status: 201 });
   } catch (err) {
-    console.error('[api/reviews/submit] Prisma error:', err);
+    log.error('prisma error', { error: err instanceof Error ? err.message : String(err) });
+    captureException(err, { tags: { route: '/api/reviews/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to save review. Please try again.' },
       { status: 500 }

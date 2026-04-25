@@ -112,7 +112,7 @@ export function AdminDashboardCharts({
                   outerRadius={90}
                   paddingAngle={2}
                   label={({ name, percent }) =>
-                    `${name} ${(percent * 100).toFixed(0)}%`
+                    `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                   }
                   labelLine={{ stroke: '#9ca3af' }}
                 >

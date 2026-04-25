@@ -30,6 +30,7 @@ import {
   Key,
   Activity
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface AuditLog {
   id: string;
@@ -78,7 +79,7 @@ export function AuditLogs() {
       const data = await response.json();
       setLogs(data);
     } catch (error) {
-      console.error('Failed to fetch audit logs:', error);
+      clientLogger.error('Failed to fetch audit logs:', { source: 'sections/AuditLogs' }, error);
     } finally {
       setLoading(false);
     }

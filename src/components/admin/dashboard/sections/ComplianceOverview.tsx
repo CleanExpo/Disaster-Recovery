@@ -17,6 +17,7 @@ import {
   Clock,
   Users
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ComplianceMetrics {
   totalContractors: number;
@@ -55,7 +56,7 @@ export function ComplianceOverview() {
       const data = await response.json();
       setMetrics(data);
     } catch (error) {
-      console.error('Failed to fetch compliance metrics:', error);
+      clientLogger.error('Failed to fetch compliance metrics:', { source: 'sections/ComplianceOverview' }, error);
     } finally {
       setLoading(false);
     }

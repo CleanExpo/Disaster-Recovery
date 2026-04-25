@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import imageCompression from 'browser-image-compression';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ImageUploadProps {
   onUploadSuccess?: (data: any) => void;
@@ -50,7 +51,7 @@ export default function ImageUpload({
       
       // Show original file size
       const originalSizeKB = (file.size / 1024).toFixed(2);
-      console.log(`Original file size: ${originalSizeKB} KB`);
+      clientLogger.info(`Original file size: ${originalSizeKB} KB`, { source: 'components/ImageUpload' });
 
       // Client-side compression options
       const compressionOptions = {
@@ -66,7 +67,7 @@ export default function ImageUpload({
       // Compress image client-side first
       const compressedFile = await imageCompression(file, compressionOptions);
       const compressedSizeKB = (compressedFile.size / 1024).toFixed(2);
-      console.log(`Client compressed size: ${compressedSizeKB} KB`);
+      clientLogger.info(`Client compressed size: ${compressedSizeKB} KB`, { source: 'components/ImageUpload' });
 
       setStatus(prev => ({ ...prev, progress: 50 }));
 
@@ -113,7 +114,7 @@ export default function ImageUpload({
       }, 3000);
 
     } catch (error) {
-      console.error('Upload error:', error);
+      clientLogger.error('Upload error:', { source: 'components/ImageUpload' }, error);
       const errorMessage = error instanceof Error ? error.message : 'Upload failed';
       setStatus({ isUploading: false, progress: 0, error: errorMessage, success: false });
       

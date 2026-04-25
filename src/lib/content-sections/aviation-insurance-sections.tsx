@@ -28,7 +28,7 @@ export function getAviationInsuranceSections({ insurerName, insurerSlug }: Aviat
             waiting for {insurerName} loss adjuster approval. Once restoration is complete,
             we provide full documentation to support your {insurerName} claim for reimbursement.
             Payment plans are available through our finance partner,{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
         </>
       ),
@@ -92,7 +92,7 @@ export function getAviationInsuranceSections({ insurerName, insurerSlug }: Aviat
             <li><strong>We bill you directly</strong> — Our contractors invoice you (the airport operator, airline, MRO company, or facility owner), not your insurer. This allows emergency work to begin without waiting for loss adjuster approval.</li>
             <li><strong>You claim reimbursement from {insurerName}</strong> — We provide all documentation, photos, scope of works, decontamination reports, and compliance certificates your insurer needs to process your claim.</li>
             <li><strong>Why this is better for aviation clients</strong> — No waiting for panel assessors. No scope disputes delaying critical facility restoration. You control the response timeline and quality.</li>
-            <li><strong>Payment options available</strong> — Flexible payment terms through our finance partner <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a> for fast loan approvals.</li>
+            <li><strong>Payment options available</strong> — Flexible payment terms through our finance partner <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a> for fast loan approvals.</li>
             <li><strong>Contract provided</strong> — After the make-safe is completed, your contractor provides a formal contract with clear terms, milestones, and conditions.</li>
           </ul>
         </>

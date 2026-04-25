@@ -1,4 +1,4 @@
-# Disaster Recovery Australia
+# Disaster Recovery
 
 > Australia's national network of IICRC-certified disaster restoration professionals. 24/7 emergency response for water damage, fire damage, mould remediation, storm damage, and biohazard cleanup across all Australian states and territories.
 
@@ -48,7 +48,7 @@ We service every Australian location through our national contractor network, fr
 - Minimum engagement: $2,750 ($550 platform fee + $2,200 contractor credit for emergency make-safe)
 - All contractors carry minimum $20M public liability insurance
 - Client-direct billing model (we bill the property owner, not the insurer)
-- Payment plans available through Blue Fire Finance (https://www.bluefirefinance.com.au)
+- Payment plans available through Equipped Commercial Finance (https://equippedcf.com.au)
 
 ## Billing Model
 

@@ -5,6 +5,7 @@ import { MockDataFactory } from '../mock-data-factory';
 import { HealthMonitor } from './health-monitor';
 import { TaskQueue } from './task-queue';
 import { AgentRegistry } from './agent-registry';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface OrchestratorConfig {
   mode: 'autonomous' | 'supervised';
@@ -221,7 +222,7 @@ export class MasterOrchestrator extends EventEmitter {
   }
 
   private identifyPatterns(): any[] {
-    const patterns = [];
+    const patterns: any[] = [];
     const taskHistory = this.taskQueue.getHistory();
     
     // Identify recurring task patterns
@@ -422,7 +423,7 @@ export class MasterOrchestrator extends EventEmitter {
 
   private notifyHumans(message: AgentMessage) {
     // In production, this would send alerts via email/SMS/Slack
-    console.error('CRITICAL ALERT:', message);
+    clientLogger.error('CRITICAL ALERT:', { source: 'orchestrator/index' }, message);
   }
 
   private async attemptRecovery(message: AgentMessage) {

@@ -55,6 +55,7 @@ export {
   useResourcePreloader,
   PerformanceDashboard,
   usePerformanceMonitor } from './PerformanceOptimizer';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Types and Interfaces
 export interface InteractiveComponentProps {
@@ -112,9 +113,9 @@ export const preloadInteractiveComponents = async () => {
   
   try {
     await Promise.all(componentsToPreload.map(loader => loader()));
-    console.log('Interactive components preloaded successfully');
+    clientLogger.info('Interactive components preloaded successfully', { source: 'interactive/index' });
   } catch (error) {
-    console.warn('Some interactive components failed to preload:', error);
+    clientLogger.warn('Some interactive components failed to preload:', { source: 'interactive/index', data: error });
   }
 };
 

@@ -26,6 +26,7 @@ import {
   FileSignature
 } from 'lucide-react';
 import type { ContractorOnboardingData } from '@/types/contractor';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Step6AgreementsProps {
   data: Partial<ContractorOnboardingData>;
@@ -192,7 +193,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
   // Download all agreements as a bundle
   const downloadAllAgreements = () => {
     // In production, this would trigger a download of a PDF bundle
-    console.log('Downloading all agreements...');
+    clientLogger.info('Downloading all agreements...', { source: 'steps/Step6Agreements' });
   };
 
   return (

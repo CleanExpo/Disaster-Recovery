@@ -4,6 +4,7 @@ import { getMockStripe } from '@/lib/services/mock/mockStripe';
 import { mockEmailService } from '@/lib/services/mock/mockEmail';
 import { calculateCoolingOffPeriod } from '@/lib/utils/australian-compliance';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // Initialize Stripe or use mock
 const stripe = process.env.STRIPE_SECRET_KEY 
@@ -27,6 +28,7 @@ export interface RefundRequest {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/payments/refund' });
   try {
     const refundData: RefundRequest = await request.json();
     
@@ -73,7 +75,7 @@ export async function POST(request: NextRequest) {
         },
       });
     } catch (dbError) {
-      console.error('Failed to update payment record:', dbError);
+      log.error('failed to update payment record', { error: dbError instanceof Error ? dbError.message : String(dbError) });
       // Don't fail the request — Stripe refund already processed
     }
 
@@ -100,8 +102,9 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error: any) {
-    console.error('Refund error:', error);
-    
+    log.error('refund error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/payments/refund' }, extra: { requestId: log.requestId } });
+
     return NextResponse.json(
       {
         success: false,

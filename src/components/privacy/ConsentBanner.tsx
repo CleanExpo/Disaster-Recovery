@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
-import { Cookie, Shield, BarChart3, Languages } from 'lucide-react';
+import { Cookie, Shield, BarChart3, Languages, Activity, Megaphone } from 'lucide-react';
+import { updateConsentMode } from '@/lib/analytics/consent';
 
 const CONSENT_KEY = 'dr-consent-preferences';
-const CONSENT_VERSION = '1.0';
+const CONSENT_VERSION = '2.0';
 
 interface ConsentPreferences {
   version: string;
@@ -13,6 +14,8 @@ interface ConsentPreferences {
   essential: boolean;
   analytics: boolean;
   aiTranslation: boolean;
+  productExperience: boolean;
+  marketing: boolean;
 }
 
 function getStoredConsent(): ConsentPreferences | null {
@@ -34,6 +37,13 @@ function saveConsent(prefs: ConsentPreferences): void {
   } catch {
     // localStorage unavailable
   }
+  // Bridge to Google Consent Mode v2 so GTM-loaded tags respect the choice
+  // without a page reload.
+  updateConsentMode({
+    analytics: prefs.analytics,
+    productExperience: prefs.productExperience,
+    marketing: prefs.marketing,
+  });
 }
 
 export function ConsentBanner() {
@@ -41,6 +51,8 @@ export function ConsentBanner() {
   const [showDetails, setShowDetails] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [aiTranslation, setAiTranslation] = useState(false);
+  const [productExperience, setProductExperience] = useState(false);
+  const [marketing, setMarketing] = useState(false);
 
   useEffect(() => {
     const existing = getStoredConsent();
@@ -49,41 +61,38 @@ export function ConsentBanner() {
     }
   }, []);
 
-  const handleAcceptAll = useCallback(() => {
-    const prefs: ConsentPreferences = {
+  const buildPrefs = useCallback(
+    (values: {
+      analytics: boolean;
+      aiTranslation: boolean;
+      productExperience: boolean;
+      marketing: boolean;
+    }): ConsentPreferences => ({
       version: CONSENT_VERSION,
       timestamp: new Date().toISOString(),
       essential: true,
-      analytics: true,
-      aiTranslation: true,
-    };
-    saveConsent(prefs);
+      analytics: values.analytics,
+      aiTranslation: values.aiTranslation,
+      productExperience: values.productExperience,
+      marketing: values.marketing,
+    }),
+    []
+  );
+
+  const handleAcceptAll = useCallback(() => {
+    saveConsent(buildPrefs({ analytics: true, aiTranslation: true, productExperience: true, marketing: true }));
     setVisible(false);
-  }, []);
+  }, [buildPrefs]);
 
   const handleAcceptSelected = useCallback(() => {
-    const prefs: ConsentPreferences = {
-      version: CONSENT_VERSION,
-      timestamp: new Date().toISOString(),
-      essential: true,
-      analytics,
-      aiTranslation,
-    };
-    saveConsent(prefs);
+    saveConsent(buildPrefs({ analytics, aiTranslation, productExperience, marketing }));
     setVisible(false);
-  }, [analytics, aiTranslation]);
+  }, [analytics, aiTranslation, productExperience, marketing, buildPrefs]);
 
   const handleRejectOptional = useCallback(() => {
-    const prefs: ConsentPreferences = {
-      version: CONSENT_VERSION,
-      timestamp: new Date().toISOString(),
-      essential: true,
-      analytics: false,
-      aiTranslation: false,
-    };
-    saveConsent(prefs);
+    saveConsent(buildPrefs({ analytics: false, aiTranslation: false, productExperience: false, marketing: false }));
     setVisible(false);
-  }, []);
+  }, [buildPrefs]);
 
   if (!visible) return null;
 
@@ -101,7 +110,7 @@ export function ConsentBanner() {
             <div className="flex items-start gap-3 flex-1">
               <Cookie className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" aria-hidden="true" />
               <p className="text-sm text-slate-700 dark:text-slate-300">
-                We use essential cookies to keep the site working. Optional cookies help us improve your experience and provide AI-powered translation.{' '}
+                Necessary cookies are always on. Analytics, session recording, and marketing cookies are off by default and only turn on when you accept them.{' '}
                 <button
                   onClick={() => setShowDetails(true)}
                   className="text-blue-600 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
@@ -117,7 +126,7 @@ export function ConsentBanner() {
                 onClick={handleRejectOptional}
                 className="min-h-[44px] min-w-[44px] text-sm"
               >
-                Essential only
+                Reject optional
               </Button>
               <Button
                 size="sm"
@@ -146,16 +155,16 @@ export function ConsentBanner() {
               </button>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {/* Essential - always on */}
               <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <Shield className="h-5 w-5 text-green-600 mt-0.5 shrink-0" aria-hidden="true" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-slate-900 dark:text-white">Essential</span>
+                    <span className="text-sm font-medium text-slate-900 dark:text-white">Necessary</span>
                     <span className="text-xs text-green-600 font-medium">Always on</span>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">Required for the site to function. Security, navigation, and accessibility.</p>
+                  <p className="text-xs text-slate-500 mt-1">Session, security, and load-balancing. Required for the site to function.</p>
                 </div>
               </div>
 
@@ -173,7 +182,43 @@ export function ConsentBanner() {
                       aria-label="Enable analytics cookies"
                     />
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">Helps us understand how you use the site so we can improve it.</p>
+                  <p className="text-xs text-slate-500 mt-1">Google Analytics 4 and Tag Manager. Helps us understand which pages are useful.</p>
+                </div>
+              </label>
+
+              {/* Product experience (Clarity) */}
+              <label className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-750">
+                <Activity className="h-5 w-5 text-amber-600 mt-0.5 shrink-0" aria-hidden="true" />
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-slate-900 dark:text-white">Product experience</span>
+                    <input
+                      type="checkbox"
+                      checked={productExperience}
+                      onChange={(e) => setProductExperience(e.target.checked)}
+                      className="h-5 w-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2"
+                      aria-label="Enable product experience recording"
+                    />
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">Microsoft Clarity — anonymised session replays and heatmaps so we can improve the claim form.</p>
+                </div>
+              </label>
+
+              {/* Marketing (Meta Pixel) */}
+              <label className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-750">
+                <Megaphone className="h-5 w-5 text-rose-600 mt-0.5 shrink-0" aria-hidden="true" />
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-slate-900 dark:text-white">Marketing</span>
+                    <input
+                      type="checkbox"
+                      checked={marketing}
+                      onChange={(e) => setMarketing(e.target.checked)}
+                      className="h-5 w-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2"
+                      aria-label="Enable marketing cookies"
+                    />
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">Meta (Facebook) Pixel — used for ad retargeting if we run ads. Off unless you opt in.</p>
                 </div>
               </label>
 
@@ -191,19 +236,19 @@ export function ConsentBanner() {
                       aria-label="Enable AI translation"
                     />
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">Enables Gemma 4 AI translation for claim content in 8 languages.</p>
+                  <p className="text-xs text-slate-500 mt-1">Enables Gemma 4 AI translation for UI content in 23 languages. No personal information is sent.</p>
                 </div>
               </label>
             </div>
 
-            <div className="flex gap-2 justify-end">
+            <div className="flex gap-2 justify-end flex-wrap">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleRejectOptional}
                 className="min-h-[44px] min-w-[44px] text-sm"
               >
-                Essential only
+                Reject optional
               </Button>
               <Button
                 variant="outline"
@@ -234,7 +279,9 @@ export function getConsentStatus(): ConsentPreferences | null {
 }
 
 /** Check if a specific consent type is granted */
-export function hasConsent(type: 'analytics' | 'aiTranslation'): boolean {
+export function hasConsent(
+  type: 'analytics' | 'aiTranslation' | 'productExperience' | 'marketing'
+): boolean {
   const prefs = getStoredConsent();
   if (!prefs) return false;
   return prefs[type] === true;

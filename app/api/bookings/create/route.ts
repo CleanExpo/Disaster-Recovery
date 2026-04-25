@@ -5,6 +5,8 @@ import { calculateLeadScore, getLeadPriority, assignLeadToTeam, getResponseTime 
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { encrypt, isConfigured } from '@/lib/encryption';
 import { rateLimit } from '@/lib/rate-limit';
+import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const bookingSchema = z.object({
   // Service Details
@@ -105,6 +107,7 @@ function calculateEstimatedArrival(date: string, time: string, urgency: string):
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/bookings/create' });
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('x-real-ip') ??
@@ -153,7 +156,7 @@ export async function POST(request: NextRequest) {
     // false in that case and the NODE_ENV guard below lets dev proceed with the console.warn
     // emitted by src/lib/encryption.ts.
     if (!isConfigured() && process.env.NODE_ENV !== 'development') {
-      console.error('[security] DR-390: ENCRYPTION_SECRET is not configured. Booking creation blocked in non-dev environment.');
+      log.error('ENCRYPTION_SECRET is not configured; booking creation blocked in non-dev', { ref: 'DR-390' });
       return NextResponse.json({
         success: false,
         message: 'Server configuration error. Please try again or contact support.',
@@ -202,6 +205,23 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    log.info('booking created', { bookingRef, bookingId: booking.id, serviceType: validatedData.serviceType, urgency: validatedData.urgency });
+
+    await logComplianceEvent({
+      eventType: 'booking_created',
+      correlationId: booking.id,
+      correlationType: 'claim',
+      entityType: 'customer',
+      entityIdentifier: validatedData.email,
+      metadata: {
+        booking_ref: bookingRef,
+        service_type: validatedData.serviceType,
+        urgency: validatedData.urgency,
+        priority,
+        request_id: log.requestId,
+      },
+    });
+
     const estimatedArrival = calculateEstimatedArrival(
       validatedData.date,
       validatedData.time,
@@ -233,7 +253,7 @@ export async function POST(request: NextRequest) {
       sendEmail('bookings@disasterrecovery.com.au', emailTemplates.leadNotification(leadData)),
       sendEmail(validatedData.email, emailTemplates.leadConfirmation(leadData)),
     ]).catch(error => {
-      console.error('Email sending error:', error);
+      log.error('email sending error', { error: error instanceof Error ? error.message : String(error) });
     });
 
     // Return success response (same structure the frontend expects)
@@ -252,9 +272,8 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
 
   } catch (error) {
-    console.error('Booking error:', error);
-
     if (error instanceof z.ZodError) {
+      log.warn('booking validation failed', { issues: error.errors.length });
       return NextResponse.json({
         success: false,
         message: 'Validation error',
@@ -264,6 +283,9 @@ export async function POST(request: NextRequest) {
         })),
       }, { status: 400 });
     }
+
+    log.error('booking create failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/bookings/create' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json({
       success: false,

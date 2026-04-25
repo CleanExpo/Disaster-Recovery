@@ -42,6 +42,7 @@ import {
 } from 'recharts';
 import { ComplianceMetrics, AnalyticsDateRange } from '@/types/analytics';
 import { usePermissions } from '@/hooks/usePermissions';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export function ComplianceReports() {
   const [metrics, setMetrics] = useState<ComplianceMetrics | null>(null);
@@ -74,7 +75,7 @@ export function ComplianceReports() {
       const data = await response.json();
       setMetrics(data);
     } catch (error) {
-      console.error('Failed to fetch compliance metrics:', error);
+      clientLogger.error('Failed to fetch compliance metrics:', { source: 'analytics/ComplianceReports' }, error);
     } finally {
       setLoading(false);
     }

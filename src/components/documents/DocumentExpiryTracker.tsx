@@ -12,6 +12,7 @@ import type {
   Document,
   DocumentCategory 
 } from '@/types/document-management';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface DocumentExpiryTrackerProps {
   contractorId?: string;
@@ -132,7 +133,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
       setExpirationAlerts(mockAlerts);
       setComplianceStatus(mockCompliance);
     } catch (error) {
-      console.error('Error loading expiration data:', error);
+      clientLogger.error('Error loading expiration data:', { source: 'documents/DocumentExpiryTracker' }, error);
     } finally {
       setLoading(false);
     }

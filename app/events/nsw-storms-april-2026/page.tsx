@@ -15,8 +15,8 @@
  * Framing: NRPG coordinates restoration and claim documentation — not a claim advocate.
  */
 
-import type { Metadata } from 'next'
-import Link from 'next/link'
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'NSW/QLD Storms April 2026 — ICA Significant Event | Claim Support | NRPG',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: 'https://disasterrecovery.com.au/events/nsw-storms-april-2026',
     type: 'website',
   },
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -59,7 +59,7 @@ const faqSchema = {
       name: 'Are the Hawkesbury-Nepean and Illawarra areas covered?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The Hawkesbury-Nepean and Illawarra regions are the primary impact zones declared under the ICA Significant Event for NSW/QLD storms 3–8 April 2026. NRPG\'s contractor network operates across these regions. Lodge your claim and an IICRC-certified restoration contractor will be matched to your property.',
+        text: "Yes. The Hawkesbury-Nepean and Illawarra regions are the primary impact zones declared under the ICA Significant Event for NSW/QLD storms 3–8 April 2026. NRPG's contractor network operates across these regions. Lodge your claim and an IICRC-certified restoration contractor will be matched to your property.",
       },
     },
     {
@@ -79,7 +79,7 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 const eventSchema = {
   '@context': 'https://schema.org',
@@ -103,10 +103,10 @@ const eventSchema = {
   ],
   organizer: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
   },
-}
+};
 
 export default function NSWStormsApril2026Page() {
   return (
@@ -121,7 +121,6 @@ export default function NSWStormsApril2026Page() {
       />
 
       <div className="min-h-screen bg-white">
-
         {/* ── 000 Emergency Warning ── */}
         <div className="bg-red-700 text-white py-3 px-4 text-center" role="alert">
           <p className="text-sm font-bold">
@@ -142,7 +141,8 @@ export default function NSWStormsApril2026Page() {
                 ICA SIGNIFICANT EVENT
               </span>
               <p className="text-blue-100 text-sm">
-                NSW/QLD storms 3–8 April 2026. Declared by Insurance Council of Australia: 10 April 2026.
+                NSW/QLD storms 3–8 April 2026. Declared by Insurance Council of Australia: 10 April
+                2026.
               </p>
             </div>
           </div>
@@ -161,8 +161,8 @@ export default function NSWStormsApril2026Page() {
               <span className="text-blue-400">NRPG advocates for your claim.</span>
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mb-2 leading-relaxed">
-              NSW/QLD storms 3–8 April 2026. Primary impact: Hawkesbury-Nepean and Illawarra.
-              $176 million in insured losses. 14,781 claims lodged.
+              NSW/QLD storms 3–8 April 2026. Primary impact: Hawkesbury-Nepean and Illawarra. $176
+              million in insured losses. 14,781 claims lodged.
             </p>
             <p className="text-slate-400 text-sm mb-8">
               Source: Insurance Council of Australia, Significant Events register, 10 April 2026.
@@ -175,9 +175,24 @@ export default function NSWStormsApril2026Page() {
               </p>
               <ol className="space-y-3">
                 {[
-                  { step: '1', label: 'Document your damage', detail: 'Photograph all damage before cleanup. Date-stamped photos are your primary evidence.' },
-                  { step: '2', label: 'Lodge your claim', detail: 'Submit in under 90 seconds on mobile. NRPG captures your evidence and submits to your insurer.' },
-                  { step: '3', label: 'NRPG coordinates your restoration', detail: 'IICRC-certified contractors attend, assess, and begin restoration. One contact, one timeline.' },
+                  {
+                    step: '1',
+                    label: 'Document your damage',
+                    detail:
+                      'Photograph all damage before cleanup. Date-stamped photos are your primary evidence.',
+                  },
+                  {
+                    step: '2',
+                    label: 'Lodge your claim',
+                    detail:
+                      'Submit in under 90 seconds on mobile. NRPG captures your evidence and submits to your insurer.',
+                  },
+                  {
+                    step: '3',
+                    label: 'NRPG coordinates your restoration',
+                    detail:
+                      'IICRC-certified contractors attend, assess, and begin restoration. One contact, one timeline.',
+                  },
                 ].map(({ step, label, detail }) => (
                   <li key={step} className="flex items-start gap-3">
                     <span className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-black flex items-center justify-center mt-0.5">
@@ -207,10 +222,10 @@ export default function NSWStormsApril2026Page() {
               </Link>
             </div>
             <p className="text-slate-500 text-xs mt-4 max-w-2xl">
-              <strong className="text-slate-400">Privacy Notice (APP 3):</strong> Personal information collected
-              through this service is used solely to connect you with an IICRC-certified restoration contractor
-              and is handled in accordance with the Privacy Act 1988 (Cth). NRPG does not sell personal
-              information to third parties.
+              <strong className="text-slate-400">Privacy Notice (APP 3):</strong> Personal
+              information collected through this service is used solely to connect you with an
+              IICRC-certified restoration contractor and is handled in accordance with the Privacy
+              Act 1988 (Cth). NRPG does not sell personal information to third parties.
             </p>
           </div>
         </section>
@@ -229,15 +244,18 @@ export default function NSWStormsApril2026Page() {
                   { value: '2', label: 'States affected (NSW/QLD)' },
                   { value: '10 Apr', label: 'Declaration date' },
                 ].map(({ value, label }) => (
-                  <div key={label} className="text-center p-4 bg-white border border-slate-200 rounded-lg">
+                  <div
+                    key={label}
+                    className="text-center p-4 bg-white border border-slate-200 rounded-lg"
+                  >
                     <div className="text-2xl font-black text-slate-900 mb-1">{value}</div>
                     <div className="text-xs text-slate-500">{label}</div>
                   </div>
                 ))}
               </div>
               <p className="text-slate-400 text-xs mt-3">
-                Source: Insurance Council of Australia — Current Catastrophes, Significant Events register.
-                insurancecouncil.com.au
+                Source: Insurance Council of Australia — Current Catastrophes, Significant Events
+                register. insurancecouncil.com.au
               </p>
             </div>
           </div>
@@ -275,7 +293,7 @@ export default function NSWStormsApril2026Page() {
                 {
                   day: 'Day 2–5',
                   title: 'Independent damage assessment',
-                  body: 'NRPG\'s IICRC-certified contractors attend, assess, and produce an independent assessment report. This documentation supports your claim position with your insurer and, if needed, at AFCA.',
+                  body: "NRPG's IICRC-certified contractors attend, assess, and produce an independent assessment report. This documentation supports your claim position with your insurer and, if needed, at AFCA.",
                   urgent: false,
                 },
                 {
@@ -287,7 +305,7 @@ export default function NSWStormsApril2026Page() {
                 {
                   day: 'If delayed',
                   title: 'AFCA escalation pathway',
-                  body: 'Under the General Insurance Code of Practice, insurers must acknowledge claims within 10 business days. If your insurer is slow, escalate to AFCA (afca.org.au) at no cost. NRPG\'s independent documentation supports your AFCA submission.',
+                  body: "Under the General Insurance Code of Practice, insurers must acknowledge claims within 10 business days. If your insurer is slow, escalate to AFCA (afca.org.au) at no cost. NRPG's independent documentation supports your AFCA submission.",
                   urgent: false,
                 },
               ].map(({ day, title, body, urgent }) => (
@@ -296,7 +314,9 @@ export default function NSWStormsApril2026Page() {
                   className={`bg-white border rounded-xl p-5 shadow-sm ${urgent ? 'border-red-300 ring-1 ring-red-200' : 'border-slate-200'}`}
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded ${urgent ? 'bg-red-50 text-red-700' : 'bg-slate-100 text-slate-600'}`}>
+                    <span
+                      className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded ${urgent ? 'bg-red-50 text-red-700' : 'bg-slate-100 text-slate-600'}`}
+                    >
                       {day}
                     </span>
                   </div>
@@ -321,10 +341,10 @@ export default function NSWStormsApril2026Page() {
                     If your insurer is slow or disputes your claim
                   </h2>
                   <p className="text-amber-800 text-sm leading-relaxed mb-3">
-                    The Australian Financial Complaints Authority (AFCA) investigates insurance disputes at no
-                    cost to you. Under the General Insurance Code of Practice, your insurer must acknowledge
-                    your claim within 10 business days and must keep you informed of progress. If they fail to
-                    do so, AFCA can intervene.
+                    The Australian Financial Complaints Authority (AFCA) investigates insurance
+                    disputes at no cost to you. Under the General Insurance Code of Practice, your
+                    insurer must acknowledge your claim within 10 business days and must keep you
+                    informed of progress. If they fail to do so, AFCA can intervene.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <a
@@ -377,8 +397,13 @@ export default function NSWStormsApril2026Page() {
                   body: 'Storm damage, water ingress, mould remediation (IICRC S500:2025/S520:2025) to structural repairs and rebuild — one contact, one timeline.',
                 },
               ].map(({ number, title, body }) => (
-                <div key={number} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                  <div className="text-4xl font-black text-blue-100 mb-3 font-display">{number}</div>
+                <div
+                  key={number}
+                  className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm"
+                >
+                  <div className="text-4xl font-black text-blue-100 mb-3 font-display">
+                    {number}
+                  </div>
                   <h3 className="font-bold text-slate-900 text-lg mb-3">{title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{body}</p>
                 </div>
@@ -405,7 +430,7 @@ export default function NSWStormsApril2026Page() {
                 },
                 {
                   q: 'Are the Hawkesbury-Nepean and Illawarra areas covered?',
-                  a: 'Yes. The Hawkesbury-Nepean and Illawarra regions are the primary impact zones declared under the ICA Significant Event for NSW/QLD storms 3–8 April 2026. NRPG\'s contractor network operates across these regions.',
+                  a: "Yes. The Hawkesbury-Nepean and Illawarra regions are the primary impact zones declared under the ICA Significant Event for NSW/QLD storms 3–8 April 2026. NRPG's contractor network operates across these regions.",
                 },
                 {
                   q: 'What if my insurer delays or disputes my storm claim?',
@@ -436,10 +461,10 @@ export default function NSWStormsApril2026Page() {
               coordinates your claim and restoration from the first contact.
             </p>
             <p className="text-slate-400 text-xs mb-8">
-              <strong>Privacy Notice (APP 3):</strong> Personal information collected through this service
-              is used solely to connect you with an IICRC-certified restoration contractor and is handled
-              in accordance with the Privacy Act 1988 (Cth). NRPG does not sell personal information to
-              third parties.
+              <strong>Privacy Notice (APP 3):</strong> Personal information collected through this
+              service is used solely to connect you with an IICRC-certified restoration contractor
+              and is handled in accordance with the Privacy Act 1988 (Cth). NRPG does not sell
+              personal information to third parties.
             </p>
             <Link
               href="/claim"
@@ -447,13 +472,17 @@ export default function NSWStormsApril2026Page() {
             >
               Lodge Your Claim Now
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </Link>
           </div>
         </section>
-
       </div>
     </>
-  )
+  );
 }

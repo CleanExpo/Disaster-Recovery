@@ -1,4 +1,4 @@
-import { getServerSession } from 'next-auth';
+import { getServerSession, type Session } from 'next-auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { authOptions } from '@/lib/auth';
@@ -50,13 +50,20 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  // Fail-closed auth: if session resolution throws (e.g. missing NEXTAUTH_SECRET
+  // in a preview environment) we redirect to /login rather than 500ing.
+  let session: Session | null = null;
+  try {
+    session = await getServerSession(authOptions);
+  } catch {
+    session = null;
+  }
 
   if (!session?.user) {
     redirect(`/login?callbackUrl=${encodeURIComponent('/admin')}`);
   }
 
-  if (!isAdminRole(session.user.role as string)) {
+  if (!isAdminRole((session.user as { role?: string }).role)) {
     redirect('/dashboard');
   }
 

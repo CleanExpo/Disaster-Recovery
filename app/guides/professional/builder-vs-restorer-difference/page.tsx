@@ -199,7 +199,7 @@ export default function BuilderVsRestorerPage() {
               </ol>
               <p>
                 Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>{' '}
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>{' '}
                 if you need to manage cash flow while waiting for your insurance reimbursement.
               </p>
             </div>

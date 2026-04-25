@@ -36,7 +36,7 @@ export default function CanberraGovernmentRestorationPage() {
         name: 'How are government building restorations billed?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly \u2014 the department, agency, or property manager \u2014 so work begins immediately without waiting for insurer or departmental procurement approval for emergency works. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support Comcover claims, private insurance, or departmental procurement acquittal. Payment plans are available through Blue Fire Finance.',
+          text: 'We bill you directly \u2014 the department, agency, or property manager \u2014 so work begins immediately without waiting for insurer or departmental procurement approval for emergency works. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support Comcover claims, private insurance, or departmental procurement acquittal. Payment plans are available through Equipped Commercial Finance.',
         },
       },
       {
@@ -170,7 +170,7 @@ export default function CanberraGovernmentRestorationPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for large-scale institutional restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for large-scale institutional restorations.
               </p>
             </div>
           ),
@@ -187,7 +187,7 @@ export default function CanberraGovernmentRestorationPage() {
         },
         {
           question: 'How are government building restorations billed?',
-          answer: 'We bill you directly — the department, agency, or property manager — so work begins immediately without waiting for insurer or departmental procurement approval for emergency works. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support Comcover claims, private insurance, or departmental procurement acquittal. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the department, agency, or property manager — so work begins immediately without waiting for insurer or departmental procurement approval for emergency works. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support Comcover claims, private insurance, or departmental procurement acquittal. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'How does Canberra\'s climate affect building damage risk?',

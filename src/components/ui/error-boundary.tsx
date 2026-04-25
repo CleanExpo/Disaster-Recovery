@@ -6,6 +6,7 @@ import { AlertTriangle, RefreshCw, Home, Bug, Mail, FileX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -51,8 +52,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
     // Log error to console in development
     if (process.env.NODE_ENV === 'development') {
-      console.error('Error Boundary caught an error:', error);
-      console.error('Error Info:', errorInfo);
+      clientLogger.error('Error Boundary caught an error:', { source: 'ui/error-boundary' }, error);
+      clientLogger.error('Error Info:', { source: 'ui/error-boundary' }, errorInfo);
     }
 
     // Call custom error handler if provided
@@ -65,7 +66,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   reportError = (error: Error, errorInfo: ErrorInfo) => {
     // Example: Send to error tracking service
     // Sentry.captureException(error, { contexts: { react: errorInfo } });
-    console.log('Error reported:', { error, errorInfo, errorId: this.state.errorId });
+    clientLogger.info('Error reported:', { source: 'ui/error-boundary', data: { error, errorInfo, errorId: this.state.errorId } });
   };
 
   handleRefresh = () => {
@@ -90,7 +91,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       url: window.location.href };
 
     // In a real app, send this to your error reporting service
-    console.log('Error report generated:', errorReport);
+    clientLogger.info('Error report generated:', { source: 'ui/error-boundary', data: errorReport });
     
     // For now, just copy to clipboard
     navigator.clipboard.writeText(JSON.stringify(errorReport, null, 2));
@@ -266,7 +267,7 @@ export function withErrorBoundary<P extends {}>(
 export function useErrorHandler() {
   return {
     reportError: (error: Error, context?: string) => {
-      console.error(`Manual error report ${context ? `(${context})` : ''}:`, error);
+      clientLogger.error(`Manual error report ${context ? `(${context})` : ''}:`, { source: 'ui/error-boundary' }, error);
       
       // In production, send to error tracking service
       // Sentry.captureException(error, { tags: { context } });

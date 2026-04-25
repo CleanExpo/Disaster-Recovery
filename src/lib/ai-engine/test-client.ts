@@ -214,7 +214,7 @@ export async function runDevelopmentTests() {
           }
           console.log('    ✅ Passed')
         } catch (error) {
-          console.log('    ❌ Failed:', error.message)
+          console.log('    ❌ Failed:', error instanceof Error ? error.message : String(error))
         }
       }
       console.log()

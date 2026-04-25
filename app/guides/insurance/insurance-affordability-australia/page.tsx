@@ -301,8 +301,8 @@ export default function InsuranceAffordabilityAustraliaPage() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Finance options available:</strong> For homeowners managing a gap
                   between insurer payment and full restoration cost, finance options through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                    Blue Fire Finance
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                    Equipped Commercial Finance
                   </a>{' '}
                   are available to help bridge the shortfall.
                 </li>

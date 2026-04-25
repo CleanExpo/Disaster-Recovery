@@ -81,7 +81,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'After water damage, the clock is ticking. Our {{city}} IICRC-certified team follows the S500:2025 standard for water damage restoration: assess, extract, dry, decontaminate, restore. Every step documented for your insurer. Payment plans available through Blue Fire Finance.',
+        summary: 'After water damage, the clock is ticking. Our {{city}} IICRC-certified team follows the S500:2025 standard for water damage restoration: assess, extract, dry, decontaminate, restore. Every step documented for your insurer. Payment plans available through Equipped Commercial Finance.',
         ctaText: 'Start Your Claim',
         ctaPath: '/claim',
         topicType: 'STANDARD',
@@ -334,7 +334,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'Australia has the #1 most expensive disaster recovery market in the OECD. Our {{city}} network provides transparent pricing — we bill you directly, not your insurer. See exactly what the work costs. Payment plans available through Blue Fire Finance.',
+        summary: 'Australia has the #1 most expensive disaster recovery market in the OECD. Our {{city}} network provides transparent pricing — we bill you directly, not your insurer. See exactly what the work costs. Payment plans available through Equipped Commercial Finance.',
         ctaText: 'Learn More',
         ctaPath: '/about',
         topicType: 'STANDARD',

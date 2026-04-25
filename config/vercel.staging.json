@@ -8,7 +8,7 @@
   "installCommand": "npm install",
   "env": {
     "NODE_ENV": "staging",
-    "NEXT_PUBLIC_APP_NAME": "Disaster Recovery Australia (Staging)"
+    "NEXT_PUBLIC_APP_NAME": "Disaster Recovery (Staging)"
   },
   "build": {
     "env": {

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -10,7 +11,7 @@ export default function SearchBar() {
     e.preventDefault();
     // Basic search functionality for audit detection
     if (searchTerm.trim()) {
-      console.log('Searching for:', searchTerm);
+      clientLogger.info('Searching for:', { source: 'components/SearchBar', data: searchTerm });
       // In a real app, this would trigger actual search
       alert(`Searching for: ${searchTerm}`);
     }
