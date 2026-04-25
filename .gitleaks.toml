@@ -13,10 +13,16 @@ paths = [
   '''(^|/)__tests__/.*\.test\.(ts|js|tsx|jsx)$''',
   '''(^|/)docs/.*\.md$''',
   '''(^|/)proposals/.*\.md$''',
+  # deadlines.ts contains ProgramKey slugs (e.g. "qld-floods-2026-structural-assistance")
+  # that trip the generic-api-key rule — these are TypeScript string literals, not secrets.
+  '''src/lib/deadlines\.ts$''',
 ]
 regexes = [
   # allow example placeholders
   '''(?i)(example|placeholder|YOUR_|xxx|test_|dummy_)''',
+  # ProgramKey slugs — disaster-event identifiers in the form <event>-<year>-<type>.
+  # These match the generic-api-key rule (dashes + year digits) but are not secrets.
+  '''(?i)(qld-floods-\d{4}|narelle-wa-emergency|alfred-fnq-qld|emergency-hardship|structural-assistance|personal-hardship|extended-esha)''',
 ]
 
 [[rules]]
