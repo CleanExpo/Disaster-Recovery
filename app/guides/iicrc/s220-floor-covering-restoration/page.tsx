@@ -274,8 +274,8 @@ export default function S220FloorCoveringRestorationPage() {
                 floor covering or subfloor damage, an independent certified contractor can assess
                 the property and prepare a separate scope. Independent documentation — moisture
                 maps, subfloor readings, and a written scope of works — provides the evidence base
-                for disputing a claim through AFCA. Disaster Recovery Australia can arrange an
-                independent assessment.
+                for disputing a claim through AFCA. Disaster Recovery can arrange an independent
+                assessment.
               </p>
             ),
           },
