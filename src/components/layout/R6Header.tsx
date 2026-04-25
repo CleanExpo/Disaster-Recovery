@@ -159,7 +159,7 @@ export default function R6Header() {
             <div className="flex items-center justify-center py-2">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 animate-bounce" />
-                <span className="text-sm font-bold">🚨 EMERGENCY RESPONSE ACTIVE • TEAMS DISPATCHED WITHIN 60 MINUTES • CALL NOW 🚨</span>
+                <span className="text-sm font-bold">🚨 EMERGENCY RESPONSE ACTIVE • TEAMS TARGET 60-MIN RESPONSE IN METRO AREAS • CALL NOW 🚨</span>
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@ export default function R6Header() {
               </div>
               <div className="flex items-center gap-2 group">
                 <Zap className="w-4 h-4 group-hover:scale-110 transition-transform animate-pulse" />
-                <span className="text-sm font-medium">60-Min Response Guarantee</span>
+                <span className="text-sm font-medium">60-Min Response Target</span>
               </div>
             </div>
             <div className="flex items-center gap-4">

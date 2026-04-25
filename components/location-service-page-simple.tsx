@@ -279,7 +279,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Frequently Asked Questions</h2>
-              <p className="text-gray-500 mb-8">Common questions about our services in {city}</p>
+              <p className="text-gray-600 mb-8">Common questions about our services in {city}</p>
               <div className="space-y-4">
                 {data.faqs.map((faq: any, idx: number) => (
                   <motion.details
@@ -293,7 +293,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
                   >
                     <summary className="flex items-center justify-between cursor-pointer p-5 font-semibold text-gray-900 hover:bg-gray-100 transition-colors list-none [&::-webkit-details-marker]:hidden">
                       <span className="pr-4">{faq.question}</span>
-                      <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-90" />
+                      <ChevronRight className="w-5 h-5 text-gray-500 flex-shrink-0 transition-transform group-open:rotate-90" />
                     </summary>
                     <div className="px-5 pb-5 text-gray-600 leading-relaxed border-t border-gray-200 pt-4">
                       {faq.answer}
