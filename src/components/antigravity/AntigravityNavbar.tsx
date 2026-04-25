@@ -34,7 +34,7 @@ export function AntigravityNavbar() {
       </div>
 
       {/* Main Nav */}
-      <nav className="ag-container ag-main-nav rtl:flex-row-reverse">
+      <nav className="ag-container ag-main-nav rtl:flex-row-reverse" aria-label="Main navigation">
         <div className="ag-logo">
           <Link href="/">
             <div className="ag-logo-mark">
@@ -42,6 +42,8 @@ export function AntigravityNavbar() {
                 viewBox="0 0 80 32"
                 className="ag-heartbeat-svg"
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
               >
                 <path
                   d="M 2 18 h 8 l 4 -10 l 7 20 l 6 -26 l 4 16 h 5"
@@ -72,7 +74,7 @@ export function AntigravityNavbar() {
 
         <div className="ag-emergency-action">
           <Link href="/claim" className="ag-btn-emergency">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
             Make a Claim
           </Link>
         </div>
@@ -83,17 +85,22 @@ export function AntigravityNavbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
+          aria-controls="ag-mobile-nav-menu"
         >
           {mobileOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
           )}
         </button>
       </nav>
 
       {/* Mobile nav drawer */}
-      <div className={`ag-mobile-nav ${mobileOpen ? 'ag-mobile-nav-open' : ''}`}>
+      <div
+        id="ag-mobile-nav-menu"
+        className={`ag-mobile-nav ${mobileOpen ? 'ag-mobile-nav-open' : ''}`}
+        aria-hidden={!mobileOpen}
+      >
         <Link href="/services" onClick={() => setMobileOpen(false)}>Services</Link>
         <Link href="/locations" onClick={() => setMobileOpen(false)}>Locations</Link>
         <Link href="/for-business" onClick={() => setMobileOpen(false)}>For Business</Link>

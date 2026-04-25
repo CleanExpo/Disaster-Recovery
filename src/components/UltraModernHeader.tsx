@@ -459,6 +459,12 @@ export default function UltraModernHeader() {
                   className="relative"
                   onMouseEnter={() => setActiveDropdown(item.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
+                  onBlur={(e) => {
+                    // DR-720: close dropdown when keyboard focus leaves this nav-item group
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                      setActiveDropdown(null);
+                    }
+                  }}
                 >
                   <Link
                     href={item.href}
@@ -466,9 +472,11 @@ export default function UltraModernHeader() {
                     aria-haspopup={item.dropdown ? "true" : undefined}
                     aria-expanded={item.dropdown ? activeDropdown === item.label : undefined}
                     id={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                    onFocus={() => item.dropdown && setActiveDropdown(item.label)}
+                    onKeyDown={(e) => { if (e.key === 'Escape') setActiveDropdown(null); }}
                     style={{
-                      background: activeDropdown === item.label 
-                        ? 'rgba(99, 91, 255, 0.1)' 
+                      background: activeDropdown === item.label
+                        ? 'rgba(99, 91, 255, 0.1)'
                         : 'transparent' }}
                   >
                     <span className="relative z-10">{item.label}</span>

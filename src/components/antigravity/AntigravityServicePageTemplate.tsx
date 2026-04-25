@@ -38,9 +38,9 @@ export function AntigravityServicePageTemplate({ data, heroImage, ctaImage }: Pr
           )}
         </div>
         <div className="ag-container ag-header-content">
-          <div className="ag-breadcrumb">
-            <Link href="/">Home</Link> / <Link href="/services">Services</Link> / <span>{data.breadcrumbLabel}</span>
-          </div>
+          <nav className="ag-breadcrumb" aria-label="Breadcrumb">
+            <Link href="/">Home</Link> / <Link href="/services">Services</Link> / <span aria-current="page">{data.breadcrumbLabel}</span>
+          </nav>
           <h1>{data.title}</h1>
           <p className="ag-lead-text" style={{ borderLeft: `4px solid ${data.theme.leadBorderColor}` }}>
             {data.leadText}
@@ -92,7 +92,7 @@ export function AntigravityServicePageTemplate({ data, heroImage, ctaImage }: Pr
             <h3>{data.sidebar.heading}</h3>
             <p className="ag-contact-desc">{data.sidebar.description}</p>
             <Link href={data.sidebar.ctaHref} className="ag-btn-critical">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+              <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
               {data.sidebar.ctaText}
             </Link>
           </div>
