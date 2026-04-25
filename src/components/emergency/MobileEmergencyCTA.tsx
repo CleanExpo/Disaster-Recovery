@@ -10,20 +10,25 @@ export default function MobileEmergencyCTA() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    // Check if mobile
+    // DR-723: throttle resize with rAF + passive to avoid INP regression
+    let raf = 0
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        setIsMobile(window.innerWidth <= 768)
+      })
     }
-    
+
     checkMobile()
-    window.addEventListener('resize', checkMobile)
-    
+    window.addEventListener('resize', checkMobile, { passive: true })
+
     // Show after 2 seconds
     const timer = setTimeout(() => {
       setIsVisible(true)
     }, 2000)
-    
+
     return () => {
+      cancelAnimationFrame(raf)
       clearTimeout(timer)
       window.removeEventListener('resize', checkMobile)
     }
