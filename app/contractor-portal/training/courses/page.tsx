@@ -237,32 +237,35 @@ function CourseCatalogPageOriginal() {
               </div>
             </div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2">
-                <Filter className="w-4 h-4" />
-                <select 
+              {/* DR-720: <select> inside <button> is invalid HTML — replace with styled <label>+<select> */}
+              <label className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2 cursor-pointer">
+                <Filter className="w-4 h-4 pointer-events-none" aria-hidden="true" />
+                <select
+                  aria-label="Filter by category"
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="bg-transparent border-0 outline-none"
+                  className="bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
                 >
                   <option value="all" className="text-gray-900">All Categories</option>
                   {categories.map(cat => (
                     <option key={cat} value={cat} className="text-gray-900">{cat}</option>
                   ))}
                 </select>
-              </button>
-              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2">
-                <Filter className="w-4 h-4" />
-                <select 
+              </label>
+              <label className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2 cursor-pointer">
+                <Filter className="w-4 h-4 pointer-events-none" aria-hidden="true" />
+                <select
+                  aria-label="Filter by level"
                   value={filterLevel}
                   onChange={(e) => setFilterLevel(e.target.value)}
-                  className="bg-transparent border-0 outline-none"
+                  className="bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
                 >
                   <option value="all" className="text-gray-900">All Levels</option>
                   {levels.map(level => (
                     <option key={level} value={level} className="text-gray-900">{level}</option>
                   ))}
                 </select>
-              </button>
+              </label>
             </div>
           </div>
         </div>
