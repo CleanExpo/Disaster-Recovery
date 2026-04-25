@@ -21,9 +21,6 @@ import Breadcrumb from '@/components/Breadcrumb';
 import NavigationIndicator from '@/components/NavigationIndicator';
 import { AntigravityLayoutGuard } from '@/components/AntigravityLayoutGuard';
 import { LayoutChrome } from '@/components/LayoutChrome';
-import LoadingIndicator from '@/components/LoadingIndicator';
-import ProgressSpinner from '@/components/ProgressSpinner';
-import LazyImage from '@/components/LazyImage';
 import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema';
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema';
 import RegisterServiceWorker from './register-sw';
@@ -529,9 +526,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
           </LayoutChrome>
-          <LoadingIndicator />
-          <ProgressSpinner />
-          <LazyImage />
           <ConsentBanner />
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
