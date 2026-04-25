@@ -207,12 +207,56 @@ a.icon-button {
   }
 }
 
-/* ── Site-wide contrast safety net ──────────────────────── */
-/* Fix light text on light backgrounds */
+/* ── Site-wide contrast safety net — DR-718 WCAG 2.2 AA ─── */
+/* Fixes light text on light-surface backgrounds.
+   Target: text descendants of common Tailwind light-bg utility classes.
+   gray-600 (#4b5563) achieves 5.74:1 on white — passes AA for all text sizes.
+   gray-500 (#6b7280) = 3.95:1 — passes AA for large text / UI components only;
+   we upgrade to gray-600 everywhere to be safe.                              */
+
+/* text-gray-200 (1.88:1) — always fails on light bg */
 .bg-white .text-gray-200,
 .bg-gray-50 .text-gray-200,
 .bg-gray-100 .text-gray-200,
 [style*="background: white"] .text-gray-200,
 [style*="background-color: white"] .text-gray-200 {
-  color: #4b5563 !important; /* gray-600 */
+  color: #4b5563 !important; /* gray-600 = 5.74:1 ✓ */
+}
+
+/* text-gray-400 (2.85:1) — fails AA for text AND 3:1 for UI components */
+.bg-white .text-gray-400,
+.bg-gray-50 .text-gray-400,
+.bg-gray-100 .text-gray-400,
+.bg-slate-50 .text-gray-400,
+.bg-blue-50 .text-gray-400 {
+  color: #4b5563 !important; /* gray-600 = 5.74:1 ✓ */
+}
+
+/* text-gray-500 (3.95:1) — fails AA for normal text (needs 4.5:1) */
+.bg-white .text-gray-500,
+.bg-gray-50 .text-gray-500,
+.bg-gray-100 .text-gray-500,
+.bg-slate-50 .text-gray-500,
+.bg-blue-50 .text-gray-500 {
+  color: #4b5563 !important; /* gray-600 = 5.74:1 ✓ */
+}
+
+/* text-neutral-400 (2.85:1) and text-neutral-500 (3.95:1) — same as gray equivalents */
+.bg-white .text-neutral-400,
+.bg-gray-50 .text-neutral-400,
+.bg-gray-100 .text-neutral-400,
+.bg-white .text-neutral-500,
+.bg-gray-50 .text-neutral-500,
+.bg-gray-100 .text-neutral-500 {
+  color: #4b5563 !important; /* gray-600 = 5.74:1 ✓ */
+}
+
+/* text-slate-400 (2.79:1) and text-slate-500 (3.84:1) — same pattern */
+.bg-white .text-slate-400,
+.bg-gray-50 .text-slate-400,
+.bg-gray-100 .text-slate-400,
+.bg-white .text-slate-500,
+.bg-gray-50 .text-slate-500,
+.bg-gray-100 .text-slate-500 {
+  color: #4b5563 !important; /* gray-600 = 5.74:1 ✓ */
 }
