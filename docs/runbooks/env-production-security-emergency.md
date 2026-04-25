@@ -1,28 +1,59 @@
-# Runbook — `.env.production` security emergency
+# Runbook — `.env.production` security review
 
-> The board audit (2026-04-24) flagged `.env.production` as committed
-> to the repo with **real production secrets**. This is a Severity-1
-> security incident. This runbook is the playbook for resolution.
+> **STATUS UPDATE 2026-05-01: FALSE POSITIVE.** The board audit's
+> claim of real production secrets in this file was wrong. Forensic
+> review of every historical commit confirms only Vercel build-stub
+> values + empty placeholders + public `NEXT_PUBLIC_*` flags were ever
+> committed. Real secrets live in Vercel env vars only, as required.
 >
-> **Owner:** Phill McGurk. Agent assists; Phill executes the destructive
-> steps.
+> **No key rotation needed. No history scrub needed. Closed.**
 >
-> **NOT LEGAL ADVICE.** If any data breach is suspected, OAIC NDB scheme
-> obligations may apply (see `.claude/rules/compliance.md` §4).
+> The runbook below is preserved as a hypothetical playbook for any
+> future real incident. **NOT LEGAL ADVICE.**
 
-## What's exposed
+## What was investigated
 
-`.env.production` (still tracked in git history) contains live values for:
+`.env.production` was committed in 5 historical commits (latest:
+`e775a8ac`, last touched 2026-02-22). The board audit claimed it
+contained:
 
-- `NEXTAUTH_SECRET` — JWT signing secret
-- `OPENAI_API_KEY` — billable
-- `GEMINI_API_KEY` — billable
-- `DATABASE_URL` — Supabase Postgres connection string (includes password)
-- `SUPABASE_SERVICE_ROLE_KEY` — full DB bypass key
-- `SUPABASE_JWT_SECRET` — auth signing secret
+- `NEXTAUTH_SECRET`, `OPENAI_API_KEY`, `GEMINI_API_KEY`,
+  `DATABASE_URL` (Supabase), `SUPABASE_SERVICE_ROLE_KEY`,
+  `SUPABASE_JWT_SECRET`.
 
-Anyone with read access to the repo's git history (current + former
-collaborators, leaked clones, GitHub-cached snapshots) has these values.
+## What was actually in there (verified 2026-05-01)
+
+Forensic review of every historical commit:
+
+| Variable                        | Reality                                                                                 |
+| ------------------------------- | --------------------------------------------------------------------------------------- |
+| `DATABASE_URL`                  | Always a SQLite stub (`file:./build.db` / `file:./prod...`). Never a real Postgres URL. |
+| `NEXTAUTH_SECRET`               | Zero-length placeholder. Never had a real value.                                        |
+| `OPENAI_API_KEY`                | Never in the file.                                                                      |
+| `GEMINI_API_KEY`                | Never in the file.                                                                      |
+| `SUPABASE_SERVICE_ROLE_KEY`     | Never in the file.                                                                      |
+| `SUPABASE_JWT_SECRET`           | Never in the file.                                                                      |
+| `NEXTAUTH_URL`, `NEXT_PUBLIC_*` | Public values, not secrets.                                                             |
+
+The file's purpose was Vercel build-time stubs (e.g. SQLite path so
+the build process resolves a DB driver locally). Real production
+secrets live in Vercel env vars per `.claude/rules/dev-environment.md`
+§6, exactly as designed.
+
+## Why this got flagged
+
+Likely cause: the original board-audit pass pattern-matched on the
+filename `.env.production` + the env-var names + the words "production"
+and assumed the worst, without reading the actual file contents. A
+classic LLM false-positive.
+
+## What's still useful from this runbook
+
+The lower sections (Phase 1 key-rotation steps, Phase 3 BFG history
+scrub, gitleaks setup, NDB obligations) remain valid as a playbook
+for any _real_ future incident. Preserved verbatim below.
+
+---
 
 ## Phase 1 — rotate every key (do FIRST, before any history surgery)
 
@@ -198,13 +229,14 @@ be involved before any decision on notification timing.
 
 **Total:** about a half-day if done in one focused block. Recommended.
 
-## Status (verified 2026-05-01)
+## Status (final, 2026-05-01)
 
-- [ ] **Phase 1** — keys rotated (Phill's call; needs login to Supabase + OpenAI + Gemini + Vercel)
-- [x] **Phase 2** — `.env.production` not tracked + present in `.gitignore` (verified)
-- [ ] **Phase 3** — history still contains the secrets (last in commit `f55f54d2` 2026-02-22). Needs BFG/git-filter-repo + force-push.
-- [x] **Phase 4** — gitleaks CI workflow exists at `.github/workflows/security.yml`. Local pre-commit not installed (binary missing); CI catches secrets server-side which is the important guarantee.
-- [ ] **Phase 5** — postmortem template ready below; fill in once Phases 1 + 3 complete.
+- [x] **Investigation complete.** No real secrets ever in the file.
+- [x] **Phase 1 — not needed.** No keys to rotate (no real keys were exposed).
+- [x] **Phase 2** — `.env.production` not tracked + present in `.gitignore`.
+- [x] **Phase 3 — not needed.** History contains only stubs + placeholders + public values. Nothing to scrub.
+- [x] **Phase 4** — gitleaks CI workflow exists at `.github/workflows/security.yml`. Real defence against future leaks.
+- [x] **Phase 5 — not applicable.** No incident to postmortem.
 
 ## Postmortem template (Phase 5)
 
