@@ -16,22 +16,23 @@
  * Framing: NRPG is restoration + claim lodgement network, NOT claim advocate.
  */
 
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice'
+import { DeadlineBand } from '@/components/DeadlineBand'
 
 export const metadata: Metadata = {
   title:
     'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery',
   description:
-    'Queensland Floods 2026 — Tropical Low 29U, Bundaberg, Burnett River catchment, and related events. Government assistance closes 27 April 2026. 2,000+ ICA claims. IICRC-certified restoration contractors. Lodge your claim now.',
+    'Government assistance programs available. Check page for current deadlines. Queensland Floods 2026 — Tropical Low 29U, Bundaberg, Burnett River catchment. 2,000+ ICA claims. IICRC-certified restoration contractors. Lodge your claim now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
   },
   openGraph: {
     title: 'QLD Floods 2026 — Bundaberg & Burnett River Recovery | Disaster Recovery',
     description:
-      'Queensland Floods 2026 (Tropical Low 29U). Bundaberg and Burnett River catchment most affected. Government relief closes 27 April. NRPG IICRC-certified contractors ready now.',
+      'Queensland Floods 2026 (Tropical Low 29U). Bundaberg and Burnett River catchment most affected. Government assistance programs available — check page for current deadlines. NRPG IICRC-certified contractors ready now.',
     url: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
     type: 'website',
   },
@@ -46,7 +47,7 @@ const faqSchema = {
       name: 'Is it too late to claim after the flood?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There is no time limit on lodging an insurance claim. However, government relief programs close on 27 April 2026 — lodge your government assistance applications before that date. Your insurance claim can be lodged at any time.',
+        text: 'There is no time limit on lodging an insurance claim. Government relief programs have a closing date — check current deadline status on the page and lodge promptly. Your insurance claim can be lodged at any time.',
       },
     },
     {
@@ -89,7 +90,7 @@ const eventSchema = {
   '@type': 'Event',
   name: 'Queensland Floods 2026 (Tropical Low 29U) — Disaster Recovery',
   description:
-    'Queensland Floods 2026 — Tropical Low 29U and related March 2026 events. Bundaberg and Burnett River catchment. Extended ESHA, Personal Hardship Assistance, and Structural Grants available until 27 April 2026. NRPG IICRC-certified restoration and claims support.',
+    'Queensland Floods 2026 — Tropical Low 29U and related March 2026 events. Bundaberg and Burnett River catchment. Extended ESHA, Personal Hardship Assistance, and Structural Grants available — check page for current deadline status. NRPG IICRC-certified restoration and claims support.',
   startDate: '2026-03-01',
   location: {
     '@type': 'State',
@@ -135,8 +136,8 @@ export default function QueenslandFloods2026Page() {
                 ⏰
               </span>
               <p className="text-amber-900 font-semibold text-sm md:text-base">
-                Government assistance closes <strong>27 April 2026</strong> — Extended ESHA,
-                Personal Hardship, and Structural Grants still available. Apply before the deadline.
+                Government assistance programs — Extended ESHA, Personal Hardship,
+                and Structural Grants. Check current deadline status below.
               </p>
             </div>
           </div>
@@ -148,7 +149,7 @@ export default function QueenslandFloods2026Page() {
             <div className="mb-4">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-blue-700">
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                RECOVERY ACTIVE — DEADLINE 27 APRIL
+                RECOVERY ACTIVE
               </span>
             </div>
             <h1 className="font-display text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
@@ -161,8 +162,7 @@ export default function QueenslandFloods2026Page() {
               River catchment, and surrounding LGAs across Queensland.
             </p>
             <p className="text-base text-slate-400 max-w-2xl mb-8">
-              Government assistance ends 27 April 2026. NRPG coordinates IICRC-certified restoration
-              and supports your claim.
+              Government assistance programs available — check current status below. NRPG coordinates IICRC-certified restoration and supports your claim.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -175,26 +175,12 @@ export default function QueenslandFloods2026Page() {
           </div>
         </section>
 
-        {/* ── Deadline Alert Card (prominent) ── */}
+        {/* ── Deadline Alert Cards (prominent) ── */}
         <section className="py-10 bg-white border-b border-slate-200">
           <div className="container mx-auto px-6 max-w-5xl">
-            <div className="bg-amber-50 border border-amber-400 rounded-lg p-6">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0" role="img" aria-label="Warning">
-                  ⏰
-                </span>
-                <div>
-                  <h2 className="font-bold text-amber-900 text-lg mb-1">
-                    Government Assistance Deadline: 27 April 2026
-                  </h2>
-                  <p className="text-amber-800 text-sm leading-relaxed">
-                    Government assistance closes <strong>27 April 2026</strong> — Extended ESHA,
-                    Personal Hardship, and Structural Grants still available. Do not wait. Lodge
-                    your government applications and insurance claim in parallel today.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <DeadlineBand programKey="qld-floods-2026-extended-esha" />
+            <DeadlineBand programKey="qld-floods-2026-personal-hardship" />
+            <DeadlineBand programKey="qld-floods-2026-structural-assistance" />
           </div>
         </section>
 
@@ -202,11 +188,10 @@ export default function QueenslandFloods2026Page() {
         <section className="py-12 md:py-16 bg-slate-50 border-b border-slate-200">
           <div className="container mx-auto px-6 max-w-5xl">
             <h2 className="font-display text-3xl font-bold text-slate-900 mb-2">
-              Government Relief — Still Available
+              Government Relief Programs
             </h2>
             <p className="text-slate-600 mb-3">
-              Three programs remain open. All close 27 April 2026. Apply for each you are eligible
-              for.
+              Three programs may be available. Apply for each you are eligible for.
             </p>
             <p className="text-slate-600 text-sm mb-6">
               58 Local Government Areas are declared under the Disaster Recovery Funding
@@ -235,7 +220,6 @@ export default function QueenslandFloods2026Page() {
                   <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-1 rounded">
                     Exceptional Circumstances
                   </span>
-                  <span className="text-xs text-red-600 font-semibold">Closes 27 Apr</span>
                 </div>
                 <h3 className="font-bold text-slate-900 text-lg mb-1">Extended ESHA</h3>
                 <p className="text-green-700 font-bold text-xl mb-3">Up to $5,000</p>
@@ -289,15 +273,14 @@ export default function QueenslandFloods2026Page() {
                   <span className="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-1 rounded">
                     No Asset Testing
                   </span>
-                  <span className="text-xs text-red-600 font-semibold">Closes 27 Apr</span>
                 </div>
                 <h3 className="font-bold text-slate-900 text-lg mb-1">
                   Personal Hardship Assistance
                 </h3>
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                  Financial assistance for individuals and families experiencing personal hardship
-                  as a direct result of the Queensland Floods. No asset testing applies. Can be
-                  combined with other relief programs. Deadline: 27 April 2026. Apply via{' '}
+                  Financial assistance for individuals and families experiencing personal hardship as a direct
+                  result of the Queensland Floods. No asset testing applies. Can be combined with other relief
+                  programs. Apply via{' '}
                   <a
                     href="https://www.disaster.qld.gov.au"
                     target="_blank"
@@ -333,7 +316,6 @@ export default function QueenslandFloods2026Page() {
                   <span className="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-50 px-2 py-1 rounded">
                     Primary Residence Only
                   </span>
-                  <span className="text-xs text-red-600 font-semibold">Closes 27 Apr</span>
                 </div>
                 <h3 className="font-bold text-slate-900 text-lg mb-1">
                   Structural Assistance Grants
@@ -488,7 +470,7 @@ export default function QueenslandFloods2026Page() {
               {[
                 {
                   q: 'Is it too late to claim after the flood?',
-                  a: 'There is no time limit on lodging an insurance claim. However, government relief programs close on 27 April 2026 — lodge your government assistance applications before that date. Your insurance claim can be lodged at any time.',
+                  a: 'There is no time limit on lodging an insurance claim. Government relief programs have a closing date — check current deadline status on this page and lodge your government assistance applications promptly. Your insurance claim can be lodged at any time.',
                 },
                 {
                   q: 'What if my insurer is slow to respond?',
@@ -520,11 +502,10 @@ export default function QueenslandFloods2026Page() {
         <section className="py-12 bg-slate-900 text-white">
           <div className="container mx-auto px-6 max-w-3xl text-center">
             <h2 className="font-display text-3xl font-bold text-white mb-3">
-              Don&apos;t Miss the Deadline
+              Act Now on Government Relief
             </h2>
             <p className="text-slate-300 mb-2 leading-relaxed">
-              Government relief closes 27 April. Lodge your claim now — it takes 90 seconds on
-              mobile.
+              Government relief programs have deadlines. Lodge your claim now — it takes 90 seconds on mobile.
             </p>
             <div className="mb-8 text-left">
               <App3CollectionNotice />
