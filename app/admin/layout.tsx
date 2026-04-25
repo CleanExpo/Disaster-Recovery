@@ -45,11 +45,7 @@ const navGroups = [
   },
 ];
 
-export default async function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   // Fail-closed auth: if session resolution throws (e.g. missing NEXTAUTH_SECRET
   // in a preview environment) we redirect to /login rather than 500ing.
   let session: Session | null = null;
@@ -73,36 +69,52 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
-      <aside
-        className="flex flex-col fixed inset-y-0 left-0 z-30 bg-gray-900 text-gray-100 border-r border-gray-800/80 shadow-xl shadow-black/20 w-64"
-      >
+      <aside className="flex flex-col fixed inset-y-0 left-0 z-30 bg-gray-900 text-gray-100 border-r border-gray-800/80 shadow-xl shadow-black/20 w-64">
         <div className="flex h-16 shrink-0 items-center gap-3 border-b border-gray-800/80 px-4">
-        <div className="ag-logo">
-          <Link href="/">
-            <div className="ag-logo-mark">
-              <svg
-                viewBox="0 0 80 32"
-                className="ag-heartbeat-svg"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M 2 18 h 8 l 4 -10 l 7 20 l 6 -26 l 4 16 h 5"
-                  fill="none"
-                  stroke="var(--ag-emergency-red)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="36" cy="18" r="2.5" fill="var(--ag-emergency-red)" />
-                <text x="40" y="26" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="24" fill="var(--ag-emergency-red)">D</text>
-                <text x="58" y="26" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="24" fill="#a0aab2">R</text>
-              </svg>
-            </div>
-            <div className="ag-logo-text">
-              <span className="ag-logo-title text-white">Disaster Recovery</span>
-            </div>
-          </Link>
-        </div>
+          <div className="ag-logo">
+            <Link href="/">
+              <div className="ag-logo-mark">
+                <svg
+                  viewBox="0 0 80 32"
+                  className="ag-heartbeat-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M 2 18 h 8 l 4 -10 l 7 20 l 6 -26 l 4 16 h 5"
+                    fill="none"
+                    stroke="var(--ag-emergency-red)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <circle cx="36" cy="18" r="2.5" fill="var(--ag-emergency-red)" />
+                  <text
+                    x="40"
+                    y="26"
+                    fontFamily="Inter, sans-serif"
+                    fontWeight="900"
+                    fontSize="24"
+                    fill="var(--ag-emergency-red)"
+                  >
+                    D
+                  </text>
+                  <text
+                    x="58"
+                    y="26"
+                    fontFamily="Inter, sans-serif"
+                    fontWeight="900"
+                    fontSize="24"
+                    fill="#a0aab2"
+                  >
+                    R
+                  </text>
+                </svg>
+              </div>
+              <div className="ag-logo-text">
+                <span className="ag-logo-title text-white">Disaster Recovery</span>
+              </div>
+            </Link>
+          </div>
         </div>
 
         <nav className="flex-1 overflow-y-auto overflow-x-hidden py-4 px-3">
@@ -160,10 +172,7 @@ export default async function AdminLayout({
         </div>
       </aside>
 
-      <main
-        className="flex-1 min-w-0 p-6 lg:p-8"
-        style={{ marginLeft: SIDEBAR_WIDTH }}
-      >
+      <main className="flex-1 min-w-0 p-6 lg:p-8" style={{ marginLeft: SIDEBAR_WIDTH }}>
         {children}
       </main>
     </div>
