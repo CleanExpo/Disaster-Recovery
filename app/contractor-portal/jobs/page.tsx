@@ -142,25 +142,28 @@ function ContractorPortalJobsPageOriginal() {
               </div>
             </div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2">
-                <Filter className="w-4 h-4" />
-                <select 
+              {/* DR-720: <select> inside <button> is invalid HTML — replace with styled <label>+<select> */}
+              <label className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2 cursor-pointer">
+                <Filter className="w-4 h-4 pointer-events-none" aria-hidden="true" />
+                <select
+                  aria-label="Filter by status"
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="bg-transparent border-0 outline-none"
+                  className="bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
                 >
                   <option value="all" className="text-gray-900">All Status</option>
                   <option value="new" className="text-gray-900">New</option>
                   <option value="available" className="text-gray-900">Available</option>
                   <option value="in-progress" className="text-gray-900">In Progress</option>
                 </select>
-              </button>
-              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2">
-                <Filter className="w-4 h-4" />
-                <select 
+              </label>
+              <label className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2 cursor-pointer">
+                <Filter className="w-4 h-4 pointer-events-none" aria-hidden="true" />
+                <select
+                  aria-label="Filter by type"
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="bg-transparent border-0 outline-none"
+                  className="bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
                 >
                   <option value="all" className="text-gray-900">All Types</option>
                   <option value="water-damage" className="text-gray-900">Water Damage</option>
@@ -169,7 +172,7 @@ function ContractorPortalJobsPageOriginal() {
                   <option value="storm-damage" className="text-gray-900">Storm Damage</option>
                   <option value="biohazard" className="text-gray-900">Biohazard</option>
                 </select>
-              </button>
+              </label>
             </div>
           </div>
         </div>
