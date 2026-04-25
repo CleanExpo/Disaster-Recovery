@@ -182,9 +182,7 @@ export const deviceTokenRegistrationSchema = z.object({
   appVersion: z.string().min(1).max(32),
 });
 
-export type DeviceTokenRegistrationInput = z.infer<
-  typeof deviceTokenRegistrationSchema
->;
+export type DeviceTokenRegistrationInput = z.infer<typeof deviceTokenRegistrationSchema>;
 
 // ----- Reverse geocode (native geolocation auto-fill) -----
 //
@@ -201,9 +199,7 @@ export const reverseGeocodeRequestSchema = z.object({
   lng: z.number().min(-180).max(180),
 });
 
-export type ReverseGeocodeRequestInput = z.infer<
-  typeof reverseGeocodeRequestSchema
->;
+export type ReverseGeocodeRequestInput = z.infer<typeof reverseGeocodeRequestSchema>;
 
 // ----- Native claim photo upload (iOS/Android Capacitor) -----
 //
