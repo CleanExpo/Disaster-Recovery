@@ -24,12 +24,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-<<<<<<< HEAD
-    "check:scripts": "node -e \"const p=require('./package.json');const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK \u2014 all required scripts present:',required.join(', '));\"",
+    "check:scripts": "node --input-type=module -e \"import{readFileSync}from'fs';const p=JSON.parse(readFileSync('./package.json','utf8'));const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\"",
     "analyze": "ANALYZE=true next build"
-=======
-    "check:scripts": "node --input-type=module -e \"import{readFileSync}from'fs';const p=JSON.parse(readFileSync('./package.json','utf8'));const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\""
->>>>>>> 8de48a2 (fix(ci): fix validate check — ESM-compatible check:scripts + supabase env vars)
   },
   "prisma": {
     "seed": "tsx scripts/core/seed.ts"
