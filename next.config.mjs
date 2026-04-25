@@ -35,6 +35,11 @@ const nextConfig = {
       // DR-533: NSW/QLD storms April 2026 — long-tail canonical redirect
       { source: '/nsw-storms-april-2026-insurance-claims', destination: '/events/nsw-storms-april-2026', permanent: true },
       { source: '/nsw-qld-storms-2026', destination: '/events/nsw-storms-april-2026', permanent: true },
+      // DR-774 / GAP-116: Nov 2025 QLD/NSW storms — bare-slug redirects
+      { source: '/events/nov-storms-2025', destination: '/events/qld-nsw-storms-november-2025', permanent: true },
+      { source: '/events/november-storms-2025', destination: '/events/qld-nsw-storms-november-2025', permanent: true },
+      { source: '/events/qld-storms-november-2025', destination: '/events/qld-nsw-storms-november-2025', permanent: true },
+      { source: '/events/nsw-storms-november-2025', destination: '/events/qld-nsw-storms-november-2025', permanent: true },
       // DR-528: Cyclone Alfred Queensland 2026 canonical redirects
       { source: '/cyclone-alfred-queensland-2026', destination: '/events/cyclone-alfred-fnq-2026', permanent: true },
       { source: '/cyclone-alfred-2026', destination: '/events/cyclone-alfred-fnq-2026', permanent: true },
