@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
+import {
   Plus,
   X,
   FileText,
@@ -15,7 +15,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useEffect } from 'react';
 
 interface FABItem {
   icon: React.ElementType;
@@ -30,12 +29,20 @@ export default function MobileFAB() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
+    // DR-723: throttle with rAF + passive to avoid INP regression
+    let raf = 0;
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setShowScrollTop(window.scrollY > 300);
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const scrollToTop = () => {
