@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import HomePage from './HomePageClient';
 import { generateHowToSchema } from '@/lib/seo-schema';
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery | 24/7 Emergency Restoration Services',
@@ -33,6 +34,10 @@ export default function HomePageWrapper() {
         dangerouslySetInnerHTML={{ __html: howToSchemaData }}
       />
       <HomePage />
+      {/* APP 3 / APP 5 collection notice — DR-770 statutory requirement */}
+      <div className="container mx-auto px-6 max-w-4xl py-6">
+        <App3CollectionNotice />
+      </div>
     </>
   );
 }
