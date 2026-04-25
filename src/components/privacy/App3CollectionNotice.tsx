@@ -105,7 +105,7 @@ export function App3CollectionNotice({
         <p>
           Name, contact details (phone and email), property address and postcode, damage type and
           description, insurance provider name and policy number (if provided), and payment card
-          details (processed by Stripe — not stored by Disaster Recovery Australia).
+          details (processed by Stripe — not stored by Disaster Recovery).
         </p>
       </div>
 
@@ -124,8 +124,8 @@ export function App3CollectionNotice({
         <p className="font-medium mb-1">Cross-border disclosure</p>
         <p>
           Platform infrastructure services may be located outside Australia. Where personal
-          information is disclosed to overseas recipients, Disaster Recovery Australia takes
-          reasonable steps to ensure those recipients comply with the Australian Privacy Principles.
+          information is disclosed to overseas recipients, Disaster Recovery takes reasonable steps
+          to ensure those recipients comply with the Australian Privacy Principles.
         </p>
       </div>
 
