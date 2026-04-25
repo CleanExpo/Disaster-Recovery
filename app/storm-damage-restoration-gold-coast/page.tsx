@@ -161,7 +161,7 @@ export default function StormDamageRestorationGoldCoastPage() {
                   Our platform charges a $550 platform fee plus $2,200 contractor credit ($2,750 total) to begin emergency
                   make-safe. Your assigned contractor then provides a formal contract with transparent pricing for the full
                   scope of works. Payment plans are available through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
                 </p>
               </>
             ),
@@ -212,7 +212,7 @@ export default function StormDamageRestorationGoldCoastPage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb across the Gold Coast, from the northern growth corridors
+                  Our contractor network services suburbs across the Gold Coast, from the northern growth corridors
                   to the southern border suburbs, from the beachfront strip to the hinterland ranges.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

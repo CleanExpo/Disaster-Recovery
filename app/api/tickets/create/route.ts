@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/tickets/create' });
   try {
     const body = await request.json();
 
@@ -59,7 +61,8 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error('Error creating ticket:', error);
+    log.error('error creating ticket', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/tickets/create' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       {
         success: false,
@@ -72,6 +75,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/tickets/create' });
   const { searchParams } = new URL(request.url);
   const ticketId = searchParams.get('id');
 
@@ -105,7 +109,8 @@ export async function GET(request: NextRequest) {
       ticket: serviceRequest,
     });
   } catch (error) {
-    console.error('Error fetching ticket:', error);
+    log.error('error fetching ticket', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/tickets/create' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       {
         success: false,

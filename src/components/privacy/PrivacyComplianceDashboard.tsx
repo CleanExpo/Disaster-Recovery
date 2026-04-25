@@ -34,6 +34,7 @@ import { ConsentManager } from './ConsentManager';
 import { DataSubjectRequests } from './DataSubjectRequests';
 import { DataBreachNotification } from './DataBreachNotification';
 import { ComplianceRequirement } from '@/types/privacy';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface PrivacyComplianceDashboardProps {
   userId?: string;
@@ -103,7 +104,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
       setRequirements(data.requirements);
       setMetrics(data.metrics);
     } catch (error) {
-      console.error('Failed to fetch compliance data:', error);
+      clientLogger.error('Failed to fetch compliance data:', { source: 'privacy/PrivacyComplianceDashboard' }, error);
     }
   };
 

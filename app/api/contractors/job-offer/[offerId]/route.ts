@@ -22,6 +22,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { findNextContractor, OFFER_TIMEOUT_MINUTES } from '@/lib/contractor-matching';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { requestLogger, captureException } from '@/lib/observability';
 
 interface OfferActionBody {
   action: 'accept' | 'decline';
@@ -32,6 +33,7 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ offerId: string }> },
 ) {
+  const log = requestLogger(request, { route: '/api/contractors/job-offer/[offerId]' });
   try {
     const { offerId } = await params;
 
@@ -220,7 +222,8 @@ export async function PATCH(
       expiresAt: expiresAt.toISOString(),
     });
   } catch (error) {
-    console.error('job-offer PATCH error:', error);
+    log.error('job-offer PATCH error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractors/job-offer/[offerId]' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       {
         success: false,

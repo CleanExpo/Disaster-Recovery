@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 /**
  * Email Service — Resend
  * Single email sending module for all outbound email across the platform.
@@ -14,7 +15,7 @@ export async function sendEmail(
 ): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.warn('[email] RESEND_API_KEY not configured — skipping email to', to);
+    clientLogger.warn('[email] RESEND_API_KEY not configured — skipping email to', { source: 'lib/email', data: to });
     return false;
   }
 
@@ -43,13 +44,13 @@ export async function sendEmail(
 
     if (!res.ok) {
       const err = await res.text().catch(() => '');
-      console.error('[email] Resend error:', res.status, err);
+      clientLogger.error('[email] Resend error:', { source: 'lib/email', data: res.status }, err);
       return false;
     }
 
     return true;
   } catch (err) {
-    console.error('[email] Fetch error:', err);
+    clientLogger.error('[email] Fetch error:', { source: 'lib/email' }, err);
     return false;
   }
 }

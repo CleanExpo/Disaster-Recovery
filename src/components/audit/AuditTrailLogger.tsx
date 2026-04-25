@@ -15,6 +15,7 @@ import type {
   AuditAction,
   EvidenceCategory
 } from '@/types/audit-compliance';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface AuditTrailLoggerProps {
   entityType?: EntityType;
@@ -170,7 +171,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
       setAuditTrails(mockTrails);
     } catch (error) {
-      console.error('Error loading audit trails:', error);
+      clientLogger.error('Error loading audit trails:', { source: 'audit/AuditTrailLogger' }, error);
     } finally {
       setLoading(false);
     }
@@ -231,7 +232,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
       setEvidenceFiles(mockEvidence);
     } catch (error) {
-      console.error('Error loading evidence files:', error);
+      clientLogger.error('Error loading evidence files:', { source: 'audit/AuditTrailLogger' }, error);
     }
   };
 

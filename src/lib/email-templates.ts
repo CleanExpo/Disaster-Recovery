@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 /**
  * Email Template System for Disaster Recovery Platform
  * Provides all critical email templates for notifications
@@ -401,7 +402,7 @@ export async function sendEmail(to: string, template: EmailTemplate): Promise<bo
 
     return response.ok;
   } catch (error) {
-    console.error('Failed to send email:', error);
+    clientLogger.error('Failed to send email:', { source: 'lib/email-templates' }, error);
     return false;
   }
 }

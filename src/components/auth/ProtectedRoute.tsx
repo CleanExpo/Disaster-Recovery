@@ -6,6 +6,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Lock, AlertTriangle } from 'lucide-react';
 import { usePermissions } from '@/hooks/usePermissions';
 import { Permission, UserRole } from '@/types/rbac';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -271,7 +272,7 @@ function useAuditLog() {
         })
       });
     } catch (error) {
-      console.error('Failed to log audit action:', error);
+      clientLogger.error('Failed to log audit action:', { source: 'auth/ProtectedRoute' }, error);
     }
   };
   

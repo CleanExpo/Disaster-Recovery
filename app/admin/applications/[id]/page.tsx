@@ -264,19 +264,19 @@ export default function AdminApplicationDetailPage() {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-gray-900">Application data</h2>
             <DataSection title="Business information" icon={Briefcase} data={businessInfo} defaultOpen />
-            {data.insurance && (
+            {Boolean(data.insurance) && (
               <DataSection title="Insurance & licensing" icon={Shield} data={data.insurance as Record<string, unknown>} />
             )}
-            {data.experience && (
+            {Boolean(data.experience) && (
               <DataSection title="Experience & references" icon={User} data={data.experience as Record<string, unknown>} />
             )}
-            {data.equipment && (
+            {Boolean(data.equipment) && (
               <DataSection title="Equipment & resources" icon={Briefcase} data={data.equipment as Record<string, unknown>} />
             )}
-            {data.healthSafety && (
+            {Boolean(data.healthSafety) && (
               <DataSection title="Health & safety" icon={Shield} data={data.healthSafety as Record<string, unknown>} />
             )}
-            {data.banking && (
+            {Boolean(data.banking) && (
               <DataSection title="Banking & payment" icon={Banknote} data={data.banking as Record<string, unknown>} />
             )}
           </div>

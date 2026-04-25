@@ -24,6 +24,7 @@ export interface NotificationListener {
     priorities?: NotificationPriority[];
   };
 }
+import { clientLogger } from '@/lib/observability/client-logger';
 
 class RealtimeNotificationService {
   private ws: WebSocket | null = null;
@@ -76,7 +77,7 @@ class RealtimeNotificationService {
 
         // Connection opened
         this.ws.onopen = () => {
-          console.log('WebSocket connected');
+          clientLogger.info('WebSocket connected', { source: 'notifications/realtime-service' });
           this.isConnected = true;
           this.reconnectAttempts = 0;
           this.connectionPromise = null;
@@ -103,13 +104,13 @@ class RealtimeNotificationService {
             const message: RealtimeMessage = JSON.parse(event.data);
             this.handleMessage(message);
           } catch (error) {
-            console.error('Failed to parse WebSocket message:', error);
+            clientLogger.error('Failed to parse WebSocket message:', { source: 'notifications/realtime-service' }, error);
           }
         };
 
         // Connection closed
         this.ws.onclose = (event) => {
-          console.log('WebSocket disconnected', event.code, event.reason);
+          clientLogger.info('WebSocket disconnected', { source: 'notifications/realtime-service', data: [event.code, event.reason] });
           this.isConnected = false;
           this.stopHeartbeat();
           
@@ -121,7 +122,7 @@ class RealtimeNotificationService {
 
         // Connection error
         this.ws.onerror = (error) => {
-          console.error('WebSocket error:', error);
+          clientLogger.error('WebSocket error:', { source: 'notifications/realtime-service' }, error);
           reject(error);
         };
 
@@ -134,7 +135,7 @@ class RealtimeNotificationService {
   // Mock connection for development
   private mockConnection() {
     this.isConnected = true;
-    console.log('Mock WebSocket connection established');
+    clientLogger.info('Mock WebSocket connection established', { source: 'notifications/realtime-service' });
     
     // Simulate receiving notifications
     setTimeout(() => {
@@ -170,11 +171,11 @@ class RealtimeNotificationService {
         break;
         
       case 'error':
-        console.error('Server error:', message.payload);
+        clientLogger.error('Server error:', { source: 'notifications/realtime-service' }, message.payload);
         break;
         
       default:
-        console.log('Unknown message type:', message.type);
+        clientLogger.info('Unknown message type:', { source: 'notifications/realtime-service', data: message.type });
     }
   }
 
@@ -196,7 +197,7 @@ class RealtimeNotificationService {
       try {
         listener.callback(notification);
       } catch (error) {
-        console.error('Listener error:', error);
+        clientLogger.error('Listener error:', { source: 'notifications/realtime-service' }, error);
       }
     });
 
@@ -266,7 +267,7 @@ class RealtimeNotificationService {
     this.reconnectAttempts++;
     const delay = this.config.reconnectInterval! * Math.pow(2, Math.min(this.reconnectAttempts - 1, 5));
     
-    console.log(`Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts}/${this.config.maxReconnectAttempts})`);
+    clientLogger.info(`Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts}/${this.config.maxReconnectAttempts})`, { source: 'notifications/realtime-service' });
     
     this.reconnectTimer = setTimeout(() => {
       this.connect(userId, token);

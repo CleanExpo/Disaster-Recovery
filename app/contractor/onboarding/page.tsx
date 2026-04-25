@@ -495,7 +495,7 @@ function ContractorOnboardingPageOriginal() {
                           <span>Video Lessons</span>
                         </span>
                         <span className="font-semibold">
-                          {ONBOARDING_PROGRAM[selectedDay - 1].components.videos.reduce((acc, v) => acc + v.duration, 0)} min
+                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.videos?.reduce((acc, v) => acc + v.duration, 0)} min
                         </span>
                       </div>
                     )}
@@ -507,7 +507,7 @@ function ContractorOnboardingPageOriginal() {
                           <span>Reading Materials</span>
                         </span>
                         <span className="font-semibold">
-                          {ONBOARDING_PROGRAM[selectedDay - 1].components.readings.reduce((acc, r) => acc + r.estimatedTime, 0)} min
+                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.readings?.reduce((acc, r) => acc + r.estimatedTime, 0)} min
                         </span>
                       </div>
                     )}
@@ -519,7 +519,7 @@ function ContractorOnboardingPageOriginal() {
                           <span>Assignments</span>
                         </span>
                         <span className="font-semibold">
-                          {ONBOARDING_PROGRAM[selectedDay - 1].components.assignments.length} tasks
+                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.assignments?.length} tasks
                         </span>
                       </div>
                     )}

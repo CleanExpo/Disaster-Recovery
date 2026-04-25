@@ -52,7 +52,7 @@ export default function EasterWeekendEmergencyRestorationPage() {
         name: 'How much does Easter weekend emergency restoration cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The initial commitment through Disaster Recovery is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no public holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Blue Fire Finance.',
+          text: 'The initial commitment through Disaster Recovery is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no public holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Equipped Commercial Finance.',
         },
       },
     ],
@@ -197,8 +197,8 @@ export default function EasterWeekendEmergencyRestorationPage() {
               <p style={{ marginTop: '1rem' }}>
                 If managing the upfront cost over a long weekend is a concern, payment plans
                 are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help you spread costs while awaiting your insurance outcome.
               </p>
@@ -230,7 +230,7 @@ export default function EasterWeekendEmergencyRestorationPage() {
         {
           question: 'How much does Easter weekend emergency restoration cost?',
           answer:
-            'The initial commitment through Disaster Recovery is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no public holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Blue Fire Finance.',
+            'The initial commitment through Disaster Recovery is $2,750 ($550 platform fee plus $2,200 contractor credit for make-safe works) with no public holiday surcharges. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

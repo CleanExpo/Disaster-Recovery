@@ -5,12 +5,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/prisma';
 import { getNexusAgent } from '@/lib/nexus';
+import { requestLogger } from '@/lib/observability';
 
 interface RouteContext {
   params: { id: string };
 }
 
 export async function POST(request: NextRequest, context: RouteContext) {
+  const log = requestLogger(request, { route: '/api/nexus/agents/[id]/trigger' });
   // Require admin session
   const sessionOrError = await requireAdmin();
   if (sessionOrError instanceof NextResponse) return sessionOrError;
@@ -44,7 +46,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
     });
   } catch (err) {
     // Non-fatal — log but do not block the response
-    console.error('[NEXUS] Failed to write AuditLog entry:', err);
+    log.error('failed to write AuditLog entry', { ref: 'NEXUS', error: err instanceof Error ? err.message : String(err) });
   }
 
   return NextResponse.json({

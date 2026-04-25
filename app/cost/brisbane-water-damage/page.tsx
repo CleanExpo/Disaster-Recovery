@@ -7,7 +7,8 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Brisbane Water Damage Restoration Cost | 2025 Pricing Guide',
-  description: 'How much does water damage restoration cost in Brisbane? Average prices by category and scope, insurance coverage, and payment options. IICRC-certified restoration pricing.',
+  description:
+    'How much does water damage restoration cost in Brisbane? Average prices by category and scope, insurance coverage, and payment options. IICRC-certified restoration pricing.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/brisbane-water-damage',
   },
@@ -18,16 +19,21 @@ const priceSpecSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Water Damage Restoration — Brisbane',
-  description: 'IICRC-certified water damage restoration services in Brisbane. Pricing by category and scope.',
+  description:
+    'IICRC-certified water damage restoration services in Brisbane. Pricing by category and scope.',
   provider: {
     '@type': 'Organization',
     '@id': 'https://disasterrecovery.com.au/#organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
   },
   areaServed: {
     '@type': 'City',
     name: 'Brisbane',
-    containedInPlace: { '@type': 'State', name: 'Queensland', containedInPlace: { '@type': 'Country', name: 'Australia' } },
+    containedInPlace: {
+      '@type': 'State',
+      name: 'Queensland',
+      containedInPlace: { '@type': 'Country', name: 'Australia' },
+    },
   },
   offers: [
     {
@@ -38,7 +44,8 @@ const priceSpecSchema = JSON.stringify({
         priceCurrency: 'AUD',
         minPrice: '800',
         maxPrice: '3500',
-        description: 'Clean water burst pipe or supply line failure. Small to medium residential scope.',
+        description:
+          'Clean water burst pipe or supply line failure. Small to medium residential scope.',
       },
     },
     {
@@ -49,7 +56,8 @@ const priceSpecSchema = JSON.stringify({
         priceCurrency: 'AUD',
         minPrice: '1500',
         maxPrice: '6000',
-        description: 'Grey water from appliances, overflow, or prolonged clean water exposure. Includes antimicrobial treatment.',
+        description:
+          'Grey water from appliances, overflow, or prolonged clean water exposure. Includes antimicrobial treatment.',
       },
     },
     {
@@ -60,7 +68,8 @@ const priceSpecSchema = JSON.stringify({
         priceCurrency: 'AUD',
         minPrice: '3000',
         maxPrice: '15000',
-        description: 'Sewage backup, floodwater, or highly contaminated water. Full containment, PPE, antimicrobial, and structural assessment required.',
+        description:
+          'Sewage backup, floodwater, or highly contaminated water. Full containment, PPE, antimicrobial, and structural assessment required.',
       },
     },
     {
@@ -71,7 +80,8 @@ const priceSpecSchema = JSON.stringify({
         priceCurrency: 'AUD',
         minPrice: '450',
         maxPrice: '2500',
-        description: 'Emergency extraction and make-safe only, without full structural drying. Standard residential scope.',
+        description:
+          'Emergency extraction and make-safe only, without full structural drying. Standard residential scope.',
       },
     },
   ],
@@ -80,27 +90,27 @@ const priceSpecSchema = JSON.stringify({
 export default function BrisbanewaterdamageCostPage() {
   return (
     <>
-    <Script
-      id="brisbane-wd-cost-schema"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: priceSpecSchema }}
-    />
-    <AgContentPageTemplate
-      hero={{
-        gradient: 'linear-gradient(135deg, #0F2942 0%, #1A5C3A 60%, #0F2942 100%)',
-        icon: <DollarSign className="h-12 w-12" />,
-        title: 'Brisbane Water damage Cost',
-        subtitle: 'Transparent Pricing • Insurance Coverage • Instant Estimates',
-      }}
-      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
-      breadcrumbs={[
-        { label: 'Home', href: '/' },
-        { label: 'Cost Guides', href: '/cost' },
-        { label: 'Brisbane Water damage Cost' },
-      ]}
-      relatedPages={getRelatedPages('cost-water')}
-      sections={getCostSections({ city: 'Brisbane', serviceType: 'water-damage' })}
-    />
+      <Script
+        id="brisbane-wd-cost-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: priceSpecSchema }}
+      />
+      <AgContentPageTemplate
+        hero={{
+          gradient: 'linear-gradient(135deg, #0F2942 0%, #1A5C3A 60%, #0F2942 100%)',
+          icon: <DollarSign className="h-12 w-12" />,
+          title: 'Brisbane Water damage Cost',
+          subtitle: 'Transparent Pricing • Insurance Coverage • Instant Estimates',
+        }}
+        cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Cost Guides', href: '/cost' },
+          { label: 'Brisbane Water damage Cost' },
+        ]}
+        relatedPages={getRelatedPages('cost-water')}
+        sections={getCostSections({ city: 'Brisbane', serviceType: 'water-damage' })}
+      />
     </>
   );
 }

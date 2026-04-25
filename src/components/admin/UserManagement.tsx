@@ -45,6 +45,7 @@ import {
 } from '@/types/rbac';
 import { usePermissions, useCanManageUsers, useIsPortalAdmin } from '@/hooks/usePermissions';
 import { ProtectedComponent, ProtectedAction } from '@/components/auth/ProtectedRoute';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface UserWithCompany extends UserType {
   company?: {
@@ -94,7 +95,7 @@ export function UserManagement() {
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error('Failed to fetch users:', error);
+      clientLogger.error('Failed to fetch users:', { source: 'admin/UserManagement' }, error);
     } finally {
       setLoading(false);
     }
@@ -114,7 +115,7 @@ export function UserManagement() {
         resetForm();
       }
     } catch (error) {
-      console.error('Failed to create user:', error);
+      clientLogger.error('Failed to create user:', { source: 'admin/UserManagement' }, error);
     }
   };
 
@@ -134,7 +135,7 @@ export function UserManagement() {
         resetForm();
       }
     } catch (error) {
-      console.error('Failed to update user:', error);
+      clientLogger.error('Failed to update user:', { source: 'admin/UserManagement' }, error);
     }
   };
 
@@ -150,7 +151,7 @@ export function UserManagement() {
         fetchUsers();
       }
     } catch (error) {
-      console.error('Failed to delete user:', error);
+      clientLogger.error('Failed to delete user:', { source: 'admin/UserManagement' }, error);
     }
   };
 
@@ -166,7 +167,7 @@ export function UserManagement() {
         fetchUsers();
       }
     } catch (error) {
-      console.error('Failed to update user status:', error);
+      clientLogger.error('Failed to update user status:', { source: 'admin/UserManagement' }, error);
     }
   };
 
@@ -180,7 +181,7 @@ export function UserManagement() {
         alert('Password reset email sent');
       }
     } catch (error) {
-      console.error('Failed to reset password:', error);
+      clientLogger.error('Failed to reset password:', { source: 'admin/UserManagement' }, error);
     }
   };
 

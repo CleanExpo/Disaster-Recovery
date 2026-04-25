@@ -13,6 +13,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const RegisterSchema = z.object({
   claimId: z.string().min(1).max(100),
@@ -26,6 +27,7 @@ const DeregisterSchema = z.object({
 });
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/notifications/register' });
   try {
     const raw = await request.json();
     const parsed = RegisterSchema.safeParse(raw);
@@ -54,7 +56,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
-    console.error('[DR-389] Token registration error:', err);
+    log.error('token registration error', { ref: 'DR-389', error: err instanceof Error ? err.message : String(err) });
+    captureException(err, { tags: { route: '/api/notifications/register' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { success: false, error: 'Failed to register token' },
       { status: 500 },
@@ -63,6 +66,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 }
 
 export async function DELETE(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/notifications/register' });
   try {
     const raw = await request.json();
     const parsed = DeregisterSchema.safeParse(raw);
@@ -82,7 +86,8 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
-    console.error('[DR-389] Token deregistration error:', err);
+    log.error('token deregistration error', { ref: 'DR-389', error: err instanceof Error ? err.message : String(err) });
+    captureException(err, { tags: { route: '/api/notifications/register' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { success: false, error: 'Failed to deregister token' },
       { status: 500 },

@@ -1,3 +1,4 @@
+import { clientLogger } from '@/lib/observability/client-logger';
 /**
  * Environment variable validation — server-side only.
  *
@@ -77,8 +78,7 @@ export function validateEnv(): EnvValidationResult {
   }
 
   if (warnings.length > 0 && process.env.NODE_ENV !== 'test') {
-    console.warn(
-      [
+    clientLogger.warn([
         '',
         '┌──────────────────────────────────────────────────────────────┐',
         '│  WARNING: Recommended environment variables are missing      │',
@@ -89,8 +89,7 @@ export function validateEnv(): EnvValidationResult {
         '',
         'Add these in Vercel project settings → Environment Variables.',
         '',
-      ].join('\n'),
-    );
+      ].join('\n'), { source: 'lib/env' });
   }
 
   return { valid: true, missing: [], warnings: warnings.map((w) => w.trim()) };

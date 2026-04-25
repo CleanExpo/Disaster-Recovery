@@ -1,232 +1,114 @@
-const CACHE_NAME = 'dr-australia-v2';
+/**
+ * Disaster Recovery — Service Worker
+ * iOS App Store Phase 2 PR #4 (RA-1633) — life-safety offline shell.
+ *
+ * Strategy:
+ *   - On install: precache /offline + minimal static assets so the shell
+ *     renders with zero network.
+ *   - On fetch: network-first for everything.
+ *   - On navigation failure: return the cached /offline HTML.
+ *   - API routes and authenticated pages are NOT cached. The only
+ *     whitelisted cache entries are the /offline shell and static assets
+ *     that the shell depends on (manifest + favicon).
+ *
+ * Cache invalidation:
+ *   The registering page passes `?v=${NEXT_PUBLIC_SW_CACHE_VERSION}`. To
+ *   roll a new SW + flush old caches, bump that env var in Vercel and
+ *   redeploy. On `activate`, any cache name that does not match the
+ *   current CACHE_NAME is deleted.
+ *
+ * Manual clear (Safari / iOS):
+ *   Settings -> Safari -> Advanced -> Website Data -> Remove.
+ *   DevTools -> Application -> Service Workers -> Unregister.
+ *
+ * Registration is gated by `NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED`.
+ * See `src/lib/service-worker-register.ts`.
+ */
 
-// Critical URLs to pre-cache for offline field access
-const OFFLINE_URLS = [
-  '/claim/start',
-  '/claim',
-  '/contact',
+// Parse the `?v=<version>` the registering page passed us. Falls back to v1
+// when the SW is fetched directly (e.g. DevTools).
+const SW_VERSION = (() => {
+  try {
+    const url = new URL(self.location.href);
+    return url.searchParams.get('v') || 'v1';
+  } catch {
+    return 'v1';
+  }
+})();
+
+const CACHE_NAME = `dr-offline-shell-${SW_VERSION}`;
+
+// Life-safety offline shell + its bare-minimum static deps. Keep this list
+// minimal: anything precached here must be safe to serve even if months
+// stale (no auth, no PII, no live data).
+const PRECACHE_URLS = [
   '/offline',
-  '/emergency',
   '/manifest.json',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
   '/favicon.ico',
 ];
 
-// Install event — pre-cache critical offline URLs
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => {
-        console.log('[SW] Pre-caching offline-capable routes');
-        // addAll fails if any request fails; use individual adds to be resilient
-        return Promise.allSettled(
-          OFFLINE_URLS.map((url) =>
-            cache.add(url).catch((err) => {
-              console.warn('[SW] Failed to cache:', url, err);
-            })
-          )
-        );
-      })
-      .then(() => self.skipWaiting())
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      // Use individual adds so a single failure does not abort install.
+      await Promise.allSettled(
+        PRECACHE_URLS.map((url) =>
+          cache.add(url).catch((err) => {
+            // eslint-disable-next-line no-console
+            console.warn('[SW] Failed to precache:', url, err);
+          })
+        )
+      );
+      await self.skipWaiting();
+    })()
   );
 });
 
-// Activate event — clean up old caches and claim clients immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((cacheNames) =>
-        Promise.all(
-          cacheNames
-            .filter((name) => name !== CACHE_NAME)
-            .map((name) => {
-              console.log('[SW] Deleting old cache:', name);
-              return caches.delete(name);
-            })
-        )
-      )
-      .then(() => self.clients.claim())
+    (async () => {
+      const names = await caches.keys();
+      await Promise.all(
+        names
+          .filter((name) => name !== CACHE_NAME)
+          .map((name) => caches.delete(name))
+      );
+      await self.clients.claim();
+    })()
   );
 });
 
-// Fetch event — strategy varies by request type
 self.addEventListener('fetch', (event) => {
   const { request } = event;
 
-  // Skip non-GET and cross-origin requests
   if (request.method !== 'GET') return;
   if (!request.url.startsWith(self.location.origin)) return;
 
-  // Skip Next.js HMR and internal routes
+  // Never cache API routes or the Next.js HMR endpoints.
+  if (request.url.includes('/api/')) return;
   if (request.url.includes('/_next/webpack-hmr')) return;
 
-  // API routes: network-first, fall back to cache
-  if (request.url.includes('/api/')) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        })
-        .catch(() => caches.match(request))
-    );
-    return;
-  }
-
-  // Navigation requests (HTML pages): network-first, offline fallback
+  // Navigation requests: network-first with an /offline fallback.
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // Cache successful navigations for future offline use
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        })
-        .catch(() =>
-          caches.match(request).then(
-            (cached) =>
-              cached ||
-              caches.match('/offline') ||
-              caches.match('/claim/start')
-          )
-        )
-    );
-    return;
-  }
-
-  // Static assets (_next/static, images, fonts): cache-first
-  if (
-    request.url.includes('/_next/static/') ||
-    request.destination === 'image' ||
-    request.destination === 'font' ||
-    request.destination === 'style' ||
-    request.destination === 'script'
-  ) {
-    event.respondWith(
-      caches.match(request).then((cached) => {
+      fetch(request).catch(async () => {
+        const cache = await caches.open(CACHE_NAME);
+        const cached = await cache.match('/offline');
         if (cached) return cached;
-        return fetch(request).then((response) => {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        });
+        return new Response(
+          '<h1>You are offline</h1><p>Call 000 in an emergency, or 1300 309 361 for Disaster Recovery.</p>',
+          { headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+        );
       })
     );
     return;
   }
-});
 
-// Background sync — retry pending claim form submissions when back online
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'claim-submission') {
-    event.waitUntil(submitPendingClaims());
-  }
-  if (event.tag === 'lead-submission') {
-    event.waitUntil(submitPendingLeads());
-  }
-});
-
-async function submitPendingClaims() {
-  const cache = await caches.open('pending-claims');
-  const requests = await cache.keys();
-  for (const request of requests) {
-    try {
-      const response = await fetch(request);
-      if (response.ok) {
-        await cache.delete(request);
-        console.log('[SW] Pending claim submitted successfully');
-      }
-    } catch (error) {
-      console.error('[SW] Failed to submit pending claim:', error);
-    }
-  }
-}
-
-async function submitPendingLeads() {
-  const cache = await caches.open('pending-leads');
-  const requests = await cache.keys();
-  for (const request of requests) {
-    try {
-      const response = await fetch(request);
-      if (response.ok) {
-        await cache.delete(request);
-      }
-    } catch (error) {
-      console.error('[SW] Failed to submit lead:', error);
-    }
-  }
-}
-
-// Push notifications — emergency alerts and claim status updates
-self.addEventListener('push', (event) => {
-  let title = 'Disaster Recovery Alert';
-  let options = {
-    body: 'New notification from Disaster Recovery Australia',
-    icon: '/icon-192x192.png',
-    badge: '/icon-72x72.png',
-    vibrate: [100, 50, 100],
-    data: { url: '/emergency', dateOfArrival: Date.now() },
-    actions: [
-      { action: 'view', title: 'View Details' },
-      { action: 'dismiss', title: 'Dismiss' },
-    ],
-  };
-
-  if (event.data) {
-    try {
-      const payload = event.data.json();
-      title = payload.title || title;
-      options.body = payload.body || payload.message || options.body;
-      options.data = {
-        ...options.data,
-        url: payload.url || payload.data?.url || '/emergency',
-        claimId: payload.claimId || payload.data?.claimId,
-        type: payload.type || 'general',
-      };
-      if (payload.tag) options.tag = payload.tag;
-      if (payload.requireInteraction) options.requireInteraction = true;
-    } catch {
-      // Fallback to plain text
-      options.body = event.data.text();
-    }
-  }
-
-  event.waitUntil(self.registration.showNotification(title, options));
-});
-
-// Notification click handling — route to relevant page
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-
-  if (event.action === 'dismiss') return;
-
-  const data = event.notification.data || {};
-  let targetUrl = data.url || '/emergency';
-
-  if (data.claimId) {
-    targetUrl = `/claim/${data.claimId}`;
-  }
-
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
-      for (const client of windowClients) {
-        if (client.url.includes(targetUrl) && 'focus' in client) {
-          return client.focus();
-        }
-      }
-      return clients.openWindow(targetUrl);
-    })
+  // Non-navigation requests: network-first, fall back to cache if we have
+  // a pre-seeded copy (e.g. manifest, favicon). Nothing new is cached at
+  // runtime — the precache list is authoritative.
+  event.respondWith(
+    fetch(request).catch(() => caches.match(request))
   );
 });

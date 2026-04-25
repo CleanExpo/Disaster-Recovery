@@ -18,24 +18,24 @@
  * ACL s18 compliant — no unverified statistics.
  */
 
-import type { Metadata } from 'next'
-import DisasterEventPage from '@/components/events/DisasterEventPage'
+import type { Metadata } from 'next';
+import DisasterEventPage from '@/components/events/DisasterEventPage';
 
 export const metadata: Metadata = {
-  title: 'Victoria Bushfires 2026 — Insurance Claims & Recovery | Disaster Recovery Australia',
+  title: 'Victoria Bushfires 2026 — Insurance Claims & Recovery | Disaster Recovery',
   description:
     'Victorian Bushfires (January 2026). 23 declared LGAs including East Gippsland, Alpine, Greater Bendigo, and Wodonga. IICRC-certified restoration contractors for smoke damage, water damage from suppression, and insurance claims support.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/victoria-bushfires-2026',
   },
   openGraph: {
-    title: 'Victoria Bushfires 2026 — Recovery & Insurance Claims | Disaster Recovery Australia',
+    title: 'Victoria Bushfires 2026 — Recovery & Insurance Claims | Disaster Recovery',
     description:
       'Expert disaster restoration for Victoria bushfire-affected properties. Smoke remediation, suppression water damage, contents cleaning — IICRC-certified contractors across all 23 declared LGAs.',
     url: 'https://disasterrecovery.com.au/events/victoria-bushfires-2026',
     type: 'website',
   },
-}
+};
 
 export default function VictoriaBushfires2026Page() {
   return (
@@ -48,11 +48,10 @@ export default function VictoriaBushfires2026Page() {
       year={2026}
       iicrcStandard="ANSI/IICRC S700:2025 (Fire and Smoke Damage Restoration)"
       slug="events/victoria-bushfires-2026"
-      metaTitle="Victoria Bushfires 2026 — Insurance Claims & Recovery | Disaster Recovery Australia"
+      metaTitle="Victoria Bushfires 2026 — Insurance Claims & Recovery | Disaster Recovery"
       metaDescription="Victorian Bushfires January 2026. 23 declared LGAs. IICRC-certified restoration contractors for smoke damage, suppression water damage, and insurance claims support."
       alertNote="ICA Declared Catastrophe. PERILS has estimated insured losses — refer to perils.net for the current figure as estimates are updated post-event. DRA deadline: 21 July 2026."
       showEmergencyWarning={false}
-
       // 23 LGAs declared per Premier VIC press release
       affectedLGAs={[
         'Alpine',
@@ -80,9 +79,7 @@ export default function VictoriaBushfires2026Page() {
         'Yarra Ranges',
       ]}
       remoteLGAs={[]}
-
       governmentHotline="1800 560 760"
-
       // Financial assistance — verified from emergency.vic.gov.au
       financialAssistance={[
         {
@@ -130,9 +127,8 @@ export default function VictoriaBushfires2026Page() {
           hotline: '1800 560 760',
         },
       ]}
-
       governmentApplicationUrl="https://emergency.vic.gov.au/relief-and-recovery/1154"
       governmentApplicationLabel="Emergency Recovery Victoria — January 2026 Bushfires"
     />
-  )
+  );
 }

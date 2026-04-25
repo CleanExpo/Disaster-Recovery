@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { semrushAPI, checkSEMrushConnection } from '@/lib/semrush-api';
+import { requestLogger, captureException } from '@/lib/observability';
 
-export async function GET() {
+export async function GET(request: Request) {
+  const log = requestLogger(request, { route: '/api/semrush/test' });
   try {
     // Check if API is configured
     const isConfigured = semrushAPI.isConfigured();
@@ -35,7 +37,8 @@ export async function GET() {
         configured: true }, { status: 500 });
     }
   } catch (error) {
-    console.error('SEMrush API test error:', error);
+    log.error('semrush api test error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/semrush/test' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       message: 'Error testing SEMrush API connection',

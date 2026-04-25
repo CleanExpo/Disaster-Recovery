@@ -66,7 +66,7 @@ const serviceSchema = {
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration | 24/7 IICRC S500:2025',
-  description: 'Professional water damage restoration following ANSI/IICRC S500:2025 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
+  description: 'Professional water damage restoration following ANSI/IICRC S500:2025 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7. Network contractors target a 60-minute response in metropolitan areas; regional times vary.',
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500:2025, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
     title: 'Emergency Water Damage - IICRC Certified Professionals',
@@ -91,7 +91,7 @@ export default function WaterDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Water Damage Restoration Services',
-        subtitle: 'Professional water damage restoration following ANSI/IICRC S500:2025 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
+        subtitle: 'Professional water damage restoration following ANSI/IICRC S500:2025 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7. Network contractors target a 60-minute response in metropolitan areas; regional times vary.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

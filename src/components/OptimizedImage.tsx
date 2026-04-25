@@ -32,7 +32,7 @@ export default function OptimizedImage({
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   quality = 85,
   onLoad,
-  onError
+  onError,
 }: OptimizedImageProps) {
   const [imageSrc, setImageSrc] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
@@ -40,36 +40,40 @@ export default function OptimizedImage({
 
   // Generate image paths based on naming convention
   const baseFilename = `${service}-${location.toLowerCase()}-${imageType}`;
-  
+
   // Image paths for different formats and sizes
   const imagePaths = {
     // Primary optimized path
     primary: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/desktop/${baseFilename}.webp`,
-    
+
     // Fallback paths
     fallbackJpg: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/desktop/${baseFilename}.jpg`,
     fallbackGenerated: `/images/generated/${baseFilename}.webp`,
-    
+
     // Responsive sources
     sources: {
       mobile: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/mobile/${baseFilename}.webp`,
       tablet: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/tablet/${baseFilename}.webp`,
       desktop: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/desktop/${baseFilename}.webp`,
-      hero: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/hero/${baseFilename}.webp`
+      hero: `/images/optimized/${imageType}/${location.toLowerCase()}/${service}/hero/${baseFilename}.webp`,
     },
-    
+
     // Thumbnail for lazy loading
     thumbnail: `/images/thumbnails/${imageType}/${location.toLowerCase()}/${baseFilename}-thumb.webp`,
-    
+
     // Social media optimized
-    social: `/images/social/${service}/${location.toLowerCase()}/${baseFilename}-og.jpg`
+    social: `/images/social/${service}/${location.toLowerCase()}/${baseFilename}-og.jpg`,
   };
 
   // Generate SEO-optimized alt text if not provided
-  const seoAlt = alt || `${service.replace(/-/g, ' ')} in ${location} - Professional ${imageType} image showing Disaster Recovery Australia's 24/7 emergency services`;
-  
+  const seoAlt =
+    alt ||
+    `${service.replace(/-/g, ' ')} in ${location} - Professional ${imageType} image showing Disaster Recovery's 24/7 emergency services`;
+
   // Generate title if not provided
-  const seoTitle = title || `${location} ${service.replace(/-/g, ' ')} | ${imageType.charAt(0).toUpperCase() + imageType.slice(1)} | Disaster Recovery Australia`;
+  const seoTitle =
+    title ||
+    `${location} ${service.replace(/-/g, ' ')} | ${imageType.charAt(0).toUpperCase() + imageType.slice(1)} | Disaster Recovery`;
 
   useEffect(() => {
     // Check which image path exists and use it
@@ -86,7 +90,7 @@ export default function OptimizedImage({
       // Try primary path first
       if (await checkImagePath(imagePaths.primary)) {
         setImageSrc(imagePaths.primary);
-      } 
+      }
       // Try fallback JPG
       else if (await checkImagePath(imagePaths.fallbackJpg)) {
         setImageSrc(imagePaths.fallbackJpg);
@@ -138,7 +142,7 @@ export default function OptimizedImage({
   // Loading skeleton
   if (isLoading) {
     return (
-      <div 
+      <div
         className={`animate-pulse bg-gradient-to-br from-gray-200 to-gray-300 ${className}`}
         style={{ aspectRatio: `${width}/${height}` }}
         aria-label="Loading image..."
@@ -161,7 +165,7 @@ export default function OptimizedImage({
           type="image/avif"
           sizes={sizes}
         />
-        
+
         {/* WebP format for good browser support */}
         <source
           srcSet={`
@@ -173,7 +177,7 @@ export default function OptimizedImage({
           type="image/webp"
           sizes={sizes}
         />
-        
+
         {/* JPEG fallback for older browsers */}
         <source
           srcSet={`
@@ -185,7 +189,7 @@ export default function OptimizedImage({
           type="image/jpeg"
           sizes={sizes}
         />
-        
+
         {/* Next.js Image component with optimization */}
         <Image
           src={imageSrc}
@@ -227,15 +231,15 @@ export default function OptimizedImage({
             thumbnailUrl: imagePaths.thumbnail,
             creator: {
               '@type': 'Organization',
-              name: 'Disaster Recovery Australia'
+              name: 'Disaster Recovery',
             },
             copyrightHolder: {
               '@type': 'Organization',
-              name: 'National Recovery Partners'
+              name: 'National Recovery Partners',
             },
             license: 'https://disaster-recovery.vercel.app/terms',
-            keywords: `${service.replace(/-/g, ' ')}, ${location}, disaster recovery, emergency services, Australia`
-          })
+            keywords: `${service.replace(/-/g, ' ')}, ${location}, disaster recovery, emergency services, Australia`,
+          }),
         }}
       />
     </div>
@@ -247,7 +251,7 @@ export default function OptimizedImage({
  */
 export function OptimizedImageGallery({
   images,
-  className = ''
+  className = '',
 }: {
   images: Array<{
     service: string;

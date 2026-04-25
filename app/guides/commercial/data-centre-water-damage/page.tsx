@@ -32,7 +32,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How is billing handled for commercial data centre restoration?',
-      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the data centre operator or property owner \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. We provide full claims documentation so you can claim reimbursement from your insurer. Payment plans are available through Blue Fire Finance for high-value restorations." },
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the data centre operator or property owner \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. We provide full claims documentation so you can claim reimbursement from your insurer. Payment plans are available through Equipped Commercial Finance for high-value restorations." },
     },
     {
       '@type': 'Question',
@@ -180,7 +180,7 @@ export default function DataCentreWaterDamagePage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for high-value commercial restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for high-value commercial restorations.
               </p>
             </div>
           ),
@@ -201,7 +201,7 @@ export default function DataCentreWaterDamagePage() {
         },
         {
           question: 'How is billing handled for commercial data centre restoration?',
-          answer: 'We bill you directly — the data centre operator or property owner — so work begins immediately without waiting for insurer approval. You control the process and the timeline. We provide full claims documentation so you can claim reimbursement from your insurer. Payment plans are available through Blue Fire Finance for high-value restorations.',
+          answer: 'We bill you directly — the data centre operator or property owner — so work begins immediately without waiting for insurer approval. You control the process and the timeline. We provide full claims documentation so you can claim reimbursement from your insurer. Payment plans are available through Equipped Commercial Finance for high-value restorations.',
         },
         {
           question: 'Will the restoration team work around our operational requirements?',

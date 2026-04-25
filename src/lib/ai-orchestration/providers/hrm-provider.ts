@@ -90,7 +90,7 @@ export class HRMProvider extends EventEmitter {
       this.isInitialized = true;
       this.emit('initialized');
     } catch (error) {
-      console.error('Failed to initialize HRM provider:', error);
+      clientLogger.error('Failed to initialize HRM provider:', { source: 'providers/hrm-provider' }, error);
       throw error;
     }
   }
@@ -508,6 +508,7 @@ export class HRMProvider extends EventEmitter {
     return 0.95; // Placeholder
   }
 }
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // Type definitions
 interface DisasterScenario {

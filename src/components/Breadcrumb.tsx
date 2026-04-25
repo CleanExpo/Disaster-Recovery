@@ -26,7 +26,7 @@ export default function Breadcrumb() {
   // Generate breadcrumb items from pathname
   const generateBreadcrumbs = () => {
     const paths = pathname.split('/').filter(Boolean);
-    const breadcrumbs = [
+    const breadcrumbs: Array<{ name: string; href: string; icon: typeof Home | null }> = [
       { name: 'Home', href: '/', icon: Home }
     ];
     

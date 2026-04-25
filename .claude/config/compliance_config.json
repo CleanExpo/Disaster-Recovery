@@ -3,14 +3,14 @@
     "name": "Critical LLM Discretion Analysis & Prompt Enhancement Engine",
     "version": "2.0.0",
     "description": "Addresses LLM discretion failures by implementing strict instruction following and real prompt enhancement for investor-grade real data projects",
-    
+
     "critical_discretion_analysis": {
       "problem_identification": {
         "core_issue": "LLMs perform assumed tasks instead of following actual human instructions",
         "impact": "Leads to incorrect solutions, wasted time, and system failures",
         "solution_approach": "Implement strict instruction parsing with discretion checkpoints"
       },
-      
+
       "instruction_compliance_protocol": {
         "step_1_exact_parsing": {
           "action": "PARSE_EXACT_HUMAN_INTENT",
@@ -21,7 +21,7 @@
             "Document exact requirements without additions"
           ]
         },
-        
+
         "step_2_discretion_checkpoint": {
           "action": "VALIDATE_UNDERSTANDING",
           "critical_questions": [
@@ -31,7 +31,7 @@
             "Have I followed the specific format/method requested?"
           ]
         },
-        
+
         "step_3_compliance_verification": {
           "action": "VERIFY_BEFORE_EXECUTION",
           "checklist": [
@@ -43,14 +43,14 @@
         }
       }
     },
-    
+
     "project_context": {
-      "project_name": "Disaster Recovery Australia",
+      "project_name": "Disaster Recovery",
       "project_type": "Real Data Investor Pitch Deck Website",
       "deployment_url": "https://disaster-recovery.vercel.app",
       "data_requirements": "REAL DATA ONLY - NO MOCK OR PLACEHOLDER DATA",
       "security_level": "PRODUCTION_GRADE_SECURITY",
-      
+
       "critical_components": {
         "pitch_deck": {
           "location": "src/app/pitch/page.tsx",
@@ -69,7 +69,7 @@
           "market_data": "$909M market size (verified)"
         }
       },
-      
+
       "environment_config": {
         "env_location": "Vercel .env and .env.local",
         "security_priority": "MAXIMUM - Site must remain secure",
@@ -82,7 +82,7 @@
         ]
       }
     },
-    
+
     "docker_orchestrator_integration": {
       "primary_endpoint": "http://localhost:3000",
       "available_routes": {
@@ -101,13 +101,13 @@
         "seo": "SEO optimization"
       }
     },
-    
+
     "compliance_scoring": {
       "perfect_compliance": 100,
       "acceptable_compliance": 75,
       "warning_threshold": 50,
       "failure_threshold": 25,
-      
+
       "deduction_rules": {
         "unauthorized_addition": -25,
         "method_deviation": -25,
@@ -115,7 +115,7 @@
         "scope_creep": -25
       }
     },
-    
+
     "real_data_validation": {
       "required_sources": [
         "IBISWorld reports",
@@ -123,21 +123,15 @@
         "Bureau of Meteorology",
         "Australian Government statistics"
       ],
-      "prohibited_content": [
-        "Lorem ipsum",
-        "Placeholder",
-        "Mock data",
-        "Example data",
-        "Test data"
-      ]
+      "prohibited_content": ["Lorem ipsum", "Placeholder", "Mock data", "Example data", "Test data"]
     }
   },
-  
+
   "usage_instructions": {
     "windows_powershell": ".\\..\\scripts\\claude_enhanced.ps1 'your exact request'",
     "python_direct": "python .claude/scripts/enhance_prompt.py 'your exact request'",
     "docker_integrated": "Automatically uses Docker orchestrator when available",
-    
+
     "critical_reminders": [
       "ALWAYS check compliance score before execution",
       "NEVER accept score below 75% without review",

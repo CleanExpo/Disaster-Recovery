@@ -3,6 +3,7 @@
  */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface WebSocketContextType {
   socket: any | null;
@@ -36,19 +37,19 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const send = (event: string, data: any) => {
-    console.log('WebSocket send:', event, data);
+    clientLogger.info('WebSocket send:', { source: 'lib/websocket-provider', data: [event, data] });
   };
 
   const emit = (event: string, data?: any) => {
-    console.log('WebSocket emit:', event, data);
+    clientLogger.info('WebSocket emit:', { source: 'lib/websocket-provider', data: [event, data] });
   };
 
   const on = (event: string, handler: (data: any) => void) => {
-    console.log('WebSocket on:', event);
+    clientLogger.info('WebSocket on:', { source: 'lib/websocket-provider', data: event });
   };
 
   const off = (event: string, handler: (data: any) => void) => {
-    console.log('WebSocket off:', event);
+    clientLogger.info('WebSocket off:', { source: 'lib/websocket-provider', data: event });
   };
 
   return (

@@ -1,31 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
-interface ProofOfWorkEvidence {
-  type: 'BEFORE_PHOTO' | 'AFTER_PHOTO' | 'INVOICE' | 'COMPLETION_CERTIFICATE' | 'CLIENT_TESTIMONIAL' | 'INSURANCE_REPORT';
-  url: string;
-  description: string;
-  uploadedAt: string;
-}
+import type { ProofOfWorkInput } from '@/lib/validation/schemas';
 
-interface ProofOfWorkClaim {
-  workType: string;
-  projectName: string;
-  clientName: string;
-  clientContact: string;
-  projectAddress: string;
-  completionDate: string;
-  projectValue: number;
-  projectDescription: string;
-  damageType: string[];
-  propertyType: 'RESIDENTIAL' | 'COMMERCIAL' | 'INDUSTRIAL' | 'INSTITUTIONAL';
-  emergencyResponse: boolean;
-  insuranceClaim: boolean;
-  insuranceCompany?: string;
-  evidence: ProofOfWorkEvidence[];
-}
+type ProofOfWorkClaim = ProofOfWorkInput;
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/proof-of-work/submit' });
   try {
     const { contractorId, claims } = await req.json() as { contractorId: string; claims: ProofOfWorkClaim[] };
 
@@ -168,7 +150,8 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error submitting proof of work:', error);
+    log.error('error submitting proof of work', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/proof-of-work/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       {
         error: 'Internal server error during proof of work submission',
@@ -180,6 +163,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/proof-of-work/submit' });
   try {
     const { searchParams } = new URL(req.url);
     const contractorId = searchParams.get('contractorId');
@@ -248,7 +232,8 @@ export async function GET(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error fetching proof of work claims:', error);
+    log.error('error fetching proof of work claims', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/proof-of-work/submit' }, extra: { requestId: log.requestId } });
     return NextResponse.json({ error: 'Failed to fetch proof of work claims' }, { status: 500 });
   }
 }

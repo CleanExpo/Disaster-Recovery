@@ -16,7 +16,7 @@ export async function POST() {
 
     // Check if tables already exist
     const tableCheck = await prisma.$queryRawUnsafe<Array<{ exists: boolean }>>(
-      `SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'RedditContentPillar') as exists`
+      `SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'RedditContentPillar') as exists`,
     );
 
     if (tableCheck[0]?.exists) {
@@ -107,15 +107,27 @@ export async function POST() {
     results.push('Created RedditSystemPrompt');
 
     // Unique indexes
-    await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX "RedditContentPillar_code_key" ON "RedditContentPillar"("code")`);
-    await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX "RedditSystemPrompt_version_key" ON "RedditSystemPrompt"("version")`);
+    await prisma.$executeRawUnsafe(
+      `CREATE UNIQUE INDEX "RedditContentPillar_code_key" ON "RedditContentPillar"("code")`,
+    );
+    await prisma.$executeRawUnsafe(
+      `CREATE UNIQUE INDEX "RedditSystemPrompt_version_key" ON "RedditSystemPrompt"("version")`,
+    );
     results.push('Created unique indexes');
 
     // Foreign keys
-    await prisma.$executeRawUnsafe(`ALTER TABLE "RedditPost" ADD CONSTRAINT "RedditPost_contentPillarId_fkey" FOREIGN KEY ("contentPillarId") REFERENCES "RedditContentPillar"("id") ON DELETE SET NULL ON UPDATE CASCADE`);
-    await prisma.$executeRawUnsafe(`ALTER TABLE "RedditPost" ADD CONSTRAINT "RedditPost_orchestratorRunId_fkey" FOREIGN KEY ("orchestratorRunId") REFERENCES "RedditOrchestratorRun"("id") ON DELETE SET NULL ON UPDATE CASCADE`);
-    await prisma.$executeRawUnsafe(`ALTER TABLE "RedditSafetyAudit" ADD CONSTRAINT "RedditSafetyAudit_postId_fkey" FOREIGN KEY ("postId") REFERENCES "RedditPost"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
-    await prisma.$executeRawUnsafe(`ALTER TABLE "RedditPerformanceLog" ADD CONSTRAINT "RedditPerformanceLog_postId_fkey" FOREIGN KEY ("postId") REFERENCES "RedditPost"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
+    await prisma.$executeRawUnsafe(
+      `ALTER TABLE "RedditPost" ADD CONSTRAINT "RedditPost_contentPillarId_fkey" FOREIGN KEY ("contentPillarId") REFERENCES "RedditContentPillar"("id") ON DELETE SET NULL ON UPDATE CASCADE`,
+    );
+    await prisma.$executeRawUnsafe(
+      `ALTER TABLE "RedditPost" ADD CONSTRAINT "RedditPost_orchestratorRunId_fkey" FOREIGN KEY ("orchestratorRunId") REFERENCES "RedditOrchestratorRun"("id") ON DELETE SET NULL ON UPDATE CASCADE`,
+    );
+    await prisma.$executeRawUnsafe(
+      `ALTER TABLE "RedditSafetyAudit" ADD CONSTRAINT "RedditSafetyAudit_postId_fkey" FOREIGN KEY ("postId") REFERENCES "RedditPost"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
+    );
+    await prisma.$executeRawUnsafe(
+      `ALTER TABLE "RedditPerformanceLog" ADD CONSTRAINT "RedditPerformanceLog_postId_fkey" FOREIGN KEY ("postId") REFERENCES "RedditPost"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
+    );
     results.push('Created foreign keys');
 
     // Seed content pillars
@@ -123,11 +135,41 @@ export async function POST() {
     if (pillarCount === 0) {
       await prisma.redditContentPillar.createMany({
         data: [
-          { code: 'A', name: 'Indoor Environmental Health', description: 'Mould science, air quality, health risks, remediation standards', categories: ['mould', 'water-damage', 'property'], updatedAt: new Date() },
-          { code: 'B', name: 'Qualified Restorer vs General Builder', description: 'IICRC certification value, equipment standards, legal precedents', categories: ['iicrc', 'training', 'network'], updatedAt: new Date() },
-          { code: 'C', name: 'Insurance Claim Autopsy', description: 'Claims process education, insurer comparisons, policyholder rights', categories: ['insurance', 'cost-guide'], updatedAt: new Date() },
-          { code: 'D', name: 'Commercial & Strata Restoration', description: 'Body corporate obligations, multi-level drying, business continuity', categories: ['property', 'network', 'software'], updatedAt: new Date() },
-          { code: 'E', name: 'Mythbusting & Consumer Education', description: 'Common misconceptions, DIY vs professional, cost transparency', categories: ['water-damage', 'fire', 'mould', 'cost-guide'], updatedAt: new Date() },
+          {
+            code: 'A',
+            name: 'Indoor Environmental Health',
+            description: 'Mould science, air quality, health risks, remediation standards',
+            categories: ['mould', 'water-damage', 'property'],
+            updatedAt: new Date(),
+          },
+          {
+            code: 'B',
+            name: 'Qualified Restorer vs General Builder',
+            description: 'IICRC certification value, equipment standards, legal precedents',
+            categories: ['iicrc', 'training', 'network'],
+            updatedAt: new Date(),
+          },
+          {
+            code: 'C',
+            name: 'Insurance Claim Autopsy',
+            description: 'Claims process education, insurer comparisons, policyholder rights',
+            categories: ['insurance', 'cost-guide'],
+            updatedAt: new Date(),
+          },
+          {
+            code: 'D',
+            name: 'Commercial & Strata Restoration',
+            description: 'Body corporate obligations, multi-level drying, business continuity',
+            categories: ['property', 'network', 'software'],
+            updatedAt: new Date(),
+          },
+          {
+            code: 'E',
+            name: 'Mythbusting & Consumer Education',
+            description: 'Common misconceptions, DIY vs professional, cost transparency',
+            categories: ['water-damage', 'fire', 'mould', 'cost-guide'],
+            updatedAt: new Date(),
+          },
         ],
       });
       results.push('Seeded 5 content pillars');
@@ -141,7 +183,7 @@ export async function POST() {
           version: 'v2.0',
           isActive: true,
           updatedAt: new Date(),
-          promptText: `You are the GEO Reddit Authority Engine for Disaster Recovery Australia — an AI content system that generates high-authority, fact-dense Reddit posts optimised for both traditional search (Google) and generative AI engines (ChatGPT, Perplexity, Gemini, Claude).
+          promptText: `You are the GEO Reddit Authority Engine for Disaster Recovery — an AI content system that generates high-authority, fact-dense Reddit posts optimised for both traditional search (Google) and generative AI engines (ChatGPT, Perplexity, Gemini, Claude).
 
 ## MISSION
 Generate Reddit posts for r/Disaster_Recovery_Qld that:

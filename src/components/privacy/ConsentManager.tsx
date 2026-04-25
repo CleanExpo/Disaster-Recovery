@@ -28,6 +28,7 @@ import {
   ChevronUp
 } from 'lucide-react';
 import { PrivacyConsent } from '@/types/privacy';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ConsentManagerProps {
   userId: string;
@@ -140,7 +141,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
       setConsents(data.consents);
       setPendingConsents(data.pending);
     } catch (error) {
-      console.error('Failed to fetch consents:', error);
+      clientLogger.error('Failed to fetch consents:', { source: 'privacy/ConsentManager' }, error);
     } finally {
       setLoading(false);
     }
@@ -169,7 +170,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
         }
       }
     } catch (error) {
-      console.error('Failed to update consent:', error);
+      clientLogger.error('Failed to update consent:', { source: 'privacy/ConsentManager' }, error);
     }
   };
 
@@ -183,7 +184,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
         fetchConsents();
       }
     } catch (error) {
-      console.error('Failed to withdraw consent:', error);
+      clientLogger.error('Failed to withdraw consent:', { source: 'privacy/ConsentManager' }, error);
     }
   };
 
@@ -197,7 +198,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
       a.download = `privacy-data-${userId}-${new Date().toISOString()}.json`;
       a.click();
     } catch (error) {
-      console.error('Failed to download data:', error);
+      clientLogger.error('Failed to download data:', { source: 'privacy/ConsentManager' }, error);
     }
   };
 

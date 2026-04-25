@@ -15,7 +15,7 @@ export class OpenRouterProvider {
     this.apiKey = process.env.OPENROUTER_API_KEY || '';
     
     if (!this.apiKey) {
-      console.warn('OpenRouter API key not configured');
+      clientLogger.warn('OpenRouter API key not configured', { source: 'providers/openrouter-provider' });
     }
     
     this.client = axios.create({
@@ -93,7 +93,7 @@ export class OpenRouterProvider {
         latency };
       
     } catch (error) {
-      console.error('OpenRouter API error:', error);
+      clientLogger.error('OpenRouter API error:', { source: 'providers/openrouter-provider' }, error);
       throw new Error(`OpenRouter request failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
@@ -273,7 +273,7 @@ export class OpenRouterProvider {
       const response = await this.client.get('/models');
       return response.status === 200;
     } catch (error) {
-      console.error('OpenRouter connection test failed:', error);
+      clientLogger.error('OpenRouter connection test failed:', { source: 'providers/openrouter-provider' }, error);
       return false;
     }
   }
@@ -286,8 +286,9 @@ export class OpenRouterProvider {
       const response = await this.client.get('/models');
       return response.data.data.map((model: any) => model.id);
     } catch (error) {
-      console.error('Failed to fetch OpenRouter models:', error);
+      clientLogger.error('Failed to fetch OpenRouter models:', { source: 'providers/openrouter-provider' }, error);
       return [];
     }
   }
 }
+import { clientLogger } from '@/lib/observability/client-logger';

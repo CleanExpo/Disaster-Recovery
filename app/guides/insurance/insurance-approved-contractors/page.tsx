@@ -229,7 +229,7 @@ export default function InsuranceApprovedContractorsPage() {
                 </li>
               </ol>
               <p>
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> if you need to manage cash flow while waiting for your insurer to process the claim.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> if you need to manage cash flow while waiting for your insurer to process the claim.
               </p>
             </div>
           ),

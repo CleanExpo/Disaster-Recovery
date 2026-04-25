@@ -3,11 +3,13 @@ import { ImageOptimizer } from '@/lib/imageOptimizer';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { existsSync } from 'fs';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // Note: In Next.js 13+ App Router, body parsing is handled automatically
 // No need for the deprecated config export
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/upload' });
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
@@ -65,7 +67,8 @@ export async function POST(request: NextRequest) {
         reduction: `${(stats.reduction / 1024).toFixed(2)} KB`,
         reductionPercent: `${stats.reductionPercent}%` } });
   } catch (error) {
-    console.error('Upload error:', error);
+    log.error('upload error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/upload' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to upload and optimize image' },
       { status: 500 }
@@ -75,6 +78,7 @@ export async function POST(request: NextRequest) {
 
 // API endpoint for batch optimization
 export async function PUT(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/upload' });
   try {
     const { directory, options } = await request.json();
     
@@ -92,7 +96,8 @@ export async function PUT(request: NextRequest) {
       optimized: results.length,
       results });
   } catch (error) {
-    console.error('Batch optimization error:', error);
+    log.error('batch optimization error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/upload' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { error: 'Failed to batch optimize images' },
       { status: 500 }

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/protected/dashboard' });
   try {
     // Verify authentication
     const user = await verifyAuth(request);
@@ -73,8 +75,9 @@ export async function GET(request: NextRequest) {
       dashboard: dashboardData }, { status: 200 });
     
   } catch (error) {
-    console.error('Dashboard API error:', error);
-    
+    log.error('protected dashboard api error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/protected/dashboard' }, extra: { requestId: log.requestId } });
+
     return NextResponse.json({
       success: false,
       message: 'Failed to load dashboard data' }, { status: 500 });

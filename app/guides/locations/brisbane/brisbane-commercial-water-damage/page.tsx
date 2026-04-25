@@ -51,7 +51,7 @@ const faqSchema = {
       name: 'How is billing handled for commercial water damage in Brisbane?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We bill you directly \u2014 the business owner, tenant, or body corporate \u2014 so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, contents, stock losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance for large restorations.',
+        text: 'We bill you directly \u2014 the business owner, tenant, or body corporate \u2014 so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, contents, stock losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance for large restorations.',
       },
     },
   ],
@@ -173,7 +173,7 @@ export default function BrisbaneCommercialWaterDamagePage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for large commercial restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for large commercial restorations.
               </p>
             </div>
           ),
@@ -198,7 +198,7 @@ export default function BrisbaneCommercialWaterDamagePage() {
         },
         {
           question: 'How is billing handled for commercial water damage in Brisbane?',
-          answer: 'We bill you directly — the business owner, tenant, or body corporate — so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, contents, stock losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance for large restorations.',
+          answer: 'We bill you directly — the business owner, tenant, or body corporate — so work begins immediately without waiting for insurer approval. You control the process and timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering structural damage, contents, stock losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance for large restorations.',
         },
       ]}
       relatedGuides={[
