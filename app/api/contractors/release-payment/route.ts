@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
   apiVersion: '2024-06-20' as const });
@@ -153,6 +154,7 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractors/release-payment' });
   try {
     const releaseRequest: PaymentReleaseRequest = await request.json();
 
@@ -309,12 +311,13 @@ export async function POST(request: NextRequest) {
             'All payments have been released' } });
 
     } catch (stripeError) {
-      console.error('Stripe transfer error:', stripeError);
+      log.error('stripe transfer error', { error: stripeError instanceof Error ? stripeError.message : String(stripeError) });
       throw new Error('Failed to process payment transfer');
     }
 
   } catch (error) {
-    console.error('Payment release error:', error);
+    log.error('payment release error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractors/release-payment' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       message: 'Failed to release payment',
@@ -324,6 +327,7 @@ export async function POST(request: NextRequest) {
 
 // Get payment release history for a job
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractors/release-payment' });
   const { searchParams } = new URL(request.url);
   const bookingId = searchParams.get('bookingId');
   const contractorId = searchParams.get('contractorId');
@@ -399,7 +403,8 @@ export async function GET(request: NextRequest) {
           completedKPIs: currentKPIs.filter(k => k.status === 'completed').length,
           totalKPIs: currentKPIs.length } } });
   } catch (error) {
-    console.error('Payment history fetch error:', error);
+    log.error('payment history fetch error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractors/release-payment' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       message: 'Failed to fetch payment history',

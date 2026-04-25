@@ -87,7 +87,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     });
 
     if (matchingPartners.length === 0) {
-      console.log('No matching partners found for lead:', leadId);
+      clientLogger.info('No matching partners found for lead:', { source: 'lib/lead-assignment', data: leadId });
       return null;
     }
 
@@ -147,11 +147,11 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
       }
     });
 
-    console.log(`Lead ${leadId} assigned to partner ${selectedPartner.businessName}`);
+    clientLogger.info(`Lead ${leadId} assigned to partner ${selectedPartner.businessName}`, { source: 'lib/lead-assignment' });
     return selectedPartner.id;
 
   } catch (error) {
-    console.error('Error assigning lead to partner:', error);
+    clientLogger.error('Error assigning lead to partner:', { source: 'lib/lead-assignment' }, error);
     return null;
   }
 }
@@ -210,3 +210,4 @@ export async function getAvailablePartners(suburb: string, state: string, postco
     );
   });
 }
+import { clientLogger } from '@/lib/observability/client-logger';

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const jobFilterSchema = z.object({
   status: z.enum(['pending', 'assigned', 'in_progress', 'completed']).optional(),
@@ -14,6 +15,7 @@ const jobFilterSchema = z.object({
 });
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/jobs' });
   try {
     // Verify authentication
     const user = await verifyAuth(request);
@@ -131,7 +133,8 @@ export async function GET(request: NextRequest) {
     }, { status: 200 });
 
   } catch (error) {
-    console.error('Jobs API error:', error);
+    log.error('jobs api error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractor/jobs' }, extra: { requestId: log.requestId } });
 
     if (error instanceof z.ZodError) {
       return NextResponse.json({
@@ -150,6 +153,7 @@ export async function GET(request: NextRequest) {
 
 // Accept or update a job
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/jobs' });
   try {
     const user = await verifyAuth(request);
 
@@ -274,7 +278,7 @@ export async function POST(request: NextRequest) {
           },
         },
       }).catch((err: unknown) => {
-        console.error('[DR-322] JobOutcome log failed:', err);
+        log.error('jobOutcome log failed', { ref: 'DR-322', error: err instanceof Error ? err.message : String(err) });
       });
     }
 
@@ -291,7 +295,8 @@ export async function POST(request: NextRequest) {
     }, { status: 200 });
 
   } catch (error) {
-    console.error('Job action error:', error);
+    log.error('job action error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractor/jobs' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json({
       success: false,

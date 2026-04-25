@@ -368,7 +368,7 @@ export default function SocialMediaInsights() {
           <div>
             <p className="text-sm font-medium text-gray-600">Total Followers</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
-              {formatNumber(mockSocialInsights.aggregatedMetrics.totalFollowers)}
+              {formatNumber(mockSocialInsights.aggregatedMetrics.totalFollowers ?? 0)}
             </p>
           </div>
           <div className="p-3 bg-blue-100 rounded-lg">
@@ -378,7 +378,7 @@ export default function SocialMediaInsights() {
         <div className="mt-2 flex items-center">
           <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
           <span className="text-sm font-medium text-green-600">
-            +{formatPercentage(mockSocialInsights.aggregatedMetrics.growthRate)}
+            +{formatPercentage(mockSocialInsights.aggregatedMetrics.growthRate ?? 0)}
           </span>
           <span className="text-sm text-gray-500 ml-1">growth</span>
         </div>
@@ -389,7 +389,7 @@ export default function SocialMediaInsights() {
           <div>
             <p className="text-sm font-medium text-gray-600">Total Impressions</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
-              {formatNumber(mockSocialInsights.aggregatedMetrics.totalImpressions)}
+              {formatNumber(mockSocialInsights.aggregatedMetrics.totalImpressions ?? 0)}
             </p>
           </div>
           <div className="p-3 bg-purple-100 rounded-lg">
@@ -403,7 +403,7 @@ export default function SocialMediaInsights() {
           <div>
             <p className="text-sm font-medium text-gray-600">Engagement Rate</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
-              {formatPercentage(mockSocialInsights.aggregatedMetrics.averageEngagementRate)}
+              {formatPercentage(mockSocialInsights.aggregatedMetrics.averageEngagementRate ?? 0)}
             </p>
           </div>
           <div className="p-3 bg-green-100 rounded-lg">
@@ -553,12 +553,12 @@ export default function SocialMediaInsights() {
               <div className="flex items-center text-sm">
                 <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                 <span className="text-green-600 font-medium">
-                  +{((platform.insights.engagementTrends[2].engagement - platform.insights.engagementTrends[0].engagement) / platform.insights.engagementTrends[0].engagement * 100).toFixed(1)}%
+                  +{(((platform.insights.engagementTrends?.[2]?.engagement ?? 0) - (platform.insights.engagementTrends?.[0]?.engagement ?? 0)) / (platform.insights.engagementTrends?.[0]?.engagement ?? 1) * 100).toFixed(1)}%
                 </span>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4 text-sm">
-              {platform.insights.engagementTrends.map((trend, index) => (
+              {platform.insights.engagementTrends?.map((trend, index) => (
                 <div key={index} className="text-center">
                   <p className="text-gray-600">
                     {trend.date.toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}
@@ -584,7 +584,7 @@ export default function SocialMediaInsights() {
               <span className="font-medium text-gray-900 capitalize">{platform.platform}</span>
             </div>
             <div className="flex space-x-2">
-              {platform.insights.bestPostingTimes.map(time => (
+              {platform.insights.bestPostingTimes?.map(time => (
                 <span key={time} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
                   {time}
                 </span>

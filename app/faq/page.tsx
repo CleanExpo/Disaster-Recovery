@@ -2,12 +2,14 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions | Disaster Recovery Australia',
-  description: 'Top 30 questions from Australian policyholders about insurance claims, water damage, fire restoration, mould remediation, storm damage, and emergency response. IICRC-certified expertise.',
+  title: 'Frequently Asked Questions | Disaster Recovery',
+  description:
+    'Top 30 questions from Australian policyholders about insurance claims, water damage, fire restoration, mould remediation, storm damage, and emergency response. IICRC-certified expertise.',
   alternates: { canonical: 'https://disasterrecovery.com.au/faq' },
   openGraph: {
-    title: 'FAQ — Disaster Recovery Australia',
-    description: 'Top 30 questions from Australian policyholders about insurance claims, water damage, storm damage, fire restoration, and mould remediation.',
+    title: 'FAQ — Disaster Recovery',
+    description:
+      'Top 30 questions from Australian policyholders about insurance claims, water damage, storm damage, fire restoration, and mould remediation.',
     url: 'https://disasterrecovery.com.au/faq',
     type: 'website',
   },
@@ -32,7 +34,7 @@ const FAQ_SECTIONS = [
       },
       {
         q: 'What happens if my insurer underpays or rejects my damage claim?',
-        a: 'If your claim is underpaid or denied, you can request an internal review in writing. If unsatisfied, escalate to the Australian Financial Complaints Authority (AFCA) at no cost. Under the General Insurance Code of Practice, insurers must explain their decision in writing. Your NRPG contractor\'s independent damage assessment, scope of works, and photographic documentation is your primary evidence in a dispute.',
+        a: "If your claim is underpaid or denied, you can request an internal review in writing. If unsatisfied, escalate to the Australian Financial Complaints Authority (AFCA) at no cost. Under the General Insurance Code of Practice, insurers must explain their decision in writing. Your NRPG contractor's independent damage assessment, scope of works, and photographic documentation is your primary evidence in a dispute.",
       },
       {
         q: 'How long does an insurance claim for property damage take in Australia?',
@@ -40,7 +42,7 @@ const FAQ_SECTIONS = [
       },
       {
         q: 'What is a make-safe and does insurance cover it?',
-        a: 'A make-safe is emergency stabilisation work to prevent further damage — boarding broken windows, tarping damaged roofs, isolating electrical hazards, and extracting standing water. Most home insurance policies cover make-safe costs as part of the claim, separate from full restoration. Work should begin within hours of the event to meet your policy\'s duty to minimise loss.',
+        a: "A make-safe is emergency stabilisation work to prevent further damage — boarding broken windows, tarping damaged roofs, isolating electrical hazards, and extracting standing water. Most home insurance policies cover make-safe costs as part of the claim, separate from full restoration. Work should begin within hours of the event to meet your policy's duty to minimise loss.",
       },
       {
         q: 'Does insurance cover mould removal after water damage?',
@@ -83,7 +85,7 @@ const FAQ_SECTIONS = [
         a: 'Professional remediation is required when mould covers more than 1 square metre, is present inside wall cavities, ceiling spaces, or HVAC systems, or when occupants experience respiratory symptoms, headaches, or unexplained fatigue. Visible surface mould is frequently a symptom of a larger hidden colony. A qualified mould assessor conducts air quality and surface sampling to determine contamination levels and identify species.',
       },
       {
-        q: 'Is mould dangerous to my family\'s health?',
+        q: "Is mould dangerous to my family's health?",
         a: 'Elevated mould levels can cause respiratory irritation, allergic reactions, and aggravate asthma — particularly in children, the elderly, and immunocompromised individuals. Certain species such as Stachybotrys (black mould) produce mycotoxins that pose serious health risks with prolonged exposure. If you suspect significant mould growth, reduce time in affected areas and seek professional assessment promptly.',
       },
       {
@@ -154,7 +156,7 @@ const FAQ_SECTIONS = [
       },
       {
         q: 'What is the NRPG contractor network?',
-        a: 'NRPG (National Restoration Professionals Group) is Australia\'s professional network for IICRC-certified disaster restoration contractors. Contractors join through a rigorous onboarding process including 14-day training, documentation review, and certification verification. The network connects qualified contractors with policyholders who need certified restoration services — ensuring quality, accountability, and insurer-accepted documentation on every job.',
+        a: "NRPG (National Restoration Professionals Group) is Australia's professional network for IICRC-certified disaster restoration contractors. Contractors join through a rigorous onboarding process including 14-day training, documentation review, and certification verification. The network connects qualified contractors with policyholders who need certified restoration services — ensuring quality, accountability, and insurer-accepted documentation on every job.",
       },
       {
         q: 'Can I request a specific contractor or geographic region?',
@@ -184,7 +186,7 @@ const faqSchema = {
         '@type': 'Answer',
         text: item.a,
       },
-    }))
+    })),
   ),
 };
 
@@ -224,10 +226,13 @@ export default function FAQIndexPage() {
           style={{ background: 'linear-gradient(135deg, #0F2942 0%, #1A4674 100%)' }}
         >
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-blue-300 text-sm font-semibold uppercase tracking-widest mb-3">Knowledge Centre</p>
+            <p className="text-blue-300 text-sm font-semibold uppercase tracking-widest mb-3">
+              Knowledge Centre
+            </p>
             <h1 className="text-3xl sm:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
             <p className="text-blue-100 text-lg max-w-2xl mx-auto">
-              Top 30 questions from Australian policyholders about disaster recovery, insurance claims, and restoration services — answered by IICRC-certified experts.
+              Top 30 questions from Australian policyholders about disaster recovery, insurance
+              claims, and restoration services — answered by IICRC-certified experts.
             </p>
             <div className="mt-8">
               <Link
@@ -256,7 +261,6 @@ export default function FAQIndexPage() {
         </nav>
 
         <div className="max-w-4xl mx-auto px-4 py-12">
-
           {/* Comprehensive FAQ — 30 questions across 6 categories */}
           {FAQ_SECTIONS.map((section) => (
             <section key={section.anchor} id={section.anchor} className="mb-14">

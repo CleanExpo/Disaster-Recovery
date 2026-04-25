@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // =============================================================================
 // DR-390 / DR-491 — AES-256-GCM envelope encryption for property access PII
@@ -56,10 +57,8 @@ export async function encrypt(plaintext: string): Promise<string> {
   }
 
   // ── Dev passthrough ───────────────────────────────────────────────────────
-  console.warn(
-    '[encryption] WARNING: ENCRYPTION_SECRET is not configured. ' +
-    'Property access data is stored as plaintext. This must not happen in production.'
-  );
+  clientLogger.warn('[encryption] WARNING: ENCRYPTION_SECRET is not configured. ' +
+    'Property access data is stored as plaintext. This must not happen in production.', { source: 'lib/encryption' });
   return `${PLAIN_PREFIX}${Buffer.from(plaintext, 'utf8').toString('base64')}`;
 }
 
@@ -102,7 +101,7 @@ export async function decrypt(ciphertext: string): Promise<string> {
   }
 
   // ── Legacy / unencrypted value ────────────────────────────────────────────
-  console.warn('[encryption] decrypt() received a value with no recognised prefix — returning as-is.');
+  clientLogger.warn('[encryption] decrypt() received a value with no recognised prefix — returning as-is.', { source: 'lib/encryption' });
   return ciphertext;
 }
 

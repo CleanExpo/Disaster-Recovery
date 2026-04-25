@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Loader2, Brain, Zap, CheckCircle, AlertCircle } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface OrchestrationResult {
   success: boolean;
@@ -86,7 +87,7 @@ export function AIOrchestrationDemo() {
       }
 
     } catch (error) {
-      console.error('API error:', error);
+      clientLogger.error('API error:', { source: 'components/AIOrchestrationDemo' }, error);
       setResult({
         success: false,
         error: 'Failed to connect to AI orchestration service'

@@ -381,6 +381,50 @@ select:focus {
   border: 0;
 }
 
+/* ============================================================================
+   DR-759: prefers-reduced-motion — WCAG 2.1 SC 2.3.3 (AAA) compliance
+   Removes or minimises non-essential motion for users who opt in to
+   reduced-motion in their OS / browser accessibility settings.
+   - Transitions become instant (duration 0 keeps focus/hover feedback but avoids vestibular triggers)
+   - Continuous / looping animations (pulse, bounce, spin, heartbeat) are disabled
+   - Scroll animations freeze in their final revealed state
+   - Framer Motion respects this via its built-in `useReducedMotion` hook; no
+     additional overrides required there.
+============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Instant transitions — keeps interactive feedback, removes vestibular motion */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Tailwind continuous-motion classes — disable rather than instant-complete */
+  .animate-spin,
+  .animate-bounce,
+  .animate-heartbeat {
+    animation: none !important;
+  }
+
+  /* Skeleton loader — keep visible (static background) rather than remove */
+  .animate-pulse {
+    animation: none !important;
+    opacity: 0.7;
+  }
+
+  /* Scroll-triggered reveal classes from src/styles/animations.css — show immediately */
+  .scroll-fade-in,
+  .scroll-slide-left,
+  .scroll-slide-right,
+  .scroll-scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

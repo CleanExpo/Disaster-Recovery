@@ -440,11 +440,18 @@ Clears all caches (routing, sequential thinking, discussions).
 - Monitor memory usage and eviction patterns
 - Consider cache warm-up strategies
 
+> **⚠️ Local development only** — Debug mode must never be enabled in production. Remove these variables before deploying.
+
 ### Debug Mode
-Enable verbose logging by setting environment variables:
+
+> ⚠️ **WARNING — Development only.** Do NOT enable these settings in staging or production.
+> Verbose debug logs may expose sensitive data including API keys, request payloads, and
+> internal system state. Ensure these variables are absent (or set to `false`/`info`) in
+> any production environment file.
+
+Enable verbose logging by setting environment variables **in your local development `.env` only**:
 ```env
 LOG_LEVEL=debug
-ORCHESTRATION_DEBUG=true
 ```
 
 ### Health Checks

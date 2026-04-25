@@ -3,6 +3,7 @@
 This will be the internal CRM for Disaster Recovery staff.
 
 ## Features (Planned)
+
 - Lead management
 - Case tracking
 - SLA monitoring
@@ -10,4 +11,5 @@ This will be the internal CRM for Disaster Recovery staff.
 - Reporting dashboard
 
 ## Status
+
 Placeholder - to be developed after MVP launch

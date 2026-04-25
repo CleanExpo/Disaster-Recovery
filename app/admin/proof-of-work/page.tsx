@@ -33,37 +33,21 @@ import {
   YAxis,
 } from 'recharts';
 
-interface ProofOfWorkClaim {
+import type { ProofOfWorkInput } from '@/lib/validation/schemas';
+
+// Admin view extends the proof-of-work submission with server-assigned
+// fields (id, contractorId, submittedAt) and a joined contractor summary.
+type ProofOfWorkClaim = ProofOfWorkInput & {
   id: string;
   contractorId: string;
-  workType: string;
-  projectName: string;
-  clientName: string;
-  clientContact: string;
-  projectAddress: string;
-  completionDate: string;
-  projectValue: number;
-  projectDescription: string;
-  damageType: string[];
-  propertyType: string;
-  emergencyResponse: boolean;
-  insuranceClaim: boolean;
-  insuranceCompany?: string;
-  evidence: Array<{
-    type: string;
-    url: string;
-    description: string;
-    uploadedAt: string;
-  }>;
-  verificationStatus: 'PENDING' | 'VERIFIED' | 'REJECTED';
-  verificationNotes?: string;
   submittedAt: string;
+  verificationStatus: 'PENDING' | 'VERIFIED' | 'REJECTED';
   contractor: {
     email: string;
     username: string | null;
     status: string;
   };
-}
+};
 
 interface Pagination {
   page: number;
@@ -536,7 +520,7 @@ export default function ProofOfWorkAdminPage() {
                       innerRadius={60}
                       outerRadius={90}
                       paddingAngle={2}
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                       labelLine={{ stroke: '#9ca3af' }}
                     >
                       {statusChartData.map((entry) => (

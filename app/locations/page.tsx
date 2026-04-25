@@ -6,8 +6,9 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Service Locations | Disaster Recovery Australia-Wide',
-  description: 'Find disaster recovery services across all Australian states and territories. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
+  title: 'Service Locations | Disaster Recovery-Wide',
+  description:
+    'Find disaster recovery services across all Australian states and territories. 24/7 emergency response via the national contractor network (metro-prioritised; regional times vary).',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations',
   },
@@ -23,15 +24,18 @@ export default function LocationsPage() {
         subtitle: 'Find disaster recovery services across all Australian states and territories',
       }}
       cta={{ text: 'Emergency Response', href: '/claim' }}
-      breadcrumbs={[
-        { label: 'Home', href: '/' },
-        { label: 'Locations' },
-      ]}
+      breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Locations' }]}
       sections={[
         {
           heading: 'Browse by State & Territory',
           body: (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: '1rem',
+              }}
+            >
               {[
                 { name: 'New South Wales', href: '/locations/nsw' },
                 { name: 'Victoria', href: '/locations/vic' },
@@ -42,7 +46,20 @@ export default function LocationsPage() {
                 { name: 'Northern Territory', href: '/locations/nt' },
                 { name: 'Australian Capital Territory', href: '/locations/act' },
               ].map((loc) => (
-                <Link key={loc.href} href={loc.href} style={{ display: 'block', padding: '1rem', background: 'white', borderRadius: '0.75rem', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', fontWeight: 600, color: 'var(--ag-primary-blue, #0052CC)' }}>
+                <Link
+                  key={loc.href}
+                  href={loc.href}
+                  style={{
+                    display: 'block',
+                    padding: '1rem',
+                    background: 'white',
+                    borderRadius: '0.75rem',
+                    textDecoration: 'none',
+                    border: '1px solid rgba(0,0,0,0.08)',
+                    fontWeight: 600,
+                    color: 'var(--ag-primary-blue, #0052CC)',
+                  }}
+                >
                   {loc.name}
                 </Link>
               ))}
@@ -52,7 +69,13 @@ export default function LocationsPage() {
         {
           heading: 'Browse by Major City',
           body: (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                gap: '1rem',
+              }}
+            >
               {[
                 { name: 'Sydney', href: '/locations/sydney' },
                 { name: 'Melbourne', href: '/locations/melbourne' },
@@ -63,7 +86,20 @@ export default function LocationsPage() {
                 { name: 'Newcastle', href: '/locations/newcastle' },
                 { name: 'Auckland (NZ)', href: '/locations/auckland' },
               ].map((loc) => (
-                <Link key={loc.href} href={loc.href} style={{ display: 'block', padding: '1rem', background: 'white', borderRadius: '0.75rem', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', fontWeight: 600, color: 'var(--ag-primary-blue, #0052CC)' }}>
+                <Link
+                  key={loc.href}
+                  href={loc.href}
+                  style={{
+                    display: 'block',
+                    padding: '1rem',
+                    background: 'white',
+                    borderRadius: '0.75rem',
+                    textDecoration: 'none',
+                    border: '1px solid rgba(0,0,0,0.08)',
+                    fontWeight: 600,
+                    color: 'var(--ag-primary-blue, #0052CC)',
+                  }}
+                >
                   {loc.name}
                 </Link>
               ))}

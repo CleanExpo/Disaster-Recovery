@@ -30,7 +30,6 @@ async function createStripeCheckoutUrl(draft_id: string): Promise<string | null>
   try {
     // Use SDK if available; fall back to REST if not. The repo lists stripe
     // as a dependency (^16.12.0) so the dynamic import should succeed.
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const Stripe = (await import('stripe')).default;
     const stripe = new Stripe(key);
     const session = await stripe.checkout.sessions.create({
@@ -52,8 +51,7 @@ async function createStripeCheckoutUrl(draft_id: string): Promise<string | null>
     });
     return session.url || null;
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.warn('[send_payment_link] stripe error', err);
+    console.error(JSON.stringify({ level: 'warn', source: 'api/voice/tools/send-payment-link', msg: 'stripe error', error: err instanceof Error ? err.message : String(err) }));
     return null;
   }
 }

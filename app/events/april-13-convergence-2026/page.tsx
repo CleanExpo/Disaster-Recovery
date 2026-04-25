@@ -22,8 +22,10 @@ export const metadata: Metadata = {
     images: [{ url: `${NAP.url}/api/og?title=${encodeURIComponent('April 13 — TC Maila & Alfred Insurance')}&city=${encodeURIComponent('FNQ')}&service=cyclone-damage-restoration`, width: 1200, height: 630 }],
     type: 'website',
   },
+  // DR-745: canonical winner is tc-maila-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: `${NAP.url}/events/april-13-convergence-2026`,
+    canonical: `${NAP.url}/events/tc-maila-fnq-2026`,
   },
 };
 

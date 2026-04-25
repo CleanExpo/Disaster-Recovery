@@ -19,22 +19,24 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice'
+import { DeadlineBand } from '@/components/DeadlineBand'
 
 export const metadata: Metadata = {
-  title: 'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery Australia',
+  title:
+    'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery',
   description:
-    'Queensland Floods 2026 — Tropical Low 29U, Bundaberg, Burnett River catchment, and related events. Government assistance closes 27 April 2026. 2,000+ ICA claims. IICRC-certified restoration contractors. Lodge your claim now.',
+    'Government assistance programs available. Check page for current deadlines. Queensland Floods 2026 — Tropical Low 29U, Bundaberg, Burnett River catchment. 2,000+ ICA claims. IICRC-certified restoration contractors. Lodge your claim now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
   },
   openGraph: {
-    title: 'QLD Floods 2026 — Bundaberg & Burnett River Recovery | Disaster Recovery Australia',
+    title: 'QLD Floods 2026 — Bundaberg & Burnett River Recovery | Disaster Recovery',
     description:
-      'Queensland Floods 2026 (Tropical Low 29U). Bundaberg and Burnett River catchment most affected. Government relief closes 27 April. NRPG IICRC-certified contractors ready now.',
+      'Queensland Floods 2026 (Tropical Low 29U). Bundaberg and Burnett River catchment most affected. Government assistance programs available — check page for current deadlines. NRPG IICRC-certified contractors ready now.',
     url: 'https://disasterrecovery.com.au/events/queensland-floods-2026',
     type: 'website',
   },
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -45,7 +47,7 @@ const faqSchema = {
       name: 'Is it too late to claim after the flood?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There is no time limit on lodging an insurance claim. However, government relief programs close on 27 April 2026 — lodge your government assistance applications before that date. Your insurance claim can be lodged at any time.',
+        text: 'There is no time limit on lodging an insurance claim. Government relief programs have a closing date — check current deadline status on the page and lodge promptly. Your insurance claim can be lodged at any time.',
       },
     },
     {
@@ -81,14 +83,14 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 const eventSchema = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   name: 'Queensland Floods 2026 (Tropical Low 29U) — Disaster Recovery',
   description:
-    'Queensland Floods 2026 — Tropical Low 29U and related March 2026 events. Bundaberg and Burnett River catchment. Extended ESHA, Personal Hardship Assistance, and Structural Grants available until 27 April 2026. NRPG IICRC-certified restoration and claims support.',
+    'Queensland Floods 2026 — Tropical Low 29U and related March 2026 events. Bundaberg and Burnett River catchment. Extended ESHA, Personal Hardship Assistance, and Structural Grants available — check page for current deadline status. NRPG IICRC-certified restoration and claims support.',
   startDate: '2026-03-01',
   location: {
     '@type': 'State',
@@ -97,10 +99,10 @@ const eventSchema = {
   },
   organizer: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
   },
-}
+};
 
 export default function QueenslandFloods2026Page() {
   return (
@@ -115,7 +117,6 @@ export default function QueenslandFloods2026Page() {
       />
 
       <div className="min-h-screen bg-white">
-
         {/* ── 000 Emergency Warning ── */}
         <div className="bg-red-700 text-white py-3 px-4 text-center" role="alert">
           <p className="text-sm font-bold">
@@ -131,10 +132,12 @@ export default function QueenslandFloods2026Page() {
         <div className="bg-amber-50 border-b border-amber-400">
           <div className="container mx-auto px-6 max-w-5xl py-4">
             <div className="flex items-start gap-3">
-              <span className="text-xl flex-shrink-0" role="img" aria-label="Warning">⏰</span>
+              <span className="text-xl flex-shrink-0" role="img" aria-label="Warning">
+                ⏰
+              </span>
               <p className="text-amber-900 font-semibold text-sm md:text-base">
-                Government assistance closes <strong>27 April 2026</strong> — Extended ESHA, Personal Hardship,
-                and Structural Grants still available. Apply before the deadline.
+                Government assistance programs — Extended ESHA, Personal Hardship,
+                and Structural Grants. Check current deadline status below.
               </p>
             </div>
           </div>
@@ -146,7 +149,7 @@ export default function QueenslandFloods2026Page() {
             <div className="mb-4">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-blue-700">
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                RECOVERY ACTIVE — DEADLINE 27 APRIL
+                RECOVERY ACTIVE
               </span>
             </div>
             <h1 className="font-display text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
@@ -155,10 +158,11 @@ export default function QueenslandFloods2026Page() {
               <span className="text-blue-400">Work for you, not your insurer.</span>
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mb-2 leading-relaxed">
-              Tropical Low 29U and related March 2026 flood events impacted Bundaberg, the Burnett River catchment, and surrounding LGAs across Queensland.
+              Tropical Low 29U and related March 2026 flood events impacted Bundaberg, the Burnett
+              River catchment, and surrounding LGAs across Queensland.
             </p>
             <p className="text-base text-slate-400 max-w-2xl mb-8">
-              Government assistance ends 27 April 2026. NRPG coordinates IICRC-certified restoration and supports your claim.
+              Government assistance programs available — check current status below. NRPG coordinates IICRC-certified restoration and supports your claim.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -171,24 +175,12 @@ export default function QueenslandFloods2026Page() {
           </div>
         </section>
 
-        {/* ── Deadline Alert Card (prominent) ── */}
+        {/* ── Deadline Alert Cards (prominent) ── */}
         <section className="py-10 bg-white border-b border-slate-200">
           <div className="container mx-auto px-6 max-w-5xl">
-            <div className="bg-amber-50 border border-amber-400 rounded-lg p-6">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0" role="img" aria-label="Warning">⏰</span>
-                <div>
-                  <h2 className="font-bold text-amber-900 text-lg mb-1">
-                    Government Assistance Deadline: 27 April 2026
-                  </h2>
-                  <p className="text-amber-800 text-sm leading-relaxed">
-                    Government assistance closes <strong>27 April 2026</strong> — Extended ESHA, Personal Hardship,
-                    and Structural Grants still available. Do not wait. Lodge your government applications and
-                    insurance claim in parallel today.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <DeadlineBand programKey="qld-floods-2026-extended-esha" />
+            <DeadlineBand programKey="qld-floods-2026-personal-hardship" />
+            <DeadlineBand programKey="qld-floods-2026-structural-assistance" />
           </div>
         </section>
 
@@ -196,14 +188,14 @@ export default function QueenslandFloods2026Page() {
         <section className="py-12 md:py-16 bg-slate-50 border-b border-slate-200">
           <div className="container mx-auto px-6 max-w-5xl">
             <h2 className="font-display text-3xl font-bold text-slate-900 mb-2">
-              Government Relief — Still Available
+              Government Relief Programs
             </h2>
             <p className="text-slate-600 mb-3">
-              Three programs remain open. All close 27 April 2026. Apply for each you are eligible for.
+              Three programs may be available. Apply for each you are eligible for.
             </p>
             <p className="text-slate-600 text-sm mb-6">
-              58 Local Government Areas are declared under the Disaster Recovery Funding Arrangements (DRFA). For
-              the full list of eligible LGAs, visit{' '}
+              58 Local Government Areas are declared under the Disaster Recovery Funding
+              Arrangements (DRFA). For the full list of eligible LGAs, visit{' '}
               <a
                 href="https://www.qra.qld.gov.au"
                 target="_blank"
@@ -213,29 +205,29 @@ export default function QueenslandFloods2026Page() {
                 qra.qld.gov.au
               </a>{' '}
               or call the Queensland Reconstruction Authority on{' '}
-              <a href="tel:1800173349" className="underline text-blue-700 hover:text-blue-900 font-medium">
+              <a
+                href="tel:1800173349"
+                className="underline text-blue-700 hover:text-blue-900 font-medium"
+              >
                 1800 173 349
               </a>
               .
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-
               {/* Card A: Extended ESHA */}
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-1 rounded">
                     Exceptional Circumstances
                   </span>
-                  <span className="text-xs text-red-600 font-semibold">Closes 27 Apr</span>
                 </div>
-                <h3 className="font-bold text-slate-900 text-lg mb-1">
-                  Extended ESHA
-                </h3>
+                <h3 className="font-bold text-slate-900 text-lg mb-1">Extended ESHA</h3>
                 <p className="text-green-700 font-bold text-xl mb-3">Up to $5,000</p>
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                  Extended Household and Structural Assistance under Exceptional Circumstances — covers temporary
-                  accommodation, essential household items, meals, transport, medical prescriptions, and childcare
-                  for eligible residents in the 10 declared LGAs. Available until 27 April 2026.
+                  Extended Household and Structural Assistance under Exceptional Circumstances —
+                  covers temporary accommodation, essential household items, meals, transport,
+                  medical prescriptions, and childcare for eligible residents in the 10 declared
+                  LGAs. Available until 27 April 2026.
                 </p>
                 <div className="mb-4">
                   <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
@@ -254,7 +246,10 @@ export default function QueenslandFloods2026Page() {
                       'North Burnett',
                       'Western Downs',
                     ].map((lga) => (
-                      <span key={lga} className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+                      <span
+                        key={lga}
+                        className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded"
+                      >
                         {lga}
                       </span>
                     ))}
@@ -278,7 +273,6 @@ export default function QueenslandFloods2026Page() {
                   <span className="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-1 rounded">
                     No Asset Testing
                   </span>
-                  <span className="text-xs text-red-600 font-semibold">Closes 27 Apr</span>
                 </div>
                 <h3 className="font-bold text-slate-900 text-lg mb-1">
                   Personal Hardship Assistance
@@ -286,7 +280,7 @@ export default function QueenslandFloods2026Page() {
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
                   Financial assistance for individuals and families experiencing personal hardship as a direct
                   result of the Queensland Floods. No asset testing applies. Can be combined with other relief
-                  programs. Deadline: 27 April 2026. Apply via{' '}
+                  programs. Apply via{' '}
                   <a
                     href="https://www.disaster.qld.gov.au"
                     target="_blank"
@@ -296,7 +290,10 @@ export default function QueenslandFloods2026Page() {
                     disaster.qld.gov.au
                   </a>{' '}
                   or call the QRA on{' '}
-                  <a href="tel:1800173349" className="underline text-purple-700 hover:text-purple-900">
+                  <a
+                    href="tel:1800173349"
+                    className="underline text-purple-700 hover:text-purple-900"
+                  >
                     1800 173 349
                   </a>
                   . [Source: disaster.qld.gov.au]
@@ -319,16 +316,15 @@ export default function QueenslandFloods2026Page() {
                   <span className="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-50 px-2 py-1 rounded">
                     Primary Residence Only
                   </span>
-                  <span className="text-xs text-red-600 font-semibold">Closes 27 Apr</span>
                 </div>
                 <h3 className="font-bold text-slate-900 text-lg mb-1">
                   Structural Assistance Grants
                 </h3>
                 <p className="text-green-700 font-bold text-xl mb-3">Up to $80,000</p>
                 <p className="text-slate-600 text-sm mb-3 leading-relaxed">
-                  Covers structural damage, electrical and plumbing repairs, drying and mould remediation, and
-                  professional assessment reports. Eligible works must exceed $5,000. Primary residence only.
-                  [Source:{' '}
+                  Covers structural damage, electrical and plumbing repairs, drying and mould
+                  remediation, and professional assessment reports. Eligible works must exceed
+                  $5,000. Primary residence only. [Source:{' '}
                   <a
                     href="https://www.disaster.qld.gov.au"
                     target="_blank"
@@ -350,7 +346,6 @@ export default function QueenslandFloods2026Page() {
                   </a>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -382,8 +377,13 @@ export default function QueenslandFloods2026Page() {
                   body: 'From drying and mould remediation (IICRC S500:2025/S520:2025 standards) to final rebuild — one contact, one timeline.',
                 },
               ].map(({ number, title, body }) => (
-                <div key={number} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                  <div className="text-4xl font-black text-blue-100 mb-3 font-display">{number}</div>
+                <div
+                  key={number}
+                  className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm"
+                >
+                  <div className="text-4xl font-black text-blue-100 mb-3 font-display">
+                    {number}
+                  </div>
                   <h3 className="font-bold text-slate-900 text-lg mb-3">{title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{body}</p>
                 </div>
@@ -406,9 +406,22 @@ export default function QueenslandFloods2026Page() {
                 'Contents & Personal Items',
                 'Professional Assessment & Reports',
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 bg-white border border-slate-200 rounded-lg px-5 py-4">
-                  <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <div
+                  key={item}
+                  className="flex items-start gap-3 bg-white border border-slate-200 rounded-lg px-5 py-4"
+                >
+                  <svg
+                    className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
                   <span className="text-slate-700 font-medium text-sm">{item}</span>
                 </div>
@@ -420,17 +433,25 @@ export default function QueenslandFloods2026Page() {
         {/* ── Trust Signals ── */}
         <section className="py-12 bg-blue-900 text-white">
           <div className="container mx-auto px-6 max-w-5xl">
-            <h2 className="font-display text-2xl font-bold text-white mb-8">
-              Why NRPG
-            </h2>
+            <h2 className="font-display text-2xl font-bold text-white mb-8">Why NRPG</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 'Tropical Low 29U and related March 2026 flood events generated 2,000+ ICA claims across Queensland, with Bundaberg and the Burnett River catchment among the most impacted areas [Insurance Council of Australia].',
                 'NRPG restoration partners are IICRC-certified and comply with S500:2025 (Water Damage Restoration) and S520:2025 (Mould Remediation) standards.',
               ].map((signal, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  <svg
+                    className="w-5 h-5 text-blue-300 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
                   </svg>
                   <p className="text-blue-100 text-sm leading-relaxed">{signal}</p>
                 </div>
@@ -449,7 +470,7 @@ export default function QueenslandFloods2026Page() {
               {[
                 {
                   q: 'Is it too late to claim after the flood?',
-                  a: 'There is no time limit on lodging an insurance claim. However, government relief programs close on 27 April 2026 — lodge your government assistance applications before that date. Your insurance claim can be lodged at any time.',
+                  a: 'There is no time limit on lodging an insurance claim. Government relief programs have a closing date — check current deadline status on this page and lodge your government assistance applications promptly. Your insurance claim can be lodged at any time.',
                 },
                 {
                   q: 'What if my insurer is slow to respond?',
@@ -481,10 +502,10 @@ export default function QueenslandFloods2026Page() {
         <section className="py-12 bg-slate-900 text-white">
           <div className="container mx-auto px-6 max-w-3xl text-center">
             <h2 className="font-display text-3xl font-bold text-white mb-3">
-              Don&apos;t Miss the Deadline
+              Act Now on Government Relief
             </h2>
             <p className="text-slate-300 mb-2 leading-relaxed">
-              Government relief closes 27 April. Lodge your claim now — it takes 90 seconds on mobile.
+              Government relief programs have deadlines. Lodge your claim now — it takes 90 seconds on mobile.
             </p>
             <div className="mb-8 text-left">
               <App3CollectionNotice />
@@ -495,13 +516,17 @@ export default function QueenslandFloods2026Page() {
             >
               Lodge Your Claim Now
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </Link>
           </div>
         </section>
-
       </div>
     </>
-  )
+  );
 }

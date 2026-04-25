@@ -321,7 +321,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
       calculations: {
         method: 'iicrc_standard',
         parameters: [
-          { name: 'Total Area', value: data.propertyDetails.totalArea, unit: 'sqm', source: 'Assessment' },
+          { name: 'Total Area', value: data.propertyDetails.totalArea ?? 0, unit: 'sqm', source: 'Assessment' },
           { name: 'Affected Area', value: totalAffectedArea, unit: 'sqm', source: 'Calculated' },
           { name: 'Water Category', value: data.damageAssessment.category, unit: '', source: 'IICRC S500:2025' },
           { name: 'Water Class', value: data.damageAssessment.class, unit: '', source: 'IICRC S500:2025' }

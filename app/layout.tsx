@@ -1,94 +1,92 @@
-import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins } from 'next/font/google'
-import Script from 'next/script'
-import '@/styles/globals.css'
-import '@/styles/mobile-responsive.css'
-import '@/styles/performance-optimizations.css'
-import '@/styles/antigravity-design-system.css'
-import { Providers } from './providers'
-import UltraModernHeader from '@/components/UltraModernHeader'
-import UltraModernFooter from '@/components/UltraModernFooter'
-import DemoModeIndicator from '@/components/DemoModeIndicator'
-import DemoModeBanner from '@/components/demo/DemoModeBanner'
-import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
-import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
-import { ConsentModeInit } from '@/components/analytics/ConsentModeInit'
-import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
-import MobileNav from '@/components/mobile/MobileNav'
-import MobileFAB from '@/components/mobile/MobileFAB'
-import Breadcrumb from '@/components/Breadcrumb'
-import NavigationIndicator from '@/components/NavigationIndicator'
-import { AntigravityLayoutGuard } from '@/components/AntigravityLayoutGuard'
-import { LayoutChrome } from '@/components/LayoutChrome'
-import LoadingIndicator from '@/components/LoadingIndicator'
-import ProgressSpinner from '@/components/ProgressSpinner'
-import LazyImage from '@/components/LazyImage'
-import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema'
-import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema'
-import RegisterServiceWorker from './register-sw'
-import { DirectionProvider } from '@/components/providers/DirectionProvider'
-import { ConsentBanner } from '@/components/privacy/ConsentBanner'
-// import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
-// import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
+import type { Metadata, Viewport } from 'next';
+import { Inter, Poppins } from 'next/font/google';
+import Script from 'next/script';
+import { Partytown } from '@builder.io/partytown/react';
+import '@/styles/globals.css';
+import '@/styles/mobile-responsive.css';
+import '@/styles/performance-optimizations.css';
+import '@/styles/antigravity-design-system.css';
+import { Providers } from './providers';
+// DR-722: LayoutChrome renders Header/Footer/Nav internally — remove redundant static imports
+import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity';
+import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
+import { ConsentModeInit } from '@/components/analytics/ConsentModeInit';
+import { LayoutChrome } from '@/components/LayoutChrome';
+import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema';
+import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema';
+import RegisterServiceWorker from './register-sw';
+import { DirectionProvider } from '@/components/providers/DirectionProvider';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+// DR-722: Defer non-critical client components — lives in a Client Component to allow ssr: false
+import { ClientOnlyComponents } from './ClientOnlyComponents';
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   preload: true,
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
-  variable: '--font-inter'
-})
+  variable: '--font-inter',
+});
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800'],
   subsets: ['latin'],
   display: 'swap',
   preload: true,
-  variable: '--font-poppins'
-})
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
-    default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services | IICRC Certified',
-    template: '%s | Disaster Recovery Australia'
+    default: 'Disaster Recovery | 24/7 Emergency Restoration Services | IICRC Certified',
+    template: '%s | Disaster Recovery',
   },
-  description: 'IICRC-certified disaster recovery and restoration specialists across Australia. 24/7 emergency response for water damage, fire damage, flood recovery, mould remediation and storm damage — Sydney, Melbourne, Brisbane, Perth, Adelaide and all regional areas.',
-  keywords: 'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
-  authors: [{ name: 'Disaster Recovery Australia' }],
-  creator: 'Disaster Recovery Australia',
+  description:
+    'IICRC-certified disaster recovery and restoration specialists across Australia. 24/7 emergency response for water damage, fire damage, flood recovery, mould remediation and storm damage — Sydney, Melbourne, Brisbane, Perth, Adelaide and all regional areas.',
+  keywords:
+    'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
+  authors: [{ name: 'Disaster Recovery' }],
+  creator: 'Disaster Recovery',
   publisher: 'National Restoration Professionals Group (NRPG)',
   formatDetection: {
     email: false,
     address: false,
-    telephone: false },
+    telephone: false,
+  },
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Disaster Recovery Australia'
+    title: 'Disaster Recovery',
   },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
     url: 'https://disasterrecovery.com.au',
-    siteName: 'Disaster Recovery Australia',
-    title: 'Disaster Recovery Australia | 24/7 IICRC-Certified Emergency Restoration',
-    description: 'Australia\'s elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.',
+    siteName: 'Disaster Recovery',
+    title: 'Disaster Recovery | 24/7 IICRC-Certified Emergency Restoration',
+    description:
+      "Australia's elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.",
     images: [
       {
         url: '/images/disaster-recovery-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Disaster Recovery Australia - Emergency Restoration Services' }
-    ] },
+        alt: 'Disaster Recovery - Emergency Restoration Services',
+      },
+    ],
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'Disaster Recovery Australia | 24/7 Emergency Restoration',
-    description: 'IICRC-certified disaster recovery. 24-48hr critical response window. Water, fire, mould damage specialists.',
+    title: 'Disaster Recovery | 24/7 Emergency Restoration',
+    description:
+      'IICRC-certified disaster recovery. 24-48hr critical response window. Water, fire, mould damage specialists.',
     images: ['/images/disaster-recovery-twitter.jpg'],
-    creator: '@DisasterRecovAU' },
+    creator: '@DisasterRecovAU',
+  },
   robots: {
     index: true,
     follow: true,
@@ -97,22 +95,30 @@ export const metadata: Metadata = {
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
-      'max-snippet': -1 } },
+      'max-snippet': -1,
+    },
+  },
   verification: {
-    google: ['dDWcL2TyZJ3cNEkXAqLrpMk8Lc0Yqy0soQzmTUMubVI', 'CrxqogWzyQzp7XriWhZJT0bnxJVkilQawe-0lRQ6pqI'],
+    google: [
+      'dDWcL2TyZJ3cNEkXAqLrpMk8Lc0Yqy0soQzmTUMubVI',
+      'CrxqogWzyQzp7XriWhZJT0bnxJVkilQawe-0lRQ6pqI',
+    ],
     yandex: '',
     yahoo: '',
     other: {
       'msvalidate.01': 'F73BE1B1E698FD592FE2EA8D27992837',
-    } },
+    },
+  },
   alternates: {
     canonical: 'https://disasterrecovery.com.au',
     languages: {
       'en-AU': 'https://disasterrecovery.com.au',
       'en-NZ': 'https://disasterrecovery.com.au',
       'x-default': 'https://disasterrecovery.com.au',
-    } },
-  category: 'Disaster Recovery Services' }
+    },
+  },
+  category: 'Disaster Recovery Services',
+};
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -124,12 +130,9 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
   ],
-}
+};
 
-export default function RootLayout({
-  children }: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-AU" dir="ltr">
       <head>
@@ -150,215 +153,370 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "@id": "https://disasterrecovery.com.au/#organization",
-              "name": "Disaster Recovery Australia",
-              "alternateName": "NRPG - National Restoration Professionals Group",
-              "url": "https://disasterrecovery.com.au",
-              "logo": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
-              "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
-              "areaServed": {
-                "@type": "Country",
-                "name": "Australia"
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://disasterrecovery.com.au/#organization',
+              name: 'Disaster Recovery',
+              alternateName: 'NRPG - National Restoration Professionals Group',
+              url: 'https://disasterrecovery.com.au',
+              logo: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
+              description:
+                "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
+              areaServed: {
+                '@type': 'Country',
+                name: 'Australia',
               },
-              "serviceArea": {
-                "@type": "GeoCircle",
-                "geoMidpoint": {
-                  "@type": "GeoCoordinates",
-                  "latitude": -25.2744,
-                  "longitude": 133.7751
+              serviceArea: {
+                '@type': 'GeoCircle',
+                geoMidpoint: {
+                  '@type': 'GeoCoordinates',
+                  latitude: -25.2744,
+                  longitude: 133.7751,
                 },
-                "geoRadius": "4000000"
+                geoRadius: '4000000',
               },
-              "sameAs": [
-                "https://www.facebook.com/DisasterRecoveryAU",
-                "https://www.instagram.com/disasterrecoveryau"
+              sameAs: [
+                'https://www.facebook.com/DisasterRecoveryAU',
+                'https://www.instagram.com/disasterrecoveryau',
               ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "url": "https://disasterrecovery.com.au/claim",
-                "contactType": "Online Claims",
-                "availableLanguage": "English",
-                "areaServed": "AU",
-                "availableHours": "Mo,Tu,We,Th,Fr,Sa,Su 00:00-23:59"
+              contactPoint: {
+                '@type': 'ContactPoint',
+                url: 'https://disasterrecovery.com.au/claim',
+                contactType: 'Online Claims',
+                availableLanguage: 'English',
+                areaServed: 'AU',
+                availableHours: 'Mo,Tu,We,Th,Fr,Sa,Su 00:00-23:59',
               },
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "AU",
-                "addressRegion": "QLD",
-                "addressLocality": "Brisbane"
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'AU',
+                addressRegion: 'QLD',
+                addressLocality: 'Brisbane',
               },
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Disaster Recovery Services",
-                "itemListElement": [
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'Disaster Recovery Services',
+                itemListElement: [
                   {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Water Damage Restoration",
-                      "description": "24/7 emergency water damage restoration and flood recovery"
-                    }
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Water Damage Restoration',
+                      description: '24/7 emergency water damage restoration and flood recovery',
+                    },
                   },
                   {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Fire Damage Restoration",
-                      "description": "Complete fire and smoke damage restoration services"
-                    }
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Fire Damage Restoration',
+                      description: 'Complete fire and smoke damage restoration services',
+                    },
                   },
                   {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Mould Remediation",
-                      "description": "Professional mould removal and remediation services"
-                    }
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Mould Remediation',
+                      description: 'Professional mould removal and remediation services',
+                    },
                   },
                   {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Biohazard Cleanup",
-                      "description": "Specialised biohazard and trauma scene cleanup"
-                    }
-                  }
-                ]
-              }
-            })
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Biohazard Cleanup',
+                      description: 'Specialised biohazard and trauma scene cleanup',
+                    },
+                  },
+                ],
+              },
+            }),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "@id": "https://disasterrecovery.com.au/#website",
-              "url": "https://disasterrecovery.com.au",
-              "name": "Disaster Recovery Australia",
-              "description": "IICRC-certified disaster recovery and restoration services across Australia. 24/7 emergency response for water damage, fire damage, mould remediation, and storm damage.",
-              "publisher": {
-                "@id": "https://disasterrecovery.com.au/#organization"
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': 'https://disasterrecovery.com.au/#website',
+              url: 'https://disasterrecovery.com.au',
+              name: 'Disaster Recovery',
+              description:
+                'IICRC-certified disaster recovery and restoration services across Australia. 24/7 emergency response for water damage, fire damage, mould remediation, and storm damage.',
+              publisher: {
+                '@id': 'https://disasterrecovery.com.au/#organization',
               },
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": {
-                  "@type": "EntryPoint",
-                  "urlTemplate": "https://disasterrecovery.com.au/search?q={search_term_string}"
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: 'https://disasterrecovery.com.au/search?q={search_term_string}',
                 },
-                "query-input": "required name=search_term_string"
+                'query-input': 'required name=search_term_string',
               },
-              "inLanguage": "en-AU"
-            })
+              inLanguage: 'en-AU',
+            }),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EmergencyService",
-              "@id": "https://disasterrecovery.com.au/#business",
-              "name": "Disaster Recovery",
-              "image": "https://disasterrecovery.com.au/images/disaster-recovery-og.jpg",
-              "url": "https://disasterrecovery.com.au",
-              "priceRange": "$2200+",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "AU",
-                "addressRegion": "Australia"
+              '@context': 'https://schema.org',
+              '@type': 'EmergencyService',
+              '@id': 'https://disasterrecovery.com.au/#business',
+              name: 'Disaster Recovery',
+              image: 'https://disasterrecovery.com.au/images/disaster-recovery-og.jpg',
+              url: 'https://disasterrecovery.com.au',
+              priceRange: '$2200+',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'AU',
+                addressRegion: 'Australia',
               },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": -25.2744,
-                "longitude": 133.7751
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: -25.2744,
+                longitude: 133.7751,
               },
-              "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-                "opens": "00:00",
-                "closes": "23:59"
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: [
+                  'Monday',
+                  'Tuesday',
+                  'Wednesday',
+                  'Thursday',
+                  'Friday',
+                  'Saturday',
+                  'Sunday',
+                ],
+                opens: '00:00',
+                closes: '23:59',
               },
-              "serviceType": [
-                "Water Damage Restoration",
-                "Fire Damage Restoration",
-                "Storm Damage Restoration",
-                "Flood Recovery",
-                "Mould Remediation",
-                "Smoke Damage Restoration",
-                "Biohazard Cleanup",
-                "Emergency Make-Safe",
-                "Sewage Cleanup",
-                "Contents Restoration",
-                "Structural Drying",
-                "Insurance Claim Documentation"
+              serviceType: [
+                'Water Damage Restoration',
+                'Fire Damage Restoration',
+                'Storm Damage Restoration',
+                'Flood Recovery',
+                'Mould Remediation',
+                'Smoke Damage Restoration',
+                'Biohazard Cleanup',
+                'Emergency Make-Safe',
+                'Sewage Cleanup',
+                'Contents Restoration',
+                'Structural Drying',
+                'Insurance Claim Documentation',
               ],
-              "areaServed": [
-                { "@type": "State", "name": "New South Wales", "sameAs": "https://en.wikipedia.org/wiki/New_South_Wales" },
-                { "@type": "State", "name": "Victoria", "sameAs": "https://en.wikipedia.org/wiki/Victoria_(Australia)" },
-                { "@type": "State", "name": "Queensland", "sameAs": "https://en.wikipedia.org/wiki/Queensland" },
-                { "@type": "State", "name": "Western Australia", "sameAs": "https://en.wikipedia.org/wiki/Western_Australia" },
-                { "@type": "State", "name": "South Australia", "sameAs": "https://en.wikipedia.org/wiki/South_Australia" },
-                { "@type": "State", "name": "Tasmania", "sameAs": "https://en.wikipedia.org/wiki/Tasmania" },
-                { "@type": "State", "name": "Northern Territory", "sameAs": "https://en.wikipedia.org/wiki/Northern_Territory" },
-                { "@type": "State", "name": "Australian Capital Territory", "sameAs": "https://en.wikipedia.org/wiki/Australian_Capital_Territory" },
-                { "@type": "City", "name": "Sydney", "containedInPlace": { "@type": "State", "name": "New South Wales" } },
-                { "@type": "City", "name": "Melbourne", "containedInPlace": { "@type": "State", "name": "Victoria" } },
-                { "@type": "City", "name": "Brisbane", "containedInPlace": { "@type": "State", "name": "Queensland" } },
-                { "@type": "City", "name": "Perth", "containedInPlace": { "@type": "State", "name": "Western Australia" } },
-                { "@type": "City", "name": "Adelaide", "containedInPlace": { "@type": "State", "name": "South Australia" } },
-                { "@type": "City", "name": "Cairns", "containedInPlace": { "@type": "State", "name": "Queensland" } },
-                { "@type": "City", "name": "Townsville", "containedInPlace": { "@type": "State", "name": "Queensland" } },
-                { "@type": "City", "name": "Gold Coast", "containedInPlace": { "@type": "State", "name": "Queensland" } },
-                { "@type": "City", "name": "Sunshine Coast", "containedInPlace": { "@type": "State", "name": "Queensland" } },
-                { "@type": "City", "name": "Newcastle", "containedInPlace": { "@type": "State", "name": "New South Wales" } },
-                { "@type": "City", "name": "Wollongong", "containedInPlace": { "@type": "State", "name": "New South Wales" } },
-                { "@type": "City", "name": "Geelong", "containedInPlace": { "@type": "State", "name": "Victoria" } },
-                { "@type": "City", "name": "Ballarat", "containedInPlace": { "@type": "State", "name": "Victoria" } },
-                { "@type": "City", "name": "Darwin", "containedInPlace": { "@type": "State", "name": "Northern Territory" } },
-                { "@type": "City", "name": "Hobart", "containedInPlace": { "@type": "State", "name": "Tasmania" } },
-                { "@type": "City", "name": "Canberra", "containedInPlace": { "@type": "State", "name": "Australian Capital Territory" } }
+              areaServed: [
+                {
+                  '@type': 'State',
+                  name: 'New South Wales',
+                  sameAs: 'https://en.wikipedia.org/wiki/New_South_Wales',
+                },
+                {
+                  '@type': 'State',
+                  name: 'Victoria',
+                  sameAs: 'https://en.wikipedia.org/wiki/Victoria_(Australia)',
+                },
+                {
+                  '@type': 'State',
+                  name: 'Queensland',
+                  sameAs: 'https://en.wikipedia.org/wiki/Queensland',
+                },
+                {
+                  '@type': 'State',
+                  name: 'Western Australia',
+                  sameAs: 'https://en.wikipedia.org/wiki/Western_Australia',
+                },
+                {
+                  '@type': 'State',
+                  name: 'South Australia',
+                  sameAs: 'https://en.wikipedia.org/wiki/South_Australia',
+                },
+                {
+                  '@type': 'State',
+                  name: 'Tasmania',
+                  sameAs: 'https://en.wikipedia.org/wiki/Tasmania',
+                },
+                {
+                  '@type': 'State',
+                  name: 'Northern Territory',
+                  sameAs: 'https://en.wikipedia.org/wiki/Northern_Territory',
+                },
+                {
+                  '@type': 'State',
+                  name: 'Australian Capital Territory',
+                  sameAs: 'https://en.wikipedia.org/wiki/Australian_Capital_Territory',
+                },
+                {
+                  '@type': 'City',
+                  name: 'Sydney',
+                  containedInPlace: { '@type': 'State', name: 'New South Wales' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Melbourne',
+                  containedInPlace: { '@type': 'State', name: 'Victoria' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Brisbane',
+                  containedInPlace: { '@type': 'State', name: 'Queensland' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Perth',
+                  containedInPlace: { '@type': 'State', name: 'Western Australia' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Adelaide',
+                  containedInPlace: { '@type': 'State', name: 'South Australia' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Cairns',
+                  containedInPlace: { '@type': 'State', name: 'Queensland' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Townsville',
+                  containedInPlace: { '@type': 'State', name: 'Queensland' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Gold Coast',
+                  containedInPlace: { '@type': 'State', name: 'Queensland' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Sunshine Coast',
+                  containedInPlace: { '@type': 'State', name: 'Queensland' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Newcastle',
+                  containedInPlace: { '@type': 'State', name: 'New South Wales' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Wollongong',
+                  containedInPlace: { '@type': 'State', name: 'New South Wales' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Geelong',
+                  containedInPlace: { '@type': 'State', name: 'Victoria' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Ballarat',
+                  containedInPlace: { '@type': 'State', name: 'Victoria' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Darwin',
+                  containedInPlace: { '@type': 'State', name: 'Northern Territory' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Hobart',
+                  containedInPlace: { '@type': 'State', name: 'Tasmania' },
+                },
+                {
+                  '@type': 'City',
+                  name: 'Canberra',
+                  containedInPlace: { '@type': 'State', name: 'Australian Capital Territory' },
+                },
               ],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Disaster Restoration Services",
-                "itemListElement": [
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Water Damage Restoration", "description": "24/7 emergency water extraction, structural drying, and moisture remediation following Category 1, 2, or 3 water damage events. Follows IICRC S500:2025." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fire & Smoke Damage Restoration", "description": "Make-safe, soot removal, odour elimination, contents pack-out, and full structural reinstatement following fire damage. Follows IICRC FSRT." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Storm Damage Restoration", "description": "Emergency make-safe, roof tarping, water intrusion control, and reinstatement following cyclone, storm, or hail damage." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flood Recovery", "description": "Category 3 flood water extraction, contamination remediation, structural drying, and insurance documentation for ICA CAT flood events." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mould Remediation", "description": "Air quality assessment, containment, HEPA filtration, antimicrobial treatment, and clearance testing. Follows IICRC S520:2025." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Make-Safe", "description": "Immediate stabilisation to prevent further loss — board-up, tarpaulin, electrical isolation, and structural shoring. 24/7 callout." } }
-                ]
-              }
-            })
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'Disaster Restoration Services',
+                itemListElement: [
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Water Damage Restoration',
+                      description:
+                        '24/7 emergency water extraction, structural drying, and moisture remediation following Category 1, 2, or 3 water damage events. Follows IICRC S500:2025.',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Fire & Smoke Damage Restoration',
+                      description:
+                        'Make-safe, soot removal, odour elimination, contents pack-out, and full structural reinstatement following fire damage. Follows IICRC FSRT.',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Storm Damage Restoration',
+                      description:
+                        'Emergency make-safe, roof tarping, water intrusion control, and reinstatement following cyclone, storm, or hail damage.',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Flood Recovery',
+                      description:
+                        'Category 3 flood water extraction, contamination remediation, structural drying, and insurance documentation for ICA CAT flood events.',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Mould Remediation',
+                      description:
+                        'Air quality assessment, containment, HEPA filtration, antimicrobial treatment, and clearance testing. Follows IICRC S520:2025.',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Emergency Make-Safe',
+                      description:
+                        'Immediate stabilisation to prevent further loss — board-up, tarpaulin, electrical isolation, and structural shoring. 24/7 callout.',
+                    },
+                  },
+                ],
+              },
+            }),
           }}
         />
         <GlobalFAQSchema />
         <DynamicBreadcrumbSchema />
+        <Partytown debug={false} forward={['dataLayer.push', 'gtag']} />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Providers>
-        <DirectionProvider />
-        <RegisterServiceWorker />
-        <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
-          Skip to main content
-        </a>
-        <ConsentModeInit />
-        <GoogleTagManager />
-        <MicrosoftClarity />
+          <DirectionProvider />
+          <RegisterServiceWorker />
+          <a
+            href="#main-content"
+            className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center"
+          >
+            Skip to main content
+          </a>
+          <ConsentModeInit />
+          <GoogleTagManager />
+          <MicrosoftClarity />
           <LayoutChrome>
             <main id="main-content" className="min-h-screen">
               {children}
             </main>
           </LayoutChrome>
-          <LoadingIndicator />
-          <ProgressSpinner />
-          <LazyImage />
-          <ConsentBanner />
+          <ClientOnlyComponents />
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
@@ -374,7 +532,9 @@ export default function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-98HWF2NV95'}');
           `}
         </Script>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
-  )
+  );
 }

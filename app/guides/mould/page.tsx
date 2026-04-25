@@ -9,12 +9,12 @@ import { AntigravityFooter } from '@/components/antigravity';
 import Script from 'next/script';
 import { generateArticleSchema } from '@/lib/seo';
 import { StructuredData } from '@/components/seo/StructuredData';
-import { 
-  Droplets, 
-  AlertTriangle, 
-  Shield, 
-  Clock, 
-  Phone, 
+import {
+  Droplets,
+  AlertTriangle,
+  Shield,
+  Clock,
+  Phone,
   CheckCircle,
   Home,
   Building,
@@ -34,7 +34,7 @@ import {
   HelpCircle,
   ThermometerSun,
   Activity,
-  Eye
+  Eye,
 } from 'lucide-react';
 
 function MouldRemediationGuidePageOriginal() {
@@ -49,7 +49,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'High - respiratory issues, allergies',
       growthConditions: 'Warm, humid environments',
       removalDifficulty: 'Moderate to High',
-      identificationTips: 'Powdery texture, musty odour'
+      identificationTips: 'Powdery texture, musty odour',
     },
     penicillium: {
       name: 'Penicillium',
@@ -58,7 +58,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'Moderate - allergies, asthma',
       growthConditions: 'Cool to moderate temperatures',
       removalDifficulty: 'Moderate',
-      identificationTips: 'Velvety texture, spreads quickly'
+      identificationTips: 'Velvety texture, spreads quickly',
     },
     stachybotrys: {
       name: 'Stachybotrys (Black Mould)',
@@ -67,7 +67,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'Very High - toxic, severe health effects',
       growthConditions: 'High moisture for extended periods',
       removalDifficulty: 'Very High - Professional only',
-      identificationTips: 'Slimy texture when wet, strong musty smell'
+      identificationTips: 'Slimy texture when wet, strong musty smell',
     },
     cladosporium: {
       name: 'Cladosporium',
@@ -76,7 +76,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'Moderate - respiratory symptoms',
       growthConditions: 'Both warm and cold conditions',
       removalDifficulty: 'Moderate',
-      identificationTips: 'Suede-like texture, common outdoors/indoors'
+      identificationTips: 'Suede-like texture, common outdoors/indoors',
     },
     alternaria: {
       name: 'Alternaria',
@@ -85,7 +85,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'Moderate to High - severe allergies',
       growthConditions: 'Minimal moisture needed',
       removalDifficulty: 'Low to Moderate',
-      identificationTips: 'Velvety texture with dark hairs'
+      identificationTips: 'Velvety texture with dark hairs',
     },
     chaetomium: {
       name: 'Chaetomium',
@@ -94,8 +94,8 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'High - neurological effects possible',
       growthConditions: 'Chronic water damage',
       removalDifficulty: 'High',
-      identificationTips: 'Cotton-like texture, musty odour'
-    }
+      identificationTips: 'Cotton-like texture, musty odour',
+    },
   };
 
   const mouldTypeImages: Record<string, { src: string; alt: string }> = {
@@ -133,10 +133,10 @@ function MouldRemediationGuidePageOriginal() {
         'Wheezing',
         'Shortness of breath',
         'Chest tightness',
-        'Sinus congestion'
+        'Sinus congestion',
       ],
       severity: 'Common',
-      atRisk: 'Asthma sufferers, elderly'
+      atRisk: 'Asthma sufferers, elderly',
     },
     {
       category: 'Allergic Reactions',
@@ -145,10 +145,10 @@ function MouldRemediationGuidePageOriginal() {
         'Runny or stuffy nose',
         'Itchy eyes, nose, throat',
         'Skin rashes',
-        'Hives'
+        'Hives',
       ],
       severity: 'Very Common',
-      atRisk: 'Those with allergies, children'
+      atRisk: 'Those with allergies, children',
     },
     {
       category: 'Neurological',
@@ -157,10 +157,10 @@ function MouldRemediationGuidePageOriginal() {
         'Memory problems',
         'Difficulty concentrating',
         'Dizziness',
-        'Fatigue'
+        'Fatigue',
       ],
       severity: 'Less Common',
-      atRisk: 'Prolonged exposure cases'
+      atRisk: 'Prolonged exposure cases',
     },
     {
       category: 'Severe Reactions',
@@ -169,11 +169,11 @@ function MouldRemediationGuidePageOriginal() {
         'Difficulty breathing',
         'Lung infections',
         'Bleeding in lungs',
-        'Immune suppression'
+        'Immune suppression',
       ],
       severity: 'Rare but Serious',
-      atRisk: 'Immunocompromised individuals'
-    }
+      atRisk: 'Immunocompromised individuals',
+    },
   ];
 
   const remediationStages = [
@@ -186,9 +186,9 @@ function MouldRemediationGuidePageOriginal() {
         'Moisture mapping',
         'Air quality testing',
         'Containment barriers setup',
-        'HEPA filtration installation'
+        'HEPA filtration installation',
       ],
-      critical: true
+      critical: true,
     },
     {
       stage: 2,
@@ -199,9 +199,9 @@ function MouldRemediationGuidePageOriginal() {
         'Remove standing water',
         'Dry affected areas',
         'Dehumidification',
-        'Moisture control'
+        'Moisture control',
       ],
-      critical: true
+      critical: true,
     },
     {
       stage: 3,
@@ -212,9 +212,9 @@ function MouldRemediationGuidePageOriginal() {
         'Contaminated material removal',
         'HEPA vacuuming',
         'Proper waste disposal',
-        'Surface cleaning'
+        'Surface cleaning',
       ],
-      critical: true
+      critical: true,
     },
     {
       stage: 4,
@@ -225,9 +225,9 @@ function MouldRemediationGuidePageOriginal() {
         'Surface sanitisation',
         'Air scrubbing',
         'Fogging treatment',
-        'Encapsulation if needed'
+        'Encapsulation if needed',
       ],
-      critical: false
+      critical: false,
     },
     {
       stage: 5,
@@ -238,10 +238,10 @@ function MouldRemediationGuidePageOriginal() {
         'Reconstruction',
         'Moisture barriers',
         'Ventilation improvements',
-        'Final clearance testing'
+        'Final clearance testing',
       ],
-      critical: false
-    }
+      critical: false,
+    },
   ];
 
   const mouldClassifications = [
@@ -251,7 +251,7 @@ function MouldRemediationGuidePageOriginal() {
       description: 'Small isolated areas',
       action: 'Can be DIY with proper precautions',
       ppe: 'N95 mask, gloves, goggles',
-      examples: 'Bathroom ceiling spots, window sills'
+      examples: 'Bathroom ceiling spots, window sills',
     },
     {
       level: 'Level 2',
@@ -259,7 +259,7 @@ function MouldRemediationGuidePageOriginal() {
       description: 'Mid-sized contamination',
       action: 'Professional recommended',
       ppe: 'Full face respirator, protective suit',
-      examples: 'Wall sections, large ceiling areas'
+      examples: 'Wall sections, large ceiling areas',
     },
     {
       level: 'Level 3',
@@ -267,7 +267,7 @@ function MouldRemediationGuidePageOriginal() {
       description: 'Large contamination',
       action: 'Professional required',
       ppe: 'Full PPE with containment',
-      examples: 'Multiple walls, extensive water damage'
+      examples: 'Multiple walls, extensive water damage',
     },
     {
       level: 'Level 4',
@@ -275,8 +275,8 @@ function MouldRemediationGuidePageOriginal() {
       description: 'Extensive contamination',
       action: 'Specialist remediation team',
       ppe: 'Full containment, negative air',
-      examples: 'Whole rooms, HVAC contamination'
-    }
+      examples: 'Whole rooms, HVAC contamination',
+    },
   ];
 
   const preventionStrategies = [
@@ -288,8 +288,8 @@ function MouldRemediationGuidePageOriginal() {
         'Fix leaks within 24 hours',
         'Use exhaust fans',
         'Proper drainage',
-        'Regular gutter cleaning'
-      ]
+        'Regular gutter cleaning',
+      ],
     },
     {
       area: 'Ventilation',
@@ -299,8 +299,8 @@ function MouldRemediationGuidePageOriginal() {
         'Use dehumidifiers',
         'Open windows regularly',
         'HVAC maintenance',
-        'Bathroom/kitchen fans'
-      ]
+        'Bathroom/kitchen fans',
+      ],
     },
     {
       area: 'Monitoring',
@@ -310,8 +310,8 @@ function MouldRemediationGuidePageOriginal() {
         'Moisture meters',
         'Check hidden areas',
         'Monitor problem spots',
-        'Professional assessments'
-      ]
+        'Professional assessments',
+      ],
     },
     {
       area: 'Maintenance',
@@ -321,9 +321,9 @@ function MouldRemediationGuidePageOriginal() {
         'Waterproof basements',
         'Maintain roof/gutters',
         'Grade landscaping',
-        'Update old plumbing'
-      ]
-    }
+        'Update old plumbing',
+      ],
+    },
   ];
 
   const insuranceAspects = [
@@ -331,73 +331,81 @@ function MouldRemediationGuidePageOriginal() {
       aspect: 'Sudden vs Gradual',
       coverage: 'Variable',
       details: 'Sudden water damage usually covered, gradual mould growth often excluded',
-      tip: 'Document the water event that caused mould'
+      tip: 'Document the water event that caused mould',
     },
     {
       aspect: 'Mould Exclusions',
       coverage: 'Often Excluded',
       details: 'Many policies specifically exclude mould damage',
-      tip: 'Check for mould endorsements or riders'
+      tip: 'Check for mould endorsements or riders',
     },
     {
       aspect: 'Water Damage Related',
       coverage: 'Potentially Covered',
       details: 'If mould results from covered water damage',
-      tip: 'Link mould to covered peril'
+      tip: 'Link mould to covered peril',
     },
     {
       aspect: 'Prevention Failures',
       coverage: 'Not Covered',
       details: 'Lack of maintenance or prevention voids coverage',
-      tip: 'Maintain records of prevention efforts'
+      tip: 'Maintain records of prevention efforts',
     },
     {
       aspect: 'Health Effects',
       coverage: 'Separate Policy',
       details: 'Health issues require health insurance',
-      tip: 'Document health impacts for liability'
+      tip: 'Document health impacts for liability',
     },
     {
       aspect: 'Remediation Limits',
       coverage: 'Capped Amount',
       details: 'Often $5,000-$10,000 limits if covered',
-      tip: 'Consider additional mould coverage'
-    }
+      tip: 'Consider additional mould coverage',
+    },
   ];
 
   const faqs = [
     {
       question: 'How quickly does mould grow after water damage?',
-      answer: 'Mould can begin growing within 24-48 hours after water exposure. Visible growth typically appears within 3-12 days, and colonies can be established within 1-2 weeks. This is why immediate water damage response is critical.'
+      answer:
+        'Mould can begin growing within 24-48 hours after water exposure. Visible growth typically appears within 3-12 days, and colonies can be established within 1-2 weeks. This is why immediate water damage response is critical.',
     },
     {
       question: 'Can I remove mould myself or do I need professionals?',
-      answer: 'Small areas (less than 1m²) can often be handled DIY with proper PPE and precautions. However, areas larger than 1m², black mould, or mould in HVAC systems require professional remediation. When in doubt, get a professional assessment.'
+      answer:
+        'Small areas (less than 1m²) can often be handled DIY with proper PPE and precautions. However, areas larger than 1m², black mould, or mould in HVAC systems require professional remediation. When in doubt, get a professional assessment.',
     },
     {
       question: 'Is black mould really more dangerous than other moulds?',
-      answer: 'While Stachybotrys (black mould) can produce mycotoxins that are particularly harmful, many moulds can cause health issues. The color doesn\'t always indicate toxicity - proper identification and safe removal are important regardless of type.'
+      answer:
+        "While Stachybotrys (black mould) can produce mycotoxins that are particularly harmful, many moulds can cause health issues. The color doesn't always indicate toxicity - proper identification and safe removal are important regardless of type.",
     },
     {
       question: 'Will insurance cover mould remediation?',
-      answer: 'Coverage varies significantly. Mould from sudden water damage (burst pipe, storm) may be covered, but gradual mould growth or maintenance-related mould is typically excluded. Review your policy\'s mould provisions and consider additional coverage.'
+      answer:
+        "Coverage varies significantly. Mould from sudden water damage (burst pipe, storm) may be covered, but gradual mould growth or maintenance-related mould is typically excluded. Review your policy's mould provisions and consider additional coverage.",
     },
     {
       question: 'How do I know if mould is making me sick?',
-      answer: 'Common symptoms include respiratory issues, allergies, headaches, and fatigue that improve when away from the affected area. Consult a healthcare provider for persistent symptoms and consider professional mould testing in your property.'
+      answer:
+        'Common symptoms include respiratory issues, allergies, headaches, and fatigue that improve when away from the affected area. Consult a healthcare provider for persistent symptoms and consider professional mould testing in your property.',
     },
     {
-      question: 'What\'s the difference between mould removal and remediation?',
-      answer: 'Removal simply eliminates visible mould, while remediation addresses the root cause, removes contamination, and implements prevention measures. Professional remediation includes containment, air filtration, and post-remediation verification.'
+      question: "What's the difference between mould removal and remediation?",
+      answer:
+        'Removal simply eliminates visible mould, while remediation addresses the root cause, removes contamination, and implements prevention measures. Professional remediation includes containment, air filtration, and post-remediation verification.',
     },
     {
       question: 'Can mould come back after professional remediation?',
-      answer: 'Mould can return if moisture issues aren\'t resolved. Proper remediation addresses both mould and moisture sources. Maintain 30-50% humidity, ensure good ventilation, and fix water issues promptly to prevent recurrence.'
+      answer:
+        "Mould can return if moisture issues aren't resolved. Proper remediation addresses both mould and moisture sources. Maintain 30-50% humidity, ensure good ventilation, and fix water issues promptly to prevent recurrence.",
     },
     {
       question: 'How long does professional mould remediation take?',
-      answer: 'Timeline depends on extent: Level 1 (small) 1-2 days, Level 2 (medium) 2-4 days, Level 3-4 (large) 5+ days. This includes assessment, containment, removal, and clearance testing. Reconstruction may add additional time.'
-    }
+      answer:
+        'Timeline depends on extent: Level 1 (small) 1-2 days, Level 2 (medium) 2-4 days, Level 3-4 (large) 5+ days. This includes assessment, containment, removal, and clearance testing. Reconstruction may add additional time.',
+    },
   ];
 
   return (
@@ -415,9 +423,7 @@ function MouldRemediationGuidePageOriginal() {
             <div className="flex justify-center mb-6">
               <Droplets className="w-20 h-20 text-teal-600" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Mould Remediation Guide
-            </h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Mould Remediation Guide</h1>
             <p className="text-xl md:text-2xl mb-8 text-teal-800">
               Complete Mould Identification, Health Risks & Professional Remediation
             </p>
@@ -449,9 +455,10 @@ function MouldRemediationGuidePageOriginal() {
             <div>
               <h3 className="font-bold text-red-900 text-lg mb-2">Health Warning</h3>
               <p className="text-red-800">
-                Mould exposure can cause serious health effects, especially for those with respiratory conditions, 
-                allergies, or compromised immune systems. If experiencing severe symptoms, seek medical attention 
-                immediately. Never attempt to remove large areas of mould without proper protective equipment.
+                Mould exposure can cause serious health effects, especially for those with
+                respiratory conditions, allergies, or compromised immune systems. If experiencing
+                severe symptoms, seek medical attention immediately. Never attempt to remove large
+                areas of mould without proper protective equipment.
               </p>
             </div>
           </div>
@@ -471,7 +478,7 @@ function MouldRemediationGuidePageOriginal() {
               <Info className="w-8 h-8 text-teal-600" />
               Common Mould Types in Australian Properties
             </h2>
-            
+
             <div className="mb-8 flex flex-wrap gap-3">
               {Object.keys(mouldTypes).map((key) => (
                 <button
@@ -514,19 +521,30 @@ function MouldRemediationGuidePageOriginal() {
                   <div className="space-y-3">
                     <div>
                       <span className="font-semibold">Appearance:</span>
-                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].color}</p>
+                      <p className="text-gray-600">
+                        {mouldTypes[selectedMouldType as keyof typeof mouldTypes].color}
+                      </p>
                     </div>
                     <div>
                       <span className="font-semibold">Common Locations:</span>
-                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].commonLocations}</p>
+                      <p className="text-gray-600">
+                        {mouldTypes[selectedMouldType as keyof typeof mouldTypes].commonLocations}
+                      </p>
                     </div>
                     <div>
                       <span className="font-semibold">Growth Conditions:</span>
-                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].growthConditions}</p>
+                      <p className="text-gray-600">
+                        {mouldTypes[selectedMouldType as keyof typeof mouldTypes].growthConditions}
+                      </p>
                     </div>
                     <div>
                       <span className="font-semibold">Identification Tips:</span>
-                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].identificationTips}</p>
+                      <p className="text-gray-600">
+                        {
+                          mouldTypes[selectedMouldType as keyof typeof mouldTypes]
+                            .identificationTips
+                        }
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -536,32 +554,49 @@ function MouldRemediationGuidePageOriginal() {
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="font-semibold">Health Risk:</span>
-                        <span className={`px-3 py-1 rounded text-sm font-semibold ${
-                          mouldTypes[selectedMouldType as keyof typeof mouldTypes].healthRisk.includes('Very High')
-                            ? 'bg-red-100 text-red-800'
-                            : mouldTypes[selectedMouldType as keyof typeof mouldTypes].healthRisk.includes('High')
-                            ? 'bg-orange-100 text-orange-800'
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
+                        <span
+                          className={`px-3 py-1 rounded text-sm font-semibold ${
+                            mouldTypes[
+                              selectedMouldType as keyof typeof mouldTypes
+                            ].healthRisk.includes('Very High')
+                              ? 'bg-red-100 text-red-800'
+                              : mouldTypes[
+                                    selectedMouldType as keyof typeof mouldTypes
+                                  ].healthRisk.includes('High')
+                                ? 'bg-orange-100 text-orange-800'
+                                : 'bg-yellow-100 text-yellow-800'
+                          }`}
+                        >
                           {mouldTypes[selectedMouldType as keyof typeof mouldTypes].healthRisk}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="font-semibold">Removal Difficulty:</span>
-                        <span className={`px-3 py-1 rounded text-sm font-semibold ${
-                          mouldTypes[selectedMouldType as keyof typeof mouldTypes].removalDifficulty.includes('Very High')
-                            ? 'bg-red-100 text-red-800'
-                            : mouldTypes[selectedMouldType as keyof typeof mouldTypes].removalDifficulty.includes('High')
-                            ? 'bg-orange-100 text-orange-800'
-                            : mouldTypes[selectedMouldType as keyof typeof mouldTypes].removalDifficulty === 'Moderate'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-green-100 text-green-800'
-                        }`}>
-                          {mouldTypes[selectedMouldType as keyof typeof mouldTypes].removalDifficulty}
+                        <span
+                          className={`px-3 py-1 rounded text-sm font-semibold ${
+                            mouldTypes[
+                              selectedMouldType as keyof typeof mouldTypes
+                            ].removalDifficulty.includes('Very High')
+                              ? 'bg-red-100 text-red-800'
+                              : mouldTypes[
+                                    selectedMouldType as keyof typeof mouldTypes
+                                  ].removalDifficulty.includes('High')
+                                ? 'bg-orange-100 text-orange-800'
+                                : mouldTypes[selectedMouldType as keyof typeof mouldTypes]
+                                      .removalDifficulty === 'Moderate'
+                                  ? 'bg-yellow-100 text-yellow-800'
+                                  : 'bg-green-100 text-green-800'
+                          }`}
+                        >
+                          {
+                            mouldTypes[selectedMouldType as keyof typeof mouldTypes]
+                              .removalDifficulty
+                          }
                         </span>
                       </div>
                     </div>
-                    {mouldTypes[selectedMouldType as keyof typeof mouldTypes].name === 'Stachybotrys (Black Mould)' && (
+                    {mouldTypes[selectedMouldType as keyof typeof mouldTypes].name ===
+                      'Stachybotrys (Black Mould)' && (
                       <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded">
                         <p className="text-sm text-red-800 font-semibold">
                           ⚠️ Warning: Professional remediation required. Do not attempt DIY removal.
@@ -604,20 +639,26 @@ function MouldRemediationGuidePageOriginal() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-amber-900">What Is Efflorescence?</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Efflorescence is a deposit of mineral salts left behind when water moves through masonry, concrete,
-                  or brick and evaporates on the surface. It appears as a white or crystalline powdery coating and is
-                  often mistaken for white mould.
+                  Efflorescence is a deposit of mineral salts left behind when water moves through
+                  masonry, concrete, or brick and evaporates on the surface. It appears as a white
+                  or crystalline powdery coating and is often mistaken for white mould.
                 </p>
                 <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                   <h4 className="font-semibold text-amber-900 mb-2">Visual Difference</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <span><strong>Efflorescence:</strong> White/crystalline powdery appearance, chalky texture, dissolves in water</span>
+                      <span>
+                        <strong>Efflorescence:</strong> White/crystalline powdery appearance, chalky
+                        texture, dissolves in water
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <span><strong>Mould:</strong> Fuzzy or slimy organic growth, does not dissolve in water, often has a musty odour</span>
+                      <span>
+                        <strong>Mould:</strong> Fuzzy or slimy organic growth, does not dissolve in
+                        water, often has a musty odour
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -627,9 +668,10 @@ function MouldRemediationGuidePageOriginal() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border border-amber-100">
                   <h3 className="text-xl font-bold mb-3 text-amber-900">Why It Matters</h3>
                   <p className="text-gray-600 text-sm">
-                    While efflorescence itself is not harmful, it indicates a moisture intrusion pathway through
-                    the masonry or concrete. If left unaddressed, the ongoing moisture problem can eventually
-                    lead to actual mould growth behind or around the affected surfaces.
+                    While efflorescence itself is not harmful, it indicates a moisture intrusion
+                    pathway through the masonry or concrete. If left unaddressed, the ongoing
+                    moisture problem can eventually lead to actual mould growth behind or around the
+                    affected surfaces.
                   </p>
                 </div>
 
@@ -661,9 +703,10 @@ function MouldRemediationGuidePageOriginal() {
                     When Professional Help Is Needed
                   </h4>
                   <p className="text-sm text-red-800">
-                    Persistent or recurring efflorescence indicates an ongoing water intrusion problem that
-                    requires investigation by a restoration professional. The underlying moisture source must
-                    be identified and resolved to prevent structural damage and potential mould growth.
+                    Persistent or recurring efflorescence indicates an ongoing water intrusion
+                    problem that requires investigation by a restoration professional. The
+                    underlying moisture source must be identified and resolved to prevent structural
+                    damage and potential mould growth.
                   </p>
                 </div>
               </div>
@@ -697,15 +740,17 @@ function MouldRemediationGuidePageOriginal() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold">{category.category}</h3>
-                    <span className={`px-3 py-1 rounded text-sm font-semibold ${
-                      category.severity === 'Very Common'
-                        ? 'bg-orange-100 text-orange-800'
-                        : category.severity === 'Common'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : category.severity === 'Less Common'
-                        ? 'bg-blue-100 text-blue-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                    <span
+                      className={`px-3 py-1 rounded text-sm font-semibold ${
+                        category.severity === 'Very Common'
+                          ? 'bg-orange-100 text-orange-800'
+                          : category.severity === 'Common'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : category.severity === 'Less Common'
+                              ? 'bg-blue-100 text-blue-800'
+                              : 'bg-red-100 text-red-800'
+                      }`}
+                    >
                       {category.severity}
                     </span>
                   </div>
@@ -727,8 +772,9 @@ function MouldRemediationGuidePageOriginal() {
             </div>
             <div className="mt-8 bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6">
               <p className="text-sm text-yellow-800">
-                <strong>Medical Advice:</strong> If you experience persistent symptoms related to mould exposure, 
-                consult a healthcare professional immediately. Document your symptoms and exposure for medical assessment.
+                <strong>Medical Advice:</strong> If you experience persistent symptoms related to
+                mould exposure, consult a healthcare professional immediately. Document your
+                symptoms and exposure for medical assessment.
               </p>
             </div>
           </motion.div>
@@ -757,21 +803,25 @@ function MouldRemediationGuidePageOriginal() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className={`rounded-lg p-6 border-2 ${
-                    index === 0 
+                    index === 0
                       ? 'bg-green-50 border-green-300'
                       : index === 1
-                      ? 'bg-yellow-50 border-yellow-300'
-                      : index === 2
-                      ? 'bg-orange-50 border-orange-300'
-                      : 'bg-red-50 border-red-300'
+                        ? 'bg-yellow-50 border-yellow-300'
+                        : index === 2
+                          ? 'bg-orange-50 border-orange-300'
+                          : 'bg-red-50 border-red-300'
                   }`}
                 >
                   <h3 className="text-xl font-bold mb-2">{level.level}</h3>
                   <p className="text-2xl font-bold mb-2 text-gray-800">{level.area}</p>
                   <p className="text-sm text-gray-600 mb-3">{level.description}</p>
                   <div className="space-y-2 text-sm">
-                    <p><span className="font-semibold">Action:</span> {level.action}</p>
-                    <p><span className="font-semibold">PPE:</span> {level.ppe}</p>
+                    <p>
+                      <span className="font-semibold">Action:</span> {level.action}
+                    </p>
+                    <p>
+                      <span className="font-semibold">PPE:</span> {level.ppe}
+                    </p>
                     <p className="text-gray-600 italic">{level.examples}</p>
                   </div>
                 </motion.div>
@@ -900,9 +950,9 @@ function MouldRemediationGuidePageOriginal() {
             </h2>
             <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-8">
               <p className="text-sm text-blue-800">
-                <strong>Important:</strong> Mould coverage varies significantly between insurers and policies. 
-                Many standard policies exclude mould or have strict limitations. Always review your specific 
-                policy and consider additional mould coverage if available.
+                <strong>Important:</strong> Mould coverage varies significantly between insurers and
+                policies. Many standard policies exclude mould or have strict limitations. Always
+                review your specific policy and consider additional mould coverage if available.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -916,22 +966,22 @@ function MouldRemediationGuidePageOriginal() {
                   className="bg-white rounded-lg shadow-lg p-6"
                 >
                   <h3 className="font-bold text-lg mb-2">{aspect.aspect}</h3>
-                  <span className={`inline-block px-3 py-1 rounded text-xs font-semibold mb-3 ${
-                    aspect.coverage === 'Variable'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : aspect.coverage === 'Often Excluded'
-                      ? 'bg-red-100 text-red-800'
-                      : aspect.coverage === 'Potentially Covered'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-gray-100 text-gray-800'
-                  }`}>
+                  <span
+                    className={`inline-block px-3 py-1 rounded text-xs font-semibold mb-3 ${
+                      aspect.coverage === 'Variable'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : aspect.coverage === 'Often Excluded'
+                          ? 'bg-red-100 text-red-800'
+                          : aspect.coverage === 'Potentially Covered'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-gray-100 text-gray-800'
+                    }`}
+                  >
                     {aspect.coverage}
                   </span>
                   <p className="text-gray-600 text-sm mb-3">{aspect.details}</p>
                   <div className="pt-3 border-t border-gray-200">
-                    <p className="text-sm font-semibold text-blue-600">
-                      💡 {aspect.tip}
-                    </p>
+                    <p className="text-sm font-semibold text-blue-600">💡 {aspect.tip}</p>
                   </div>
                 </motion.div>
               ))}
@@ -1105,9 +1155,11 @@ function MouldRemediationGuidePageOriginal() {
               >
                 <Droplets className="w-10 h-10 text-blue-600 mb-3" />
                 <h3 className="font-bold mb-2">Water Damage Guide</h3>
-                <p className="text-gray-600 text-sm">Preventing mould through water damage control</p>
+                <p className="text-gray-600 text-sm">
+                  Preventing mould through water damage control
+                </p>
               </Link>
-              
+
               <Link
                 href="/guides/mould#prevention"
                 className="bg-gradient-to-br from-orange-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-orange-100"
@@ -1116,7 +1168,7 @@ function MouldRemediationGuidePageOriginal() {
                 <h3 className="font-bold mb-2">DIY Prevention</h3>
                 <p className="text-gray-600 text-sm">Steps you can take to prevent mould growth</p>
               </Link>
-              
+
               <Link
                 href="/guides/mould#health-effects"
                 className="bg-gradient-to-br from-red-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-red-100"
@@ -1125,7 +1177,7 @@ function MouldRemediationGuidePageOriginal() {
                 <h3 className="font-bold mb-2">Health & Safety</h3>
                 <p className="text-gray-600 text-sm">Protecting yourself from mould exposure</p>
               </Link>
-              
+
               <Link
                 href="/locations/sydney"
                 className="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-green-100"
@@ -1148,30 +1200,34 @@ function MouldRemediationGuidePageOriginal() {
           {[
             {
               q: 'Is black mould dangerous to health?',
-              a: 'Yes. Black mould (Stachybotrys chartarum) produces mycotoxins that can cause respiratory issues, allergic reactions, headaches, fatigue, and in severe cases, neurological symptoms. However, all mould species can affect health — colour alone does not indicate toxicity. People with asthma, allergies, compromised immune systems, and young children are most vulnerable. Any visible mould growth larger than 1 square metre should be professionally assessed and remediated by IICRC-certified technicians using containment and HEPA filtration to prevent spore spread during removal.'
+              a: 'Yes. Black mould (Stachybotrys chartarum) produces mycotoxins that can cause respiratory issues, allergic reactions, headaches, fatigue, and in severe cases, neurological symptoms. However, all mould species can affect health — colour alone does not indicate toxicity. People with asthma, allergies, compromised immune systems, and young children are most vulnerable. Any visible mould growth larger than 1 square metre should be professionally assessed and remediated by IICRC-certified technicians using containment and HEPA filtration to prevent spore spread during removal.',
             },
             {
               q: 'How much does mould removal cost in Australia?',
-              a: 'Professional mould remediation in Australia typically costs $1,500–$8,000+ depending on the extent and location. Small areas (under 1 sqm, surface mould on accessible walls) cost $500–$1,500. Moderate infestations (1–10 sqm, behind walls or in ceiling cavities) cost $2,000–$5,000. Large-scale remediation (structural mould, entire rooms, HVAC contamination) can exceed $8,000–$15,000. The Disaster Recovery platform fee is $550 with $2,200 held for your contractor. Costs increase when mould is in concealed areas requiring demolition for access. Payment plans are available through Equipped Commercial Finance.'
+              a: 'Professional mould remediation in Australia typically costs $1,500–$8,000+ depending on the extent and location. Small areas (under 1 sqm, surface mould on accessible walls) cost $500–$1,500. Moderate infestations (1–10 sqm, behind walls or in ceiling cavities) cost $2,000–$5,000. Large-scale remediation (structural mould, entire rooms, HVAC contamination) can exceed $8,000–$15,000. The Disaster Recovery platform fee is $550 with $2,200 held for your contractor. Costs increase when mould is in concealed areas requiring demolition for access. Payment plans are available through Equipped Commercial Finance.',
             },
             {
               q: 'Does insurance cover mould removal in Australia?',
-              a: 'Mould removal is covered by most Australian insurance policies only when the mould results from a covered event — such as a burst pipe, storm damage, or firefighting water. Mould from gradual moisture buildup, poor ventilation, condensation, or maintenance neglect is almost always excluded. To maximise your claim: document the original water event, report promptly (mould from a covered event reported months later may be disputed), and get a professional mould assessment linking the growth to the insured event. We provide full documentation to support your insurance claim.'
+              a: 'Mould removal is covered by most Australian insurance policies only when the mould results from a covered event — such as a burst pipe, storm damage, or firefighting water. Mould from gradual moisture buildup, poor ventilation, condensation, or maintenance neglect is almost always excluded. To maximise your claim: document the original water event, report promptly (mould from a covered event reported months later may be disputed), and get a professional mould assessment linking the growth to the insured event. We provide full documentation to support your insurance claim.',
             },
             {
               q: 'Can I remove mould myself or do I need professionals?',
-              a: 'Small areas of surface mould under 1 square metre on non-porous surfaces (tiles, glass, metal) can be cleaned with a solution of 80% white vinegar and 20% water. However, professional remediation is essential when: mould exceeds 1 sqm, mould is on porous materials (gyprock, timber, carpet), mould is in concealed spaces (wall cavities, ceiling voids), occupants have health symptoms, or the moisture source has not been identified. DIY cleaning of large mould areas without proper containment can spread millions of spores through your HVAC system, making the problem significantly worse.'
+              a: 'Small areas of surface mould under 1 square metre on non-porous surfaces (tiles, glass, metal) can be cleaned with a solution of 80% white vinegar and 20% water. However, professional remediation is essential when: mould exceeds 1 sqm, mould is on porous materials (gyprock, timber, carpet), mould is in concealed spaces (wall cavities, ceiling voids), occupants have health symptoms, or the moisture source has not been identified. DIY cleaning of large mould areas without proper containment can spread millions of spores through your HVAC system, making the problem significantly worse.',
             },
             {
               q: 'Why does mould keep coming back after cleaning?',
-              a: 'Mould returns for three main reasons: (1) The moisture source was not identified and fixed — mould is a symptom of excess moisture, not the root cause. Common hidden sources include subfloor moisture, condensation in wall cavities, leaking pipes behind walls, and inadequate ventilation in bathrooms and laundries. (2) Surface cleaning only removed visible mould but left the root system (hyphae) embedded in porous materials like gyprock and timber. (3) Spores were spread during DIY cleaning and colonised new areas. Professional remediation addresses all three by identifying and fixing the moisture source, removing contaminated materials, and using HEPA containment to prevent cross-contamination.'
+              a: 'Mould returns for three main reasons: (1) The moisture source was not identified and fixed — mould is a symptom of excess moisture, not the root cause. Common hidden sources include subfloor moisture, condensation in wall cavities, leaking pipes behind walls, and inadequate ventilation in bathrooms and laundries. (2) Surface cleaning only removed visible mould but left the root system (hyphae) embedded in porous materials like gyprock and timber. (3) Spores were spread during DIY cleaning and colonised new areas. Professional remediation addresses all three by identifying and fixing the moisture source, removing contaminated materials, and using HEPA containment to prevent cross-contamination.',
             },
             {
               q: 'How quickly does mould grow after water damage?',
-              a: 'Mould can begin growing within 24–48 hours of water damage in the right conditions (moisture above 60% RH, temperature 20–30°C, organic material to feed on). Visible mould colonies typically appear within 3–7 days. By 14 days, mould can penetrate deep into gyprock, timber, and carpet underlay, making remediation significantly more complex and expensive. This is why the IICRC standard requires water damage drying to begin within 24 hours — preventing mould growth is far cheaper than remediating an established infestation.'
+              a: 'Mould can begin growing within 24–48 hours of water damage in the right conditions (moisture above 60% RH, temperature 20–30°C, organic material to feed on). Visible mould colonies typically appear within 3–7 days. By 14 days, mould can penetrate deep into gyprock, timber, and carpet underlay, making remediation significantly more complex and expensive. This is why the IICRC standard requires water damage drying to begin within 24 hours — preventing mould growth is far cheaper than remediating an established infestation.',
             },
           ].map((faq, i) => (
-            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+            <details
+              key={i}
+              className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200"
+              {...(i === 0 ? { open: true } : {})}
+            >
               <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-teal-600 transition-colors">
                 {faq.q}
               </summary>
@@ -1186,10 +1242,20 @@ function MouldRemediationGuidePageOriginal() {
       {/* AI Citation Block */}
       <section className="py-6 px-4 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
-          <div><strong className="text-teal-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
-          <div><strong className="text-teal-900">Category:</strong> Mould Remediation</div>
-          <div><strong className="text-teal-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
-          <div><strong className="text-teal-900">Standard:</strong> IICRC S520:2025 certified practices</div>
+          <div>
+            <strong className="text-teal-900">Source:</strong> Disaster Recovery —
+            disasterrecovery.com.au
+          </div>
+          <div>
+            <strong className="text-teal-900">Category:</strong> Mould Remediation
+          </div>
+          <div>
+            <strong className="text-teal-900">Last reviewed:</strong>{' '}
+            <time dateTime="2026-02-26">26 February 2026</time>
+          </div>
+          <div>
+            <strong className="text-teal-900">Standard:</strong> IICRC S520:2025 certified practices
+          </div>
         </div>
       </section>
 
@@ -1234,18 +1300,61 @@ const mouldFaqSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'Is black mould dangerous to health?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Black mould (Stachybotrys chartarum) produces mycotoxins that can cause respiratory issues, allergic reactions, headaches, and fatigue. All mould species can affect health. Any visible mould over 1 square metre should be professionally remediated.' } },
-    { '@type': 'Question', name: 'How much does mould removal cost in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Professional mould remediation typically costs $1,500–$8,000+. Small areas cost $500–$1,500, moderate infestations $2,000–$5,000, and large-scale remediation can exceed $8,000–$15,000.' } },
-    { '@type': 'Question', name: 'Does insurance cover mould removal in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Mould removal is covered only when the mould results from a covered event such as a burst pipe or storm damage. Mould from gradual moisture, poor ventilation, or maintenance neglect is almost always excluded.' } },
-    { '@type': 'Question', name: 'Can I remove mould myself or do I need professionals?', acceptedAnswer: { '@type': 'Answer', text: 'Small areas under 1 square metre on non-porous surfaces can be cleaned with 80% white vinegar. Professional remediation is essential when mould exceeds 1 sqm, is on porous materials, or is in concealed spaces.' } },
-    { '@type': 'Question', name: 'Why does mould keep coming back after cleaning?', acceptedAnswer: { '@type': 'Answer', text: 'Mould returns because: the moisture source was not fixed, surface cleaning left root systems in porous materials, or spores were spread during DIY cleaning. Professional remediation addresses all three factors.' } },
-    { '@type': 'Question', name: 'How quickly does mould grow after water damage?', acceptedAnswer: { '@type': 'Answer', text: 'Mould can begin growing within 24–48 hours. Visible colonies appear in 3–7 days. By 14 days, mould penetrates deep into materials. This is why drying must begin within 24 hours per IICRC standards.' } },
+    {
+      '@type': 'Question',
+      name: 'Is black mould dangerous to health?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Black mould (Stachybotrys chartarum) produces mycotoxins that can cause respiratory issues, allergic reactions, headaches, and fatigue. All mould species can affect health. Any visible mould over 1 square metre should be professionally remediated.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does mould removal cost in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Professional mould remediation typically costs $1,500–$8,000+. Small areas cost $500–$1,500, moderate infestations $2,000–$5,000, and large-scale remediation can exceed $8,000–$15,000.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does insurance cover mould removal in Australia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mould removal is covered only when the mould results from a covered event such as a burst pipe or storm damage. Mould from gradual moisture, poor ventilation, or maintenance neglect is almost always excluded.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I remove mould myself or do I need professionals?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Small areas under 1 square metre on non-porous surfaces can be cleaned with 80% white vinegar. Professional remediation is essential when mould exceeds 1 sqm, is on porous materials, or is in concealed spaces.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does mould keep coming back after cleaning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mould returns because: the moisture source was not fixed, surface cleaning left root systems in porous materials, or spores were spread during DIY cleaning. Professional remediation addresses all three factors.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly does mould grow after water damage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mould can begin growing within 24–48 hours. Visible colonies appear in 3–7 days. By 14 days, mould penetrates deep into materials. This is why drying must begin within 24 hours per IICRC standards.',
+      },
+    },
   ],
 });
 
 const mouldArticleSchema = generateArticleSchema({
   headline: 'Mould Remediation Guide Australia',
-  description: 'Expert guide to mould remediation including health risks, removal process, prevention strategies, and insurance coverage information.',
+  description:
+    'Expert guide to mould remediation including health risks, removal process, prevention strategies, and insurance coverage information.',
   image: '/images/guides/mould.webp',
   author: 'Disaster Recovery Team',
   datePublished: '2024-11-15',

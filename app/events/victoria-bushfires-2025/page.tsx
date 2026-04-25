@@ -8,24 +8,24 @@
  * ACL s18 compliant — no unverified statistics.
  */
 
-import type { Metadata } from 'next'
-import DisasterEventPage from '@/components/events/DisasterEventPage'
+import type { Metadata } from 'next';
+import DisasterEventPage from '@/components/events/DisasterEventPage';
 
 export const metadata: Metadata = {
-  title: 'Victoria Bushfires 2025 — Disaster Recovery & Insurance Claims | Disaster Recovery Australia',
+  title: 'Victoria Bushfires 2025 — Disaster Recovery & Insurance Claims | Disaster Recovery',
   description:
     'Victoria Bushfires 2025. IICRC-certified restoration contractors attending fire and smoke damage across East Gippsland, Alpine, Indigo, Wodonga and Greater Bendigo. Government assistance, insurance claims, and rapid response.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/victoria-bushfires-2025',
   },
   openGraph: {
-    title: 'Victoria Bushfires 2025 Recovery | Disaster Recovery Australia',
+    title: 'Victoria Bushfires 2025 Recovery | Disaster Recovery',
     description:
       'Expert fire and smoke damage restoration for Victoria Bushfire-affected properties. IICRC-certified contractors, government assistance guidance, and insurance claims support.',
     url: 'https://disasterrecovery.com.au/events/victoria-bushfires-2025',
     type: 'website',
   },
-}
+};
 
 export default function VictoriaBushfires2025Page() {
   return (
@@ -38,7 +38,7 @@ export default function VictoriaBushfires2025Page() {
       year={2025}
       iicrcStandard="ANSI/IICRC S700:2025 (Fire and Smoke Damage Restoration)"
       slug="events/victoria-bushfires-2025"
-      metaTitle="Victoria Bushfires 2025 — Disaster Recovery & Insurance Claims | Disaster Recovery Australia"
+      metaTitle="Victoria Bushfires 2025 — Disaster Recovery & Insurance Claims | Disaster Recovery"
       metaDescription="Victoria Bushfires 2025. IICRC-certified restoration contractors attending fire and smoke damage across East Gippsland, Alpine, Indigo, Wodonga and Greater Bendigo."
       affectedLGAs={[
         'East Gippsland',
@@ -82,10 +82,11 @@ export default function VictoriaBushfires2025Page() {
           name: 'ICA Insurance Assistance — Declared Bushfire Event',
           provider: 'Insurance Council of Australia',
           description:
-            'The Insurance Council of Australia has declared the 2025 Victoria Bushfires a Significant Event. If your property has sustained fire, smoke, or suppression-water damage, contact your insurer promptly. Disaster Recovery Australia restoration contractors provide scope-of-works documentation to support your claim.',
+            'The Insurance Council of Australia has declared the 2025 Victoria Bushfires a Significant Event. If your property has sustained fire, smoke, or suppression-water damage, contact your insurer promptly. Disaster Recovery restoration contractors provide scope-of-works documentation to support your claim.',
           applicationUrl: 'https://www.ica.com.au',
         },
       ]}
+      claimsHotline="1300 309 361"
     />
-  )
+  );
 }

@@ -20,6 +20,7 @@ import {
   type AgentTask,
   type AgentResponse 
 } from '@/lib/ai-engine/types'
+import { clientLogger } from '@/lib/observability/client-logger';
 
 const config = getElysiaConfig()
 
@@ -99,7 +100,7 @@ export class EnhancedOrchestrator extends SimpleOrchestrator {
       }
       
     } catch (error) {
-      console.error('Enhanced orchestration failed:', error)
+      clientLogger.error('Enhanced orchestration failed:', { source: 'ai-orchestration/elysia-enhanced-orchestrator' }, error)
       
       // Fallback to standard orchestration
       const fallbackResponse = await this.orchestrate(prompt, options)
@@ -138,7 +139,7 @@ export class EnhancedOrchestrator extends SimpleOrchestrator {
       })
       
       if (!response.ok) {
-        console.warn('RAG system unavailable, proceeding without enhancement')
+        clientLogger.warn('RAG system unavailable, proceeding without enhancement', { source: 'ai-orchestration/elysia-enhanced-orchestrator' })
         return null
       }
       
@@ -146,7 +147,7 @@ export class EnhancedOrchestrator extends SimpleOrchestrator {
       return result.data
       
     } catch (error) {
-      console.warn('RAG query failed:', error)
+      clientLogger.warn('RAG query failed:', { source: 'ai-orchestration/elysia-enhanced-orchestrator', data: error })
       return null
     }
   }

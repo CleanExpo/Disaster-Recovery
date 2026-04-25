@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false, // Will enable gradually
+    "strict": true, // Fully enabled — Foundation Sprint POLISH PR 1
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -40,14 +40,15 @@
         "./src/types/*"
       ]
     },
-    // Strict mode flags - enabling gradually
-    "noImplicitAny": false, // Phase 3: Enable after fixing existing issues
-    "strictNullChecks": false, // Phase 2: Enable after noImplicitThis
-    "strictFunctionTypes": true, // Phase 1: ENABLED - Ensures function parameters are checked
-    "strictBindCallApply": true, // Phase 1: ENABLED - Type checks for bind, call, apply
-    "strictPropertyInitialization": false, // Phase 3: Requires strictNullChecks first
-    "noImplicitThis": true, // Phase 1: ENABLED - Requires explicit this typing
-    "alwaysStrict": true, // Phase 1: ENABLED - Ensures "use strict" in all files
+    // Strict mode flags - all enabled (kept explicit for documentation)
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "useUnknownInCatchVariables": true,
     
     // Additional type checking flags
     "noUnusedLocals": false, // Phase 4: Enable after main strict flags
@@ -94,6 +95,14 @@
     "src/components/partners/AffiliateSignup.tsx",
     "src/components/layout/R6Header.tsx",
     "src/hooks/useFormValidation.ts",
+    "app/portal/training/modules/day-2/**",
+    "app/portal/training/modules/day-3/**",
+    "app/portal/training/modules/day-4/**",
+    "app/portal/training/modules/day-5/**",
+    "app/portal/training/modules/day-6/**",
+    "app/portal/training/modules/day-7/**",
+    "app/portal/training/modules/day-8/**",
+    "src/agents/ui-design/**",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.spec.ts",

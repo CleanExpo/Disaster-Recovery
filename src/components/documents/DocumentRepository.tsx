@@ -16,6 +16,7 @@ import type {
   AccessLevel,
   DocumentUploadProgress 
 } from '@/types/document-management';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface DocumentRepositoryProps {
   contractorId?: string;
@@ -138,7 +139,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
 
       setDocuments(mockDocuments);
     } catch (error) {
-      console.error('Error loading documents:', error);
+      clientLogger.error('Error loading documents:', { source: 'documents/DocumentRepository' }, error);
     } finally {
       setLoading(false);
     }
@@ -192,7 +193,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
 
       setFolders(mockFolders);
     } catch (error) {
-      console.error('Error loading folders:', error);
+      clientLogger.error('Error loading folders:', { source: 'documents/DocumentRepository' }, error);
     }
   };
 

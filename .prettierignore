@@ -1,0 +1,20 @@
+node_modules
+.next
+out
+dist
+build
+coverage
+playwright-report
+test-results
+.vercel
+prisma/migrations
+public
+*.min.js
+*.min.css
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Foundation Sprint: format:check is scoped narrowly (see package.json
+# "format:check" script). As teams adopt Prettier module-by-module,
+# remove entries from here and widen the format:check glob.

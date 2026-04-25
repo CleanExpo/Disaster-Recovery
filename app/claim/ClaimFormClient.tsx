@@ -8,7 +8,15 @@ import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
 import OfflineBanner from '@/components/claim/OfflineBanner';
+import OfflineQueueBanner from '@/components/claim/OfflineQueueBanner';
+import UseCurrentLocationButton from '@/components/claim/UseCurrentLocationButton';
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
+import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
+import {
+  enqueueClaim,
+  replayQueue,
+  isOfflineQueueEnabled,
+} from '@/lib/offline-queue';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -119,6 +127,8 @@ function OnlineClaimPageOriginal() {
   const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [replayToast, setReplayToast] = useState<string | null>(null);
+  const [queuedOffline, setQueuedOffline] = useState(false);
   const [claimId, setClaimId] = useState<string | null>(null);
   const [estimate, setEstimate] = useState<{ low: number; high: number } | null>(null);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
@@ -246,6 +256,19 @@ function OnlineClaimPageOriginal() {
       }
     });
     setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
+    // Once-on-mount replay: if the app was killed mid-queue last session, drain now.
+    if (isOfflineQueueEnabled() && typeof navigator !== 'undefined' && navigator.onLine) {
+      replayQueue()
+        .then((result) => {
+          if (result.successes > 0) {
+            setReplayToast('Claim sent — queued offline earlier.');
+            window.setTimeout(() => setReplayToast(null), 6000);
+          }
+        })
+        .catch(() => {
+          /* ignore — banner surfaces any residual items */
+        });
+    }
   }, []);
 
   // Online/offline event listeners
@@ -257,6 +280,18 @@ function OnlineClaimPageOriginal() {
       if (unsynced.length > 0) {
         // Drafts exist; they will be submitted when the user completes the form
         setSavedLocally(true);
+      }
+      // Replay any queued offline claim submissions. Flag-gated internally.
+      if (isOfflineQueueEnabled()) {
+        try {
+          const result = await replayQueue();
+          if (result.successes > 0) {
+            setReplayToast('Claim sent — queued offline earlier.');
+            window.setTimeout(() => setReplayToast(null), 6000);
+          }
+        } catch {
+          /* swallow — banner will show any stuck items */
+        }
       }
     };
     const handleOffline = () => {
@@ -328,18 +363,41 @@ function OnlineClaimPageOriginal() {
 
   const handleSubmit = async () => {
     if (!formData.fullName || !formData.phone || !formData.email || !formData.propertyAddress || !formData.suburb || !formData.state || !formData.postcode || !formData.damageDescription || formData.damageTypes.length === 0) {
-      setSubmissionError('Please complete required fields in steps 1-2 before submitting.');
+      setSubmissionError("We're nearly there — a few contact and damage details are still needed. Taking you back to step 1 so you can finish.");
       setStep(1);
       return;
     }
 
     if (!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms || !formData.privacyCollectionNotice) {
-      setSubmissionError('Please accept all terms and conditions, including the privacy collection notice.');
+      setSubmissionError("One last tick — please confirm the privacy notice and agreements above so we can submit your claim.");
       return;
     }
 
     setSubmitting(true);
     setSubmissionError(null);
+
+    // Offline-first: if the iOS native-bridge flag is on AND we detect
+    // the device is offline, queue the submission for later replay
+    // instead of posting. RA-1633 Phase 2 PR #5.
+    if (isOfflineQueueEnabled()) {
+      const online = await bridgeIsOnline();
+      if (!online) {
+        const enq = await enqueueClaim({
+          ...formData,
+          paymentConfirmed: false,
+          paymentAmount: 0,
+        });
+        setSubmitting(false);
+        if (enq.ok) {
+          setQueuedOffline(true);
+          setReplayToast('Saved offline — we\u2019ll send it as soon as you\u2019re back online.');
+          window.setTimeout(() => setReplayToast(null), 6000);
+          return;
+        }
+        // Enqueue failed — fall through to the normal online path as a
+        // last resort (may still fail, but we surface a real error).
+      }
+    }
 
     try {
       const response = await fetch('/api/claims/submit', {
@@ -357,6 +415,8 @@ function OnlineClaimPageOriginal() {
       if (result.success) {
         setClaimId(result.claimId);
         await clearDraft();
+        // Phase 2 PR #6 — Medium haptic on submit success (RA-1633). No-op on web.
+        void mediumTap();
         setStep(5); // Success step
       } else {
         setSubmissionError(result.message || 'Failed to submit claim');
@@ -456,6 +516,46 @@ function OnlineClaimPageOriginal() {
   return (
     <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
       <div className="container mx-auto px-4 max-w-4xl">
+        {/* DR-542 — Life-safety carve-out. ALWAYS first. A user with flood
+            entering the home or a roof torn off needs 000 before anything else. */}
+        <div
+          role="alert"
+          className="mb-4 rounded-lg border-2 border-red-600 bg-red-50 p-4"
+        >
+          <p className="text-sm font-bold text-red-900 mb-2">
+            In immediate life-safety danger?
+          </p>
+          <a
+            href="tel:000"
+            onClick={() => { void heavyTap(); }}
+            className="inline-flex items-center justify-center min-h-[48px] w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
+            aria-label="Call 000 emergency services now"
+          >
+            Dial 000 now
+          </a>
+          <p className="mt-2 text-xs text-red-900 leading-relaxed">
+            Fire, rising floodwater, structural collapse, gas leak, injury, or exposed live wiring — call 000 first. You can lodge the claim after you are safe.
+          </p>
+        </div>
+
+        {/* DR-542 — Prefer-to-call fallback. Voice option for users who can't
+            complete a multi-step form one-handed on a mobile in active distress. */}
+        <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
+            <p className="text-xs text-blue-800">
+              Our 24/7 intake line will take your claim over the phone. A contractor will call you back shortly after.
+            </p>
+          </div>
+          <a
+            href="tel:1300309361"
+            className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 whitespace-nowrap"
+            aria-label="Call Disaster Recovery on 1300 309 361"
+          >
+            Call 1300 309 361
+          </a>
+        </div>
+
         {/* Who First trust signal — GAP-073 */}
         <div className="mb-6 bg-blue-900 text-white rounded-xl px-6 py-4 flex items-center gap-4">
           <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center">
@@ -466,6 +566,15 @@ function OnlineClaimPageOriginal() {
             <span className="text-blue-200 font-normal">
               NRPG coordinates independent assessment and restoration — you keep control of your claim.
             </span>
+          </p>
+        </div>
+
+        {/* DR-542 — Early reassurance. Users need to see the response-time
+            commitment BEFORE they invest effort in a multi-step form. */}
+        <div className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 flex items-center gap-3">
+          <Clock className="h-5 w-5 text-emerald-700 flex-shrink-0" />
+          <p className="text-sm text-emerald-900">
+            <strong>A certified contractor will call you back within 60 minutes</strong> of submission, 24/7. Your progress is saved to this device as you type.
           </p>
         </div>
 
@@ -496,6 +605,30 @@ function OnlineClaimPageOriginal() {
 
         {/* Offline banner */}
         <OfflineBanner isOffline={isOffline} savedLocally={savedLocally} />
+
+        {/* Offline queue status — only renders when queue/dead-letter > 0. */}
+        <OfflineQueueBanner />
+
+        {/* Transient toast — queue replayed / item queued. */}
+        {replayToast && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mb-4 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm text-emerald-900"
+          >
+            {replayToast}
+          </div>
+        )}
+
+        {queuedOffline && !replayToast && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mb-4 rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm text-blue-900"
+          >
+            Your claim is saved on this device and will be sent automatically when you&rsquo;re back online.
+          </div>
+        )}
 
         {/* Saved locally indicator (when offline) */}
         {isOffline && savedLocally && (
@@ -530,9 +663,11 @@ function OnlineClaimPageOriginal() {
         )}
 
         {submissionError && (
-          <Alert className="mb-6 border-red-200 bg-red-50">
-            <AlertCircle className="h-4 w-4 text-red-600" />
-            <AlertDescription className="text-red-800">{submissionError}</AlertDescription>
+          // DR-542 — calm, action-first tone. Amber signals "needs a touch-up",
+          // not "you failed". Users in distress don't need punitive red boxes.
+          <Alert className="mb-6 border-amber-300 bg-amber-50">
+            <AlertCircle className="h-4 w-4 text-amber-700" />
+            <AlertDescription className="text-amber-900">{submissionError}</AlertDescription>
           </Alert>
         )}
 
@@ -678,6 +813,17 @@ function OnlineClaimPageOriginal() {
                     <Home className="h-4 w-4" />
                     Property Information
                   </h3>
+                  <UseCurrentLocationButton
+                    onAutofill={(fields) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        propertyAddress: fields.address || prev.propertyAddress,
+                        suburb: fields.suburb || prev.suburb,
+                        state: fields.state || prev.state,
+                        postcode: fields.postcode || prev.postcode,
+                      }))
+                    }
+                  />
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="md:col-span-2">
                       <Label htmlFor="claim-propertyAddress">Property Address *</Label>
@@ -787,13 +933,15 @@ function OnlineClaimPageOriginal() {
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="claim-damageDate">Date Damage Occurred *</Label>
+                      <Label htmlFor="claim-damageDate">
+                        Date Damage Occurred
+                        <span className="text-xs text-gray-500 font-normal ms-1">(approximate is fine)</span>
+                      </Label>
                       <Input
                         id="claim-damageDate"
                         type="date"
                         value={formData.damageDate}
                         onChange={(e) => setFormData({...formData, damageDate: e.target.value})}
-                        required
                       />
                     </div>
                     <div>

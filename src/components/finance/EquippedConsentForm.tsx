@@ -21,7 +21,7 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
-export const EQUIPPED_CONSENT_VERSION = 'v1.0-2026-04-23';
+export const EQUIPPED_CONSENT_VERSION = 'v1.1-2026-04-25';
 
 /**
  * Short-form consent copy shown to the consumer. Keep in lockstep with
@@ -30,7 +30,7 @@ export const EQUIPPED_CONSENT_VERSION = 'v1.0-2026-04-23';
  */
 export const EQUIPPED_CONSENT_COPY = `Finance option, how this works.
 
-Disaster Recovery Australia does not lend money and does not give credit advice. If you would like to explore payment over time, we can refer you to Equipped Commercial Finance, operated by SME Consulting Group Pty Ltd (ABN 53 662 478 408). Equipped is the lender and holds the relevant Australian Credit Licence or acts as an authorised credit representative. Equipped, not Disaster Recovery, will assess your application, decide whether to offer credit, and manage your loan.
+Disaster Recovery does not lend money and does not give credit advice. If you would like to explore payment over time, we can refer you to Equipped Commercial Finance, operated by SME Consulting Group Pty Ltd (ABN 53 662 478 408). Equipped is the lender and holds the relevant Australian Credit Licence or acts as an authorised credit representative. Equipped, not Disaster Recovery, will assess your application, decide whether to offer credit, and manage your loan.
 
 If you click "Continue to Equipped", we will share the contact details and claim summary you have given us (name, phone, email, postcode, loss type, estimated scope value) with Equipped so they can contact you. Equipped will handle your data under its own privacy policy.
 
@@ -113,26 +113,26 @@ export function EquippedConsentForm({ consumer, onContinue, onDecline }: Equippe
 
       <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
         <p>
-          Disaster Recovery Australia does not lend money and does not give credit advice. If you
-          would like to explore payment over time, we can refer you to Equipped Commercial
-          Finance, operated by SME Consulting Group Pty Ltd (ABN 53 662 478 408). Equipped is the
-          lender and holds the relevant Australian Credit Licence or acts as an authorised credit
-          representative. Equipped, not Disaster Recovery, will assess your application, decide
-          whether to offer credit, and manage your loan.
+          Disaster Recovery does not lend money and does not give credit advice. If you would like
+          to explore payment over time, we can refer you to Equipped Commercial Finance, operated by
+          SME Consulting Group Pty Ltd (ABN 53 662 478 408). Equipped is the lender and holds the
+          relevant Australian Credit Licence or acts as an authorised credit representative.
+          Equipped, not Disaster Recovery, will assess your application, decide whether to offer
+          credit, and manage your loan.
         </p>
         <p>
-          If you click &quot;Continue to Equipped&quot;, we will share the contact details and
-          claim summary you have given us (name, phone, email, postcode, loss type, estimated
-          scope value) with Equipped so they can contact you. Equipped will handle your data
-          under its own privacy policy.
+          If you click &quot;Continue to Equipped&quot;, we will share the contact details and claim
+          summary you have given us (name, phone, email, postcode, loss type, estimated scope value)
+          with Equipped so they can contact you. Equipped will handle your data under its own
+          privacy policy.
         </p>
         <p>
-          Disaster Recovery receives a referral fee from Equipped if you take out a loan. This
-          does not change your price with us and does not change Equipped&apos;s rates.
+          Disaster Recovery receives a referral fee from Equipped if you take out a loan. This does
+          not change your price with us and does not change Equipped&apos;s rates.
         </p>
         <p>
-          You do not have to use Equipped. You can pay directly, use your own bank, or claim
-          through your insurer. Declining this referral will not affect your service.
+          You do not have to use Equipped. You can pay directly, use your own bank, or claim through
+          your insurer. Declining this referral will not affect your service.
         </p>
         <p className="text-xs text-slate-500 dark:text-slate-400">
           <Link href="/finance/disclosure" className="text-blue-600 underline hover:text-blue-800">
@@ -151,8 +151,17 @@ export function EquippedConsentForm({ consumer, onContinue, onDecline }: Equippe
           aria-describedby="equipped-consent-heading"
         />
         <span className="text-sm text-slate-800 dark:text-slate-200">
-          I have read the above and consent to Disaster Recovery sharing my details with Equipped
-          Commercial Finance for the purpose of a finance enquiry.
+          I have read the above and acknowledge Equipped&apos;s{' '}
+          <a
+            href="/finance/privacy-disclosure-statement-equippedcf-v2.pdf"
+            className="text-blue-600 underline hover:text-blue-800"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Privacy Disclosure Statement (PDF)
+          </a>
+          , and consent to Disaster Recovery sharing my details with Equipped Commercial Finance for
+          the purpose of a finance enquiry.
         </span>
       </label>
 

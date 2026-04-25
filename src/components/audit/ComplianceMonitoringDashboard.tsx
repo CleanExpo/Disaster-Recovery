@@ -15,6 +15,7 @@ import type {
   Priority,
   TrendData
 } from '@/types/audit-compliance';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ComplianceMonitoringDashboardProps {
   contractorId?: string;
@@ -188,7 +189,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
 
       setDashboard(mockDashboard);
     } catch (error) {
-      console.error('Error loading compliance dashboard:', error);
+      clientLogger.error('Error loading compliance dashboard:', { source: 'audit/ComplianceMonitoringDashboard' }, error);
     } finally {
       setLoading(false);
     }

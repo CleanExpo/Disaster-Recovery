@@ -14,15 +14,17 @@ export const metadata: Metadata = {
     'cyclone maila property damage',
     'arpc cyclone reinsurance qld',
   ],
+  // DR-745: canonical winner is tc-maila-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-cape-york-fnq-2026',
+    canonical: 'https://disasterrecovery.com.au/events/tc-maila-fnq-2026',
   },
   openGraph: {
     title: 'Tropical Cyclone Maila: Cape York Peninsula Claim Guide 2026',
     description:
       'Category 3 TC Maila tracking toward Cape York. Register your claim now — NRPG provides IICRC-certified advocacy from first contact to settlement.',
     url: 'https://disasterrecovery.com.au/events/cyclone-maila-cape-york-fnq-2026',
-    siteName: 'Disaster Recovery Australia | NRPG',
+    siteName: 'Disaster Recovery | NRPG',
     locale: 'en_AU',
     type: 'article',
   },
@@ -112,7 +114,12 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
-    { '@type': 'ListItem', position: 2, name: 'Events', item: 'https://disasterrecovery.com.au/events' },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Events',
+      item: 'https://disasterrecovery.com.au/events',
+    },
     {
       '@type': 'ListItem',
       position: 3,
@@ -177,7 +184,8 @@ export default function CycloneMailaCapYorkPage() {
             </div>
 
             <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-              Tropical Cyclone Maila<br />
+              Tropical Cyclone Maila
+              <br />
               <span className="text-blue-200">Cape York Peninsula Insurance Claim Guide</span>
             </h1>
 
@@ -222,7 +230,6 @@ export default function CycloneMailaCapYorkPage() {
         </section>
 
         <div className="max-w-4xl mx-auto px-4 py-12 space-y-12">
-
           {/* About TC Maila */}
           <section aria-labelledby="about-maila">
             <h2 id="about-maila" className="text-2xl font-bold text-gray-900 mb-4">
@@ -236,7 +243,10 @@ export default function CycloneMailaCapYorkPage() {
               </p>
               <h3 className="text-lg font-semibold mt-4 mb-2">Expected Conditions at Landfall</h3>
               <ul className="space-y-1 text-gray-700">
-                <li>Destructive winds: 120–170 km/h, gusts potentially exceeding 200 km/h in exposed areas</li>
+                <li>
+                  Destructive winds: 120–170 km/h, gusts potentially exceeding 200 km/h in exposed
+                  areas
+                </li>
                 <li>Heavy rainfall: 200–400 mm over 24–48 hours (higher in elevated terrain)</li>
                 <li>Storm surge: significant coastal inundation in low-lying areas</li>
                 <li>Flash flooding: creek and river rises, road closures across remote regions</li>
@@ -272,7 +282,7 @@ export default function CycloneMailaCapYorkPage() {
                 {
                   step: '2',
                   title: 'Document Your Property NOW',
-                  body: 'Take dated photos and video of: roof condition, walls, windows, and doors (exterior and interior), fencing and outbuildings, all contents room by room, and any pre-existing damage. Save files with today\'s date and back up to cloud storage (Google Drive, OneDrive). These pre-event photos are essential for any future claim dispute.',
+                  body: "Take dated photos and video of: roof condition, walls, windows, and doors (exterior and interior), fencing and outbuildings, all contents room by room, and any pre-existing damage. Save files with today's date and back up to cloud storage (Google Drive, OneDrive). These pre-event photos are essential for any future claim dispute.",
                 },
                 {
                   step: '3',
@@ -287,10 +297,13 @@ export default function CycloneMailaCapYorkPage() {
                 {
                   step: '5',
                   title: 'Register with NRPG Now',
-                  body: 'Complete the registration form below. We will prioritise you post-landfall and ensure you are connected with an IICRC-certified contractor as soon as your claim is triggered. Registering now gives you a head start while insurers\' queues fill up.',
+                  body: "Complete the registration form below. We will prioritise you post-landfall and ensure you are connected with an IICRC-certified contractor as soon as your claim is triggered. Registering now gives you a head start while insurers' queues fill up.",
                 },
               ].map(({ step, title, body }) => (
-                <div key={step} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex gap-4">
+                <div
+                  key={step}
+                  className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex gap-4"
+                >
                   <div className="flex-shrink-0 w-10 h-10 bg-[#0052CC] text-white rounded-full flex items-center justify-center font-bold text-lg">
                     {step}
                   </div>
@@ -341,7 +354,10 @@ export default function CycloneMailaCapYorkPage() {
                     'Document all damaged items with photos. Keep receipts or screenshots of replacement pricing. Do not discard items.',
                 },
               ].map(({ type, standard, coverage, action }) => (
-                <div key={type} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+                <div
+                  key={type}
+                  className="bg-white rounded-xl shadow-sm border border-gray-100 p-5"
+                >
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="font-semibold text-gray-900">{type}</h3>
                     {standard && (
@@ -350,9 +366,13 @@ export default function CycloneMailaCapYorkPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-500 mb-1 font-medium uppercase tracking-wide">Coverage</p>
+                  <p className="text-xs text-gray-500 mb-1 font-medium uppercase tracking-wide">
+                    Coverage
+                  </p>
                   <p className="text-sm text-gray-700 mb-3">{coverage}</p>
-                  <p className="text-xs text-gray-500 mb-1 font-medium uppercase tracking-wide">Your Action</p>
+                  <p className="text-xs text-gray-500 mb-1 font-medium uppercase tracking-wide">
+                    Your Action
+                  </p>
                   <p className="text-sm text-gray-700">{action}</p>
                 </div>
               ))}
@@ -368,13 +388,16 @@ export default function CycloneMailaCapYorkPage() {
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">ARPC Cyclone Reinsurance Pool</h3>
                 <p className="text-gray-700 text-sm">
-                  If your insurer participates in the ARPC Cyclone Reinsurance Pool, your cyclone damage
-                  is covered. ARPC has paid over <strong>$1 billion in cyclone claims</strong> across
-                  approximately 20 events since July 2022. Most mainstream insurers participate.
+                  If your insurer participates in the ARPC Cyclone Reinsurance Pool, your cyclone
+                  damage is covered. ARPC has paid over{' '}
+                  <strong>$1 billion in cyclone claims</strong> across approximately 20 events since
+                  July 2022. Most mainstream insurers participate.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">ICA General Insurance Code of Practice</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  ICA General Insurance Code of Practice
+                </h3>
                 <p className="text-gray-700 text-sm mb-2">Your insurer must:</p>
                 <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">
                   <li>Acknowledge your claim within 1 business day</li>
@@ -388,9 +411,9 @@ export default function CycloneMailaCapYorkPage() {
                   Australian Financial Complaints Authority (AFCA)
                 </h3>
                 <p className="text-gray-700 text-sm">
-                  If your claim is denied, delayed, or you are unhappy with your insurer&apos;s decision,
-                  AFCA offers free, independent dispute resolution. AFCA can order your insurer to pay
-                  up to $1 million. Contact AFCA at{' '}
+                  If your claim is denied, delayed, or you are unhappy with your insurer&apos;s
+                  decision, AFCA offers free, independent dispute resolution. AFCA can order your
+                  insurer to pay up to $1 million. Contact AFCA at{' '}
                   <a
                     href="https://afca.org.au"
                     target="_blank"
@@ -412,8 +435,8 @@ export default function CycloneMailaCapYorkPage() {
             </h2>
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
               <p className="text-sm text-amber-800 mb-4 font-medium">
-                ℹ️ Government assistance is activated after a formal disaster declaration. Check these
-                sources after TC Maila makes landfall.
+                ℹ️ Government assistance is activated after a formal disaster declaration. Check
+                these sources after TC Maila makes landfall.
               </p>
               <div className="space-y-4">
                 <div>
@@ -500,8 +523,8 @@ export default function CycloneMailaCapYorkPage() {
             </h2>
             <p className="text-sm text-gray-700 mb-3">
               NRPG is actively expanding our IICRC-certified contractor network across Cape York
-              Peninsula and Far North Queensland. We will not pretend to cover every corner of FNQ today.
-              Here is what this means in practice:
+              Peninsula and Far North Queensland. We will not pretend to cover every corner of FNQ
+              today. Here is what this means in practice:
             </p>
             <ul className="text-sm text-gray-700 space-y-2 list-disc list-inside">
               <li>
@@ -509,8 +532,8 @@ export default function CycloneMailaCapYorkPage() {
                 contractors.
               </li>
               <li>
-                In remote areas (Cape York Peninsula, outer FNQ): we are connecting you with the nearest
-                certified contractor — response times may be longer than in urban areas.
+                In remote areas (Cape York Peninsula, outer FNQ): we are connecting you with the
+                nearest certified contractor — response times may be longer than in urban areas.
               </li>
               <li>
                 If contractor availability is genuinely constrained, we will help you navigate that
@@ -518,8 +541,8 @@ export default function CycloneMailaCapYorkPage() {
               </li>
             </ul>
             <p className="text-sm text-gray-600 mt-3 italic">
-              Registering now helps us identify coverage gaps and prioritise contractor recruitment in
-              your region.
+              Registering now helps us identify coverage gaps and prioritise contractor recruitment
+              in your region.
             </p>
           </section>
 
@@ -528,9 +551,9 @@ export default function CycloneMailaCapYorkPage() {
             <h2 className="text-2xl font-bold mb-3">Register Your Claim Now</h2>
             <p className="text-blue-100 mb-6 max-w-xl mx-auto">
               If TC Maila has affected or may affect your property, register with NRPG now. We will
-              prioritise you the moment your claim is triggered post-landfall — connecting you with an
-              IICRC-certified contractor and ensuring your insurer sees professional documentation from
-              the start.
+              prioritise you the moment your claim is triggered post-landfall — connecting you with
+              an IICRC-certified contractor and ensuring your insurer sees professional
+              documentation from the start.
             </p>
             <Link
               href="/claim"
@@ -539,12 +562,12 @@ export default function CycloneMailaCapYorkPage() {
               Start My Claim Registration →
             </Link>
             <p className="mt-6 text-blue-200 text-xs leading-relaxed max-w-2xl mx-auto">
-              <strong>Privacy Collection Notice:</strong> Personal information collected through this
-              service is used solely to connect you with an IICRC-certified restoration contractor and
-              to advocate for your insurance claim. Handled by NRPG in accordance with the Privacy Act
-              1988 (Cth) and Australian Privacy Principles. We may share your information with
-              IICRC-certified restoration contractors in your area. We do not sell personal information.
-              Information is stored in Australia.{' '}
+              <strong>Privacy Collection Notice:</strong> Personal information collected through
+              this service is used solely to connect you with an IICRC-certified restoration
+              contractor and to advocate for your insurance claim. Handled by NRPG in accordance
+              with the Privacy Act 1988 (Cth) and Australian Privacy Principles. We may share your
+              information with IICRC-certified restoration contractors in your area. We do not sell
+              personal information. Information is stored in Australia.{' '}
               <Link href="/privacy" className="underline">
                 Privacy Policy
               </Link>

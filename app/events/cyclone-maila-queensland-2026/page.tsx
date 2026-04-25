@@ -7,25 +7,27 @@
  * No phone numbers per site rules — use governmentApplicationUrl only.
  */
 
-import type { Metadata } from 'next'
-import DisasterEventPage from '@/components/events/DisasterEventPage'
-import type { FinancialAssistanceItem } from '@/components/events/DisasterEventPage'
+import type { Metadata } from 'next';
+import DisasterEventPage from '@/components/events/DisasterEventPage';
+import type { FinancialAssistanceItem } from '@/components/events/DisasterEventPage';
 
 export const metadata: Metadata = {
-  title: 'Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery Australia',
+  title: 'Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery',
   description:
     'Tropical Cyclone Maila — whatever it brings, flood, rainfall, or storm surge, NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live track and conditions.',
+  // DR-745: canonical winner is tc-maila-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
+    canonical: 'https://disasterrecovery.com.au/events/tc-maila-fnq-2026',
   },
   openGraph: {
-    title: 'TC Maila FNQ — Preparation & Recovery | Disaster Recovery Australia',
+    title: 'TC Maila FNQ — Preparation & Recovery | Disaster Recovery',
     description:
       'Tropical Cyclone Maila — whatever it brings. NRPG IICRC-certified contractors ready across FNQ. Follow BOM for live conditions. Lodge your claim 24/7.',
     url: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
     type: 'website',
   },
-}
+};
 
 /**
  * QLD Personal Hardship Assistance — activates post-disaster declaration by QLD Government.
@@ -60,7 +62,7 @@ const financialAssistanceItems: FinancialAssistanceItem[] = [
       'Official Bureau of Meteorology tropical cyclone forecast track and warning information. Monitor the BOM 7-day forecast and IDQ65002 track map for the latest TC Maila position and intensity.',
     applicationUrl: 'https://www.bom.gov.au/cyclone/7dayforecast/',
   },
-]
+];
 
 export default function CycloneMailaQLD2026Page() {
   return (
@@ -76,9 +78,8 @@ export default function CycloneMailaQLD2026Page() {
       iicrcStandard="IICRC S500:2025 (Water Damage Restoration) and S700:2025 (Fire and Smoke Damage Restoration — covers wind/structural scope)"
       alertNote="Follow BOM for live TC Maila track and warnings — bom.gov.au/cyclone or IDQ65002."
       slug="events/cyclone-maila-queensland-2026"
-      metaTitle="Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery Australia"
+      metaTitle="Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery"
       metaDescription="Tropical Cyclone Maila — whatever it brings, flood, rainfall, or storm surge, NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live track and conditions."
-
       // DR-534 evergreen pivot — frozen category/speed/landfall data removed.
       affectedLGAs={[
         'Cairns',
@@ -90,15 +91,11 @@ export default function CycloneMailaQLD2026Page() {
         'Cooktown',
         'Douglas',
       ]}
-      remoteLGAs={[
-        'Cook (Cape York)',
-        'Cooktown',
-      ]}
-
+      remoteLGAs={['Cook (Cape York)', 'Cooktown']}
       financialAssistance={financialAssistanceItems}
-
       governmentApplicationUrl="https://www.disaster.qld.gov.au/"
       governmentApplicationLabel="Queensland Disaster Hub"
+      claimsHotline="1300 309 361"
     />
-  )
+  );
 }

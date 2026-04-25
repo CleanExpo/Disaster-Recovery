@@ -220,23 +220,24 @@ export function generateOrganizationSchema(): OrganizationSchema {
     name: 'National Restoration Professionals Group (NRPG)',
     url: 'https://disasterrecovery.com.au',
     logo: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
-    description: 'Professional disaster recovery and emergency restoration services nationwide. IICRC certified, 24/7 emergency response.',
+    description:
+      'Professional disaster recovery and emergency restoration services nationwide. IICRC certified, 24/7 emergency response.',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'AU',
-      addressRegion: 'Australia'
+      addressRegion: 'Australia',
     },
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Online Claims',
       url: 'https://disasterrecovery.com.au/claim',
       areaServed: 'AU',
-      availableLanguage: 'English'
+      availableLanguage: 'English',
     },
     sameAs: [
       'https://www.facebook.com/DisasterRecoveryAU',
-      'https://www.instagram.com/disasterrecoveryau'
-    ]
+      'https://www.instagram.com/disasterrecoveryau',
+    ],
   };
 }
 
@@ -249,7 +250,7 @@ export function generateArticleSchema(
   datePublished: string,
   dateModified: string,
   url: string,
-  keywords?: string[]
+  keywords?: string[],
 ): ArticleSchema {
   return {
     '@context': 'https://schema.org',
@@ -258,24 +259,24 @@ export function generateArticleSchema(
     description,
     author: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
-      url: 'https://disasterrecovery.com.au'
+      name: 'Disaster Recovery',
+      url: 'https://disasterrecovery.com.au',
     },
     datePublished,
     dateModified,
     publisher: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
+      name: 'Disaster Recovery',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png'
-      }
+        url: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
+      },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': url
+      '@id': url,
     },
-    keywords
+    keywords,
   };
 }
 
@@ -285,7 +286,7 @@ export function generateArticleSchema(
 export function generateServiceSchema(
   serviceName: string,
   serviceDescription: string,
-  rating?: { value: string; count: string }
+  rating?: { value: string; count: string },
 ): ServiceSchema {
   const schema: ServiceSchema = {
     '@context': 'https://schema.org',
@@ -294,19 +295,19 @@ export function generateServiceSchema(
     description: serviceDescription,
     provider: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia'
+      name: 'Disaster Recovery',
     },
     areaServed: {
       '@type': 'Country',
-      name: 'Australia'
-    }
+      name: 'Australia',
+    },
   };
 
   if (rating) {
     schema.aggregateRating = {
       '@type': 'AggregateRating',
       ratingValue: rating.value,
-      reviewCount: rating.count
+      reviewCount: rating.count,
     };
   }
 
@@ -316,25 +317,29 @@ export function generateServiceSchema(
 /**
  * Generate FAQ schema for frequently asked questions
  */
-export function generateFAQSchema(questions: Array<{ question: string; answer: string }>): FAQSchema {
+export function generateFAQSchema(
+  questions: Array<{ question: string; answer: string }>,
+): FAQSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: questions.map(q => ({
+    mainEntity: questions.map((q) => ({
       '@type': 'Question' as const,
       name: q.question,
       acceptedAnswer: {
         '@type': 'Answer' as const,
-        text: q.answer
-      }
-    }))
+        text: q.answer,
+      },
+    })),
   };
 }
 
 /**
  * Generate breadcrumb schema for navigation
  */
-export function generateBreadcrumbSchema(items: Array<{ name: string; url?: string }>): BreadcrumbSchema {
+export function generateBreadcrumbSchema(
+  items: Array<{ name: string; url?: string }>,
+): BreadcrumbSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -342,8 +347,8 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url?: stri
       '@type': 'ListItem' as const,
       position: index + 1,
       name: item.name,
-      item: item.url
-    }))
+      item: item.url,
+    })),
   };
 }
 
@@ -355,20 +360,21 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     '@context': 'https://schema.org',
     '@type': 'EmergencyService',
     name: '24/7 Emergency Disaster Response',
-    description: 'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation nationwide',
+    description:
+      'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation nationwide',
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: 'https://disasterrecovery.com.au/claim',
       availableLanguage: {
         '@type': 'Language',
-        name: 'English'
-      }
+        name: 'English',
+      },
     },
     potentialAction: {
       '@type': 'Action',
       name: 'Request Emergency Help',
-      target: 'https://disasterrecovery.com.au/emergency-response'
-    }
+      target: 'https://disasterrecovery.com.au/emergency-response',
+    },
   };
 }
 

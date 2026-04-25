@@ -18,6 +18,7 @@ import { verifyWebhookSignature, parseWebhook } from "@/lib/voice/webhook-verify
 import { extractClaimIntake, extractSupportInteraction } from "@/lib/voice/extract";
 import { agentById, agentRole } from "@/lib/voice/agents-registry";
 import type { ElevenLabsTranscriptionWebhook } from "@/lib/voice/types";
+import { requestLogger, captureException } from "@/lib/observability";
 
 // Force dynamic — we read the raw request body, no caching.
 export const dynamic = "force-dynamic";
@@ -28,6 +29,7 @@ function jsonResponse(status: number, body: Record<string, unknown>): NextRespon
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/voice/elevenlabs/webhook' });
   try {
     // Raw body required for HMAC — don't use request.json() here.
     const rawBody = await request.text();
@@ -43,7 +45,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       signatureHeader,
     });
     if (!verified.ok) {
-      console.error("[voice/webhook] signature verification failed:", verified.reason);
+      log.error('signature verification failed', { reason: verified.reason });
       return jsonResponse(401, { received: false, error: verified.reason ?? "unauthorised" });
     }
 
@@ -53,7 +55,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       parsed = parseWebhook(rawBody);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "parse-error";
-      console.error("[voice/webhook] parse failed:", msg);
+      log.error('parse failed', { error: msg });
       return jsonResponse(400, { received: false, error: "malformed-payload" });
     }
 
@@ -65,9 +67,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     // Flag-off: acknowledge and log; do not hydrate domain records.
     if (process.env.VOICE_AGENT_ENABLED !== "true") {
-      console.info(
-        `[voice/webhook] flag-off ack: type=${parsed.type} agent_id=${agentId ?? "unknown"} agent=${agent?.name ?? "unregistered"}`,
-      );
+      log.info('flag-off ack', { type: parsed.type, agent_id: agentId ?? 'unknown', agent: agent?.name ?? 'unregistered' });
       return jsonResponse(200, { received: true, agent_disabled: true });
     }
 
@@ -78,19 +78,15 @@ export async function POST(request: Request): Promise<NextResponse> {
       const tx = parsed as ElevenLabsTranscriptionWebhook;
       if (role === "claims-intake") {
         const intake = extractClaimIntake(tx);
-        console.info(
-          `[voice/webhook] ClaimIntake conversation=${intake.conversationId} service=${intake.service} urgency=${intake.urgency} postcode=${intake.propertyPostcode}`,
-        );
+        log.info('ClaimIntake', { conversation: intake.conversationId, service: intake.service, urgency: intake.urgency, postcode: intake.propertyPostcode });
       } else if (role === "support-chat") {
         const si = extractSupportInteraction(tx);
-        console.info(
-          `[voice/webhook] SupportInteraction conversation=${si.conversationId} topic=${si.topic} escalate=${si.escalateToSarah}`,
-        );
+        log.info('SupportInteraction', { conversation: si.conversationId, topic: si.topic, escalate: si.escalateToSarah });
       } else {
-        console.warn(`[voice/webhook] unknown agent_id=${agentId}; no extractor ran`);
+        log.warn('unknown agent_id; no extractor ran', { agent_id: agentId });
       }
     } else {
-      console.info(`[voice/webhook] received type=${parsed.type} — no extractor configured`);
+      log.info('received; no extractor configured', { type: parsed.type });
     }
 
     return jsonResponse(200, { received: true });
@@ -99,7 +95,8 @@ export async function POST(request: Request): Promise<NextResponse> {
     // 5xx would have EL retry the webhook, which is worse than silent drop
     // during the flag-off phase.
     const msg = err instanceof Error ? err.message : "unknown-error";
-    console.error("[voice/webhook] unexpected error:", msg);
+    log.error('unexpected error', { error: msg });
+    captureException(err, { tags: { route: '/api/voice/elevenlabs/webhook' }, extra: { requestId: log.requestId } });
     return jsonResponse(200, { received: true, error: "internal" });
   }
 }

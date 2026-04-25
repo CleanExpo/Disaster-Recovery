@@ -4,6 +4,7 @@ import { Wind } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
+import { DeadlineBand } from '@/components/DeadlineBand';
 
 /**
  * DR-500: Ex-TC Alfred FNQ Recovery — Final PERILS AU$1.877 Billion
@@ -129,7 +130,7 @@ const eventSchema = {
   ],
   organizer: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
   },
   about: [
@@ -177,21 +178,28 @@ export default function AlfredFNQ2026Page() {
               <>
                 <p>
                   PERILS has confirmed a 4th and final insured loss estimate of{' '}
-                  <strong>AU$1.877 billion</strong> for Ex-Tropical Cyclone Alfred, which made landfall
-                  across Southeast Queensland and northern New South Wales in March 2026. The Insurance
-                  Council of Australia (ICA) recorded <strong>132,000 claims</strong> across the event, with
-                  personal lines accounting for 70% of the total loss, commercial property 26%, and motor 4%.
+                  <strong>AU$1.877 billion</strong> for Ex-Tropical Cyclone Alfred, which made
+                  landfall across Southeast Queensland and northern New South Wales in March 2026.
+                  The Insurance Council of Australia (ICA) recorded <strong>132,000 claims</strong>{' '}
+                  across the event, with personal lines accounting for 70% of the total loss,
+                  commercial property 26%, and motor 4%.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  On <strong>April 8, 2026</strong>, the ARPC (Australian Reinsurance Pool Corporation)
-                  Cyclone Pool passed the <strong>$1 billion threshold</strong> — a significant marker
-                  reflecting the scale of FNQ cyclone losses absorbed by the pool. Alfred is the{' '}
-                  <strong>largest insured cyclone event on a current-value basis since Cyclone Debbie in 2017</strong>.
+                  On <strong>April 8, 2026</strong>, the ARPC (Australian Reinsurance Pool
+                  Corporation) Cyclone Pool passed the <strong>$1 billion threshold</strong> — a
+                  significant marker reflecting the scale of FNQ cyclone losses absorbed by the
+                  pool. Alfred is the{' '}
+                  <strong>
+                    largest insured cyclone event on a current-value basis since Cyclone Debbie in
+                    2017
+                  </strong>
+                  .
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Many policyholders are still navigating disputed, delayed, or underpaid claims. The PERILS
-                  final estimate closing out does not close your individual claim rights — supplementary
-                  claims, AFCA escalations, and independent assessments remain fully available.
+                  Many policyholders are still navigating disputed, delayed, or underpaid claims.
+                  The PERILS final estimate closing out does not close your individual claim rights
+                  — supplementary claims, AFCA escalations, and independent assessments remain fully
+                  available.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Official BOM event record:</strong>{' '}
@@ -211,32 +219,33 @@ export default function AlfredFNQ2026Page() {
             body: (
               <>
                 <p>
-                  Late claims, supplementary claims for damage discovered after initial settlement, and
-                  disputed assessments are still valid pathways. NRPG supports Alfred policyholders in the
-                  following circumstances:
+                  Late claims, supplementary claims for damage discovered after initial settlement,
+                  and disputed assessments are still valid pathways. NRPG supports Alfred
+                  policyholders in the following circumstances:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Mould now appearing:</strong> Properties where drying was incomplete or not
-                    performed to <a href="/standards/iicrc-s500-water-damage">IICRC S500:2025</a> standards are presenting mould months after the event.
-                    Where mould has taken hold, remediation to{' '}
-                    <a href="/standards/iicrc-s520-mold-remediation">IICRC S520</a> is required.
+                    <strong>Mould now appearing:</strong> Properties where drying was incomplete or
+                    not performed to{' '}
+                    <a href="/standards/iicrc-s500-water-damage">IICRC S500:2025</a> standards are
+                    presenting mould months after the event. Where mould has taken hold, remediation
+                    to <a href="/standards/iicrc-s520-mold-remediation">IICRC S520</a> is required.
                     If mould arose from water ingress during Alfred, this is a supplementary claim.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Structural damage underscoped:</strong> Initial insurer assessments frequently
-                    underestimate structural damage extent. NRPG provides an independent scope that
-                    documents the full repair requirement.
+                    <strong>Structural damage underscoped:</strong> Initial insurer assessments
+                    frequently underestimate structural damage extent. NRPG provides an independent
+                    scope that documents the full repair requirement.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Contents claims disputed:</strong> Insurer valuations for contents replacement
-                    are frequently below replacement cost. NRPG documents current replacement values and
-                    supports AFCA lodgement.
+                    <strong>Contents claims disputed:</strong> Insurer valuations for contents
+                    replacement are frequently below replacement cost. NRPG documents current
+                    replacement values and supports AFCA lodgement.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Claims not yet lodged:</strong> Policyholders still displaced, or who discovered
-                    damage after returning, can lodge now. Most QLD policies allow 30&ndash;90 days from
-                    discovery, not from event date.
+                    <strong>Claims not yet lodged:</strong> Policyholders still displaced, or who
+                    discovered damage after returning, can lodge now. Most QLD policies allow
+                    30&ndash;90 days from discovery, not from event date.
                   </li>
                 </ul>
                 <App3CollectionNotice />
@@ -248,30 +257,31 @@ export default function AlfredFNQ2026Page() {
             body: (
               <>
                 <p>
-                  Regulatory outcomes from recent ICA catastrophe events demonstrate that insurers failing
-                  to handle claims efficiently face real consequences:
+                  Regulatory outcomes from recent ICA catastrophe events demonstrate that insurers
+                  failing to handle claims efficiently face real consequences:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Bupa — ACCC AU$14.3 million civil penalty</strong> for misleading customers
-                    during the 2022 floods, including misrepresenting claim outcomes. This outcome
-                    establishes a precedent for misleading conduct in the claims handling context.
+                    <strong>Bupa — ACCC AU$14.3 million civil penalty</strong> for misleading
+                    customers during the 2022 floods, including misrepresenting claim outcomes. This
+                    outcome establishes a precedent for misleading conduct in the claims handling
+                    context.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Youi — AU$115,765 fine</strong> for failing to handle claims efficiently and
-                    within required timeframes under ASIC regulatory action.
+                    <strong>Youi — AU$115,765 fine</strong> for failing to handle claims efficiently
+                    and within required timeframes under ASIC regulatory action.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>IAG — AU$89,000 penalty</strong> for delays in claims handling under ASIC
-                    enforcement action.
+                    <strong>IAG — AU$89,000 penalty</strong> for delays in claims handling under
+                    ASIC enforcement action.
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  These regulatory outcomes demonstrate that if your Alfred claim has stalled, is disputed,
-                  or has been underpaid, escalation to AFCA (Australian Financial Complaints Authority) is
-                  free and available. NRPG provides independent assessment documentation to support your
-                  AFCA lodgement. NRPG does not control claim outcomes — your insurer and AFCA determine
-                  final claim decisions.
+                  These regulatory outcomes demonstrate that if your Alfred claim has stalled, is
+                  disputed, or has been underpaid, escalation to AFCA (Australian Financial
+                  Complaints Authority) is free and available. NRPG provides independent assessment
+                  documentation to support your AFCA lodgement. NRPG does not control claim outcomes
+                  — your insurer and AFCA determine final claim decisions.
                 </p>
               </>
             ),
@@ -281,25 +291,32 @@ export default function AlfredFNQ2026Page() {
             body: (
               <>
                 <p>
-                  The ARPC Cyclone Pool passed the <strong>$1 billion threshold in April 2026</strong>,
-                  reflecting the accumulated impact of FNQ cyclone events on the pool balance. This is a
-                  government reinsurance backstop — it does <strong>not</strong> change your rights as a
-                  policyholder.
+                  The ARPC Cyclone Pool passed the{' '}
+                  <strong>$1 billion threshold in April 2026</strong>, reflecting the accumulated
+                  impact of FNQ cyclone events on the pool balance. This is a government reinsurance
+                  backstop — it does <strong>not</strong> change your rights as a policyholder.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Your insurer manages your Alfred claim under pool rules, exactly as they would manage a
-                  standard home insurance claim. The pool operates behind the scenes as reinsurance for your
-                  insurer — it is not an additional claims channel and it does not provide direct payments
-                  to policyholders.
+                  Your insurer manages your Alfred claim under pool rules, exactly as they would
+                  manage a standard home insurance claim. The pool operates behind the scenes as
+                  reinsurance for your insurer — it is not an additional claims channel and it does
+                  not provide direct payments to policyholders.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  If your pool-backed Alfred claim is disputed or underpaid, AFCA escalation remains fully
-                  available at no cost. AFCA can review pool-backed claims on the same basis as any
-                  standard insurance claim. Lodge your Alfred claim assessment at{' '}
-                  <a href="/claim">disasterrecovery.com.au/claim</a> and NRPG will document the independent
-                  scope required for AFCA purposes.
+                  If your pool-backed Alfred claim is disputed or underpaid, AFCA escalation remains
+                  fully available at no cost. AFCA can review pool-backed claims on the same basis
+                  as any standard insurance claim. Lodge your Alfred claim assessment at{' '}
+                  <a href="/claim">disasterrecovery.com.au/claim</a> and NRPG will document the
+                  independent scope required for AFCA purposes.
                 </p>
-                <p style={{ marginTop: '0.75rem', fontStyle: 'italic', fontSize: '0.875rem', color: '#555' }}>
+                <p
+                  style={{
+                    marginTop: '0.75rem',
+                    fontStyle: 'italic',
+                    fontSize: '0.875rem',
+                    color: '#555',
+                  }}
+                >
                   NRPG collects your contact and property details to coordinate contractor matching.
                   See our <a href="/privacy">Privacy Policy</a>.
                 </p>
@@ -310,15 +327,10 @@ export default function AlfredFNQ2026Page() {
             heading: 'Government Assistance — Alfred QLD',
             body: (
               <>
-                <div style={{ backgroundColor: '#fffbeb', border: '1px solid #f59e0b', borderRadius: '6px', padding: '0.75rem 1rem', marginBottom: '1rem', fontWeight: 600 }}>
-                  <strong style={{ color: '#92400e' }}>Deadline: 27 April 2026</strong>
-                  {' '}— QLD government assistance programs for Alfred-affected LGAs close 27 April 2026.
-                  Personal Hardship Assistance, Extended ESHA, and Structural Assistance Grants must be
-                  lodged before this date. Insurance claims have no deadline.
-                </div>
+                <DeadlineBand programKey="alfred-fnq-qld-assistance" />
                 <p>
                   The following government assistance programs were activated for Ex-TC Alfred affected
-                  areas. Apply before 27 April 2026 — programs close on that date.
+                  areas.
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
@@ -333,19 +345,15 @@ export default function AlfredFNQ2026Page() {
                     </a>
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>QLD Personal Hardship Assistance</strong> — emergency hardship payments and
-                    essential household contents grants for eligible residents.{' '}
-                    <a
-                      href="https://www.qra.qld.gov.au/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <strong>QLD Personal Hardship Assistance</strong> — emergency hardship payments
+                    and essential household contents grants for eligible residents.{' '}
+                    <a href="https://www.qra.qld.gov.au/" target="_blank" rel="noopener noreferrer">
                       Queensland Reconstruction Authority — qra.qld.gov.au
                     </a>
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>DRFA Assistance</strong> — Disaster Recovery Funding Arrangements support
-                    for eligible individuals and communities in declared LGAs.{' '}
+                    <strong>DRFA Assistance</strong> — Disaster Recovery Funding Arrangements
+                    support for eligible individuals and communities in declared LGAs.{' '}
                     <a
                       href="https://www.disaster.qld.gov.au/"
                       target="_blank"
@@ -356,10 +364,10 @@ export default function AlfredFNQ2026Page() {
                   </li>
                 </ul>
                 <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#555' }}>
-                  Check eligibility and current activation status at official sources before applying.
-                  Program availability and application deadlines are subject to change by the Queensland
-                  Government. NRPG is a restoration and claim support service and does not administer
-                  government grants.
+                  Check eligibility and current activation status at official sources before
+                  applying. Program availability and application deadlines are subject to change by
+                  the Queensland Government. NRPG is a restoration and claim support service and
+                  does not administer government grants.
                 </p>
               </>
             ),
@@ -406,7 +414,8 @@ export default function AlfredFNQ2026Page() {
           {
             title: 'Underinsurance in Australia',
             href: '/guides/insurance/underinsurance-australia',
-            description: 'Understanding underinsurance and how to identify shortfalls in your policy.',
+            description:
+              'Understanding underinsurance and how to identify shortfalls in your policy.',
           },
           {
             title: 'Cyclone Damage Restoration Cairns',

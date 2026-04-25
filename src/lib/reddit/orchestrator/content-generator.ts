@@ -13,6 +13,7 @@ import { BRAND_REGISTRY } from '../content/brand-cross-links';
 import { validateGEOCompliance } from '../content/geo-formatter';
 import type { TopicSelection, GeneratedContent } from './types';
 import type { PerformanceFeedback } from './types';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -87,7 +88,7 @@ Return your response as a valid JSON object matching the schema specified in the
   // Run GEO compliance check
   const compliance = validateGEOCompliance(parsed.body);
   if (!compliance.valid) {
-    console.warn('[content-generator] GEO compliance issues:', compliance.issues);
+    clientLogger.warn('[content-generator] GEO compliance issues:', { source: 'orchestrator/content-generator', data: compliance.issues });
   }
 
   return {
@@ -123,7 +124,7 @@ function parseGeneratedContent(
     };
   } catch {
     // If JSON parsing fails, use the raw text as the body
-    console.warn('[content-generator] Failed to parse JSON response, using raw text');
+    clientLogger.warn('[content-generator] Failed to parse JSON response, using raw text', { source: 'orchestrator/content-generator' });
     return {
       title: topic.topic,
       body: text,

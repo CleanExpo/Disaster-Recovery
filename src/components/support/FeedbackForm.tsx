@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import type { FeedbackSubmission, TicketPriority } from '@/types/support';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface FeedbackFormProps {
   embedded?: boolean;
@@ -133,7 +134,7 @@ export function FeedbackForm({
         updatedAt: new Date()
       };
 
-      console.log('Submitting feedback:', submission);
+      clientLogger.info('Submitting feedback:', { source: 'support/FeedbackForm', data: submission });
       
       setSubmitted(true);
       

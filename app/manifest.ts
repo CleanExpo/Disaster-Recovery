@@ -1,10 +1,11 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     short_name: 'DR Australia',
-    description: 'Lodge and track disaster recovery claims — 24/7 IICRC-certified restoration services across Australia',
+    description:
+      'Lodge and track disaster recovery claims — 24/7 IICRC-certified restoration services across Australia',
     start_url: '/claim/start',
     display: 'standalone',
     background_color: '#ffffff',
@@ -98,5 +99,5 @@ export default function manifest(): MetadataRoute.Manifest {
         icons: [{ src: '/icon-96x96.png', sizes: '96x96' }],
       },
     ],
-  }
+  };
 }

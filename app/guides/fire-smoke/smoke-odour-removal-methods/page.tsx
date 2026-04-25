@@ -8,14 +8,15 @@
  * ACL s18 compliant — no unverified statistics.
  */
 
-import type { Metadata } from 'next'
-import Script from 'next/script'
-import { Wind } from 'lucide-react'
-import { AgGuidePageTemplate } from '@/components/antigravity'
-import { NAP } from '@/lib/constants'
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import { Wind } from 'lucide-react';
+import { AgGuidePageTemplate } from '@/components/antigravity';
+import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Smoke Odour Removal Methods — What IICRC S700 Certified Contractors Use | Disaster Recovery Australia',
+  title:
+    'Smoke Odour Removal Methods — What IICRC S700 Certified Contractors Use | Disaster Recovery',
   description:
     'How IICRC S700:2025 certified contractors remove smoke odour after fire damage. Thermal fogging, ozone treatment, hydroxyl generators, and HEPA air scrubbing explained.',
   keywords: [
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     url: `${NAP.url}/guides/fire-smoke/smoke-odour-removal-methods`,
     type: 'website',
   },
-}
+};
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -50,7 +51,7 @@ const localBusinessSchema = {
     name: 'Fire and Smoke Restoration',
   },
   sameAs: NAP.sameAs,
-}
+};
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -61,7 +62,7 @@ const serviceSchema = {
   serviceType: 'Smoke Odour Removal',
   description:
     'IICRC S700:2025-certified smoke odour removal using thermal fogging, ozone treatment, hydroxyl generators, and HEPA air scrubbing. Full deodorisation documentation for insurance sign-off.',
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -100,7 +101,7 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 export default function SmokeOdourRemovalMethodsPage() {
   return (
@@ -140,28 +141,39 @@ export default function SmokeOdourRemovalMethodsPage() {
             body: (
               <>
                 <p>
-                  Smoke particles produced by a house fire range from 0.4 to 0.7 microns in diameter — small enough to
-                  penetrate porous building materials including plasterboard, timber framing, insulation batts, and
-                  ceiling cavities. Unlike surface soot, which can be wiped away, smoke compounds absorb into the
-                  molecular structure of these materials and off-gas odour long after visible residue is cleaned.
+                  Smoke particles produced by a house fire range from 0.4 to 0.7 microns in diameter
+                  — small enough to penetrate porous building materials including plasterboard,
+                  timber framing, insulation batts, and ceiling cavities. Unlike surface soot, which
+                  can be wiped away, smoke compounds absorb into the molecular structure of these
+                  materials and off-gas odour long after visible residue is cleaned.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  A further complication is the HVAC system. Smoke drawn into return air ducts during a fire is
-                  distributed throughout the building, depositing residue in ductwork, on coils, and in every room
-                  served by the system. This is why properties can have strong smoke odour in rooms remote from the
-                  fire origin.
+                  A further complication is the HVAC system. Smoke drawn into return air ducts
+                  during a fire is distributed throughout the building, depositing residue in
+                  ductwork, on coils, and in every room served by the system. This is why properties
+                  can have strong smoke odour in rooms remote from the fire origin.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   The type of material burned also affects the odour compounds produced:
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
-                  <li><strong>Protein fires</strong> (cooking fires, animal matter) — produce a near-invisible but highly penetrating residue with strong, acrid odour</li>
-                  <li><strong>Synthetic fires</strong> (plastics, rubber, foam furniture) — produce heavy, oily soot with pungent petrochemical odour</li>
-                  <li><strong>Paper and wood fires</strong> — produce dry, powdery residue with a more familiar smoke odour that is easier to treat</li>
+                  <li>
+                    <strong>Protein fires</strong> (cooking fires, animal matter) — produce a
+                    near-invisible but highly penetrating residue with strong, acrid odour
+                  </li>
+                  <li>
+                    <strong>Synthetic fires</strong> (plastics, rubber, foam furniture) — produce
+                    heavy, oily soot with pungent petrochemical odour
+                  </li>
+                  <li>
+                    <strong>Paper and wood fires</strong> — produce dry, powdery residue with a more
+                    familiar smoke odour that is easier to treat
+                  </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Each fire type requires a different deodorisation approach. IICRC S700:2025-certified contractors are
-                  trained to identify the fire type and select appropriate methods for the specific odour compounds present.
+                  Each fire type requires a different deodorisation approach. IICRC
+                  S700:2025-certified contractors are trained to identify the fire type and select
+                  appropriate methods for the specific odour compounds present.
                 </p>
               </>
             ),
@@ -172,56 +184,89 @@ export default function SmokeOdourRemovalMethodsPage() {
             body: (
               <>
                 <p>
-                  IICRC S700:2025 certified contractors use a combination of deodorisation methods depending on the
-                  materials affected, the severity of odour penetration, and whether the property is occupied during
-                  treatment.
+                  IICRC S700:2025 certified contractors use a combination of deodorisation methods
+                  depending on the materials affected, the severity of odour penetration, and
+                  whether the property is occupied during treatment.
                 </p>
 
-                <h3 style={{ marginTop: '1.5rem', marginBottom: '0.5rem', fontWeight: 600, fontSize: '1.1rem' }}>
+                <h3
+                  style={{
+                    marginTop: '1.5rem',
+                    marginBottom: '0.5rem',
+                    fontWeight: 600,
+                    fontSize: '1.1rem',
+                  }}
+                >
                   Thermal Fogging
                 </h3>
                 <p>
-                  A petroleum-based or water-based deodorising solvent is heated through a fogging machine to create
-                  very fine particles — typically 0.5–5 microns — that suspend in air and penetrate the same porous
-                  surfaces that absorbed smoke. The fog follows the exact pathways the smoke took, reaching inside wall
-                  cavities, ceiling spaces, and the grain of timber. Thermal fogging is most effective for structural
-                  deodorisation where soot has penetrated framing and cavities. The property must be unoccupied during
-                  treatment and ventilated thoroughly before re-entry.
+                  A petroleum-based or water-based deodorising solvent is heated through a fogging
+                  machine to create very fine particles — typically 0.5–5 microns — that suspend in
+                  air and penetrate the same porous surfaces that absorbed smoke. The fog follows
+                  the exact pathways the smoke took, reaching inside wall cavities, ceiling spaces,
+                  and the grain of timber. Thermal fogging is most effective for structural
+                  deodorisation where soot has penetrated framing and cavities. The property must be
+                  unoccupied during treatment and ventilated thoroughly before re-entry.
                 </p>
 
-                <h3 style={{ marginTop: '1.5rem', marginBottom: '0.5rem', fontWeight: 600, fontSize: '1.1rem' }}>
+                <h3
+                  style={{
+                    marginTop: '1.5rem',
+                    marginBottom: '0.5rem',
+                    fontWeight: 600,
+                    fontSize: '1.1rem',
+                  }}
+                >
                   Ozone Treatment
                 </h3>
                 <p>
-                  Ozone generators produce O₃ molecules that react with and oxidise smoke compounds at a molecular
-                  level, breaking the odour-causing chemical bonds. Ozone is highly effective for absorbed smoke odour
-                  in soft furnishings, carpet, drapes, and timber surfaces. Treatment requires an unoccupied property
-                  — ozone at treatment concentrations is harmful to people, pets, and plants. A typical treatment runs
-                  4–24 hours followed by a ventilation period before re-occupancy. Ozone is not suitable for
-                  properties with rubber seals or certain sensitive materials.
+                  Ozone generators produce O₃ molecules that react with and oxidise smoke compounds
+                  at a molecular level, breaking the odour-causing chemical bonds. Ozone is highly
+                  effective for absorbed smoke odour in soft furnishings, carpet, drapes, and timber
+                  surfaces. Treatment requires an unoccupied property — ozone at treatment
+                  concentrations is harmful to people, pets, and plants. A typical treatment runs
+                  4–24 hours followed by a ventilation period before re-occupancy. Ozone is not
+                  suitable for properties with rubber seals or certain sensitive materials.
                 </p>
 
-                <h3 style={{ marginTop: '1.5rem', marginBottom: '0.5rem', fontWeight: 600, fontSize: '1.1rem' }}>
+                <h3
+                  style={{
+                    marginTop: '1.5rem',
+                    marginBottom: '0.5rem',
+                    fontWeight: 600,
+                    fontSize: '1.1rem',
+                  }}
+                >
                   Hydroxyl Generators
                 </h3>
                 <p>
-                  Hydroxyl generators produce OH radicals using UV light and water vapour, which break down odour
-                  molecules continuously over time. Unlike ozone, hydroxyl treatment is safe for occupied spaces —
-                  people, pets, and sensitive materials can remain on-site during treatment. Hydroxyl generators work
-                  more slowly than ozone (treatments typically run 3–7 days continuously) but can be used in
-                  situations where ozone treatment is not safe. They are particularly useful for ongoing odour control
-                  during the restoration phase.
+                  Hydroxyl generators produce OH radicals using UV light and water vapour, which
+                  break down odour molecules continuously over time. Unlike ozone, hydroxyl
+                  treatment is safe for occupied spaces — people, pets, and sensitive materials can
+                  remain on-site during treatment. Hydroxyl generators work more slowly than ozone
+                  (treatments typically run 3–7 days continuously) but can be used in situations
+                  where ozone treatment is not safe. They are particularly useful for ongoing odour
+                  control during the restoration phase.
                 </p>
 
-                <h3 style={{ marginTop: '1.5rem', marginBottom: '0.5rem', fontWeight: 600, fontSize: '1.1rem' }}>
+                <h3
+                  style={{
+                    marginTop: '1.5rem',
+                    marginBottom: '0.5rem',
+                    fontWeight: 600,
+                    fontSize: '1.1rem',
+                  }}
+                >
                   HEPA Air Scrubbing
                 </h3>
                 <p>
-                  HEPA air scrubbers filter airborne particles — including smoke soot at sub-micron levels — from the
-                  air within a confined space. Air scrubbers address airborne contamination but do not treat odour
-                  compounds absorbed into structural materials. They are used in combination with fogging or ozone
-                  treatment to reduce airborne particle load and improve air quality during and after deodorisation.
-                  HEPA filtration is also used during the demolition and cleaning phases to prevent re-contamination.
+                  HEPA air scrubbers filter airborne particles — including smoke soot at sub-micron
+                  levels — from the air within a confined space. Air scrubbers address airborne
+                  contamination but do not treat odour compounds absorbed into structural materials.
+                  They are used in combination with fogging or ozone treatment to reduce airborne
+                  particle load and improve air quality during and after deodorisation. HEPA
+                  filtration is also used during the demolition and cleaning phases to prevent
+                  re-contamination.
                 </p>
               </>
             ),
@@ -231,21 +276,39 @@ export default function SmokeOdourRemovalMethodsPage() {
             body: (
               <>
                 <p>
-                  ANSI/IICRC S700:2025 is the professional standard for fire and smoke damage restoration in Australia.
-                  Certified contractors follow a structured deodorisation protocol that ensures complete treatment and
-                  produces the documentation your insurer requires to close the claim.
+                  ANSI/IICRC S700:2025 is the professional standard for fire and smoke damage
+                  restoration in Australia. Certified contractors follow a structured deodorisation
+                  protocol that ensures complete treatment and produces the documentation your
+                  insurer requires to close the claim.
                 </p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
-                  <li><strong>Why certification matters</strong> — an IICRC S700:2025-certified contractor is trained to identify all affected materials, select appropriate deodorisation methods for each surface type, and treat the full extent of smoke migration — not just the burned room</li>
-                  <li><strong>Insurance documentation</strong> — a certified job produces a written scope of works, treatment records, and a completion report confirming deodorisation to standard; this documentation is required for insurance sign-off</li>
-                  <li><strong>Post-treatment clearance</strong> — clearance testing confirms odour levels have been reduced to acceptable levels before the claim is closed</li>
-                  <li><strong>HVAC decontamination</strong> — IICRC S700:2025 includes HVAC system assessment and decontamination as a required component where the system was operating during or after the fire</li>
+                  <li>
+                    <strong>Why certification matters</strong> — an IICRC S700:2025-certified
+                    contractor is trained to identify all affected materials, select appropriate
+                    deodorisation methods for each surface type, and treat the full extent of smoke
+                    migration — not just the burned room
+                  </li>
+                  <li>
+                    <strong>Insurance documentation</strong> — a certified job produces a written
+                    scope of works, treatment records, and a completion report confirming
+                    deodorisation to standard; this documentation is required for insurance sign-off
+                  </li>
+                  <li>
+                    <strong>Post-treatment clearance</strong> — clearance testing confirms odour
+                    levels have been reduced to acceptable levels before the claim is closed
+                  </li>
+                  <li>
+                    <strong>HVAC decontamination</strong> — IICRC S700:2025 includes HVAC system
+                    assessment and decontamination as a required component where the system was
+                    operating during or after the fire
+                  </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
                   For the full ANSI/IICRC S700:2025 standard, visit{' '}
                   <a href="https://iicrc.org/s700/" target="_blank" rel="noopener noreferrer">
                     iicrc.org
-                  </a>.
+                  </a>
+                  .
                 </p>
               </>
             ),
@@ -256,28 +319,42 @@ export default function SmokeOdourRemovalMethodsPage() {
             body: (
               <>
                 <p>
-                  HVAC systems are a primary vector for smoke cross-contamination. When a fire occurs in a property
-                  with a ducted system operating, smoke is drawn into return air grilles and circulated throughout
-                  every room served by the system — depositing soot on coils, inside ductwork, and on supply
-                  diffusers throughout the property.
+                  HVAC systems are a primary vector for smoke cross-contamination. When a fire
+                  occurs in a property with a ducted system operating, smoke is drawn into return
+                  air grilles and circulated throughout every room served by the system — depositing
+                  soot on coils, inside ductwork, and on supply diffusers throughout the property.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Even when the system was not operating during the fire, smoke can enter ductwork through supply
-                  and return grilles by diffusion, especially in a smoke-filled environment over hours.
+                  Even when the system was not operating during the fire, smoke can enter ductwork
+                  through supply and return grilles by diffusion, especially in a smoke-filled
+                  environment over hours.
                 </p>
-                <p style={{ marginTop: '1rem' }}>
-                  HVAC decontamination after a fire involves:
-                </p>
+                <p style={{ marginTop: '1rem' }}>HVAC decontamination after a fire involves:</p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
-                  <li><strong>Duct cleaning and fogging</strong> — physical cleaning of accessible ductwork followed by thermal fogging through the duct system to deodorise internal surfaces</li>
-                  <li><strong>Coil and air handler cleaning</strong> — evaporator and condenser coils are cleaned and treated to remove smoke residue that would otherwise re-contaminate the air on every heating and cooling cycle</li>
-                  <li><strong>Filter replacement</strong> — all filters are replaced; existing filters that captured smoke particles must be discarded, not cleaned</li>
-                  <li><strong>Post-treatment air quality testing</strong> — air quality is tested after HVAC decontamination to confirm particulate and VOC levels are within acceptable ranges before the system is returned to service</li>
+                  <li>
+                    <strong>Duct cleaning and fogging</strong> — physical cleaning of accessible
+                    ductwork followed by thermal fogging through the duct system to deodorise
+                    internal surfaces
+                  </li>
+                  <li>
+                    <strong>Coil and air handler cleaning</strong> — evaporator and condenser coils
+                    are cleaned and treated to remove smoke residue that would otherwise
+                    re-contaminate the air on every heating and cooling cycle
+                  </li>
+                  <li>
+                    <strong>Filter replacement</strong> — all filters are replaced; existing filters
+                    that captured smoke particles must be discarded, not cleaned
+                  </li>
+                  <li>
+                    <strong>Post-treatment air quality testing</strong> — air quality is tested
+                    after HVAC decontamination to confirm particulate and VOC levels are within
+                    acceptable ranges before the system is returned to service
+                  </li>
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
-                  Failing to decontaminate the HVAC system is one of the most common reasons smoke odour returns
-                  after restoration work is completed. Each time the system operates, residual smoke compounds in
-                  the ductwork are recirculated into the living space.
+                  Failing to decontaminate the HVAC system is one of the most common reasons smoke
+                  odour returns after restoration work is completed. Each time the system operates,
+                  residual smoke compounds in the ductwork are recirculated into the living space.
                 </p>
               </>
             ),
@@ -306,11 +383,20 @@ export default function SmokeOdourRemovalMethodsPage() {
           },
         ]}
         relatedGuides={[
-          { title: 'IICRC S700 Fire Smoke Standard', href: '/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard' },
-          { title: 'Smoke Damage Cleaning Guide', href: '/guides/fire-damage/smoke-damage-cleaning-guide' },
-          { title: 'Fire Damage Insurance Claim', href: '/guides/insurance/fire-damage-insurance-claim-process' },
+          {
+            title: 'IICRC S700 Fire Smoke Standard',
+            href: '/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard',
+          },
+          {
+            title: 'Smoke Damage Cleaning Guide',
+            href: '/guides/fire-damage/smoke-damage-cleaning-guide',
+          },
+          {
+            title: 'Fire Damage Insurance Claim',
+            href: '/guides/insurance/fire-damage-insurance-claim-process',
+          },
         ]}
       />
     </>
-  )
+  );
 }

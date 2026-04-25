@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export interface SearchParams {
   q?: string;
@@ -266,6 +267,7 @@ function sortResults(results: SearchResult[], sortBy: string = 'relevance'): Sea
 }
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/search' });
   try {
     const { searchParams } = new URL(request.url);
     
@@ -343,7 +345,8 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Search API error:', error);
+    log.error('search api error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/search' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       message: 'Search failed',
@@ -353,6 +356,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/search' });
   try {
     const body = await request.json();
     const params: SearchParams = body;
@@ -364,7 +368,8 @@ export async function POST(request: NextRequest) {
     
     return results;
   } catch (error) {
-    console.error('Search POST API error:', error);
+    log.error('search POST api error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/search' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       message: 'Search failed'

@@ -1963,6 +1963,32 @@ model PushToken {
   @@index([claimId])
 }
 
+/// DR-725 iOS epic Phase 2 PR #2.
+/// Row-level ledger for photos captured via the native camera bridge and
+/// uploaded to the `claim-photos` Supabase Storage bucket. The bytes
+/// themselves live in object storage; this table holds the metadata.
+///
+/// Data-class: CONFIDENTIAL when joined to a claim (property PII).
+/// Never log the objectKey alongside client contact details.
+model ClaimPhotoAttachment {
+  id              String   @id @default(uuid())
+  claimId         String
+  /// Object key in the `claim-photos` Supabase Storage bucket.
+  /// Shape: `<claimId|unassigned>/<uuid>.<ext>`.
+  objectKey       String
+  platform        String   // "ios" | "android"
+  capturedAt      DateTime
+  geoLat          Float?
+  geoLng          Float?
+  geoAccuracyM    Float?
+  sizeBytes       Int
+  mimeType        String
+  createdAt       DateTime @default(now())
+
+  @@index([claimId])
+  @@index([createdAt])
+}
+
 /// Outbox for claim status change notifications.
 /// The polling endpoint reads these; the dispatch utility writes them.
 model ClaimNotification {
@@ -2073,6 +2099,7 @@ model SubContractorEngagement {
 model FinanceReferral {
   id                          String   @id @default(uuid())
   createdAt                   DateTime @default(now())
+  updatedAt                   DateTime @updatedAt
   country                     String   // "AU" | "NZ" (NZ pathway is Phase 2)
   customerType                String   // "business" | "consumer"
   fundingBand                 String   // "<10k" | "10-25k" | "25-50k" | "50-100k" | "100-250k" | ">250k"
@@ -2088,10 +2115,44 @@ model FinanceReferral {
   userAgent                   String?  @db.Text
   receiver                    String   // e.g. "equippedcf.com.au"
   handoffAck                  Boolean  @default(false) // flipped when Equipped's embed posts ACK
-  statusWebhookLastStatus     String?  // mirror of latest status webhook ("received" | "contacted" | "approved" | ...)
+
+  // L9 Phase 2 (2026-05-01) — status webhook fields populated by /api/finance/status.
+  // `equippedReferralId` is Equipped's opaque identifier from their webhook payload;
+  // separate from our internal `id` so cross-system tracing works either direction.
+  equippedReferralId          String?  @unique
+  entityIdentifierHash        String?  // SHA-256 of customer identifier from webhook metadata
+  stage                       String?  // canonical: "received" | "qualified" | "approved" | "funded" | "declined" | "withdrawn" | "unknown"
+  lastStatus                  String?  // raw status string from Equipped (may differ from stage)
+  consentVersion              String?  // consent string version captured at submit, mirrored from webhook
+  smsSent                     Boolean  @default(false)
+  metadata                    Json?    // free-form passthrough from webhook payload
+  statusWebhookLastStatus     String?  // mirror of latest status webhook (legacy alias of lastStatus)
   statusWebhookLastAt         DateTime?
+
+  events                      FinanceReferralEvent[]
 
   @@index([createdAt])
   @@index([country, customerType])
   @@index([receiver, createdAt])
+  @@index([stage, updatedAt])
+}
+
+/// Webhook idempotency log. Each row represents an inbound webhook
+/// callback from Equipped at a unique timestamp. Replaces the
+/// in-memory `seenEvents` Set in the legacy referral-store.
+model FinanceReferralEvent {
+  id                String           @id @default(uuid())
+  receivedAt        DateTime         @default(now())
+  referralId        String           // FK to FinanceReferral.id (or equippedReferralId fallback)
+  eventKey          String           @unique // `${referralId}::${webhookTimestamp}`
+  webhookTimestamp  String           // raw timestamp string from webhook payload
+  stage             String           // resolved stage at the time
+  status            String           // raw status from webhook
+  unknownStage      Boolean          @default(false)
+  payload           Json?            // optional raw payload snapshot (no PII)
+
+  referral          FinanceReferral? @relation(fields: [referralId], references: [id], onDelete: SetNull)
+
+  @@index([referralId, receivedAt])
+  @@index([receivedAt])
 }

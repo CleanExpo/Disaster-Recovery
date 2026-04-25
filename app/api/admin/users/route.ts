@@ -13,10 +13,12 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { isAdminRole } from '@/lib/admin-constants';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/admin/users' });
   // ── Auth check ────────────────────────────────────────────────────────────
   let token: Awaited<ReturnType<typeof getToken>> = null;
   try {
@@ -72,7 +74,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       },
     });
   } catch (err) {
-    console.error('[/api/admin/users] Database error:', err);
+    log.error('database error', { error: err instanceof Error ? err.message : String(err) });
+    captureException(err, { tags: { route: '/api/admin/users' }, extra: { requestId: log.requestId } });
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

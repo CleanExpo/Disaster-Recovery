@@ -1,3 +1,7 @@
+// DR-722: bundle-analyzer — run with ANALYZE=true npm run build
+import bundleAnalyzer from '@next/bundle-analyzer';
+const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
@@ -24,6 +28,10 @@ const nextConfig = {
       { source: '/contractor-terms', destination: '/terms', permanent: false },
       // Canonical redirect — old DR-398 page had advocacy framing violations
       { source: '/events/cyclone-narelle-wa', destination: '/events/cyclone-narelle-western-australia-2026', permanent: true },
+      // DR-745: Bare-slug 404s — short-form event slugs that appear in external links / social media
+      { source: '/events/cyclone-alfred', destination: '/events/cyclone-alfred-fnq-2026', permanent: true },
+      { source: '/events/cyclone-maila', destination: '/events/tc-maila-fnq-2026', permanent: true },
+      { source: '/events/nsw-storms', destination: '/events/nsw-storms-april-2026', permanent: true },
       // DR-533: NSW/QLD storms April 2026 — long-tail canonical redirect
       { source: '/nsw-storms-april-2026-insurance-claims', destination: '/events/nsw-storms-april-2026', permanent: true },
       { source: '/nsw-qld-storms-2026', destination: '/events/nsw-storms-april-2026', permanent: true },
@@ -64,6 +72,7 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://*.firebaseapp.com https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms",
+              "worker-src 'self' blob:",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https://res.cloudinary.com https://lh3.googleusercontent.com https://*.stripe.com https://www.google-analytics.com https://www.googletagmanager.com",
               "font-src 'self' https://fonts.gstatic.com",
@@ -121,7 +130,10 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     // Image sizes for various breakpoints
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // DR-719: cache optimised images for 1 year — hero WebPs are stable assets.
+    // Default is 60 s which causes unnecessary re-optimisation on repeat visits.
+    minimumCacheTTL: 31536000,
   },
 }
 
-export default nextConfig
+export default withBundleAnalyzer(nextConfig)

@@ -14,28 +14,30 @@
  * Framing: recovery-phase advocacy. DR is restoration network, NOT claim advocate.
  */
 
-import type { Metadata } from 'next'
-import Script from 'next/script'
-import Link from 'next/link'
-import { AgGuidePageTemplate } from '@/components/antigravity'
-import { NAP } from '@/lib/constants'
-import { Shield } from 'lucide-react'
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import Link from 'next/link';
+import { AgGuidePageTemplate } from '@/components/antigravity';
+import { NAP } from '@/lib/constants';
+import { Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Ex-Cyclone Alfred Claim Disputes & Recovery Guide 2026 | Disaster Recovery Australia',
+  title: 'Ex-Cyclone Alfred Claim Disputes & Recovery Guide 2026 | Disaster Recovery',
   description:
     'Ex-TC Alfred recovery guide for disputed and underpaid insurance claims. 132,000 ICA claims lodged. AU$1.877B final insured losses (PERILS). IICRC-certified contractors, AFCA dispute pathways, and ARPC cyclone pool navigation for SE Queensland and Northern NSW.',
+  // DR-745: canonical winner is cyclone-alfred-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: `${NAP.url}/events/ex-cyclone-alfred-recovery`,
+    canonical: `${NAP.url}/events/cyclone-alfred-fnq-2026`,
   },
   openGraph: {
-    title: 'Ex-Cyclone Alfred Claim Disputes Guide | Disaster Recovery Australia',
+    title: 'Ex-Cyclone Alfred Claim Disputes Guide | Disaster Recovery',
     description:
       'Recovery-phase guide for Ex-TC Alfred insurance claims. 132,000 claims lodged, AU$1.877B final insured losses (PERILS). Disputed claims, underpayment, contractor quality issues — AFCA pathways and IICRC-certified restoration support.',
     url: `${NAP.url}/events/ex-cyclone-alfred-recovery`,
     type: 'website',
   },
-}
+};
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -54,7 +56,7 @@ const faqSchema = {
       name: "Can I switch to NRPG if I've already lodged with my insurer directly?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Yes — at any point in the process. NRPG steps in and takes over communication with your insurer. There is no need to re-lodge your claim. We pick up where you are and manage the claim from that point forward.",
+        text: 'Yes — at any point in the process. NRPG steps in and takes over communication with your insurer. There is no need to re-lodge your claim. We pick up where you are and manage the claim from that point forward.',
       },
     },
     {
@@ -62,7 +64,7 @@ const faqSchema = {
       name: "What if I've been lowballed on my settlement?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Do not accept a settlement offer you believe is too low. NRPG reviews the offer, identifies scope gaps where damage items were missed or undervalued, and negotiates upward with the insurer. Independent IICRC-certified assessment is the primary tool for substantiating a higher claim value.",
+        text: 'Do not accept a settlement offer you believe is too low. NRPG reviews the offer, identifies scope gaps where damage items were missed or undervalued, and negotiates upward with the insurer. Independent IICRC-certified assessment is the primary tool for substantiating a higher claim value.',
       },
     },
     {
@@ -74,7 +76,7 @@ const faqSchema = {
       },
     },
   ],
-}
+};
 
 export default function ExCycloneAlfredRecoveryPage() {
   return (
@@ -86,7 +88,7 @@ export default function ExCycloneAlfredRecoveryPage() {
       />
       <AgGuidePageTemplate
         category="Ex-TC Alfred"
-        title="Still waiting on your Alfred claim? You shouldn&apos;t have to."
+        title="Still waiting on your Alfred claim? You shouldn't have to."
         subtitle="132,000+ claims lodged. AU$1.877B final insured losses. NRPG gets yours moving."
         gradient="linear-gradient(135deg, #1A0A0A 0%, #7B1A1A 100%)"
         icon={<Shield className="h-10 w-10" />}
@@ -104,13 +106,13 @@ export default function ExCycloneAlfredRecoveryPage() {
             body: (
               <>
                 <p>
-                  Tropical Cyclone Alfred caused unprecedented damage across Queensland and NSW. To date,
-                  132,000+ claims have been lodged. PERILS has confirmed a <strong>final insured loss of
-                  AU$1.877 billion</strong> — the largest insured cyclone loss on a current-value basis since
-                  Cyclone Debbie in 2017 (PERILS final estimate, released 13 April 2026). Insurers are
-                  stretched. Assessors are booked weeks out. It&apos;s not personal — it&apos;s systemic
-                  pressure. But you don&apos;t have to wait alone. NRPG specialises in getting stuck claims
-                  unstuck.
+                  Tropical Cyclone Alfred caused unprecedented damage across Queensland and NSW. To
+                  date, 132,000+ claims have been lodged. PERILS has confirmed a{' '}
+                  <strong>final insured loss of AU$1.877 billion</strong> — the largest insured
+                  cyclone loss on a current-value basis since Cyclone Debbie in 2017 (PERILS final
+                  estimate, released 13 April 2026). Insurers are stretched. Assessors are booked
+                  weeks out. It&apos;s not personal — it&apos;s systemic pressure. But you
+                  don&apos;t have to wait alone. NRPG specialises in getting stuck claims unstuck.
                 </p>
               </>
             ),
@@ -234,8 +236,8 @@ export default function ExCycloneAlfredRecoveryPage() {
             body: (
               <>
                 <p>
-                  Two recent rulings demonstrate that insurers are being held to account for underpayment and
-                  poor claims handling:
+                  Two recent rulings demonstrate that insurers are being held to account for
+                  underpayment and poor claims handling:
                 </p>
                 <div
                   style={{
@@ -281,16 +283,20 @@ export default function ExCycloneAlfredRecoveryPage() {
                       >
                         {r.label}
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: '#5C6A79', marginBottom: '0.75rem' }}>
+                      <div
+                        style={{ fontSize: '0.8rem', color: '#5C6A79', marginBottom: '0.75rem' }}
+                      >
                         {r.date} · {r.source}
                       </div>
-                      <p style={{ fontSize: '0.9rem', color: '#374151', lineHeight: 1.6 }}>{r.detail}</p>
+                      <p style={{ fontSize: '0.9rem', color: '#374151', lineHeight: 1.6 }}>
+                        {r.detail}
+                      </p>
                     </div>
                   ))}
                 </div>
                 <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: '#5C6A79' }}>
-                  These rulings establish that independent documentation from IICRC-certified assessors carries
-                  significant weight in both AFCA and court proceedings.
+                  These rulings establish that independent documentation from IICRC-certified
+                  assessors carries significant weight in both AFCA and court proceedings.
                 </p>
               </>
             ),
@@ -300,14 +306,15 @@ export default function ExCycloneAlfredRecoveryPage() {
             body: (
               <>
                 <p>
-                  Ex-TC Alfred has been declared a Cyclone Event under the Australian Reinsurance Pool
-                  Corporation (ARPC) scheme. This affects how some cyclone damage claims are handled by your
-                  insurer, as a portion of cyclone losses are reinsured through the ARPC pool.
+                  Ex-TC Alfred has been declared a Cyclone Event under the Australian Reinsurance
+                  Pool Corporation (ARPC) scheme. This affects how some cyclone damage claims are
+                  handled by your insurer, as a portion of cyclone losses are reinsured through the
+                  ARPC pool.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Your insurer should advise you how ARPC affects your specific policy. If you are unsure
-                  whether your policy includes cyclone cover under the ARPC scheme, ask your insurer directly
-                  or contact the{' '}
+                  Your insurer should advise you how ARPC affects your specific policy. If you are
+                  unsure whether your policy includes cyclone cover under the ARPC scheme, ask your
+                  insurer directly or contact the{' '}
                   <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer">
                     Australian Financial Complaints Authority (AFCA)
                   </a>{' '}
@@ -324,24 +331,25 @@ export default function ExCycloneAlfredRecoveryPage() {
                 <p>Follow these steps in order:</p>
                 <ol style={{ marginTop: '1rem', paddingLeft: '1.5rem', lineHeight: 2.2 }}>
                   <li>
-                    <strong>Get an independent IICRC-certified assessment</strong> — document all damage that
-                    has not been included in the insurer&apos;s scope of works. This is your primary evidence
-                    for any dispute.
+                    <strong>Get an independent IICRC-certified assessment</strong> — document all
+                    damage that has not been included in the insurer&apos;s scope of works. This is
+                    your primary evidence for any dispute.
                   </li>
                   <li>
-                    <strong>Lodge an internal dispute with your insurer</strong> — all Australian insurers are
-                    required to have an internal dispute resolution (IDR) process. Request a formal review of
-                    the decision in writing.
+                    <strong>Lodge an internal dispute with your insurer</strong> — all Australian
+                    insurers are required to have an internal dispute resolution (IDR) process.
+                    Request a formal review of the decision in writing.
                   </li>
                   <li>
-                    <strong>Escalate to AFCA if unresolved</strong> — if your insurer does not resolve the
-                    dispute within 30 days (or 45 days for complex cases), you can lodge a complaint with AFCA
-                    at no cost. AFCA can require the insurer to pay additional amounts.
+                    <strong>Escalate to AFCA if unresolved</strong> — if your insurer does not
+                    resolve the dispute within 30 days (or 45 days for complex cases), you can lodge
+                    a complaint with AFCA at no cost. AFCA can require the insurer to pay additional
+                    amounts.
                   </li>
                   <li>
-                    <strong>Contact the QBCC if contractor work was defective</strong> — the Queensland
-                    Building and Construction Commission handles complaints about unlicensed or defective
-                    building work.
+                    <strong>Contact the QBCC if contractor work was defective</strong> — the
+                    Queensland Building and Construction Commission handles complaints about
+                    unlicensed or defective building work.
                   </li>
                 </ol>
                 <div style={{ marginTop: '1.5rem' }}>
@@ -403,7 +411,9 @@ export default function ExCycloneAlfredRecoveryPage() {
                 </ul>
                 <p style={{ marginTop: '1rem' }}>
                   See the full event page for financial assistance details:{' '}
-                  <Link href="/events/cyclone-alfred-queensland-2025">Ex-Cyclone Alfred QLD 2025</Link>
+                  <Link href="/events/cyclone-alfred-queensland-2025">
+                    Ex-Cyclone Alfred QLD 2025
+                  </Link>
                 </p>
               </>
             ),
@@ -418,12 +428,12 @@ export default function ExCycloneAlfredRecoveryPage() {
           {
             question: "Can I switch to NRPG if I've already lodged with my insurer directly?",
             answer:
-              "Yes — at any point in the process. NRPG steps in and takes over communication with your insurer. There is no need to re-lodge your claim. We pick up where you are and manage the claim from that point forward.",
+              'Yes — at any point in the process. NRPG steps in and takes over communication with your insurer. There is no need to re-lodge your claim. We pick up where you are and manage the claim from that point forward.',
           },
           {
             question: "What if I've been lowballed on my settlement?",
             answer:
-              "Do not accept a settlement offer you believe is too low. NRPG reviews the offer, identifies scope gaps where damage items were missed or undervalued, and negotiates upward with the insurer. Independent IICRC-certified assessment is the primary tool for substantiating a higher claim value.",
+              'Do not accept a settlement offer you believe is too low. NRPG reviews the offer, identifies scope gaps where damage items were missed or undervalued, and negotiates upward with the insurer. Independent IICRC-certified assessment is the primary tool for substantiating a higher claim value.',
           },
           {
             question: 'How long does the restoration process take?',
@@ -432,12 +442,15 @@ export default function ExCycloneAlfredRecoveryPage() {
           },
         ]}
         relatedGuides={[
-          { title: 'Ex-Cyclone Alfred QLD 2025 Event Page', href: '/events/cyclone-alfred-queensland-2025' },
+          {
+            title: 'Ex-Cyclone Alfred QLD 2025 Event Page',
+            href: '/events/cyclone-alfred-queensland-2025',
+          },
           { title: 'Queensland Services', href: '/services/queensland' },
           { title: 'Storm Damage Restoration', href: '/services/storm-damage-restoration' },
           { title: 'Flood Damage Restoration', href: '/services/flood-damage-restoration' },
         ]}
       />
     </>
-  )
+  );
 }

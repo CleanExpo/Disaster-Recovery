@@ -12,6 +12,7 @@ import {
   canAccessResource,
   ROLE_DEFINITIONS
 } from '@/types/rbac';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface PermissionContextType {
   user: User | null;
@@ -43,7 +44,7 @@ export function PermissionProvider({ children }: { children: ReactNode }) {
         setUser(userData);
       }
     } catch (error) {
-      console.error('Failed to load user permissions:', error);
+      clientLogger.error('Failed to load user permissions', { source: 'usePermissions' }, error);
     } finally {
       setLoading(false);
     }
@@ -238,7 +239,7 @@ export function useAuditLog() {
         })
       });
     } catch (error) {
-      console.error('Failed to log audit action:', error);
+      clientLogger.error('Failed to log audit action', { source: 'usePermissions' }, error);
     }
   };
   

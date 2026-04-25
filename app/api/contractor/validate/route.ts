@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requestLogger, captureException } from '@/lib/observability'
 
 /**
  * Contractor Validation Endpoint
@@ -7,6 +8,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 // GET method for health checks
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/validate' })
   try {
     return NextResponse.json({
       status: 'ok',
@@ -15,11 +17,12 @@ export async function GET(request: NextRequest) {
       methods: ['GET', 'POST']
     })
   } catch (error) {
-    console.error('Contractor validation GET error:', error)
+    log.error('contractor validation GET error', { error: error instanceof Error ? error.message : String(error) })
+    captureException(error, { tags: { route: '/api/contractor/validate' }, extra: { requestId: log.requestId } })
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error',
-        status: 'error' 
+        status: 'error'
       },
       { status: 500 }
     )
@@ -28,6 +31,7 @@ export async function GET(request: NextRequest) {
 
 // POST method for actual contractor validation
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/validate' })
   try {
     const body = await request.json()
     
@@ -69,11 +73,12 @@ export async function POST(request: NextRequest) {
       })
     }
   } catch (error) {
-    console.error('Contractor validation POST error:', error)
+    log.error('contractor validation POST error', { error: error instanceof Error ? error.message : String(error) })
+    captureException(error, { tags: { route: '/api/contractor/validate' }, extra: { requestId: log.requestId } })
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error',
-        status: 'error' 
+        status: 'error'
       },
       { status: 500 }
     )

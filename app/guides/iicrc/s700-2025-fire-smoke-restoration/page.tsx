@@ -16,7 +16,8 @@ export const metadata: Metadata = {
   description:
     'What an IICRC-certified fire and smoke restoration contractor does: damage assessment, soot removal, deodorisation, contents restoration, and insurance documentation.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard',
+    canonical:
+      'https://disasterrecovery.com.au/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard',
   },
   openGraph: {
     title: 'Fire and Smoke Restoration — IICRC-Certified Contractor Process',
@@ -67,7 +68,7 @@ const faqSchema = {
       name: 'How does fire damage documentation support an insurance claim?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Insurance claims for fire damage typically involve an insurer-appointed assessor reviewing the restoration scope. Documentation from a certified contractor — pre-restoration assessment, scope of works, treatment records, and clearance confirmation — demonstrates that the scope was professionally determined. If you believe the appointed contractor\'s scope understates the extent of smoke damage, independent documentation from a certified contractor provides the evidence for disputing the claim through AFCA.',
+        text: "Insurance claims for fire damage typically involve an insurer-appointed assessor reviewing the restoration scope. Documentation from a certified contractor — pre-restoration assessment, scope of works, treatment records, and clearance confirmation — demonstrates that the scope was professionally determined. If you believe the appointed contractor's scope understates the extent of smoke damage, independent documentation from a certified contractor provides the evidence for disputing the claim through AFCA.",
       },
     },
   ],
@@ -100,11 +101,10 @@ export default function S7002025FireSmokeRestorationPage() {
             body: (
               <>
                 <p>
-                  Contractors in the Disaster Recovery Australia network hold current IICRC
-                  certification in fire and smoke restoration. Certification confirms that a
-                  contractor has the professional knowledge to assess, scope, and restore
-                  properties after fire and smoke damage — including smoke migration to areas
-                  beyond the fire location.
+                  Contractors in the Disaster Recovery network hold current IICRC certification in
+                  fire and smoke restoration. Certification confirms that a contractor has the
+                  professional knowledge to assess, scope, and restore properties after fire and
+                  smoke damage — including smoke migration to areas beyond the fire location.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   Fire damage is frequently underscoped because smoke and soot travel further than
@@ -153,13 +153,13 @@ export default function S7002025FireSmokeRestorationPage() {
             heading: 'Smoke Travels Beyond the Burn Area',
             body: (
               <p>
-                A common problem with fire damage scopes is underestimating how far smoke
-                migrates. Smoke travels through wall cavities, roof spaces, and HVAC ductwork —
-                depositing residues and odour compounds in rooms that look unaffected. Porous
-                materials throughout the building absorb odour compounds even when no visible
-                soot is present. A certified contractor inspects the full property and tests
-                apparently unaffected areas. An understated scope leads to persistent odour after
-                work is declared complete, requiring a second round of treatment.
+                A common problem with fire damage scopes is underestimating how far smoke migrates.
+                Smoke travels through wall cavities, roof spaces, and HVAC ductwork — depositing
+                residues and odour compounds in rooms that look unaffected. Porous materials
+                throughout the building absorb odour compounds even when no visible soot is present.
+                A certified contractor inspects the full property and tests apparently unaffected
+                areas. An understated scope leads to persistent odour after work is declared
+                complete, requiring a second round of treatment.
               </p>
             ),
           },
@@ -169,10 +169,18 @@ export default function S7002025FireSmokeRestorationPage() {
               <>
                 <p>Before a fire and smoke restoration contractor starts work, ask:</p>
                 <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', listStyleType: 'disc' }}>
-                  <li style={{ marginBottom: '0.5rem' }}>Can you show me your current IICRC certification number?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Will you inspect the full property — including areas remote from the fire?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>Will you assess the HVAC system for smoke contamination?</li>
-                  <li style={{ marginBottom: '0.5rem' }}>How will you address contents — assessment, restoration or replacement?</li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Can you show me your current IICRC certification number?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Will you inspect the full property — including areas remote from the fire?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    Will you assess the HVAC system for smoke contamination?
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    How will you address contents — assessment, restoration or replacement?
+                  </li>
                   <li>What documentation will you provide for my insurer at each stage?</li>
                 </ul>
               </>
@@ -182,11 +190,11 @@ export default function S7002025FireSmokeRestorationPage() {
             heading: 'If You Disagree with the Scope',
             body: (
               <p>
-                If an insurer-appointed contractor has produced a scope you believe understates
-                the smoke damage, an independent certified contractor can assess the property
-                and prepare a separate scope. Independent documentation provides the evidence
-                base for disputing a claim through AFCA. Disaster Recovery Australia can
-                arrange an independent assessment.
+                If an insurer-appointed contractor has produced a scope you believe understates the
+                smoke damage, an independent certified contractor can assess the property and
+                prepare a separate scope. Independent documentation provides the evidence base for
+                disputing a claim through AFCA. Disaster Recovery can arrange an independent
+                assessment.
               </p>
             ),
           },

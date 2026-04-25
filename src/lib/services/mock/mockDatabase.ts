@@ -4,6 +4,7 @@
  */
 
 import { getMockContractors, getMockLeads, getMockKPIs, getMockDashboardStats } from './mockDataGenerator';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 class MockDatabaseService {
   // Simulate database operations with mock data
@@ -35,17 +36,17 @@ class MockDatabaseService {
       paymentStatus: 'pending'
     };
     
-    console.log('📝 Mock Lead Created:', lead);
+    clientLogger.info('📝 Mock Lead Created:', { source: 'mock/mockDatabase', data: lead });
     return lead;
   }
   
   async updateLead(id: string, data: any): Promise<any> {
-    console.log('📝 Mock Lead Updated:', { id, ...data });
+    clientLogger.info('📝 Mock Lead Updated:', { source: 'mock/mockDatabase', data: { id, ...data } });
     return { id, ...data, updatedAt: new Date().toISOString() };
   }
   
   async assignContractor(leadId: string, contractorId: string): Promise<any> {
-    console.log('👷 Mock Contractor Assigned:', { leadId, contractorId });
+    clientLogger.info('👷 Mock Contractor Assigned:', { source: 'mock/mockDatabase', data: { leadId, contractorId } });
     return {
       success: true,
       leadId,
@@ -70,12 +71,12 @@ class MockDatabaseService {
       processedAt: new Date().toISOString()
     };
     
-    console.log('💰 Mock Payment Created:', payment);
+    clientLogger.info('💰 Mock Payment Created:', { source: 'mock/mockDatabase', data: payment });
     return payment;
   }
   
   async releasePayment(contractorId: string, amount: number, type: string): Promise<any> {
-    console.log('💸 Mock Payment Released:', { contractorId, amount, type });
+    clientLogger.info('💸 Mock Payment Released:', { source: 'mock/mockDatabase', data: { contractorId, amount, type } });
     return {
       success: true,
       contractorId,

@@ -27,44 +27,9 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-interface ClaimData {
-  id: string;
-  status: string;
-  createdAt: string;
-  client: {
-    fullName: string;
-    phone: string;
-    email: string;
-  };
-  property: {
-    address: string;
-    suburb: string;
-    state: string;
-    postcode: string;
-  };
-  damage: {
-    types: string[];
-    urgencyLevel: string;
-    description: string;
-  };
-  contractor: {
-    companyName: string | null;
-    contactPerson: string | null;
-    directPhone: string | null;
-    assignedAt: string | null;
-    acceptedAt: string | null;
-  };
-  workflow: {
-    paymentProcessed: boolean;
-    contractorAssigned: boolean;
-    contractorAccepted: boolean;
-    initialContactMade: boolean;
-    jobScheduled: boolean;
-    makeSafeCompleted: boolean;
-    documentationProvided: boolean;
-    claimFinalized: boolean;
-  };
-}
+import type { ClaimTracking } from '@/lib/validation/schemas';
+
+type ClaimData = ClaimTracking;
 
 const workflowSteps = [
   { key: 'paymentProcessed', label: 'Payment Processed', icon: DollarSign },
@@ -235,13 +200,13 @@ function TrackClaimPageOriginal() {
           <p className="text-sm text-gray-700">Submitted {timeElapsed}</p>
         </div>
 
-        {/* 60-Minute Guarantee Alert */}
+        {/* 60-Minute Response Alert */}
         {timeRemaining !== null && (
           <Alert className="mb-6 bg-orange-50 border-orange-200">
             <Clock className="h-4 w-4 text-orange-600" />
             <AlertDescription className="text-orange-800">
-              <strong>60-Minute Guarantee:</strong> Your contractor will call you within{' '}
-              <strong className="text-red-600">{timeRemaining} minutes</strong>
+              <strong>60-Minute Response Target:</strong> Your contractor aims to call you within{' '}
+              <strong className="text-red-600">{timeRemaining} minutes</strong> in metro areas.
             </AlertDescription>
           </Alert>
         )}

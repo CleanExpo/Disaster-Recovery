@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ResearchPlannerAgent } from '@/lib/agents/research-planner';
 import type { ResearchTask } from '@/lib/agents/research-planner/types';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // Initialize the research planner agent
 const researchPlanner = new ResearchPlannerAgent();
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/agents/research' });
   try {
     const body = await request.json();
     const { task, type = 'analysis', priority = 'medium' } = body;
@@ -39,9 +41,10 @@ export async function POST(request: NextRequest) {
       result
     });
   } catch (error) {
-    console.error('Research agent error:', error);
+    log.error('research agent error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/agents/research' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to execute research task',
         details: error instanceof Error ? error.message : String(error)
       },
@@ -51,6 +54,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/agents/research' });
   try {
     // Get agent capabilities
     const capabilities = researchPlanner.getCapabilities();
@@ -72,9 +76,10 @@ export async function GET(request: NextRequest) {
       ]
     });
   } catch (error) {
-    console.error('Agent status error:', error);
+    log.error('agent status error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/agents/research' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to get agent status',
         details: error instanceof Error ? error.message : String(error)
       },

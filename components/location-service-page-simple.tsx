@@ -152,7 +152,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
                 Service Areas in {city}
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {suburbs.map((suburb, index) => (
+                {suburbs.map((suburb: any, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
@@ -185,7 +185,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Why Choose Our Services</h2>
                 <ul className="space-y-2">
-                  {data.content.keyFeatures.map((feature, idx) => (
+                  {data.content.keyFeatures.map((feature: any, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>{feature}</span>
@@ -211,7 +211,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
               <div className="mb-8">
                 <h3 className="text-xl font-bold mb-4">Local Expertise</h3>
                 <ul className="space-y-2">
-                  {data.content.localKnowledge.map((knowledge, idx) => (
+                  {data.content.localKnowledge.map((knowledge: any, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <MapPin className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <span>{knowledge}</span>
@@ -226,7 +226,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
               <div className="mb-8">
                 <h3 className="text-xl font-bold mb-4">Common Issues We Handle</h3>
                 <ul className="grid md:grid-cols-2 gap-3">
-                  {data.content.commonIssues.map((issue, idx) => (
+                  {data.content.commonIssues.map((issue: any, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
                       <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>{issue}</span>
@@ -245,7 +245,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
                 </h3>
                 <p className="mb-4">We provide claims documentation for all major insurance companies:</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {data.content.insurancePartners.map((partner, idx) => (
+                  {data.content.insurancePartners.map((partner: any, idx: number) => (
                     <div key={idx} className="bg-gray-50 p-3 rounded text-center font-medium">
                       {partner}
                     </div>
@@ -279,9 +279,9 @@ export default function LocationServicePageComponent({ data, video }: { data: an
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Frequently Asked Questions</h2>
-              <p className="text-gray-500 mb-8">Common questions about our services in {city}</p>
+              <p className="text-gray-600 mb-8">Common questions about our services in {city}</p>
               <div className="space-y-4">
-                {data.faqs.map((faq, idx) => (
+                {data.faqs.map((faq: any, idx: number) => (
                   <motion.details
                     key={idx}
                     initial={{ opacity: 0, y: 10 }}
@@ -293,7 +293,7 @@ export default function LocationServicePageComponent({ data, video }: { data: an
                   >
                     <summary className="flex items-center justify-between cursor-pointer p-5 font-semibold text-gray-900 hover:bg-gray-100 transition-colors list-none [&::-webkit-details-marker]:hidden">
                       <span className="pr-4">{faq.question}</span>
-                      <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-90" />
+                      <ChevronRight className="w-5 h-5 text-gray-500 flex-shrink-0 transition-transform group-open:rotate-90" />
                     </summary>
                     <div className="px-5 pb-5 text-gray-600 leading-relaxed border-t border-gray-200 pt-4">
                       {faq.answer}
