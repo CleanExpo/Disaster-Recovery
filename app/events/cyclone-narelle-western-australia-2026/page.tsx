@@ -92,6 +92,7 @@ export default function CycloneNarelleWA2026Page() {
       ]}
       governmentApplicationUrl="https://www.dfes.wa.gov.au/recovery"
       governmentApplicationLabel="WA Disaster Recovery"
+      claimsHotline="1300 309 361"
     />
   );
 }

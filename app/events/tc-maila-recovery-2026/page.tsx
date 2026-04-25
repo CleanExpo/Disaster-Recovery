@@ -142,6 +142,7 @@ export default function TCMailaRecovery2026Page() {
         category="Emergency Recovery"
         title="TC Maila Recovery — Damage Restoration and Claims"
         subtitle="TC Maila has impacted the Far North Queensland coast. NRPG IICRC-certified contractors are deployed across FNQ. Lodge your claim now for priority post-clearance response. Do NOT enter a damaged property until emergency services confirm it is safe."
+        heroCta={{ text: 'Lodge Emergency Claim', href: '/claim' }}
         gradient="linear-gradient(135deg, #4A0404 0%, #7B1FA2 50%, #0C2340 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-13"

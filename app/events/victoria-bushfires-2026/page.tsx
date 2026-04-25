@@ -129,6 +129,7 @@ export default function VictoriaBushfires2026Page() {
       ]}
       governmentApplicationUrl="https://emergency.vic.gov.au/relief-and-recovery/1154"
       governmentApplicationLabel="Emergency Recovery Victoria — January 2026 Bushfires"
+      claimsHotline="1300 309 361"
     />
   );
 }
