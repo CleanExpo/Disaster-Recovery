@@ -16,8 +16,8 @@ export default defineConfig({
       // (validatePhoneNumber / formatPhoneNumber). Leave for a future PR that
       // either restores the missing helpers or rewrites the assertions.
       'src/lib/utils/australian-compliance.test.ts',
-      // These files use a custom plain-TS runner (node:assert), not vitest describe/test.
-      // Run them directly with: npx tsx <file>
+      // Custom tsx-runner tests (no Vitest describe/test blocks) — run via
+      // `npx tsx <file>` as documented in their file-level comments.
       'src/lib/finance/__tests__/webhook-verify.test.ts',
       'src/lib/payments/__tests__/create-session.test.ts',
     ],
