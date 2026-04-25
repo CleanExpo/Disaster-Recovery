@@ -156,18 +156,20 @@ function ContractorPortalEarningsPageOriginal() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-semibold text-white">Transaction History</h2>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2">
-                <Filter className="w-4 h-4" />
-                <select 
+              {/* DR-720: <select> inside <button> is invalid HTML — replace with styled <label>+<select> */}
+              <label className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2 cursor-pointer">
+                <Filter className="w-4 h-4 pointer-events-none" aria-hidden="true" />
+                <select
+                  aria-label="Filter by status"
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="bg-transparent border-0 outline-none"
+                  className="bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
                 >
                   <option value="all" className="text-gray-900">All Status</option>
                   <option value="paid" className="text-gray-900">Paid</option>
                   <option value="pending" className="text-gray-900">Pending</option>
                 </select>
-              </button>
+              </label>
               <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
                 <Download className="w-4 h-4" />
                 Export
