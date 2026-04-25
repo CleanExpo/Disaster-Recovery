@@ -27,44 +27,9 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-interface ClaimData {
-  id: string;
-  status: string;
-  createdAt: string;
-  client: {
-    fullName: string;
-    phone: string;
-    email: string;
-  };
-  property: {
-    address: string;
-    suburb: string;
-    state: string;
-    postcode: string;
-  };
-  damage: {
-    types: string[];
-    urgencyLevel: string;
-    description: string;
-  };
-  contractor: {
-    companyName: string | null;
-    contactPerson: string | null;
-    directPhone: string | null;
-    assignedAt: string | null;
-    acceptedAt: string | null;
-  };
-  workflow: {
-    paymentProcessed: boolean;
-    contractorAssigned: boolean;
-    contractorAccepted: boolean;
-    initialContactMade: boolean;
-    jobScheduled: boolean;
-    makeSafeCompleted: boolean;
-    documentationProvided: boolean;
-    claimFinalized: boolean;
-  };
-}
+import type { ClaimTracking } from '@/lib/validation/schemas';
+
+type ClaimData = ClaimTracking;
 
 const workflowSteps = [
   { key: 'paymentProcessed', label: 'Payment Processed', icon: DollarSign },

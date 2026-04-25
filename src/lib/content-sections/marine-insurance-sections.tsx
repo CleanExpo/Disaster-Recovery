@@ -28,7 +28,7 @@ export function getMarineInsuranceSections({ insurerName, insurerSlug }: MarineI
             waiting for {insurerName} surveyor approval. Once restoration is complete,
             we provide full documentation to support your {insurerName} claim for reimbursement.
             Payment plans are available through our finance partner,{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
         </>
       ),
@@ -90,7 +90,7 @@ export function getMarineInsuranceSections({ insurerName, insurerSlug }: MarineI
             <li><strong>We bill you directly</strong> — Our contractors invoice you (the vessel owner, cargo interest, port operator, or management company), not your insurer or underwriter. This allows emergency work to begin without waiting for surveyor approval.</li>
             <li><strong>You claim reimbursement from {insurerName}</strong> — We provide all documentation, photos, scope of works, contamination reports, and compliance certificates your insurer needs to process your claim.</li>
             <li><strong>Why this is better for marine clients</strong> — No waiting for survey appointments. No scope disputes delaying critical containment. You control the response timeline.</li>
-            <li><strong>Payment options available</strong> — Flexible payment terms through our finance partner <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a> for fast loan approvals.</li>
+            <li><strong>Payment options available</strong> — Flexible payment terms through our finance partner <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a> for fast loan approvals.</li>
             <li><strong>Contract provided</strong> — After the make-safe is completed, your contractor provides a formal contract with clear terms, milestones, and conditions.</li>
           </ul>
         </>

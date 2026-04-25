@@ -6,7 +6,8 @@ import { WATER_DAMAGE_AUTHOR } from '@/lib/guide-authors';
 
 export const metadata: Metadata = {
   title: 'What to Do After a Flood in Australia — Step-by-Step Guide 2025',
-  description: 'A step-by-step guide on what to do after a flood in Australia. Safety checks, insurance steps, water extraction, and how to prevent mould. Practical advice for homeowners and tenants.',
+  description:
+    'A step-by-step guide on what to do after a flood in Australia. Safety checks, insurance steps, water extraction, and how to prevent mould. Practical advice for homeowners and tenants.',
   keywords: [
     'what to do after a flood Australia',
     'flood recovery steps Australia',
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
     'flood restoration Australia',
   ],
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/guides/flood-damage/what-to-do-after-a-flood-australia',
+    canonical:
+      'https://disasterrecovery.com.au/guides/flood-damage/what-to-do-after-a-flood-australia',
   },
   openGraph: {
     title: 'What to Do After a Flood in Australia — Step-by-Step Guide 2025',
-    description: 'Step-by-step flood recovery guide for Australian homeowners and tenants. Safety, insurance, extraction, and mould prevention.',
+    description:
+      'Step-by-step flood recovery guide for Australian homeowners and tenants. Safety, insurance, extraction, and mould prevention.',
     type: 'article',
   },
 };
@@ -33,7 +36,8 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'What to Do After a Flood in Australia — Step-by-Step Guide 2025',
-  description: 'A complete step-by-step guide on what to do after a flood in Australia, covering safety, insurance, water extraction, and mould prevention.',
+  description:
+    'A complete step-by-step guide on what to do after a flood in Australia, covering safety, insurance, water extraction, and mould prevention.',
   author: {
     '@type': 'Person',
     name: WATER_DAMAGE_AUTHOR.name,
@@ -44,13 +48,13 @@ const articleSchema = {
     })),
     memberOf: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
+      name: 'Disaster Recovery',
       url: 'https://disasterrecovery.com.au',
     },
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
     logo: {
       '@type': 'ImageObject',
@@ -229,14 +233,25 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-1" className="space-y-3 text-gray-300">
                 <p>
-                  Do not re-enter a flooded property until electricity has been isolated at the mains. Water and electricity are an immediately lethal combination. Contact your energy provider or a licensed electrician if you are uncertain.
+                  Do not re-enter a flooded property until electricity has been isolated at the
+                  mains. Water and electricity are an immediately lethal combination. Contact your
+                  energy provider or a licensed electrician if you are uncertain.
                 </p>
                 <p>
-                  Floodwater from overflowing waterways, stormwater systems, or backed-up sewage is classified as Category 3 (Black Water) under IICRC S500:2025. It contains sewage, bacteria, chemicals, and biological hazards. Minimum protective equipment: waterproof boots and gloves. Full PPE is required for anyone entering heavily affected areas.
+                  Floodwater from overflowing waterways, stormwater systems, or backed-up sewage is
+                  classified as Category 3 (Black Water) under IICRC S500:2025. It contains sewage,
+                  bacteria, chemicals, and biological hazards. Minimum protective equipment:
+                  waterproof boots and gloves. Full PPE is required for anyone entering heavily
+                  affected areas.
                 </p>
                 <ul className="text-sm space-y-1 list-disc list-inside text-gray-400">
-                  <li>Check for visible structural damage — sagging ceilings, cracked walls, or shifted foundations.</li>
-                  <li>Check for gas smell — if present, leave immediately and call your gas provider.</li>
+                  <li>
+                    Check for visible structural damage — sagging ceilings, cracked walls, or
+                    shifted foundations.
+                  </li>
+                  <li>
+                    Check for gas smell — if present, leave immediately and call your gas provider.
+                  </li>
                   <li>Do not use generators, power tools, or appliances in wet areas.</li>
                 </ul>
               </div>
@@ -247,26 +262,35 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-2" className="space-y-3 text-gray-300">
                 <p>
-                  Before removing water, lifting carpet, or cleaning up any damage — photograph and video every affected room. Walk through the entire property systematically. Capture ceilings, walls, flooring, structural elements, and every damaged or destroyed item.
+                  Before removing water, lifting carpet, or cleaning up any damage — photograph and
+                  video every affected room. Walk through the entire property systematically.
+                  Capture ceilings, walls, flooring, structural elements, and every damaged or
+                  destroyed item.
                 </p>
                 <p>
-                  This evidence is required by your insurer and cannot be recreated after cleanup begins. Insurers can reduce or deny claims when there is insufficient photographic evidence of the original damage scope.
+                  This evidence is required by your insurer and cannot be recreated after cleanup
+                  begins. Insurers can reduce or deny claims when there is insufficient photographic
+                  evidence of the original damage scope.
                 </p>
-                <div style={{
-                  background: 'rgba(29,78,216,0.15)',
-                  border: '1px solid rgba(59,130,246,0.3)',
-                  borderRadius: '0.5rem',
-                  padding: '1rem',
-                  fontSize: '0.875rem',
-                  color: '#93c5fd',
-                }}>
+                <div
+                  style={{
+                    background: 'rgba(29,78,216,0.15)',
+                    border: '1px solid rgba(59,130,246,0.3)',
+                    borderRadius: '0.5rem',
+                    padding: '1rem',
+                    fontSize: '0.875rem',
+                    color: '#93c5fd',
+                  }}
+                >
                   <strong>Documentation checklist:</strong>
                   <ul className="mt-2 space-y-1 list-disc list-inside text-gray-300">
                     <li>Photograph all four walls of every affected room from floor to ceiling.</li>
                     <li>Photograph flooring including any visible waterline marks.</li>
                     <li>Record the water level reached (mark on wall with tape if possible).</li>
                     <li>Photograph all damaged contents before moving them.</li>
-                    <li>Note the date and time you discovered the damage and when the event occurred.</li>
+                    <li>
+                      Note the date and time you discovered the damage and when the event occurred.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -277,13 +301,20 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-3" className="space-y-3 text-gray-300">
                 <p>
-                  Contact your insurer as soon as practicable after discovering flood damage. Most policies require prompt notification as a condition of coverage. This does not mean you must wait for insurer approval before beginning emergency make-safe work — you should not wait.
+                  Contact your insurer as soon as practicable after discovering flood damage. Most
+                  policies require prompt notification as a condition of coverage. This does not
+                  mean you must wait for insurer approval before beginning emergency make-safe work
+                  — you should not wait.
                 </p>
                 <p>
-                  Under the General Insurance Code of Practice (GICP), your insurer must acknowledge your claim within <strong className="text-white">10 business days</strong> and provide a decision within 10 business days of receiving all required information.
+                  Under the General Insurance Code of Practice (GICP), your insurer must acknowledge
+                  your claim within <strong className="text-white">10 business days</strong> and
+                  provide a decision within 10 business days of receiving all required information.
                 </p>
                 <p>
-                  Inform your insurer that you are commencing emergency make-safe — including water extraction and structural drying — to prevent escalating damage. Provide photographs as evidence of the pre-cleanup state.
+                  Inform your insurer that you are commencing emergency make-safe — including water
+                  extraction and structural drying — to prevent escalating damage. Provide
+                  photographs as evidence of the pre-cleanup state.
                 </p>
               </div>
             ),
@@ -293,10 +324,15 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-4" className="space-y-3 text-gray-300">
                 <p>
-                  Mould amplification can begin within 24–48 hours in Australian conditions. Emergency water extraction must not wait for insurance approval. Lodge your claim with an IICRC-certified restoration contractor immediately.
+                  Mould amplification can begin within 24–48 hours in Australian conditions.
+                  Emergency water extraction must not wait for insurance approval. Lodge your claim
+                  with an IICRC-certified restoration contractor immediately.
                 </p>
                 <p>
-                  Professional truck-mounted extraction units remove water from sources consumer pumps cannot reach: carpet backing, subfloor cavities, wall insulation, and structural voids. These are the moisture sources that cause secondary mould growth behind walls and under flooring — the most expensive flood damage outcome.
+                  Professional truck-mounted extraction units remove water from sources consumer
+                  pumps cannot reach: carpet backing, subfloor cavities, wall insulation, and
+                  structural voids. These are the moisture sources that cause secondary mould growth
+                  behind walls and under flooring — the most expensive flood damage outcome.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
                   {[
@@ -304,15 +340,22 @@ export default function WhatToDoAfterFloodPage() {
                     { label: 'Cat 3', note: 'Floodwater classification — highly contaminated' },
                     { label: '60 min', note: 'NRPG dispatch time in metro areas' },
                   ].map((item) => (
-                    <div key={item.label} style={{
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: '0.5rem',
-                      padding: '0.875rem',
-                      textAlign: 'center',
-                    }}>
-                      <div style={{ color: '#60a5fa', fontWeight: 700, fontSize: '1.25rem' }}>{item.label}</div>
-                      <div style={{ color: '#94a3b8', fontSize: '0.75rem', marginTop: '0.2rem' }}>{item.note}</div>
+                    <div
+                      key={item.label}
+                      style={{
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: '0.5rem',
+                        padding: '0.875rem',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div style={{ color: '#60a5fa', fontWeight: 700, fontSize: '1.25rem' }}>
+                        {item.label}
+                      </div>
+                      <div style={{ color: '#94a3b8', fontSize: '0.75rem', marginTop: '0.2rem' }}>
+                        {item.note}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -324,13 +367,20 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-5" className="space-y-3 text-gray-300">
                 <p>
-                  After bulk water extraction, LGR (Low Grain Refrigerant) dehumidifiers and high-velocity air movers are installed throughout all affected areas. Thermal imaging cameras locate hidden moisture pockets inside walls and under flooring.
+                  After bulk water extraction, LGR (Low Grain Refrigerant) dehumidifiers and
+                  high-velocity air movers are installed throughout all affected areas. Thermal
+                  imaging cameras locate hidden moisture pockets inside walls and under flooring.
                 </p>
                 <p>
-                  Do not repaint, re-carpet, or close up walls until your restoration contractor confirms via moisture readings that drying is complete. Sealing over wet building materials traps moisture and guarantees a mould problem within weeks.
+                  Do not repaint, re-carpet, or close up walls until your restoration contractor
+                  confirms via moisture readings that drying is complete. Sealing over wet building
+                  materials traps moisture and guarantees a mould problem within weeks.
                 </p>
                 <p>
-                  Standard structural drying for residential flood damage takes <strong className="text-white">3–5 days</strong>. Severe events with Category 3 water, deep subfloor saturation, or widespread structural damage may require longer.
+                  Standard structural drying for residential flood damage takes{' '}
+                  <strong className="text-white">3–5 days</strong>. Severe events with Category 3
+                  water, deep subfloor saturation, or widespread structural damage may require
+                  longer.
                 </p>
               </div>
             ),
@@ -340,10 +390,14 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-6" className="space-y-3 text-gray-300">
                 <p>
-                  All surfaces that contacted floodwater should be treated with EPA-registered botanical disinfectants after the drying phase. This step is critical for Category 2 and 3 flood events and is required for IICRC S500:2025 compliant restoration.
+                  All surfaces that contacted floodwater should be treated with EPA-registered
+                  botanical disinfectants after the drying phase. This step is critical for Category
+                  2 and 3 flood events and is required for IICRC S500:2025 compliant restoration.
                 </p>
                 <p>
-                  Building materials that cannot be dried to pre-loss moisture baselines — insulation batts, certain types of particleboard, and saturated plasterboard — must be removed and replaced rather than treated.
+                  Building materials that cannot be dried to pre-loss moisture baselines —
+                  insulation batts, certain types of particleboard, and saturated plasterboard —
+                  must be removed and replaced rather than treated.
                 </p>
               </div>
             ),
@@ -353,13 +407,19 @@ export default function WhatToDoAfterFloodPage() {
             body: (
               <div id="step-7" className="space-y-3 text-gray-300">
                 <p>
-                  In the weeks following restoration, monitor for visible mould, musty odours, or elevated indoor humidity. These are signs that residual moisture was missed during drying or that new moisture is entering through damaged building fabric.
+                  In the weeks following restoration, monitor for visible mould, musty odours, or
+                  elevated indoor humidity. These are signs that residual moisture was missed during
+                  drying or that new moisture is entering through damaged building fabric.
                 </p>
                 <p>
-                  Provide your insurer with the IICRC-certified drying logs, moisture readings, and scope of works from your contractor. These documents are the standard evidence set required for claim finalisation.
+                  Provide your insurer with the IICRC-certified drying logs, moisture readings, and
+                  scope of works from your contractor. These documents are the standard evidence set
+                  required for claim finalisation.
                 </p>
                 <p>
-                  If your insurer is delaying beyond GICP timeframes, lodge an IDR complaint in writing. If unresolved within 30 days, escalate to the Australian Financial Complaints Authority (AFCA) — free for consumers and legally binding for insurers.
+                  If your insurer is delaying beyond GICP timeframes, lodge an IDR complaint in
+                  writing. If unresolved within 30 days, escalate to the Australian Financial
+                  Complaints Authority (AFCA) — free for consumers and legally binding for insurers.
                 </p>
               </div>
             ),
@@ -370,11 +430,32 @@ export default function WhatToDoAfterFloodPage() {
           answer: faq.acceptedAnswer.text,
         }))}
         relatedGuides={[
-          { title: 'Emergency Water Extraction', href: '/services/emergency-water-extraction', description: 'Lodge an emergency claim for immediate water extraction dispatch.' },
-          { title: 'Document Water Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', description: 'Detailed guide on photographing and documenting flood damage for your insurer.' },
-          { title: 'Category 3 Water Damage Insurance', href: '/guides/insurance/category-3-water-damage-insurance', description: 'How black water contamination affects your insurance claim and coverage.' },
-          { title: 'When Your Insurer Delays Your Claim', href: '/guides/insurance/insurer-delays-your-claim', description: 'GICP timeframes and escalation steps if your insurer is slow.' },
-          { title: 'What to Do After a Burst Pipe', href: '/guides/insurance/burst-pipe-insurance-claim', description: 'Insurance steps and restoration process for burst pipe flooding.' },
+          {
+            title: 'Emergency Water Extraction',
+            href: '/services/emergency-water-extraction',
+            description: 'Lodge an emergency claim for immediate water extraction dispatch.',
+          },
+          {
+            title: 'Document Water Damage for Insurance',
+            href: '/guides/insurance/document-water-damage-insurance',
+            description:
+              'Detailed guide on photographing and documenting flood damage for your insurer.',
+          },
+          {
+            title: 'Category 3 Water Damage Insurance',
+            href: '/guides/insurance/category-3-water-damage-insurance',
+            description: 'How black water contamination affects your insurance claim and coverage.',
+          },
+          {
+            title: 'When Your Insurer Delays Your Claim',
+            href: '/guides/insurance/insurer-delays-your-claim',
+            description: 'GICP timeframes and escalation steps if your insurer is slow.',
+          },
+          {
+            title: 'What to Do After a Burst Pipe',
+            href: '/guides/insurance/burst-pipe-insurance-claim',
+            description: 'Insurance steps and restoration process for burst pipe flooding.',
+          },
         ]}
         cta={{ text: 'Lodge Emergency Claim', href: '/claim?service=flood' }}
       />

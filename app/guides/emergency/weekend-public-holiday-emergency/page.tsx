@@ -52,7 +52,7 @@ export default function WeekendPublicHolidayEmergencyPage() {
         name: 'What payment options are available for emergency weekend restoration?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The initial commitment is $2,750, which covers the platform fee and make-safe contractor credit. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Blue Fire Finance to help manage costs while awaiting your insurance outcome.',
+          text: 'The initial commitment is $2,750, which covers the platform fee and make-safe contractor credit. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Equipped Commercial Finance to help manage costs while awaiting your insurance outcome.',
         },
       },
     ],
@@ -198,8 +198,8 @@ export default function WeekendPublicHolidayEmergencyPage() {
               <p style={{ marginTop: '1rem' }}>
                 If managing the upfront cost is a concern, payment plans are available
                 through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help you spread costs while awaiting your insurance outcome.
               </p>
@@ -231,7 +231,7 @@ export default function WeekendPublicHolidayEmergencyPage() {
         {
           question: 'What payment options are available for emergency weekend restoration?',
           answer:
-            'The initial commitment is $2,750, which covers the platform fee and make-safe contractor credit. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Blue Fire Finance to help manage costs while awaiting your insurance outcome.',
+            'The initial commitment is $2,750, which covers the platform fee and make-safe contractor credit. After make-safe, your contractor provides a formal contract with terms and conditions for the full scope. Payment plans are available through Equipped Commercial Finance to help manage costs while awaiting your insurance outcome.',
         },
       ]}
       relatedGuides={[

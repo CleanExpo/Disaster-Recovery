@@ -20,6 +20,7 @@ import { Step6Agreements as Step7Agreements } from './steps/Step6Agreements';
 import { Step6Agreements as StepReview } from './steps/Step6Agreements';
 
 import type { ContractorOnboardingData } from '@/types/contractor';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 const REGISTRATION_STEPS = [
   { id: 1, title: 'Create Account', description: 'Set up your login credentials' },
@@ -78,7 +79,7 @@ export function RegistrationWizard() {
       setValidationErrors({});
       return true;
     } catch (error) {
-      console.error('Validation error:', error);
+      clientLogger.error('Validation error:', { source: 'registration/RegistrationWizard' }, error);
       toast({
         title: 'Validation Error',
         description: 'Unable to validate form data. Please try again.',
@@ -134,7 +135,7 @@ export function RegistrationWizard() {
         throw new Error(result.error || 'Failed to submit application');
       }
     } catch (error) {
-      console.error('Submission error:', error);
+      clientLogger.error('Submission error:', { source: 'registration/RegistrationWizard' }, error);
       toast({
         title: 'Submission Failed',
         description: error instanceof Error ? error.message : 'Unable to submit application. Please try again.',

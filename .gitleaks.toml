@@ -1,0 +1,50 @@
+title = "Disaster Recovery — gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known false positives"
+# NB: gitleaks allowlist.paths takes REGEX not globs.
+paths = [
+  '''\.env\.example$''',
+  '''\.env\.sample$''',
+  '''(^|/)fixtures/''',
+  '''(^|/)__tests__/.*\.test\.(ts|js|tsx|jsx)$''',
+  '''(^|/)docs/.*\.md$''',
+  '''(^|/)proposals/.*\.md$''',
+]
+regexes = [
+  # allow example placeholders
+  '''(?i)(example|placeholder|YOUR_|xxx|test_|dummy_)''',
+]
+
+[[rules]]
+id = "dr-stripe-live-key"
+description = "Stripe live secret key"
+regex = '''sk_live_[0-9a-zA-Z]{24,}'''
+tags = ["key", "stripe", "critical"]
+
+[[rules]]
+id = "dr-stripe-restricted-live-key"
+description = "Stripe restricted live key"
+regex = '''rk_live_[0-9a-zA-Z]{24,}'''
+tags = ["key", "stripe", "critical"]
+
+[[rules]]
+id = "dr-stripe-webhook"
+description = "Stripe webhook secret"
+regex = '''whsec_[A-Za-z0-9]{32,}'''
+tags = ["key", "stripe"]
+
+[[rules]]
+id = "dr-jwt-like"
+description = "JWT-shaped token"
+regex = '''eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}'''
+tags = ["token", "jwt"]
+
+[[rules]]
+id = "dr-generic-pem"
+description = "PEM private key"
+regex = '''-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----'''
+tags = ["key", "private"]

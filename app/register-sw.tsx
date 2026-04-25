@@ -1,52 +1,19 @@
 'use client';
 
+/**
+ * Client-only wrapper that registers the service worker.
+ *
+ * The registration logic lives in `src/lib/service-worker-register.ts` and
+ * is flag-gated by `NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED`. When the flag
+ * is off (regular web), this component is a no-op.
+ */
+
 import { useEffect } from 'react';
+import { registerServiceWorker } from '@/lib/service-worker-register';
 
 export default function RegisterServiceWorker() {
   useEffect(() => {
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker
-          .register('/service-worker.js')
-          .then(registration => {
-            console.log('[SW] Registration successful:', registration.scope);
-
-            // Check for updates periodically (every 60s)
-            setInterval(() => {
-              registration.update();
-            }, 60000);
-
-            // Handle SW updates — prompt user to reload for new version
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              if (newWorker) {
-                newWorker.addEventListener('statechange', () => {
-                  if (
-                    newWorker.state === 'installed' &&
-                    navigator.serviceWorker.controller
-                  ) {
-                    if (confirm('A new version of Disaster Recovery Australia is available. Reload to update?')) {
-                      window.location.reload();
-                    }
-                  }
-                });
-              }
-            });
-          })
-          .catch(error => {
-            console.error('[SW] Registration failed:', error);
-          });
-      });
-
-      // Redirect to offline page when navigating while offline
-      window.addEventListener('offline', () => {
-        console.log('[SW] Connection lost — offline mode active');
-      });
-
-      window.addEventListener('online', () => {
-        console.log('[SW] Connection restored');
-      });
-    }
+    registerServiceWorker();
   }, []);
 
   return null;

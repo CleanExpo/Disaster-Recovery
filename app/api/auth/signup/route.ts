@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
+import { requestLogger, captureException } from '@/lib/observability'
 
 export async function POST(req: Request) {
+  const log = requestLogger(req, { route: '/api/auth/signup' })
   try {
     const { name, email, password, agencyName } = await req.json()
 
@@ -51,7 +53,8 @@ export async function POST(req: Request) {
         name: user.name,
         role: user.role } })
   } catch (error) {
-    console.error('Signup error:', error)
+    log.error('signup error', { error: error instanceof Error ? error.message : String(error) })
+    captureException(error, { tags: { route: '/api/auth/signup' }, extra: { requestId: log.requestId } })
     return NextResponse.json(
       { error: 'Failed to create user' },
       { status: 500 }

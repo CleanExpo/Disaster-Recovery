@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/dashboard' });
   try {
     // Verify authentication
     const user = await verifyAuth(request);
@@ -375,7 +377,8 @@ export async function GET(request: NextRequest) {
         role: user.role } }, { status: 200 });
 
   } catch (error) {
-    console.error('Dashboard API error:', error);
+    log.error('dashboard api error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/contractor/dashboard' }, extra: { requestId: log.requestId } });
 
     return NextResponse.json({
       success: false,

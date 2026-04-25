@@ -2,7 +2,23 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Droplets, AlertTriangle, Clock, Shield, FileText, Phone, CheckCircle, XCircle, Info, Home, Building, Factory, ArrowRight, AlertCircle, Zap } from 'lucide-react';
+import {
+  Droplets,
+  AlertTriangle,
+  Clock,
+  Shield,
+  FileText,
+  Phone,
+  CheckCircle,
+  XCircle,
+  Info,
+  Home,
+  Building,
+  Factory,
+  ArrowRight,
+  AlertCircle,
+  Zap,
+} from 'lucide-react';
 import Link from 'next/link';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
@@ -17,30 +33,45 @@ function WaterDamageGuidePageOriginal() {
     clean: {
       title: 'Category 1: Clean Water',
       description: 'Water from a clean source like broken water supply lines or overflowing sinks',
-      sources: ['Broken water pipes', 'Overflowing bathtubs/sinks', 'Rainwater', 'Melting ice/snow'],
+      sources: [
+        'Broken water pipes',
+        'Overflowing bathtubs/sinks',
+        'Rainwater',
+        'Melting ice/snow',
+      ],
       risks: 'Low initial health risk but can progress to Category 2 within 48 hours',
       response: 'Can be safely cleaned if addressed within 48 hours',
       icon: '💧',
-      color: 'blue'
+      color: 'blue',
     },
     grey: {
       title: 'Category 2: Grey Water',
       description: 'Water with significant contamination that could cause illness',
-      sources: ['Washing machine overflow', 'Dishwasher overflow', 'Toilet overflow (urine only)', 'Sump pump failures'],
+      sources: [
+        'Washing machine overflow',
+        'Dishwasher overflow',
+        'Toilet overflow (urine only)',
+        'Sump pump failures',
+      ],
       risks: 'Can cause illness if ingested or contacted with open wounds',
       response: 'Requires protective equipment and professional cleaning',
       icon: '⚠️',
-      color: 'yellow'
+      color: 'yellow',
     },
     black: {
       title: 'Category 3: Black Water',
       description: 'Highly contaminated water containing harmful bacteria and pathogens',
-      sources: ['Sewage backup', 'Flooding from rivers/streams', 'Toilet overflow with feces', 'Standing water with microbial growth'],
+      sources: [
+        'Sewage backup',
+        'Flooding from rivers/streams',
+        'Toilet overflow with feces',
+        'Standing water with microbial growth',
+      ],
       risks: 'Serious health hazard - can cause severe illness or death',
       response: 'Requires immediate professional remediation with full PPE',
       icon: '☠️',
-      color: 'red'
-    }
+      color: 'red',
+    },
   };
 
   const damageClasses = [
@@ -49,29 +80,29 @@ function WaterDamageGuidePageOriginal() {
       description: 'Minimal water absorption',
       affected: 'Part of a room with minimal carpet/materials affected',
       dryTime: '2-3 days',
-      icon: '▫'
+      icon: '▫',
     },
     {
       class: 'Class 2',
       description: 'Significant water absorption',
       affected: 'Entire room including walls up to 24 inches',
       dryTime: '3-5 days',
-      icon: '◽'
+      icon: '◽',
     },
     {
       class: 'Class 3',
       description: 'Greatest water absorption',
       affected: 'Walls, ceilings, insulation, carpet, sub-floor saturated',
       dryTime: '5-7 days',
-      icon: '◼'
+      icon: '◼',
     },
     {
       class: 'Class 4',
       description: 'Specialty drying situations',
       affected: 'Hardwood, plaster, brick, concrete, stone materials',
       dryTime: '7+ days',
-      icon: '⬛'
-    }
+      icon: '⬛',
+    },
   ];
 
   const timeline = [
@@ -82,8 +113,8 @@ function WaterDamageGuidePageOriginal() {
         'Stop water source if safe',
         'Call Disaster Recovery',
         'Document with photos/video',
-        'Remove valuable items'
-      ]
+        'Remove valuable items',
+      ],
     },
     {
       time: '2-24 Hours',
@@ -92,8 +123,8 @@ function WaterDamageGuidePageOriginal() {
         'Extract standing water',
         'Start drying process',
         'Notify insurance',
-        'Begin mitigation'
-      ]
+        'Begin mitigation',
+      ],
     },
     {
       time: '24-48 Hours',
@@ -102,8 +133,8 @@ function WaterDamageGuidePageOriginal() {
         'Complete water extraction',
         'Set up drying equipment',
         'Monitor moisture levels',
-        'Prevent mould growth'
-      ]
+        'Prevent mould growth',
+      ],
     },
     {
       time: '48-72 Hours',
@@ -112,9 +143,9 @@ function WaterDamageGuidePageOriginal() {
         'Continue drying',
         'Check for mould',
         'Assess damaged materials',
-        'Plan restoration'
-      ]
-    }
+        'Plan restoration',
+      ],
+    },
   ];
 
   const propertyTypes = [
@@ -122,20 +153,20 @@ function WaterDamageGuidePageOriginal() {
       type: 'Residential',
       icon: Home,
       specifics: ['Living areas', 'Bedrooms', 'Basements', 'Personal belongings'],
-      link: '/guides/water-damage/residential'
+      link: '/guides/water-damage/residential',
     },
     {
       type: 'Commercial',
       icon: Building,
       specifics: ['Office spaces', 'Inventory', 'Equipment', 'Documents'],
-      link: '/guides/water-damage/commercial'
+      link: '/guides/water-damage/commercial',
     },
     {
       type: 'Industrial',
       icon: Factory,
       specifics: ['Machinery', 'Production areas', 'Warehouses', 'Raw materials'],
-      link: '/guides/water-damage/industrial'
-    }
+      link: '/guides/water-damage/industrial',
+    },
   ];
 
   return (
@@ -151,16 +182,14 @@ function WaterDamageGuidePageOriginal() {
           >
             <div className="flex items-center justify-center gap-3 mb-6">
               <Droplets className="w-12 h-12" />
-              <h1 className="text-5xl md:text-6xl font-bold">
-                Water Damage Complete Guide
-              </h1>
+              <h1 className="text-5xl md:text-6xl font-bold">Water Damage Complete Guide</h1>
             </div>
             <p className="text-2xl mb-4 text-blue-700">
               Everything You Need to Know About Water Damage Restoration
             </p>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              From emergency response to complete restoration - your comprehensive resource 
-              for understanding and managing water damage in any property.
+              From emergency response to complete restoration - your comprehensive resource for
+              understanding and managing water damage in any property.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
@@ -187,9 +216,10 @@ function WaterDamageGuidePageOriginal() {
             Understanding Water Categories
           </h2>
           <p className="text-center text-gray-700 mb-12 text-lg">
-            Not all water damage is the same. The category determines health risks and restoration approach.
+            Not all water damage is the same. The category determines health risks and restoration
+            approach.
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             {Object.entries(waterCategories).map(([key, category]) => (
               <motion.div
@@ -200,15 +230,19 @@ function WaterDamageGuidePageOriginal() {
                   selectedCategory === key ? 'border-blue-500 shadow-xl' : 'border-transparent'
                 }`}
               >
-                <div className={`p-6 ${
-                  category.color === 'blue' ? 'bg-blue-50' :
-                  category.color === 'yellow' ? 'bg-yellow-50' :
-                  'bg-red-50'
-                }`}>
+                <div
+                  className={`p-6 ${
+                    category.color === 'blue'
+                      ? 'bg-blue-50'
+                      : category.color === 'yellow'
+                        ? 'bg-yellow-50'
+                        : 'bg-red-50'
+                  }`}
+                >
                   <div className="text-4xl mb-3">{category.icon}</div>
                   <h3 className="text-xl font-bold mb-2">{category.title}</h3>
                   <p className="text-gray-700 mb-4">{category.description}</p>
-                  
+
                   <div className="space-y-3">
                     <div>
                       <p className="font-semibold text-sm text-gray-700 mb-1">Common Sources:</p>
@@ -221,12 +255,16 @@ function WaterDamageGuidePageOriginal() {
                         ))}
                       </ul>
                     </div>
-                    
-                    <div className={`p-3 rounded-lg ${
-                      category.color === 'blue' ? 'bg-blue-100' :
-                      category.color === 'yellow' ? 'bg-yellow-100' :
-                      'bg-red-100'
-                    }`}>
+
+                    <div
+                      className={`p-3 rounded-lg ${
+                        category.color === 'blue'
+                          ? 'bg-blue-100'
+                          : category.color === 'yellow'
+                            ? 'bg-yellow-100'
+                            : 'bg-red-100'
+                      }`}
+                    >
                       <p className="text-sm font-semibold mb-1">Health Risk:</p>
                       <p className="text-sm">{category.risks}</p>
                     </div>
@@ -244,7 +282,7 @@ function WaterDamageGuidePageOriginal() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Water Damage Classes: Extent of Damage
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {damageClasses.map((dmgClass, index) => (
               <motion.div
@@ -282,7 +320,7 @@ function WaterDamageGuidePageOriginal() {
           <p className="text-center text-gray-700 mb-12 text-lg">
             Every hour matters in water damage. Here's what needs to happen when.
           </p>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {timeline.map((phase, index) => (
               <motion.div
@@ -291,18 +329,26 @@ function WaterDamageGuidePageOriginal() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
                 className={`rounded-lg shadow-lg overflow-hidden ${
-                  phase.status === 'critical' ? 'border-2 border-red-500' :
-                  phase.status === 'urgent' ? 'border-2 border-orange-500' :
-                  phase.status === 'important' ? 'border-2 border-yellow-500' :
-                  'border-2 border-green-500'
+                  phase.status === 'critical'
+                    ? 'border-2 border-red-500'
+                    : phase.status === 'urgent'
+                      ? 'border-2 border-orange-500'
+                      : phase.status === 'important'
+                        ? 'border-2 border-yellow-500'
+                        : 'border-2 border-green-500'
                 }`}
               >
-                <div className={`p-4 text-white font-bold text-center ${
-                  phase.status === 'critical' ? 'bg-red-500' :
-                  phase.status === 'urgent' ? 'bg-orange-500' :
-                  phase.status === 'important' ? 'bg-yellow-500' :
-                  'bg-green-500'
-                }`}>
+                <div
+                  className={`p-4 text-white font-bold text-center ${
+                    phase.status === 'critical'
+                      ? 'bg-red-500'
+                      : phase.status === 'urgent'
+                        ? 'bg-orange-500'
+                        : phase.status === 'important'
+                          ? 'bg-yellow-500'
+                          : 'bg-green-500'
+                  }`}
+                >
                   <Clock className="w-6 h-6 mx-auto mb-2" />
                   {phase.time}
                 </div>
@@ -329,23 +375,21 @@ function WaterDamageGuidePageOriginal() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Property-Specific Water Damage Guides
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {propertyTypes.map((property, index) => {
               const Icon = property.icon;
               return (
-                <Link
-                  key={index}
-                  href={property.link}
-                  className="group"
-                >
+                <Link key={index} href={property.link} className="group">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all"
                   >
                     <Icon className="w-12 h-12 text-blue-600 mb-4" />
                     <h3 className="text-2xl font-bold mb-3">{property.type} Properties</h3>
-                    <p className="text-gray-700 mb-4">Specialised guidance for {property.type.toLowerCase()} water damage</p>
+                    <p className="text-gray-700 mb-4">
+                      Specialised guidance for {property.type.toLowerCase()} water damage
+                    </p>
                     <div className="space-y-2">
                       {property.specifics.map((specific, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-sm">
@@ -372,15 +416,45 @@ function WaterDamageGuidePageOriginal() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Common Water Damage Sources
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { source: 'Burst Pipes', link: '/guides/water-damage/burst-pipes', icon: '🔧', frequency: 'Most Common' },
-              { source: 'Roof Leaks', link: '/guides/water-damage/roof-leaks', icon: '🏠', frequency: 'Common' },
-              { source: 'Appliance Failure', link: '/guides/water-damage/appliance-failure', icon: '🔌', frequency: 'Common' },
-              { source: 'Sewage Backup', link: '/guides/water-damage/sewage-backup', icon: '🚽', frequency: 'Serious' },
-              { source: 'Storm Flooding', link: '/guides/water-damage/storm-flooding', icon: '⛈️', frequency: 'Seasonal' },
-              { source: 'Foundation Leaks', link: '/guides/water-damage/foundation-leaks', icon: '🏗️', frequency: 'Hidden' }
+              {
+                source: 'Burst Pipes',
+                link: '/guides/water-damage/burst-pipes',
+                icon: '🔧',
+                frequency: 'Most Common',
+              },
+              {
+                source: 'Roof Leaks',
+                link: '/guides/water-damage/roof-leaks',
+                icon: '🏠',
+                frequency: 'Common',
+              },
+              {
+                source: 'Appliance Failure',
+                link: '/guides/water-damage/appliance-failure',
+                icon: '🔌',
+                frequency: 'Common',
+              },
+              {
+                source: 'Sewage Backup',
+                link: '/guides/water-damage/sewage-backup',
+                icon: '🚽',
+                frequency: 'Serious',
+              },
+              {
+                source: 'Storm Flooding',
+                link: '/guides/water-damage/storm-flooding',
+                icon: '⛈️',
+                frequency: 'Seasonal',
+              },
+              {
+                source: 'Foundation Leaks',
+                link: '/guides/water-damage/foundation-leaks',
+                icon: '🏗️',
+                frequency: 'Hidden',
+              },
             ].map((item, index) => (
               <Link
                 key={index}
@@ -407,22 +481,18 @@ function WaterDamageGuidePageOriginal() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              Water Damage Insurance Coverage
-            </h2>
-            
+            <h2 className="text-3xl font-bold mb-8 text-center">Water Damage Insurance Coverage</h2>
+
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-bold mb-4 text-green-600">
-                  ✓ Usually Covered
-                </h3>
+                <h3 className="text-xl font-bold mb-4 text-green-600">✓ Usually Covered</h3>
                 <ul className="space-y-3">
                   {[
                     'Sudden burst pipes',
                     'Storm-related water damage',
                     'Accidental overflow',
                     'Ice dam damage',
-                    'Wind-driven rain'
+                    'Wind-driven rain',
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -431,18 +501,16 @@ function WaterDamageGuidePageOriginal() {
                   ))}
                 </ul>
               </div>
-              
+
               <div>
-                <h3 className="text-xl font-bold mb-4 text-red-600">
-                  ✗ Often Excluded
-                </h3>
+                <h3 className="text-xl font-bold mb-4 text-red-600">✗ Often Excluded</h3>
                 <ul className="space-y-3">
                   {[
                     'Gradual leaks',
                     'Lack of maintenance',
                     'Flood damage (needs separate coverage)',
                     'Sewage backup (may need endorsement)',
-                    'Seepage through foundation'
+                    'Seepage through foundation',
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
@@ -452,7 +520,7 @@ function WaterDamageGuidePageOriginal() {
                 </ul>
               </div>
             </div>
-            
+
             <div className="mt-8 text-center">
               <Link
                 href="/insurance-decoder/water-damage"
@@ -469,10 +537,8 @@ function WaterDamageGuidePageOriginal() {
       {/* Related Resources */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Related Water Damage Resources
-          </h2>
-          
+          <h2 className="text-3xl font-bold text-center mb-12">Related Water Damage Resources</h2>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
               href="/emergency/checklists/water-damage"
@@ -482,7 +548,7 @@ function WaterDamageGuidePageOriginal() {
               <h3 className="font-bold mb-2">Emergency Checklist</h3>
               <p className="text-sm text-gray-700">Immediate actions for water damage</p>
             </Link>
-            
+
             <Link
               href="/guides/mould/why-mould-returns-6-months"
               className="bg-green-50 rounded-lg p-6 hover:shadow-lg transition-all"
@@ -491,7 +557,7 @@ function WaterDamageGuidePageOriginal() {
               <h3 className="font-bold mb-2">Why Mould Returns</h3>
               <p className="text-sm text-gray-700">Stop mould before it starts again</p>
             </Link>
-            
+
             <Link
               href="/guides/equipment/structural-drying-equipment-cost"
               className="bg-blue-50 rounded-lg p-6 hover:shadow-lg transition-all"
@@ -500,7 +566,7 @@ function WaterDamageGuidePageOriginal() {
               <h3 className="font-bold mb-2">Structural Drying Equipment</h3>
               <p className="text-sm text-gray-700">Professional drying equipment explained</p>
             </Link>
-            
+
             <Link
               href="/whos-first/water-damage"
               className="bg-purple-50 rounded-lg p-6 hover:shadow-lg transition-all"
@@ -522,30 +588,34 @@ function WaterDamageGuidePageOriginal() {
           {[
             {
               q: 'How quickly should I respond to water damage?',
-              a: 'Within the first 2 hours is critical. Water damage worsens exponentially — Category 1 (clean) water can progress to Category 2 (grey) within 48 hours, and mould can begin growing within 24–48 hours. Stopping the water source, documenting damage with photos, and contacting a professional restoration company immediately gives you the best chance of minimising damage and costs.'
+              a: 'Within the first 2 hours is critical. Water damage worsens exponentially — Category 1 (clean) water can progress to Category 2 (grey) within 48 hours, and mould can begin growing within 24–48 hours. Stopping the water source, documenting damage with photos, and contacting a professional restoration company immediately gives you the best chance of minimising damage and costs.',
             },
             {
               q: 'How much does water damage restoration cost in Australia?',
-              a: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000. The Disaster Recovery platform fee is $550, with $2,200 held for your contractor and credited toward restoration work. Payment plans are available through Blue Fire Finance.'
+              a: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000. The Disaster Recovery platform fee is $550, with $2,200 held for your contractor and credited toward restoration work. Payment plans are available through Equipped Commercial Finance.',
             },
             {
               q: 'Is water damage covered by insurance in Australia?',
-              a: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm-related water ingress, and appliance failures. However, gradual damage from maintenance neglect, seepage through foundations, and standard flood events (which require separate flood cover) are commonly excluded. Always check your Product Disclosure Statement (PDS) and document all damage with timestamped photos before any cleanup begins.'
+              a: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm-related water ingress, and appliance failures. However, gradual damage from maintenance neglect, seepage through foundations, and standard flood events (which require separate flood cover) are commonly excluded. Always check your Product Disclosure Statement (PDS) and document all damage with timestamped photos before any cleanup begins.',
             },
             {
               q: 'What are the three categories of water damage?',
-              a: 'The IICRC S500:2025 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources like broken supply lines and poses low health risk. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation. Category determines the restoration approach, equipment needed, and safety protocols.'
+              a: 'The IICRC S500:2025 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources like broken supply lines and poses low health risk. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation. Category determines the restoration approach, equipment needed, and safety protocols.',
             },
             {
               q: 'How long does water damage restoration take?',
-              a: 'The drying phase alone takes 2–7+ days depending on the damage class. Class 1 (part of a room) typically dries in 2–3 days, Class 2 (entire room, walls up to 24 inches) takes 3–5 days, and Class 3–4 (saturated walls, ceilings, specialty materials) requires 5–7+ days. Full restoration including repairs, reconstruction, and contents restoration can take 2–6 weeks for significant damage. IICRC-certified technicians use moisture meters and thermal imaging to confirm materials are fully dry before reconstruction begins.'
+              a: 'The drying phase alone takes 2–7+ days depending on the damage class. Class 1 (part of a room) typically dries in 2–3 days, Class 2 (entire room, walls up to 24 inches) takes 3–5 days, and Class 3–4 (saturated walls, ceilings, specialty materials) requires 5–7+ days. Full restoration including repairs, reconstruction, and contents restoration can take 2–6 weeks for significant damage. IICRC-certified technicians use moisture meters and thermal imaging to confirm materials are fully dry before reconstruction begins.',
             },
             {
               q: 'Can I clean up water damage myself?',
-              a: 'Small Category 1 (clean water) spills under 1 square metre can be safely cleaned if addressed within 48 hours using towels, fans, and a dehumidifier. However, any water damage larger than one room, any Category 2 or 3 water, damage involving walls or ceilings, or damage older than 48 hours requires professional restoration. DIY attempts on significant water damage often lead to hidden moisture pockets, mould growth behind walls, and structural issues that cost far more to remediate later.'
+              a: 'Small Category 1 (clean water) spills under 1 square metre can be safely cleaned if addressed within 48 hours using towels, fans, and a dehumidifier. However, any water damage larger than one room, any Category 2 or 3 water, damage involving walls or ceilings, or damage older than 48 hours requires professional restoration. DIY attempts on significant water damage often lead to hidden moisture pockets, mould growth behind walls, and structural issues that cost far more to remediate later.',
             },
           ].map((faq, i) => (
-            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+            <details
+              key={i}
+              className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200"
+              {...(i === 0 ? { open: true } : {})}
+            >
               <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-blue-600 transition-colors">
                 {faq.q}
               </summary>
@@ -560,41 +630,56 @@ function WaterDamageGuidePageOriginal() {
       {/* AI Citation Block */}
       <section className="py-6 px-4 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
-          <div><strong className="text-blue-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
-          <div><strong className="text-blue-900">Category:</strong> Water Damage Restoration</div>
-          <div><strong className="text-blue-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
-          <div><strong className="text-blue-900">Standard:</strong> IICRC S500:2025 certified practices</div>
+          <div>
+            <strong className="text-blue-900">Source:</strong> Disaster Recovery —
+            disasterrecovery.com.au
+          </div>
+          <div>
+            <strong className="text-blue-900">Category:</strong> Water Damage Restoration
+          </div>
+          <div>
+            <strong className="text-blue-900">Last reviewed:</strong>{' '}
+            <time dateTime="2026-02-26">26 February 2026</time>
+          </div>
+          <div>
+            <strong className="text-blue-900">Standard:</strong> IICRC S500:2025 certified practices
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Experiencing Water Damage Now?
-          </h2>
+          <h2 className="text-4xl font-bold mb-6">Experiencing Water Damage Now?</h2>
           <p className="text-xl mb-8">
-            Don't wait - every minute counts. Our 24/7 emergency team is ready to respond immediately.
+            Don't wait - every minute counts. Our 24/7 emergency team is ready to respond
+            immediately.
           </p>
-          
+
           <div className="bg-white/10 backdrop-blur rounded-xl p-8 mb-8">
             <p className="text-2xl font-bold mb-4">Remember the Critical First Steps:</p>
             <div className="grid md:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
               <div className="flex items-start gap-3">
-                <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">1</span>
+                <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">
+                  1
+                </span>
                 <p>Stop the water source if safe</p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">2</span>
+                <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">
+                  2
+                </span>
                 <p>Lodge a claim online immediately</p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">3</span>
+                <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">
+                  3
+                </span>
                 <p>Document everything</p>
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href="/claim"
@@ -622,39 +707,58 @@ const waterDamageFaqSchema = JSON.stringify({
     {
       '@type': 'Question',
       name: 'How quickly should I respond to water damage?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Within the first 2 hours is critical. Water damage worsens exponentially — Category 1 (clean) water can progress to Category 2 (grey) within 48 hours, and mould can begin growing within 24–48 hours. Stopping the water source, documenting damage with photos, and contacting a professional restoration company immediately gives you the best chance of minimising damage and costs.' },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Within the first 2 hours is critical. Water damage worsens exponentially — Category 1 (clean) water can progress to Category 2 (grey) within 48 hours, and mould can begin growing within 24–48 hours. Stopping the water source, documenting damage with photos, and contacting a professional restoration company immediately gives you the best chance of minimising damage and costs.',
+      },
     },
     {
       '@type': 'Question',
       name: 'How much does water damage restoration cost in Australia?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000.' },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000.',
+      },
     },
     {
       '@type': 'Question',
       name: 'Is water damage covered by insurance in Australia?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm-related water ingress, and appliance failures. However, gradual damage from maintenance neglect, seepage through foundations, and standard flood events (which require separate flood cover) are commonly excluded.' },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm-related water ingress, and appliance failures. However, gradual damage from maintenance neglect, seepage through foundations, and standard flood events (which require separate flood cover) are commonly excluded.',
+      },
     },
     {
       '@type': 'Question',
       name: 'What are the three categories of water damage?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The IICRC S500:2025 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation.' },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The IICRC S500:2025 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation.',
+      },
     },
     {
       '@type': 'Question',
       name: 'How long does water damage restoration take?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The drying phase alone takes 2–7+ days depending on the damage class. Class 1 typically dries in 2–3 days, Class 2 takes 3–5 days, and Class 3–4 requires 5–7+ days. Full restoration including repairs and reconstruction can take 2–6 weeks for significant damage.' },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The drying phase alone takes 2–7+ days depending on the damage class. Class 1 typically dries in 2–3 days, Class 2 takes 3–5 days, and Class 3–4 requires 5–7+ days. Full restoration including repairs and reconstruction can take 2–6 weeks for significant damage.',
+      },
     },
     {
       '@type': 'Question',
       name: 'Can I clean up water damage myself?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Small Category 1 (clean water) spills under 1 square metre can be safely cleaned if addressed within 48 hours. However, any damage larger than one room, any Category 2 or 3 water, damage involving walls or ceilings, or damage older than 48 hours requires professional restoration.' },
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Small Category 1 (clean water) spills under 1 square metre can be safely cleaned if addressed within 48 hours. However, any damage larger than one room, any Category 2 or 3 water, damage involving walls or ceilings, or damage older than 48 hours requires professional restoration.',
+      },
     },
   ],
 });
 
 const waterDamageArticleSchema = generateArticleSchema({
   headline: 'Water Damage Restoration Guide Australia',
-  description: 'Complete guide to water damage restoration including emergency response, drying science, insurance claims, and professional restoration process.',
+  description:
+    'Complete guide to water damage restoration including emergency response, drying science, insurance claims, and professional restoration process.',
   image: '/images/guides/water-damage.webp',
   author: 'Disaster Recovery Team',
   datePublished: '2024-11-15',

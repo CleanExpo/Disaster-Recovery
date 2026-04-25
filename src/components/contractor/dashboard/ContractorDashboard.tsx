@@ -37,6 +37,7 @@ import { TerritoryManager } from './sections/TerritoryManager';
 import { BillingSection } from './sections/BillingSection';
 import { SupportTickets } from './sections/SupportTickets';
 import { TrainingTracker } from './sections/TrainingTracker';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export function ContractorDashboard() {
   const [dashboardData, setDashboardData] = useState<ContractorDashboard | null>(null);
@@ -55,7 +56,7 @@ export function ContractorDashboard() {
       const data = await response.json();
       setDashboardData(data);
     } catch (error) {
-      console.error('Failed to fetch dashboard data:', error);
+      clientLogger.error('Failed to fetch dashboard data:', { source: 'dashboard/ContractorDashboard' }, error);
     } finally {
       setLoading(false);
     }

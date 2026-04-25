@@ -52,7 +52,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
         name: 'How is billing handled for industrial flood recovery in Newcastle?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly \u2014 the facility owner or operator \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, equipment losses, stock losses, hazardous material management, environmental compliance, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          text: 'We bill you directly \u2014 the facility owner or operator \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, equipment losses, stock losses, hazardous material management, environmental compliance, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       },
     ],
@@ -181,7 +181,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for large-scale industrial flood recovery.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for large-scale industrial flood recovery.
               </p>
             </div>
           ),
@@ -206,7 +206,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
         },
         {
           question: 'How is billing handled for industrial flood recovery in Newcastle?',
-          answer: 'We bill you directly — the facility owner or operator — so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, equipment losses, stock losses, hazardous material management, environmental compliance, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the facility owner or operator — so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering building damage, equipment losses, stock losses, hazardous material management, environmental compliance, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

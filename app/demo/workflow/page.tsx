@@ -257,7 +257,7 @@ function WorkflowDemonstrationOriginal() {
           }
           
           // Update ticket data for visual forms
-          setTicketData(prev => ({
+          setTicketData((prev: any) => ({
             ...prev,
             currentStep: stepIndex,
             ...(contractor && {

@@ -1,5 +1,6 @@
 # Section 8 — CEO Vision
-## National Restoration Professionals Group | Disaster Recovery Australia
+
+## National Restoration Professionals Group | Disaster Recovery
 
 **Document status:** Authorised — CEO
 **Last updated:** 2026-04-07
@@ -10,7 +11,7 @@
 
 **Solve the problem for small and medium business owners in the Professional Cleaning and Restoration industry — and in doing so, deliver the standard of service that every customer deserves.**
 
-Disaster Recovery Australia and the NRPG network exist because two groups of people are being failed by the current model: the business owner who has spent years building expertise and reputation, and the property owner who calls for help at the worst moment of their lives. We fix both sides of that problem at once.
+Disaster Recovery and the NRPG network exist because two groups of people are being failed by the current model: the business owner who has spent years building expertise and reputation, and the property owner who calls for help at the worst moment of their lives. We fix both sides of that problem at once.
 
 ---
 
@@ -36,11 +37,11 @@ The phrase "Who First" did not come from a marketing agency. It came from a clos
 
 That conversation revealed the industry's core problem: **the professional restorer is invisible to the people who need them most.**
 
-When something goes wrong with a property — a burst pipe, a house fire, flood damage, a mould outbreak — the question most people ask is *"Who do I call?"* They call their insurer. They call a plumber. They call a builder. They almost never call a certified restorer directly, because they don't know the restorer exists, or what the restorer does, or why it matters.
+When something goes wrong with a property — a burst pipe, a house fire, flood damage, a mould outbreak — the question most people ask is _"Who do I call?"_ They call their insurer. They call a plumber. They call a builder. They almost never call a certified restorer directly, because they don't know the restorer exists, or what the restorer does, or why it matters.
 
 **Who First** is the answer to that question. When there is an emergency or an indoor environment issue, the first call should be to a Professional Restorer — not a builder, not an insurer's preferred contractor.
 
-> *Who First = Disaster Recovery | The Professional Restorers*
+> _Who First = Disaster Recovery | The Professional Restorers_
 
 Marketing and communicating what the restoration industry does — and why it matters — is one of the most important challenges NRPG must overcome. Our brand position is not a slogan. It is the strategic answer to industry invisibility.
 
@@ -90,14 +91,14 @@ The measure of our success is not NRPG's revenue. It is the independence, growth
 
 ## Summary
 
-| | |
-|---|---|
-| **Vision** | Solve the problem for SMB owners in Professional Cleaning and Restoration. Deliver the standard of service the customer deserves. |
-| **Problem** | The Builder/Restorer model benefits the builder. It increases costs, delays, and insurance premiums for everyone else. |
-| **Brand** | Who First = Disaster Recovery. The first call after a property emergency should be to a certified Professional Restorer. |
-| **Standard** | 22-module onboarding, mandatory IICRC, 2+ years experience, industry association, CARSI CEC, RestoreAssist. Not a builder. |
-| **Goal** | Growth, recognition for the industry, and independence back to the business owner. |
+|              |                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Vision**   | Solve the problem for SMB owners in Professional Cleaning and Restoration. Deliver the standard of service the customer deserves. |
+| **Problem**  | The Builder/Restorer model benefits the builder. It increases costs, delays, and insurance premiums for everyone else.            |
+| **Brand**    | Who First = Disaster Recovery. The first call after a property emergency should be to a certified Professional Restorer.          |
+| **Standard** | 22-module onboarding, mandatory IICRC, 2+ years experience, industry association, CARSI CEC, RestoreAssist. Not a builder.        |
+| **Goal**     | Growth, recognition for the industry, and independence back to the business owner.                                                |
 
 ---
 
-*This document represents the founding vision of the NRPG network and the strategic intent behind the Disaster Recovery Australia platform. It is the reference point for every product, content, and partnership decision made within the network.*
+_This document represents the founding vision of the NRPG network and the strategic intent behind the Disaster Recovery platform. It is the reference point for every product, content, and partnership decision made within the network._

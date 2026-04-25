@@ -30,7 +30,7 @@ export function getCommercialInsuranceSections({ insurerName, insurerSlug, tier 
             waiting for {insurerName} approval or scope-of-works sign-off. Once restoration is complete,
             we provide full documentation to support your {insurerName} claim for reimbursement.
             Payment plans are available through our finance partner,{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
         </>
       ),
@@ -100,7 +100,7 @@ export function getCommercialInsuranceSections({ insurerName, insurerSlug, tier 
             <li><strong>We bill you directly</strong> — Our contractors invoice you (the property owner, management company, or body corporate), not your insurer. This allows emergency work to begin without waiting for scope approval.</li>
             <li><strong>You claim reimbursement from {insurerName}</strong> — We provide all documentation, photos, scope of works, and compliance certificates your insurer needs to process your claim.</li>
             <li><strong>Why this is better for commercial clients</strong> — No waiting for panel assessors. No scope disputes delaying critical make-safe. You control the timeline and the quality of work.</li>
-            <li><strong>Payment options available</strong> — Flexible payment terms through our finance partner <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a> for fast loan approvals.</li>
+            <li><strong>Payment options available</strong> — Flexible payment terms through our finance partner <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a> for fast loan approvals.</li>
             <li><strong>Contract provided</strong> — After the make-safe is completed, your contractor provides a formal contract with clear terms, milestones, and conditions.</li>
           </ul>
         </>

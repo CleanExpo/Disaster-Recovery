@@ -12,6 +12,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SubContractorManager from '@/components/contractor/portal/SubContractorManager';
+import Link from 'next/link';
 import {
   Building,
   Phone,
@@ -32,6 +33,7 @@ import {
   Timer,
   AlertTriangle,
   Users,
+  Truck,
 } from 'lucide-react';
 
 interface Job {
@@ -281,6 +283,29 @@ function ContractorPortalPageOriginal() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Benefits — Equipment finance */}
+        <Card className="mb-6 border-blue-200 bg-gradient-to-r from-blue-50 to-sky-50">
+          <CardContent className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                <Truck className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-900">Equipment finance — NRPG contractor benefit</p>
+                <p className="text-sm text-slate-700">
+                  Commercial equipment finance for trucks, drying rigs, thermal cameras and HEPA gear through Equipped Commercial Finance. DR is a Reg 25 referrer, not the lender.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/contractor/equipment-finance"
+              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 whitespace-nowrap"
+            >
+              Learn more
+            </Link>
+          </CardContent>
+        </Card>
 
         {/* 60-Minute Alert */}
         {availableJobs.some(job => job.urgency === 'emergency') && (

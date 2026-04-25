@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // Store demo workflows in a way that works with serverless
 // In production, this would be a database
@@ -15,6 +16,7 @@ const cleanupOldWorkflows = () => {
 };
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/demo/workflow' });
   if (process.env.NODE_ENV === 'production') {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
@@ -87,7 +89,8 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('Error starting demo workflow:', error);
+    log.error('error starting demo workflow', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/demo/workflow' }, extra: { requestId: log.requestId } });
     return NextResponse.json({
       success: false,
       error: 'Failed to start demo workflow'

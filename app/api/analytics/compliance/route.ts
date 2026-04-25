@@ -1,17 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getServerSession, type Session } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+  // ── Auth gate (fail closed) ───────────────────────────────────────────────
+  // If session resolution throws (e.g. NEXTAUTH_SECRET missing in a preview
+  // environment), treat the caller as unauthenticated rather than surfacing a
+  // 500. This endpoint must never return internal data without a valid session.
+  let session: Session | null = null;
   try {
-    const session = await getServerSession();
+    session = await getServerSession();
+  } catch {
+    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+  }
 
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
-    }
+  if (!session?.user) {
+    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+  }
+
+  try {
 
     const { searchParams } = new URL(req.url);
     const timeframe = searchParams.get('timeframe') ?? '30d';

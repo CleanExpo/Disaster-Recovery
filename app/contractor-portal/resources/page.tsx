@@ -115,7 +115,7 @@ function ContractorPortalResourcesPageOriginal() {
                     <div className="flex-1">
                       <p className="text-white font-medium">{item.title}</p>
                       <p className="text-gray-300 text-sm">
-                        {item.type} • {item.size || item.duration}
+                        {item.type} • {('size' in item ? item.size : item.duration)}
                       </p>
                     </div>
                     <button className="p-2 text-blue-400 hover:text-blue-300 transition-colors">

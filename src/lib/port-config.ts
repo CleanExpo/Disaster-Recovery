@@ -124,7 +124,7 @@ export async function validatePorts(): Promise<boolean> {
         results.push({ service, port, available });
         
         if (!available) {
-          console.warn(`⚠️ Port ${port} for ${service} is already in use`);
+          clientLogger.warn(`⚠️ Port ${port} for ${service} is already in use`, { source: 'lib/port-config' });
         }
       }
     }
@@ -133,10 +133,10 @@ export async function validatePorts(): Promise<boolean> {
   const allAvailable = results.every(r => r.available);
   
   if (allAvailable) {
-    console.log('✅ All required ports are available');
+    clientLogger.info('✅ All required ports are available', { source: 'lib/port-config' });
   } else {
     const unavailable = results.filter(r => !r.available);
-    console.error('❌ The following ports are in use:', unavailable);
+    clientLogger.error('❌ The following ports are in use:', { source: 'lib/port-config' }, unavailable);
   }
   
   return allAvailable;
@@ -180,3 +180,4 @@ export function resolvePortConflict(preferredPort: number, maxAttempts: number =
 }
 
 export default PORT_CONFIG;
+import { clientLogger } from '@/lib/observability/client-logger';

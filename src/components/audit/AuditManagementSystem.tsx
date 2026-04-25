@@ -16,6 +16,7 @@ import type {
   RiskLevel,
   ChecklistResponse
 } from '@/types/audit-compliance';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface AuditManagementSystemProps {
   userRole: 'admin' | 'auditor' | 'contractor' | 'compliance_manager';
@@ -187,7 +188,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
 
       setAudits(mockAudits);
     } catch (error) {
-      console.error('Error loading audits:', error);
+      clientLogger.error('Error loading audits:', { source: 'audit/AuditManagementSystem' }, error);
     } finally {
       setLoading(false);
     }
@@ -235,7 +236,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
 
       setAudits(prev => [...prev, newAudit]);
     } catch (error) {
-      console.error('Error triggering surprise audit:', error);
+      clientLogger.error('Error triggering surprise audit:', { source: 'audit/AuditManagementSystem' }, error);
     }
   };
 

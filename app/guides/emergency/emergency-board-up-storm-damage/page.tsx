@@ -182,8 +182,8 @@ export default function EmergencyBoardUpStormDamagePage() {
                 After the emergency make-safe (including board-up), your contractor provides a
                 formal contract with terms and conditions for the full repair and restoration
                 scope. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage costs while you await your insurance outcome.
               </p>

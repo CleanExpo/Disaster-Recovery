@@ -51,7 +51,7 @@ const faqSchema = {
       name: 'How much does make-safe cost through Disaster Recovery?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The initial commitment is $2,750, comprising a $550 platform fee and $2,200 contractor credit applied to emergency make-safe works. This covers claim lodgement, contractor matching, emergency stabilisation, and full documentation. Payment plans are available through Blue Fire Finance.',
+        text: 'The initial commitment is $2,750, comprising a $550 platform fee and $2,200 contractor credit applied to emergency make-safe works. This covers claim lodgement, contractor matching, emergency stabilisation, and full documentation. Payment plans are available through Equipped Commercial Finance.',
       },
     },
   ],
@@ -229,8 +229,8 @@ export default function MakeSafeInsuranceCoveragePage() {
                 The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor
                 credit for make-safe works). Full claims documentation is provided to support
                 your insurance reimbursement. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage costs while awaiting your insurance outcome.
               </p>
@@ -262,7 +262,7 @@ export default function MakeSafeInsuranceCoveragePage() {
         {
           question: 'How much does make-safe cost through Disaster Recovery?',
           answer:
-            'The initial commitment is $2,750, comprising a $550 platform fee and $2,200 contractor credit applied to emergency make-safe works. This covers claim lodgement, contractor matching, emergency stabilisation, and full documentation. Payment plans are available through Blue Fire Finance.',
+            'The initial commitment is $2,750, comprising a $550 platform fee and $2,200 contractor credit applied to emergency make-safe works. This covers claim lodgement, contractor matching, emergency stabilisation, and full documentation. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

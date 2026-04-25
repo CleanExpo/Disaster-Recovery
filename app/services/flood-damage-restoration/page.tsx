@@ -410,7 +410,7 @@ export default function FloodDamageRestorationPage() {
                     {
                       icon: <CheckCircle style={{ width: '1.5rem', height: '1.5rem', color: '#0369A1' }} />,
                       title: 'Full Claims Documentation',
-                      text: 'We bill you directly and provide comprehensive documentation to support your reimbursement claim with any insurer. Payment plans available through Blue Fire Finance.',
+                      text: 'We bill you directly and provide comprehensive documentation to support your reimbursement claim with any insurer. Payment plans available through Equipped Commercial Finance.',
                     },
                     {
                       icon: <Clock style={{ width: '1.5rem', height: '1.5rem', color: '#0369A1' }} />,

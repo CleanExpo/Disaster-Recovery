@@ -290,7 +290,7 @@ export default function HowLongFireDamageRestorationPage() {
               </p>
               <p>
                 We bill you directly — you control the process and claim reimbursement from your insurer. After make-safe, your contractor provides a formal contract with full terms and conditions. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>.
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a>.
               </p>
               <p className="mt-4">
                 <Link href="/claim" className="text-blue-400 hover:underline font-medium">

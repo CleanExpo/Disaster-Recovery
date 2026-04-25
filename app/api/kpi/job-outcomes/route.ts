@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import { requestLogger, captureException } from '@/lib/observability';
 
 /**
  * GET /api/kpi/job-outcomes
@@ -26,6 +27,7 @@ import { authOptions } from '@/lib/auth';
  *   - Breakdown by urgency
  */
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/kpi/job-outcomes' });
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
@@ -150,7 +152,8 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('[KPI] job-outcomes error:', error);
+    log.error('kpi job-outcomes error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/kpi/job-outcomes' }, extra: { requestId: log.requestId } });
     return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
   }
 }

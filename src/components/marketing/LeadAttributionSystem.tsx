@@ -306,7 +306,7 @@ export default function LeadAttributionSystem() {
   const formatPercentage = (num: number) => `${num.toFixed(1)}%`;
 
   const getAttributionValue = (source: LeadSource, model: AttributionModel) => {
-    const modelData = mockAttributionData[model];
+    const modelData = (mockAttributionData as unknown as Record<string, any>)[model];
     const sourceKey = source.campaign ? 
       `${source.source}/${source.medium}/${source.campaign}` : 
       `${source.source}/${source.medium}`;
@@ -371,7 +371,7 @@ export default function LeadAttributionSystem() {
           <div>
             <p className="text-sm font-medium text-gray-700">Total Revenue</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
-              {formatCurrency(mockAttributionData[selectedModel].totalValue)}
+              {formatCurrency((mockAttributionData as unknown as Record<string, any>)[selectedModel]?.totalValue ?? 0)}
             </p>
           </div>
           <div className="p-3 bg-green-100 rounded-lg">
@@ -552,19 +552,19 @@ export default function LeadAttributionSystem() {
             <div className="flex space-x-6 text-sm">
               <div className="text-center">
                 <p className="text-gray-700">Visits</p>
-                <p className="font-medium">{formatNumber(touchpoint.visits)}</p>
+                <p className="font-medium">{formatNumber(touchpoint.visits ?? 0)}</p>
               </div>
               <div className="text-center">
                 <p className="text-gray-700">Interactions</p>
-                <p className="font-medium">{formatNumber(touchpoint.interactions)}</p>
+                <p className="font-medium">{formatNumber(touchpoint.interactions ?? 0)}</p>
               </div>
               <div className="text-center">
                 <p className="text-gray-700">Conversions</p>
-                <p className="font-medium">{formatNumber(touchpoint.conversions)}</p>
+                <p className="font-medium">{formatNumber(touchpoint.conversions ?? 0)}</p>
               </div>
               <div className="text-center">
                 <p className="text-gray-700">Bounce Rate</p>
-                <p className="font-medium">{formatPercentage(touchpoint.bounceRate)}</p>
+                <p className="font-medium">{formatPercentage(touchpoint.bounceRate ?? 0)}</p>
               </div>
             </div>
           </div>

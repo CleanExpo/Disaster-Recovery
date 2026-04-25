@@ -214,7 +214,7 @@ Use `AgContentPageTemplate` with:
 **Critical content rules (from CLAUDE.md):**
 - "We bill you directly" — the client, never the insurer
 - No "direct-bill" / "bill your insurer" / "no upfront costs"
-- Payment plans via Blue Fire Finance (link: `https://www.bluefirefinance.com.au`)
+- Payment plans via Equipped Commercial Finance (link: `https://equippedcf.com.au`)
 - $2,750 emergency make-safe fee breakdown: $550 platform + $2,200 held for contractor
 - National coverage — never geo-lock to one state
 

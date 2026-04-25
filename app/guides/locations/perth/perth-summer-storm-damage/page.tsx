@@ -214,7 +214,7 @@ export default function PerthSummerStormDamagePage() {
                   </li>
                 </ol>
                 <p className="mt-4">
-                  Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for storm damage restorations.
+                  Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for storm damage restorations.
                 </p>
               </div>
             ),

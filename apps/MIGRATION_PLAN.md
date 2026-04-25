@@ -1,9 +1,11 @@
 ﻿# Monorepo Migration Plan
 
 ## Current Structure
+
 The application currently runs as a single Next.js app in the root directory.
 
 ## Future Structure
+
 - **apps/website** - Public-facing disaster recovery website (current root app)
 - **apps/crm** - Internal CRM for staff (future)
 - **apps/contractor** - Contractor portal (future)
@@ -14,6 +16,7 @@ The application currently runs as a single Next.js app in the root directory.
 - **packages/auth** - Shared authentication
 
 ## Migration Steps (Future)
+
 1. Copy current app to apps/website
 2. Update imports and paths
 3. Configure Turbo for monorepo builds
@@ -23,6 +26,7 @@ The application currently runs as a single Next.js app in the root directory.
    - contractor: contractors.disasterrecovery.com.au
 
 ## Benefits
+
 - Code sharing between apps
 - Consistent design system
 - Single source of truth for auth

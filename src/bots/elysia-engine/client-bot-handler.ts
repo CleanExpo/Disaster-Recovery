@@ -41,7 +41,7 @@ export class ClientBotHandler {
       // 3. Check for prohibited content
       const prohibitedCheck = this.checkProhibitedRequest(body.message);
       if (prohibitedCheck.prohibited) {
-        return this.createComplianceResponse(prohibitedCheck.reason, body.channel);
+        return this.createComplianceResponse(prohibitedCheck.reason ?? 'Prohibited request', body.channel);
       }
       
       // 4. Determine intent and required data

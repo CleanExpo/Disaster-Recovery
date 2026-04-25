@@ -7,9 +7,10 @@
 
 ## 1. Overview
 
-Disaster Recovery Australia is a Progressive Web App optimised for field access during disaster events. The primary use case is a homeowner or insurance representative on-site who needs to lodge or track a damage claim with limited or intermittent mobile connectivity.
+Disaster Recovery is a Progressive Web App optimised for field access during disaster events. The primary use case is a homeowner or insurance representative on-site who needs to lodge or track a damage claim with limited or intermittent mobile connectivity.
 
 Key design constraints:
+
 - Must function at minimum on a 375 px viewport (iPhone SE / small Android)
 - Core claim lodgement workflow must work entirely offline and sync when connectivity returns
 - Install to home screen to provide native-app feel (standalone display mode, no browser chrome)
@@ -25,17 +26,17 @@ Next.js generates `/manifest.json` at build time via the `MetadataRoute.Manifest
 
 Key values:
 
-| Field | Value |
-|---|---|
-| `name` | Disaster Recovery Australia |
-| `short_name` | DR Australia |
-| `start_url` | `/claim/start` |
-| `display` | `standalone` |
-| `theme_color` | `#1E3A5F` (navy blue) |
-| `background_color` | `#ffffff` |
-| `orientation` | `portrait` |
-| `scope` | `/` |
-| `lang` | `en-AU` |
+| Field              | Value                 |
+| ------------------ | --------------------- |
+| `name`             | Disaster Recovery     |
+| `short_name`       | DR Australia          |
+| `start_url`        | `/claim/start`        |
+| `display`          | `standalone`          |
+| `theme_color`      | `#1E3A5F` (navy blue) |
+| `background_color` | `#ffffff`             |
+| `orientation`      | `portrait`            |
+| `scope`            | `/`                   |
+| `lang`             | `en-AU`               |
 
 **Icons:** Ten icon variants from 72×72 through 512×512, covering Android Chrome, iOS, and maskable purposes. See `app/manifest.ts` for the full icon array.
 
@@ -68,17 +69,18 @@ Individual `cache.add()` calls wrapped in `Promise.allSettled` — a single fetc
 
 ### Fetch strategies by request type
 
-| Request type | Strategy |
-|---|---|
-| `/_next/webpack-hmr` | Skipped (dev HMR) |
-| Cross-origin | Passed through unmodified |
-| `/api/*` | Network-first, cache on 200, fall back to cache |
-| Navigation (`mode: navigate`) | Network-first, cache on 200, fall back to cached page → `/offline` → `/claim/start` |
-| Static assets (`/_next/static/`, images, fonts, scripts, styles) | Cache-first, populate cache on miss |
+| Request type                                                     | Strategy                                                                            |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `/_next/webpack-hmr`                                             | Skipped (dev HMR)                                                                   |
+| Cross-origin                                                     | Passed through unmodified                                                           |
+| `/api/*`                                                         | Network-first, cache on 200, fall back to cache                                     |
+| Navigation (`mode: navigate`)                                    | Network-first, cache on 200, fall back to cached page → `/offline` → `/claim/start` |
+| Static assets (`/_next/static/`, images, fonts, scripts, styles) | Cache-first, populate cache on miss                                                 |
 
 ### Background sync
 
 Two sync tags registered:
+
 - `claim-submission` — retries pending claims from `pending-claims` cache
 - `lead-submission` — retries pending leads from `pending-leads` cache
 
@@ -105,23 +107,23 @@ Pure IndexedDB implementation (no third-party library). Works client-side only �
 
 ```ts
 interface ClaimDraft {
-  id: string;          // 'current' for the active draft
+  id: string; // 'current' for the active draft
   formData: Record<string, unknown>;
   step: number;
-  savedAt: number;     // unix timestamp ms
+  savedAt: number; // unix timestamp ms
   synced: boolean;
 }
 ```
 
 ### Exported functions
 
-| Function | Description |
-|---|---|
-| `saveDraft(draft)` | Upserts a draft record |
-| `loadDraft()` | Returns the `'current'` draft or `null` |
-| `clearDraft()` | Deletes the `'current'` draft (best-effort) |
-| `getUnsynced()` | Returns all drafts where `synced === false` |
-| `markSynced(id)` | Sets `synced = true` for a given draft id |
+| Function           | Description                                 |
+| ------------------ | ------------------------------------------- |
+| `saveDraft(draft)` | Upserts a draft record                      |
+| `loadDraft()`      | Returns the `'current'` draft or `null`     |
+| `clearDraft()`     | Deletes the `'current'` draft (best-effort) |
+| `getUnsynced()`    | Returns all drafts where `synced === false` |
+| `markSynced(id)`   | Sets `synced = true` for a given draft id   |
 
 ### Integration in ClaimStartClient
 
@@ -137,12 +139,14 @@ interface ClaimDraft {
 **File:** `src/components/claim/DamageMediaCapture.tsx`
 
 Two hidden `<input type="file">` elements:
+
 1. `capture="environment"` — triggers rear camera directly on mobile (camera-only flow)
 2. No `capture` attribute — opens the standard file picker (gallery or file system)
 
 ### Image compression
 
 Canvas-based compression runs before any file is stored or displayed:
+
 - Max dimension: 1920 px (configurable via `maxPx` param)
 - Quality: 0.8 JPEG
 - Skips compression if file is already under 200 KB and within dimension limits
@@ -168,13 +172,13 @@ Canvas-based compression runs before any file is stored or displayed:
 
 All 21 public-facing pages tested at 375 px viewport width. Design system rules:
 
-| Rule | Value |
-|---|---|
-| Minimum viewport | 375 px |
-| Minimum touch target height | 44 px (`min-h-[44px]`) |
-| Primary breakpoint stack | `sm:640px` `md:768px` `lg:1024px` |
-| Horizontal padding | `px-4` mobile, `sm:px-6` desktop |
-| Grid collapse | All multi-column grids collapse to 1-column on mobile |
+| Rule                        | Value                                                 |
+| --------------------------- | ----------------------------------------------------- |
+| Minimum viewport            | 375 px                                                |
+| Minimum touch target height | 44 px (`min-h-[44px]`)                                |
+| Primary breakpoint stack    | `sm:640px` `md:768px` `lg:1024px`                     |
+| Horizontal padding          | `px-4` mobile, `sm:px-6` desktop                      |
+| Grid collapse               | All multi-column grids collapse to 1-column on mobile |
 
 RTL layout support is applied via Tailwind `rtl:` variants and a `DirectionProvider` wrapper — see the UX notes doc for detail.
 
@@ -193,6 +197,7 @@ A client-side component that listens for the `beforeinstallprompt` event (Chrome
 **Implementation reference:** `src/components/pwa/InstallPromptBanner.tsx` (created as part of DR-376).
 
 **Behaviour spec:**
+
 - Listen for `beforeinstallprompt` on `window`; stash the event reference
 - Only show if the user is on mobile (check `navigator.userAgent` width or `window.matchMedia('(max-width: 768px)')`)
 - Do not show if the app is already installed (`window.matchMedia('(display-mode: standalone)').matches`)
@@ -249,13 +254,13 @@ Until credentials are in place, push events can be simulated from DevTools → A
 
 Spec files:
 
-| File | Coverage |
-|---|---|
-| `claim-flow.spec.ts` | End-to-end claim submission flow |
-| `offline.spec.ts` | Service worker offline behaviour, draft persistence |
-| `navigation.spec.ts` | Page routing, breadcrumbs, 404 handling |
-| `accessibility.spec.ts` | Axe-core audit on key pages |
-| `contractor-apply.spec.ts` | Contractor application form flow |
+| File                       | Coverage                                            |
+| -------------------------- | --------------------------------------------------- |
+| `claim-flow.spec.ts`       | End-to-end claim submission flow                    |
+| `offline.spec.ts`          | Service worker offline behaviour, draft persistence |
+| `navigation.spec.ts`       | Page routing, breadcrumbs, 404 handling             |
+| `accessibility.spec.ts`    | Axe-core audit on key pages                         |
+| `contractor-apply.spec.ts` | Contractor application form flow                    |
 
 Helper utilities are in `tests/e2e/helpers/`.
 
@@ -273,14 +278,14 @@ Helper utilities are in `tests/e2e/helpers/`.
 
 ## 10. Performance Targets
 
-| Metric | Target | Notes |
-|---|---|---|
-| LCP (Largest Contentful Paint) | < 2.5 s | Measured on 4G, no throttle |
-| INP (Interaction to Next Paint) | < 200 ms | Replaces FID from Chrome 115+ |
-| CLS (Cumulative Layout Shift) | < 0.1 | Avoid layout shift from late-loading banners |
-| FCP (First Contentful Paint) | < 1.8 s | |
-| TTI (Time to Interactive) | < 3.5 s | |
-| Offline fallback load | < 0.5 s | Served from cache |
+| Metric                          | Target   | Notes                                        |
+| ------------------------------- | -------- | -------------------------------------------- |
+| LCP (Largest Contentful Paint)  | < 2.5 s  | Measured on 4G, no throttle                  |
+| INP (Interaction to Next Paint) | < 200 ms | Replaces FID from Chrome 115+                |
+| CLS (Cumulative Layout Shift)   | < 0.1    | Avoid layout shift from late-loading banners |
+| FCP (First Contentful Paint)    | < 1.8 s  |                                              |
+| TTI (Time to Interactive)       | < 3.5 s  |                                              |
+| Offline fallback load           | < 0.5 s  | Served from cache                            |
 
 Performance is monitored via `src/components/performance-monitor.tsx` and Vercel Analytics.
 
@@ -288,11 +293,11 @@ Performance is monitored via `src/components/performance-monitor.tsx` and Vercel
 
 ## 11. Pending Items
 
-| Item | Blocker | Priority |
-|---|---|---|
-| Firebase FCM credentials | Human — needs Firebase project setup | High |
-| iOS install prompt (Share sheet instructions) | No `beforeinstallprompt` on Safari | Medium |
-| File upload to cloud storage for photos | Integration work — S3 or Supabase Storage | High |
-| Push subscription persistence in DB | Depends on FCM setup | High |
-| Web Share API integration | Nice-to-have | Low |
-| Periodic background sync for claim status | Experimental API — limited browser support | Low |
+| Item                                          | Blocker                                    | Priority |
+| --------------------------------------------- | ------------------------------------------ | -------- |
+| Firebase FCM credentials                      | Human — needs Firebase project setup       | High     |
+| iOS install prompt (Share sheet instructions) | No `beforeinstallprompt` on Safari         | Medium   |
+| File upload to cloud storage for photos       | Integration work — S3 or Supabase Storage  | High     |
+| Push subscription persistence in DB           | Depends on FCM setup                       | High     |
+| Web Share API integration                     | Nice-to-have                               | Low      |
+| Periodic background sync for claim status     | Experimental API — limited browser support | Low      |

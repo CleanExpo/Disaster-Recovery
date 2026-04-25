@@ -249,11 +249,11 @@ export default function EmergencyRoofTarpingMakeSafePage() {
                 <p style={{ marginTop: '1rem' }}>
                   Payment plans are available through{' '}
                   <a
-                    href="https://www.bluefirefinance.com.au"
+                    href="https://equippedcf.com.au"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Blue Fire Finance
+                    Equipped Commercial Finance
                   </a>{' '}
                   to help manage costs while you await your insurance outcome.
                 </p>

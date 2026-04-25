@@ -12,6 +12,7 @@ import type {
   Audit,
   ComplianceIndicator
 } from '@/types/audit-compliance';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface RoleBasedAccessControlProps {
   currentUserRole: UserRole;
@@ -227,7 +228,7 @@ const RoleBasedAccessControl: React.FC<RoleBasedAccessControlProps> = ({
       setUsers(mockUsers);
       setRolePermissions(mockRolePermissions);
     } catch (error) {
-      console.error('Error loading access data:', error);
+      clientLogger.error('Error loading access data:', { source: 'audit/RoleBasedAccessControl' }, error);
     } finally {
       setLoading(false);
     }
@@ -241,7 +242,7 @@ const RoleBasedAccessControl: React.FC<RoleBasedAccessControlProps> = ({
           : user
       ));
     } catch (error) {
-      console.error('Error updating user permissions:', error);
+      clientLogger.error('Error updating user permissions:', { source: 'audit/RoleBasedAccessControl' }, error);
     }
   };
 
@@ -262,7 +263,7 @@ const RoleBasedAccessControl: React.FC<RoleBasedAccessControlProps> = ({
         ));
       }
     } catch (error) {
-      console.error('Error updating user role:', error);
+      clientLogger.error('Error updating user role:', { source: 'audit/RoleBasedAccessControl' }, error);
     }
   };
 
@@ -274,7 +275,7 @@ const RoleBasedAccessControl: React.FC<RoleBasedAccessControlProps> = ({
           : user
       ));
     } catch (error) {
-      console.error('Error toggling user status:', error);
+      clientLogger.error('Error toggling user status:', { source: 'audit/RoleBasedAccessControl' }, error);
     }
   };
 

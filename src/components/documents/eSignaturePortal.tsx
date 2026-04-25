@@ -14,6 +14,7 @@ import type {
   SignatureStatus,
   SignerStatus
 } from '@/types/document-management';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface eSignaturePortalProps {
   userRole: 'admin' | 'contractor' | 'auditor';
@@ -176,7 +177,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
 
       setSignatureRequests(mockRequests);
     } catch (error) {
-      console.error('Error loading signature requests:', error);
+      clientLogger.error('Error loading signature requests:', { source: 'documents/eSignaturePortal' }, error);
     } finally {
       setLoading(false);
     }

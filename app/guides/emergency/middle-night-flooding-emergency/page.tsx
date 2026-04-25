@@ -51,7 +51,7 @@ const faqSchema = {
       name: 'Do I need to wait for my insurer before starting overnight flood cleanup?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. Australian insurance policies generally require you to take reasonable steps to mitigate further damage \u2014 delaying extraction can worsen damage and potentially jeopardise your claim. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.',
+        text: 'No. Australian insurance policies generally require you to take reasonable steps to mitigate further damage \u2014 delaying extraction can worsen damage and potentially jeopardise your claim. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance.',
       },
     },
   ],
@@ -231,8 +231,8 @@ export default function MiddleNightFloodingEmergencyPage() {
                 approval. You control the process from start to finish. After the make-safe is
                 complete, your contractor provides a formal contract with terms and conditions for
                 the full restoration scope. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage costs while you await your insurance reimbursement.
               </p>
@@ -314,7 +314,7 @@ export default function MiddleNightFloodingEmergencyPage() {
         {
           question: 'Do I need to wait for my insurer before starting overnight flood cleanup?',
           answer:
-            'No. Australian insurance policies generally require you to take reasonable steps to mitigate further damage — delaying extraction can worsen damage and potentially jeopardise your claim. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Blue Fire Finance.',
+            'No. Australian insurance policies generally require you to take reasonable steps to mitigate further damage — delaying extraction can worsen damage and potentially jeopardise your claim. Through Disaster Recovery, we bill you directly so work begins immediately without waiting for insurer approval. Full claims documentation is provided to support your insurance reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

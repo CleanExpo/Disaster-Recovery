@@ -15,6 +15,7 @@ import type {
   ChartData,
   ExportFormat
 } from '@/types/audit-compliance';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface ComplianceReportingProps {
   userRole: 'admin' | 'auditor' | 'contractor' | 'compliance_manager';
@@ -89,7 +90,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
         setSelectedReport(mockReports[0]);
       }
     } catch (error) {
-      console.error('Error loading reports:', error);
+      clientLogger.error('Error loading reports:', { source: 'audit/ComplianceReporting' }, error);
     } finally {
       setLoading(false);
     }
@@ -133,7 +134,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
       setReports(prev => [newReport, ...prev]);
       setSelectedReport(newReport);
     } catch (error) {
-      console.error('Error generating report:', error);
+      clientLogger.error('Error generating report:', { source: 'audit/ComplianceReporting' }, error);
     } finally {
       setGenerating(false);
     }
@@ -142,9 +143,9 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
   const exportReport = async (format: ExportFormat) => {
     try {
       // Mock export - replace with actual implementation
-      console.log(`Exporting report as ${format}`);
+      clientLogger.info(`Exporting report as ${format}`, { source: 'audit/ComplianceReporting' });
     } catch (error) {
-      console.error('Error exporting report:', error);
+      clientLogger.error('Error exporting report:', { source: 'audit/ComplianceReporting' }, error);
     }
   };
 
@@ -155,7 +156,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
       await navigator.clipboard.writeText(selectedReport.shareableLink);
       // Show toast notification
     } catch (error) {
-      console.error('Error sharing report:', error);
+      clientLogger.error('Error sharing report:', { source: 'audit/ComplianceReporting' }, error);
     }
   };
 

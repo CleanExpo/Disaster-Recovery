@@ -60,7 +60,7 @@ export default function Category3WaterDamageInsurancePage() {
         name: 'How does Disaster Recovery handle Category 3 billing?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly \u2014 not your insurer. This means work begins immediately without waiting for insurer approval, which is critical for Category 3 events where every hour of delay increases contamination. We provide full claims documentation (photos, scope of works, moisture data, clearance certificates) for you to submit to your insurer for reimbursement. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+          text: 'We bill you directly \u2014 not your insurer. This means work begins immediately without waiting for insurer approval, which is critical for Category 3 events where every hour of delay increases contamination. We provide full claims documentation (photos, scope of works, moisture data, clearance certificates) for you to submit to your insurer for reimbursement. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au).',
         },
       },
     ],
@@ -203,7 +203,7 @@ export default function Category3WaterDamageInsurancePage() {
               </ul>
               <p>
                 We bill you directly — not your insurer. Work begins immediately without waiting for insurer approval, so the contamination does not worsen while you wait. We provide full claims documentation (photos, scope of works, moisture data, clearance certificates) that you submit to your insurer for reimbursement. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
               </p>
             </>
           ),
@@ -232,7 +232,7 @@ export default function Category3WaterDamageInsurancePage() {
         },
         {
           question: 'How does Disaster Recovery handle Category 3 billing?',
-          answer: 'We bill you directly — not your insurer. This means work begins immediately without waiting for insurer approval, which is critical for Category 3 events where every hour of delay increases contamination. We provide full claims documentation (photos, scope of works, moisture data, clearance certificates) for you to submit to your insurer for reimbursement. Payment plans are available through Blue Fire Finance (bluefirefinance.com.au).',
+          answer: 'We bill you directly — not your insurer. This means work begins immediately without waiting for insurer approval, which is critical for Category 3 events where every hour of delay increases contamination. We provide full claims documentation (photos, scope of works, moisture data, clearance certificates) for you to submit to your insurer for reimbursement. Payment plans are available through Equipped Commercial Finance (equippedcf.com.au).',
         },
       ]}
       relatedGuides={[

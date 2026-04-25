@@ -233,8 +233,8 @@ export default function InvoiceShockEpidemicPage() {
               <p style={{ marginTop: '1rem' }}>
                 If managing restoration costs is a concern, payment plans are available
                 through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 for work completed through the Disaster Recovery platform.
               </p>
