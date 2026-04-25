@@ -1,12 +1,9 @@
 import dynamic from 'next/dynamic';
 import { ComponentType, ReactElement } from 'react';
+import { Spinner } from '@/components/ui/Spinner';
 
-// Loading component with skeleton
-export const LoadingSpinner = () => (
-  <div className="flex items-center justify-center p-8">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-  </div>
-);
+/** @deprecated Use Spinner from '@/components/ui/Spinner' directly. */
+export const LoadingSpinner = Spinner;
 
 // Loading component with skeleton for full sections
 export const LoadingSection = () => (
@@ -20,7 +17,7 @@ export const LoadingSection = () => (
 // Utility function for lazy loading components with loading state
 export function lazyLoadComponent<P = {}>(
   importFunc: () => Promise<{ default: ComponentType<P> }>,
-  loadingComponent: ReactElement = <LoadingSpinner />
+  loadingComponent: ReactElement = <Spinner />
 ) {
   return dynamic(importFunc, {
     loading: () => loadingComponent,
@@ -33,7 +30,7 @@ export function clientOnly<P = {}>(
   importFunc: () => Promise<{ default: ComponentType<P> }>
 ) {
   return dynamic(importFunc, {
-    loading: () => <LoadingSpinner />,
+    loading: () => <Spinner />,
     ssr: false,
   });
 }
