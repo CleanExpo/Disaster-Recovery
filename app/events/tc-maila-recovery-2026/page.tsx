@@ -32,8 +32,10 @@ export const metadata: Metadata = {
     ],
     type: 'website',
   },
+  // DR-745: canonical winner is tc-maila-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: `${NAP.url}/events/tc-maila-recovery-2026`,
+    canonical: `${NAP.url}/events/tc-maila-fnq-2026`,
   },
 };
 

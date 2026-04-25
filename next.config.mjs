@@ -28,6 +28,10 @@ const nextConfig = {
       { source: '/contractor-terms', destination: '/terms', permanent: false },
       // Canonical redirect — old DR-398 page had advocacy framing violations
       { source: '/events/cyclone-narelle-wa', destination: '/events/cyclone-narelle-western-australia-2026', permanent: true },
+      // DR-745: Bare-slug 404s — short-form event slugs that appear in external links / social media
+      { source: '/events/cyclone-alfred', destination: '/events/cyclone-alfred-fnq-2026', permanent: true },
+      { source: '/events/cyclone-maila', destination: '/events/tc-maila-fnq-2026', permanent: true },
+      { source: '/events/nsw-storms', destination: '/events/nsw-storms-april-2026', permanent: true },
       // DR-533: NSW/QLD storms April 2026 — long-tail canonical redirect
       { source: '/nsw-storms-april-2026-insurance-claims', destination: '/events/nsw-storms-april-2026', permanent: true },
       { source: '/nsw-qld-storms-2026', destination: '/events/nsw-storms-april-2026', permanent: true },

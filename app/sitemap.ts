@@ -63,6 +63,13 @@ const EXCLUDED_PREFIXES = [
   '/workflow-demo',
   // Redirected to canonical — /events/cyclone-narelle-western-australia-2026
   '/events/cyclone-narelle-wa',
+  // DR-745: near-duplicate loser pages — noindex + cross-canonical to winner, excluded from sitemap
+  '/events/cyclone-maila-cape-york-fnq-2026',
+  '/events/cyclone-maila-queensland-2026',
+  '/events/tc-maila-recovery-2026',
+  '/events/ex-cyclone-alfred-recovery',
+  '/events/cyclone-alfred-queensland-2025',
+  '/events/april-13-convergence-2026',
 ];
 
 // Priority mapping by route prefix

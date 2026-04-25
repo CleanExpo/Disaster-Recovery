@@ -20,8 +20,10 @@ export const metadata: Metadata = {
   title: 'Ex-Cyclone Alfred Queensland 2025 — Insurance Claims & Recovery | Disaster Recovery',
   description:
     'Ex-Tropical Cyclone Alfred hit SE Queensland and northern NSW in February 2025. ICA Insurance Catastrophe declared. IICRC-certified restoration contractors for water damage, storm damage, and insurance claims support across all 16 declared LGAs.',
+  // DR-745: canonical winner is cyclone-alfred-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/events/cyclone-alfred-queensland-2025',
+    canonical: 'https://disasterrecovery.com.au/events/cyclone-alfred-fnq-2026',
   },
   openGraph: {
     title: 'Ex-Cyclone Alfred QLD 2025 — Insurance Claims & Restoration | Disaster Recovery',
