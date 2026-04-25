@@ -16,14 +16,19 @@ export function AntigravityServicePageTemplate({ data, heroImage, ctaImage }: Pr
   return (
     <>
       <AntigravityNavbar />
-      <header
-        className="ag-service-header"
-        style={heroImage ? {
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        } : undefined}
-      >
+      <header className="ag-service-header">
+        {/* DR-719: next/image with priority replaces CSS backgroundImage for LCP */}
+        {heroImage && (
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+          />
+        )}
         <div className="ag-header-overlay" style={{ background: data.theme.headerGradient, opacity: heroImage ? 0.75 : undefined }}>
           {data.theme.headerRadial && (
             <div style={{

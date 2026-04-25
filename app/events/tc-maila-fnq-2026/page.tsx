@@ -143,6 +143,7 @@ export default function TCMailaFNQ2026Page() {
         category="Emergency Response"
         title="TC Maila FNQ — Whatever it brings, NRPG advocates for your claim."
         subtitle="Whatever Maila brings — flood, rainfall, or storm surge — NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live conditions."
+        heroCta={{ text: 'Lodge Your Claim Now', href: '/claim' }}
         gradient="linear-gradient(135deg, #0C2340 0%, #7B1FA2 100%)"
         icon={<Wind className="h-10 w-10" />}
         lastReviewed="2026-04-09"

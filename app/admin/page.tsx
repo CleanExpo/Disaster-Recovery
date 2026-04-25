@@ -17,6 +17,7 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
+import { EmptyState } from '@/components/ui/empty-state';
 import { AdminDashboardCharts } from '@/components/admin/AdminDashboardCharts';
 import type { ApplicationsTrendPoint, StatusBreakdownItem } from '@/components/admin/AdminDashboardCharts';
 import { format, subDays } from 'date-fns';
@@ -120,11 +121,31 @@ const STATUS_BADGE: Record<string, { label: string; className: string }> = {
 };
 
 export default async function AdminDashboardPage() {
-  const { kpis, trendData, statusData, recent } = await getDashboardData();
+  // DR-757: Wrap data fetch so a DB failure shows a graceful empty state rather
+  // than propagating to the error boundary (which would wipe the whole layout).
+  let dashboardData: Awaited<ReturnType<typeof getDashboardData>> | null = null;
+  try {
+    dashboardData = await getDashboardData();
+  } catch {
+    dashboardData = null;
+  }
+  const { kpis, trendData, statusData, recent } = dashboardData ?? {
+    kpis: { submitted: 0, underReview: 0, approved: 0, rejected: 0, total: 0 },
+    trendData: [],
+    statusData: [],
+    recent: [],
+  };
   const pendingCount = kpis.submitted + kpis.underReview;
 
   return (
     <div className="mx-auto">
+      {/* DR-757: Data-unavailable banner when DB fetch failed */}
+      {!dashboardData && (
+        <div className="mb-6 flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          <span>Dashboard metrics are temporarily unavailable — platform tools below still work normally.</span>
+        </div>
+      )}
       {/* Header */}
       <header className="mb-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -236,17 +257,19 @@ export default async function AdminDashboardPage() {
           </div>
           <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
             {recent.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-16 text-center">
-                <AlertCircle className="h-12 w-12 text-gray-300" />
-                <p className="mt-3 text-sm font-medium text-gray-500">No applications yet</p>
-                <p className="mt-1 text-sm text-gray-400">New submissions will appear here</p>
-                <Link
-                  href="/admin/applications"
-                  className="mt-4 rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600"
-                >
-                  Go to applications
-                </Link>
-              </div>
+              <EmptyState
+                icon={AlertCircle}
+                title="No applications yet"
+                description="New submissions will appear here"
+                action={
+                  <Link
+                    href="/admin/applications"
+                    className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600"
+                  >
+                    Go to applications
+                  </Link>
+                }
+              />
             ) : (
               <ul className="divide-y divide-gray-100" role="list">
                 {recent.map((app) => {

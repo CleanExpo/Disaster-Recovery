@@ -25,8 +25,10 @@ export const metadata: Metadata = {
   title: 'Ex-Cyclone Alfred Claim Disputes & Recovery Guide 2026 | Disaster Recovery',
   description:
     'Ex-TC Alfred recovery guide for disputed and underpaid insurance claims. 132,000 ICA claims lodged. AU$1.877B final insured losses (PERILS). IICRC-certified contractors, AFCA dispute pathways, and ARPC cyclone pool navigation for SE Queensland and Northern NSW.',
+  // DR-745: canonical winner is cyclone-alfred-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: `${NAP.url}/events/ex-cyclone-alfred-recovery`,
+    canonical: `${NAP.url}/events/cyclone-alfred-fnq-2026`,
   },
   openGraph: {
     title: 'Ex-Cyclone Alfred Claim Disputes Guide | Disaster Recovery',

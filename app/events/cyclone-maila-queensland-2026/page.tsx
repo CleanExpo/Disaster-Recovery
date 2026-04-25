@@ -15,8 +15,10 @@ export const metadata: Metadata = {
   title: 'Tropical Cyclone Maila Queensland 2026 — Preparation & Recovery | Disaster Recovery',
   description:
     'Tropical Cyclone Maila — whatever it brings, flood, rainfall, or storm surge, NRPG IICRC-certified contractors are ready across FNQ. Lodge your claim online 24/7. Follow BOM for live track and conditions.',
+  // DR-745: canonical winner is tc-maila-fnq-2026; this page is a near-duplicate
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/events/cyclone-maila-queensland-2026',
+    canonical: 'https://disasterrecovery.com.au/events/tc-maila-fnq-2026',
   },
   openGraph: {
     title: 'TC Maila FNQ — Preparation & Recovery | Disaster Recovery',
@@ -93,6 +95,7 @@ export default function CycloneMailaQLD2026Page() {
       financialAssistance={financialAssistanceItems}
       governmentApplicationUrl="https://www.disaster.qld.gov.au/"
       governmentApplicationLabel="Queensland Disaster Hub"
+      claimsHotline="1300 309 361"
     />
   );
 }

@@ -61,6 +61,20 @@ function LoginPageOriginal() {
         .login-form-input::placeholder { color: #6b7280; }
       `}</style>
       <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border bg-card p-8">
+        {/* DR-756: Session-expiry banner */}
+        {showExpiredBanner && (
+          <div className="flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+            <span className="flex-1">Your session expired — please sign in again.</span>
+            <button
+              onClick={() => setShowExpiredBanner(false)}
+              aria-label="Dismiss"
+              className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber-600"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        )}
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Welcome back</h1>
           <p className="text-muted-foreground">Enter your credentials to access your account</p>

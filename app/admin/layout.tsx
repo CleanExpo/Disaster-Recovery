@@ -56,7 +56,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   if (!session?.user) {
-    // DR-756: pass reason=session_expired so login page shows a dismissible banner
+    // DR-756: Pass reason=session_expired so the login page can show a
+    // dismissible banner explaining why the user was redirected.
     redirect(`/login?callbackUrl=${encodeURIComponent('/admin')}&reason=session_expired`);
   }
 
