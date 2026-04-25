@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Script from 'next/script';
-import dynamic from 'next/dynamic';
 import { Partytown } from '@builder.io/partytown/react';
 import '@/styles/globals.css';
 import '@/styles/mobile-responsive.css';
@@ -19,12 +18,8 @@ import RegisterServiceWorker from './register-sw';
 import { DirectionProvider } from '@/components/providers/DirectionProvider';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-
-// DR-722: Defer non-critical client components out of the initial JS bundle
-const ConsentBanner = dynamic(() => import('@/components/privacy/ConsentBanner').then(m => ({ default: m.ConsentBanner })), { ssr: false });
-const LoadingIndicator = dynamic(() => import('@/components/LoadingIndicator'), { ssr: false });
-const ProgressSpinner = dynamic(() => import('@/components/ProgressSpinner'), { ssr: false });
-const LazyImage = dynamic(() => import('@/components/LazyImage'), { ssr: false });
+// DR-722: Defer non-critical client components — lives in a Client Component to allow ssr: false
+import { ClientOnlyComponents } from './ClientOnlyComponents';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -521,10 +516,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
           </LayoutChrome>
-          <LoadingIndicator />
-          <ProgressSpinner />
-          <LazyImage />
-          <ConsentBanner />
+          <ClientOnlyComponents />
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
