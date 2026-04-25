@@ -24,7 +24,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "check:scripts": "node --input-type=module -e \"import{readFileSync}from'fs';const p=JSON.parse(readFileSync('./package.json','utf8'));const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\""
+    "check:scripts": "node --input-type=module -e \"import{readFileSync}from'fs';const p=JSON.parse(readFileSync('./package.json','utf8'));const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\"",
+    "analyze": "ANALYZE=true next build"
   },
   "prisma": {
     "seed": "tsx scripts/core/seed.ts"
@@ -170,6 +171,7 @@
     "@commitlint/config-conventional": "^20.5.0",
     "@modelcontextprotocol/server-memory": "^2025.8.4",
     "@modelcontextprotocol/server-sequential-thinking": "^2025.7.1",
+    "@next/bundle-analyzer": "^15.3.1",
     "@playwright/mcp": "^0.0.70",
     "@playwright/test": "^1.55.0",
     "@testing-library/jest-dom": "^6.9.1",
