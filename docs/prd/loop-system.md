@@ -14,13 +14,13 @@ the loop without reading the entire repo history.
 
 ## 2. Why this exists
 
-| Pain observed 2026-04-24 → 25 | Why a loop fixes it |
-| ------------------------------ | ------------------- |
-| Single 20+ PR session ran against context ceiling | Each loop is bounded to ≤1 logical feature |
-| Background agents duplicating each other's work | Loop owns file territory; others boycott |
-| Hard to resume after /clear or new session | Handoff file is the only input required |
-| Scope creep mid-session | Exit criteria are declared before implementation starts |
-| Skills (grill-me, tdd, design-an-interface) invoked ad-hoc | Skill invocation is a mandatory phase gate |
+| Pain observed 2026-04-24 → 25                              | Why a loop fixes it                                     |
+| ---------------------------------------------------------- | ------------------------------------------------------- |
+| Single 20+ PR session ran against context ceiling          | Each loop is bounded to ≤1 logical feature              |
+| Background agents duplicating each other's work            | Loop owns file territory; others boycott                |
+| Hard to resume after /clear or new session                 | Handoff file is the only input required                 |
+| Scope creep mid-session                                    | Exit criteria are declared before implementation starts |
+| Skills (grill-me, tdd, design-an-interface) invoked ad-hoc | Skill invocation is a mandatory phase gate              |
 
 ## 3. The seven phases
 
@@ -109,6 +109,7 @@ Every loop walks these phases in order. No skipping.
 - **Input:** everything above.
 - **Output:** `loops/<id>/07-handoff.md` — the **only** file the next session
   must read to resume. ≤300 words. Format:
+
   ```
   ## Done
   - <one-line-per-outcome>
@@ -121,20 +122,21 @@ Every loop walks these phases in order. No skipping.
   Read: docs/prd/loop-system.md
   Read: docs/prd/loops/<next-loop-id>/00-intake.md
   ```
+
 - **Skills invoked:** none.
 - **Exit gate:** PR merged + Linear ticket state updated + handoff file in main.
 
 ## 4. Skill invocation matrix
 
-| Skill | Phases it may appear in | Required in |
-| ----- | ------------------------ | ----------- |
-| `ubiquitous-language` | 1, 2, 6 | every loop that introduces domain terms |
-| `grill-me` | 1 | every loop |
-| `design-an-interface` | 2 | every loop that changes an interface |
-| `tdd` | 4 | every loop that ships code (not docs-only) |
-| `improve-codebase-architecture` | 3, 6 | loops touching >3 files |
-| `frontend-design` | 4 | loops shipping UI |
-| `pr-test-analyzer` | 5 | loops shipping code + tests |
+| Skill                           | Phases it may appear in | Required in                                |
+| ------------------------------- | ----------------------- | ------------------------------------------ |
+| `ubiquitous-language`           | 1, 2, 6                 | every loop that introduces domain terms    |
+| `grill-me`                      | 1                       | every loop                                 |
+| `design-an-interface`           | 2                       | every loop that changes an interface       |
+| `tdd`                           | 4                       | every loop that ships code (not docs-only) |
+| `improve-codebase-architecture` | 3, 6                    | loops touching >3 files                    |
+| `frontend-design`               | 4                       | loops shipping UI                          |
+| `pr-test-analyzer`              | 5                       | loops shipping code + tests                |
 
 ## 5. Handoff artifact templates
 
@@ -159,16 +161,16 @@ docs/prd/loops/<id>/
 
 Defaults. Override in the loop's `03-plan.md` when justified.
 
-| Phase | Budget | Notes |
-| ----- | ------ | ----- |
-| 0 Intake | 500 tokens | Restate ask + link context |
-| 1 Grill Me | 8k tokens | Cap at ~12 back-and-forth exchanges |
-| 2 Interface | 4k tokens | Spec only, no code |
-| 3 Plan | 3k tokens | Numbered list, terse |
-| 4 Implement | 40k tokens | Biggest; where code actually lands |
-| 5 Test | 5k tokens | Only failures get detail |
-| 6 Review | 4k tokens | Only real concerns |
-| 7 Handoff | 1k tokens | Short, crisp |
+| Phase       | Budget     | Notes                               |
+| ----------- | ---------- | ----------------------------------- |
+| 0 Intake    | 500 tokens | Restate ask + link context          |
+| 1 Grill Me  | 8k tokens  | Cap at ~12 back-and-forth exchanges |
+| 2 Interface | 4k tokens  | Spec only, no code                  |
+| 3 Plan      | 3k tokens  | Numbered list, terse                |
+| 4 Implement | 40k tokens | Biggest; where code actually lands  |
+| 5 Test      | 5k tokens  | Only failures get detail            |
+| 6 Review    | 4k tokens  | Only real concerns                  |
+| 7 Handoff   | 1k tokens  | Short, crisp                        |
 
 **Total budget per loop:** ≤70k tokens (~35% of a 200k window, or 7% of a 1M
 window). Two concurrent loops fit comfortably in one 1M session.
@@ -277,7 +279,7 @@ ready. Loops marked ▶ are ready to start; others are blocked on prerequisites.
 - **id:** `2026-04-27-domain-model-persistence`
 - **Blocks on:** design decisions from `02-interface.md` phase.
 - **Outcome:** replace in-memory FinanceReferral store + add Booking
-  + VoiceCall models.
+  - VoiceCall models.
 - **Est budget:** 40k tokens.
 
 ## 11. Loop bootstrap prompt (copy-paste ready)
@@ -356,7 +358,7 @@ Track over the next 10 loops:
 - APP 3/5/6/8 for anything touching PII.
 - Reg 25 language for anything touching credit referral.
 - Feature flags off by default (`NEXT_PUBLIC_<FEATURE>_ENABLED`).
-- No secrets in commits (gitleaks CI).
+- No secrets in commits (`.gitignore` is the contract; verify before staging).
 - No `--amend`, no force-push, no skip-hooks (`--no-verify` only when Phill
   explicitly authorises per CLAUDE.md §5.5).
 - NOT LEGAL ADVICE disclaimer on all user-facing / partner-facing docs.
@@ -376,6 +378,6 @@ This PRD is versioned. To amend:
 
 ---
 
-*This PRD supersedes ad-hoc session discipline in CLAUDE.md §8. CLAUDE.md
+_This PRD supersedes ad-hoc session discipline in CLAUDE.md §8. CLAUDE.md
 retains the one-liner pointer: "for multi-session work, follow the loop
-system at docs/prd/loop-system.md".*
+system at docs/prd/loop-system.md"._

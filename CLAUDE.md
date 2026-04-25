@@ -129,7 +129,7 @@ If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those
 | Voice         | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)         |
 | Deploy        | Vercel (authoritative — Vercel wins over local builds)               |
 | Observability | Sentry scaffold + request logger + compliance_events (DR-Day-9)      |
-| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck + gitleaks   |
+| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck              |
 
 ## 3. Commands
 

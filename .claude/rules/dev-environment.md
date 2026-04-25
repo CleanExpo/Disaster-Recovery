@@ -68,10 +68,13 @@ _Last updated: 2026-04-24 (Foundation Sprint Day 10)._
 
 - Secret keys live in Vercel env only (never in `.env` committed to
   git).
-- `.env.local` is git-ignored; contains dev-only overrides.
-- Gitleaks CI catches secrets on every push (DR-Day-0). Don't rely
-  on it — don't commit secrets in the first place.
-- Rotate checklist lives in the repo under the Day-0 triage notes.
+- `.env`, `.env.local`, `.env.production`, `.env.*.local` are all in
+  `.gitignore` — that is the **only** mechanism preventing secret
+  commits. Discipline + `.gitignore` is the contract; do not rely on
+  any external scanner that may produce false-positive noise.
+- If you need to add a new secret variable, add it to `.env` locally
+  AND mirror the variable name (placeholder value) into `.env.example`.
+- For production, set the value in Vercel env vars only.
 
 ## 7. Git hooks (Husky — DR-Day-6)
 
