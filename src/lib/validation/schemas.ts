@@ -29,7 +29,10 @@ export const claimSubmitSchema = z.object({
   propertyAddress: z.string().min(1).max(300),
   suburb: z.string().min(1).max(100).optional(),
   state: z.enum(AU_STATES).optional(),
-  postcode: z.string().regex(/^\d{4}$/).optional(),
+  postcode: z
+    .string()
+    .regex(/^\d{4}$/)
+    .optional(),
   damageTypes: z.array(z.string().max(100)).min(1).max(20),
   damageDescription: z.string().min(1).max(5000),
   urgencyLevel: z.enum(['emergency', 'urgent', 'standard']).optional(),
@@ -182,9 +185,7 @@ export const deviceTokenRegistrationSchema = z.object({
   appVersion: z.string().min(1).max(32),
 });
 
-export type DeviceTokenRegistrationInput = z.infer<
-  typeof deviceTokenRegistrationSchema
->;
+export type DeviceTokenRegistrationInput = z.infer<typeof deviceTokenRegistrationSchema>;
 
 // ----- Reverse geocode (native geolocation auto-fill) -----
 //
@@ -201,9 +202,7 @@ export const reverseGeocodeRequestSchema = z.object({
   lng: z.number().min(-180).max(180),
 });
 
-export type ReverseGeocodeRequestInput = z.infer<
-  typeof reverseGeocodeRequestSchema
->;
+export type ReverseGeocodeRequestInput = z.infer<typeof reverseGeocodeRequestSchema>;
 
 // ----- Native claim photo upload (iOS/Android Capacitor) -----
 //

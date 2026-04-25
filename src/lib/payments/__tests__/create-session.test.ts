@@ -19,8 +19,6 @@
  * mock — that's covered by a follow-up integration test in DR-712 proper.
  */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import assert from 'node:assert/strict';
 
 let pass = 0;

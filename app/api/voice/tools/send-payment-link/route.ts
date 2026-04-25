@@ -30,7 +30,6 @@ async function createStripeCheckoutUrl(draft_id: string): Promise<string | null>
   try {
     // Use SDK if available; fall back to REST if not. The repo lists stripe
     // as a dependency (^16.12.0) so the dynamic import should succeed.
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const Stripe = (await import('stripe')).default;
     const stripe = new Stripe(key);
     const session = await stripe.checkout.sessions.create({
