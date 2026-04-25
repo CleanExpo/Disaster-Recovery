@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-04-09",
-  "session": "Session 3 complete: GBP phone 1300 309 361 REMOVED — pending Google review (up to 30 days). Bing Places confirmed GBP-synced — edits must go via GBP. GBP description already clean (no QLD/Brisbane references). Facebook DR-465 blocked (password login required — manual action for Phill). Apple Business Connect DR-467 blocked (Apple ID required — manual action). ZoomInfo DR-468 no company profile found — auto-syncs from LinkedIn. DR-449 closed — SAB has no Q&A tab. All browser tasks attempted; manual-only tasks documented.",
+  "lastUpdated": "2026-04-12",
+  "session": "Session 38 — BUILD-PLAN-38-C: GAP-061 escalated to hard deadline. Legal written opinion on platform guarantee framing required by EOD Tue 14 Apr 2026 (owner: Toby + Legal). BUILD-004, paid campaign activation, and all forward deploys blocked pending GAP-061 clearance (un-hedged GAP-034 $100M/contravention ACL exposure). No code changes this session — manual escalation only. Linear: DR-535.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -72,7 +72,23 @@
   },
   "compliance": {
     "privacy": "APP 1-13 policy live. AI/automated processing section added (deadline 12 Apr 2026).",
-    "acl": "ACCC dark pattern audit: PASS. Drip pricing fixed. Guarantee language qualified.",
+    "acl": "ACCC dark pattern audit: PASS. Drip pricing fixed. Guarantee language qualified. No platform guarantee language on any live page pending GAP-061 clearance.",
+    "gap034": "ACTIVE EXPOSURE — $100M/contravention ACL penalty regime (active 26 Mar 2026). Un-hedged until GAP-061 legal opinion received. Mitigation: zero guarantee language on live pages.",
+    "gap061": {
+      "status": "ESCALATED — LEGAL REVIEW REQUIRED",
+      "description": "Platform guarantee framing — ACL s29(1)(g)/(m) / UCT unfair contract terms / $100M/contravention penalty review",
+      "deadline": "2026-04-14",
+      "owner": "Toby (brief forwarding) + Legal (written opinion)",
+      "blockedItems": ["BUILD-004 counter-positioning page (GAP-018/GAP-021/GAP-053)", "Paid campaign activation — all event pages", "Forward deploys carrying GAP-034 exposure"],
+      "outcome": {
+        "cleared": "BUILD-004 unblocks for Session 40–42. Paid activation after remaining gates (GAP-066, P0-B, P0-J/K via 38-B).",
+        "notCleared": "Re-scope BUILD-004 to remove guarantee language. Hard product constraint — no further deferral."
+      },
+      "sessionsOverdue": 10,
+      "hoursOverdue": 144,
+      "sessionEscalated": "Session 38 — 2026-04-12 06:00 AEST",
+      "ticket": "DR-535"
+    },
     "asic": "GAP-027 RESOLVED: All unsourced percentage stats removed from investor demo, onboarding curriculum, pitch-deck-data.ts, and reddit templates. Commits a12e4304 + 026b9387.",
     "iicrc": "All references updated to 2025 standards (S500:2025, S520:2025, S700:2025, S220)."
   },
@@ -92,7 +108,10 @@
   },
   "nextActions": {
     "immediate": [
-      "PERILS April 13 monitoring — Victoria Fires threshold",
+      "GAP-061 ESCALATION [TOBY — TODAY]: Forward platform guarantee brief to Legal. Written opinion required EOD Tue 14 Apr 2026. Blocks BUILD-004, paid activation, and forward deploys. DR-535.",
+      "GAP-066 [TOBY]: Confirm FNQ contractor/supplier coverage in writing — required gate before paid campaign activation.",
+      "PERILS monitoring — Victoria Fires threshold ($1B triggers BUILD-002 P0 escalation)",
+      "TC Maila post-landfall recovery content — damage hub for Cairns, Townsville, Port Douglas, Innisfail",
       "Google Vertex AI DPA signature",
       "Review collection campaign — use docs/review-request-templates.md, send to 10+ past clients (due Apr 14)",
       "GBP phone removal — SUBMITTED 2026-04-09 (pending Google review, up to 30 days)",
