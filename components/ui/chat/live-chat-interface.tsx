@@ -343,8 +343,10 @@ export const LiveChatInterface: React.FC = () => {
                 <ScrollArea className="flex-1 p-4">
                   <div className="space-y-4">
                     {isLoading ? (
-                      <div className="flex items-center justify-center py-8">
-                        <Loader2 className="w-6 h-6 animate-spin text-gray-200" />
+                      // DR-754: Show visible feedback during chat initialisation.
+                      <div className="flex flex-col items-center justify-center gap-2 py-8">
+                        <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
+                        <p className="text-xs text-gray-500">Connecting…</p>
                       </div>
                     ) : (
                       <>
