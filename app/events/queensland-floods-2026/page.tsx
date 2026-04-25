@@ -7,9 +7,7 @@
  * CRITICAL: General ESHA closed 7 April 2026 — DO NOT render general ESHA.
  * Only Extended ESHA (Exceptional Circumstances) is shown.
  *
- * Extended ESHA deadline: 27 April 2026
- * Personal Hardship Assistance deadline: 27 April 2026
- * Structural Assistance Grants deadline: 27 April 2026
+ * Deadlines managed in src/lib/deadlines.ts — do not hardcode dates here.
  *
  * ICA trust signal: 2,000+ flood-specific claims (March 2026 events).
  * ACL s29(1)(g)/(m) compliant — no unverified superlatives.
@@ -227,7 +225,7 @@ export default function QueenslandFloods2026Page() {
                   Extended Household and Structural Assistance under Exceptional Circumstances —
                   covers temporary accommodation, essential household items, meals, transport,
                   medical prescriptions, and childcare for eligible residents in the 10 declared
-                  LGAs. Available until 27 April 2026.
+                  LGAs. Check current deadline status above.
                 </p>
                 <div className="mb-4">
                   <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
