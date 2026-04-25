@@ -330,23 +330,36 @@ export default function UltraModernHeader() {
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // DR-723: throttle scroll + mousemove with rAF to avoid blocking main thread (INP)
+    let scrollRaf = 0;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      cancelAnimationFrame(scrollRaf);
+      scrollRaf = requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 20);
+      });
     };
-    
+
+    let mouseMoveRaf = 0;
     const handleMouseMove = (e: MouseEvent) => {
-      if (headerRef.current) {
-        const rect = headerRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top });
-      }
+      cancelAnimationFrame(mouseMoveRaf);
+      mouseMoveRaf = requestAnimationFrame(() => {
+        if (headerRef.current) {
+          const rect = headerRef.current.getBoundingClientRect();
+          setMousePosition({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+          });
+        }
+      });
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-    
+
+    // passive: true — browser won't wait for JS before painting scroll frames
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+
     return () => {
+      cancelAnimationFrame(scrollRaf);
+      cancelAnimationFrame(mouseMoveRaf);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };

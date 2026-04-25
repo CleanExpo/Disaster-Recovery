@@ -255,7 +255,7 @@ const Header: React.FC = () => {
                         )}
                       </div>
                       {item.description && (
-                        <div className="text-sm text-neutral-500 mt-0.5">
+                        <div className="text-sm text-neutral-600 mt-0.5">
                           {item.description}
                         </div>
                       )}
