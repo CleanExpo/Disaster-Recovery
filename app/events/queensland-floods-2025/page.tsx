@@ -108,6 +108,7 @@ export default function QueenslandFloods2025Page() {
       ]}
       governmentApplicationUrl="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply"
       governmentApplicationLabel="Queensland Flood Financial Assistance — QLD Government"
+      claimsHotline="1300 309 361"
     />
   );
 }

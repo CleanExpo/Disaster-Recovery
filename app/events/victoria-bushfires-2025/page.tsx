@@ -86,6 +86,7 @@ export default function VictoriaBushfires2025Page() {
           applicationUrl: 'https://www.ica.com.au',
         },
       ]}
+      claimsHotline="1300 309 361"
     />
   );
 }

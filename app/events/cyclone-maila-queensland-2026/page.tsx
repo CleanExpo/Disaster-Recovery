@@ -95,6 +95,7 @@ export default function CycloneMailaQLD2026Page() {
       financialAssistance={financialAssistanceItems}
       governmentApplicationUrl="https://www.disaster.qld.gov.au/"
       governmentApplicationLabel="Queensland Disaster Hub"
+      claimsHotline="1300 309 361"
     />
   );
 }

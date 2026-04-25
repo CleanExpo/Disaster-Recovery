@@ -67,6 +67,12 @@ export interface AgGuidePageTemplateProps {
   relatedGuides?: RelatedGuide[];
   /** CTA button */
   cta?: { text: string; href: string };
+  /**
+   * Above-fold hero CTA — renders a primary red button immediately below the
+   * subtitle. Intended for distressed users on event pages (≤3-tap protocol).
+   * DR-749.
+   */
+  heroCta?: { text: string; href: string };
   /** Fallback content when AG flag is OFF */
   fallback?: ReactNode;
   /** Last-reviewed date for AI citation freshness (ISO format, e.g. '2026-02-26') */
@@ -115,6 +121,7 @@ export function AgGuidePageTemplate({
   faqs,
   relatedGuides,
   cta,
+  heroCta,
   lastReviewed,
   stats,
   author,
@@ -237,6 +244,31 @@ export function AgGuidePageTemplate({
             <p className="ag-hero-subtext ag-slide-up-3" style={{ maxWidth: '650px' }}>
               {subtitle}
             </p>
+          )}
+
+          {/* Above-fold CTA — distressed users (≤3-tap protocol, DR-749) */}
+          {heroCta && (
+            <div className="ag-slide-up-3" style={{ marginTop: '1.5rem' }}>
+              <Link
+                href={heroCta.href}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '0.875rem 2rem',
+                  minHeight: '48px',
+                  background: '#dc2626',
+                  color: '#fff',
+                  fontWeight: 700,
+                  fontSize: '1.0625rem',
+                  borderRadius: '0.5rem',
+                  textDecoration: 'none',
+                  transition: 'background 0.15s',
+                }}
+              >
+                {heroCta.text}
+              </Link>
+            </div>
           )}
 
           {/* Last-reviewed badge — freshness signal for users and AI crawlers */}

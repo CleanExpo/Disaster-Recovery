@@ -47,6 +47,12 @@ export interface DisasterEventPageProps {
   governmentApplicationUrl?: string;
   governmentApplicationLabel?: string;
 
+  /**
+   * NRPG claims hotline — renders a "Call {number}" tel: button in the hero CTA row.
+   * Separate from governmentHotline so the label stays accurate. DR-750.
+   */
+  claimsHotline?: string;
+
   // SEO
   metaTitle: string;
   metaDescription: string;
@@ -164,6 +170,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
     governmentHotline,
     governmentApplicationUrl,
     governmentApplicationLabel,
+    claimsHotline,
     eshaDeadline,
     alertNote,
     slug,
@@ -285,6 +292,15 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
                   className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg transition-colors text-lg border border-white/20"
                 >
                   Gov Hotline: {governmentHotline}
+                </a>
+              )}
+              {/* DR-750: NRPG claims hotline — separate label from gov hotline */}
+              {claimsHotline && (
+                <a
+                  href={`tel:${claimsHotline.replace(/\s/g, '')}`}
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg transition-colors text-lg border border-white/20"
+                >
+                  Call {claimsHotline}
                 </a>
               )}
             </div>
