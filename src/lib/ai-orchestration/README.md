@@ -440,11 +440,12 @@ Clears all caches (routing, sequential thinking, discussions).
 - Monitor memory usage and eviction patterns
 - Consider cache warm-up strategies
 
+> **⚠️ Local development only** — Debug mode must never be enabled in production. Remove these variables before deploying.
+
 ### Debug Mode
 Enable verbose logging by setting environment variables:
 ```env
 LOG_LEVEL=debug
-ORCHESTRATION_DEBUG=true
 ```
 
 ### Health Checks
