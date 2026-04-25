@@ -40,3 +40,9 @@ jobs:
       run: npm run build
       env:
         SKIP_ENV_VALIDATION: true
+        NEXT_TELEMETRY_DISABLED: '1'
+        DATABASE_URL: 'postgresql://ci:ci@localhost:5432/ci'
+        NEXTAUTH_SECRET: 'ci-build-secret'
+        NEXTAUTH_URL: 'http://localhost:3000'
+        NEXT_PUBLIC_SUPABASE_URL: 'https://placeholder.supabase.co'
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: 'placeholder-anon-key'
