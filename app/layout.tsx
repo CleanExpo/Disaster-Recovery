@@ -7,29 +7,19 @@ import '@/styles/mobile-responsive.css';
 import '@/styles/performance-optimizations.css';
 import '@/styles/antigravity-design-system.css';
 import { Providers } from './providers';
-import UltraModernHeader from '@/components/UltraModernHeader';
-import UltraModernFooter from '@/components/UltraModernFooter';
-import DemoModeIndicator from '@/components/DemoModeIndicator';
-import DemoModeBanner from '@/components/demo/DemoModeBanner';
+// DR-722: LayoutChrome renders Header/Footer/Nav internally — remove redundant static imports
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity';
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
 import { ConsentModeInit } from '@/components/analytics/ConsentModeInit';
-import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA';
-import MobileNav from '@/components/mobile/MobileNav';
-import MobileFAB from '@/components/mobile/MobileFAB';
-import Breadcrumb from '@/components/Breadcrumb';
-import NavigationIndicator from '@/components/NavigationIndicator';
-import { AntigravityLayoutGuard } from '@/components/AntigravityLayoutGuard';
 import { LayoutChrome } from '@/components/LayoutChrome';
 import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema';
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema';
 import RegisterServiceWorker from './register-sw';
 import { DirectionProvider } from '@/components/providers/DirectionProvider';
-import { ConsentBanner } from '@/components/privacy/ConsentBanner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-// import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
-// import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
+// DR-722: Defer non-critical client components — lives in a Client Component to allow ssr: false
+import { ClientOnlyComponents } from './ClientOnlyComponents';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -526,7 +516,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
           </LayoutChrome>
-          <ConsentBanner />
+          <ClientOnlyComponents />
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
