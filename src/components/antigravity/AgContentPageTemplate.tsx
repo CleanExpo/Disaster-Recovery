@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityFooter } from './AntigravityFooter';
 
@@ -91,14 +92,19 @@ export function AgContentPageTemplate({
       <AntigravityNavbar />
 
       {/* Hero */}
-      <header
-        className="ag-service-header"
-        style={hero.heroImage ? {
-          backgroundImage: `url(${hero.heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        } : undefined}
-      >
+      <header className="ag-service-header">
+        {/* DR-719: next/image with priority replaces CSS backgroundImage for LCP */}
+        {hero.heroImage && (
+          <Image
+            src={hero.heroImage}
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+          />
+        )}
         <div className="ag-header-overlay" style={{ background: hero.gradient, opacity: hero.heroImage ? 0.75 : undefined }} />
         <div className="ag-container ag-header-content" style={{ maxWidth: '900px' }}>
           {breadcrumbs && breadcrumbs.length > 0 && (

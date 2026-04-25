@@ -122,6 +122,9 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     // Image sizes for various breakpoints
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // DR-719: cache optimised images for 1 year — hero WebPs are stable assets.
+    // Default is 60 s which causes unnecessary re-optimisation on repeat visits.
+    minimumCacheTTL: 31536000,
   },
 }
 
