@@ -11,42 +11,42 @@
  * Equipped sends the first status webhook.
  */
 
-import Link from "next/link";
-import { listReferrals, type ReferralStage } from "@/lib/finance/referral-store";
+import Link from 'next/link';
+import { listReferrals, type ReferralStage } from '@/lib/finance/referral-store';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   searchParams: Promise<{ stage?: string; range?: string }>;
 }
 
-const RANGE_DAYS: Record<string, number> = { "7d": 7, "30d": 30, "90d": 90 };
+const RANGE_DAYS: Record<string, number> = { '7d': 7, '30d': 30, '90d': 90 };
 
 const STAGE_OPTIONS: Array<{ value: string; label: string }> = [
-  { value: "", label: "All stages" },
-  { value: "received", label: "Received" },
-  { value: "qualified", label: "Qualified" },
-  { value: "approved", label: "Approved" },
-  { value: "funded", label: "Funded" },
-  { value: "declined", label: "Declined" },
-  { value: "withdrawn", label: "Withdrawn" },
-  { value: "unknown", label: "Unknown" },
+  { value: '', label: 'All stages' },
+  { value: 'received', label: 'Received' },
+  { value: 'qualified', label: 'Qualified' },
+  { value: 'approved', label: 'Approved' },
+  { value: 'funded', label: 'Funded' },
+  { value: 'declined', label: 'Declined' },
+  { value: 'withdrawn', label: 'Withdrawn' },
+  { value: 'unknown', label: 'Unknown' },
 ];
 
 function truncate(hash: string | undefined): string {
-  if (!hash) return "—";
+  if (!hash) return '—';
   return hash.length <= 12 ? hash : `${hash.slice(0, 8)}…${hash.slice(-4)}`;
 }
 
 export default async function FinanceReferralsPage({ searchParams }: PageProps) {
   const params = await searchParams;
-  const flagOn = process.env.NEXT_PUBLIC_EQUIPPED_REFERRAL_ENABLED === "true";
+  const flagOn = process.env.NEXT_PUBLIC_EQUIPPED_REFERRAL_ENABLED === 'true';
 
-  const rangeKey = params.range && RANGE_DAYS[params.range] ? params.range : "30d";
+  const rangeKey = params.range && RANGE_DAYS[params.range] ? params.range : '30d';
   const since = new Date(Date.now() - RANGE_DAYS[rangeKey] * 86_400_000).toISOString();
-  const stage = (params.stage || "") as ReferralStage | "";
+  const stage = (params.stage || '') as ReferralStage | '';
 
-  const rows = listReferrals({
+  const rows = await listReferrals({
     stage: stage || undefined,
     since,
   });
@@ -59,13 +59,13 @@ export default async function FinanceReferralsPage({ searchParams }: PageProps) 
           Equipped Commercial Finance status ledger. Read-only view — hashed identifiers only.
         </p>
         <p className="text-xs text-gray-500 mt-2">
-          Flag{" "}
+          Flag{' '}
           <code className="px-1 py-0.5 bg-slate-800 rounded">
             NEXT_PUBLIC_EQUIPPED_REFERRAL_ENABLED
-          </code>{" "}
-          is currently{" "}
-          <span className={flagOn ? "text-emerald-400" : "text-amber-400"}>
-            {flagOn ? "ENABLED" : "disabled"}
+          </code>{' '}
+          is currently{' '}
+          <span className={flagOn ? 'text-emerald-400' : 'text-amber-400'}>
+            {flagOn ? 'ENABLED' : 'disabled'}
           </span>
           .
         </p>
@@ -113,10 +113,10 @@ export default async function FinanceReferralsPage({ searchParams }: PageProps) 
         <div className="rounded border border-slate-800 bg-slate-900/60 p-8 text-center text-gray-400">
           <p className="text-lg font-medium text-gray-200">No finance referrals yet.</p>
           <p className="mt-2 text-sm">
-            This view activates once{" "}
+            This view activates once{' '}
             <code className="px-1 py-0.5 bg-slate-800 rounded">
               NEXT_PUBLIC_EQUIPPED_REFERRAL_ENABLED
-            </code>{" "}
+            </code>{' '}
             is true and Equipped sends the first handoff.
           </p>
         </div>
@@ -140,7 +140,7 @@ export default async function FinanceReferralsPage({ searchParams }: PageProps) 
                     {truncate(r.entityIdentifierHash ?? r.referralId)}
                   </td>
                   <td className="px-3 py-2 text-gray-400">
-                    {new Date(r.createdAt).toLocaleString("en-AU")}
+                    {new Date(r.createdAt).toLocaleString('en-AU')}
                   </td>
                   <td className="px-3 py-2">
                     <span className="px-2 py-0.5 rounded bg-slate-800 text-gray-200">
@@ -148,7 +148,7 @@ export default async function FinanceReferralsPage({ searchParams }: PageProps) 
                     </span>
                   </td>
                   <td className="px-3 py-2 text-gray-300">{r.lastStatus}</td>
-                  <td className="px-3 py-2 text-gray-400">{r.consentVersion ?? "—"}</td>
+                  <td className="px-3 py-2 text-gray-400">{r.consentVersion ?? '—'}</td>
                   <td className="px-3 py-2">
                     {r.smsSent ? (
                       <span className="text-emerald-400">Yes</span>
