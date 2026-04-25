@@ -1,6 +1,5 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Link from 'next/link';
@@ -16,7 +15,7 @@ import {
   ArrowRight,
   Sparkles,
   ShieldCheck,
-  Zap
+  Zap,
 } from 'lucide-react';
 
 function ModernContactPageOriginal() {
@@ -26,7 +25,7 @@ function ModernContactPageOriginal() {
     phone: '',
     service: '',
     urgency: '',
-    message: ''
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,14 +39,14 @@ function ModernContactPageOriginal() {
     'Mould Remediation',
     'Storm Damage',
     'Biohazard Cleanup',
-    'General Inquiry'
+    'General Inquiry',
   ];
 
   const urgencyLevels = [
     { value: 'emergency', label: 'Emergency (< 2 hours)', colour: 'from-red-500 to-blue-600' },
     { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-blue-600 to-blue-600' },
     { value: 'standard', label: 'Standard (2-3 days)', colour: 'from-blue-500 to-cyan-500' },
-    { value: 'quote', label: 'Quote Only', colour: 'from-purple-500 to-indigo-500' }
+    { value: 'quote', label: 'Quote Only', colour: 'from-purple-500 to-indigo-500' },
   ];
 
   const contactInfo = [
@@ -56,53 +55,61 @@ function ModernContactPageOriginal() {
       title: '24/7 Online Support',
       value: 'Chat & Form Available',
       subtext: 'Immediate response',
-      colour: 'from-red-500 to-blue-600'
+      colour: 'from-red-500 to-blue-600',
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Online Support',
       value: 'Submit a Support Request',
       subtext: 'Response within 2 hours',
-      colour: 'from-blue-500 to-cyan-500'
+      colour: 'from-blue-500 to-cyan-500',
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Service Areas',
       value: 'Australia Wide',
       subtext: 'All major cities & regions',
-      colour: 'from-green-500 to-emerald-500'
+      colour: 'from-green-500 to-emerald-500',
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: 'Response Time',
       value: '< 60 Minutes',
       subtext: 'For emergency calls',
-      colour: 'from-purple-500 to-indigo-500'
-    }
+      colour: 'from-purple-500 to-indigo-500',
+    },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null); // Clear any previous errors
-    
+
     try {
       const response = await fetch('/api/contact/submit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' },
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           ...formData,
           urgency: formData.urgency || 'routine',
-          service: formData.service.toLowerCase().replace(/ /g, '').includes('water') ? 'water' :
-                  formData.service.toLowerCase().includes('fire') ? 'fire' :
-                  formData.service.toLowerCase().includes('mould') ? 'mould' :
-                  formData.service.toLowerCase().includes('storm') ? 'storm' :
-                  formData.service.toLowerCase().includes('biohazard') ? 'biohazard' : 'other',
+          service: formData.service.toLowerCase().replace(/ /g, '').includes('water')
+            ? 'water'
+            : formData.service.toLowerCase().includes('fire')
+              ? 'fire'
+              : formData.service.toLowerCase().includes('mould')
+                ? 'mould'
+                : formData.service.toLowerCase().includes('storm')
+                  ? 'storm'
+                  : formData.service.toLowerCase().includes('biohazard')
+                    ? 'biohazard'
+                    : 'other',
           propertyType: 'residential',
           hasInsurance: true,
-          preferredContact: 'both'
-        }) });
+          preferredContact: 'both',
+        }),
+      });
 
       const data = await response.json();
 
@@ -125,7 +132,7 @@ function ModernContactPageOriginal() {
   };
 
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -139,9 +146,9 @@ function ModernContactPageOriginal() {
               'radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)',
               'radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)',
               'radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)',
-            ]
+            ],
           }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse' }}
         />
       </div>
 
@@ -160,7 +167,9 @@ function ModernContactPageOriginal() {
               transition={{ duration: 2, repeat: Infinity }}
             >
               <AlertTriangle className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-medium text-red-400">24/7 Online Emergency Response</span>
+              <span className="text-sm font-medium text-red-400">
+                24/7 Online Emergency Response
+              </span>
             </motion.div>
 
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6">
@@ -172,10 +181,10 @@ function ModernContactPageOriginal() {
                 Emergency Help
               </span>
             </h1>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Connect with certified restoration specialists in minutes. 
-              Available 24/7 for all emergency disaster recovery needs.
+              Connect with certified restoration specialists in minutes. Available 24/7 for all
+              emergency disaster recovery needs.
             </p>
           </motion.div>
         </div>
@@ -186,9 +195,15 @@ function ModernContactPageOriginal() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {contactInfo.map((info, i) => {
-              const gradientClassName = 'absolute inset-0 bg-gradient-to-r ' + info.colour + ' rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all';
-              const iconClassName = 'inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ' + info.colour + ' bg-opacity-20';
-              
+              const gradientClassName =
+                'absolute inset-0 bg-gradient-to-r ' +
+                info.colour +
+                ' rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all';
+              const iconClassName =
+                'inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ' +
+                info.colour +
+                ' bg-opacity-20';
+
               return (
                 <motion.div
                   key={i}
@@ -200,9 +215,7 @@ function ModernContactPageOriginal() {
                 >
                   <div className={gradientClassName} />
                   <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-                    <div className={iconClassName}>
-                      {info.icon}
-                    </div>
+                    <div className={iconClassName}>{info.icon}</div>
                     <h3 className="text-sm text-gray-300 mb-1">{info.title}</h3>
                     <p className="text-xl font-bold mb-1">{info.value}</p>
                     <p className="text-xs text-gray-300">{info.subtext}</p>
@@ -232,7 +245,9 @@ function ModernContactPageOriginal() {
                         Emergency Contact Form
                       </span>
                     </h2>
-                    <p className="text-gray-300">Fill out the form below for immediate assistance</p>
+                    <p className="text-gray-300">
+                      Fill out the form below for immediate assistance
+                    </p>
                   </div>
 
                   {/* Error Message */}
@@ -256,10 +271,7 @@ function ModernContactPageOriginal() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       {/* Name Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
+                      <motion.div whileTap={{ scale: 0.995 }} className="relative">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Your Name *
                         </label>
@@ -285,10 +297,7 @@ function ModernContactPageOriginal() {
                       </motion.div>
 
                       {/* Email Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
+                      <motion.div whileTap={{ scale: 0.995 }} className="relative">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Email Address *
                         </label>
@@ -304,11 +313,8 @@ function ModernContactPageOriginal() {
                         />
                       </motion.div>
 
-
                       {/* Service Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                      >
+                      <motion.div whileTap={{ scale: 0.995 }}>
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Service Required *
                         </label>
@@ -328,10 +334,7 @@ function ModernContactPageOriginal() {
                       </motion.div>
 
                       {/* Phone Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
+                      <motion.div whileTap={{ scale: 0.995 }} className="relative">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Phone Number *
                         </label>
@@ -355,11 +358,15 @@ function ModernContactPageOriginal() {
                       </label>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {urgencyLevels.map((level) => {
-                          const buttonClassName = formData.urgency === level.value
-                            ? 'relative p-3 rounded-xl border transition-all border-purple-500 bg-purple-500/20'
-                            : 'relative p-3 rounded-xl border transition-all border-gray-700 bg-gray-900/50 hover:border-gray-600';
-                          const overlayClassName = 'absolute inset-0 bg-gradient-to-r ' + level.colour + ' rounded-xl opacity-20';
-                          
+                          const buttonClassName =
+                            formData.urgency === level.value
+                              ? 'relative p-3 rounded-xl border transition-all border-purple-500 bg-purple-500/20'
+                              : 'relative p-3 rounded-xl border transition-all border-gray-700 bg-gray-900/50 hover:border-gray-600';
+                          const overlayClassName =
+                            'absolute inset-0 bg-gradient-to-r ' +
+                            level.colour +
+                            ' rounded-xl opacity-20';
+
                           return (
                             <motion.button
                               key={level.value}
@@ -383,9 +390,7 @@ function ModernContactPageOriginal() {
                     </div>
 
                     {/* Message Field */}
-                    <motion.div
-                      whileTap={{ scale: 0.995 }}
-                    >
+                    <motion.div whileTap={{ scale: 0.995 }}>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
                         Describe Your Situation *
                       </label>
@@ -401,10 +406,12 @@ function ModernContactPageOriginal() {
 
                     {/* APP 3 Collection Notice */}
                     <p className="text-xs text-gray-400 leading-relaxed">
-                      By submitting this form, you consent to Disaster Recovery Australia collecting your contact details to respond to your enquiry. Handled in accordance with the{' '}
+                      By submitting this form, you consent to Disaster Recovery collecting your
+                      contact details to respond to your enquiry. Handled in accordance with the{' '}
                       <Link href="/privacy-policy" className="underline hover:text-gray-300">
                         Privacy Policy
-                      </Link>.
+                      </Link>
+                      .
                     </p>
 
                     {/* Submit Button */}
@@ -422,7 +429,7 @@ function ModernContactPageOriginal() {
                           <>
                             <motion.div
                               animate={{ rotate: 360 }}
-                              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                              transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
                               className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
                             />
                             Submitting...
@@ -461,15 +468,19 @@ function ModernContactPageOriginal() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="max-w-2xl mx-auto text-center"
               >
-                <div className="success bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-6 sm:p-12 border border-green-500/30" role="alert" aria-live="polite">
+                <div
+                  className="success bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-6 sm:p-12 border border-green-500/30"
+                  role="alert"
+                  aria-live="polite"
+                >
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
+                    transition={{ type: 'spring', delay: 0.2 }}
                   >
                     <CheckCircle className="w-24 h-24 text-emerald-400 mx-auto mb-6" />
                   </motion.div>
-                  
+
                   <motion.h2
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -480,7 +491,7 @@ function ModernContactPageOriginal() {
                       Request Received!
                     </span>
                   </motion.h2>
-                  
+
                   <motion.p
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -499,11 +510,15 @@ function ModernContactPageOriginal() {
                     <h3 className="font-semibold text-emerald-400 mb-3">What happens next:</h3>
                     <div className="flex items-start gap-3">
                       <span className="text-emerald-400">1.</span>
-                      <span className="text-gray-300">Immediate phone call from our dispatch team</span>
+                      <span className="text-gray-300">
+                        Immediate phone call from our dispatch team
+                      </span>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-emerald-400">2.</span>
-                      <span className="text-gray-300">Emergency crew dispatched to your location</span>
+                      <span className="text-gray-300">
+                        Emergency crew dispatched to your location
+                      </span>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-emerald-400">3.</span>
@@ -524,7 +539,7 @@ function ModernContactPageOriginal() {
                         phone: '',
                         service: '',
                         urgency: '',
-                        message: ''
+                        message: '',
                       });
                     }}
                     className="mt-8 px-6 py-3 bg-gray-800 hover:bg-gray-900 rounded-xl transition-colours"
@@ -555,7 +570,8 @@ function ModernContactPageOriginal() {
               </span>
             </h2>
             <p className="text-gray-400 mb-6">
-              Submit an emergency claim online — a contractor will call you as soon as a certified contractor is confirmed for your area.
+              Submit an emergency claim online — a contractor will call you as soon as a certified
+              contractor is confirmed for your area.
             </p>
             <motion.a
               href="/claim"

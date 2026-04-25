@@ -237,7 +237,7 @@ export default function Section54ContractorRightsPage() {
                 Work begins immediately without waiting for insurer approval — stopping the damage from worsening is always the priority. After make-safe, your contractor provides a formal contract with full terms and conditions.
               </p>
               <p>
-                We bill you directly. You control the process. You submit the documentation to your insurer and claim reimbursement. Full claims documentation is provided with every job. Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> if you need to manage cash flow while your claim is processed.
+                We bill you directly. You control the process. You submit the documentation to your insurer and claim reimbursement. Full claims documentation is provided with every job. Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> if you need to manage cash flow while your claim is processed.
               </p>
             </div>
           ),

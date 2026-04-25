@@ -6,7 +6,8 @@ import { WATER_DAMAGE_AUTHOR } from '@/lib/guide-authors';
 
 export const metadata: Metadata = {
   title: 'How Long Does Water Damage Restoration Take? — 2025 Guide',
-  description: 'Water damage restoration typically takes 3–5 days for drying, plus 1–4 weeks for repairs. Exact timeline depends on water category, affected area, and structural scope. IICRC-certified process explained.',
+  description:
+    'Water damage restoration typically takes 3–5 days for drying, plus 1–4 weeks for repairs. Exact timeline depends on water category, affected area, and structural scope. IICRC-certified process explained.',
   keywords: [
     'how long does water damage restoration take',
     'water damage restoration timeline',
@@ -19,11 +20,13 @@ export const metadata: Metadata = {
     'flood restoration how long',
   ],
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/guides/water-damage/how-long-does-water-damage-restoration-take',
+    canonical:
+      'https://disasterrecovery.com.au/guides/water-damage/how-long-does-water-damage-restoration-take',
   },
   openGraph: {
     title: 'How Long Does Water Damage Restoration Take?',
-    description: '3–5 days drying, 1–4 weeks repairs. Complete timeline guide for water damage restoration in Australia.',
+    description:
+      '3–5 days drying, 1–4 weeks repairs. Complete timeline guide for water damage restoration in Australia.',
     type: 'article',
   },
 };
@@ -32,7 +35,8 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'How Long Does Water Damage Restoration Take? — 2025 Guide',
-  description: 'A complete timeline for water damage restoration in Australia — from emergency extraction through structural drying to final repairs.',
+  description:
+    'A complete timeline for water damage restoration in Australia — from emergency extraction through structural drying to final repairs.',
   author: {
     '@type': 'Person',
     name: WATER_DAMAGE_AUTHOR.name,
@@ -41,24 +45,35 @@ const articleSchema = {
       '@type': 'EducationalOccupationalCredential',
       name: c,
     })),
-    memberOf: { '@type': 'Organization', name: 'Disaster Recovery Australia', url: 'https://disasterrecovery.com.au' },
+    memberOf: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery',
+      url: 'https://disasterrecovery.com.au',
+    },
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
-    logo: { '@type': 'ImageObject', url: 'https://disasterrecovery.com.au/images/antigravity/dr-logo.webp' },
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://disasterrecovery.com.au/images/antigravity/dr-logo.webp',
+    },
   },
   datePublished: '2025-08-01',
   dateModified: '2026-04-10',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://disasterrecovery.com.au/guides/water-damage/how-long-does-water-damage-restoration-take',
+    '@id':
+      'https://disasterrecovery.com.au/guides/water-damage/how-long-does-water-damage-restoration-take',
   },
   articleSection: 'Water Damage',
   inLanguage: 'en-AU',
   isAccessibleForFree: true,
-  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.ag-hero-subtext', '.ag-prose h2'] },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.ag-hero-subtext', '.ag-prose h2'],
+  },
 };
 
 const faqSchema = {
@@ -179,8 +194,16 @@ const timelinePhases: TimelinePhase[] = [
 export default function HowLongWaterDamagePage() {
   return (
     <>
-      <Script id="wdt-article-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <Script id="wdt-faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <Script
+        id="wdt-article-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Script
+        id="wdt-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <AgGuidePageTemplate
         category="Water Damage"
         title="How Long Does Water Damage Restoration Take?"
@@ -199,30 +222,66 @@ export default function HowLongWaterDamagePage() {
           {
             heading: 'The Short Answer',
             body: (
-              <div style={{
-                background: 'rgba(3,105,161,0.15)',
-                border: '1px solid rgba(56,189,248,0.3)',
-                borderRadius: '0.75rem',
-                padding: '1.5rem',
-              }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem' }}>
+              <div
+                style={{
+                  background: 'rgba(3,105,161,0.15)',
+                  border: '1px solid rgba(56,189,248,0.3)',
+                  borderRadius: '0.75rem',
+                  padding: '1.5rem',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+                    gap: '1rem',
+                  }}
+                >
                   {[
                     { label: 'Emergency extraction', value: '2–6 hours', sub: 'Day 1' },
                     { label: 'Structural drying', value: '3–5 days', sub: 'Standard residential' },
                     { label: 'Severe / Cat 3 drying', value: '5–7 days', sub: 'Extended scope' },
-                    { label: 'Structural repairs', value: '1–4 weeks', sub: 'After drying complete' },
-                    { label: 'Full project (standard)', value: '1–3 weeks', sub: 'Extraction to handover' },
-                    { label: 'Full project (severe)', value: '4–8 weeks', sub: 'Cat 3 or major flood' },
+                    {
+                      label: 'Structural repairs',
+                      value: '1–4 weeks',
+                      sub: 'After drying complete',
+                    },
+                    {
+                      label: 'Full project (standard)',
+                      value: '1–3 weeks',
+                      sub: 'Extraction to handover',
+                    },
+                    {
+                      label: 'Full project (severe)',
+                      value: '4–8 weeks',
+                      sub: 'Cat 3 or major flood',
+                    },
                   ].map((item) => (
-                    <div key={item.label} style={{
-                      background: 'rgba(255,255,255,0.06)',
-                      borderRadius: '0.5rem',
-                      padding: '1rem',
-                      textAlign: 'center',
-                    }}>
-                      <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#38BDF8' }}>{item.value}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 600, marginTop: '0.25rem' }}>{item.label}</div>
-                      <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '0.1rem' }}>{item.sub}</div>
+                    <div
+                      key={item.label}
+                      style={{
+                        background: 'rgba(255,255,255,0.06)',
+                        borderRadius: '0.5rem',
+                        padding: '1rem',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#38BDF8' }}>
+                        {item.value}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: '0.75rem',
+                          color: '#fff',
+                          fontWeight: 600,
+                          marginTop: '0.25rem',
+                        }}
+                      >
+                        {item.label}
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '0.1rem' }}>
+                        {item.sub}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -234,24 +293,30 @@ export default function HowLongWaterDamagePage() {
             body: (
               <div className="space-y-4 text-gray-300">
                 <p>
-                  Structural drying is governed by physics, not speed of work. Water molecules bonded into timber,
-                  concrete, and gypsum must be drawn out by maintaining a precise vapour pressure differential
-                  between the building material and the surrounding air. This is achieved by running LGR dehumidifiers
-                  and air movers continuously for 3–5 days.
+                  Structural drying is governed by physics, not speed of work. Water molecules
+                  bonded into timber, concrete, and gypsum must be drawn out by maintaining a
+                  precise vapour pressure differential between the building material and the
+                  surrounding air. This is achieved by running LGR dehumidifiers and air movers
+                  continuously for 3–5 days.
                 </p>
                 <p>
-                  Attempting to accelerate by closing up walls, repainting, or relaying flooring before readings confirm
-                  drying is complete will trap residual moisture. That trapped moisture generates mould within 2–4 weeks,
-                  requiring the restoration to be reopened — at significantly greater cost.
+                  Attempting to accelerate by closing up walls, repainting, or relaying flooring
+                  before readings confirm drying is complete will trap residual moisture. That
+                  trapped moisture generates mould within 2–4 weeks, requiring the restoration to be
+                  reopened — at significantly greater cost.
                 </p>
-                <div style={{
-                  background: 'rgba(239,68,68,0.1)',
-                  border: '1px solid rgba(239,68,68,0.25)',
-                  borderRadius: '0.5rem',
-                  padding: '1rem',
-                  fontSize: '0.875rem',
-                }}>
-                  <strong style={{ color: '#fca5a5', display: 'block', marginBottom: '0.5rem' }}>Do not do this before drying is confirmed complete:</strong>
+                <div
+                  style={{
+                    background: 'rgba(239,68,68,0.1)',
+                    border: '1px solid rgba(239,68,68,0.25)',
+                    borderRadius: '0.5rem',
+                    padding: '1rem',
+                    fontSize: '0.875rem',
+                  }}
+                >
+                  <strong style={{ color: '#fca5a5', display: 'block', marginBottom: '0.5rem' }}>
+                    Do not do this before drying is confirmed complete:
+                  </strong>
                   <ul className="space-y-1 list-disc list-inside text-gray-400">
                     <li>Close up wall cavities or install new plasterboard</li>
                     <li>Repaint walls or ceilings</li>
@@ -277,15 +342,41 @@ export default function HowLongWaterDamagePage() {
                       padding: '1.25rem',
                     }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-start',
+                        marginBottom: '0.75rem',
+                        flexWrap: 'wrap',
+                        gap: '0.5rem',
+                      }}
+                    >
                       <strong style={{ color: '#fff', fontSize: '1rem' }}>{phase.phase}</strong>
-                      <span style={{ background: `${phase.colour}22`, color: phase.colour, padding: '0.2rem 0.75rem', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 700 }}>
+                      <span
+                        style={{
+                          background: `${phase.colour}22`,
+                          color: phase.colour,
+                          padding: '0.2rem 0.75rem',
+                          borderRadius: '999px',
+                          fontSize: '0.75rem',
+                          fontWeight: 700,
+                        }}
+                      >
                         {phase.duration}
                       </span>
                     </div>
                     <ul className="space-y-1">
                       {phase.steps.map((step) => (
-                        <li key={step} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.875rem', color: '#94a3b8' }}>
+                        <li
+                          key={step}
+                          style={{
+                            display: 'flex',
+                            gap: '0.5rem',
+                            fontSize: '0.875rem',
+                            color: '#94a3b8',
+                          }}
+                        >
                           <span style={{ color: phase.colour, flexShrink: 0 }}>→</span>
                           {step}
                         </li>
@@ -301,23 +392,67 @@ export default function HowLongWaterDamagePage() {
             body: (
               <div className="space-y-3 text-gray-300">
                 <p>Several factors can extend or compress total restoration time:</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '0.75rem' }}>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+                    gap: '0.75rem',
+                  }}
+                >
                   {[
-                    { factor: 'Water category', detail: 'Category 1 (clean) dries fastest. Category 3 (black water) requires full containment and antimicrobial treatment — adds 2–4 days minimum.' },
-                    { factor: 'Time before extraction starts', detail: 'Every hour of delay allows moisture to penetrate deeper into structural materials. 18+ hours undetected adds 1–2 days to drying.' },
-                    { factor: 'Affected area size', detail: 'A single bathroom may dry in 3 days. A whole-house flood may take 5–7 days even with full equipment deployment.' },
-                    { factor: 'Building materials', detail: 'Hardwood subfloors, thick concrete slabs, and dense wall insulation retain moisture longer than carpet, plasterboard, and softwood framing.' },
-                    { factor: 'Climate and humidity', detail: 'Queensland\'s tropical humidity extends drying times. Arid SA/WA conditions accelerate them. Equipment output is calibrated accordingly.' },
-                    { factor: 'Insurer access requirements', detail: 'If the insurer requires their own assessor visit before repairs begin, this can add 5–15 business days to the repair phase — not the drying phase.' },
+                    {
+                      factor: 'Water category',
+                      detail:
+                        'Category 1 (clean) dries fastest. Category 3 (black water) requires full containment and antimicrobial treatment — adds 2–4 days minimum.',
+                    },
+                    {
+                      factor: 'Time before extraction starts',
+                      detail:
+                        'Every hour of delay allows moisture to penetrate deeper into structural materials. 18+ hours undetected adds 1–2 days to drying.',
+                    },
+                    {
+                      factor: 'Affected area size',
+                      detail:
+                        'A single bathroom may dry in 3 days. A whole-house flood may take 5–7 days even with full equipment deployment.',
+                    },
+                    {
+                      factor: 'Building materials',
+                      detail:
+                        'Hardwood subfloors, thick concrete slabs, and dense wall insulation retain moisture longer than carpet, plasterboard, and softwood framing.',
+                    },
+                    {
+                      factor: 'Climate and humidity',
+                      detail:
+                        "Queensland's tropical humidity extends drying times. Arid SA/WA conditions accelerate them. Equipment output is calibrated accordingly.",
+                    },
+                    {
+                      factor: 'Insurer access requirements',
+                      detail:
+                        'If the insurer requires their own assessor visit before repairs begin, this can add 5–15 business days to the repair phase — not the drying phase.',
+                    },
                   ].map((item) => (
-                    <div key={item.factor} style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.07)',
-                      borderRadius: '0.5rem',
-                      padding: '0.875rem',
-                    }}>
-                      <strong style={{ color: '#38BDF8', display: 'block', fontSize: '0.875rem', marginBottom: '0.35rem' }}>{item.factor}</strong>
-                      <span style={{ color: '#94a3b8', fontSize: '0.8rem', lineHeight: 1.6 }}>{item.detail}</span>
+                    <div
+                      key={item.factor}
+                      style={{
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.07)',
+                        borderRadius: '0.5rem',
+                        padding: '0.875rem',
+                      }}
+                    >
+                      <strong
+                        style={{
+                          color: '#38BDF8',
+                          display: 'block',
+                          fontSize: '0.875rem',
+                          marginBottom: '0.35rem',
+                        }}
+                      >
+                        {item.factor}
+                      </strong>
+                      <span style={{ color: '#94a3b8', fontSize: '0.8rem', lineHeight: 1.6 }}>
+                        {item.detail}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -329,14 +464,16 @@ export default function HowLongWaterDamagePage() {
             body: (
               <div className="space-y-3 text-gray-300">
                 <p>
-                  Emergency make-safe — including water extraction and drying equipment deployment — does not require
-                  insurer pre-approval. Begin immediately to prevent mould and escalating damage.
+                  Emergency make-safe — including water extraction and drying equipment deployment —
+                  does not require insurer pre-approval. Begin immediately to prevent mould and
+                  escalating damage.
                 </p>
                 <p>
-                  Under the General Insurance Code of Practice, your insurer must acknowledge your claim within
-                  10 business days and provide a decision within 10 business days of receiving all required information.
-                  If your insurer delays the repair phase by failing to provide assessor access or approval within
-                  reasonable timeframes, this is a GICP compliance issue.
+                  Under the General Insurance Code of Practice, your insurer must acknowledge your
+                  claim within 10 business days and provide a decision within 10 business days of
+                  receiving all required information. If your insurer delays the repair phase by
+                  failing to provide assessor access or approval within reasonable timeframes, this
+                  is a GICP compliance issue.
                 </p>
               </div>
             ),
@@ -347,10 +484,26 @@ export default function HowLongWaterDamagePage() {
           answer: faq.acceptedAnswer.text,
         }))}
         relatedGuides={[
-          { title: 'Emergency Water Extraction', href: '/services/emergency-water-extraction', description: 'Lodge an emergency claim — priority dispatch.' },
-          { title: 'What to Do After a Flood', href: '/guides/flood-damage/what-to-do-after-a-flood-australia', description: 'Step-by-step flood recovery guide.' },
-          { title: 'When Your Insurer Delays Your Claim', href: '/guides/insurance/insurer-delays-your-claim', description: 'GICP timeframes and how to escalate.' },
-          { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Full water damage restoration service.' },
+          {
+            title: 'Emergency Water Extraction',
+            href: '/services/emergency-water-extraction',
+            description: 'Lodge an emergency claim — priority dispatch.',
+          },
+          {
+            title: 'What to Do After a Flood',
+            href: '/guides/flood-damage/what-to-do-after-a-flood-australia',
+            description: 'Step-by-step flood recovery guide.',
+          },
+          {
+            title: 'When Your Insurer Delays Your Claim',
+            href: '/guides/insurance/insurer-delays-your-claim',
+            description: 'GICP timeframes and how to escalate.',
+          },
+          {
+            title: 'Water Damage Restoration',
+            href: '/services/water-damage-restoration',
+            description: 'Full water damage restoration service.',
+          },
         ]}
         cta={{ text: 'Lodge Emergency Claim', href: '/claim?service=water-damage' }}
       />

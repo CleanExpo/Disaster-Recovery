@@ -30,6 +30,7 @@ import {
   MapPin,
   Calendar
 } from 'lucide-react';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Application {
   id: string;
@@ -71,7 +72,7 @@ export function ApplicationReview() {
       const data = await response.json();
       setApplications(data);
     } catch (error) {
-      console.error('Failed to fetch applications:', error);
+      clientLogger.error('Failed to fetch applications:', { source: 'sections/ApplicationReview' }, error);
     }
   };
 
@@ -140,7 +141,7 @@ export function ApplicationReview() {
         setReviewAction(null);
       }
     } catch (error) {
-      console.error('Failed to submit review:', error);
+      clientLogger.error('Failed to submit review:', { source: 'sections/ApplicationReview' }, error);
     }
   };
 

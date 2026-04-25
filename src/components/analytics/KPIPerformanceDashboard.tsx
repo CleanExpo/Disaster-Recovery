@@ -53,6 +53,7 @@ import {
 } from 'recharts';
 import { KPIMetrics, AnalyticsDateRange } from '@/types/analytics';
 import { usePermissions } from '@/hooks/usePermissions';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 export function KPIPerformanceDashboard() {
   const [metrics, setMetrics] = useState<KPIMetrics | null>(null);
@@ -84,7 +85,7 @@ export function KPIPerformanceDashboard() {
       const data = await response.json();
       setMetrics(data);
     } catch (error) {
-      console.error('Failed to fetch KPI metrics:', error);
+      clientLogger.error('Failed to fetch KPI metrics:', { source: 'analytics/KPIPerformanceDashboard' }, error);
     } finally {
       setLoading(false);
     }
@@ -523,7 +524,7 @@ export function KPIPerformanceDashboard() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="count"

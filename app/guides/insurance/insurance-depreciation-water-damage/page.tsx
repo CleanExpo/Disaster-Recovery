@@ -232,8 +232,8 @@ export default function InsuranceDepreciationWaterDamagePage() {
                 provided to support your reimbursement. After make-safe, your NRPG contractor
                 provides a formal contract with terms and conditions for the full restoration
                 scope. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 if needed.
               </p>

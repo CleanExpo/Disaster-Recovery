@@ -29,8 +29,8 @@ jobs:
     - name: Generate Prisma Client
       run: npx prisma generate
 
-    - name: TypeScript check
-      run: npx tsc --noEmit || echo "::warning::TypeScript errors found — review before enforcing"
+    - name: TypeScript check (HARD GATE since Foundation Sprint 2026-04-24)
+      run: npx tsc --noEmit
 
     - name: Test build (no deploy)
       run: npm run build || echo "::warning::Build errors found. Check prerender failures."

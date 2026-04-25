@@ -525,8 +525,8 @@ export default function CampaignManagementTools() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-700">
-                      <p>{campaign.timeline.startDate.toLocaleDateString('en-AU')}</p>
-                      <p>to {campaign.timeline.endDate.toLocaleDateString('en-AU')}</p>
+                      <p>{campaign.timeline.startDate?.toLocaleDateString('en-AU')}</p>
+                      <p>to {campaign.timeline.endDate?.toLocaleDateString('en-AU')}</p>
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -600,7 +600,7 @@ export default function CampaignManagementTools() {
               </div>
               <div className="flex justify-between">
                 <span>Recommended Budget:</span>
-                <span>{formatCurrency(template.budget.recommended)}</span>
+                <span>{formatCurrency(template.budget.recommended ?? 0)}</span>
               </div>
             </div>
             <div className="mt-4 flex space-x-2">
@@ -678,11 +678,11 @@ export default function CampaignManagementTools() {
                     <div className="flex items-center space-x-2 text-sm">
                       <span className="text-gray-700">ROI:</span>
                       <span className={`font-medium ${
-                        contractor.performance.roi >= 300 ? 'text-green-600' :
-                        contractor.performance.roi >= 200 ? 'text-yellow-600' :
+                        (contractor.performance.roi ?? 0) >= 300 ? 'text-green-600' :
+                        (contractor.performance.roi ?? 0) >= 200 ? 'text-yellow-600' :
                         'text-red-600'
                       }`}>
-                        {contractor.performance.roi}%
+                        {contractor.performance.roi ?? 0}%
                       </span>
                     </div>
                   </div>
@@ -721,7 +721,7 @@ export default function CampaignManagementTools() {
                 <p className="text-sm text-gray-700 mt-1">{campaign.description}</p>
                 <div className="flex items-center space-x-4 mt-2 text-sm text-gray-700">
                   <span>Budget: {formatCurrency(campaign.budget.total)}</span>
-                  <span>Duration: {Math.ceil((campaign.timeline.endDate.getTime() - campaign.timeline.startDate.getTime()) / (1000 * 60 * 60 * 24))} days</span>
+                  <span>Duration: {Math.ceil(((campaign.timeline.endDate?.getTime() ?? 0) - (campaign.timeline.startDate?.getTime() ?? 0)) / (1000 * 60 * 60 * 24))} days</span>
                   <span>Manager: {campaign.manager}</span>
                 </div>
                 {campaign.approval.comments && (

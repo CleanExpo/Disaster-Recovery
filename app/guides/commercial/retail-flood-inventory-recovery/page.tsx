@@ -37,7 +37,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'How is billing handled for commercial retail restoration?',
-      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the store owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide comprehensive claims documentation covering building damage, contents (stock) losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance." },
+      acceptedAnswer: { '@type': 'Answer', text: "We bill you directly \u2014 the store owner or tenant \u2014 so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide comprehensive claims documentation covering building damage, contents (stock) losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance." },
     },
   ],
 };
@@ -205,7 +205,7 @@ export default function RetailFloodInventoryRecoveryPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for commercial restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for commercial restorations.
               </p>
             </div>
           ),
@@ -230,7 +230,7 @@ export default function RetailFloodInventoryRecoveryPage() {
         },
         {
           question: 'How is billing handled for commercial retail restoration?',
-          answer: 'We bill you directly — the store owner or tenant — so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide comprehensive claims documentation covering building damage, contents (stock) losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the store owner or tenant — so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. We provide comprehensive claims documentation covering building damage, contents (stock) losses, and business interruption to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

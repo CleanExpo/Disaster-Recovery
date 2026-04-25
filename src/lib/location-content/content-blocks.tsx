@@ -71,7 +71,7 @@ export function generateIntroSection(data: LocationData): ContentSection {
             insurance claims support, we provide end-to-end disaster recovery services across {city}.
             We bill you directly so restoration begins immediately, and provide comprehensive
             documentation to support your insurance claim. Payment plans are available through{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
         </>
       );
@@ -126,7 +126,7 @@ export function generateIntroSection(data: LocationData): ContentSection {
             the expertise and equipment to handle every scale of restoration. We bill you directly
             so work begins without delay, and provide comprehensive claims documentation for your
             insurer. Payment plans are available through{' '}
-            <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+            <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
           </p>
         </>
       );
@@ -414,7 +414,7 @@ export function generateInsuranceSection(data: LocationData): ContentSection {
         <p>
           After the initial make-safe, your contractor provides a formal contract with clear terms
           and conditions. Payment plans are available through{' '}
-          <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.
+          <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">Equipped Commercial Finance</a>.
         </p>
       </>
     ),

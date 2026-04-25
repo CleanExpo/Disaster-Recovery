@@ -111,7 +111,7 @@ const eventSchema = {
   },
   organizer: {
     '@type': 'Organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     url: 'https://disasterrecovery.com.au',
   },
   about: [
@@ -156,22 +156,33 @@ export default function TCMailaFNQ2026Page() {
             heading: 'TC Maila — Current Situation',
             body: (
               <>
-                <p style={{ backgroundColor: '#fff3cd', border: '1px solid #e0a800', borderRadius: '6px', padding: '0.75rem 1rem', fontWeight: 600, marginBottom: '1rem' }}>
-                  If you are in immediate danger, call 000. For life-threatening emergencies, do not delay contacting emergency services.
+                <p
+                  style={{
+                    backgroundColor: '#fff3cd',
+                    border: '1px solid #e0a800',
+                    borderRadius: '6px',
+                    padding: '0.75rem 1rem',
+                    fontWeight: 600,
+                    marginBottom: '1rem',
+                  }}
+                >
+                  If you are in immediate danger, call 000. For life-threatening emergencies, do not
+                  delay contacting emergency services.
                 </p>
                 <p>
-                  Tropical Cyclone Maila is active in the Coral Sea and may impact the Far North Queensland
-                  coast. For the latest track, intensity, and warning details, follow the Bureau of Meteorology
-                  (BOM) directly — conditions can change rapidly. Properties in any impact corridor may face
-                  wind, storm surge, intense rainfall, and flash flooding.
+                  Tropical Cyclone Maila is active in the Coral Sea and may impact the Far North
+                  Queensland coast. For the latest track, intensity, and warning details, follow the
+                  Bureau of Meteorology (BOM) directly — conditions can change rapidly. Properties
+                  in any impact corridor may face wind, storm surge, intense rainfall, and flash
+                  flooding.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  NRPG IICRC-certified contractors are coordinating availability across FNQ postcodes
-                  including 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873 (Kuranda),
-                  4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary Coast),
-                  4878 (Palm Cove), and 4879 (Trinity Beach). Claims can be lodged online 24/7 at{' '}
-                  <a href="/claim">disasterrecovery.com.au/claim</a>. Response times are subject to
-                  location, demand, and post-clearance access conditions.
+                  NRPG IICRC-certified contractors are coordinating availability across FNQ
+                  postcodes including 4870 (Cairns), 4877 (Port Douglas), 4895 (Daintree), 4873
+                  (Kuranda), 4874 (Mossman), 4880 (Atherton Tablelands), 4860 (Innisfail/Cassowary
+                  Coast), 4878 (Palm Cove), and 4879 (Trinity Beach). Claims can be lodged online
+                  24/7 at <a href="/claim">disasterrecovery.com.au/claim</a>. Response times are
+                  subject to location, demand, and post-clearance access conditions.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>Official BOM tracking:</strong>{' '}
@@ -193,9 +204,12 @@ export default function TCMailaFNQ2026Page() {
                 </p>
                 <App3CollectionNotice />
                 <p style={{ marginTop: '1rem' }}>
-                  <strong>Do NOT enter a damaged property until emergency services confirm the all-clear.</strong>{' '}
-                  Queensland Police, SES, or BOM will issue an official all-clear for each affected area.
-                  The eye of a cyclone produces deceptive calm — violent conditions return when the eye passes.
+                  <strong>
+                    Do NOT enter a damaged property until emergency services confirm the all-clear.
+                  </strong>{' '}
+                  Queensland Police, SES, or BOM will issue an official all-clear for each affected
+                  area. The eye of a cyclone produces deceptive calm — violent conditions return
+                  when the eye passes.
                 </p>
               </>
             ),
@@ -206,30 +220,31 @@ export default function TCMailaFNQ2026Page() {
               <>
                 <ol style={{ paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Wait for the official all-clear.</strong> Do not leave shelter until Queensland
-                    Police, SES, or BOM confirms the all-clear for your area.
+                    <strong>Wait for the official all-clear.</strong> Do not leave shelter until
+                    Queensland Police, SES, or BOM confirms the all-clear for your area.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Photograph all damage immediately.</strong> Timestamped photos and video of
-                    roof, walls, windows, contents, and external structures are critical for your insurance
-                    claim. Document before touching or moving anything.
+                    <strong>Photograph all damage immediately.</strong> Timestamped photos and video
+                    of roof, walls, windows, contents, and external structures are critical for your
+                    insurance claim. Document before touching or moving anything.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Lodge your claim within 72 hours.</strong> Most QLD home insurance policies
-                    have notification requirements. Lodge as &quot;cyclone damage&quot; and &quot;water ingress&quot; — not just
-                    &quot;flood&quot;. The ARPC Cyclone Pool applies to FNQ events.
+                    <strong>Lodge your claim within 72 hours.</strong> Most QLD home insurance
+                    policies have notification requirements. Lodge as &quot;cyclone damage&quot; and
+                    &quot;water ingress&quot; — not just &quot;flood&quot;. The ARPC Cyclone Pool
+                    applies to FNQ events.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
-                    <strong>Request an IICRC-certified contractor.</strong> NRPG provides psychrometric
-                    drying logs and full scope documentation required for insurer sign-off. Lodge now at{' '}
-                    <a href="/claim">disasterrecovery.com.au/claim</a> to be first in the dispatch
-                    queue — response times subject to location, demand, and post-clearance access
-                    conditions.
+                    <strong>Request an IICRC-certified contractor.</strong> NRPG provides
+                    psychrometric drying logs and full scope documentation required for insurer
+                    sign-off. Lodge now at <a href="/claim">disasterrecovery.com.au/claim</a> to be
+                    first in the dispatch queue — response times subject to location, demand, and
+                    post-clearance access conditions.
                   </li>
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Keep all emergency accommodation receipts.</strong> If your property is
-                    uninhabitable, your insurer&apos;s Additional Living Expenses (ALE) benefit typically
-                    covers temporary accommodation. Retain all receipts.
+                    uninhabitable, your insurer&apos;s Additional Living Expenses (ALE) benefit
+                    typically covers temporary accommodation. Retain all receipts.
                   </li>
                 </ol>
               </>
@@ -240,34 +255,41 @@ export default function TCMailaFNQ2026Page() {
             body: (
               <>
                 <p>
-                  NRPG provides end-to-end cyclone damage restoration and insurance documentation support
-                  across the full TC Maila impact corridor. Contractors aim to attend as soon as the
-                  official all-clear, subject to location, demand, and post-event access conditions:
+                  NRPG provides end-to-end cyclone damage restoration and insurance documentation
+                  support across the full TC Maila impact corridor. Contractors aim to attend as
+                  soon as the official all-clear, subject to location, demand, and post-event access
+                  conditions:
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Emergency make-safe:</strong> Structural stabilisation, temporary fencing, and
-                    hazard removal to secure the property immediately post-impact.
+                    <strong>Emergency make-safe:</strong> Structural stabilisation, temporary
+                    fencing, and hazard removal to secure the property immediately post-impact.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Roof tarping:</strong> Emergency tarping and board-up to prevent further water
-                    ingress until permanent repairs can proceed.
+                    <strong>Roof tarping:</strong> Emergency tarping and board-up to prevent further
+                    water ingress until permanent repairs can proceed.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Water extraction:</strong> Commercial-grade extraction of storm surge and
-                    wind-driven rain ingress from all affected areas.
+                    <strong>Water extraction:</strong> Commercial-grade extraction of storm surge
+                    and wind-driven rain ingress from all affected areas.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Structural drying to <a href="/standards/iicrc-s500-water-damage">IICRC S500:2025</a>:</strong> Psychrometric drying logs and
-                    full moisture mapping documentation for insurer compliance.
+                    <strong>
+                      Structural drying to{' '}
+                      <a href="/standards/iicrc-s500-water-damage">IICRC S500:2025</a>:
+                    </strong>{' '}
+                    Psychrometric drying logs and full moisture mapping documentation for insurer
+                    compliance.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Full insurance documentation:</strong> Scope of works, photo evidence packs,
-                    drying logs, and supporting documentation required for claim lodgement and assessment.
+                    <strong>Full insurance documentation:</strong> Scope of works, photo evidence
+                    packs, drying logs, and supporting documentation required for claim lodgement
+                    and assessment.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <strong>Insurer correspondence coordination:</strong> NRPG manages correspondence
-                    with your insurer through the restoration process, reducing delays and disputes.
+                    <strong>Insurer correspondence coordination:</strong> NRPG manages
+                    correspondence with your insurer through the restoration process, reducing
+                    delays and disputes.
                   </li>
                 </ul>
               </>
@@ -298,11 +320,7 @@ export default function TCMailaFNQ2026Page() {
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Queensland SES</strong> — emergency tarping, tree removal, and make-safe
                     during and immediately after the event.{' '}
-                    <a
-                      href="https://www.ses.qld.gov.au/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href="https://www.ses.qld.gov.au/" target="_blank" rel="noopener noreferrer">
                       ses.qld.gov.au
                     </a>
                   </li>
@@ -320,8 +338,8 @@ export default function TCMailaFNQ2026Page() {
                 </ul>
                 <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#555' }}>
                   Program availability and eligibility criteria are subject to change by the
-                  Queensland Government. Verify current activation status at official sources
-                  before applying.
+                  Queensland Government. Verify current activation status at official sources before
+                  applying.
                 </p>
               </>
             ),
@@ -331,20 +349,21 @@ export default function TCMailaFNQ2026Page() {
             body: (
               <>
                 <p>
-                  For context on the scale of FNQ cyclone events: Ex-Tropical Cyclone Alfred (March 2026)
-                  was confirmed at a final insured loss of AU$1.877 billion (Source: PERILS AG final estimate,
-                  March 2026) — the largest insured cyclone loss on a current-value basis since Cyclone Debbie
-                  in 2017. The Alfred loss involved over 132,000 claims across Queensland and northern New South
-                  Wales, with personal lines accounting for 70% of the total, commercial property 26%, and motor
-                  4% (Source: Insurance Council of Australia, April 2026).
+                  For context on the scale of FNQ cyclone events: Ex-Tropical Cyclone Alfred (March
+                  2026) was confirmed at a final insured loss of AU$1.877 billion (Source: PERILS AG
+                  final estimate, March 2026) — the largest insured cyclone loss on a current-value
+                  basis since Cyclone Debbie in 2017. The Alfred loss involved over 132,000 claims
+                  across Queensland and northern New South Wales, with personal lines accounting for
+                  70% of the total, commercial property 26%, and motor 4% (Source: Insurance Council
+                  of Australia, April 2026).
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  FNQ properties in the TC Maila corridor that also sustained damage during Ex-TC Alfred
-                  must document each event separately. NRPG manages dual-event properties with clearly
-                  delineated documentation packs for each claim — ensuring both events are lodged
-                  independently and accurately assessed by your insurer. Lodge at{' '}
-                  <a href="/claim">disasterrecovery.com.au/claim</a> and note if your property has prior
-                  Alfred damage.
+                  FNQ properties in the TC Maila corridor that also sustained damage during Ex-TC
+                  Alfred must document each event separately. NRPG manages dual-event properties
+                  with clearly delineated documentation packs for each claim — ensuring both events
+                  are lodged independently and accurately assessed by your insurer. Lodge at{' '}
+                  <a href="/claim">disasterrecovery.com.au/claim</a> and note if your property has
+                  prior Alfred damage.
                 </p>
               </>
             ),
@@ -364,7 +383,7 @@ export default function TCMailaFNQ2026Page() {
           {
             question: 'How does the ARPC Cyclone Pool affect my claim?',
             answer:
-              'The Australian Reinsurance Pool Corporation (ARPC) Cyclone Pool is a government reinsurance backstop for FNQ cyclone losses. Your insurer manages your claim on the pool\'s behalf — this does not change your rights as a policyholder. If your claim is underpaid or disputed, escalation to AFCA (Australian Financial Complaints Authority) remains available at no cost to you.',
+              "The Australian Reinsurance Pool Corporation (ARPC) Cyclone Pool is a government reinsurance backstop for FNQ cyclone losses. Your insurer manages your claim on the pool's behalf — this does not change your rights as a policyholder. If your claim is underpaid or disputed, escalation to AFCA (Australian Financial Complaints Authority) remains available at no cost to you.",
           },
           {
             question: 'Can I claim for both Alfred and TC Maila damage?',
@@ -381,7 +400,8 @@ export default function TCMailaFNQ2026Page() {
           {
             title: 'April 13 Convergence — TC Maila & Alfred Final Loss',
             href: '/events/april-13-convergence-2026',
-            description: 'TC Maila landfall and PERILS Alfred final release — two events, one window.',
+            description:
+              'TC Maila landfall and PERILS Alfred final release — two events, one window.',
           },
           {
             title: 'Cyclone Damage Restoration Cairns',

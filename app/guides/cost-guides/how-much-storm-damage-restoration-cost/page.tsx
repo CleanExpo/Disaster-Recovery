@@ -295,8 +295,8 @@ export default function HowMuchStormDamageRestorationCostPage() {
               </ul>
               <p style={{ marginTop: '1rem' }}>
                 Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage the upfront cost while you wait for your insurance reimbursement.
               </p>

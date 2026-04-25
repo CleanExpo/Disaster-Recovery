@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'How It Works | Damage to Restoration',
-  description: 'Your complete 6-step journey from property damage to full restoration. Emergency make-safe from $2,750, IICRC-certified contractors, immediate response with no insurer delays, and flexible payment plans via Blue Fire Finance.',
+  description: 'Your complete 6-step journey from property damage to full restoration. Emergency make-safe from $2,750, IICRC-certified contractors, immediate response with no insurer delays, and flexible payment plans via Equipped Commercial Finance.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/how-it-works',
   },
@@ -195,7 +195,7 @@ export default function HowItWorksPage() {
                 <li><strong>Contractor provides a formal contract</strong> — clear terms and conditions after make-safe</li>
               </ul>
               <p><strong>Flexible payment plans</strong> are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Blue Fire Finance</a>
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Equipped Commercial Finance</a>
                 {' '}— so you can manage restoration costs while your insurance claim is processed.
               </p>
             </div>
@@ -214,7 +214,7 @@ export default function HowItWorksPage() {
                 <li><strong>Insurance-compliant documentation</strong> — all invoicing formatted for insurer acceptance</li>
                 <li><strong>We bill you directly</strong> — work begins immediately, no insurer delays</li>
                 <li><strong>Flexible payment plans</strong> — manage costs through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Blue Fire Finance</a>
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Equipped Commercial Finance</a>
                 </li>
               </ul>
             </div>

@@ -12,6 +12,7 @@ import type {
   DocumentActivity,
   ActivityAction 
 } from '@/types/document-management';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface DocumentVersionControlProps {
   documentId: string;
@@ -167,7 +168,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
       setVersions(mockVersions);
       setActivities(mockActivities);
     } catch (error) {
-      console.error('Error loading document data:', error);
+      clientLogger.error('Error loading document data:', { source: 'documents/DocumentVersionControl' }, error);
     } finally {
       setLoading(false);
     }
@@ -212,7 +213,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
       }
       setShowRestoreModal(null);
     } catch (error) {
-      console.error('Error restoring version:', error);
+      clientLogger.error('Error restoring version:', { source: 'documents/DocumentVersionControl' }, error);
     }
   };
 

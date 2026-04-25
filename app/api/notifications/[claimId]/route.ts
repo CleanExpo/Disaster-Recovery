@@ -13,6 +13,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const MarkReadSchema = z.union([
   z.object({ ids: z.array(z.string()).min(1).max(100) }),
@@ -23,6 +24,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ claimId: string }> },
 ): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/notifications/[claimId]' });
   const { claimId } = await params;
 
   if (!claimId || typeof claimId !== 'string') {
@@ -60,7 +62,8 @@ export async function GET(
       unreadCount: notifications.filter((n) => !n.read).length,
     });
   } catch (err) {
-    console.error('[DR-389] Notification fetch error:', err);
+    log.error('notification fetch error', { ref: 'DR-389', error: err instanceof Error ? err.message : String(err) });
+    captureException(err, { tags: { route: '/api/notifications/[claimId]' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { success: false, error: 'Failed to fetch notifications' },
       { status: 500 },
@@ -72,6 +75,7 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ claimId: string }> },
 ): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/notifications/[claimId]' });
   const { claimId } = await params;
 
   if (!claimId || typeof claimId !== 'string') {
@@ -108,7 +112,8 @@ export async function POST(
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error('[DR-389] Mark-read error:', err);
+    log.error('mark-read error', { ref: 'DR-389', error: err instanceof Error ? err.message : String(err) });
+    captureException(err, { tags: { route: '/api/notifications/[claimId]' }, extra: { requestId: log.requestId } });
     return NextResponse.json(
       { success: false, error: 'Failed to update notifications' },
       { status: 500 },

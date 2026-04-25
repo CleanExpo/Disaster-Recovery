@@ -539,12 +539,12 @@ function BillingInfo() {
           reports) that you submit to your insurer for reimbursement. Payment
           plans are available through{' '}
           <a
-            href="https://www.bluefirefinance.com.au"
+            href="https://equippedcf.com.au"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold underline"
           >
-            Blue Fire Finance
+            Equipped Commercial Finance
           </a>
           .
         </p>

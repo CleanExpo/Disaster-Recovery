@@ -51,7 +51,7 @@ const faqSchema = {
       name: 'How is billing handled for multi-unit high-rise water damage?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We bill you directly \u2014 the body corporate, strata manager, or individual lot owner depending on who engages the service \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided, separated by common property and lot property ownership, to support all parties\u2019 insurance claims for reimbursement. Payment plans are available through Blue Fire Finance.',
+        text: 'We bill you directly \u2014 the body corporate, strata manager, or individual lot owner depending on who engages the service \u2014 so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided, separated by common property and lot property ownership, to support all parties\u2019 insurance claims for reimbursement. Payment plans are available through Equipped Commercial Finance.',
       },
     },
   ],
@@ -173,7 +173,7 @@ export default function GoldCoastHighRiseWaterDamagePage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for large multi-unit restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for large multi-unit restorations.
               </p>
             </div>
           ),
@@ -198,7 +198,7 @@ export default function GoldCoastHighRiseWaterDamagePage() {
         },
         {
           question: 'How is billing handled for multi-unit high-rise water damage?',
-          answer: 'We bill you directly — the body corporate, strata manager, or individual lot owner depending on who engages the service — so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided, separated by common property and lot property ownership, to support all parties\' insurance claims for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly — the body corporate, strata manager, or individual lot owner depending on who engages the service — so work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided, separated by common property and lot property ownership, to support all parties\' insurance claims for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

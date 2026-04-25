@@ -52,7 +52,7 @@ export default function PerthStormDamageEmergencyPage() {
         name: 'How is billing handled for Perth storm damage restoration?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories and restoration works to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          text: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories and restoration works to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       },
     ],
@@ -176,7 +176,7 @@ export default function PerthStormDamageEmergencyPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for storm damage restorations.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for storm damage restorations.
               </p>
             </div>
           ),
@@ -201,7 +201,7 @@ export default function PerthStormDamageEmergencyPage() {
         },
         {
           question: 'How is billing handled for Perth storm damage restoration?',
-          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories and restoration works to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance.',
+          answer: 'We bill you directly so work begins immediately without waiting for insurer approval. You control the process and the timeline. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided covering all damage categories and restoration works to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance.',
         },
       ]}
       relatedGuides={[

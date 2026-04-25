@@ -52,7 +52,7 @@ export default function AdelaideRentalMouldRemediationPage() {
         name: 'How is billing handled for rental mould remediation?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We bill you directly \u2014 whichever party engages the service (landlord or tenant). Work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance. The documentation package also supports SACAT proceedings if the cost responsibility between landlord and tenant is disputed.',
+          text: 'We bill you directly \u2014 whichever party engages the service (landlord or tenant). Work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance. The documentation package also supports SACAT proceedings if the cost responsibility between landlord and tenant is disputed.',
         },
       },
     ],
@@ -176,7 +176,7 @@ export default function AdelaideRentalMouldRemediationPage() {
                 </li>
               </ol>
               <p className="mt-4">
-                Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a> for larger remediation projects.
+                Payment plans are available through <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Equipped Commercial Finance</a> for larger remediation projects.
               </p>
             </div>
           ),
@@ -201,7 +201,7 @@ export default function AdelaideRentalMouldRemediationPage() {
         },
         {
           question: 'How is billing handled for rental mould remediation?',
-          answer: 'We bill you directly — whichever party engages the service (landlord or tenant). Work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support your insurance claim for reimbursement. Payment plans are available through Blue Fire Finance. The documentation package also supports SACAT proceedings if the cost responsibility between landlord and tenant is disputed.',
+          answer: 'We bill you directly — whichever party engages the service (landlord or tenant). Work begins immediately without waiting for insurer approval. After make-safe, the contractor provides a formal contract with full terms and conditions. Full claims documentation is provided to support your insurance claim for reimbursement. Payment plans are available through Equipped Commercial Finance. The documentation package also supports SACAT proceedings if the cost responsibility between landlord and tenant is disputed.',
         },
       ]}
       relatedGuides={[

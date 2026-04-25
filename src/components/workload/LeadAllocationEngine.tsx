@@ -16,6 +16,7 @@ import type {
   EligibleContractor,
   AllocationScore
 } from '@/types/workload-distribution';
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface LeadAllocationEngineProps {
   lead: Lead;
@@ -236,7 +237,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
       }
       
     } catch (error) {
-      console.error('Allocation failed:', error);
+      clientLogger.error('Allocation failed:', { source: 'workload/LeadAllocationEngine' }, error);
     } finally {
       setIsProcessing(false);
     }

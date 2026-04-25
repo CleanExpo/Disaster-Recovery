@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { GBP_PLACE_ID } from '@/lib/constants';
+import { requestLogger } from '@/lib/observability';
 
 // =============================================================================
 // /api/rating — Google Places API (New) live star rating endpoint
@@ -17,7 +18,8 @@ const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 const FALLBACK_RATING = 4.7;
 const FALLBACK_REVIEW_COUNT = 49;
 
-export async function GET() {
+export async function GET(request: Request) {
+  const log = requestLogger(request, { route: '/api/rating' });
   // Return cached data if fresh
   if (cachedRating && Date.now() - cachedRating.fetchedAt < CACHE_TTL_MS) {
     return NextResponse.json({
@@ -53,7 +55,7 @@ export async function GET() {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('[rating] Places API failed:', response.status, errorText);
+      log.error('Places API failed', { status: response.status, errorText });
       return NextResponse.json({
         rating: FALLBACK_RATING,
         reviewCount: FALLBACK_REVIEW_COUNT,
@@ -76,7 +78,7 @@ export async function GET() {
       cachedAt: new Date().toISOString(),
     });
   } catch (error) {
-    console.error('[rating] Places API fetch error:', error);
+    log.error('Places API fetch error', { error: error instanceof Error ? error.message : String(error) });
     return NextResponse.json({
       rating: FALLBACK_RATING,
       reviewCount: FALLBACK_REVIEW_COUNT,

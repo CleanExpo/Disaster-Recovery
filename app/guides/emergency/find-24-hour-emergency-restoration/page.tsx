@@ -43,7 +43,7 @@ const faqSchema = {
       name: 'What does emergency make-safe cost through Disaster Recovery?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The initial commitment through the Disaster Recovery platform is $2,750, comprising a $550 platform fee (covering claim lodgement, contractor matching, documentation, and support) and $2,200 in contractor credit applied to your emergency make-safe works. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Blue Fire Finance.',
+        text: 'The initial commitment through the Disaster Recovery platform is $2,750, comprising a $550 platform fee (covering claim lodgement, contractor matching, documentation, and support) and $2,200 in contractor credit applied to your emergency make-safe works. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Equipped Commercial Finance.',
       },
     },
     {
@@ -231,8 +231,8 @@ export default function Find24HourEmergencyRestorationPage() {
                 approval. Full claims documentation is provided — photos, moisture reports, and
                 scope of works — giving your insurer everything they need to process your
                 reimbursement. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 to help manage costs while you await your insurance outcome.
               </p>
@@ -269,8 +269,8 @@ export default function Find24HourEmergencyRestorationPage() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Payment flexibility:</strong> The initial $2,750 commitment covers
                   platform access and emergency make-safe. Payment plans through{' '}
-                  <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                    Blue Fire Finance
+                  <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                    Equipped Commercial Finance
                   </a>{' '}
                   are available for those who need to spread costs while awaiting insurance
                   reimbursement.
@@ -304,7 +304,7 @@ export default function Find24HourEmergencyRestorationPage() {
         {
           question: 'What does emergency make-safe cost through Disaster Recovery?',
           answer:
-            'The initial commitment through the Disaster Recovery platform is $2,750, comprising a $550 platform fee (covering claim lodgement, contractor matching, documentation, and support) and $2,200 in contractor credit applied to your emergency make-safe works. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Blue Fire Finance.',
+            'The initial commitment through the Disaster Recovery platform is $2,750, comprising a $550 platform fee (covering claim lodgement, contractor matching, documentation, and support) and $2,200 in contractor credit applied to your emergency make-safe works. After make-safe, your contractor provides a formal contract with terms and conditions for the full restoration scope. Payment plans are available through Equipped Commercial Finance.',
         },
         {
           question: 'What areas does Disaster Recovery cover for emergency restoration?',

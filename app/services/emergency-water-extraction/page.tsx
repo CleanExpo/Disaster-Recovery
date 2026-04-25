@@ -6,7 +6,8 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Emergency Water Extraction Australia | 60-Minute Response',
-  description: 'Emergency water extraction across Australia. IICRC-certified technicians, priority dispatch, truck-mounted extraction units. Available 24/7 for burst pipes, flooding, and sewage backup.',
+  description:
+    'Emergency water extraction across Australia. IICRC-certified technicians, priority dispatch, truck-mounted extraction units. Available 24/7 for burst pipes, flooding, and sewage backup.',
   keywords: [
     'emergency water extraction',
     'emergency water extraction Australia',
@@ -26,7 +27,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Emergency Water Extraction Australia | 60-Minute Response',
-    description: 'IICRC-certified emergency water extraction. priority dispatch, 24/7, Australia-wide.',
+    description:
+      'IICRC-certified emergency water extraction. priority dispatch, 24/7, Australia-wide.',
     type: 'website',
   },
 };
@@ -35,11 +37,12 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Emergency Water Extraction',
-  description: 'Emergency water extraction and flood mitigation with IICRC-certified technicians. priority dispatch across Australia.',
+  description:
+    'Emergency water extraction and flood mitigation with IICRC-certified technicians. priority dispatch across Australia.',
   provider: {
     '@type': 'Organization',
     '@id': 'https://disasterrecovery.com.au/#organization',
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
   },
   areaServed: { '@type': 'Country', name: 'Australia' },
   serviceType: 'Emergency Water Extraction',
@@ -50,7 +53,7 @@ const serviceSchema = {
   },
   hoursAvailable: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '00:00',
     closes: '23:59',
   },
@@ -61,7 +64,8 @@ const serviceSchema = {
       priceCurrency: 'AUD',
       minPrice: '450',
       maxPrice: '2500',
-      description: 'Emergency water extraction — standard residential scope. Commercial and Category 3 priced on assessment.',
+      description:
+        'Emergency water extraction — standard residential scope. Commercial and Category 3 priced on assessment.',
     },
   },
 };
@@ -125,7 +129,8 @@ const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
   name: 'What to Do Immediately After a Water Damage Event',
-  description: 'Steps to take in the first hour after discovering water damage in your home or business.',
+  description:
+    'Steps to take in the first hour after discovering water damage in your home or business.',
   totalTime: 'PT60M',
   step: [
     {
@@ -184,7 +189,8 @@ export default function EmergencyWaterExtractionPage() {
           gradient: 'linear-gradient(135deg, #051A2E 0%, #0369A1 100%)',
           icon: <Droplets className="h-12 w-12" />,
           title: 'Emergency Water Extraction',
-          subtitle: 'IICRC-certified water extraction and flood mitigation. priority dispatch, 24/7, across Australia. Truck-mounted extraction for all categories of water damage.',
+          subtitle:
+            'IICRC-certified water extraction and flood mitigation. priority dispatch, 24/7, across Australia. Truck-mounted extraction for all categories of water damage.',
         }}
         cta={{ text: 'Lodge Emergency Claim', href: '/claim?service=water-extraction' }}
         breadcrumbs={[
@@ -198,10 +204,16 @@ export default function EmergencyWaterExtractionPage() {
             body: (
               <div className="space-y-4 text-gray-300">
                 <p>
-                  Water damage behaves progressively. Clean Category 1 water from a burst pipe degrades into highly contaminated Category 3 within 48 hours as it contacts building materials, sewage systems, and organic matter. Every hour of delay increases structural damage, contamination risk, and restoration cost.
+                  Water damage behaves progressively. Clean Category 1 water from a burst pipe
+                  degrades into highly contaminated Category 3 within 48 hours as it contacts
+                  building materials, sewage systems, and organic matter. Every hour of delay
+                  increases structural damage, contamination risk, and restoration cost.
                 </p>
                 <p>
-                  NRPG deploys truck-mounted extraction units capable of removing thousands of litres per hour. Unlike consumer wet vacuums, professional equipment removes moisture from carpet backing, subfloor cavities, and wall voids — the moisture sources that cause secondary mould amplification.
+                  NRPG deploys truck-mounted extraction units capable of removing thousands of
+                  litres per hour. Unlike consumer wet vacuums, professional equipment removes
+                  moisture from carpet backing, subfloor cavities, and wall voids — the moisture
+                  sources that cause secondary mould amplification.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                   {[
@@ -219,8 +231,12 @@ export default function EmergencyWaterExtractionPage() {
                         textAlign: 'center',
                       }}
                     >
-                      <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#38BDF8' }}>{item.stat}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.25rem' }}>{item.label}</div>
+                      <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#38BDF8' }}>
+                        {item.stat}
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                        {item.label}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -232,12 +248,42 @@ export default function EmergencyWaterExtractionPage() {
             body: (
               <ol className="space-y-4">
                 {[
-                  { step: '1', title: 'Hazard assessment', detail: 'Electrical isolation, category classification, and thermal imaging to define the extraction scope.' },
-                  { step: '2', title: 'Bulk water removal', detail: 'Truck-mounted extraction removes standing water. Weighted rovers extract moisture from carpet and subfloor padding.' },
-                  { step: '3', title: 'Structural drying deployment', detail: 'LGR dehumidifiers and high-velocity air movers installed immediately after extraction to begin structural drying.' },
-                  { step: '4', title: 'Daily moisture monitoring', detail: 'Thermal imaging and hygrometer readings taken daily until all readings return to pre-loss baselines.' },
-                  { step: '5', title: 'Antimicrobial clearance', detail: 'EPA-registered botanical disinfectants applied to all affected surfaces before equipment removal.' },
-                  { step: '6', title: 'IICRC-certified documentation', detail: 'Complete drying logs, moisture readings, and scope reports provided for insurer sign-off.' },
+                  {
+                    step: '1',
+                    title: 'Hazard assessment',
+                    detail:
+                      'Electrical isolation, category classification, and thermal imaging to define the extraction scope.',
+                  },
+                  {
+                    step: '2',
+                    title: 'Bulk water removal',
+                    detail:
+                      'Truck-mounted extraction removes standing water. Weighted rovers extract moisture from carpet and subfloor padding.',
+                  },
+                  {
+                    step: '3',
+                    title: 'Structural drying deployment',
+                    detail:
+                      'LGR dehumidifiers and high-velocity air movers installed immediately after extraction to begin structural drying.',
+                  },
+                  {
+                    step: '4',
+                    title: 'Daily moisture monitoring',
+                    detail:
+                      'Thermal imaging and hygrometer readings taken daily until all readings return to pre-loss baselines.',
+                  },
+                  {
+                    step: '5',
+                    title: 'Antimicrobial clearance',
+                    detail:
+                      'EPA-registered botanical disinfectants applied to all affected surfaces before equipment removal.',
+                  },
+                  {
+                    step: '6',
+                    title: 'IICRC-certified documentation',
+                    detail:
+                      'Complete drying logs, moisture readings, and scope reports provided for insurer sign-off.',
+                  },
                 ].map((item) => (
                   <li
                     key={item.step}
@@ -250,21 +296,27 @@ export default function EmergencyWaterExtractionPage() {
                       borderRadius: '0.5rem',
                     }}
                   >
-                    <span style={{
-                      flexShrink: 0,
-                      width: '2rem',
-                      height: '2rem',
-                      borderRadius: '50%',
-                      background: '#0369A1',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 700,
-                      fontSize: '0.85rem',
-                      color: '#fff',
-                    }}>{item.step}</span>
+                    <span
+                      style={{
+                        flexShrink: 0,
+                        width: '2rem',
+                        height: '2rem',
+                        borderRadius: '50%',
+                        background: '#0369A1',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 700,
+                        fontSize: '0.85rem',
+                        color: '#fff',
+                      }}
+                    >
+                      {item.step}
+                    </span>
                     <div>
-                      <strong style={{ color: '#fff', display: 'block', marginBottom: '0.2rem' }}>{item.title}</strong>
+                      <strong style={{ color: '#fff', display: 'block', marginBottom: '0.2rem' }}>
+                        {item.title}
+                      </strong>
                       <span style={{ color: '#94a3b8', fontSize: '0.9rem' }}>{item.detail}</span>
                     </div>
                   </li>
@@ -276,13 +328,30 @@ export default function EmergencyWaterExtractionPage() {
             heading: 'What to Do Right Now',
             body: (
               <div className="space-y-3 text-gray-300">
-                <p className="font-semibold text-white">Follow these steps in the first 60 minutes:</p>
+                <p className="font-semibold text-white">
+                  Follow these steps in the first 60 minutes:
+                </p>
                 <ol className="space-y-2 list-decimal list-inside text-sm">
-                  <li>Check for electrical hazards — turn off power at the switchboard if water is near outlets.</li>
-                  <li>Shut off the main water valve if the source is a burst pipe or appliance failure.</li>
-                  <li>Photograph all affected areas before moving anything — this is required for your insurance claim.</li>
-                  <li>Lodge your emergency claim online or call NRPG 24/7 — a certified technician dispatches as soon as a certified contractor is confirmed for your area.</li>
-                  <li>Notify your insurer as soon as practicable — emergency make-safe does not require pre-approval.</li>
+                  <li>
+                    Check for electrical hazards — turn off power at the switchboard if water is
+                    near outlets.
+                  </li>
+                  <li>
+                    Shut off the main water valve if the source is a burst pipe or appliance
+                    failure.
+                  </li>
+                  <li>
+                    Photograph all affected areas before moving anything — this is required for your
+                    insurance claim.
+                  </li>
+                  <li>
+                    Lodge your emergency claim online or call NRPG 24/7 — a certified technician
+                    dispatches as soon as a certified contractor is confirmed for your area.
+                  </li>
+                  <li>
+                    Notify your insurer as soon as practicable — emergency make-safe does not
+                    require pre-approval.
+                  </li>
                 </ol>
                 <div className="mt-6">
                   <Link
@@ -318,10 +387,24 @@ export default function EmergencyWaterExtractionPage() {
                       padding: '1rem',
                     }}
                   >
-                    <summary style={{ color: '#fff', fontWeight: 600, cursor: 'pointer', fontSize: '0.95rem' }}>
+                    <summary
+                      style={{
+                        color: '#fff',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        fontSize: '0.95rem',
+                      }}
+                    >
                       {faq.name}
                     </summary>
-                    <p style={{ color: '#94a3b8', fontSize: '0.875rem', marginTop: '0.75rem', lineHeight: 1.6 }}>
+                    <p
+                      style={{
+                        color: '#94a3b8',
+                        fontSize: '0.875rem',
+                        marginTop: '0.75rem',
+                        lineHeight: 1.6,
+                      }}
+                    >
                       {faq.acceptedAnswer.text}
                     </p>
                   </details>
@@ -334,10 +417,26 @@ export default function EmergencyWaterExtractionPage() {
             body: (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { title: 'Document Water Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', desc: 'Step-by-step guide to documenting water damage evidence for a successful claim.' },
-                  { title: 'Make-Safe Insurance Coverage', href: '/guides/insurance/make-safe-insurance-coverage', desc: 'What emergency make-safe costs are covered and your rights under Australian law.' },
-                  { title: 'When Your Insurer Delays Your Claim', href: '/guides/insurance/insurer-delays-your-claim', desc: 'GICP timeframes your insurer must meet and how to escalate delays to AFCA.' },
-                  { title: 'Insurance Approved Contractors', href: '/guides/insurance/insurance-approved-contractors', desc: 'Your right to choose your own IICRC-certified contractor over your insurer\'s panel.' },
+                  {
+                    title: 'Document Water Damage for Insurance',
+                    href: '/guides/insurance/document-water-damage-insurance',
+                    desc: 'Step-by-step guide to documenting water damage evidence for a successful claim.',
+                  },
+                  {
+                    title: 'Make-Safe Insurance Coverage',
+                    href: '/guides/insurance/make-safe-insurance-coverage',
+                    desc: 'What emergency make-safe costs are covered and your rights under Australian law.',
+                  },
+                  {
+                    title: 'When Your Insurer Delays Your Claim',
+                    href: '/guides/insurance/insurer-delays-your-claim',
+                    desc: 'GICP timeframes your insurer must meet and how to escalate delays to AFCA.',
+                  },
+                  {
+                    title: 'Insurance Approved Contractors',
+                    href: '/guides/insurance/insurance-approved-contractors',
+                    desc: "Your right to choose your own IICRC-certified contractor over your insurer's panel.",
+                  },
                 ].map((guide) => (
                   <Link
                     key={guide.href}
@@ -351,7 +450,15 @@ export default function EmergencyWaterExtractionPage() {
                       textDecoration: 'none',
                     }}
                   >
-                    <span style={{ color: '#93c5fd', fontWeight: 600, fontSize: '0.9rem', display: 'block', marginBottom: '0.25rem' }}>
+                    <span
+                      style={{
+                        color: '#93c5fd',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        display: 'block',
+                        marginBottom: '0.25rem',
+                      }}
+                    >
                       {guide.title}
                     </span>
                     <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>{guide.desc}</span>
@@ -362,10 +469,26 @@ export default function EmergencyWaterExtractionPage() {
           },
         ]}
         relatedPages={[
-          { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Full water damage mitigation and structural drying service.' },
-          { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'Professional mould removal following water damage events.' },
-          { title: 'Emergency Services', href: '/services/emergency-services', description: 'Full range of 24/7 emergency disaster response services.' },
-          { title: 'Start a Claim', href: '/claim', description: 'Lodge your emergency claim online now.' },
+          {
+            title: 'Water Damage Restoration',
+            href: '/services/water-damage-restoration',
+            description: 'Full water damage mitigation and structural drying service.',
+          },
+          {
+            title: 'Mould Remediation',
+            href: '/services/mould-remediation',
+            description: 'Professional mould removal following water damage events.',
+          },
+          {
+            title: 'Emergency Services',
+            href: '/services/emergency-services',
+            description: 'Full range of 24/7 emergency disaster response services.',
+          },
+          {
+            title: 'Start a Claim',
+            href: '/claim',
+            description: 'Lodge your emergency claim online now.',
+          },
         ]}
       />
     </>

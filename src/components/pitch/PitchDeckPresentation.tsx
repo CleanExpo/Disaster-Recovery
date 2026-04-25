@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Slider } from '@/components/ui/slider'
 import { Progress } from '@/components/ui/progress'
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Slide {
   id: number
@@ -519,7 +520,7 @@ export default function PitchDeckPresentation() {
               resolve()
             }
             audioRef.current.play().catch((err) => {
-              console.log('Audio playback failed:', err)
+              clientLogger.info('Audio playback failed:', { source: 'pitch/PitchDeckPresentation', data: err })
               // Fallback to timed delay if audio fails
               const readingTime = Math.max(3000, text.length * 50)
               setTimeout(resolve, readingTime)
@@ -534,7 +535,7 @@ export default function PitchDeckPresentation() {
         await new Promise(resolve => setTimeout(resolve, readingTime))
       }
     } catch (error) {
-      console.log('Audio narration not available, using timed transitions')
+      clientLogger.info('Audio narration not available, using timed transitions', { source: 'pitch/PitchDeckPresentation' })
       // Fallback to timed delay
       const readingTime = Math.max(3000, text.length * 50)
       await new Promise(resolve => setTimeout(resolve, readingTime))

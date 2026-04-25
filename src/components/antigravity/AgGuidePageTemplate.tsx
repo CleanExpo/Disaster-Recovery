@@ -120,20 +120,21 @@ export function AgGuidePageTemplate({
   author,
 }: AgGuidePageTemplateProps) {
   // FAQPage schema for rich results
-  const faqSchema = faqs && faqs.length > 0
-    ? JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: faqs.map((faq) => ({
-          '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: faq.answer,
-          },
-        })),
-      })
-    : null;
+  const faqSchema =
+    faqs && faqs.length > 0
+      ? JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
+        })
+      : null;
 
   // Article schema for GEO citation and rich results
   // Enhanced with AI citation signals: dateModified, speakableSpecification, mainEntityOfPage
@@ -146,12 +147,17 @@ export function AgGuidePageTemplate({
     name: resolvedAuthor.name,
     jobTitle: resolvedAuthor.jobTitle,
     ...(resolvedAuthor.credentials && resolvedAuthor.credentials.length > 0
-      ? { hasCredential: resolvedAuthor.credentials.map((c) => ({ '@type': 'EducationalOccupationalCredential', name: c })) }
+      ? {
+          hasCredential: resolvedAuthor.credentials.map((c) => ({
+            '@type': 'EducationalOccupationalCredential',
+            name: c,
+          })),
+        }
       : {}),
     ...(resolvedAuthor.url ? { url: resolvedAuthor.url } : {}),
     memberOf: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
+      name: 'Disaster Recovery',
       url: 'https://disasterrecovery.com.au',
     },
   };
@@ -160,11 +166,11 @@ export function AgGuidePageTemplate({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
-    description: subtitle || `Expert guide on ${title.toLowerCase()} from Disaster Recovery Australia`,
+    description: subtitle || `Expert guide on ${title.toLowerCase()} from Disaster Recovery`,
     author: schemaAuthor,
     publisher: {
       '@type': 'Organization',
-      name: 'Disaster Recovery Australia',
+      name: 'Disaster Recovery',
       url: 'https://disasterrecovery.com.au',
       logo: {
         '@type': 'ImageObject',
@@ -221,9 +227,7 @@ export function AgGuidePageTemplate({
 
           {icon && (
             <div className="ag-slide-up-1" style={{ marginBottom: '1rem' }}>
-              <div className="ag-icon-hero">
-                {icon}
-              </div>
+              <div className="ag-icon-hero">{icon}</div>
             </div>
           )}
 
@@ -236,67 +240,84 @@ export function AgGuidePageTemplate({
           )}
 
           {/* Last-reviewed badge — freshness signal for users and AI crawlers */}
-          <div className="ag-slide-up-3" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            marginTop: '1.5rem',
-            padding: '0.375rem 0.875rem',
-            borderRadius: '9999px',
-            background: 'rgba(255,255,255,0.12)',
-            backdropFilter: 'blur(8px)',
-            fontSize: '0.8rem',
-            color: 'rgba(255,255,255,0.75)',
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-            Last reviewed {new Date(reviewDate).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}
+          <div
+            className="ag-slide-up-3"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginTop: '1.5rem',
+              padding: '0.375rem 0.875rem',
+              borderRadius: '9999px',
+              background: 'rgba(255,255,255,0.12)',
+              backdropFilter: 'blur(8px)',
+              fontSize: '0.8rem',
+              color: 'rgba(255,255,255,0.75)',
+            }}
+          >
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                background: '#22c55e',
+                display: 'inline-block',
+              }}
+            />
+            Last reviewed{' '}
+            {new Date(reviewDate).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}
           </div>
         </div>
       </header>
 
       {/* Content Sections */}
-      {sections && sections.map((section, i) => {
-        const bg =
-          section.background === 'light' ? 'var(--ag-background-light)' :
-          section.background === 'dark' ? 'var(--ag-primary-blue)' :
-          undefined;
-        const textColor = section.background === 'dark' ? 'var(--ag-surface-white)' : undefined;
+      {sections &&
+        sections.map((section, i) => {
+          const bg =
+            section.background === 'light'
+              ? 'var(--ag-background-light)'
+              : section.background === 'dark'
+                ? 'var(--ag-primary-blue)'
+                : undefined;
+          const textColor = section.background === 'dark' ? 'var(--ag-surface-white)' : undefined;
 
-        return (
-          <section
-            key={i}
-            style={{ padding: '4rem 1.5rem', background: bg, color: textColor }}
-          >
-            <div className="ag-container" style={{ maxWidth: '800px' }}>
-              {section.heading && (
-                <h2 style={{
-                  fontSize: '1.75rem',
-                  fontWeight: 700,
-                  color: section.background === 'dark' ? 'var(--ag-surface-white)' : 'var(--ag-primary-blue)',
-                  marginBottom: '1.5rem',
-                }}>
-                  {section.heading}
-                </h2>
-              )}
-              <div className="ag-prose">
-                {section.body}
+          return (
+            <section key={i} style={{ padding: '4rem 1.5rem', background: bg, color: textColor }}>
+              <div className="ag-container" style={{ maxWidth: '800px' }}>
+                {section.heading && (
+                  <h2
+                    style={{
+                      fontSize: '1.75rem',
+                      fontWeight: 700,
+                      color:
+                        section.background === 'dark'
+                          ? 'var(--ag-surface-white)'
+                          : 'var(--ag-primary-blue)',
+                      marginBottom: '1.5rem',
+                    }}
+                  >
+                    {section.heading}
+                  </h2>
+                )}
+                <div className="ag-prose">{section.body}</div>
               </div>
-            </div>
-          </section>
-        );
-      })}
+            </section>
+          );
+        })}
 
       {/* FAQ Accordion */}
       {faqs && faqs.length > 0 && (
         <section style={{ padding: '4rem 1.5rem', background: 'var(--ag-background-light)' }}>
           <div className="ag-container" style={{ maxWidth: '800px' }}>
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: 700,
-              color: 'var(--ag-primary-blue)',
-              textAlign: 'center',
-              marginBottom: '2rem',
-            }}>
+            <h2
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: 700,
+                color: 'var(--ag-primary-blue)',
+                textAlign: 'center',
+                marginBottom: '2rem',
+              }}
+            >
               Frequently Asked Questions
             </h2>
             <AgAccordion items={faqs} allowMultiple />
@@ -308,22 +329,26 @@ export function AgGuidePageTemplate({
       {relatedGuides && relatedGuides.length > 0 && (
         <section style={{ padding: '4rem 1.5rem' }}>
           <div className="ag-container">
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: 700,
-              color: 'var(--ag-primary-blue)',
-              textAlign: 'center',
-              marginBottom: '2rem',
-            }}>
+            <h2
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: 700,
+                color: 'var(--ag-primary-blue)',
+                textAlign: 'center',
+                marginBottom: '2rem',
+              }}
+            >
               Related Guides
             </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '1.5rem',
-              maxWidth: '900px',
-              margin: '0 auto',
-            }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                gap: '1.5rem',
+                maxWidth: '900px',
+                margin: '0 auto',
+              }}
+            >
               {relatedGuides.map((guide, i) => (
                 <Link key={i} href={guide.href} style={{ textDecoration: 'none' }}>
                   <div className="ag-card-feature" style={{ cursor: 'pointer' }}>
@@ -338,18 +363,27 @@ export function AgGuidePageTemplate({
       )}
 
       {/* AI Citation Block — structured data for LLM attribution */}
-      <section style={{ padding: '2rem 1.5rem', background: 'var(--ag-background-light)', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+      <section
+        style={{
+          padding: '2rem 1.5rem',
+          background: 'var(--ag-background-light)',
+          borderTop: '1px solid rgba(0,0,0,0.06)',
+        }}
+      >
         <div className="ag-container" style={{ maxWidth: '800px' }}>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '1.5rem',
-            fontSize: '0.8rem',
-            color: 'var(--ag-text-muted)',
-            lineHeight: 1.6,
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '1.5rem',
+              fontSize: '0.8rem',
+              color: 'var(--ag-text-muted)',
+              lineHeight: 1.6,
+            }}
+          >
             <div>
-              <strong style={{ color: 'var(--ag-primary-blue)' }}>Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Source:</strong> Disaster Recovery
+              — disasterrecovery.com.au
             </div>
             <div>
               <strong style={{ color: 'var(--ag-primary-blue)' }}>Category:</strong> {category}
@@ -367,11 +401,16 @@ export function AgGuidePageTemplate({
             <div>
               <strong style={{ color: 'var(--ag-primary-blue)' }}>Last reviewed:</strong>{' '}
               <time dateTime={reviewDate}>
-                {new Date(reviewDate).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
+                {new Date(reviewDate).toLocaleDateString('en-AU', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })}
               </time>
             </div>
             <div>
-              <strong style={{ color: 'var(--ag-primary-blue)' }}>Standard:</strong> IICRC S500:2025/S520:2025 certified practices
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Standard:</strong> IICRC
+              S500:2025/S520:2025 certified practices
             </div>
           </div>
         </div>
@@ -381,11 +420,23 @@ export function AgGuidePageTemplate({
       {cta && (
         <section className="ag-network-cta">
           <div className="ag-cta-background" />
-          <div className="ag-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '2rem 1.5rem' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--ag-surface-white)', marginBottom: '1rem' }}>
+          <div
+            className="ag-container"
+            style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '2rem 1.5rem' }}
+          >
+            <h2
+              style={{
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: 'var(--ag-surface-white)',
+                marginBottom: '1rem',
+              }}
+            >
               Need Emergency Help Now?
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem', fontSize: '1.125rem' }}>
+            <p
+              style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem', fontSize: '1.125rem' }}
+            >
               Get connected with IICRC certified contractors in your area
             </p>
             <Link href={cta.href} className="ag-btn-primary-glow">

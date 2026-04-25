@@ -19,6 +19,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { SUPPORTED_LANGUAGES } from '@/lib/supported-languages';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const translateSchema = z.object({
   texts: z.array(z.string().max(2000)).min(1).max(50),
@@ -49,7 +50,7 @@ function minimisePII(text: string): string {
   // Replace Australian phone numbers (+61, 04xx, 1300, 1800)
   result = result.replace(
     /(?:\+61[\s\-]?(?:\d[\s\-]?){8,9}|0[45]\d{2}[\s\-]?\d{3}[\s\-]?\d{3}|1[38]00[\s\-]?\d{3}[\s\-]?\d{3}|\(0[2-8]\)[\s\-]?\d{4}[\s\-]?\d{4}|0[2-8][\s\-]?\d{4}[\s\-]?\d{4})/g,
-    '[PHONE]'
+    '[PHONE]',
   );
 
   // Replace ABN patterns (xx xxx xxx xxx — 11 digits with optional spaces)
@@ -62,7 +63,7 @@ function minimisePII(text: string): string {
   // e.g. "12 Main Street", "456 George St Sydney"
   result = result.replace(
     /\b\d{1,5}\s+[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*\s+(?:Street|St|Road|Rd|Avenue|Ave|Drive|Dr|Place|Pl|Court|Ct|Lane|Ln|Boulevard|Blvd|Crescent|Cres|Parade|Pde|Highway|Hwy|Way|Close|Cl|Circuit|Cct|Grove|Gr|Terrace|Tce)\b(?:\s+[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)*/g,
-    '[ADDRESS]'
+    '[ADDRESS]',
   );
 
   return result;
@@ -79,7 +80,7 @@ function buildPrompt(texts: string[], targetLanguage: string): string {
     `Translate the following ${texts.length} text item(s) into ${langName} (language code: ${targetLanguage}).`,
     `Rules:`,
     `- Preserve any HTML tags, markdown formatting, and line breaks exactly as they appear.`,
-    `- Do not translate proper nouns: "IICRC", "NRPG", "Disaster Recovery Australia", "AFCA", "OAIC", "Stripe", "RestoreAssist", "CARSI".`,
+    `- Do not translate proper nouns: "IICRC", "NRPG", "Disaster Recovery", "AFCA", "OAIC", "Stripe", "RestoreAssist", "CARSI".`,
     `- Preserve all URLs, email addresses, phone numbers, and dollar amounts unchanged.`,
     `- Preserve placeholder tokens like [EMAIL], [PHONE], [ADDRESS], [ABN], [TFN] unchanged.`,
     `- Use formal, professional language appropriate for insurance and emergency services.`,
@@ -91,22 +92,20 @@ function buildPrompt(texts: string[], targetLanguage: string): string {
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/translate' });
   try {
     const body = await request.json();
     const { texts, targetLanguage } = translateSchema.parse(body);
 
     // Request size limits (DR-386 abuse prevention)
     if (texts.length > MAX_TEXTS) {
-      return NextResponse.json(
-        { error: `Too many texts: max ${MAX_TEXTS}` },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: `Too many texts: max ${MAX_TEXTS}` }, { status: 400 });
     }
     const totalChars = texts.reduce((sum, t) => sum + t.length, 0);
     if (totalChars > MAX_TOTAL_CHARS) {
       return NextResponse.json(
         { error: `Total character count exceeds limit of ${MAX_TOTAL_CHARS}` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -135,7 +134,10 @@ export async function POST(request: NextRequest) {
     const raw = result.text?.trim() ?? '';
 
     // Strip markdown code fences if the model added them
-    const jsonStr = raw.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '').trim();
+    const jsonStr = raw
+      .replace(/^```(?:json)?\n?/, '')
+      .replace(/\n?```$/, '')
+      .trim();
 
     let translations: string[];
     try {
@@ -145,7 +147,7 @@ export async function POST(request: NextRequest) {
       }
     } catch {
       // Fallback: return originals if parsing fails
-      console.error('[translate] Failed to parse model response:', raw);
+      log.error('failed to parse model response', { raw });
       translations = texts;
     }
 
@@ -154,13 +156,14 @@ export async function POST(request: NextRequest) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Invalid request', details: error.errors },
-        { status: 400 }
+        { status: 400 },
       );
     }
-    console.error('[translate] Error:', error);
-    return NextResponse.json(
-      { error: 'Translation service unavailable' },
-      { status: 503 }
-    );
+    log.error('translate error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/translate' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ error: 'Translation service unavailable' }, { status: 503 });
   }
 }

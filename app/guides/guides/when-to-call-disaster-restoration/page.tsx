@@ -240,8 +240,8 @@ export default function WhenToCallDisasterRestorationPage() {
                 The initial commitment is $2,750 ($550 platform fee plus $2,200 contractor
                 credit for make-safe works). Full claims documentation is provided to support
                 your insurance reimbursement. Payment plans are available through{' '}
-                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">
-                  Blue Fire Finance
+                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer">
+                  Equipped Commercial Finance
                 </a>{' '}
                 if needed.
               </p>

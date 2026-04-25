@@ -1,4 +1,5 @@
 # Google Review Request Templates
+
 **Prepared:** 2026-04-09  
 **Linear:** DR-446 (Review Collection — target first 10 Google reviews by April 14)  
 **Review Link:** https://g.page/r/Cc_0iAGjSNy3EBM/review
@@ -32,7 +33,7 @@ If there's anything we could have done better, please let me know directly — I
 
 Thanks again,
 [Your Name]
-Disaster Recovery Australia
+Disaster Recovery
 disasterrecovery.com.au
 
 ---
@@ -40,13 +41,16 @@ disasterrecovery.com.au
 ## SMS Templates
 
 ### SMS — Short (under 160 characters)
+
 Hi [Name], it's [Your Name] from Disaster Recovery. Would you mind leaving us a Google review? https://g.page/r/Cc_0iAGjSNy3EBM/review — takes 2 mins. Thanks!
 
 ### SMS — Medium
-Hi [Name], it's [Your Name] from Disaster Recovery Australia. We helped with your [property/suburb] restoration — hoping you were happy with the result. If so, a quick Google review would really help us out: https://g.page/r/Cc_0iAGjSNy3EBM/review. No pressure at all!
+
+Hi [Name], it's [Your Name] from Disaster Recovery. We helped with your [property/suburb] restoration — hoping you were happy with the result. If so, a quick Google review would really help us out: https://g.page/r/Cc_0iAGjSNy3EBM/review. No pressure at all!
 
 ### SMS — Detailed
-Hi [Name], [Your Name] here from Disaster Recovery Australia. I wanted to personally follow up after your [water/fire/storm] restoration at [suburb]. If you're satisfied with how we handled things, I'd be grateful if you could leave a review — it genuinely helps other property owners find us during emergencies. Link: https://g.page/r/Cc_0iAGjSNy3EBM/review. Only takes 2 minutes. Thank you!
+
+Hi [Name], [Your Name] here from Disaster Recovery. I wanted to personally follow up after your [water/fire/storm] restoration at [suburb]. If you're satisfied with how we handled things, I'd be grateful if you could leave a review — it genuinely helps other property owners find us during emergencies. Link: https://g.page/r/Cc_0iAGjSNy3EBM/review. Only takes 2 minutes. Thank you!
 
 ---
 
@@ -61,6 +65,7 @@ Ask clients to naturally include these details in their review — each one expa
 - **Certification**: "IICRC certified", "certified contractors", "professional team"
 
 **Example prompt to clients:**
+
 > "When you write your review, it helps other people find us if you mention what type of damage you had, where you're located, and how the process went with your insurance claim — but only include what's true for you."
 
 ---

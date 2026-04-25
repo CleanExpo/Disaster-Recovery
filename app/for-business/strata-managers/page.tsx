@@ -56,7 +56,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: 'What is the emergency make-safe fee and how is it paid?',
     answer:
-      'The emergency make-safe fee is $2,750, comprising a $550 platform fee and $2,200 held for the attending contractor. This covers the initial emergency response: arriving on-site, assessing the damage, stopping the source where possible, extracting standing water, setting up containment, and deploying initial drying equipment. The body corporate is invoiced directly — we do not bill insurers. This fee is typically within the emergency spending authority available to strata managers under state legislation, so committee approval is not usually required for the initial make-safe. Payment plans are available through Blue Fire Finance for larger restoration projects beyond the initial make-safe.',
+      'The emergency make-safe fee is $2,750, comprising a $550 platform fee and $2,200 held for the attending contractor. This covers the initial emergency response: arriving on-site, assessing the damage, stopping the source where possible, extracting standing water, setting up containment, and deploying initial drying equipment. The body corporate is invoiced directly — we do not bill insurers. This fee is typically within the emergency spending authority available to strata managers under state legislation, so committee approval is not usually required for the initial make-safe. Payment plans are available through Equipped Commercial Finance for larger restoration projects beyond the initial make-safe.',
   },
 ];
 
@@ -583,11 +583,11 @@ export default function StrataManagersPage() {
                   or sinking fund cannot cover the immediate cost, payment plans are
                   available through{' '}
                   <a
-                    href="https://www.bluefirefinance.com.au"
+                    href="https://equippedcf.com.au"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Blue Fire Finance
+                    Equipped Commercial Finance
                   </a>
                   . This allows the body corporate to spread the cost while waiting
                   for the insurance claim to settle, without needing to levy owners

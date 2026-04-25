@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/email/test' });
   try {
     // Verify authentication and admin role
     const user = await verifyAuth(request);
@@ -74,8 +76,9 @@ export async function POST(request: NextRequest) {
     }
     
   } catch (error) {
-    console.error('Email test error:', error);
-    
+    log.error('email test error', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, { tags: { route: '/api/email/test' }, extra: { requestId: log.requestId } });
+
     return NextResponse.json({
       success: false,
       message: 'An error occurred during email test',
@@ -84,6 +87,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/email/test' });
   try {
     // Verify authentication and admin role
     const user = await verifyAuth(request);
@@ -107,8 +111,8 @@ export async function GET(request: NextRequest) {
     }, { status: 200 });
     
   } catch (error) {
-    console.error('Email config check error:', error);
-    
+    log.error('email config check error', { error: error instanceof Error ? error.message : String(error) });
+
     return NextResponse.json({
       success: false,
       message: 'Failed to check email configuration' }, { status: 500 });

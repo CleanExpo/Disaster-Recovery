@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Slider } from '@/components/ui/slider'
 import { Progress } from '@/components/ui/progress'
+import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Slide {
   id: number
@@ -478,7 +479,7 @@ export default function PitchDeckProductionV2() {
             newAudioUrls.set(slide.id, audioUrl)
           }
         } catch (error) {
-          console.error(`Failed to load audio for slide ${slide.id}:`, error)
+          clientLogger.error(`Failed to load audio for slide ${slide.id}:`, { source: 'pitch/PitchDeckProductionV2' }, error)
         }
       }
       

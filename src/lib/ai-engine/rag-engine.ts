@@ -11,6 +11,7 @@ import { Document } from '@langchain/core/documents'
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 import { OpenAI } from 'openai'
 import { getElysiaConfig } from '@/lib/config/elysia-config'
+import { clientLogger } from '@/lib/observability/client-logger';
 import {
   RAGQuerySchema,
   RAGResponseSchema,
@@ -65,10 +66,10 @@ export class RAGEngineCore {
         this.embeddings
       )
 
-      console.log(`✅ RAG Engine initialized with ${splitDocs.length} document chunks`)
+      clientLogger.info(`✅ RAG Engine initialized with ${splitDocs.length} document chunks`, { source: 'ai-engine/rag-engine' })
       return true
     } catch (error) {
-      console.error('❌ Failed to initialize RAG Engine:', error)
+      clientLogger.error('❌ Failed to initialize RAG Engine:', { source: 'ai-engine/rag-engine' }, error)
       return false
     }
   }
@@ -160,7 +161,7 @@ export class RAGEngineCore {
       return response
 
     } catch (error) {
-      console.error('❌ RAG Query failed:', error)
+      clientLogger.error('❌ RAG Query failed:', { source: 'ai-engine/rag-engine' }, error)
       throw new Error(`RAG query failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
     }
   }

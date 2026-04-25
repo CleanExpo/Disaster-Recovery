@@ -227,7 +227,7 @@ export default function FireDamageRestorationSunshineCoastPage() {
             body: (
               <>
                 <p>
-                  Our contractor network covers every suburb and area across the Sunshine Coast LGA
+                  Our contractor network services suburbs and areas across the Sunshine Coast LGA
                   and Noosa Shire.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

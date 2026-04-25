@@ -2,7 +2,13 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { LocationServiceGenerator } from '../../../../lib/location-service-generator';
 import LocationServicePageComponent from '../../../../components/location-service-page-simple';
-import { getSuburb, getSuburbSlugs, suburbCities, validServices, cityStateMap } from '@/lib/suburb-utils';
+import {
+  getSuburb,
+  getSuburbSlugs,
+  suburbCities,
+  validServices,
+  cityStateMap,
+} from '@/lib/suburb-utils';
 import { NAP } from '@/lib/constants';
 import { getVideoForService } from '../../../../data/seo/video-config';
 
@@ -13,7 +19,7 @@ function buildFAQSchema(faqs: { question: string; answer: string }[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -33,9 +39,7 @@ function buildLocalBusinessSchema(
   suburbName?: string,
 ) {
   const locationName = suburbName ? `${suburbName}, ${cityTitle}` : cityTitle;
-  const slug = suburbName
-    ? `${city}/${suburbName.toLowerCase().replace(/\s+/g, '-')}`
-    : city;
+  const slug = suburbName ? `${city}/${suburbName.toLowerCase().replace(/\s+/g, '-')}` : city;
 
   return {
     '@context': 'https://schema.org',
@@ -70,11 +74,7 @@ function buildLocalBusinessSchema(
 }
 
 // Build AggregateRating JSON-LD for location-service pages
-function buildAggregateRatingSchema(
-  cityTitle: string,
-  serviceTitle: string,
-  suburbName?: string,
-) {
+function buildAggregateRatingSchema(cityTitle: string, serviceTitle: string, suburbName?: string) {
   const locationName = suburbName ? `${suburbName}, ${cityTitle}` : cityTitle;
 
   return {
@@ -97,9 +97,21 @@ function buildAggregateRatingSchema(
 }
 
 const validCities = [
-  'sydney', 'melbourne', 'brisbane', 'perth', 'adelaide',
-  'darwin', 'hobart', 'canberra', 'newcastle', 'wollongong',
-  'gold-coast', 'sunshine-coast', 'geelong', 'townsville', 'cairns',
+  'sydney',
+  'melbourne',
+  'brisbane',
+  'perth',
+  'adelaide',
+  'darwin',
+  'hobart',
+  'canberra',
+  'newcastle',
+  'wollongong',
+  'gold-coast',
+  'sunshine-coast',
+  'geelong',
+  'townsville',
+  'cairns',
 ];
 
 // Generate static params for all city-service AND city-suburb-service combinations
@@ -127,7 +139,11 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: { params: Promise<{ city: string; slug: string[] }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ city: string; slug: string[] }>;
+}) {
   const { city, slug } = await params;
 
   if (slug.length === 1) {
@@ -148,8 +164,14 @@ function generateCityServiceMetadata(city: string, service: string) {
     return { title: 'Page Not Found', description: 'The requested page could not be found.' };
   }
 
-  const cityTitle = city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-  const serviceTitle = service.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const cityTitle = city
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+  const serviceTitle = service
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
 
   return {
     title: `Emergency ${serviceTitle} ${cityTitle} | NRPG 24/7`,
@@ -162,12 +184,14 @@ function generateCityServiceMetadata(city: string, service: string) {
       title: `Emergency ${serviceTitle} ${cityTitle} | NRPG 24/7`,
       description: `Emergency ${serviceTitle.toLowerCase()} in ${cityTitle} — IICRC-certified contractors respond as quickly as possible. Available 24/7.`,
       type: 'website',
-      images: [{
-        url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(cityTitle)}&service=${encodeURIComponent(service)}`,
-        width: 1200,
-        height: 630,
-        alt: `Emergency ${serviceTitle} in ${cityTitle} - Disaster Recovery Australia`,
-      }],
+      images: [
+        {
+          url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(cityTitle)}&service=${encodeURIComponent(service)}`,
+          width: 1200,
+          height: 630,
+          alt: `Emergency ${serviceTitle} in ${cityTitle} - Disaster Recovery`,
+        },
+      ],
     },
   };
 }
@@ -181,12 +205,19 @@ function generateSuburbServiceMetadata(city: string, suburbSlug: string, service
 
   const cityTitle = city.charAt(0).toUpperCase() + city.slice(1);
   const suburbName = suburbData.name;
-  const serviceTitle = service.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const serviceTitle = service
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
   const state = cityStateMap[city] || 'AU';
 
-  const riskPhrase = suburbData.riskFactors.length > 0
-    ? ` High-risk area for ${suburbData.riskFactors.slice(0, 2).map(r => r.replace(/-/g, ' ')).join(' and ')}.`
-    : '';
+  const riskPhrase =
+    suburbData.riskFactors.length > 0
+      ? ` High-risk area for ${suburbData.riskFactors
+          .slice(0, 2)
+          .map((r) => r.replace(/-/g, ' '))
+          .join(' and ')}.`
+      : '';
 
   return {
     title: `Emergency ${serviceTitle} ${suburbName} ${cityTitle} | NRPG 24/7`,
@@ -199,17 +230,23 @@ function generateSuburbServiceMetadata(city: string, suburbSlug: string, service
       title: `Emergency ${serviceTitle} ${suburbName} ${cityTitle} | NRPG 24/7`,
       description: `Emergency ${serviceTitle.toLowerCase()} in ${suburbName}, ${cityTitle} — IICRC-certified contractors respond as quickly as possible. Available 24/7.`,
       type: 'website',
-      images: [{
-        url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(`${suburbName}, ${cityTitle}`)}&service=${encodeURIComponent(service)}`,
-        width: 1200,
-        height: 630,
-        alt: `Emergency ${serviceTitle} in ${suburbName}, ${cityTitle} - Disaster Recovery Australia`,
-      }],
+      images: [
+        {
+          url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(`${suburbName}, ${cityTitle}`)}&service=${encodeURIComponent(service)}`,
+          width: 1200,
+          height: 630,
+          alt: `Emergency ${serviceTitle} in ${suburbName}, ${cityTitle} - Disaster Recovery`,
+        },
+      ],
     },
   };
 }
 
-export default async function LocationServicePage({ params }: { params: Promise<{ city: string; slug: string[] }> }) {
+export default async function LocationServicePage({
+  params,
+}: {
+  params: Promise<{ city: string; slug: string[] }>;
+}) {
   const { city, slug } = await params;
 
   let pageData;
@@ -230,20 +267,38 @@ export default async function LocationServicePage({ params }: { params: Promise<
       notFound();
     }
     suburbName = suburbData.name;
-    pageData = LocationServiceGenerator.generateLocationServicePage(city, service, suburbName, undefined, suburbData);
+    pageData = LocationServiceGenerator.generateLocationServicePage(
+      city,
+      service,
+      suburbName,
+      undefined,
+      suburbData,
+    );
   } else {
     notFound();
   }
 
-  const cityTitle = city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-  const serviceTitle = service.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const cityTitle = city
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+  const serviceTitle = service
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
   const state = cityStateMap[city] || 'AU';
 
   // FAQPage schema — all data is trusted static content from LocationServiceGenerator
   const faqSchema = pageData.faqs?.length > 0 ? buildFAQSchema(pageData.faqs) : null;
 
   // LocalBusiness schema — suburb-aware for geo-targeting
-  const localBusinessSchema = buildLocalBusinessSchema(city, cityTitle, state, serviceTitle, suburbName);
+  const localBusinessSchema = buildLocalBusinessSchema(
+    city,
+    cityTitle,
+    state,
+    serviceTitle,
+    suburbName,
+  );
 
   // AggregateRating schema — service-level rating for rich results
   const aggregateRatingSchema = buildAggregateRatingSchema(cityTitle, serviceTitle, suburbName);
