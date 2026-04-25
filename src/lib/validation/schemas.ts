@@ -29,7 +29,10 @@ export const claimSubmitSchema = z.object({
   propertyAddress: z.string().min(1).max(300),
   suburb: z.string().min(1).max(100).optional(),
   state: z.enum(AU_STATES).optional(),
-  postcode: z.string().regex(/^\d{4}$/).optional(),
+  postcode: z
+    .string()
+    .regex(/^\d{4}$/)
+    .optional(),
   damageTypes: z.array(z.string().max(100)).min(1).max(20),
   damageDescription: z.string().min(1).max(5000),
   urgencyLevel: z.enum(['emergency', 'urgent', 'standard']).optional(),
