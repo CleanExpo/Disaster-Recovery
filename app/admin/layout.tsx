@@ -60,7 +60,9 @@ export default async function AdminLayout({
   }
 
   if (!session?.user) {
-    redirect(`/login?callbackUrl=${encodeURIComponent('/admin')}`);
+    // DR-756: Pass reason=session_expired so the login page can show a
+    // dismissible banner explaining why the user was redirected.
+    redirect(`/login?callbackUrl=${encodeURIComponent('/admin')}&reason=session_expired`);
   }
 
   if (!isAdminRole((session.user as { role?: string }).role)) {
