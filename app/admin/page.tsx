@@ -120,11 +120,31 @@ const STATUS_BADGE: Record<string, { label: string; className: string }> = {
 };
 
 export default async function AdminDashboardPage() {
-  const { kpis, trendData, statusData, recent } = await getDashboardData();
+  // DR-757: Wrap data fetch so a DB failure shows a graceful empty state rather
+  // than propagating to the error boundary (which would wipe the whole layout).
+  let dashboardData: Awaited<ReturnType<typeof getDashboardData>> | null = null;
+  try {
+    dashboardData = await getDashboardData();
+  } catch {
+    dashboardData = null;
+  }
+  const { kpis, trendData, statusData, recent } = dashboardData ?? {
+    kpis: { submitted: 0, underReview: 0, approved: 0, rejected: 0, total: 0 },
+    trendData: [],
+    statusData: [],
+    recent: [],
+  };
   const pendingCount = kpis.submitted + kpis.underReview;
 
   return (
     <div className="mx-auto">
+      {/* DR-757: Data-unavailable banner when DB fetch failed */}
+      {!dashboardData && (
+        <div className="mb-6 flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          <span>Dashboard metrics are temporarily unavailable — platform tools below still work normally.</span>
+        </div>
+      )}
       {/* Header */}
       <header className="mb-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
