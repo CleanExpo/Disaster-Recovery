@@ -254,7 +254,7 @@ const Footer: React.FC = () => {
             <div className="text-center">
               <div className="inline-flex items-center bg-green-500/20 px-4 py-2 rounded-full">
                 <CheckCircle className="h-5 w-5 mr-2" />
-                <span className="font-semibold">60-Minute Response Guarantee • Flexible Payment Options Available</span>
+                <span className="font-semibold">60-Minute Response Target • Flexible Payment Options Available</span>
               </div>
             </div>
           </div>
