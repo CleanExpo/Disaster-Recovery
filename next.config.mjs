@@ -95,9 +95,14 @@ const nextConfig = {
   },
   experimental: {
     // optimizeCss: true, // Disabled - requires critters
+    // Health-check audit C2 (P1, 2026-04-26): trimmed 5 server-only / unused
+    // packages from this list. optimizePackageImports has overhead per entry
+    // and is only beneficial for packages that are bundled into client code.
+    // Server-only imports (@anthropic-ai/sdk, used solely in API routes) and
+    // unused packages (@google/generative-ai, exceljs, pdfjs-dist, cmdk —
+    // verified zero or near-zero client imports) added build memory pressure
+    // for no client-bundle benefit.
     optimizePackageImports: [
-      '@anthropic-ai/sdk',
-      '@google/generative-ai',
       '@hookform/resolvers',
       '@radix-ui/react-accordion',
       '@radix-ui/react-alert-dialog',
@@ -107,12 +112,9 @@ const nextConfig = {
       '@radix-ui/react-select',
       '@radix-ui/react-tabs',
       '@radix-ui/react-tooltip',
-      'cmdk',
       'date-fns',
-      'exceljs',
       'framer-motion',
       'lucide-react',
-      'pdfjs-dist',
       'react-day-picker',
       'react-hook-form',
       'recharts',
