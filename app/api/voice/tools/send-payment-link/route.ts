@@ -10,6 +10,7 @@ import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput, sanitiseSmsBody } from '@/lib/voice/output-filter';
 import { getDraft } from '@/lib/voice/draft-store';
 import { logComplianceEvent } from '@/lib/voice/route-helpers';
+import { PRICING_CONSTANTS } from '@/lib/payment-security';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -19,10 +20,13 @@ const InputSchema = z.object({
   phone: z.string().min(6).max(32),
 });
 
-// Flat callout fee for voice-initiated claims. Placeholder — real pricing
-// lives in `/pricing` content; the agent is not authorised to quote bespoke
-// amounts, so this fee is a SERVER-SIDE CONSTANT.
-const CALLOUT_FEE_AUD_CENTS = 33000;
+// Flat callout fee for voice-initiated claims. Sourced from the IMMUTABLE
+// PRICING_CONSTANTS in payment-security.ts ($2,750 minimum emergency
+// make-safe fee, dated 2026-04-07). Previously this file hardcoded 33000
+// ($330) — an 8.3× undercharge surfaced in the 2026-04-26 health-check
+// audit. The agent is not authorised to quote bespoke amounts; this remains
+// a SERVER-SIDE CONSTANT, just sourced from the canonical registry.
+const CALLOUT_FEE_AUD_CENTS = PRICING_CONSTANTS.CALLOUT_FEE;
 
 async function createStripeCheckoutUrl(draft_id: string): Promise<string | null> {
   const key = process.env.STRIPE_SECRET_KEY;

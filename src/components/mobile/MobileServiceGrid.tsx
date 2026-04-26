@@ -3,13 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,7 +15,7 @@ import {
   Shield,
   ArrowRight,
   Clock,
-  CheckCircle2
+  CheckCircle2,
 } from 'lucide-react';
 
 interface Service {
@@ -44,7 +38,7 @@ const services: Service[] = [
     color: 'from-blue-500 to-cyan-500',
     features: ['24hr Response', 'IICRC Certified', 'Moisture Detection'],
     urgent: true,
-    popular: true
+    popular: true,
   },
   {
     title: 'Fire & Smoke',
@@ -53,7 +47,7 @@ const services: Service[] = [
     href: '/services/fire-damage',
     color: 'from-orange-500 to-red-500',
     features: ['Odour Removal', 'Content Restoration', 'Structural Repair'],
-    urgent: true
+    urgent: true,
   },
   {
     title: 'Storm Damage',
@@ -62,7 +56,7 @@ const services: Service[] = [
     href: '/services/storm-damage',
     color: 'from-gray-500 to-slate-600',
     features: ['Tarping', 'Tree Removal', 'Roof Repairs'],
-    urgent: true
+    urgent: true,
   },
   {
     title: 'Mould Remediation',
@@ -71,7 +65,7 @@ const services: Service[] = [
     href: '/services/mould-remediation',
     color: 'from-green-500 to-emerald-500',
     features: ['Air Quality', 'HEPA Filtration', 'Prevention'],
-    popular: true
+    popular: true,
   },
   {
     title: 'Commercial',
@@ -79,7 +73,7 @@ const services: Service[] = [
     icon: Building2,
     href: '/services/commercial',
     color: 'from-purple-500 to-indigo-500',
-    features: ['Minimal Downtime', 'Project Management', 'Documentation']
+    features: ['Minimal Downtime', 'Project Management', 'Documentation'],
   },
   {
     title: 'Emergency',
@@ -88,8 +82,8 @@ const services: Service[] = [
     href: '/services/emergency-services',
     color: 'from-red-600 to-pink-600',
     features: ['Immediate Response', 'All Disasters', 'Priority Service'],
-    urgent: true
-  }
+    urgent: true,
+  },
 ];
 
 export default function MobileServiceGrid() {
@@ -100,9 +94,7 @@ export default function MobileServiceGrid() {
         <Badge variant="outline" className="mb-4">
           Our Services
         </Badge>
-        <h2 className="text-2xl sm:text-3xl font-bold mb-3">
-          Professional Restoration Services
-        </h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-3">Professional Restoration Services</h2>
         <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
           IICRC certified technicians available 24/7 for all disaster recovery needs
         </p>
@@ -119,8 +111,10 @@ export default function MobileServiceGrid() {
           >
             <Card className="relative h-full hover:shadow-xl transition-all duration-300 overflow-hidden group">
               {/* Gradient Border Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity`} />
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity`}
+              />
+
               {/* Badges */}
               <div className="absolute top-3 right-3 flex gap-2 z-10">
                 {service.urgent && (
@@ -137,13 +131,13 @@ export default function MobileServiceGrid() {
               </div>
 
               <CardHeader>
-                <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mb-4`}>
+                <div
+                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mb-4`}
+                >
                   <service.icon className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                 </div>
                 <CardTitle className="text-lg sm:text-xl">{service.title}</CardTitle>
-                <CardDescription className="text-sm">
-                  {service.description}
-                </CardDescription>
+                <CardDescription className="text-sm">{service.description}</CardDescription>
               </CardHeader>
 
               <CardContent>
@@ -158,9 +152,9 @@ export default function MobileServiceGrid() {
                 </ul>
 
                 {/* CTA Button */}
-                <Button 
+                <Button
                   className="w-full group"
-                  variant={service.urgent ? "default" : "outline"}
+                  variant={service.urgent ? 'default' : 'outline'}
                   asChild
                 >
                   <Link href={service.href}>
@@ -181,7 +175,7 @@ export default function MobileServiceGrid() {
             <div className="flex-1 text-center sm:text-left">
               <h3 className="font-semibold text-lg mb-1">Need Immediate Help?</h3>
               <p className="text-sm text-muted-foreground">
-                Submit your claim online for fastest response
+                Submit your claim online for rapid response
               </p>
             </div>
             <Button size="lg" className="w-full sm:w-auto" asChild>

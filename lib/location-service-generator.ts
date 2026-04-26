@@ -54,176 +54,279 @@ export interface ServiceData {
 
 export class LocationServiceGenerator {
   // Major Australian cities and their suburbs
-  private static locations: Record<string, { city: string; state: string; suburbs: string[]; regions: string[]; population: number }> = {
+  private static locations: Record<
+    string,
+    { city: string; state: string; suburbs: string[]; regions: string[]; population: number }
+  > = {
     sydney: {
       city: 'Sydney',
       state: 'NSW',
       suburbs: [
-        'CBD', 'Bondi', 'Manly', 'Parramatta', 'Chatswood', 'Cronulla',
-        'Penrith', 'Liverpool', 'Blacktown', 'Castle Hill', 'Hornsby',
-        'Sutherland', 'Bankstown', 'Campbelltown', 'Ryde', 'Hurstville'
+        'CBD',
+        'Bondi',
+        'Manly',
+        'Parramatta',
+        'Chatswood',
+        'Cronulla',
+        'Penrith',
+        'Liverpool',
+        'Blacktown',
+        'Castle Hill',
+        'Hornsby',
+        'Sutherland',
+        'Bankstown',
+        'Campbelltown',
+        'Ryde',
+        'Hurstville',
       ],
-      regions: ['Eastern Suburbs', 'North Shore', 'Northern Beaches', 'Western Sydney', 'Inner West'],
-      population: 5300000
+      regions: [
+        'Eastern Suburbs',
+        'North Shore',
+        'Northern Beaches',
+        'Western Sydney',
+        'Inner West',
+      ],
+      population: 5300000,
     },
     melbourne: {
       city: 'Melbourne',
       state: 'VIC',
       suburbs: [
-        'CBD', 'St Kilda', 'South Yarra', 'Richmond', 'Fitzroy', 'Carlton',
-        'Camberwell', 'Brighton', 'Footscray', 'Williamstown', 'Frankston',
-        'Dandenong', 'Box Hill', 'Glen Waverley', 'Ringwood', 'Geelong'
+        'CBD',
+        'St Kilda',
+        'South Yarra',
+        'Richmond',
+        'Fitzroy',
+        'Carlton',
+        'Camberwell',
+        'Brighton',
+        'Footscray',
+        'Williamstown',
+        'Frankston',
+        'Dandenong',
+        'Box Hill',
+        'Glen Waverley',
+        'Ringwood',
+        'Geelong',
       ],
-      regions: ['Inner East', 'Bayside', 'Western Suburbs', 'Northern Suburbs', 'Mornington Peninsula'],
-      population: 5000000
+      regions: [
+        'Inner East',
+        'Bayside',
+        'Western Suburbs',
+        'Northern Suburbs',
+        'Mornington Peninsula',
+      ],
+      population: 5000000,
     },
     brisbane: {
       city: 'Brisbane',
       state: 'QLD',
       suburbs: [
-        'CBD', 'Fortitude Valley', 'South Bank', 'New Farm', 'Toowong',
-        'Indooroopilly', 'Carindale', 'Chermside', 'Cleveland', 'Ipswich',
-        'Logan', 'Redcliffe', 'Caboolture', 'Southport', 'Surfers Paradise'
+        'CBD',
+        'Fortitude Valley',
+        'South Bank',
+        'New Farm',
+        'Toowong',
+        'Indooroopilly',
+        'Carindale',
+        'Chermside',
+        'Cleveland',
+        'Ipswich',
+        'Logan',
+        'Redcliffe',
+        'Caboolture',
+        'Southport',
+        'Surfers Paradise',
       ],
-      regions: ['Inner City', 'Northern Suburbs', 'Southern Suburbs', 'Eastern Suburbs', 'Western Suburbs'],
-      population: 2500000
+      regions: [
+        'Inner City',
+        'Northern Suburbs',
+        'Southern Suburbs',
+        'Eastern Suburbs',
+        'Western Suburbs',
+      ],
+      population: 2500000,
     },
     perth: {
       city: 'Perth',
       state: 'WA',
       suburbs: [
-        'CBD', 'Fremantle', 'Subiaco', 'Cottesloe', 'Scarborough', 'Joondalup',
-        'Midland', 'Armadale', 'Rockingham', 'Mandurah', 'Claremont', 'Victoria Park'
+        'CBD',
+        'Fremantle',
+        'Subiaco',
+        'Cottesloe',
+        'Scarborough',
+        'Joondalup',
+        'Midland',
+        'Armadale',
+        'Rockingham',
+        'Mandurah',
+        'Claremont',
+        'Victoria Park',
       ],
-      regions: ['Western Suburbs', 'Northern Suburbs', 'Southern Suburbs', 'Eastern Suburbs', 'Coastal'],
-      population: 2100000
+      regions: [
+        'Western Suburbs',
+        'Northern Suburbs',
+        'Southern Suburbs',
+        'Eastern Suburbs',
+        'Coastal',
+      ],
+      population: 2100000,
     },
     adelaide: {
       city: 'Adelaide',
       state: 'SA',
       suburbs: [
-        'CBD', 'Glenelg', 'Norwood', 'Unley', 'Burnside', 'Prospect',
-        'Port Adelaide', 'Marion', 'Salisbury', 'Tea Tree Gully', 'Modbury'
+        'CBD',
+        'Glenelg',
+        'Norwood',
+        'Unley',
+        'Burnside',
+        'Prospect',
+        'Port Adelaide',
+        'Marion',
+        'Salisbury',
+        'Tea Tree Gully',
+        'Modbury',
       ],
-      regions: ['City and North Adelaide', 'Eastern Suburbs', 'Western Suburbs', 'Southern Suburbs'],
-      population: 1350000
+      regions: [
+        'City and North Adelaide',
+        'Eastern Suburbs',
+        'Western Suburbs',
+        'Southern Suburbs',
+      ],
+      population: 1350000,
     },
     darwin: {
       city: 'Darwin',
       state: 'NT',
       suburbs: ['CBD', 'Casuarina', 'Palmerston', 'Stuart Park', 'Nightcliff'],
       regions: ['Darwin City', 'Northern Suburbs', 'Palmerston'],
-      population: 150000
+      population: 150000,
     },
     hobart: {
       city: 'Hobart',
       state: 'TAS',
       suburbs: ['CBD', 'Sandy Bay', 'Battery Point', 'North Hobart', 'Glenorchy'],
       regions: ['Greater Hobart', 'Eastern Shore', 'Northern Suburbs'],
-      population: 240000
+      population: 240000,
     },
     canberra: {
       city: 'Canberra',
       state: 'ACT',
       suburbs: ['CBD', 'Belconnen', 'Woden', 'Tuggeranong', 'Gungahlin'],
       regions: ['Inner North', 'Inner South', 'Woden Valley', 'Belconnen'],
-      population: 430000
+      population: 430000,
     },
     newcastle: {
       city: 'Newcastle',
       state: 'NSW',
       suburbs: ['CBD', 'Hamilton', 'Merewether', 'Charlestown', 'Mayfield'],
       regions: ['Newcastle City', 'Lake Macquarie', 'Port Stephens'],
-      population: 320000
+      population: 320000,
     },
     wollongong: {
       city: 'Wollongong',
       state: 'NSW',
       suburbs: ['CBD', 'North Wollongong', 'Fairy Meadow', 'Corrimal', 'Figtree'],
       regions: ['Northern Suburbs', 'Southern Suburbs', 'Illawarra'],
-      population: 300000
+      population: 300000,
     },
     'gold-coast': {
       city: 'Gold Coast',
       state: 'QLD',
       suburbs: ['Surfers Paradise', 'Broadbeach', 'Burleigh Heads', 'Coolangatta', 'Southport'],
       regions: ['Northern Gold Coast', 'Central Gold Coast', 'Southern Gold Coast'],
-      population: 640000
+      population: 640000,
     },
     'sunshine-coast': {
       city: 'Sunshine Coast',
       state: 'QLD',
       suburbs: ['Maroochydore', 'Caloundra', 'Noosa', 'Buderim', 'Kawana'],
       regions: ['Coastal Strip', 'Hinterland', 'Caloundra'],
-      population: 330000
+      population: 330000,
     },
     geelong: {
       city: 'Geelong',
       state: 'VIC',
       suburbs: ['CBD', 'Newtown', 'Belmont', 'Corio', 'Lara'],
       regions: ['Geelong City', 'Bellarine Peninsula', 'Northern Suburbs'],
-      population: 260000
+      population: 260000,
     },
     townsville: {
       city: 'Townsville',
       state: 'QLD',
       suburbs: ['CBD', 'North Ward', 'Castle Hill', 'Kirwan', 'Thuringowa'],
       regions: ['Townsville City', 'Northern Beaches', 'Thuringowa'],
-      population: 195000
+      population: 195000,
     },
     cairns: {
       city: 'Cairns',
       state: 'QLD',
       suburbs: ['CBD', 'Edge Hill', 'Manunda', 'Smithfield', 'Trinity Beach'],
       regions: ['Cairns City', 'Northern Beaches', 'Southern Suburbs'],
-      population: 160000
-    }
+      population: 160000,
+    },
   };
 
   // Services we offer
-  private static services: Record<string, { type: string; category: string; urgency: 'emergency' | 'urgent' | 'standard'; keywords: string[]; variations: string[] }> = {
+  private static services: Record<
+    string,
+    {
+      type: string;
+      category: string;
+      urgency: 'emergency' | 'urgent' | 'standard';
+      keywords: string[];
+      variations: string[];
+    }
+  > = {
     'water-damage-restoration': {
       type: 'Water Damage Restoration',
       category: 'water',
       urgency: 'emergency',
       keywords: ['water damage', 'flood', 'burst pipe', 'water extraction', 'drying'],
-      variations: ['emergency', '24-hour', 'same-day', 'urgent']
+      variations: ['emergency', '24-hour', 'same-day', 'urgent'],
     },
     'fire-damage-restoration': {
       type: 'Fire Damage Restoration',
       category: 'fire',
       urgency: 'emergency',
       keywords: ['fire damage', 'smoke damage', 'soot removal', 'fire restoration'],
-      variations: ['emergency', 'smoke', 'soot', 'odour removal']
+      variations: ['emergency', 'smoke', 'soot', 'odour removal'],
     },
     'mould-remediation': {
       type: 'Mould Remediation',
       category: 'mould',
       urgency: 'urgent',
       keywords: ['mould removal', 'mould remediation', 'black mould', 'mould inspection'],
-      variations: ['black-mould', 'toxic-mould', 'inspection', 'testing']
+      variations: ['black-mould', 'toxic-mould', 'inspection', 'testing'],
     },
     'storm-damage-repairs': {
       type: 'Storm Damage Repairs',
       category: 'storm',
       urgency: 'emergency',
       keywords: ['storm damage', 'roof damage', 'tree damage', 'emergency tarping'],
-      variations: ['roof', 'tree', 'hail', 'wind']
+      variations: ['roof', 'tree', 'hail', 'wind'],
     },
     'flood-recovery': {
       type: 'Flood Recovery',
       category: 'flood',
       urgency: 'emergency',
       keywords: ['flood damage', 'flood restoration', 'flood cleanup', 'water extraction'],
-      variations: ['emergency', 'basement', 'commercial', 'residential']
+      variations: ['emergency', 'basement', 'commercial', 'residential'],
     },
     'emergency-restoration': {
       type: 'Emergency Restoration',
       category: 'emergency',
       urgency: 'emergency',
-      keywords: ['24 hour emergency', 'disaster recovery', 'emergency restoration', 'urgent repairs'],
-      variations: ['24-hour', 'same-day', 'after-hours', 'weekend']
-    }
+      keywords: [
+        '24 hour emergency',
+        'disaster recovery',
+        'emergency restoration',
+        'urgent repairs',
+      ],
+      variations: ['24-hour', 'same-day', 'after-hours', 'weekend'],
+    },
   };
 
   // Generate a location-service page
@@ -232,7 +335,7 @@ export class LocationServiceGenerator {
     serviceKey: string,
     suburb?: string,
     variation?: string,
-    suburbData?: SuburbData
+    suburbData?: SuburbData,
   ): LocationServicePage {
     const location = this.locations[locationKey];
     const service = this.services[serviceKey];
@@ -250,25 +353,31 @@ export class LocationServiceGenerator {
       id: pageId,
       title: `${variationText}${service.type} ${fullLocation} | 24/7 Emergency Response`,
       metaTitle: `${variationText}${service.type} ${fullLocation} | Disaster Recovery`,
-      metaDescription: this.generateMetaDescription(service, location, suburb, variation, suburbData),
+      metaDescription: this.generateMetaDescription(
+        service,
+        location,
+        suburb,
+        variation,
+        suburbData,
+      ),
       h1: `${variationText}${service.type} Services in ${fullLocation}`,
       location: {
         city: location.city,
         state: location.state,
         suburb,
         region: suburb ? this.getRegionForSuburb(location, suburb) : undefined,
-        population: suburbData?.population || location.population
+        population: suburbData?.population || location.population,
       },
       service: {
         type: service.type,
         category: service.category,
         urgency: service.urgency,
-        keywords: service.keywords
+        keywords: service.keywords,
       },
       content: this.generateContent(service, location, suburb, variation, suburbData),
       faqs: this.generateFAQs(service, location, suburb),
       relatedPages: this.generateRelatedPages(locationKey, serviceKey, suburb),
-      schema: this.generateSchema(service, location, suburb)
+      schema: this.generateSchema(service, location, suburb),
     };
   }
 
@@ -277,9 +386,11 @@ export class LocationServiceGenerator {
     location: any,
     suburb?: string,
     variation?: string,
-    suburbData?: SuburbData
+    suburbData?: SuburbData,
   ): string {
-    const locationText = suburb ? `${suburb} and surrounding ${location.city} areas` : `${location.city} and all suburbs`;
+    const locationText = suburb
+      ? `${suburb} and surrounding ${location.city} areas`
+      : `${location.city} and all suburbs`;
     const variationText = variation ? `${variation} ` : '';
 
     // Suburb-specific risk phrase if data available
@@ -299,8 +410,10 @@ export class LocationServiceGenerator {
 
     if (serviceCategory === 'water' || serviceCategory === 'flood') {
       if (riskFactors.includes('flood')) return `${suburbData.name} is in a known flood zone.`;
-      if (riskFactors.includes('stormwater-flooding') && density === 'high') return `High-density ${suburbData.name} faces stormwater flooding risks.`;
-      if (density === 'high') return `${suburbData.name}'s high-density apartments need fast water extraction.`;
+      if (riskFactors.includes('stormwater-flooding') && density === 'high')
+        return `High-density ${suburbData.name} faces stormwater flooding risks.`;
+      if (density === 'high')
+        return `${suburbData.name}'s high-density apartments need fast water extraction.`;
     }
     if (serviceCategory === 'fire' && riskFactors.includes('bushfire')) {
       return `${suburbData.name} is in a bushfire-prone zone.`;
@@ -321,7 +434,7 @@ export class LocationServiceGenerator {
     location: any,
     suburb?: string,
     variation?: string,
-    suburbData?: SuburbData
+    suburbData?: SuburbData,
   ) {
     const locationText = suburb || location.city;
 
@@ -341,16 +454,29 @@ export class LocationServiceGenerator {
       commonIssues: this.generateCommonIssues(service, location, suburb, suburbData),
 
       insurancePartners: [
-        'AAMI', 'Suncorp', 'Allianz', 'NRMA', 'QBE', 'CGU',
-        'Budget Direct', 'Youi', 'RACQ', 'CommInsure'
+        'AAMI',
+        'Suncorp',
+        'Allianz',
+        'NRMA',
+        'QBE',
+        'CGU',
+        'Budget Direct',
+        'Youi',
+        'RACQ',
+        'CommInsure',
       ],
 
-      testimonial: this.generateTestimonial(service, location, suburb)
+      testimonial: this.generateTestimonial(service, location, suburb),
     };
   }
 
   // Generate a unique intro paragraph using suburb data
-  private static generateIntro(service: any, location: any, suburb?: string, suburbData?: SuburbData): string {
+  private static generateIntro(
+    service: any,
+    location: any,
+    suburb?: string,
+    suburbData?: SuburbData,
+  ): string {
     const locationText = suburb || location.city;
 
     // If no suburb data, use the standard template
@@ -364,13 +490,21 @@ export class LocationServiceGenerator {
 
     // Opening — density-aware
     if (density === 'high') {
-      parts.push(`${suburb} is one of ${location.city}'s most densely populated areas${population ? `, home to over ${population.toLocaleString()} residents` : ''}. In high-density living, ${service.type.toLowerCase()} emergencies demand rapid professional response to prevent damage spreading to neighbouring units and common areas.`);
+      parts.push(
+        `${suburb} is one of ${location.city}'s most densely populated areas${population ? `, home to over ${population.toLocaleString()} residents` : ''}. In high-density living, ${service.type.toLowerCase()} emergencies demand rapid professional response to prevent damage spreading to neighbouring units and common areas.`,
+      );
     } else if (density === 'low' && riskFactors.includes('flood')) {
-      parts.push(`${suburb} sits within a known flood-prone zone${population ? `, with a community of ${population.toLocaleString()} residents` : ''}. When floodwaters threaten, fast ${service.type.toLowerCase()} response is critical to protect homes and reduce long-term damage.`);
+      parts.push(
+        `${suburb} sits within a known flood-prone zone${population ? `, with a community of ${population.toLocaleString()} residents` : ''}. When floodwaters threaten, fast ${service.type.toLowerCase()} response is critical to protect homes and reduce long-term damage.`,
+      );
     } else if (density === 'low' && riskFactors.includes('bushfire')) {
-      parts.push(`${suburb} borders bushland that places residents at elevated fire risk${population ? `, with ${population.toLocaleString()} people in the area` : ''}. After fire or ember attack, professional ${service.type.toLowerCase()} is essential to make properties safe.`);
+      parts.push(
+        `${suburb} borders bushland that places residents at elevated fire risk${population ? `, with ${population.toLocaleString()} people in the area` : ''}. After fire or ember attack, professional ${service.type.toLowerCase()} is essential to make properties safe.`,
+      );
     } else {
-      parts.push(`${suburb}${population ? `, home to ${population.toLocaleString()} residents` : ''}, is a key ${location.city} suburb where ${service.type.toLowerCase()} emergencies require fast, local expertise.`);
+      parts.push(
+        `${suburb}${population ? `, home to ${population.toLocaleString()} residents` : ''}, is a key ${location.city} suburb where ${service.type.toLowerCase()} emergencies require fast, local expertise.`,
+      );
     }
 
     // Context from notes — extract a key fact
@@ -382,7 +516,9 @@ export class LocationServiceGenerator {
     }
 
     // Closing — service promise
-    parts.push(`Our ${location.city}-based team responds 24/7, typically reaching ${suburb} and nearby suburbs within 30-60 minutes.`);
+    parts.push(
+      `Our ${location.city}-based team responds 24/7, typically reaching ${suburb} and nearby suburbs within 30-60 minutes.`,
+    );
 
     return parts.join(' ');
   }
@@ -390,11 +526,11 @@ export class LocationServiceGenerator {
   // Extract a useful fact from the suburb notes field
   private static extractNoteFact(notes: string, suburb: string): string | null {
     // Split notes by period/sentence and pick the most descriptive one
-    const sentences = notes.split(/\.\s+/).filter(s => s.length > 15);
+    const sentences = notes.split(/\.\s+/).filter((s) => s.length > 15);
     if (sentences.length === 0) return null;
 
     // Prefer sentences with specific data (percentages, years, measurements)
-    const dataRich = sentences.find(s => /\d{4}|\d+%|\d+mm|\d+,\d+|km²/.test(s));
+    const dataRich = sentences.find((s) => /\d{4}|\d+%|\d+mm|\d+,\d+|km²/.test(s));
     if (dataRich) return dataRich.endsWith('.') ? dataRich : `${dataRich}.`;
 
     // Otherwise use the first substantive sentence
@@ -411,7 +547,7 @@ export class LocationServiceGenerator {
       'IICRC certified technicians',
       '100% satisfaction guarantee',
       'Transparent pricing — we bill you directly',
-      'Payment plans available via Equipped Commercial Finance'
+      'Payment plans available via Equipped Commercial Finance',
     ];
 
     // Add a suburb-specific bullet if data available
@@ -429,7 +565,12 @@ export class LocationServiceGenerator {
   }
 
   // Generate unique emergency response section
-  private static generateEmergencyResponse(service: any, location: any, suburb?: string, suburbData?: SuburbData): string {
+  private static generateEmergencyResponse(
+    service: any,
+    location: any,
+    suburb?: string,
+    suburbData?: SuburbData,
+  ): string {
     const locationText = suburb || location.city;
 
     if (!suburbData || !suburb) {
@@ -449,52 +590,67 @@ export class LocationServiceGenerator {
       return `Given ${suburb}'s proximity to bushland, our ${location.city} team is equipped for post-fire and ember attack recovery. We reach ${suburb} within 30-60 minutes and can begin make-safe operations, smoke damage assessment, and structural drying immediately.`;
     }
 
-    return `Our ${location.city} rapid response team is positioned to reach ${suburb} and surrounding areas within 30-60 minutes. Fully equipped vehicles are deployed across ${location.city} to ensure the fastest response to your ${service.type.toLowerCase()} emergency.`;
+    return `Our ${location.city} rapid response team is positioned to reach ${suburb} and surrounding areas within 30-60 minutes. Fully equipped vehicles are deployed across ${location.city} to provide rapid response to your ${service.type.toLowerCase()} emergency.`;
   }
 
-  private static generateLocalKnowledge(service: any, location: any, suburb?: string, suburbData?: SuburbData): string[] {
+  private static generateLocalKnowledge(
+    service: any,
+    location: any,
+    suburb?: string,
+    suburbData?: SuburbData,
+  ): string[] {
     const knowledge: string[] = [];
 
     // City-level knowledge
     if (location.city === 'Sydney') {
-      knowledge.push('Understanding of Sydney\'s unique weather patterns and storm seasons');
+      knowledge.push("Understanding of Sydney's unique weather patterns and storm seasons");
       knowledge.push('Familiarity with heritage building requirements in older suburbs');
       knowledge.push('Knowledge of Sydney Water infrastructure and common issues');
     } else if (location.city === 'Brisbane') {
-      knowledge.push('Experience with Queensland\'s subtropical climate challenges');
+      knowledge.push("Experience with Queensland's subtropical climate challenges");
       knowledge.push('Understanding of storm season and flooding patterns');
       knowledge.push('Expertise in dealing with high humidity and mould issues');
     } else if (location.city === 'Melbourne') {
-      knowledge.push('Experience with Melbourne\'s variable weather conditions');
+      knowledge.push("Experience with Melbourne's variable weather conditions");
       knowledge.push('Understanding of Victorian building codes and regulations');
       knowledge.push('Knowledge of local drainage and flooding hotspots');
     } else if (location.city === 'Perth') {
-      knowledge.push('Experience with Western Australia\'s hot, dry climate and sudden storm events');
-      knowledge.push('Knowledge of Perth\'s sandy soils and drainage challenges');
+      knowledge.push(
+        "Experience with Western Australia's hot, dry climate and sudden storm events",
+      );
+      knowledge.push("Knowledge of Perth's sandy soils and drainage challenges");
     } else if (location.city === 'Adelaide') {
-      knowledge.push('Understanding of South Australia\'s Adelaide Hills bushfire corridor');
-      knowledge.push('Experience with Adelaide\'s ageing stormwater infrastructure');
+      knowledge.push("Understanding of South Australia's Adelaide Hills bushfire corridor");
+      knowledge.push("Experience with Adelaide's ageing stormwater infrastructure");
     } else if (location.city === 'Darwin') {
       knowledge.push('Expertise in tropical cyclone damage recovery');
       knowledge.push('Understanding of monsoon season flooding patterns in the Top End');
     } else if (location.city === 'Cairns') {
       knowledge.push('Specialist cyclone and tropical storm recovery experience');
-      knowledge.push('Understanding of Far North Queensland\'s high-humidity mould risks');
+      knowledge.push("Understanding of Far North Queensland's high-humidity mould risks");
     }
 
     // Suburb-specific knowledge from data
     if (suburbData && suburb) {
       if (suburbData.density === 'high') {
-        knowledge.push(`Experience with ${suburb}'s high-density apartment buildings and strata properties`);
+        knowledge.push(
+          `Experience with ${suburb}'s high-density apartment buildings and strata properties`,
+        );
       }
       if (suburbData.riskFactors.includes('flood')) {
-        knowledge.push(`Knowledge of ${suburb}'s flood catchment zones and drainage infrastructure`);
+        knowledge.push(
+          `Knowledge of ${suburb}'s flood catchment zones and drainage infrastructure`,
+        );
       }
       if (suburbData.riskFactors.includes('bushfire')) {
-        knowledge.push(`Familiarity with ${suburb}'s bushfire attack levels and ember protection needs`);
+        knowledge.push(
+          `Familiarity with ${suburb}'s bushfire attack levels and ember protection needs`,
+        );
       }
       if (suburbData.riskFactors.includes('stormwater-flooding')) {
-        knowledge.push(`Understanding of ${suburb}'s stormwater systems and flash flood risk areas`);
+        knowledge.push(
+          `Understanding of ${suburb}'s stormwater systems and flash flood risk areas`,
+        );
       }
     } else if (suburb) {
       knowledge.push(`Specific knowledge of ${suburb} property types and common issues`);
@@ -503,7 +659,12 @@ export class LocationServiceGenerator {
     return knowledge;
   }
 
-  private static generateCommonIssues(service: any, location: any, suburb?: string, suburbData?: SuburbData): string[] {
+  private static generateCommonIssues(
+    service: any,
+    location: any,
+    suburb?: string,
+    suburbData?: SuburbData,
+  ): string[] {
     const issues: string[] = [];
 
     // Base service-category issues
@@ -537,7 +698,10 @@ export class LocationServiceGenerator {
         issues.push(`Water damage spreading between units in ${suburb}'s apartment complexes`);
         issues.push('Failed waterproofing membranes in high-rise bathrooms and balconies');
       }
-      if (suburbData.riskFactors.includes('flood') && (service.category === 'water' || service.category === 'flood')) {
+      if (
+        suburbData.riskFactors.includes('flood') &&
+        (service.category === 'water' || service.category === 'flood')
+      ) {
         issues.push(`Riverine flooding in ${suburb}'s flood-prone catchment zones`);
       }
       if (suburbData.riskFactors.includes('stormwater-flooding')) {
@@ -560,64 +724,79 @@ export class LocationServiceGenerator {
       {
         text: `They arrived within 30 minutes of my call and immediately stopped the water damage from spreading. Professional, efficient, and handled everything with my insurance company.`,
         author: 'Sarah M.',
-        type: 'water'
+        type: 'water',
       },
       {
         text: `After our kitchen fire, they not only cleaned up the damage but eliminated all smoke odour. You'd never know we had a fire. Incredible service!`,
         author: 'John D.',
-        type: 'fire'
+        type: 'fire',
       },
       {
         text: `The storm damage to our roof was extensive. They tarped it immediately to prevent further damage and completed repairs quickly. Highly recommend!`,
         author: 'Lisa K.',
-        type: 'storm'
-      }
+        type: 'storm',
+      },
     ];
-    
-    const relevant = testimonials.find(t => t.type === service.category) || testimonials[0];
-    
+
+    const relevant = testimonials.find((t) => t.type === service.category) || testimonials[0];
+
     return {
       text: relevant.text,
       author: relevant.author,
-      suburb: suburb || location.suburbs[Math.floor(Math.random() * location.suburbs.length)]
+      suburb: suburb || location.suburbs[Math.floor(Math.random() * location.suburbs.length)],
     };
   }
 
   private static generateFAQs(service: any, location: any, suburb?: string) {
     // Use service-specific FAQ data if available, otherwise fall back to defaults
-    const generator = serviceFAQs[service.category === 'water' ? 'water-damage-restoration' :
-      service.category === 'fire' ? 'fire-damage-restoration' :
-      service.category === 'mould' ? 'mould-remediation' :
-      service.category === 'flood' ? 'flood-recovery' :
-      service.category === 'storm' ? 'storm-damage-repairs' : ''] || defaultServiceFAQs;
+    const generator =
+      serviceFAQs[
+        service.category === 'water'
+          ? 'water-damage-restoration'
+          : service.category === 'fire'
+            ? 'fire-damage-restoration'
+            : service.category === 'mould'
+              ? 'mould-remediation'
+              : service.category === 'flood'
+                ? 'flood-recovery'
+                : service.category === 'storm'
+                  ? 'storm-damage-repairs'
+                  : ''
+      ] || defaultServiceFAQs;
 
     return generator(location.city, suburb);
   }
 
-  private static generateRelatedPages(locationKey: string, serviceKey: string, suburb?: string): string[] {
+  private static generateRelatedPages(
+    locationKey: string,
+    serviceKey: string,
+    suburb?: string,
+  ): string[] {
     const pages = [];
-    
+
     // Other services in same location
-    Object.keys(this.services).forEach(key => {
+    Object.keys(this.services).forEach((key) => {
       if (key !== serviceKey) {
-        pages.push(`/${key}-${locationKey}${suburb ? `-${suburb.toLowerCase().replace(/\s+/g, '-')}` : ''}`);
+        pages.push(
+          `/${key}-${locationKey}${suburb ? `-${suburb.toLowerCase().replace(/\s+/g, '-')}` : ''}`,
+        );
       }
     });
-    
+
     // Same service in nearby suburbs (if applicable)
     if (suburb) {
       const location = this.locations[locationKey];
       const nearby = this.getNearbySuburbs(location, suburb).slice(0, 3);
-      nearby.forEach(s => {
+      nearby.forEach((s) => {
         pages.push(`/${serviceKey}-${locationKey}-${s.toLowerCase().replace(/\s+/g, '-')}`);
       });
     }
-    
+
     // General guides
     pages.push(`/guides/${this.services[serviceKey].category}-damage`);
     pages.push(`/whos-first/${this.services[serviceKey].category}-damage`);
     pages.push(`/insurance-decoder/${this.services[serviceKey].category}-damage`);
-    
+
     return pages;
   }
 
@@ -633,24 +812,24 @@ export class LocationServiceGenerator {
         '@type': 'PostalAddress',
         addressLocality: suburb || location.city,
         addressRegion: location.state,
-        addressCountry: 'AU'
+        addressCountry: 'AU',
       },
       geo: location.coordinates || {
         '@type': 'GeoCoordinates',
         latitude: -33.8688,
-        longitude: 151.2093
+        longitude: 151.2093,
       },
       areaServed: {
         '@type': 'City',
-        name: location.city
+        name: location.city,
       },
       priceRange: '$$',
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         opens: '00:00',
-        closes: '23:59'
-      }
+        closes: '23:59',
+      },
     };
   }
 
@@ -663,7 +842,7 @@ export class LocationServiceGenerator {
     // Return suburbs near the given suburb
     const index = location.suburbs.indexOf(suburb);
     if (index === -1) return location.suburbs.slice(0, 5);
-    
+
     const nearby = [];
     for (let i = Math.max(0, index - 2); i < Math.min(location.suburbs.length, index + 3); i++) {
       if (i !== index) {
@@ -676,30 +855,32 @@ export class LocationServiceGenerator {
   // Generate all location-service combinations
   static generateAllPages(): LocationServicePage[] {
     const pages: LocationServicePage[] = [];
-    
+
     // For each city
-    Object.keys(this.locations).forEach(locationKey => {
+    Object.keys(this.locations).forEach((locationKey) => {
       const location = this.locations[locationKey];
-      
+
       // For each service
-      Object.keys(this.services).forEach(serviceKey => {
+      Object.keys(this.services).forEach((serviceKey) => {
         const service = this.services[serviceKey];
-        
+
         // City-level page
         pages.push(this.generateLocationServicePage(locationKey, serviceKey));
-        
+
         // Suburb-level pages (top suburbs only for now)
-        location.suburbs.slice(0, 5).forEach(suburb => {
+        location.suburbs.slice(0, 5).forEach((suburb) => {
           pages.push(this.generateLocationServicePage(locationKey, serviceKey, suburb));
-          
+
           // Variation pages for top suburbs
-          service.variations?.slice(0, 2).forEach(variation => {
-            pages.push(this.generateLocationServicePage(locationKey, serviceKey, suburb, variation));
+          service.variations?.slice(0, 2).forEach((variation) => {
+            pages.push(
+              this.generateLocationServicePage(locationKey, serviceKey, suburb, variation),
+            );
           });
         });
       });
     });
-    
+
     return pages;
   }
 
