@@ -7,13 +7,13 @@ import { dispatchClaimStatusNotification } from '@/lib/notifications';
 import { rateLimit } from '@/lib/rate-limit';
 import { getCallerIdentity } from '@/lib/auth/require-session';
 import { requestLogger, captureException } from '@/lib/observability';
-import { logComplianceEvent } from '@/lib/compliance/events';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 import { claimSubmitSchema } from '@/lib/validation/schemas';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
 // Fixed platform fee (optional at submission stage)
-const PLATFORM_FEE = 2750.00;
+const PLATFORM_FEE = 2750.0;
 const FALLBACK_REPORT_PATH = path.join('/tmp', 'claim-fallback-submissions.jsonl');
 
 type TrackClaimPayload = {
@@ -59,17 +59,24 @@ function deriveWorkflow(status: string, paymentProcessed: boolean): TrackClaimPa
   const normalized = (status || '').toUpperCase();
   return {
     paymentProcessed,
-    contractorAssigned: ['ASSIGNED', 'CONTRACTOR_ASSIGNED', 'IN_PROGRESS', 'COMPLETED'].includes(normalized),
+    contractorAssigned: ['ASSIGNED', 'CONTRACTOR_ASSIGNED', 'IN_PROGRESS', 'COMPLETED'].includes(
+      normalized,
+    ),
     contractorAccepted: ['ACCEPTED', 'IN_PROGRESS', 'COMPLETED'].includes(normalized),
     initialContactMade: ['CONTACTED', 'IN_PROGRESS', 'COMPLETED'].includes(normalized),
     jobScheduled: ['SCHEDULED', 'IN_PROGRESS', 'COMPLETED'].includes(normalized),
     makeSafeCompleted: ['MAKE_SAFE_COMPLETED', 'COMPLETED'].includes(normalized),
     documentationProvided: ['DOCUMENTED', 'COMPLETED'].includes(normalized),
-    claimFinalized: ['COMPLETED', 'FINALIZED'].includes(normalized)
+    claimFinalized: ['COMPLETED', 'FINALIZED'].includes(normalized),
   };
 }
 
-function buildTrackClaimFromInput(id: string, body: any, createdAt: string, paymentProcessed: boolean): TrackClaimPayload {
+function buildTrackClaimFromInput(
+  id: string,
+  body: any,
+  createdAt: string,
+  paymentProcessed: boolean,
+): TrackClaimPayload {
   return {
     id,
     status: 'SUBMITTED',
@@ -77,27 +84,27 @@ function buildTrackClaimFromInput(id: string, body: any, createdAt: string, paym
     client: {
       fullName: body.fullName || 'Unknown Client',
       phone: body.phone || '',
-      email: body.email || ''
+      email: body.email || '',
     },
     property: {
       address: body.propertyAddress || '',
       suburb: body.suburb || '',
       state: body.state || '',
-      postcode: body.postcode || ''
+      postcode: body.postcode || '',
     },
     damage: {
       types: Array.isArray(body.damageTypes) ? body.damageTypes : ['General Property Damage'],
       urgencyLevel: body.urgencyLevel || 'standard',
-      description: body.damageDescription || ''
+      description: body.damageDescription || '',
     },
     contractor: {
       companyName: null,
       contactPerson: null,
       directPhone: null,
       assignedAt: null,
-      acceptedAt: null
+      acceptedAt: null,
     },
-    workflow: deriveWorkflow('SUBMITTED', paymentProcessed)
+    workflow: deriveWorkflow('SUBMITTED', paymentProcessed),
   };
 }
 
@@ -109,27 +116,27 @@ function buildTrackClaimFromDb(claim: any): TrackClaimPayload {
     client: {
       fullName: 'Claimant',
       phone: '',
-      email: claim.clientId || ''
+      email: claim.clientId || '',
     },
     property: {
       address: '',
       suburb: '',
       state: '',
-      postcode: ''
+      postcode: '',
     },
     damage: {
       types: ['General Property Damage'],
       urgencyLevel: 'standard',
-      description: claim.damageDescription || ''
+      description: claim.damageDescription || '',
     },
     contractor: {
       companyName: null,
       contactPerson: null,
       directPhone: null,
       assignedAt: null,
-      acceptedAt: null
+      acceptedAt: null,
     },
-    workflow: deriveWorkflow(claim.status || 'SUBMITTED', Number(claim.paymentAmountAUD || 0) > 0)
+    workflow: deriveWorkflow(claim.status || 'SUBMITTED', Number(claim.paymentAmountAUD || 0) > 0),
   };
 }
 
@@ -184,16 +191,30 @@ export async function POST(request: NextRequest) {
         correlationId: '00000000-0000-0000-0000-000000000000',
         correlationType: 'system',
         entityType: 'system',
-        metadata: { outcome: 'validation_failed', request_id: log.requestId, issues: parsed.error.issues.length },
+        metadata: {
+          outcome: 'validation_failed',
+          request_id: log.requestId,
+          issues: parsed.error.issues.length,
+        },
       });
-      return NextResponse.json({
-        success: false,
-        error: 'Invalid request',
-        details: parsed.error.issues,
-      }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Invalid request',
+          details: parsed.error.issues,
+        },
+        { status: 400 },
+      );
     }
     const body = parsed.data;
-    log.info('claim intake received', { email: body.email, postcode: body.postcode, urgency: body.urgencyLevel });
+    // APP 11: never log raw PII. Hash identifiers; postcode + urgency are
+    // non-PII (postcode alone is not personally identifying per the privacy.md
+    // taxonomy; urgency is internal classification).
+    log.info('claim intake received', {
+      email_hash: hashIdentifier(body.email),
+      postcode: body.postcode,
+      urgency: body.urgencyLevel,
+    });
 
     // Platform fee is server-authoritative — never trust client-supplied amount
     const totalClaimAmount = PLATFORM_FEE;
@@ -217,12 +238,17 @@ export async function POST(request: NextRequest) {
     // ENCRYPTION_SECRET is set in Vercel Production (DR-491). Claims without access instructions
     // do not require encryption and proceed normally regardless.
     if (body.accessInstructions && !isConfigured() && process.env.NODE_ENV !== 'development') {
-      log.error('ENCRYPTION_SECRET is not configured; cannot store access instructions', { ref: 'DR-390' });
-      return NextResponse.json({
-        success: false,
-        error: 'Server configuration error',
-        message: 'Please contact support',
-      }, { status: 500 });
+      log.error('ENCRYPTION_SECRET is not configured; cannot store access instructions', {
+        ref: 'DR-390',
+      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Server configuration error',
+          message: 'Please contact support',
+        },
+        { status: 500 },
+      );
     }
 
     // Encrypt property access instructions before persistence (DR-390)
@@ -234,21 +260,21 @@ export async function POST(request: NextRequest) {
     try {
       const claim = await prisma.insuranceClaimAU.create({
         data: {
-          bookingId:             body.bookingId            || '',
-          clientId:              body.clientId              || body.email,
-          insuranceProviderId:   normalizedProvider,
-          policyNumber:          normalizedPolicyNumber,
-          claimNumber:           body.insuranceClaimNumber  || null,
-          totalClaimAmountAUD:   totalClaimAmount,
-          paymentAmountAUD:      paymentAmount,
-          status:                'SUBMITTED',
-          damageDescription:     body.damageDescription,
-          damagePhotos:          Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
-          additionalDocuments:   Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],
+          bookingId: body.bookingId || '',
+          clientId: body.clientId || body.email,
+          insuranceProviderId: normalizedProvider,
+          policyNumber: normalizedPolicyNumber,
+          claimNumber: body.insuranceClaimNumber || null,
+          totalClaimAmountAUD: totalClaimAmount,
+          paymentAmountAUD: paymentAmount,
+          status: 'SUBMITTED',
+          damageDescription: body.damageDescription,
+          damagePhotos: Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
+          additionalDocuments: Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],
           // DR-390: accessInstructions stored as encrypted blob — never log or expose this field
-          accessInstructions:    encryptedAccessInstructions,
-          submittedAt:           new Date(),
-          tenantId:              body.tenantId || null,
+          accessInstructions: encryptedAccessInstructions,
+          submittedAt: new Date(),
+          tenantId: body.tenantId || null,
         },
       });
       trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, paymentConfirmed);
@@ -279,19 +305,28 @@ export async function POST(request: NextRequest) {
         await writeFallbackClaim(trackClaim);
       } catch (fsError) {
         // Vercel serverless filesystem is read-only — log but don't propagate
-        log.error('fallback file write failed', { error: fsError instanceof Error ? fsError.message : String(fsError) });
+        log.error('fallback file write failed', {
+          error: fsError instanceof Error ? fsError.message : String(fsError),
+        });
       }
       log.error('claim DB write failed; continuing with fallback id', {
         fallbackId,
         error: dbError instanceof Error ? dbError.message : String(dbError),
       });
-      captureException(dbError, { tags: { route: '/api/claims/submit', stage: 'db_write' }, extra: { requestId: log.requestId, fallbackId } });
+      captureException(dbError, {
+        tags: { route: '/api/claims/submit', stage: 'db_write' },
+        extra: { requestId: log.requestId, fallbackId },
+      });
       await logComplianceEvent({
         eventType: 'claim_intake_created',
         correlationId: '00000000-0000-0000-0000-000000000000',
         correlationType: 'system',
         entityType: 'system',
-        metadata: { outcome: 'db_write_failed', request_id: log.requestId, fallback_id: fallbackId },
+        metadata: {
+          outcome: 'db_write_failed',
+          request_id: log.requestId,
+          fallback_id: fallbackId,
+        },
       });
     }
 
@@ -313,39 +348,51 @@ export async function POST(request: NextRequest) {
       await sendEmail(body.email, supportPackEmail);
     } catch (emailError) {
       // Log but don't fail the claim — email is supplementary
-      log.error('claim support pack email failed (non-critical)', { error: emailError instanceof Error ? emailError.message : String(emailError) });
+      log.error('claim support pack email failed (non-critical)', {
+        error: emailError instanceof Error ? emailError.message : String(emailError),
+      });
     }
 
-    return NextResponse.json({
-      success: true,
-      claimId: trackClaim.id,
-      message: paymentConfirmed
-        ? 'Claim submitted successfully. Payment received.'
-        : 'Claim submitted successfully.',
-      nextSteps: [
-        'Your claim is being matched with a certified NRPG contractor',
-        'A recovery coordinator will review your claim and connect you with a verified contractor',
-        'The contractor will schedule an inspection at your convenience',
-        'All further communication will be directly with your assigned contractor'
-      ],
-      importantNotes: [
-        'Disaster Recovery is a lead generation platform',
-        'Your assigned contractor handles all service delivery',
-        'Contractors follow strict NRPG standards and guidelines',
-        'Platform fee covers lead generation and contractor matching only'
-      ],
-      trackingUrl: `/track/${trackClaim.id}`,
-      supportPackUrl: `/claim/${trackClaim.id}/support`
-    }, { status: 201 });
-
+    return NextResponse.json(
+      {
+        success: true,
+        claimId: trackClaim.id,
+        message: paymentConfirmed
+          ? 'Claim submitted successfully. Payment received.'
+          : 'Claim submitted successfully.',
+        nextSteps: [
+          'Your claim is being matched with a certified NRPG contractor',
+          'A recovery coordinator will review your claim and connect you with a verified contractor',
+          'The contractor will schedule an inspection at your convenience',
+          'All further communication will be directly with your assigned contractor',
+        ],
+        importantNotes: [
+          'Disaster Recovery is a lead generation platform',
+          'Your assigned contractor handles all service delivery',
+          'Contractors follow strict NRPG standards and guidelines',
+          'Platform fee covers lead generation and contractor matching only',
+        ],
+        trackingUrl: `/track/${trackClaim.id}`,
+        supportPackUrl: `/claim/${trackClaim.id}/support`,
+      },
+      { status: 201 },
+    );
   } catch (error) {
-    log.error('claim intake failed', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/claims/submit' }, extra: { requestId: log.requestId } });
-    return NextResponse.json({
-      success: false,
-      error: 'Failed to process claim',
-      message: 'Please contact support'
-    }, { status: 500 });
+    log.error('claim intake failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/claims/submit' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Failed to process claim',
+        message: 'Please contact support',
+      },
+      { status: 500 },
+    );
   }
 }
 
@@ -368,10 +415,13 @@ export async function GET(request: NextRequest) {
     callerRole === 'admin' || callerRole === 'super_admin' || callerRole === 'contractor';
 
   if (!claimId) {
-    return NextResponse.json({
-      success: false,
-      error: 'Claim ID required'
-    }, { status: 400 });
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Claim ID required',
+      },
+      { status: 400 },
+    );
   }
 
   try {
@@ -382,14 +432,17 @@ export async function GET(request: NextRequest) {
     if (!claim) {
       const fallback = await readFallbackClaim(claimId);
       if (!fallback) {
-        return NextResponse.json({
-          success: false,
-          error: 'Claim not found'
-        }, { status: 404 });
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Claim not found',
+          },
+          { status: 404 },
+        );
       }
       return NextResponse.json({
         success: true,
-        claim: fallback
+        claim: fallback,
       });
     }
 
@@ -401,7 +454,12 @@ export async function GET(request: NextRequest) {
       } catch (decryptErr) {
         // Log but do not expose — return null so the caller knows the field exists
         // but the value cannot be delivered (e.g. key rotation in progress).
-        log.error('failed to decrypt accessInstructions', { ref: 'DR-390', claimId, callerId, error: decryptErr instanceof Error ? decryptErr.message : String(decryptErr) });
+        log.error('failed to decrypt accessInstructions', {
+          ref: 'DR-390',
+          claimId,
+          callerId,
+          error: decryptErr instanceof Error ? decryptErr.message : String(decryptErr),
+        });
       }
     }
 
@@ -416,19 +474,28 @@ export async function GET(request: NextRequest) {
       }),
     });
   } catch (error) {
-    log.error('error fetching claim', { error: error instanceof Error ? error.message : String(error), claimId });
-    captureException(error, { tags: { route: '/api/claims/submit' }, extra: { requestId: log.requestId } });
+    log.error('error fetching claim', {
+      error: error instanceof Error ? error.message : String(error),
+      claimId,
+    });
+    captureException(error, {
+      tags: { route: '/api/claims/submit' },
+      extra: { requestId: log.requestId },
+    });
     const fallback = await readFallbackClaim(claimId);
     if (fallback) {
       return NextResponse.json({
         success: true,
-        claim: fallback
+        claim: fallback,
       });
     }
-    return NextResponse.json({
-      success: false,
-      error: 'Failed to fetch claim',
-      message: 'Please contact support'
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Failed to fetch claim',
+        message: 'Please contact support',
+      },
+      { status: 500 },
+    );
   }
 }
