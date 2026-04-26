@@ -35,7 +35,14 @@ export type ComplianceEventType =
   | 'auth_login_attempt'
   | 'auth_login_success'
   | 'auth_login_failure'
-  | 'push_dispatched';
+  | 'push_dispatched'
+  // Privacy + NDB (Notifiable Data Breaches) — Part IIIC of Privacy Act 1988.
+  // These rows are NEVER deleted from the audit trail. See
+  // .claude/rules/privacy.md §5 + §9 for the canonical retention policy.
+  | 'breach_suspected'
+  | 'data_deletion_request'
+  | 'data_access_request'
+  | 'privacy_notice_shown';
 
 export type ComplianceCorrelationType =
   | 'claim'
@@ -44,17 +51,9 @@ export type ComplianceCorrelationType =
   | 'contractor_membership'
   | 'system';
 
-export type ComplianceEntityType =
-  | 'customer'
-  | 'contractor'
-  | 'finance_partner'
-  | 'system';
+export type ComplianceEntityType = 'customer' | 'contractor' | 'finance_partner' | 'system';
 
-export type ComplianceConsentMethod =
-  | 'web_form'
-  | 'voice_sarah'
-  | 'voice_human'
-  | 'chat';
+export type ComplianceConsentMethod = 'web_form' | 'voice_sarah' | 'voice_human' | 'chat';
 
 export interface ComplianceEventInput {
   eventType: ComplianceEventType;
@@ -104,7 +103,9 @@ export async function logComplianceEvent(input: ComplianceEventInput): Promise<v
       correlation_id: input.correlationId,
       correlation_type: input.correlationType,
       entity_type: input.entityType ?? null,
-      entity_identifier_hash: input.entityIdentifier ? hashIdentifier(input.entityIdentifier) : null,
+      entity_identifier_hash: input.entityIdentifier
+        ? hashIdentifier(input.entityIdentifier)
+        : null,
       amount_cents: input.amountCents ?? null,
       amount_currency: input.amountCurrency ?? null,
       designated_service_code: input.designatedServiceCode ?? null,
