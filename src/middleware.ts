@@ -16,9 +16,17 @@ interface RateLimitRule {
 }
 
 const RATE_LIMIT_RULES: Readonly<Record<string, RateLimitRule>> = {
-  '/api/claims/submit':   { windowMs: 60_000, maxRequests: 5 },
-  '/api/contact/submit':  { windowMs: 60_000, maxRequests: 10 },
+  '/api/claims/submit': { windowMs: 60_000, maxRequests: 5 },
+  '/api/contact/submit': { windowMs: 60_000, maxRequests: 10 },
   '/api/bookings/create': { windowMs: 60_000, maxRequests: 10 },
+  // Health-check audit A9 (P2, 2026-04-26): expand rate limiting to
+  // contractor onboarding (prevent fake-application spam) + voice tool
+  // surface (defence-in-depth on top of HMAC auth + 5-tool whitelist).
+  '/api/contractor/register': { windowMs: 3_600_000, maxRequests: 5 },
+  '/api/contractor/onboarding/submit': { windowMs: 3_600_000, maxRequests: 5 },
+  '/api/contractors/apply/start': { windowMs: 3_600_000, maxRequests: 10 },
+  '/api/voice/tools/send-payment-link': { windowMs: 60_000, maxRequests: 20 },
+  '/api/finance/referral': { windowMs: 60_000, maxRequests: 10 },
 };
 
 function checkRateLimit(
@@ -68,15 +76,12 @@ const ALLOWED_ORIGINS = [
 const DEV_ORIGIN_RE = /^https?:\/\/localhost(:\d+)?$/;
 
 function getCorsHeaders(origin: string | null): Record<string, string> {
-  const allowed =
-    origin &&
-    (ALLOWED_ORIGINS.includes(origin) || DEV_ORIGIN_RE.test(origin));
+  const allowed = origin && (ALLOWED_ORIGINS.includes(origin) || DEV_ORIGIN_RE.test(origin));
 
   return {
     'Access-Control-Allow-Origin': allowed ? origin! : ALLOWED_ORIGINS[0],
     'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
-    'Access-Control-Allow-Headers':
-      'Content-Type, Authorization, X-Requested-With',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
     'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Max-Age': '86400',
   };
@@ -128,9 +133,7 @@ export async function middleware(request: NextRequest) {
         headers: {
           'Content-Type': 'application/json',
           'Retry-After': String(rl.retryAfter ?? 60),
-          'X-RateLimit-Limit': String(
-            RATE_LIMIT_RULES[path]?.maxRequests ?? 10,
-          ),
+          'X-RateLimit-Limit': String(RATE_LIMIT_RULES[path]?.maxRequests ?? 10),
           'X-RateLimit-Remaining': '0',
         },
       },
@@ -138,8 +141,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── RBAC: protect /admin and /contractor routes ──────────────────────────
-  const isProtected =
-    path.startsWith('/admin') || path.startsWith('/contractor');
+  const isProtected = path.startsWith('/admin') || path.startsWith('/contractor');
 
   if (isProtected) {
     // Safely resolve the JWT — if NEXTAUTH_SECRET is absent or token is malformed,
@@ -162,7 +164,10 @@ export async function middleware(request: NextRequest) {
     }
 
     // /admin routes additionally require an admin role
-    const tokenRole = typeof token === 'object' ? (token as Record<string, unknown>).role as string | undefined : undefined;
+    const tokenRole =
+      typeof token === 'object'
+        ? ((token as Record<string, unknown>).role as string | undefined)
+        : undefined;
     if (path.startsWith('/admin') && !isAdminRole(tokenRole)) {
       const homeUrl = new URL('/', request.url);
       homeUrl.searchParams.set('error', 'AccessDenied');
@@ -197,7 +202,7 @@ export async function middleware(request: NextRequest) {
   else {
     response.headers.set(
       'Cache-Control',
-      'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
+      'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
     );
   }
 
@@ -205,7 +210,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|robots\\.txt|sitemap\\.xml).*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|robots\\.txt|sitemap\\.xml).*)'],
 };
