@@ -117,19 +117,19 @@ If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those
 
 ## 2. Tech stack
 
-| Layer         | Choice                                                               |
-| ------------- | -------------------------------------------------------------------- |
-| Framework     | Next.js 15 (App Router)                                              |
-| Language      | TypeScript (strict, `useUnknownInCatchVariables` on — DR-Day-4)      |
-| DB            | PostgreSQL (Supabase) via Prisma ORM                                 |
-| Validation    | Zod (shared registry at `src/lib/validation.ts` — single API source) |
-| Auth          | Supabase Auth + custom contractor-auth adapter                       |
-| Styling       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)        |
-| Payments      | Stripe Checkout (DR-586/712 flag-gated)                              |
-| Voice         | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)         |
-| Deploy        | Vercel (authoritative — Vercel wins over local builds)               |
-| Observability | Sentry scaffold + request logger + compliance_events (DR-Day-9)      |
-| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck + gitleaks   |
+| Layer         | Choice                                                                                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework     | Next.js 15 (App Router)                                                                                                                                                         |
+| Language      | TypeScript (strict, `useUnknownInCatchVariables` on — DR-Day-4)                                                                                                                 |
+| DB            | PostgreSQL (Supabase) via Prisma ORM                                                                                                                                            |
+| Validation    | Zod (shared registry at `src/lib/validation.ts` — single API source)                                                                                                            |
+| Auth          | Supabase Auth + custom contractor-auth adapter                                                                                                                                  |
+| Styling       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)                                                                                                                   |
+| Payments      | Stripe Checkout (DR-586/712 flag-gated)                                                                                                                                         |
+| Voice         | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)                                                                                                                    |
+| Deploy        | Vercel (authoritative — Vercel wins over local builds)                                                                                                                          |
+| Observability | Vercel-native (`@vercel/otel` + Web Analytics + Speed Insights + Log Drains per ADR-005) — `captureException` lives in `src/lib/observability/vercel.ts`. We do NOT use Sentry. |
+| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck + gitleaks                                                                                                              |
 
 ## 3. Commands
 
@@ -224,7 +224,7 @@ npm run check:scripts   # verify all scripts resolve
 
 - Every API route that mutates state logs to `compliance_events` (structured, redacted, retention-tagged).
 - PII MUST pass through `src/lib/compliance/*` redactor before hitting logs.
-- Sentry scaffold is in place; fill breadcrumbs, not raw payloads.
+- Vercel observability is in place (per ADR-005, NOT Sentry); call `captureException` from `src/lib/observability/vercel.ts` and fill OTel span attributes / log-drain payloads — never raw PII.
 
 ### 5.5 Prohibitions (non-negotiable)
 
