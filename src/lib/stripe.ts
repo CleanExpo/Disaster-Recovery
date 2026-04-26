@@ -161,40 +161,11 @@ async function createSubscriptionSchedule(subscriptionId: string, _customerId: s
   return schedule;
 }
 
-// Handle webhook events
-export async function handleStripeWebhook(
-  event: Stripe.Event,
-): Promise<{ success: boolean; message?: string }> {
-  switch (event.type) {
-    case 'payment_intent.succeeded': {
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      if (paymentIntent.metadata.type === 'onboarding') {
-        // Update database to mark fees as paid
-        return { success: true, message: 'Onboarding payment processed' };
-      }
-      return { success: true, message: 'Payment intent succeeded' };
-    }
-
-    case 'customer.subscription.created':
-    case 'customer.subscription.updated': {
-      // Update database with subscription details
-      return { success: true, message: 'Subscription updated' };
-    }
-
-    case 'invoice.payment_succeeded': {
-      // Update database with payment record
-      return { success: true, message: 'Invoice paid' };
-    }
-
-    case 'customer.subscription.deleted': {
-      // Handle subscription cancellation
-      return { success: true, message: 'Subscription cancelled' };
-    }
-
-    default:
-      return { success: true, message: `Unhandled event type: ${event.type}` };
-  }
-}
+// Webhook event handling lives in `app/api/stripe/webhook/route.ts` — that
+// route does signature verification + signature-based dispatch + DB writes
+// for checkout.session.completed, payment_intent.succeeded, .payment_failed,
+// checkout.session.expired, charge.dispute.created, customer.subscription
+// .created/.deleted. Do NOT add a parallel handler here.
 
 // Create Stripe Checkout Session for onboarding
 export async function createOnboardingCheckoutSession(
