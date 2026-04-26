@@ -129,3 +129,4 @@ public/~partytown/
 # Throwaway working dirs (e.g. PST inventory venv, scratch scripts)
 tmp/
 scripts/.stripe-catalogue.json
+.gstack/
