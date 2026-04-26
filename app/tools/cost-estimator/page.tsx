@@ -1,10 +1,14 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import { Calculator } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 import { getCostEstimatorSections } from '@/lib/content-sections';
-import CostEstimator from '@/components/tools/CostEstimator';
+
+// Lazy-load CostEstimator: it ships framer-motion and is rendered below
+// the hero/breadcrumbs inside a section body, so it is never above-fold.
+const CostEstimator = dynamic(() => import('@/components/tools/CostEstimator'));
 
 export const metadata: Metadata = {
   title: 'Emergency Cost Estimator',
@@ -83,7 +87,8 @@ const softwareSchema = {
     price: '0',
     priceCurrency: 'AUD',
   },
-  description: 'Interactive cost estimator for water damage, fire, mould, storm, sewage, and biohazard restoration in Australia. Based on $85/hr contractor rates plus materials.',
+  description:
+    'Interactive cost estimator for water damage, fire, mould, storm, sewage, and biohazard restoration in Australia. Based on $85/hr contractor rates plus materials.',
   provider: {
     '@type': 'Organization',
     '@id': 'https://disasterrecovery.com.au/#organization',

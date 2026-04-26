@@ -1,16 +1,22 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
-import ModernContactPage from './ContactClient';
+
+// Lazy-loaded: ContactClient ships framer-motion. Kept SSR-on so the
+// contact page metadata + body still server-render for SEO.
+const ModernContactPage = dynamic(() => import('./ContactClient'));
 
 export const metadata: Metadata = {
   title: 'Contact Us | 24/7 Emergency Line',
-  description: 'Get immediate emergency help for property damage. Contact our 24/7 online response team. Certified restoration specialists respond as soon as a certified contractor is confirmed for your area.',
+  description:
+    'Get immediate emergency help for property damage. Contact our 24/7 online response team. Certified restoration specialists respond as soon as a certified contractor is confirmed for your area.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/contact',
   },
   openGraph: {
     title: 'Contact Us | 24/7 Emergency Line',
-    description: 'Get immediate emergency help for property damage. 24/7 online response with certified restoration specialists.',
+    description:
+      'Get immediate emergency help for property damage. 24/7 online response with certified restoration specialists.',
     type: 'website',
   },
 };
