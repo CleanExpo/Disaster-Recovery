@@ -1,8 +1,8 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import { VoiceWidget } from '@/components/voice/VoiceWidget';
 export const dynamic = 'force-dynamic';
 
 import { useState, useEffect, Suspense, Fragment } from 'react';
@@ -10,13 +10,29 @@ import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
-  Shield, Building2, FileText, Award, CreditCard, UserCheck, CheckCircle,
-  ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X, ShieldCheck, Info
+  Shield,
+  Building2,
+  FileText,
+  Award,
+  CreditCard,
+  UserCheck,
+  CheckCircle,
+  ArrowRight,
+  ArrowLeft,
+  Save,
+  AlertCircle,
+  Upload,
+  Loader2,
+  X,
+  ShieldCheck,
+  Info,
 } from 'lucide-react';
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
 import { validateABN } from '@/lib/utils/australian-compliance';
 import { DEMO_DATA, simulateClick, autoFillForm } from '@/lib/demo-mode';
-import Step0Eligibility, { EligibilityData } from '@/components/contractor/onboarding/Step0Eligibility';
+import Step0Eligibility, {
+  EligibilityData,
+} from '@/components/contractor/onboarding/Step0Eligibility';
 import Step1BusinessInfo from '@/components/contractor/onboarding/Step1BusinessInfo';
 import Step2InsuranceLicensing from '@/components/contractor/onboarding/Step2InsuranceLicensing';
 import Step3ExperienceReferences from '@/components/contractor/onboarding/Step3ExperienceReferences';
@@ -26,13 +42,55 @@ import Step6BankingPayment from '@/components/contractor/onboarding/Step6Banking
 import Step7ReviewSubmit from '@/components/contractor/onboarding/Step7ReviewSubmit';
 
 const ONBOARDING_STEPS = [
-  { id: 1, name: 'Business Information', shortName: 'Business', icon: Building2, description: 'Company details & ABN' },
-  { id: 2, name: 'Insurance & Licensing', shortName: 'Insurance', icon: Shield, description: 'Certificates & licences' },
-  { id: 3, name: 'Experience & References', shortName: 'Experience', icon: Award, description: 'Work history & references' },
-  { id: 4, name: 'Equipment & Resources', shortName: 'Equipment', icon: FileText, description: 'Tools & team capacity' },
-  { id: 5, name: 'Health & Safety', shortName: 'Safety', icon: ShieldCheck, description: 'WHS compliance & procedures' },
-  { id: 6, name: 'Banking & Payment', shortName: 'Banking', icon: CreditCard, description: 'Financial details & terms' },
-  { id: 7, name: 'Review & Submit', shortName: 'Review', icon: CheckCircle, description: 'Final review & payment' }
+  {
+    id: 1,
+    name: 'Business Information',
+    shortName: 'Business',
+    icon: Building2,
+    description: 'Company details & ABN',
+  },
+  {
+    id: 2,
+    name: 'Insurance & Licensing',
+    shortName: 'Insurance',
+    icon: Shield,
+    description: 'Certificates & licences',
+  },
+  {
+    id: 3,
+    name: 'Experience & References',
+    shortName: 'Experience',
+    icon: Award,
+    description: 'Work history & references',
+  },
+  {
+    id: 4,
+    name: 'Equipment & Resources',
+    shortName: 'Equipment',
+    icon: FileText,
+    description: 'Tools & team capacity',
+  },
+  {
+    id: 5,
+    name: 'Health & Safety',
+    shortName: 'Safety',
+    icon: ShieldCheck,
+    description: 'WHS compliance & procedures',
+  },
+  {
+    id: 6,
+    name: 'Banking & Payment',
+    shortName: 'Banking',
+    icon: CreditCard,
+    description: 'Financial details & terms',
+  },
+  {
+    id: 7,
+    name: 'Review & Submit',
+    shortName: 'Review',
+    icon: CheckCircle,
+    description: 'Final review & payment',
+  },
 ];
 
 /** Build residential restoration sample preset (used for quick-fill). Step components use mixed shapes so we use a loose type. */
@@ -53,8 +111,8 @@ function getResidentialPresetData(): Record<string, unknown> {
     (biz.phone as string) && (biz.phone as string).trim().length > 0
       ? (biz.phone as string)
       : (biz.mobile as string) && (biz.mobile as string).trim().length > 0
-      ? (biz.mobile as string)
-      : '1300 000 000';
+        ? (biz.mobile as string)
+        : '1300 000 000';
 
   // Build experience projects with at least 3 entries for Step 3
   const rawProjects = (exp?.majorProjects as Array<Record<string, unknown>>) || [];
@@ -62,9 +120,21 @@ function getResidentialPresetData(): Record<string, unknown> {
     rawProjects.length > 0
       ? rawProjects
       : [
-          { name: 'CBD Office Flood Recovery', value: 750000, description: 'Multi-floor commercial flood restoration' },
-          { name: 'Hospital Fire & Smoke Cleanup', value: 1250000, description: 'Smoke and soot remediation for critical care areas' },
-          { name: 'Shopping Centre Mould Remediation', value: 500000, description: 'Large-scale mould remediation in retail tenancies' }
+          {
+            name: 'CBD Office Flood Recovery',
+            value: 750000,
+            description: 'Multi-floor commercial flood restoration',
+          },
+          {
+            name: 'Hospital Fire & Smoke Cleanup',
+            value: 1250000,
+            description: 'Smoke and soot remediation for critical care areas',
+          },
+          {
+            name: 'Shopping Centre Mould Remediation',
+            value: 500000,
+            description: 'Large-scale mould remediation in retail tenancies',
+          },
         ];
   const paddedProjects =
     baseProjects.length >= 3
@@ -72,8 +142,12 @@ function getResidentialPresetData(): Record<string, unknown> {
       : [
           ...baseProjects,
           ...[
-            { name: 'Regional Storm Damage Response', value: 350000, description: 'Roof, water ingress and contents drying' }
-          ].slice(0, 3 - baseProjects.length)
+            {
+              name: 'Regional Storm Damage Response',
+              value: 350000,
+              description: 'Roof, water ingress and contents drying',
+            },
+          ].slice(0, 3 - baseProjects.length),
         ];
 
   // Build references with phone/email so Step 3 can be valid out of the box
@@ -87,22 +161,22 @@ function getResidentialPresetData(): Record<string, unknown> {
             company: 'QBE Insurance',
             position: 'Senior Claims Manager',
             relationship: 'Client',
-            email: 'john.smith@example.com'
+            email: 'john.smith@example.com',
           },
           {
             name: 'Sarah Johnson',
             company: 'ABC Property Management',
             position: 'Portfolio Manager',
             relationship: 'Property Manager',
-            email: 'sarah.johnson@example.com'
+            email: 'sarah.johnson@example.com',
           },
           {
             name: 'Michael Lee',
             company: 'XYZ Strata',
             position: 'Strata Manager',
             relationship: 'Client',
-            email: 'michael.lee@example.com'
-          }
+            email: 'michael.lee@example.com',
+          },
         ];
 
   return {
@@ -110,7 +184,7 @@ function getResidentialPresetData(): Record<string, unknown> {
     businessInfo: {
       ...c.businessInfo,
       // Ensure Step 1 has a Business Phone when using quick fill
-      phone: businessPhone
+      phone: businessPhone,
     },
     insurance: c.insurance,
     experience: c.experience,
@@ -156,29 +230,23 @@ function getResidentialPresetData(): Record<string, unknown> {
     totalProjectsCompleted: String(
       (exp?.majorProjects as Array<Record<string, unknown>>)?.length
         ? (exp?.majorProjects as Array<Record<string, unknown>>).length * 20
-        : 200
+        : 200,
     ),
     largestProjectValue: (() => {
       const projects = exp?.majorProjects as Array<Record<string, unknown>> | undefined;
       if (!projects || !projects.length) return '$2,500,000';
       const max = Math.max(
-        ...projects
-          .map((p) => Number(p.value ?? 0))
-          .filter((v) => !Number.isNaN(v))
+        ...projects.map((p) => Number(p.value ?? 0)).filter((v) => !Number.isNaN(v)),
       );
       return max > 0 ? `$${max.toLocaleString('en-AU')}` : '$2,500,000';
     })(),
     workExperience: paddedProjects.map((project) => {
       const p = project as Record<string, unknown>;
-      const client =
-        (p.client as string) ??
-        (p.clientName as string) ??
-        'Key commercial client';
-      const completion =
-        (p.completionDate as string) ?? new Date().toISOString().slice(0, 10);
+      const client = (p.client as string) ?? (p.clientName as string) ?? 'Key commercial client';
+      const completion = (p.completionDate as string) ?? new Date().toISOString().slice(0, 10);
 
       return {
-      projectName: (p.name as string) ?? '',
+        projectName: (p.name as string) ?? '',
         clientName: client,
         // Must match one of the allowed projectType options in Step 3
         projectType: 'Multiple',
@@ -187,7 +255,7 @@ function getResidentialPresetData(): Record<string, unknown> {
         completionDate: completion,
         description: (p.description as string) ?? '',
         challenges: '',
-        outcome: ''
+        outcome: '',
       };
     }),
     references: baseRefs.map((ref, idx) => {
@@ -196,10 +264,10 @@ function getResidentialPresetData(): Record<string, unknown> {
         (r.position as string) && (r.position as string).trim().length > 0
           ? (r.position as string)
           : idx === 0
-          ? 'Senior Claims Manager'
-          : idx === 1
-          ? 'Portfolio Manager'
-          : 'Strata Manager';
+            ? 'Senior Claims Manager'
+            : idx === 1
+              ? 'Portfolio Manager'
+              : 'Strata Manager';
 
       return {
         name: (r.name as string) ?? '',
@@ -208,7 +276,7 @@ function getResidentialPresetData(): Record<string, unknown> {
         relationship: (r.relationship as string) ?? 'Client',
         phone: ((r as any).phone as string) ?? '1300 000 000',
         email: (r.email as string) ?? 'contact@example.com',
-        projectReference: (r.projectReference as string) ?? ''
+        projectReference: (r.projectReference as string) ?? '',
       };
     }),
     // Step 4 – vehicles pre-filled for quick fill
@@ -219,7 +287,7 @@ function getResidentialPresetData(): Record<string, unknown> {
         model: 'NQR',
         year: '2021',
         registration: 'NRPG01',
-        capacity: '3 tonne'
+        capacity: '3 tonne',
       },
       {
         type: 'Van',
@@ -227,8 +295,8 @@ function getResidentialPresetData(): Record<string, unknown> {
         model: 'HiAce',
         year: '2020',
         registration: 'NRPG02',
-        capacity: '1.5 tonne'
-      }
+        capacity: '1.5 tonne',
+      },
     ],
     specializations: (exp?.specializations as string[]) ?? [],
     insuranceClaimsExperience:
@@ -243,13 +311,9 @@ function getResidentialPresetData(): Record<string, unknown> {
     waterExtractionEquipment: [
       'Truck-mounted extraction unit',
       'Portable extraction units',
-      'Submersible pumps'
+      'Submersible pumps',
     ],
-    dryingEquipment: [
-      'Axial air movers',
-      'Refrigerant dehumidifiers',
-      'LGR dehumidifiers'
-    ],
+    dryingEquipment: ['Axial air movers', 'Refrigerant dehumidifiers', 'LGR dehumidifiers'],
     airQualityEquipment: ['Air scrubbers', 'HEPA filtration units', 'Negative air machines'],
     cleaningEquipment: ['Pressure washers', 'Carpet cleaning machines', 'HEPA vacuums'],
     safetyEquipment: ['PPE sets (complete)', 'Respirators (P2/N95)', 'Tyvek suits'],
@@ -267,8 +331,8 @@ function getResidentialPresetData(): Record<string, unknown> {
         name: 'Lead Technician',
         role: 'Senior Restoration Technician',
         certifications: 'IICRC WRT, ASD',
-        yearsExperience: '8'
-      }
+        yearsExperience: '8',
+      },
     ],
     officeLocation: biz
       ? `${biz.address ?? '123 Demo Street'}, ${biz.suburb ?? 'Brisbane'} ${
@@ -283,38 +347,32 @@ function getResidentialPresetData(): Record<string, unknown> {
     backupEquipment: true,
     subcontractorNetwork: true,
     primarySuppliers: 'Demo Restoration Supply Co; National Equipment Rentals',
-    emergencyContacts: 'Operations Manager (24/7): 1300 000 000'
-    ,
+    emergencyContacts: 'Operations Manager (24/7): 1300 000 000',
     // Step 5 – Health & Safety (map from demo healthSafety into full form shape)
     whsPolicyDocument: 'WHS Policy v2.1',
     whsPolicyVersion: 'v2.1',
     whsPolicyReviewDate: new Date().toISOString().slice(0, 10),
     safeWorkMethodStatements: (safety?.safeWorkProcedures as boolean) ?? true,
-    swmsCategories: [
-      'Water Damage Restoration',
-      'Fire Damage Restoration',
-      'Mould Remediation'
-    ],
+    swmsCategories: ['Water Damage Restoration', 'Fire Damage Restoration', 'Mould Remediation'],
     safetyManagementSystem: 'internal',
     safetyOfficerName: 'Jane Safety',
     safetyOfficerContact: 'safety.officer@example.com',
     safetyMeetingFrequency: 'monthly',
     inductionProcess: true,
     trainingRecordSystem: 'digital',
-    mandatoryTraining:
-      (safety?.training as string[] | undefined)?.map((t) => ({
-        trainingType: t,
+    mandatoryTraining: (safety?.training as string[] | undefined)?.map((t) => ({
+      trainingType: t,
+      provider: 'Registered RTO',
+      frequency: 'annual',
+      lastCompleted: new Date().toISOString().slice(0, 10),
+    })) ?? [
+      {
+        trainingType: 'Working at Heights',
         provider: 'Registered RTO',
         frequency: 'annual',
-        lastCompleted: new Date().toISOString().slice(0, 10)
-      })) ?? [
-        {
-          trainingType: 'Working at Heights',
-          provider: 'Registered RTO',
-          frequency: 'annual',
-          lastCompleted: new Date().toISOString().slice(0, 10)
-        }
-      ],
+        lastCompleted: new Date().toISOString().slice(0, 10),
+      },
+    ],
     certifications: [
       {
         certificationType: 'First Aid/CPR',
@@ -322,12 +380,12 @@ function getResidentialPresetData(): Record<string, unknown> {
         expiryDate: new Date(
           new Date().getFullYear() + 1,
           new Date().getMonth(),
-          new Date().getDate()
+          new Date().getDate(),
         )
           .toISOString()
           .slice(0, 10),
-        holder: 'Lead Technician'
-      }
+        holder: 'Lead Technician',
+      },
     ],
     ppeProvided: (safety?.ppe as boolean) ?? true,
     ppeTypes: [
@@ -335,7 +393,7 @@ function getResidentialPresetData(): Record<string, unknown> {
       'Safety Glasses/Goggles',
       'Respirators/Masks',
       'Safety Boots',
-      'Gloves (Various Types)'
+      'Gloves (Various Types)',
     ],
     equipmentMaintenance: true,
     maintenanceSchedule: 'quarterly',
@@ -359,11 +417,11 @@ function getResidentialPresetData(): Record<string, unknown> {
         expiryDate: new Date(
           new Date().getFullYear() + 1,
           new Date().getMonth(),
-          new Date().getDate()
+          new Date().getDate(),
         )
           .toISOString()
-          .slice(0, 10)
-      }
+          .slice(0, 10),
+      },
     ],
     safetyAuditsFrequency: 'annual',
     externalAudits: true,
@@ -374,14 +432,18 @@ function getResidentialPresetData(): Record<string, unknown> {
     fatigueManagement: true,
     commitToNRPStandards: true,
     shareIncidentData: true,
-    participateInSafetyPrograms: true
+    participateInSafetyPrograms: true,
   };
 }
 
 /** Quick-fill presets: select one and the form fills immediately (no button). */
 const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unknown> }[] = [
   { id: '', label: 'Start from scratch', data: {} },
-  { id: 'residential', label: 'Residential restoration (sample)', data: getResidentialPresetData() },
+  {
+    id: 'residential',
+    label: 'Residential restoration (sample)',
+    data: getResidentialPresetData(),
+  },
   {
     id: 'commercial',
     label: 'Commercial cleaning (sample)',
@@ -402,12 +464,18 @@ const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unkn
           address: '45 Industrial Ave',
           suburb: 'Melbourne',
           state: 'VIC',
-          postcode: '3000'
+          postcode: '3000',
         };
         (merged.businessInfo as Record<string, unknown>).email = 'apply@metroclean.com.au';
       }
       const bank = merged.banking as Record<string, unknown>;
-      if (bank) merged.banking = { ...bank, accountName: 'Metro Commercial Cleaning Pty Ltd', bsb: '063-000', accountNumber: '87654321' };
+      if (bank)
+        merged.banking = {
+          ...bank,
+          accountName: 'Metro Commercial Cleaning Pty Ltd',
+          bsb: '063-000',
+          accountNumber: '87654321',
+        };
       merged.accountName = 'Metro Commercial Cleaning Pty Ltd';
       merged.bsb = '063-000';
       merged.accountNumber = '87654321';
@@ -415,8 +483,8 @@ const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unkn
       merged.abn = '51824753556';
       merged.invoiceEmail = 'apply@metroclean.com.au';
       return merged;
-    })()
-  }
+    })(),
+  },
 ];
 
 function ContractorApplicationContent() {
@@ -449,37 +517,38 @@ function ContractorApplicationContent() {
       setCompletedSteps(progress.completedSteps || []);
       setCurrentStep(progress.currentStep || 1);
     }
-    
+
     // Check if auto-demo should run
     if (searchParams.get('demo') === 'auto') {
       runAutoDemo();
     }
   }, []);
-  
+
   // Scroll to top when step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentStep]);
-  
+
   // Auto-demo functionality with enhanced timing
   const runAutoDemo = async () => {
     setIsDemoRunning(true);
-    
+
     // Show initial message
     const showMessage = (msg: string) => {
       const messageDiv = document.createElement('div');
-      messageDiv.className = 'fixed bottom-4 right-4 z-[2000] bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg animate-slide-in';
+      messageDiv.className =
+        'fixed bottom-4 right-4 z-[2000] bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg animate-slide-in';
       messageDiv.textContent = msg;
       document.body.appendChild(messageDiv);
       setTimeout(() => messageDiv.remove(), 3000);
     };
-    
+
     showMessage('Starting Contractor Application Demo...');
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     // Set demo data
     setOnboardingData(DEMO_DATA.contractor as Partial<ContractorOnboardingData>);
-    
+
     // Progress through each step with descriptions
     const stepDescriptions = [
       'Filling business information and ABN details...',
@@ -488,9 +557,9 @@ function ContractorApplicationContent() {
       'Listing equipment and team resources...',
       'Confirming health & safety compliance...',
       'Setting up banking and payment details...',
-      'Reviewing and submitting application...'
+      'Reviewing and submitting application...',
     ];
-    
+
     // Form data for each step
     const stepFormData = [
       DEMO_DATA.contractor.businessInfo,
@@ -499,42 +568,43 @@ function ContractorApplicationContent() {
       DEMO_DATA.contractor.equipment,
       DEMO_DATA.contractor.healthSafety,
       DEMO_DATA.contractor.banking,
-      {} // Review step doesn't have form fields
+      {}, // Review step doesn't have form fields
     ];
-    
+
     for (let step = 1; step <= 7; step++) {
       setCurrentStep(step);
       showMessage(stepDescriptions[step - 1]);
-      
+
       // Wait for component to render
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       // Auto-fill form fields for current step
       if (step < 7) {
         await autoFillForm(stepFormData[step - 1], 115);
       }
-      
+
       // Additional delay to show filled form
-      await new Promise(resolve => setTimeout(resolve, 1800));
-      
-      setCompletedSteps(prev => [...prev, step]);
-      
+      await new Promise((resolve) => setTimeout(resolve, 1800));
+
+      setCompletedSteps((prev) => [...prev, step]);
+
       // Save progress
       await saveProgress();
-      
+
       // Longer pause on final step
       if (step === 7) {
-        await new Promise(resolve => setTimeout(resolve, 3450)); // 15% slower
+        await new Promise((resolve) => setTimeout(resolve, 3450)); // 15% slower
       } else {
-        await new Promise(resolve => setTimeout(resolve, 2300)); // 15% slower
+        await new Promise((resolve) => setTimeout(resolve, 2300)); // 15% slower
       }
     }
-    
+
     // Show completion with training module preview
     showMessage('Application Complete! Contractor now has access to training modules.');
     setTimeout(() => {
       const completionModal = document.createElement('div');
-      completionModal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-center justify-center p-4';
+      completionModal.className =
+        'fixed inset-0 z-[3000] bg-black/50 flex items-center justify-center p-4';
       completionModal.innerHTML = `
         <div class="bg-white rounded-xl p-8 max-w-2xl animate-scale-in">
           <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Demo Application Complete!</h2>
@@ -565,18 +635,18 @@ function ContractorApplicationContent() {
       completedSteps,
       savedData: onboardingData,
       lastUpdated: new Date().toISOString(),
-      completionPercentage: Math.round((completedSteps.length / 7) * 100)
+      completionPercentage: Math.round((completedSteps.length / 7) * 100),
     };
-    
+
     // Save to localStorage — backend persistence tracked in DR-430
     localStorage.setItem('contractor_onboarding_progress', JSON.stringify(progress));
     setIsSaving(false);
   };
 
   const updateStepData = (stepData: any) => {
-    setOnboardingData(prev => ({
+    setOnboardingData((prev) => ({
       ...prev,
-      ...stepData
+      ...stepData,
     }));
   };
 
@@ -602,14 +672,14 @@ function ContractorApplicationContent() {
         setValidationErrors({
           _step1: [
             'Please complete all required Business Information fields before continuing:',
-            ...missing
-          ]
+            ...missing,
+          ],
         });
         return false;
       }
 
       // Clear any previous step 1 validation messages
-      setValidationErrors(prev => {
+      setValidationErrors((prev) => {
         if (!prev._step1) return prev;
         const { _step1, ...rest } = prev;
         return rest;
@@ -661,32 +731,34 @@ function ContractorApplicationContent() {
       const submitResponse = await fetch('/api/contractor/onboarding/submit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           application: onboardingData,
           // Eligibility verification data captured before the wizard — stored in
           // ContractorApplication.data for compliance review. Strip large data URLs
           // (licence/IICRC photos) from the JSON payload; those are uploaded separately.
-          eligibility: eligibilityData ? {
-            carsiMemberNumber: eligibilityData.carsiMemberNumber,
-            associationChoice: eligibilityData.associationChoice,
-            associationMemberNumber: eligibilityData.associationMemberNumber,
-            associationOtherName: eligibilityData.associationOtherName,
-            iicrcCertNumber: eligibilityData.iicrcCertNumber,
-            iicrcCertCardFrontFileName: eligibilityData.iicrcCertCardFrontFileName,
-            driversLicenceNumber: eligibilityData.driversLicenceNumber,
-            driversLicenceState: eligibilityData.driversLicenceState,
-            abn: eligibilityData.abn,
-            acn: eligibilityData.acn,
-            registeredBusinessName: eligibilityData.registeredBusinessName,
-            abnVerified: eligibilityData.abnVerified,
-            asicVerified: eligibilityData.asicVerified,
-            yearsInBusinessConfirmed: eligibilityData.yearsInBusinessConfirmed,
-            currentMemberDeclaration: eligibilityData.currentMemberDeclaration,
-            // Photo data URLs submitted as separate upload — omitted from JSON payload
-          } : null
-        })
+          eligibility: eligibilityData
+            ? {
+                carsiMemberNumber: eligibilityData.carsiMemberNumber,
+                associationChoice: eligibilityData.associationChoice,
+                associationMemberNumber: eligibilityData.associationMemberNumber,
+                associationOtherName: eligibilityData.associationOtherName,
+                iicrcCertNumber: eligibilityData.iicrcCertNumber,
+                iicrcCertCardFrontFileName: eligibilityData.iicrcCertCardFrontFileName,
+                driversLicenceNumber: eligibilityData.driversLicenceNumber,
+                driversLicenceState: eligibilityData.driversLicenceState,
+                abn: eligibilityData.abn,
+                acn: eligibilityData.acn,
+                registeredBusinessName: eligibilityData.registeredBusinessName,
+                abnVerified: eligibilityData.abnVerified,
+                asicVerified: eligibilityData.asicVerified,
+                yearsInBusinessConfirmed: eligibilityData.yearsInBusinessConfirmed,
+                currentMemberDeclaration: eligibilityData.currentMemberDeclaration,
+                // Photo data URLs submitted as separate upload — omitted from JSON payload
+              }
+            : null,
+        }),
       });
 
       if (!submitResponse.ok) {
@@ -722,19 +794,19 @@ function ContractorApplicationContent() {
       const paymentResponse = await fetch('/api/stripe/create-payment', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           contractorId,
           email,
           name,
-          paymentType: 'ONBOARDING'
-        })
+          paymentType: 'ONBOARDING',
+        }),
       });
 
       // Step 3: Handle Stripe response
       if (paymentResponse.ok) {
-        const paymentData = await paymentResponse.json() as { checkoutUrl?: string };
+        const paymentData = (await paymentResponse.json()) as { checkoutUrl?: string };
         if (paymentData.checkoutUrl) {
           // Clear localStorage only on successful redirect
           localStorage.removeItem('contractor_onboarding_progress');
@@ -754,9 +826,10 @@ function ContractorApplicationContent() {
       }
 
       // Other payment error — show message but stay on page
-      const errData = await paymentResponse.json().catch(() => ({})) as { error?: string };
+      const errData = (await paymentResponse.json().catch(() => ({}))) as { error?: string };
       setSubmitError(
-        errData.error ?? 'Payment setup encountered an error. Our team will contact you to complete the process.'
+        errData.error ??
+          'Payment setup encountered an error. Our team will contact you to complete the process.',
       );
     } catch (error) {
       void error; // swallow; surface message to user
@@ -769,19 +842,80 @@ function ContractorApplicationContent() {
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
-        return <Step1BusinessInfo data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        return (
+          <Step1BusinessInfo
+            data={onboardingData || {}}
+            updateData={updateStepData}
+            errors={validationErrors}
+          />
+        );
       case 2:
-        return <Step2InsuranceLicensing data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
+        return (
+          <Step2InsuranceLicensing
+            data={(onboardingData || {}) as any}
+            onNext={(data) => {
+              updateStepData(data);
+              void handleNext();
+            }}
+            onBack={handlePrevious}
+          />
+        );
       case 3:
-        return <Step3ExperienceReferences data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
+        return (
+          <Step3ExperienceReferences
+            data={(onboardingData || {}) as any}
+            onNext={(data) => {
+              updateStepData(data);
+              void handleNext();
+            }}
+            onBack={handlePrevious}
+          />
+        );
       case 4:
-        return <Step4EquipmentResources data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
+        return (
+          <Step4EquipmentResources
+            data={(onboardingData || {}) as any}
+            onNext={(data) => {
+              updateStepData(data);
+              void handleNext();
+            }}
+            onBack={handlePrevious}
+          />
+        );
       case 5:
-        return <Step5HealthSafety onNext={(data) => { updateStepData(data); void handleNext(); }} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} />;
+        return (
+          <Step5HealthSafety
+            onNext={(data) => {
+              updateStepData(data);
+              void handleNext();
+            }}
+            onPrevious={handlePrevious}
+            defaultValues={(onboardingData || {}) as any}
+          />
+        );
       case 6:
-        return <Step6BankingPayment data={(onboardingData || {}) as any} onNext={(data) => { updateStepData(data); void handleNext(); }} onBack={handlePrevious} />;
+        return (
+          <Step6BankingPayment
+            data={(onboardingData || {}) as any}
+            onNext={(data) => {
+              updateStepData(data);
+              void handleNext();
+            }}
+            onBack={handlePrevious}
+          />
+        );
       case 7:
-        return <Step7ReviewSubmit onNext={(data) => { updateStepData(data); void handleSubmit(); }} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} applicationData={onboardingData} />;
+        return (
+          <Step7ReviewSubmit
+            onNext={(data) => {
+              updateStepData(data);
+              void handleSubmit();
+            }}
+            onPrevious={handlePrevious}
+            defaultValues={(onboardingData || {}) as any}
+            applicationData={onboardingData}
+          />
+        );
       default:
         return null;
     }
@@ -798,7 +932,9 @@ function ContractorApplicationContent() {
                 <Shield className="h-7 w-7 sm:h-8 sm:w-8 text-blue-400" />
                 <div>
                   <div className="text-white font-semibold text-sm sm:text-base">NRPG</div>
-                  <div className="text-slate-400 text-xs hidden sm:block">Contractor Application</div>
+                  <div className="text-slate-400 text-xs hidden sm:block">
+                    Contractor Application
+                  </div>
                 </div>
               </Link>
               <Link
@@ -881,7 +1017,8 @@ function ContractorApplicationContent() {
               const isCompleted = completedSteps.includes(step.id);
               const isCurrent = currentStep === step.id;
               const isClickable = isCompleted || step.id === completedSteps.length + 1;
-              const shortName = (step as { shortName?: string; name: string }).shortName ?? step.name;
+              const shortName =
+                (step as { shortName?: string; name: string }).shortName ?? step.name;
 
               // Apply improved hover effect only for clickable, not-completed and not-current steps
               return (
@@ -902,11 +1039,12 @@ function ContractorApplicationContent() {
                       <div
                         className={`
                           w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200
-                          ${isCompleted
-                            ? 'bg-emerald-600 text-white'
-                            : isCurrent
-                              ? 'bg-blue-500 text-white ring-4 ring-blue-500/40 shadow-lg shadow-blue-500/20'
-                              : `bg-slate-700/80 text-slate-400
+                          ${
+                            isCompleted
+                              ? 'bg-emerald-600 text-white'
+                              : isCurrent
+                                ? 'bg-blue-500 text-white ring-4 ring-blue-500/40 shadow-lg shadow-blue-500/20'
+                                : `bg-slate-700/80 text-slate-400
                                  ${isClickable && !isCompleted && !isCurrent ? 'group-hover:bg-blue-600 group-hover:text-white' : ''}`
                           }
                         `}
@@ -945,35 +1083,44 @@ function ContractorApplicationContent() {
           </div>
         </div>
 
-              {/* Quick fill: select a preset and the form fills immediately */}
-              <div className="mb-6 flex justify-end">
-                <div className="inline-flex flex-col items-stretch gap-2 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-left">
-                  <label htmlFor="quick-fill" className="text-sm font-medium text-slate-300 whitespace-nowrap">
-                    Quick fill
-                  </label>
-                  <select
-                    id="quick-fill"
-                    value={quickFillSelection}
-                    onChange={(e) => handleQuickFillChange(e.target.value)}
-                    className="min-w-[200px] max-w-[280px] px-3 py-2 rounded-lg bg-slate-700/80 border border-slate-600 text-white text-sm text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    aria-label="Fill form with sample data"
-                  >
-                    {QUICK_FILL_PRESETS.map((preset) => (
-                      <option key={preset.id || 'blank'} value={preset.id}>
-                        {preset.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
+        {/* Quick fill: select a preset and the form fills immediately */}
+        <div className="mb-6 flex justify-end">
+          <div className="inline-flex flex-col items-stretch gap-2 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-left">
+            <label
+              htmlFor="quick-fill"
+              className="text-sm font-medium text-slate-300 whitespace-nowrap"
+            >
+              Quick fill
+            </label>
+            <select
+              id="quick-fill"
+              value={quickFillSelection}
+              onChange={(e) => handleQuickFillChange(e.target.value)}
+              className="min-w-[200px] max-w-[280px] px-3 py-2 rounded-lg bg-slate-700/80 border border-slate-600 text-white text-sm text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              aria-label="Fill form with sample data"
+            >
+              {QUICK_FILL_PRESETS.map((preset) => (
+                <option key={preset.id || 'blank'} value={preset.id}>
+                  {preset.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
         {/* Step content card */}
         <div className="max-w-5xl mx-auto">
           <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
             <div className="p-6 sm:p-8 md:p-10">
               {currentStep === 1 && validationErrors._step1 && (
-                <div role="alert" aria-live="polite" className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100">
-                  <div className="font-semibold mb-1">Please fix the following before continuing:</div>
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100"
+                >
+                  <div className="font-semibold mb-1">
+                    Please fix the following before continuing:
+                  </div>
                   <ul className="list-disc list-inside space-y-0.5">
                     {validationErrors._step1.map((msg, idx) => (
                       <li key={idx}>{msg}</li>
@@ -982,7 +1129,11 @@ function ContractorApplicationContent() {
                 </div>
               )}
               {submitError && (
-                <div role="alert" aria-live="assertive" className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100 flex items-start gap-2">
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100 flex items-start gap-2"
+                >
                   <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" aria-hidden />
                   <span>{submitError}</span>
                 </div>
@@ -1010,7 +1161,6 @@ function ContractorApplicationContent() {
                 </div>
               </div>
 
-
               {/* DR-589: Fee disclosure — shown at Step 1 so applicants see it before investing time */}
               {currentStep === 1 && (
                 <div
@@ -1019,7 +1169,9 @@ function ContractorApplicationContent() {
                 >
                   <Info className="h-4 w-4 flex-shrink-0 mt-0.5 text-blue-400" aria-hidden />
                   <p>
-                    <span className="font-semibold text-blue-200">Processing fee: $275 (non-refundable).</span>{' '}
+                    <span className="font-semibold text-blue-200">
+                      Processing fee: $275 (non-refundable).
+                    </span>{' '}
                     This fee is payable at the final step. Incomplete applications are not charged.
                   </p>
                 </div>
@@ -1080,8 +1232,12 @@ function ContractorApplicationContent() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Need help?</h3>
                 <p className="text-amber-300 text-sm">
-                  Complete all steps in one session — your progress will be lost if you refresh or close this tab.
-                  For support, visit our <a href="/contact" className="text-blue-400 hover:underline">contact page</a>.
+                  Complete all steps in one session — your progress will be lost if you refresh or
+                  close this tab. For support, visit our{' '}
+                  <a href="/contact" className="text-blue-400 hover:underline">
+                    contact page
+                  </a>
+                  .
                 </p>
               </div>
             </div>
@@ -1094,7 +1250,13 @@ function ContractorApplicationContent() {
 
 function ContractorApplicationPageOriginal() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center">
+          <div className="text-white">Loading...</div>
+        </div>
+      }
+    >
       <ContractorApplicationContent />
     </Suspense>
   );
@@ -1103,6 +1265,14 @@ export default function ContractorApplicationPage() {
   return (
     <>
       <AntigravityNavbar />
+      {/*
+        Voice widget — gated by NEXT_PUBLIC_VOICE_WIDGET_ENABLED.
+        When off, returns null (zero impact). When on, shows a "Talk to
+        Olivia" CTA → APP 8 consent modal → ElevenLabs convai widget.
+      */}
+      <div className="mx-auto max-w-4xl px-4 pt-6">
+        <VoiceWidget agent="olivia" fallbackHref="#contractor-apply-form" />
+      </div>
       <ContractorApplicationPageOriginal />
       <AntigravityFooter />
     </>

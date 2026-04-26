@@ -3,6 +3,45 @@
 Living sprint + project log. Newest entry at the top. Keep under
 200 lines; archive older entries into `planning/memory-archive/`.
 
+## 2026-04-26 — Voice agent web-widget production surface
+
+**Outcome:** voice agents (Sarah/Tannika + Olivia) now ship to production
+via in-browser ElevenLabs convai widget, NOT Twilio. Twilio scaffolding
+remains in repo for future use; no signup required to operate.
+
+### What landed
+
+- **Olivia** (`agent_7401kq4k2xd9ep9rbsngfy40jp60`) — new contractor
+  onboarding voice agent. Voice "Olivia" from EL voice library
+  (voiceId `ChvixV5Kt063KajV05qE`). Published live in EL dashboard.
+- **Tannika/Sarah** v2 system prompt + first message published live
+  in EL dashboard (PR #203 + manual deploy).
+- `<VoiceWidget agent="olivia|sarah" />` React component on
+  `/contractor/apply` and `/claim`. Gated behind
+  `NEXT_PUBLIC_VOICE_WIDGET_ENABLED`.
+- `<VoiceConsentModal>` runs APP 8 consent gate BEFORE EL widget
+  script loads. Decline / silence / Esc → no script load, no audio.
+- `/api/voice/widget-consent` logs consent to compliance_events
+  ledger (consentMethod: 'web_widget').
+- Knowledge base content packs in `docs/voice-knowledge-base/`
+  (7 markdown files) — manual upload to EL Convai > Knowledge Base.
+
+### Production surface today
+
+| Surface                             | Status                                   |
+| ----------------------------------- | ---------------------------------------- |
+| EL Convai dashboard agents          | Sarah, Maya, Olivia — all published live |
+| Twilio inbound number for Sarah     | Not signed up — repo scaffolding only    |
+| Browser widget on /contractor/apply | Code shipped, flag OFF                   |
+| Browser widget on /claim            | Code shipped, flag OFF                   |
+
+### Activation
+
+To turn on the widget in production: set
+`NEXT_PUBLIC_VOICE_WIDGET_ENABLED=true` in Vercel project settings,
+redeploy. APP 8 consent gate fires before any EL script loads. To
+roll back: flip the env var to false.
+
 ## 2026-04-24 — Foundation Sprint COMPLETE
 
 **Outcome:** all six foundation dimensions at 10/10. Documentation

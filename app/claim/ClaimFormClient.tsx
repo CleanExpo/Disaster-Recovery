@@ -1,10 +1,10 @@
 'use client';
 
-
 import Link from 'next/link';
 import { PrivacyCollectionNoticeSection } from './PrivacyCollectionNotice';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import { VoiceWidget } from '@/components/voice/VoiceWidget';
 import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
 import OfflineBanner from '@/components/claim/OfflineBanner';
@@ -12,18 +12,20 @@ import OfflineQueueBanner from '@/components/claim/OfflineQueueBanner';
 import UseCurrentLocationButton from '@/components/claim/UseCurrentLocationButton';
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
-import {
-  enqueueClaim,
-  replayQueue,
-  isOfflineQueueEnabled,
-} from '@/lib/offline-queue';
+import { enqueueClaim, replayQueue, isOfflineQueueEnabled } from '@/lib/offline-queue';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
@@ -38,10 +40,10 @@ import {
   DollarSign,
   User,
   Home,
-  AlertTriangle
+  AlertTriangle,
 } from 'lucide-react';
 
-const PLATFORM_FEE = 2750.00;
+const PLATFORM_FEE = 2750.0;
 
 // Clear selected/unselected checkbox style
 const CHECKBOX_CLASS =
@@ -54,14 +56,14 @@ const ESTIMATOR_TO_CLAIM_DAMAGE: Record<string, string> = {
   'mould-removal': 'Mould Growth',
   'flood-restoration': 'Water/Flood Damage',
   'storm-damage': 'Storm/Wind Damage',
-  'sewage': 'Sewage Overflow',
-  'biohazard': 'Biohazard Contamination',
+  sewage: 'Sewage Overflow',
+  biohazard: 'Biohazard Contamination',
 };
 
 const ESTIMATOR_TO_URGENCY: Record<string, string> = {
-  'emergency': 'emergency',
-  'urgent': 'urgent',
-  'scheduled': 'standard',
+  emergency: 'emergency',
+  urgent: 'urgent',
+  scheduled: 'standard',
 };
 
 const QUICK_FILL_SCENARIOS: Record<string, Record<string, unknown>> = {
@@ -82,7 +84,7 @@ const QUICK_FILL_SCENARIOS: Record<string, Record<string, unknown>> = {
     hasInsurance: true,
     insuranceCompany: 'Suncorp',
     policyNumber: 'POL-123456',
-    hasPhotos: true
+    hasPhotos: true,
   },
   stormDamage: {
     fullName: 'Jordan Lee',
@@ -101,7 +103,7 @@ const QUICK_FILL_SCENARIOS: Record<string, Record<string, unknown>> = {
     hasInsurance: true,
     insuranceCompany: 'NRMA',
     policyNumber: 'POL-789012',
-    hasPhotos: true
+    hasPhotos: true,
   },
   mouldClaim: {
     fullName: 'Casey Morgan',
@@ -119,8 +121,8 @@ const QUICK_FILL_SCENARIOS: Record<string, Record<string, unknown>> = {
     hazards: ['Mould growth'],
     hasInsurance: false,
     policyNumber: '',
-    hasPhotos: true
-  }
+    hasPhotos: true,
+  },
 };
 
 function OnlineClaimPageOriginal() {
@@ -231,7 +233,7 @@ function OnlineClaimPageOriginal() {
     agreeToTerms: false,
 
     // Privacy — APP 5 collection notice acknowledgement
-    privacyCollectionNotice: false
+    privacyCollectionNotice: false,
   });
 
   // Captured photo/video File objects — kept separate from formData because
@@ -316,16 +318,18 @@ function OnlineClaimPageOriginal() {
         step,
         savedAt: Date.now(),
         synced: false,
-      }).then(() => {
-        if (isOffline) setSavedLocally(true);
-      }).catch(() => {
-        // Silently ignore save errors
-      });
+      })
+        .then(() => {
+          if (isOffline) setSavedLocally(true);
+        })
+        .catch(() => {
+          // Silently ignore save errors
+        });
     }, 500);
     return () => {
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData, step]);
 
   const resumeDraft = async () => {
@@ -358,18 +362,37 @@ function OnlineClaimPageOriginal() {
     formData.postcode?.trim() &&
     formData.propertyType &&
     formData.damageDescription?.trim() &&
-    formData.damageTypes.length > 0
+    formData.damageTypes.length > 0,
   );
 
   const handleSubmit = async () => {
-    if (!formData.fullName || !formData.phone || !formData.email || !formData.propertyAddress || !formData.suburb || !formData.state || !formData.postcode || !formData.damageDescription || formData.damageTypes.length === 0) {
-      setSubmissionError("We're nearly there — a few contact and damage details are still needed. Taking you back to step 1 so you can finish.");
+    if (
+      !formData.fullName ||
+      !formData.phone ||
+      !formData.email ||
+      !formData.propertyAddress ||
+      !formData.suburb ||
+      !formData.state ||
+      !formData.postcode ||
+      !formData.damageDescription ||
+      formData.damageTypes.length === 0
+    ) {
+      setSubmissionError(
+        "We're nearly there — a few contact and damage details are still needed. Taking you back to step 1 so you can finish.",
+      );
       setStep(1);
       return;
     }
 
-    if (!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms || !formData.privacyCollectionNotice) {
-      setSubmissionError("One last tick — please confirm the privacy notice and agreements above so we can submit your claim.");
+    if (
+      !formData.understandPlatformRole ||
+      !formData.acceptContractorCommunication ||
+      !formData.agreeToTerms ||
+      !formData.privacyCollectionNotice
+    ) {
+      setSubmissionError(
+        'One last tick — please confirm the privacy notice and agreements above so we can submit your claim.',
+      );
       return;
     }
 
@@ -406,8 +429,8 @@ function OnlineClaimPageOriginal() {
         body: JSON.stringify({
           ...formData,
           paymentConfirmed: false,
-          paymentAmount: 0
-        })
+          paymentAmount: 0,
+        }),
       });
 
       const result = await response.json();
@@ -430,7 +453,7 @@ function OnlineClaimPageOriginal() {
 
   const applyQuickFill = () => {
     if (!selectedScenario || !QUICK_FILL_SCENARIOS[selectedScenario]) return;
-    setFormData(prev => ({ ...prev, ...QUICK_FILL_SCENARIOS[selectedScenario] }));
+    setFormData((prev) => ({ ...prev, ...QUICK_FILL_SCENARIOS[selectedScenario] }));
   };
 
   const damageTypeOptions = [
@@ -441,7 +464,7 @@ function OnlineClaimPageOriginal() {
     'Sewage Overflow',
     'Structural Damage',
     'Asbestos Exposure',
-    'Biohazard Contamination'
+    'Biohazard Contamination',
   ];
 
   const hazardOptions = [
@@ -452,7 +475,7 @@ function OnlineClaimPageOriginal() {
     'Mould growth',
     'Chemical exposure',
     'Standing water',
-    'Gas leak'
+    'Gas leak',
   ];
 
   if (step === 5 && claimId) {
@@ -482,7 +505,9 @@ function OnlineClaimPageOriginal() {
                 </h3>
                 <ol className="space-y-2 text-sm">
                   <li>1. Your claim is being matched with a certified NRPG contractor</li>
-                  <li>2. A verified NRPG contractor will review your claim and contact you directly</li>
+                  <li>
+                    2. A verified NRPG contractor will review your claim and contact you directly
+                  </li>
                   <li>3. They will schedule an inspection at your convenience</li>
                   <li>4. The contractor handles all work and insurance liaison</li>
                   <li>5. All future communication is directly with your contractor</li>
@@ -492,15 +517,15 @@ function OnlineClaimPageOriginal() {
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Important:</strong> Disaster Recovery is a lead generation platform.
-                  Your assigned contractor will handle all service delivery, communication, and work completion
-                  according to strict NRPG standards.
+                  <strong>Important:</strong> Disaster Recovery is a lead generation platform. Your
+                  assigned contractor will handle all service delivery, communication, and work
+                  completion according to strict NRPG standards.
                 </AlertDescription>
               </Alert>
 
               <div className="text-center pt-4">
                 <Button
-                  onClick={() => window.location.href = `/track/${claimId}`}
+                  onClick={() => (window.location.href = `/track/${claimId}`)}
                   className="bg-blue-600 hover:bg-blue-700"
                 >
                   Track Your Claim
@@ -518,23 +543,21 @@ function OnlineClaimPageOriginal() {
       <div className="container mx-auto px-4 max-w-4xl">
         {/* DR-542 — Life-safety carve-out. ALWAYS first. A user with flood
             entering the home or a roof torn off needs 000 before anything else. */}
-        <div
-          role="alert"
-          className="mb-4 rounded-lg border-2 border-red-600 bg-red-50 p-4"
-        >
-          <p className="text-sm font-bold text-red-900 mb-2">
-            In immediate life-safety danger?
-          </p>
+        <div role="alert" className="mb-4 rounded-lg border-2 border-red-600 bg-red-50 p-4">
+          <p className="text-sm font-bold text-red-900 mb-2">In immediate life-safety danger?</p>
           <a
             href="tel:000"
-            onClick={() => { void heavyTap(); }}
+            onClick={() => {
+              void heavyTap();
+            }}
             className="inline-flex items-center justify-center min-h-[48px] w-full sm:w-auto px-6 py-3 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300"
             aria-label="Call 000 emergency services now"
           >
             Dial 000 now
           </a>
           <p className="mt-2 text-xs text-red-900 leading-relaxed">
-            Fire, rising floodwater, structural collapse, gas leak, injury, or exposed live wiring — call 000 first. You can lodge the claim after you are safe.
+            Fire, rising floodwater, structural collapse, gas leak, injury, or exposed live wiring —
+            call 000 first. You can lodge the claim after you are safe.
           </p>
         </div>
 
@@ -544,7 +567,8 @@ function OnlineClaimPageOriginal() {
           <div>
             <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
             <p className="text-xs text-blue-800">
-              Our 24/7 intake line will take your claim over the phone. A contractor will call you back shortly after.
+              Our 24/7 intake line will take your claim over the phone. A contractor will call you
+              back shortly after.
             </p>
           </div>
           <a
@@ -564,7 +588,8 @@ function OnlineClaimPageOriginal() {
           <p className="font-semibold text-base md:text-lg">
             <strong className="text-white">Work for you, not your insurer.</strong>{' '}
             <span className="text-blue-200 font-normal">
-              NRPG coordinates independent assessment and restoration — you keep control of your claim.
+              NRPG coordinates independent assessment and restoration — you keep control of your
+              claim.
             </span>
           </p>
         </div>
@@ -574,7 +599,8 @@ function OnlineClaimPageOriginal() {
         <div className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 flex items-center gap-3">
           <Clock className="h-5 w-5 text-emerald-700 flex-shrink-0" />
           <p className="text-sm text-emerald-900">
-            <strong>A certified contractor will call you back within 60 minutes</strong> of submission, 24/7. Your progress is saved to this device as you type.
+            <strong>A certified contractor will call you back within 60 minutes</strong> of
+            submission, 24/7. Your progress is saved to this device as you type.
           </p>
         </div>
 
@@ -596,7 +622,11 @@ function OnlineClaimPageOriginal() {
                   <SelectItem value="mouldClaim">Mould Claim (Standard)</SelectItem>
                 </SelectContent>
               </Select>
-              <Button type="button" onClick={applyQuickFill} className="bg-green-700 hover:bg-green-800">
+              <Button
+                type="button"
+                onClick={applyQuickFill}
+                className="bg-green-700 hover:bg-green-800"
+              >
                 Fill
               </Button>
             </div>
@@ -626,14 +656,16 @@ function OnlineClaimPageOriginal() {
             aria-live="polite"
             className="mb-4 rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm text-blue-900"
           >
-            Your claim is saved on this device and will be sent automatically when you&rsquo;re back online.
+            Your claim is saved on this device and will be sent automatically when you&rsquo;re back
+            online.
           </div>
         )}
 
         {/* Saved locally indicator (when offline) */}
         {isOffline && savedLocally && (
           <div className="mb-4 px-3 py-2 bg-amber-100 border border-amber-300 rounded-md text-xs text-amber-800 flex items-center gap-2">
-            <span className="font-semibold">Saved locally</span> — your progress is stored on this device.
+            <span className="font-semibold">Saved locally</span> — your progress is stored on this
+            device.
           </div>
         )}
 
@@ -641,7 +673,8 @@ function OnlineClaimPageOriginal() {
         {draftBanner && (
           <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <p className="text-sm text-blue-900">
-              You have a saved claim draft from <strong>{formatDraftTime(draftBanner.savedAt)}</strong>. Continue?
+              You have a saved claim draft from{' '}
+              <strong>{formatDraftTime(draftBanner.savedAt)}</strong>. Continue?
             </p>
             <div className="flex gap-2 shrink-0">
               <button
@@ -680,16 +713,26 @@ function OnlineClaimPageOriginal() {
           <div className="space-y-1.5 text-sm text-gray-700 ms-7">
             <div className="flex items-center gap-2">
               <span className="text-blue-500">├─</span>
-              <span><strong>$550</strong> Platform Fee (contractor matching + claims documentation)</span>
+              <span>
+                <strong>$550</strong> Platform Fee (contractor matching + claims documentation)
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-blue-500">├─</span>
-              <span><strong>$2,200</strong> Held for Your Contractor (credited toward restoration)</span>
+              <span>
+                <strong>$2,200</strong> Held for Your Contractor (credited toward restoration)
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-blue-500">└─</span>
-              <span>Payment plans available via{' '}
-                <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">
+              <span>
+                Payment plans available via{' '}
+                <a
+                  href="https://equippedcf.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 font-medium hover:underline"
+                >
                   Equipped Commercial Finance
                 </a>
               </span>
@@ -704,10 +747,12 @@ function OnlineClaimPageOriginal() {
               <DollarSign className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
               <div>
                 <p className="font-semibold text-emerald-900">
-                  Your estimated restoration cost: ${estimate.low.toLocaleString()} – ${estimate.high.toLocaleString()}
+                  Your estimated restoration cost: ${estimate.low.toLocaleString()} – $
+                  {estimate.high.toLocaleString()}
                 </p>
                 <p className="text-sm text-emerald-700 mt-1">
-                  The $2,750 emergency make-safe fee gets work started immediately. $2,200 is credited toward your total restoration.
+                  The $2,750 emergency make-safe fee gets work started immediately. $2,200 is
+                  credited toward your total restoration.
                 </p>
               </div>
             </div>
@@ -719,12 +764,18 @@ function OnlineClaimPageOriginal() {
           <div className="flex items-center space-x-2 sm:space-x-4">
             {[1, 2, 3, 4].map((s) => (
               <div key={s} className="flex items-center">
-                <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base ${
-                  step >= s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-                }`}>
+                <div
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base ${
+                    step >= s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+                  }`}
+                >
                   {s}
                 </div>
-                {s < 4 && <div className={`w-8 sm:w-20 h-1 ms-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`} />}
+                {s < 4 && (
+                  <div
+                    className={`w-8 sm:w-20 h-1 ms-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`}
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -734,9 +785,9 @@ function OnlineClaimPageOriginal() {
         <Alert className="mb-6 bg-yellow-50 border-yellow-200">
           <AlertTriangle className="h-4 w-4 text-yellow-600" />
           <AlertDescription>
-            <strong>Important:</strong> Disaster Recovery connects you with certified NRPG contractors
-            who handle all work, communication, and service delivery. We bill you directly —
-            work begins immediately without waiting for insurer approval.
+            <strong>Important:</strong> Disaster Recovery connects you with certified NRPG
+            contractors who handle all work, communication, and service delivery. We bill you
+            directly — work begins immediately without waiting for insurer approval.
           </AlertDescription>
         </Alert>
 
@@ -764,7 +815,7 @@ function OnlineClaimPageOriginal() {
                       <Input
                         id="claim-fullName"
                         value={formData.fullName}
-                        onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         required
                       />
                     </div>
@@ -773,7 +824,7 @@ function OnlineClaimPageOriginal() {
                       <Input
                         id="claim-phone"
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         required
                       />
                     </div>
@@ -783,17 +834,23 @@ function OnlineClaimPageOriginal() {
                         id="claim-email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="!bg-white !border-gray-300 !text-gray-900 placeholder:!text-gray-500"
                         required
-                        style={{ backgroundColor: 'white', borderColor: '#e2e8f0', color: '#1f2937' }}
+                        style={{
+                          backgroundColor: 'white',
+                          borderColor: '#e2e8f0',
+                          color: '#1f2937',
+                        }}
                       />
                     </div>
                     <div>
                       <Label>Preferred Contact Method</Label>
                       <Select
                         value={formData.preferredContact}
-                        onValueChange={(value) => setFormData({...formData, preferredContact: value})}
+                        onValueChange={(value) =>
+                          setFormData({ ...formData, preferredContact: value })
+                        }
                       >
                         <SelectTrigger aria-label="Preferred contact method">
                           <SelectValue />
@@ -830,7 +887,9 @@ function OnlineClaimPageOriginal() {
                       <Input
                         id="claim-propertyAddress"
                         value={formData.propertyAddress}
-                        onChange={(e) => setFormData({...formData, propertyAddress: e.target.value})}
+                        onChange={(e) =>
+                          setFormData({ ...formData, propertyAddress: e.target.value })
+                        }
                         required
                       />
                     </div>
@@ -839,7 +898,7 @@ function OnlineClaimPageOriginal() {
                       <Input
                         id="claim-suburb"
                         value={formData.suburb}
-                        onChange={(e) => setFormData({...formData, suburb: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, suburb: e.target.value })}
                         required
                       />
                     </div>
@@ -847,7 +906,7 @@ function OnlineClaimPageOriginal() {
                       <Label>State *</Label>
                       <Select
                         value={formData.state}
-                        onValueChange={(value) => setFormData({...formData, state: value})}
+                        onValueChange={(value) => setFormData({ ...formData, state: value })}
                       >
                         <SelectTrigger aria-label="State">
                           <SelectValue placeholder="Select state" />
@@ -869,7 +928,7 @@ function OnlineClaimPageOriginal() {
                       <Input
                         id="claim-postcode"
                         value={formData.postcode}
-                        onChange={(e) => setFormData({...formData, postcode: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
                         maxLength={4}
                         required
                       />
@@ -878,7 +937,7 @@ function OnlineClaimPageOriginal() {
                       <Label>Property Type *</Label>
                       <Select
                         value={formData.propertyType}
-                        onValueChange={(value) => setFormData({...formData, propertyType: value})}
+                        onValueChange={(value) => setFormData({ ...formData, propertyType: value })}
                       >
                         <SelectTrigger aria-label="Property type">
                           <SelectValue placeholder="Select type" />
@@ -894,11 +953,15 @@ function OnlineClaimPageOriginal() {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="claim-accessInstructions">Access Instructions (gate codes, etc.)</Label>
+                    <Label htmlFor="claim-accessInstructions">
+                      Access Instructions (gate codes, etc.)
+                    </Label>
                     <Textarea
                       id="claim-accessInstructions"
                       value={formData.accessInstructions}
-                      onChange={(e) => setFormData({...formData, accessInstructions: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, accessInstructions: e.target.value })
+                      }
                       placeholder="Any special instructions for accessing the property..."
                     />
                   </div>
@@ -920,13 +983,21 @@ function OnlineClaimPageOriginal() {
                             checked={formData.damageTypes.includes(type)}
                             onCheckedChange={(checked) => {
                               if (checked) {
-                                setFormData({...formData, damageTypes: [...formData.damageTypes, type]});
+                                setFormData({
+                                  ...formData,
+                                  damageTypes: [...formData.damageTypes, type],
+                                });
                               } else {
-                                setFormData({...formData, damageTypes: formData.damageTypes.filter(t => t !== type)});
+                                setFormData({
+                                  ...formData,
+                                  damageTypes: formData.damageTypes.filter((t) => t !== type),
+                                });
                               }
                             }}
                           />
-                          <Label htmlFor={`damage-${type}`} className="font-normal cursor-pointer">{type}</Label>
+                          <Label htmlFor={`damage-${type}`} className="font-normal cursor-pointer">
+                            {type}
+                          </Label>
                         </div>
                       ))}
                     </div>
@@ -935,20 +1006,22 @@ function OnlineClaimPageOriginal() {
                     <div>
                       <Label htmlFor="claim-damageDate">
                         Date Damage Occurred
-                        <span className="text-xs text-gray-500 font-normal ms-1">(approximate is fine)</span>
+                        <span className="text-xs text-gray-500 font-normal ms-1">
+                          (approximate is fine)
+                        </span>
                       </Label>
                       <Input
                         id="claim-damageDate"
                         type="date"
                         value={formData.damageDate}
-                        onChange={(e) => setFormData({...formData, damageDate: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, damageDate: e.target.value })}
                       />
                     </div>
                     <div>
                       <Label>Urgency Level *</Label>
                       <Select
                         value={formData.urgencyLevel}
-                        onValueChange={(value) => setFormData({...formData, urgencyLevel: value})}
+                        onValueChange={(value) => setFormData({ ...formData, urgencyLevel: value })}
                       >
                         <SelectTrigger aria-label="Urgency level">
                           <SelectValue placeholder="Select urgency" />
@@ -966,7 +1039,9 @@ function OnlineClaimPageOriginal() {
                     <Textarea
                       id="claim-damageDescription"
                       value={formData.damageDescription}
-                      onChange={(e) => setFormData({...formData, damageDescription: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, damageDescription: e.target.value })
+                      }
                       rows={4}
                       required
                     />
@@ -982,13 +1057,24 @@ function OnlineClaimPageOriginal() {
                             checked={formData.hazards.includes(hazard)}
                             onCheckedChange={(checked) => {
                               if (checked) {
-                                setFormData({...formData, hazards: [...formData.hazards, hazard]});
+                                setFormData({
+                                  ...formData,
+                                  hazards: [...formData.hazards, hazard],
+                                });
                               } else {
-                                setFormData({...formData, hazards: formData.hazards.filter(h => h !== hazard)});
+                                setFormData({
+                                  ...formData,
+                                  hazards: formData.hazards.filter((h) => h !== hazard),
+                                });
                               }
                             }}
                           />
-                          <Label htmlFor={`hazard-${hazard}`} className="font-normal cursor-pointer">{hazard}</Label>
+                          <Label
+                            htmlFor={`hazard-${hazard}`}
+                            className="font-normal cursor-pointer"
+                          >
+                            {hazard}
+                          </Label>
                         </div>
                       ))}
                     </div>
@@ -1020,9 +1106,13 @@ function OnlineClaimPageOriginal() {
                       id="hasInsurance"
                       className={CHECKBOX_CLASS}
                       checked={formData.hasInsurance}
-                      onCheckedChange={(checked) => setFormData({...formData, hasInsurance: checked as boolean})}
+                      onCheckedChange={(checked) =>
+                        setFormData({ ...formData, hasInsurance: checked as boolean })
+                      }
                     />
-                    <Label htmlFor="hasInsurance" className="cursor-pointer">I have insurance coverage for this damage</Label>
+                    <Label htmlFor="hasInsurance" className="cursor-pointer">
+                      I have insurance coverage for this damage
+                    </Label>
                   </div>
                   {formData.hasInsurance && (
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
@@ -1031,7 +1121,9 @@ function OnlineClaimPageOriginal() {
                         <Input
                           id="claim-insuranceCompany"
                           value={formData.insuranceCompany}
-                          onChange={(e) => setFormData({...formData, insuranceCompany: e.target.value})}
+                          onChange={(e) =>
+                            setFormData({ ...formData, insuranceCompany: e.target.value })
+                          }
                         />
                       </div>
                       <div>
@@ -1039,7 +1131,9 @@ function OnlineClaimPageOriginal() {
                         <Input
                           id="claim-policyNumber"
                           value={formData.policyNumber}
-                          onChange={(e) => setFormData({...formData, policyNumber: e.target.value})}
+                          onChange={(e) =>
+                            setFormData({ ...formData, policyNumber: e.target.value })
+                          }
                         />
                       </div>
                       <div>
@@ -1047,7 +1141,9 @@ function OnlineClaimPageOriginal() {
                         <Input
                           id="claim-insuranceClaimNumber"
                           value={formData.insuranceClaimNumber}
-                          onChange={(e) => setFormData({...formData, insuranceClaimNumber: e.target.value})}
+                          onChange={(e) =>
+                            setFormData({ ...formData, insuranceClaimNumber: e.target.value })
+                          }
                         />
                       </div>
                       <div>
@@ -1056,15 +1152,21 @@ function OnlineClaimPageOriginal() {
                           id="claim-excessAmount"
                           type="number"
                           value={formData.excessAmount}
-                          onChange={(e) => setFormData({...formData, excessAmount: e.target.value})}
+                          onChange={(e) =>
+                            setFormData({ ...formData, excessAmount: e.target.value })
+                          }
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <Label htmlFor="claim-assessorDetails">Assessor Details (if applicable)</Label>
+                        <Label htmlFor="claim-assessorDetails">
+                          Assessor Details (if applicable)
+                        </Label>
                         <Textarea
                           id="claim-assessorDetails"
                           value={formData.assessorDetails}
-                          onChange={(e) => setFormData({...formData, assessorDetails: e.target.value})}
+                          onChange={(e) =>
+                            setFormData({ ...formData, assessorDetails: e.target.value })
+                          }
                           placeholder="Name, contact, appointment time..."
                         />
                       </div>
@@ -1104,10 +1206,17 @@ function OnlineClaimPageOriginal() {
                 </div>
 
                 <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <Button variant="outline" onClick={() => setStep(1)} className="w-full sm:w-auto min-h-[44px]">
+                  <Button
+                    variant="outline"
+                    onClick={() => setStep(1)}
+                    className="w-full sm:w-auto min-h-[44px]"
+                  >
                     Previous
                   </Button>
-                  <Button onClick={() => setStep(3)} className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700">
+                  <Button
+                    onClick={() => setStep(3)}
+                    className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
+                  >
                     Next Step
                   </Button>
                 </div>
@@ -1133,10 +1242,16 @@ function OnlineClaimPageOriginal() {
                         id="authorizePropertyAccess"
                         className={CHECKBOX_CLASS}
                         checked={formData.authorizePropertyAccess}
-                        onCheckedChange={(checked) => setFormData({...formData, authorizePropertyAccess: checked as boolean})}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, authorizePropertyAccess: checked as boolean })
+                        }
                       />
-                      <Label htmlFor="authorizePropertyAccess" className="font-normal cursor-pointer leading-snug">
-                        I authorise the assigned contractor to access my property for inspection and make-safe works
+                      <Label
+                        htmlFor="authorizePropertyAccess"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
+                        I authorise the assigned contractor to access my property for inspection and
+                        make-safe works
                       </Label>
                     </div>
                     <div className="flex items-start gap-3 py-1">
@@ -1144,9 +1259,17 @@ function OnlineClaimPageOriginal() {
                         id="authorizeInsuranceLiaison"
                         className={CHECKBOX_CLASS}
                         checked={formData.authorizeInsuranceLiaison}
-                        onCheckedChange={(checked) => setFormData({...formData, authorizeInsuranceLiaison: checked as boolean})}
+                        onCheckedChange={(checked) =>
+                          setFormData({
+                            ...formData,
+                            authorizeInsuranceLiaison: checked as boolean,
+                          })
+                        }
                       />
-                      <Label htmlFor="authorizeInsuranceLiaison" className="font-normal cursor-pointer leading-snug">
+                      <Label
+                        htmlFor="authorizeInsuranceLiaison"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
                         I authorise the contractor to liaise with my insurance company on my behalf
                       </Label>
                     </div>
@@ -1155,9 +1278,17 @@ function OnlineClaimPageOriginal() {
                         id="authorizeWorkCommencement"
                         className={CHECKBOX_CLASS}
                         checked={formData.authorizeWorkCommencement}
-                        onCheckedChange={(checked) => setFormData({...formData, authorizeWorkCommencement: checked as boolean})}
+                        onCheckedChange={(checked) =>
+                          setFormData({
+                            ...formData,
+                            authorizeWorkCommencement: checked as boolean,
+                          })
+                        }
                       />
-                      <Label htmlFor="authorizeWorkCommencement" className="font-normal cursor-pointer leading-snug">
+                      <Label
+                        htmlFor="authorizeWorkCommencement"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
                         I authorise the contractor to commence emergency make-safe works as required
                       </Label>
                     </div>
@@ -1166,7 +1297,9 @@ function OnlineClaimPageOriginal() {
 
                 <PrivacyCollectionNoticeSection
                   checked={formData.privacyCollectionNotice}
-                  onCheckedChange={(checked) => setFormData({...formData, privacyCollectionNotice: checked})}
+                  onCheckedChange={(checked) =>
+                    setFormData({ ...formData, privacyCollectionNotice: checked })
+                  }
                 />
 
                 <div className="space-y-4">
@@ -1177,12 +1310,18 @@ function OnlineClaimPageOriginal() {
                         id="understandPlatformRole"
                         className={CHECKBOX_CLASS}
                         checked={formData.understandPlatformRole}
-                        onCheckedChange={(checked) => setFormData({...formData, understandPlatformRole: checked as boolean})}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, understandPlatformRole: checked as boolean })
+                        }
                         required
                       />
-                      <Label htmlFor="understandPlatformRole" className="font-normal cursor-pointer leading-snug">
-                        I understand that Disaster Recovery connects me with certified NRPG contractors.
-                        The $2,750 emergency make-safe fee includes a $550 platform fee and $2,200 held for my contractor.
+                      <Label
+                        htmlFor="understandPlatformRole"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
+                        I understand that Disaster Recovery connects me with certified NRPG
+                        contractors. The $2,750 emergency make-safe fee includes a $550 platform fee
+                        and $2,200 held for my contractor.
                       </Label>
                     </div>
                     <div className="flex items-start gap-3 py-1">
@@ -1190,12 +1329,20 @@ function OnlineClaimPageOriginal() {
                         id="acceptContractorCommunication"
                         className={CHECKBOX_CLASS}
                         checked={formData.acceptContractorCommunication}
-                        onCheckedChange={(checked) => setFormData({...formData, acceptContractorCommunication: checked as boolean})}
+                        onCheckedChange={(checked) =>
+                          setFormData({
+                            ...formData,
+                            acceptContractorCommunication: checked as boolean,
+                          })
+                        }
                         required
                       />
-                      <Label htmlFor="acceptContractorCommunication" className="font-normal cursor-pointer leading-snug">
-                        I understand that all communication regarding work, scheduling, and claims will be
-                        directly with the assigned contractor, not Disaster Recovery.
+                      <Label
+                        htmlFor="acceptContractorCommunication"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
+                        I understand that all communication regarding work, scheduling, and claims
+                        will be directly with the assigned contractor, not Disaster Recovery.
                       </Label>
                     </div>
                     <div className="flex items-start gap-3 py-1">
@@ -1203,12 +1350,17 @@ function OnlineClaimPageOriginal() {
                         id="agreeToTerms"
                         className={CHECKBOX_CLASS}
                         checked={formData.agreeToTerms}
-                        onCheckedChange={(checked) => setFormData({...formData, agreeToTerms: checked as boolean})}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, agreeToTerms: checked as boolean })
+                        }
                         required
                       />
-                      <Label htmlFor="agreeToTerms" className="font-normal cursor-pointer leading-snug">
-                        I agree to the terms of service and understand that contractors follow NRPG standards
-                        and guidelines but are independent service providers.
+                      <Label
+                        htmlFor="agreeToTerms"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
+                        I agree to the terms of service and understand that contractors follow NRPG
+                        standards and guidelines but are independent service providers.
                       </Label>
                     </div>
                   </div>
@@ -1217,7 +1369,9 @@ function OnlineClaimPageOriginal() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold mb-2">Contractor Responsibilities:</h4>
                   <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="font-bold text-blue-700">• Initial phone contact once a certified contractor is confirmed for your area</li>
+                    <li className="font-bold text-blue-700">
+                      • Initial phone contact once a certified contractor is confirmed for your area
+                    </li>
                     <li>• Schedule and conduct property inspection</li>
                     <li>• Perform emergency make-safe works</li>
                     <li>• Document all damage thoroughly</li>
@@ -1228,13 +1382,22 @@ function OnlineClaimPageOriginal() {
                 </div>
 
                 <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <Button variant="outline" onClick={() => setStep(2)} className="w-full sm:w-auto min-h-[44px]">
+                  <Button
+                    variant="outline"
+                    onClick={() => setStep(2)}
+                    className="w-full sm:w-auto min-h-[44px]"
+                  >
                     Previous
                   </Button>
                   <Button
                     onClick={() => setStep(4)}
                     className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
-                    disabled={!formData.privacyCollectionNotice || !formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms}
+                    disabled={
+                      !formData.privacyCollectionNotice ||
+                      !formData.understandPlatformRole ||
+                      !formData.acceptContractorCommunication ||
+                      !formData.agreeToTerms
+                    }
                   >
                     Proceed to Final Review
                   </Button>
@@ -1248,7 +1411,8 @@ function OnlineClaimPageOriginal() {
                 <Alert className="bg-blue-50 border-blue-200">
                   <DollarSign className="h-4 w-4 text-blue-600" />
                   <AlertDescription className="text-blue-800">
-                    <strong>Claim Review:</strong> Submit now and your claim is sent immediately for contractor matching.
+                    <strong>Claim Review:</strong> Submit now and your claim is sent immediately for
+                    contractor matching.
                   </AlertDescription>
                 </Alert>
 
@@ -1265,7 +1429,9 @@ function OnlineClaimPageOriginal() {
                     {capturedPhotos.length > 0 && (
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>Damage photos attached</span>
-                        <span className="font-medium text-green-700">{capturedPhotos.length} file{capturedPhotos.length !== 1 ? 's' : ''}</span>
+                        <span className="font-medium text-green-700">
+                          {capturedPhotos.length} file{capturedPhotos.length !== 1 ? 's' : ''}
+                        </span>
                       </div>
                     )}
                     <div className="flex justify-between">
@@ -1277,7 +1443,8 @@ function OnlineClaimPageOriginal() {
                       <span className="font-semibold">$2,200</span>
                     </div>
                     <div className="text-xs text-gray-500 ps-1">
-                      No payment is taken when you submit this form. You will be contacted by the assigned contractor before any charge is applied.
+                      No payment is taken when you submit this form. You will be contacted by the
+                      assigned contractor before any charge is applied.
                     </div>
                     <div className="border-t pt-2">
                       <div className="flex flex-wrap justify-between text-base sm:text-lg font-bold gap-1">
@@ -1292,7 +1459,9 @@ function OnlineClaimPageOriginal() {
                   <h4 className="font-semibold mb-2">What You're Paying For:</h4>
                   <ul className="text-sm space-y-1">
                     <li>✓ Immediate contractor matching based on location and damage type</li>
-                    <li>✓ Contractor contacts you promptly to schedule emergency make-safe works</li>
+                    <li>
+                      ✓ Contractor contacts you promptly to schedule emergency make-safe works
+                    </li>
                     <li>✓ $2,200 credited toward your full restoration</li>
                     <li>✓ Full claims documentation for your insurer</li>
                     <li>✓ Contractor provides formal contract with clear terms</li>
@@ -1302,23 +1471,34 @@ function OnlineClaimPageOriginal() {
                 <Alert>
                   <Info className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>How billing works:</strong> We bill you directly — work begins immediately
-                    without waiting for insurer approval. We provide full documentation to support your
-                    insurance claim for reimbursement.
+                    <strong>How billing works:</strong> We bill you directly — work begins
+                    immediately without waiting for insurer approval. We provide full documentation
+                    to support your insurance claim for reimbursement.
                   </AlertDescription>
                 </Alert>
 
                 <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
                   <p className="text-sm text-indigo-900">
-                    <strong>Need to spread the cost?</strong> Flexible payment plans available through{' '}
-                    <a href="https://equippedcf.com.au" target="_blank" rel="noopener noreferrer" className="text-indigo-600 font-semibold hover:underline">
+                    <strong>Need to spread the cost?</strong> Flexible payment plans available
+                    through{' '}
+                    <a
+                      href="https://equippedcf.com.au"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-indigo-600 font-semibold hover:underline"
+                    >
                       Equipped Commercial Finance
-                    </a>.
+                    </a>
+                    .
                   </p>
                 </div>
 
                 <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <Button variant="outline" onClick={() => setStep(3)} className="w-full sm:w-auto min-h-[44px]">
+                  <Button
+                    variant="outline"
+                    onClick={() => setStep(3)}
+                    className="w-full sm:w-auto min-h-[44px]"
+                  >
                     Previous
                   </Button>
                   <Button
@@ -1341,10 +1521,28 @@ export default function OnlineClaimPage() {
   return (
     <>
       <AntigravityNavbar />
-      <nav className="ag-breadcrumb" aria-label="Breadcrumb" style={{ padding: '1rem 1.5rem 0', maxWidth: '1200px', margin: '0 auto' }}>
+      <nav
+        className="ag-breadcrumb"
+        aria-label="Breadcrumb"
+        style={{ padding: '1rem 1.5rem 0', maxWidth: '1200px', margin: '0 auto' }}
+      >
         <Link href="/">Home</Link> / <span>Lodge a Claim</span>
       </nav>
-      <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>}>
+      {/*
+        Voice widget — gated by NEXT_PUBLIC_VOICE_WIDGET_ENABLED.
+        When off, returns null (zero impact). When on, shows a "Talk to
+        Sarah" CTA → APP 8 consent modal → ElevenLabs convai widget.
+      */}
+      <div className="mx-auto max-w-4xl px-6 pt-2">
+        <VoiceWidget agent="sarah" />
+      </div>
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+          </div>
+        }
+      >
         <OnlineClaimPageOriginal />
       </Suspense>
       <AntigravityFooter />
