@@ -66,14 +66,17 @@ export async function POST(request: Request): Promise<NextResponse> {
     return new NextResponse('Forbidden', { status: 403 });
   }
 
-  // Gather the caller's response. Press-1 OR a speech match = consent.
-  // Timeout falls through to <Redirect> which routes to human transfer.
+  // Gather the caller's response. Speech "yes/ok/agree" OR pressing any
+  // digit OTHER than 0 = consent. Pressing 0, saying "no/human/person",
+  // or timing out = decline (routes to human, no LLM).
+  // Per canonical APP 8 wording (compliance.md §3): "press 0 at any time
+  // to speak to a person" — opt-out is press-0, not opt-in press-1.
   const gatherAction = '/api/voice/twilio-consent/handle';
   const humanTransfer = '/api/voice/twilio-consent/human-transfer';
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Gather input="dtmf speech" numDigits="1" timeout="8" speechTimeout="auto" action="${gatherAction}" method="POST" language="en-AU" hints="yes, yeah, ok, okay, correct, continue, agree">
+  <Gather input="dtmf speech" numDigits="1" timeout="8" speechTimeout="auto" action="${gatherAction}" method="POST" language="en-AU" hints="yes, yeah, ok, okay, correct, continue, agree, no, human, person, operator">
     <Say voice="Polly.Nicole-Neural" language="en-AU">${escapeXml(CONSENT_UTTERANCE)}</Say>
   </Gather>
   <Say voice="Polly.Nicole-Neural" language="en-AU">We didn't catch that. Transferring you to a human operator now.</Say>

@@ -1,5 +1,5 @@
 /**
- * NOT LEGAL ADVICE — v1 prompt; review before each production deploy.
+ * NOT LEGAL ADVICE — v2 prompt; review before each production deploy.
  *
  * Sarah voice agent system prompt — version-pinned in Git so any change
  * requires CODEOWNERS review, not a dashboard edit in ElevenLabs.
@@ -9,19 +9,38 @@
  * commission, Equipped finance terms, internal systems, other customers —
  * must be declined with the canonical refusal line.
  *
+ * v2 — 2026-04-26: opening line now references CLAIMS_ASSISTANT_INTRO
+ * from `consent-utterance.ts` so the model cannot paraphrase Sarah's
+ * greeting away from the canonical scope-and-disclaimer surface.
+ *
  * When updating:
  *   1. Bump SARAH_SYSTEM_PROMPT_VERSION (semver + ISO date).
  *   2. Re-run the red-team prompt bank (DR-710).
  *   3. Ship via PR against main; CODEOWNERS on /src/lib/voice/ must approve.
- *   4. Update the ElevenLabs agent only AFTER the PR merges.
+ *   4. Update the ElevenLabs agent only AFTER the PR merges:
+ *      a. Convai > Agents > Sarah > Agent Settings > System Prompt:
+ *         paste SARAH_SYSTEM_PROMPT.
+ *      b. Convai > Agents > Sarah > Agent Settings > First Message:
+ *         paste CLAIMS_ASSISTANT_INTRO from `consent-utterance.ts`.
+ *      c. Save + deploy. Verify with a test call against staging.
  */
 
-export const SARAH_SYSTEM_PROMPT_VERSION = 'v1.0-2026-04-23';
+import { CLAIMS_ASSISTANT_INTRO } from './consent-utterance';
+
+export const SARAH_SYSTEM_PROMPT_VERSION = 'v2.0-2026-04-26';
 
 export const SARAH_REFUSAL_LINE =
   "I'm only able to help with lodging your claim — I don't have visibility into that. Would you like to continue with your claim details, or would you prefer I put you through to a human operator?";
 
 export const SARAH_SYSTEM_PROMPT = `You are Sarah, the AI voice assistant for Disaster Recovery (NRPG). You speak Australian English with a warm, calm, professional tone. You are always an AI — if a caller asks whether you are a human, you answer honestly and briefly that you are an AI assistant, then offer to continue or hand over to a human operator.
+
+# Opening utterance (verbatim — do NOT paraphrase)
+
+Your VERY FIRST message in every conversation is exactly this opener, word-for-word:
+
+"${CLAIMS_ASSISTANT_INTRO}"
+
+The Twilio layer has already played the APP 8 cross-border-disclosure consent gate before you were connected — do NOT repeat the consent gate. The caller has already agreed; just deliver the intro and wait for them to describe what's happened at the property.
 
 # Your only job
 
@@ -29,7 +48,7 @@ Help a caller lodge a new disaster recovery claim over the phone. That is the en
 
 # What you do (positive scope)
 
-1. Greet the caller, confirm they are calling about property damage, and confirm they consent to the call being recorded for quality and compliance (Australian Privacy Principle 8).
+1. Greet the caller with the verbatim opener above. Consent has already been captured at the Twilio layer; do NOT re-prompt for APP 8 consent.
 2. Confirm we have coverage in their area by asking for their postcode and calling the lookup_coverage tool.
 3. Capture, one field at a time, confirming each back to the caller:
    - Full name

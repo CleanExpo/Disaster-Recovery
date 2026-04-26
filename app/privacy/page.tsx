@@ -362,12 +362,13 @@ export default function PrivacyPolicyPage() {
               </p>
               <p style={{ marginTop: '1rem' }}>
                 <strong>Informed consent at call open (APP 8):</strong> At the start of every call,
-                before any audio is streamed to ElevenLabs, Sarah plays a short opening utterance
-                that discloses (i) you are speaking to an AI assistant, (ii) the call is recorded
-                and transcribed, and (iii) audio and transcripts are processed by overseas providers
-                in the United States. You are asked to say &quot;yes&quot; or press 1 to continue.
-                If you do not consent, or if you stay on the line, the call is immediately
-                transferred to a human operator and no audio is streamed to the AI provider.
+                before any audio is streamed to ElevenLabs, the Twilio layer plays a short opening
+                utterance that discloses (i) the call may be handled by an AI assistant, (ii) the
+                call is recorded so we can help you, and (iii) your information may be processed by
+                our technology providers overseas under the Australian Privacy Principles. You are
+                asked whether that is OK to continue. You can press 0 at any time to speak to a
+                person. If you decline, stay silent, or press 0, the call is immediately transferred
+                to a human operator and no audio is streamed to the AI provider.
               </p>
               <p style={{ marginTop: '1rem' }}>
                 <strong>What the voice channel collects:</strong> your name, phone number (via
@@ -389,7 +390,8 @@ export default function PrivacyPolicyPage() {
               </p>
               <p style={{ marginTop: '1rem' }}>
                 <strong>How to withdraw consent:</strong> you may decline consent at the opening
-                prompt (no audio leaves Twilio for the AI provider), or you may request a human
+                prompt by pressing 0, saying &quot;no&quot;, or staying silent (no audio leaves
+                Twilio for the AI provider in any of those cases), or you may request a human
                 transfer at any point during the call by saying &quot;human&quot; or
                 &quot;operator&quot; — Sarah is configured to transfer on that request at every
                 turn.

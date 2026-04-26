@@ -3,9 +3,15 @@
  *
  * Twilio <Gather> action handler. DR-707.
  *
- * Receives the press-1/speech result from the consent gate.
- *   - digit "1" OR speech matches /yes|yeah|ok|okay|correct|continue|agree/i  => consent granted
- *   - anything else (including empty/timeout)                                 => declined / fallback
+ * Receives the digit/speech result from the APP 8 consent gate.
+ *   - digit "0"                                                                => explicit decline (opt-out)
+ *   - speech matches /no|nope|human|person|operator/i                          => explicit decline
+ *   - speech matches /yes|yeah|ok|okay|correct|continue|agree/i                => consent granted
+ *   - any digit 1-9                                                            => consent granted (caller acknowledged)
+ *   - empty / timeout                                                          => declined / fallback (safe default — no LLM)
+ *
+ * Per canonical APP 8 wording (compliance.md §3): the opt-out is "press 0"
+ * — we MUST NOT require positive press-1; that would invert the script.
  *
  * On consent AND VOICE_AGENT_ENABLED === 'true' we <Connect><Stream> to the
  * ElevenLabs conversational agent. Otherwise we redirect to human-transfer.
@@ -17,10 +23,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import {
-  CONSENT_UTTERANCE,
-  CONSENT_UTTERANCE_VERSION,
-} from '@/lib/voice/consent-utterance';
+import { CONSENT_UTTERANCE, CONSENT_UTTERANCE_VERSION } from '@/lib/voice/consent-utterance';
 import { verifyTwilioSignature } from '@/lib/voice/twilio-signature';
 import { logComplianceEvent, hashConsent } from '@/lib/compliance/events';
 
@@ -28,6 +31,7 @@ export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 const CONSENT_WORD_RE = /\b(yes|yeah|yep|ok|okay|correct|continue|agree)\b/i;
+const DECLINE_WORD_RE = /\b(no|nope|human|person|operator|stop|cancel)\b/i;
 
 function escapeXml(s: string): string {
   return s
@@ -75,7 +79,11 @@ export async function POST(request: Request): Promise<NextResponse> {
   const callSid = params.CallSid ?? 'unknown';
   const from = params.From ?? '';
 
-  const consentGranted = digits === '1' || CONSENT_WORD_RE.test(speech);
+  // Decline takes precedence: press 0, speech matches decline words, or
+  // empty/timeout → no consent. Otherwise any digit 1-9 or yes-words = consent.
+  const explicitDecline = digits === '0' || (speech.length > 0 && DECLINE_WORD_RE.test(speech));
+  const explicitConsent = (digits.length === 1 && digits !== '0') || CONSENT_WORD_RE.test(speech);
+  const consentGranted = explicitConsent && !explicitDecline;
   const agentEnabled = process.env.VOICE_AGENT_ENABLED === 'true';
   const agentId = process.env.ELEVENLABS_AGENT_ID_SARAH ?? '';
 
@@ -99,10 +107,15 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     if (agentEnabled && agentId) {
+      // Brief Twilio-side beat to cover the WS handshake latency. The
+      // actual greeting is delivered by the ElevenLabs agent's
+      // configured `first_message` (CLAIMS_ASSISTANT_INTRO from
+      // src/lib/voice/consent-utterance.ts) — keep this Say short so
+      // the two greetings don't overlap.
       const streamUrl = `wss://api.elevenlabs.io/v1/convai/conversation?agent_id=${encodeURIComponent(agentId)}`;
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="Polly.Nicole-Neural" language="en-AU">Thanks. Connecting you now.</Say>
+  <Say voice="Polly.Nicole-Neural" language="en-AU">Thanks. One moment.</Say>
   <Connect>
     <Stream url="${escapeXml(streamUrl)}" />
   </Connect>
