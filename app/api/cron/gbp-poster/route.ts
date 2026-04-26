@@ -11,17 +11,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  isGBPEnabled,
-  validateGBPConfig,
-  createLocalPost,
-  mapCtaAction,
-} from '@/lib/gbp/client';
-import {
-  postTemplates,
-  getWeekNumber,
-  interpolatePost,
-} from '@/lib/gbp/post-templates';
+import { isGBPEnabled, validateGBPConfig, createLocalPost, mapCtaAction } from '@/lib/gbp/client';
+import { postTemplates, getWeekNumber, interpolatePost } from '@/lib/gbp/post-templates';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const maxDuration = 30;
 
@@ -39,16 +31,14 @@ const SERVICE_ROTATION = [
 ];
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/cron/gbp-poster' });
   try {
     // ── Auth ──
     const authHeader = request.headers.get('authorization');
     const cronSecret = process.env.CRON_SECRET;
 
     if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised' },
-        { status: 401 },
-      );
+      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
     }
 
     // ── Kill switch ──
@@ -115,10 +105,11 @@ export async function GET(request: NextRequest) {
       error: result.error,
     });
   } catch (error: unknown) {
+    captureException(error, {
+      tags: { route: '/api/cron/gbp-poster' },
+      extra: { requestId: log.requestId },
+    });
     const message = error instanceof Error ? error.message : String(error);
-    return NextResponse.json(
-      { success: false, error: message },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

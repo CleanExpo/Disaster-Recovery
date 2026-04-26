@@ -2,31 +2,43 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { withSecurityHeaders, withRateLimit, withValidation, combineMiddleware } from '@/lib/auth-middleware';
+import {
+  withSecurityHeaders,
+  withRateLimit,
+  withValidation,
+  combineMiddleware,
+} from '@/lib/auth-middleware';
 import { PaymentAuditLogger } from '@/lib/payment-security';
+import { requestLogger, captureException } from '@/lib/observability';
 
 // SECURITY: Enhanced validation schema for registration with sanitization
 const registrationSchema = z.object({
   email: z.string().email('Invalid email format').max(255, 'Email too long'),
-  username: z.string()
+  username: z
+    .string()
     .min(3, 'Username too short')
     .max(50, 'Username too long')
     .regex(/^[a-zA-Z0-9_-]+$/, 'Username contains invalid characters'),
-  password: z.string()
+  password: z
+    .string()
     .min(12, 'Password must be at least 12 characters')
     .max(128, 'Password too long')
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, 
-           'Password must contain uppercase, lowercase, number, and special character'),
-  mobileNumber: z.string()
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+      'Password must contain uppercase, lowercase, number, and special character',
+    ),
+  mobileNumber: z
+    .string()
     .min(10, 'Mobile number too short')
     .max(15, 'Mobile number too long')
     .regex(/^[+]?[0-9\s\-()]+$/, 'Invalid mobile number format'),
-  companyName: z.string()
+  companyName: z
+    .string()
     .min(2, 'Company name too short')
     .max(100, 'Company name too long')
     .regex(/^[a-zA-Z0-9\s&.-]+$/, 'Company name contains invalid characters'),
-  acceptedTerms: z.boolean().refine(val => val === true),
-  acceptedPrivacy: z.boolean().refine(val => val === true),
+  acceptedTerms: z.boolean().refine((val) => val === true),
+  acceptedPrivacy: z.boolean().refine((val) => val === true),
   company: z.object({
     tradingName: z.string().optional(),
     abn: z.string(),
@@ -36,116 +48,133 @@ const registrationSchema = z.object({
       street: z.string(),
       city: z.string(),
       state: z.string(),
-      postcode: z.string()
+      postcode: z.string(),
     }),
-    mailingAddress: z.object({
-      street: z.string(),
-      city: z.string(),
-      state: z.string(),
-      postcode: z.string()
-    }).optional(),
-    directors: z.array(z.object({
-      firstName: z.string(),
-      lastName: z.string(),
-      position: z.string(),
-      email: z.string().email()
-    })),
+    mailingAddress: z
+      .object({
+        street: z.string(),
+        city: z.string(),
+        state: z.string(),
+        postcode: z.string(),
+      })
+      .optional(),
+    directors: z.array(
+      z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        position: z.string(),
+        email: z.string().email(),
+      }),
+    ),
     officeEmail: z.string().optional(),
-    website: z.string().url().optional()
+    website: z.string().url().optional(),
   }),
-  insurance: z.array(z.object({
-    type: z.enum(['PUBLIC_LIABILITY', 'PROFESSIONAL_INDEMNITY', 'WORKERS_COMP']),
-    insurer: z.string(),
-    policyNumber: z.string(),
-    coverageAmount: z.number(),
-    excess: z.number().optional(),
-    effectiveDate: z.string(),
-    expiryDate: z.string()
-  })),
-  certifications: z.array(z.object({
-    type: z.string(),
-    name: z.string(),
-    number: z.string(),
-    issuingOrganization: z.string(),
-    issueDate: z.string(),
-    expiryDate: z.string().optional()
-  })),
+  insurance: z.array(
+    z.object({
+      type: z.enum(['PUBLIC_LIABILITY', 'PROFESSIONAL_INDEMNITY', 'WORKERS_COMP']),
+      insurer: z.string(),
+      policyNumber: z.string(),
+      coverageAmount: z.number(),
+      excess: z.number().optional(),
+      effectiveDate: z.string(),
+      expiryDate: z.string(),
+    }),
+  ),
+  certifications: z.array(
+    z.object({
+      type: z.string(),
+      name: z.string(),
+      number: z.string(),
+      issuingOrganization: z.string(),
+      issueDate: z.string(),
+      expiryDate: z.string().optional(),
+    }),
+  ),
   backgroundCheck: z.object({
     consentGiven: z.boolean(),
-    references: z.array(z.object({
-      name: z.string(),
-      companyName: z.string(),
-      position: z.string(),
-      email: z.string().email(),
-      
-      relationship: z.enum(['CLIENT', 'SUPPLIER', 'PARTNER', 'OTHER']),
-      projectDescription: z.string().optional()
-    }))
+    references: z.array(
+      z.object({
+        name: z.string(),
+        companyName: z.string(),
+        position: z.string(),
+        email: z.string().email(),
+
+        relationship: z.enum(['CLIENT', 'SUPPLIER', 'PARTNER', 'OTHER']),
+        projectDescription: z.string().optional(),
+      }),
+    ),
   }),
   subscription: z.object({
     tier: z.enum(['TIER_25KM', 'TIER_50KM', 'TIER_75KM', 'TIER_100KM', 'RURAL']),
-    territories: z.array(z.object({
-      type: z.enum(['RADIUS', 'POSTCODE', 'SUBURB', 'LGA', 'STATE']),
-      name: z.string(),
-      centerPoint: z.object({
-        lat: z.number(),
-        lng: z.number()
-      }).optional(),
-      radiusKm: z.number().optional(),
-      postcodes: z.array(z.string()).optional(),
-      suburbs: z.array(z.string()).optional(),
-      emergencyResponse: z.boolean(),
-      afterHours: z.boolean(),
-      weekendService: z.boolean(),
-      maxJobsPerDay: z.number()
-    })),
+    territories: z.array(
+      z.object({
+        type: z.enum(['RADIUS', 'POSTCODE', 'SUBURB', 'LGA', 'STATE']),
+        name: z.string(),
+        centerPoint: z
+          .object({
+            lat: z.number(),
+            lng: z.number(),
+          })
+          .optional(),
+        radiusKm: z.number().optional(),
+        postcodes: z.array(z.string()).optional(),
+        suburbs: z.array(z.string()).optional(),
+        emergencyResponse: z.boolean(),
+        afterHours: z.boolean(),
+        weekendService: z.boolean(),
+        maxJobsPerDay: z.number(),
+      }),
+    ),
     billingDetails: z.object({
       method: z.enum(['DIRECT_DEBIT', 'CREDIT_CARD']),
-      frequency: z.enum(['MONTHLY', 'QUARTERLY', 'ANNUAL'])
+      frequency: z.enum(['MONTHLY', 'QUARTERLY', 'ANNUAL']),
     }),
-    bondAccepted: z.boolean()
+    bondAccepted: z.boolean(),
   }),
   agreements: z.object({
     partnershipAgreement: z.boolean(),
     codeOfConduct: z.boolean(),
     whsCompliance: z.boolean(),
     dutyOfCare: z.boolean(),
-    ongoingMonitoring: z.boolean()
-  })
+    ongoingMonitoring: z.boolean(),
+  }),
 });
 
-async function handleRegistration(request: NextRequest, validatedData: z.infer<typeof registrationSchema>) {
-  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+async function handleRegistration(
+  request: NextRequest,
+  validatedData: z.infer<typeof registrationSchema>,
+) {
+  const log = requestLogger(request, { route: '/api/contractor/register' });
+  const clientIP =
+    request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
   const userAgent = request.headers.get('user-agent') || 'unknown';
   try {
     // SECURITY: Data is already validated by middleware
     // Additional security checks
-    
+
     // Check if username or email already exists
     const existingContractor = await prisma.contractor.findFirst({
       where: {
-        OR: [
-          { username: validatedData.username },
-          { email: validatedData.email }
-        ]
-      }
+        OR: [{ username: validatedData.username }, { email: validatedData.email }],
+      },
     });
-    
+
     if (existingContractor) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: existingContractor.username === validatedData.username 
-            ? 'Username already taken' 
-            : 'Email already registered' 
+        {
+          success: false,
+          error:
+            existingContractor.username === validatedData.username
+              ? 'Username already taken'
+              : 'Email already registered',
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
-    
+
     // Hash the password
     const passwordHash = await bcrypt.hash(validatedData.password, 12);
-    
+
     // Start a transaction to create all related records
     const result = await prisma.$transaction(async (tx) => {
       // Create the contractor account
@@ -159,10 +188,10 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           onboardingStep: 8,
           onboardingCompleted: true,
           emailVerified: false,
-          mobileVerified: false
-        }
+          mobileVerified: false,
+        },
       });
-      
+
       // Create company profile
       const companyProfile = await tx.contractorCompany.create({
         data: {
@@ -182,13 +211,13 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           mailingPostcode: validatedData.company.mailingAddress?.postcode,
           directors: JSON.stringify(validatedData.company.directors),
           companyEmail: validatedData.company.officeEmail,
-          website: validatedData.company.website
-        }
+          website: validatedData.company.website,
+        },
       });
-      
+
       // Create insurance records
       const insuranceRecords = await Promise.all(
-        validatedData.insurance.map(insurance =>
+        validatedData.insurance.map((insurance) =>
           tx.contractorInsurance.create({
             data: {
               contractorId: contractor.id,
@@ -200,15 +229,15 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
               effectiveDate: new Date(insurance.effectiveDate),
               expiryDate: new Date(insurance.expiryDate),
               certificateUrl: '', // Will be updated when documents are uploaded
-              status: 'PENDING'
-            }
-          })
-        )
+              status: 'PENDING',
+            },
+          }),
+        ),
       );
-      
+
       // Create certification records
       const certificationRecords = await Promise.all(
-        validatedData.certifications.map(cert =>
+        validatedData.certifications.map((cert) =>
           tx.contractorCertification.create({
             data: {
               contractorId: contractor.id,
@@ -219,15 +248,15 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
               issueDate: new Date(cert.issueDate),
               expiryDate: cert.expiryDate ? new Date(cert.expiryDate) : null,
               documentUrl: '', // Will be updated when documents are uploaded
-              status: 'PENDING'
-            }
-          })
-        )
+              status: 'PENDING',
+            },
+          }),
+        ),
       );
-      
+
       // Create reference records
       const referenceRecords = await Promise.all(
-        validatedData.backgroundCheck.references.map(ref =>
+        validatedData.backgroundCheck.references.map((ref) =>
           tx.contractorReference.create({
             data: {
               contractorId: contractor.id,
@@ -237,12 +266,12 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
               email: ref.email,
               phone: (ref as any).phone || '',
               relationship: ref.relationship,
-              projectDescription: ref.projectDescription
-            }
-          })
-        )
+              projectDescription: ref.projectDescription,
+            },
+          }),
+        ),
       );
-      
+
       // Create background check consent record
       if (validatedData.backgroundCheck.consentGiven) {
         await tx.backgroundCheck.create({
@@ -252,11 +281,11 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
             provider: 'PISA',
             consentGiven: true,
             consentDate: new Date(),
-            status: 'PENDING'
-          }
+            status: 'PENDING',
+          },
         });
       }
-      
+
       // Create subscription record
       const subscription = await tx.contractorSubscription.create({
         data: {
@@ -265,16 +294,19 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           status: 'PENDING',
           baseRadius: getRadiusFromTier(validatedData.subscription.tier),
           billingFrequency: validatedData.subscription.billingDetails.frequency,
-          amount: getSubscriptionAmount(validatedData.subscription.tier, validatedData.subscription.billingDetails.frequency),
+          amount: getSubscriptionAmount(
+            validatedData.subscription.tier,
+            validatedData.subscription.billingDetails.frequency,
+          ),
           paymentMethod: validatedData.subscription.billingDetails.method,
           bondAmount: 5000,
-          bondStatus: 'PENDING'
-        }
+          bondStatus: 'PENDING',
+        },
       });
-      
+
       // Create territory records
       const territoryRecords = await Promise.all(
-        validatedData.subscription.territories.map(territory =>
+        validatedData.subscription.territories.map((territory) =>
           tx.contractorTerritory.create({
             data: {
               contractorId: contractor.id,
@@ -288,23 +320,23 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
               emergencyResponse: territory.emergencyResponse,
               afterHours: territory.afterHours,
               weekendService: territory.weekendService,
-              maxJobsPerDay: territory.maxJobsPerDay
-            }
-          })
-        )
+              maxJobsPerDay: territory.maxJobsPerDay,
+            },
+          }),
+        ),
       );
-      
+
       // Create agreement acceptance records
       const agreementTypes = [
         { type: 'PARTNERSHIP', accepted: validatedData.agreements.partnershipAgreement },
         { type: 'CODE_OF_CONDUCT', accepted: validatedData.agreements.codeOfConduct },
         { type: 'WHS', accepted: validatedData.agreements.whsCompliance },
         { type: 'DUTY_OF_CARE', accepted: validatedData.agreements.dutyOfCare },
-        { type: 'PRIVACY', accepted: validatedData.agreements.ongoingMonitoring }
+        { type: 'PRIVACY', accepted: validatedData.agreements.ongoingMonitoring },
       ];
-      
+
       const agreementRecords = await Promise.all(
-        agreementTypes.map(agreement =>
+        agreementTypes.map((agreement) =>
           tx.contractorAgreement.create({
             data: {
               contractorId: contractor.id,
@@ -314,12 +346,12 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
               accepted: agreement.accepted,
               acceptedAt: agreement.accepted ? new Date() : null,
               acceptanceMethod: 'CHECKBOX',
-              effectiveDate: new Date()
-            }
-          })
-        )
+              effectiveDate: new Date(),
+            },
+          }),
+        ),
       );
-      
+
       // Create initial notification
       await tx.contractorNotification.create({
         data: {
@@ -327,11 +359,12 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           type: 'SYSTEM',
           priority: 'NORMAL',
           subject: 'Application Received',
-          message: 'Thank you for submitting your application. Our team will review it and contact you within 2-3 business days.',
-          actionRequired: false
-        }
+          message:
+            'Thank you for submitting your application. Our team will review it and contact you within 2-3 business days.',
+          actionRequired: false,
+        },
       });
-      
+
       // Create audit log entry
       await tx.contractorAuditLog.create({
         data: {
@@ -340,74 +373,84 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           category: 'PROFILE',
           details: JSON.stringify({ step: 'all', completed: true }),
           performedBy: contractor.id,
-          performedByType: 'CONTRACTOR'
-        }
+          performedByType: 'CONTRACTOR',
+        },
       });
-      
+
       return contractor;
     });
-    
+
     // Send confirmation email (implement email service)
     // await sendConfirmationEmail(validatedData.email, validatedData.companyName);
-    
+
     // Trigger background check process (implement background check service)
     // await initiateBackgroundCheck(result.id);
-    
+
     return NextResponse.json({
       success: true,
       message: 'Application submitted successfully',
-      contractorId: result.id
+      contractorId: result.id,
     });
-    
   } catch (error) {
-    console.error(JSON.stringify({ level: 'error', source: 'api/contractor/register', msg: 'registration error', error: error instanceof Error ? error.message : String(error) }));
+    console.error(
+      JSON.stringify({
+        level: 'error',
+        source: 'api/contractor/register',
+        msg: 'registration error',
+        error: error instanceof Error ? error.message : String(error),
+      }),
+    );
+    captureException(error, {
+      tags: { route: '/api/contractor/register' },
+      extra: { requestId: log.requestId },
+    });
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Invalid form data', 
-          details: error.errors 
+        {
+          success: false,
+          error: 'Invalid form data',
+          details: error.errors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
-    
+
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Failed to process registration' 
+      {
+        success: false,
+        error: 'Failed to process registration',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 function getRadiusFromTier(tier: string): number {
   const radiusMap: Record<string, number> = {
-    'TIER_25KM': 25,
-    'TIER_50KM': 50,
-    'TIER_75KM': 75,
-    'TIER_100KM': 100,
-    'RURAL': 200
+    TIER_25KM: 25,
+    TIER_50KM: 50,
+    TIER_75KM: 75,
+    TIER_100KM: 100,
+    RURAL: 200,
   };
   return radiusMap[tier] || 50;
 }
 
 function getSubscriptionAmount(tier: string, frequency: string): number {
   const baseAmounts: Record<string, number> = {
-    'TIER_25KM': 299,
-    'TIER_50KM': 499,
-    'TIER_75KM': 699,
-    'TIER_100KM': 899,
-    'RURAL': 1199
+    TIER_25KM: 299,
+    TIER_50KM: 499,
+    TIER_75KM: 699,
+    TIER_100KM: 899,
+    RURAL: 1199,
   };
-  
+
   const multipliers: Record<string, number> = {
-    'MONTHLY': 1,
-    'QUARTERLY': 2.85,
-    'ANNUAL': 10.5
+    MONTHLY: 1,
+    QUARTERLY: 2.85,
+    ANNUAL: 10.5,
   };
-  
+
   return (baseAmounts[tier] || 499) * (multipliers[frequency] || 1);
 }

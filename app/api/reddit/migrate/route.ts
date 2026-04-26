@@ -5,12 +5,14 @@
  * via Prisma's $executeRawUnsafe. Only works if tables don't exist yet.
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const maxDuration = 60;
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/reddit/migrate' });
   try {
     const results: string[] = [];
 
@@ -219,6 +221,10 @@ Return a JSON object with: title, body, tldr, category, brands, geoSignals`,
 
     return NextResponse.json({ success: true, results });
   } catch (error: unknown) {
+    captureException(error, {
+      tags: { route: '/api/reddit/migrate' },
+      extra: { requestId: log.requestId },
+    });
     const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }

@@ -25,6 +25,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { prisma } from '@/lib/prisma';
 import { deviceTokenRegistrationSchema } from '@/lib/validation/schemas';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -38,22 +39,17 @@ function tokenFingerprint(token: string): string {
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/native/device-token' });
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_json' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 });
   }
 
   const parsed = deviceTokenRegistrationSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_payload' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_payload' }, { status: 400 });
   }
 
   const { token, platform, claimId, deviceId, appVersion } = parsed.data;
@@ -87,18 +83,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       fingerprint: tokenFingerprint(token),
     });
 
-    return NextResponse.json(
-      { ok: true, id: stored.id },
-      { status: 201 },
-    );
+    return NextResponse.json({ ok: true, id: stored.id }, { status: 201 });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     // eslint-disable-next-line no-console
     console.error('[device-token] store_failed', { message });
-    return NextResponse.json(
-      { ok: false, error: 'store_failed' },
-      { status: 500 },
-    );
+    captureException(error, {
+      tags: { route: '/api/native/device-token', method: 'POST' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ ok: false, error: 'store_failed' }, { status: 500 });
   }
 }
 
@@ -109,13 +103,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
  * Idempotent — absence of rows returns 200.
  */
 export async function DELETE(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/native/device-token' });
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
   if (!token || token.length < 32 || token.length > 4096) {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_token' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_token' }, { status: 400 });
   }
 
   try {
@@ -125,9 +117,10 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
     const message = error instanceof Error ? error.message : String(error);
     // eslint-disable-next-line no-console
     console.error('[device-token] delete_failed', { message });
-    return NextResponse.json(
-      { ok: false, error: 'delete_failed' },
-      { status: 500 },
-    );
+    captureException(error, {
+      tags: { route: '/api/native/device-token', method: 'DELETE' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ ok: false, error: 'delete_failed' }, { status: 500 });
   }
 }

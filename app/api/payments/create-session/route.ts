@@ -23,6 +23,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { stripe } from '@/lib/stripe';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -37,6 +38,7 @@ const BodySchema = z.object({
 });
 
 export async function POST(request: Request): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/payments/create-session' });
   // Flag gate — both server secret AND public consumer flag must be on.
   if (
     !process.env.STRIPE_SECRET_KEY ||
@@ -90,6 +92,10 @@ export async function POST(request: Request): Promise<NextResponse> {
       customerId = created.id;
     }
   } catch (err) {
+    captureException(err, {
+      tags: { route: '/api/payments/create-session', step: 'customer' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       {
         error: 'stripe_customer_error',

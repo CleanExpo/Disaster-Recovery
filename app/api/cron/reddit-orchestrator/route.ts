@@ -7,20 +7,19 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { runDailyOrchestrator } from '@/lib/reddit/orchestrator';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const maxDuration = 120;
 
 export async function GET(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/cron/reddit-orchestrator' });
   try {
     // Verify CRON secret
     const authHeader = request.headers.get('authorization');
     const cronSecret = process.env.CRON_SECRET;
 
     if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised' },
-        { status: 401 },
-      );
+      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
     }
 
     // Check kill switch
@@ -42,10 +41,11 @@ export async function GET(request: NextRequest) {
       run: result,
     });
   } catch (error: unknown) {
+    captureException(error, {
+      tags: { route: '/api/cron/reddit-orchestrator' },
+      extra: { requestId: log.requestId },
+    });
     const message = error instanceof Error ? error.message : String(error);
-    return NextResponse.json(
-      { success: false, error: message },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

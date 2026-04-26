@@ -21,6 +21,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { reverseGeocodeRequestSchema } from '@/lib/validation/schemas';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -78,6 +79,7 @@ function mapToAddress(result: GoogleGeocodeResult): AddressOut {
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/public/reverse-geocode' });
   let body: unknown;
   try {
     body = await request.json();
@@ -146,6 +148,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const message = error instanceof Error ? error.message : String(error);
     // eslint-disable-next-line no-console
     console.error('[reverse-geocode] request_failed', { message });
+    captureException(error, {
+      tags: { route: '/api/public/reverse-geocode' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       { ok: false, error: 'request_failed' },
       { status: 500 },

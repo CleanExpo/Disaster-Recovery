@@ -36,6 +36,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { createServiceClient } from '@/lib/supabase';
 import { claimPhotoUploadSchema } from '@/lib/validation/schemas';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -58,12 +59,7 @@ function sniffImage(bytes: Uint8Array): SniffResult {
     return { mime: 'image/jpeg', ext: 'jpg' };
   }
   // PNG
-  if (
-    bytes[0] === 0x89 &&
-    bytes[1] === 0x50 &&
-    bytes[2] === 0x4e &&
-    bytes[3] === 0x47
-  ) {
+  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) {
     return { mime: 'image/png', ext: 'png' };
   }
   // HEIC / HEIF — ftyp box at offset 4.
@@ -97,8 +93,7 @@ async function uploadToStorage(
   mime: string,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   const hasSupabase =
-    Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-    Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if (!hasSupabase) {
     // Dev / CI stub: write to OS temp dir so the row insert still has a
@@ -116,12 +111,10 @@ async function uploadToStorage(
 
   try {
     const supabase = createServiceClient();
-    const { error } = await supabase.storage
-      .from(STORAGE_BUCKET)
-      .upload(objectKey, bytes, {
-        contentType: mime,
-        upsert: false,
-      });
+    const { error } = await supabase.storage.from(STORAGE_BUCKET).upload(objectKey, bytes, {
+      contentType: mime,
+      upsert: false,
+    });
     if (error) return { ok: false, error: error.message };
     return { ok: true };
   } catch (error) {
@@ -131,41 +124,29 @@ async function uploadToStorage(
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const log = requestLogger(request, { route: '/api/native/claim-photo-upload' });
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_json' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 });
   }
 
   const parsed = claimPhotoUploadSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_payload' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_payload' }, { status: 400 });
   }
 
-  const { photoDataUrl, claimId, platform, appVersion, capturedAt, geo } =
-    parsed.data;
+  const { photoDataUrl, claimId, platform, appVersion, capturedAt, geo } = parsed.data;
 
   const bytes = decodeDataUrl(photoDataUrl);
   if (!bytes || bytes.length === 0) {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_data_url' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_data_url' }, { status: 400 });
   }
 
   const sniffed = sniffImage(bytes);
   if (!sniffed) {
-    return NextResponse.json(
-      { ok: false, error: 'unsupported_image_format' },
-      { status: 415 },
-    );
+    return NextResponse.json({ ok: false, error: 'unsupported_image_format' }, { status: 415 });
   }
 
   const objectKey = `${claimId ?? UNASSIGNED_SENTINEL}/${randomUUID()}.${sniffed.ext}`;
@@ -180,10 +161,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       platform,
       error: uploaded.error,
     });
-    return NextResponse.json(
-      { ok: false, error: 'upload_failed' },
-      { status: 502 },
-    );
+    return NextResponse.json({ ok: false, error: 'upload_failed' }, { status: 502 });
   }
 
   // Only persist a row when we actually have a claim to attach to.
@@ -200,10 +178,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       appVersion,
       hasGeo: Boolean(geo),
     });
-    return NextResponse.json(
-      { ok: true, id: objectKey },
-      { status: 201 },
-    );
+    return NextResponse.json({ ok: true, id: objectKey }, { status: 201 });
   }
 
   try {
@@ -233,17 +208,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       hasGeo: Boolean(geo),
     });
 
-    return NextResponse.json(
-      { ok: true, id: stored.id },
-      { status: 201 },
-    );
+    return NextResponse.json({ ok: true, id: stored.id }, { status: 201 });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     // eslint-disable-next-line no-console
     console.error('[claim-photo-upload] store_failed', { message, objectKey });
-    return NextResponse.json(
-      { ok: false, error: 'store_failed' },
-      { status: 500 },
-    );
+    captureException(error, {
+      tags: { route: '/api/native/claim-photo-upload' },
+      extra: { requestId: log.requestId, objectKey },
+    });
+    return NextResponse.json({ ok: false, error: 'store_failed' }, { status: 500 });
   }
 }

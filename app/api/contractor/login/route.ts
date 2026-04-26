@@ -2,51 +2,50 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import logger from '@/lib/logger';
-import { generateAccessToken, generateRefreshToken, UserRole, getRolePermissions } from '@/lib/jwt-auth';
+import {
+  generateAccessToken,
+  generateRefreshToken,
+  UserRole,
+  getRolePermissions,
+} from '@/lib/jwt-auth';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/login' });
   try {
     const { username, password } = await request.json();
 
     if (!username || !password) {
-      return NextResponse.json(
-        { error: 'Username and password are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Username and password are required' }, { status: 400 });
     }
 
     // Log login attempt
-    const ipAddress = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const ipAddress =
+      request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     const userAgent = request.headers.get('user-agent') || 'unknown';
 
     logger.info('auth', `Contractor login attempt for username: ${username}`, {
       ipAddress,
-      userAgent
+      userAgent,
     });
 
     // Try to find contractor by username or email
     const contractor = await prisma.contractor.findFirst({
       where: {
-        OR: [
-          { username: username.toLowerCase() },
-          { email: username.toLowerCase() }
-        ]
+        OR: [{ username: username.toLowerCase() }, { email: username.toLowerCase() }],
       },
       include: {
         companyProfile: true,
-        subscription: true
-      }
+        subscription: true,
+      },
     });
 
     if (!contractor) {
       logger.warn('auth', `Login failed - contractor not found: ${username}`, {
         ipAddress,
-        userAgent
+        userAgent,
       });
-      return NextResponse.json(
-        { error: 'Invalid username or password' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
     }
 
     // Verify password
@@ -56,30 +55,31 @@ export async function POST(request: NextRequest) {
       logger.warn('auth', `Login failed - invalid password for contractor: ${contractor.id}`, {
         contractorId: contractor.id,
         ipAddress,
-        userAgent
+        userAgent,
       });
-      return NextResponse.json(
-        { error: 'Invalid username or password' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
     }
 
     // Check if account is active
     if (contractor.status !== 'APPROVED' && contractor.status !== 'PENDING') {
-      logger.warn('auth', `Login failed - contractor account ${contractor.status}: ${contractor.id}`, {
-        contractorId: contractor.id,
-        status: contractor.status
-      });
+      logger.warn(
+        'auth',
+        `Login failed - contractor account ${contractor.status}: ${contractor.id}`,
+        {
+          contractorId: contractor.id,
+          status: contractor.status,
+        },
+      );
       return NextResponse.json(
         { error: `Account ${contractor.status.toLowerCase()}. Please contact support.` },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
     // Update last login
     await prisma.contractor.update({
       where: { id: contractor.id },
-      data: { lastLoginAt: new Date() }
+      data: { lastLoginAt: new Date() },
     });
 
     // Log successful login
@@ -94,13 +94,13 @@ export async function POST(request: NextRequest) {
         details: JSON.stringify({
           ipAddress,
           userAgent,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         }),
         ipAddress,
         userAgent,
         performedBy: contractor.id,
-        performedByType: 'CONTRACTOR'
-      }
+        performedByType: 'CONTRACTOR',
+      },
     });
 
     // Generate JWT tokens
@@ -124,10 +124,12 @@ export async function POST(request: NextRequest) {
       emailVerified: contractor.emailVerified,
       twoFactorEnabled: contractor.twoFactorEnabled,
       onboardingCompleted: contractor.onboardingCompleted,
-      subscription: contractor.subscription ? {
-        tier: contractor.subscription.tier,
-        status: contractor.subscription.status
-      } : null,
+      subscription: contractor.subscription
+        ? {
+            tier: contractor.subscription.tier,
+            status: contractor.subscription.status,
+          }
+        : null,
       role: 'contractor',
       tokens: {
         access: accessToken,
@@ -138,10 +140,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response);
   } catch (error: any) {
     logger.error('auth', 'Contractor login error', error);
-    
-    return NextResponse.json(
-      { error: 'An error occurred during login' },
-      { status: 500 }
-    );
+    captureException(error, {
+      tags: { route: '/api/contractor/login' },
+      extra: { requestId: log.requestId },
+    });
+
+    return NextResponse.json({ error: 'An error occurred during login' }, { status: 500 });
   }
 }

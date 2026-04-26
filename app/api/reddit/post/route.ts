@@ -2,16 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getPostById } from '@/lib/reddit/content/post-templates';
 import { formatRedditPost, validateGEOCompliance } from '@/lib/reddit/content/geo-formatter';
 import { submitTextPost, verifyAuth } from '@/lib/reddit/reddit-client';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/reddit/post' });
   try {
     const body = await request.json();
 
     if (!body.postId) {
-      return NextResponse.json(
-        { success: false, error: 'postId is required' },
-        { status: 400 },
-      );
+      return NextResponse.json({ success: false, error: 'postId is required' }, { status: 400 });
     }
 
     const config = getPostById(body.postId);
@@ -64,10 +63,11 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error: unknown) {
+    captureException(error, {
+      tags: { route: '/api/reddit/post' },
+      extra: { requestId: log.requestId },
+    });
     const message = error instanceof Error ? error.message : String(error);
-    return NextResponse.json(
-      { success: false, error: message },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import FraudDetectionService, { DocumentAnalysisInput } from '@/lib/ai/fraud-detection';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const ValidDocumentTypes = [
   'INSURANCE_POLICY',
@@ -29,6 +30,7 @@ const CriticalDocumentTypes: DocumentType[] = [
 ];
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/fraud-detection/analyze' });
   try {
     const body = await req.json();
     const parsed = AnalyzeBodySchema.safeParse(body);
@@ -36,7 +38,7 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { error: 'Validation failed', issues: parsed.error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -55,8 +57,7 @@ export async function POST(req: NextRequest) {
       content,
       metadata: {
         ...metadata,
-        ipAddress:
-          req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? undefined,
+        ipAddress: req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? undefined,
         userAgent: req.headers.get('user-agent') ?? undefined,
         uploadTimestamp: new Date().toISOString(),
       },
@@ -90,12 +91,19 @@ export async function POST(req: NextRequest) {
       message: `Document analysis completed. Recommendation: ${analysisResult.recommendedAction}`,
     });
   } catch (error) {
+    log.error('fraud analysis failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/fraud-detection/analyze' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       {
         error: 'Internal server error during fraud analysis',
         details: error instanceof Error ? error.message : 'Unknown error',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -120,9 +128,6 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error) {
-    return NextResponse.json(
-      { error: 'Failed to fetch fraud detection logs' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch fraud detection logs' }, { status: 500 });
   }
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const VerifyBodySchema = z.object({
   claimId: z.string().min(1),
@@ -9,6 +10,7 @@ const VerifyBodySchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/proof-of-work/verify' });
   try {
     const body = await req.json();
     const parsed = VerifyBodySchema.safeParse(body);
@@ -16,7 +18,7 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { error: 'Validation failed', issues: parsed.error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -45,8 +47,7 @@ export async function POST(req: NextRequest) {
       where: { id: claimId },
       data: {
         verificationStatus,
-        rejectionReason:
-          verificationStatus === 'REJECTED' ? (verificationNotes ?? null) : null,
+        rejectionReason: verificationStatus === 'REJECTED' ? (verificationNotes ?? null) : null,
         verifiedAt: verificationStatus === 'VERIFIED' ? new Date() : null,
       },
     });
@@ -68,9 +69,7 @@ export async function POST(req: NextRequest) {
       const requiredCategories = competencyTests.map((t) => t.category);
       const verifiedWorkTypes = [
         ...new Set(
-          allClaims
-            .filter((c) => c.verificationStatus === 'VERIFIED')
-            .map((c) => c.workType)
+          allClaims.filter((c) => c.verificationStatus === 'VERIFIED').map((c) => c.workType),
         ),
       ];
 
@@ -78,10 +77,7 @@ export async function POST(req: NextRequest) {
         requiredCategories.length > 0 &&
         requiredCategories.every((category) => verifiedWorkTypes.includes(category));
 
-      if (
-        hasAllRequiredProof &&
-        existingClaim.contractor.status !== 'APPROVED'
-      ) {
+      if (hasAllRequiredProof && existingClaim.contractor.status !== 'APPROVED') {
         await prisma.contractor.update({
           where: { id: contractorId },
           data: {
@@ -101,9 +97,7 @@ export async function POST(req: NextRequest) {
       }
 
       const notificationType =
-        verificationStatus === 'VERIFIED'
-          ? 'PROOF_OF_WORK_APPROVED'
-          : 'PROOF_OF_WORK_REJECTED';
+        verificationStatus === 'VERIFIED' ? 'PROOF_OF_WORK_APPROVED' : 'PROOF_OF_WORK_REJECTED';
 
       await prisma.contractorNotification.create({
         data: {
@@ -111,9 +105,7 @@ export async function POST(req: NextRequest) {
           type: notificationType,
           priority: verificationStatus === 'REJECTED' ? 'HIGH' : 'NORMAL',
           subject:
-            verificationStatus === 'VERIFIED'
-              ? 'Proof of Work Approved'
-              : 'Proof of Work Rejected',
+            verificationStatus === 'VERIFIED' ? 'Proof of Work Approved' : 'Proof of Work Rejected',
           message:
             verificationStatus === 'VERIFIED'
               ? `The proof of work for ${existingClaim.workType} has been approved.`
@@ -122,10 +114,7 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      if (
-        hasAllRequiredProof &&
-        existingClaim.contractor.status !== 'APPROVED'
-      ) {
+      if (hasAllRequiredProof && existingClaim.contractor.status !== 'APPROVED') {
         await prisma.contractorNotification.create({
           data: {
             contractorId,
@@ -148,12 +137,19 @@ export async function POST(req: NextRequest) {
       message: `Proof of work claim ${verificationStatus.toLowerCase()} successfully`,
     });
   } catch (error) {
+    log.error('proof-of-work verify failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/proof-of-work/verify' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       {
         error: 'Internal server error during proof of work verification',
         details: error instanceof Error ? error.message : 'Unknown error',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -192,9 +188,6 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error) {
-    return NextResponse.json(
-      { error: 'Failed to fetch proof of work claim' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch proof of work claim' }, { status: 500 });
   }
 }
