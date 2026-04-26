@@ -1,6 +1,6 @@
 /**
  * Animation Enhancer Agent
- * 
+ *
  * Specializes in adding smooth animations, transitions, and micro-interactions
  * that enhance user experience. Implements R6 Digital's sophisticated animation
  * patterns while maintaining performance and accessibility.
@@ -20,13 +20,14 @@ import {
   KeyframeConfig,
   ImprovementType,
   ImpactLevel,
-  EffortLevel
-} from '../types/interfaces'
+  EffortLevel,
+} from '../types/interfaces';
 
 export class AnimationEnhancerAgent implements UIAgent {
-  id = 'animation-enhancer'
-  name = 'Animation Enhancer'
-  description = 'Adds smooth animations, transitions, and micro-interactions for premium user experience'
+  id = 'animation-enhancer';
+  name = 'Animation Enhancer';
+  description =
+    'Adds smooth animations, transitions, and micro-interactions for premium user experience';
   capabilities = [
     'Smooth transition implementation',
     'Micro-interaction design',
@@ -34,10 +35,10 @@ export class AnimationEnhancerAgent implements UIAgent {
     'Hover and focus effects',
     'Scroll-triggered animations',
     'Performance-optimised animations',
-    'Accessibility-aware motion design'
-  ]
-  priority = 4
-  isActive = true
+    'Accessibility-aware motion design',
+  ];
+  priority = 4;
+  isActive = true;
 
   private r6AnimationSystem = {
     // R6 Digital animation principles
@@ -45,11 +46,11 @@ export class AnimationEnhancerAgent implements UIAgent {
       duration: {
         instant: '0ms',
         fast: '150ms',
-        normal: '200ms',      // R6's standard duration
+        normal: '200ms', // R6's standard duration
         medium: '300ms',
         slow: '500ms',
         slower: '700ms',
-        slowest: '1000ms'
+        slowest: '1000ms',
       },
       easing: {
         linear: 'linear',
@@ -58,7 +59,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
         bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         elastic: 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
-        r6Standard: 'cubic-bezier(0.25, 0.8, 0.25, 1)' // R6's signature easing
+        r6Standard: 'cubic-bezier(0.25, 0.8, 0.25, 1)', // R6's signature easing
       },
       transform: {
         subtle: 'translateY(-2px)',
@@ -66,8 +67,8 @@ export class AnimationEnhancerAgent implements UIAgent {
         strong: 'translateY(-8px)',
         scale: 'scale(1.02)',
         scaleDown: 'scale(0.98)',
-        rotate: 'rotate(2deg)'
-      }
+        rotate: 'rotate(2deg)',
+      },
     },
 
     // Pre-defined animation configs
@@ -79,7 +80,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 200,
         easing: 'cubic-bezier(0, 0, 0.2, 1)',
         trigger: 'hover' as AnimationTrigger,
-        properties: ['transform', 'box-shadow', 'background-colour']
+        properties: ['transform', 'box-shadow', 'background-colour'],
       },
       buttonPress: {
         name: 'button-press',
@@ -87,7 +88,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 150,
         easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
         trigger: 'click' as AnimationTrigger,
-        properties: ['transform', 'box-shadow']
+        properties: ['transform', 'box-shadow'],
       },
 
       // Card animations
@@ -97,7 +98,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 500,
         easing: 'cubic-bezier(0, 0, 0.2, 1)',
         trigger: 'hover' as AnimationTrigger,
-        properties: ['transform', 'box-shadow', 'border-colour']
+        properties: ['transform', 'box-shadow', 'border-colour'],
       },
       cardEntrance: {
         name: 'card-entrance',
@@ -105,7 +106,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 600,
         easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
         trigger: 'intersection' as AnimationTrigger,
-        properties: ['opacity', 'transform']
+        properties: ['opacity', 'transform'],
       },
 
       // Text animations
@@ -115,7 +116,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 800,
         easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
         trigger: 'intersection' as AnimationTrigger,
-        properties: ['opacity', 'transform']
+        properties: ['opacity', 'transform'],
       },
 
       // Loading animations
@@ -125,7 +126,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 1500,
         easing: 'ease-in-out',
         trigger: 'mount' as AnimationTrigger,
-        properties: ['background-position']
+        properties: ['background-position'],
       },
 
       // Modal animations
@@ -135,7 +136,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 300,
         easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
         trigger: 'mount' as AnimationTrigger,
-        properties: ['opacity', 'transform', 'backdrop-filter']
+        properties: ['opacity', 'transform', 'backdrop-filter'],
       },
 
       // Navigation animations
@@ -145,8 +146,8 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 400,
         easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
         trigger: 'state-change' as AnimationTrigger,
-        properties: ['transform', 'opacity']
-      }
+        properties: ['transform', 'opacity'],
+      },
     },
 
     // R6-specific micro-interactions
@@ -154,62 +155,65 @@ export class AnimationEnhancerAgent implements UIAgent {
       buttonShimmer: {
         trigger: 'hover',
         effect: 'shimmer-across',
-        duration: 700
+        duration: 700,
       },
       cardGlow: {
         trigger: 'hover',
         effect: 'electric-blue-glow',
-        duration: 500
+        duration: 500,
       },
       inputFocus: {
         trigger: 'focus',
         effect: 'blue-ring-expansion',
-        duration: 200
+        duration: 200,
       },
       scrollReveal: {
         trigger: 'intersection',
         effect: 'stagger-fade-up',
-        duration: 600
-      }
-    }
-  }
+        duration: 600,
+      },
+    },
+  };
 
   async execute(context: UIContext): Promise<AgentResult> {
-    const startTime = Date.now()
-    const improvements: UIImprovement[] = []
-    const warnings: string[] = []
-    const errors: string[] = []
-    const recommendations: Recommendation[] = []
+    const startTime = Date.now();
+    const improvements: UIImprovement[] = [];
+    const warnings: string[] = [];
+    const errors: string[] = [];
+    const recommendations: Recommendation[] = [];
 
     try {
       // Analyse current animations
-      const animationAnalysis = await this.analyzeCurrentAnimations(context)
-      
+      const animationAnalysis = await this.analyzeCurrentAnimations(context);
+
       // Generate R6-style animations
-      improvements.push(...await this.generateR6Animations(context))
-      
+      improvements.push(...(await this.generateR6Animations(context)));
+
       // Add micro-interactions
-      improvements.push(...await this.generateMicroInteractions(context))
-      
+      improvements.push(...(await this.generateMicroInteractions(context)));
+
       // Optimise animation performance
-      improvements.push(...await this.optimizeAnimationPerformance(context))
-      
+      improvements.push(...(await this.optimizeAnimationPerformance(context)));
+
       // Generate accessibility-friendly animations
-      improvements.push(...await this.generateAccessibleAnimations(context))
-      
+      improvements.push(...(await this.generateAccessibleAnimations(context)));
+
       // Create animation recommendations
-      recommendations.push(...this.generateAnimationRecommendations(context))
+      recommendations.push(...this.generateAnimationRecommendations(context));
 
       // Check for motion sensitivity
       if (context.userPreferences.reducedMotion) {
-        warnings.push('User prefers reduced motion - animations will be simplified or disabled')
+        warnings.push('User prefers reduced motion - animations will be simplified or disabled');
       }
 
       // Performance warnings
-      const hasComplexAnimations = improvements.some(imp => 
-        imp.category.includes('complex-animation'))
+      const hasComplexAnimations = improvements.some((imp) =>
+        imp.category.includes('complex-animation'),
+      );
       if (hasComplexAnimations) {
-        warnings.push('Complex animations detected - monitor performance impact on low-end devices')
+        warnings.push(
+          'Complex animations detected - monitor performance impact on low-end devices',
+        );
       }
 
       return {
@@ -220,10 +224,12 @@ export class AnimationEnhancerAgent implements UIAgent {
         errors,
         metrics: context.performance,
         recommendations,
-        timeElapsed: Date.now() - startTime
-      }
+        timeElapsed: Date.now() - startTime,
+      };
     } catch (error) {
-      errors.push(`Animation enhancement failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      errors.push(
+        `Animation enhancement failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
       return {
         agentId: this.id,
         success: false,
@@ -232,35 +238,35 @@ export class AnimationEnhancerAgent implements UIAgent {
         errors,
         metrics: context.performance,
         recommendations,
-        timeElapsed: Date.now() - startTime
-      }
+        timeElapsed: Date.now() - startTime,
+      };
     }
   }
 
   async analyse(element: UIElement): Promise<AnalysisResult> {
-    const issues = []
-    const strengths = []
-    const recommendations = []
+    const issues = [];
+    const strengths = [];
+    const recommendations = [];
 
     // Analyse existing animations
-    const animationAnalysis = this.analyzeElementAnimations(element)
-    issues.push(...animationAnalysis.issues)
-    strengths.push(...animationAnalysis.strengths)
+    const animationAnalysis = this.analyzeElementAnimations(element);
+    issues.push(...animationAnalysis.issues);
+    strengths.push(...animationAnalysis.strengths);
 
     // Check for smooth transitions
-    const transitionAnalysis = this.analyzeTransitions(element)
-    issues.push(...transitionAnalysis.issues)
-    strengths.push(...transitionAnalysis.strengths)
+    const transitionAnalysis = this.analyzeTransitions(element);
+    issues.push(...transitionAnalysis.issues);
+    strengths.push(...transitionAnalysis.strengths);
 
     // Analyse micro-interactions
-    const interactionAnalysis = this.analyzeMicroInteractions(element)
-    issues.push(...interactionAnalysis.issues)
-    strengths.push(...interactionAnalysis.strengths)
+    const interactionAnalysis = this.analyzeMicroInteractions(element);
+    issues.push(...interactionAnalysis.issues);
+    strengths.push(...interactionAnalysis.strengths);
 
     // Generate animation recommendations
-    recommendations.push(...this.generateElementAnimationRecommendations(element))
+    recommendations.push(...this.generateElementAnimationRecommendations(element));
 
-    const score = this.calculateAnimationScore(issues, strengths)
+    const score = this.calculateAnimationScore(issues, strengths);
 
     return {
       score,
@@ -270,15 +276,22 @@ export class AnimationEnhancerAgent implements UIAgent {
       compliance: {
         wcag: { level: 'AA', score: 0, violations: [] },
         designSystem: { adherence: score / 10, violations: [] },
-        performance: { score: 0, issues: [] }
+        performance: { score: 0, issues: [] },
       },
       performance: {
         score: 0,
-        metrics: { renderTime: 0, bundleSize: 0, cacheHits: 0, memoryUsage: 0, frameRate: 0, coreWebVitals: { lcp: 0, fid: 0, cls: 0 } },
+        metrics: {
+          renderTime: 0,
+          bundleSize: 0,
+          cacheHits: 0,
+          memoryUsage: 0,
+          frameRate: 0,
+          coreWebVitals: { lcp: 0, fid: 0, cls: 0 },
+        },
         bottlenecks: [],
-        optimizations: []
-      }
-    }
+        optimizations: [],
+      },
+    };
   }
 
   private async analyzeCurrentAnimations(context: UIContext): Promise<AnalysisResult> {
@@ -288,30 +301,30 @@ export class AnimationEnhancerAgent implements UIAgent {
       styles: context.component.styles.base as any,
       children: (context.component.children || []) as any,
       accessibility: (context.component.accessibility || { focusable: false }) as any,
-      metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
-    })
+      metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } },
+    });
   }
 
   private analyzeElementAnimations(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
-    const styles = element.styles
-    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles
+    const styles = element.styles;
+    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles;
 
     // Check for existing transitions
-    const hasTransitions = styleString.includes('transition') || 
-                          styleString.includes('animation')
+    const hasTransitions = styleString.includes('transition') || styleString.includes('animation');
 
     if (hasTransitions) {
-      strengths.push('Element includes CSS transitions/animations')
-      
+      strengths.push('Element includes CSS transitions/animations');
+
       // Check for R6-compliant durations
-      const hasR6Duration = Object.values(this.r6AnimationSystem.principles.duration)
-        .some(duration => styleString.includes(duration))
-      
+      const hasR6Duration = Object.values(this.r6AnimationSystem.principles.duration).some(
+        (duration) => styleString.includes(duration),
+      );
+
       if (hasR6Duration) {
-        strengths.push('Uses R6 standard animation durations')
+        strengths.push('Uses R6 standard animation durations');
       } else {
         issues.push({
           id: 'non-standard-duration',
@@ -320,8 +333,8 @@ export class AnimationEnhancerAgent implements UIAgent {
           description: 'Animation duration does not follow R6 standards',
           location: element.type,
           fix: 'Use R6 standard durations: 150ms, 200ms, 300ms, 500ms',
-          automated: true
-        })
+          automated: true,
+        });
       }
     } else if (this.isInteractiveElement(element)) {
       issues.push({
@@ -331,23 +344,23 @@ export class AnimationEnhancerAgent implements UIAgent {
         description: 'Interactive element lacks smooth transitions',
         location: element.type,
         fix: 'Add CSS transitions for hover, focus, and active states',
-        automated: true
-      })
+        automated: true,
+      });
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private analyzeTransitions(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     if (this.isInteractiveElement(element)) {
-      const hasHoverEffects = this.hasStateStyles(element, 'hover')
-      const hasFocusEffects = this.hasStateStyles(element, 'focus')
+      const hasHoverEffects = this.hasStateStyles(element, 'hover');
+      const hasFocusEffects = this.hasStateStyles(element, 'focus');
 
       if (hasHoverEffects) {
-        strengths.push('Includes hover state transitions')
+        strengths.push('Includes hover state transitions');
       } else {
         issues.push({
           id: 'missing-hover-transition',
@@ -356,12 +369,12 @@ export class AnimationEnhancerAgent implements UIAgent {
           description: 'Interactive element lacks hover transitions',
           location: element.type,
           fix: 'Add smooth hover transition effects',
-          automated: true
-        })
+          automated: true,
+        });
       }
 
       if (hasFocusEffects) {
-        strengths.push('Includes focus state transitions')
+        strengths.push('Includes focus state transitions');
       } else {
         issues.push({
           id: 'missing-focus-transition',
@@ -370,23 +383,23 @@ export class AnimationEnhancerAgent implements UIAgent {
           description: 'Interactive element lacks focus transitions',
           location: element.type,
           fix: 'Add smooth focus transition for keyboard navigation',
-          automated: true
-        })
+          automated: true,
+        });
       }
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private analyzeMicroInteractions(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     // Check for R6-style micro-interactions
-    const hasMicroInteractions = this.hasMicroInteractionEffects(element)
-    
+    const hasMicroInteractions = this.hasMicroInteractionEffects(element);
+
     if (hasMicroInteractions) {
-      strengths.push('Includes micro-interaction effects')
+      strengths.push('Includes micro-interaction effects');
     } else if (element.type === 'button' || element.type === 'card') {
       issues.push({
         id: 'missing-micro-interactions',
@@ -395,42 +408,42 @@ export class AnimationEnhancerAgent implements UIAgent {
         description: 'Element could benefit from micro-interaction enhancements',
         location: element.type,
         fix: 'Add subtle micro-interactions for better user feedback',
-        automated: true
-      })
+        automated: true,
+      });
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private async generateR6Animations(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     // Generate component-specific animations
     switch (context.component.type) {
       case 'button':
-        improvements.push(...this.generateButtonAnimations(context))
-        break
+        improvements.push(...this.generateButtonAnimations(context));
+        break;
       case 'card':
-        improvements.push(...this.generateCardAnimations(context))
-        break
+        improvements.push(...this.generateCardAnimations(context));
+        break;
       case 'input':
-        improvements.push(...this.generateInputAnimations(context))
-        break
+        improvements.push(...this.generateInputAnimations(context));
+        break;
       case 'modal':
-        improvements.push(...this.generateModalAnimations(context))
-        break
+        improvements.push(...this.generateModalAnimations(context));
+        break;
       default:
-        improvements.push(...this.generateGenericAnimations(context))
+        improvements.push(...this.generateGenericAnimations(context));
     }
 
-    return improvements
+    return improvements;
   }
 
   private generateButtonAnimations(context: UIContext): UIImprovement[] {
     return [
       {
         id: 'r6-button-animations',
-        type: 'interaction' as any,
+        type: 'interaction' as const,
         description: 'Add R6 Digital button animations with shimmer effect',
         impact: 'medium',
         effort: 'low',
@@ -502,21 +515,21 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply R6 button animation classes',
             'Test hover and press states',
             'Verify loading state functionality',
-            'Check accessibility with reduced motion'
-          ]
+            'Check accessibility with reduced motion',
+          ],
         },
         metrics: {
-          userExperienceScore: 8
-        }
-      }
-    ]
+          userExperienceScore: 8,
+        },
+      },
+    ];
   }
 
   private generateCardAnimations(context: UIContext): UIImprovement[] {
     return [
       {
         id: 'r6-card-animations',
-        type: 'interaction' as any,
+        type: 'interaction' as const,
         description: 'Add R6 Digital card animations with hover effects and entrance transitions',
         impact: 'high',
         effort: 'medium',
@@ -602,21 +615,21 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply card animation classes',
             'Implement intersection observer for entrance animations',
             'Test hover and press states',
-            'Add stagger delay for multiple cards'
-          ]
+            'Add stagger delay for multiple cards',
+          ],
         },
         metrics: {
-          userExperienceScore: 9
-        }
-      }
-    ]
+          userExperienceScore: 9,
+        },
+      },
+    ];
   }
 
   private generateInputAnimations(context: UIContext): UIImprovement[] {
     return [
       {
         id: 'r6-input-animations',
-        type: 'interaction' as any,
+        type: 'interaction' as const,
         description: 'Add R6 Digital input animations with focus effects',
         impact: 'medium',
         effort: 'low',
@@ -704,22 +717,22 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply input animation classes',
             'Implement floating label functionality',
             'Test focus and validation states',
-            'Ensure keyboard navigation works smoothly'
-          ]
+            'Ensure keyboard navigation works smoothly',
+          ],
         },
         metrics: {
           userExperienceScore: 8,
-          accessibilityScore: 7
-        }
-      }
-    ]
+          accessibilityScore: 7,
+        },
+      },
+    ];
   }
 
   private generateModalAnimations(context: UIContext): UIImprovement[] {
     return [
       {
         id: 'r6-modal-animations',
-        type: 'entrance' as any,
+        type: 'entrance' as const,
         description: 'Add R6 Digital modal entrance and exit animations',
         impact: 'high',
         effort: 'medium',
@@ -783,22 +796,22 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply modal animation classes',
             'Implement proper enter/exit timing',
             'Add escape key functionality',
-            'Test with screen readers'
-          ]
+            'Test with screen readers',
+          ],
         },
         metrics: {
           userExperienceScore: 9,
-          accessibilityScore: 6
-        }
-      }
-    ]
+          accessibilityScore: 6,
+        },
+      },
+    ];
   }
 
   private generateGenericAnimations(context: UIContext): UIImprovement[] {
     return [
       {
         id: 'generic-r6-animations',
-        type: 'visual' as any,
+        type: 'visual' as const,
         description: 'Add R6 Digital base animations for enhanced user experience',
         impact: 'medium',
         effort: 'low',
@@ -858,21 +871,21 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply animation utility classes',
             'Test with reduced motion preferences',
             'Monitor performance impact',
-            'Use intersection observer for entrance animations'
-          ]
+            'Use intersection observer for entrance animations',
+          ],
         },
         metrics: {
-          userExperienceScore: 7
-        }
-      }
-    ]
+          userExperienceScore: 7,
+        },
+      },
+    ];
   }
 
   private async generateMicroInteractions(context: UIContext): Promise<UIImprovement[]> {
     return [
       {
         id: 'r6-micro-interactions',
-        type: 'micro-interaction' as any,
+        type: 'micro-interaction' as const,
         description: 'Add R6 Digital micro-interactions for enhanced feedback',
         impact: 'medium',
         effort: 'medium',
@@ -963,21 +976,21 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply micro-interaction classes selectively',
             'Implement JavaScript for dynamic effects',
             'Test performance on various devices',
-            'Provide reduced motion alternatives'
-          ]
+            'Provide reduced motion alternatives',
+          ],
         },
         metrics: {
-          userExperienceScore: 8
-        }
-      }
-    ]
+          userExperienceScore: 8,
+        },
+      },
+    ];
   }
 
   private async optimizeAnimationPerformance(context: UIContext): Promise<UIImprovement[]> {
     return [
       {
         id: 'animation-performance-optimisation',
-        type: 'performance' as any,
+        type: 'performance' as const,
         description: 'Optimise animations for better performance and smoother experience',
         impact: 'high',
         effort: 'low',
@@ -1036,15 +1049,15 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Apply performance optimisation classes',
             'Monitor frame rates during animations',
             'Use will-change property judiciously',
-            'Test on low-end devices'
-          ]
+            'Test on low-end devices',
+          ],
         },
         metrics: {
           performanceGain: 8,
-          userExperienceScore: 6
-        }
-      }
-    ]
+          userExperienceScore: 6,
+        },
+      },
+    ];
   }
 
   private async generateAccessibleAnimations(context: UIContext): Promise<UIImprovement[]> {
@@ -1113,19 +1126,19 @@ export class AnimationEnhancerAgent implements UIAgent {
             'Test with reduced motion enabled',
             'Verify screen reader compatibility',
             'Ensure keyboard navigation works with animations',
-            'Test in high contrast mode'
-          ]
+            'Test in high contrast mode',
+          ],
         },
         metrics: {
           accessibilityScore: 9,
-          userExperienceScore: 7
-        }
-      }
-    ]
+          userExperienceScore: 7,
+        },
+      },
+    ];
   }
 
   private generateAnimationRecommendations(context: UIContext): Recommendation[] {
-    const recommendations = []
+    const recommendations = [];
 
     // Intersection Observer recommendation
     recommendations.push({
@@ -1134,7 +1147,8 @@ export class AnimationEnhancerAgent implements UIAgent {
       priority: 'high',
       category: 'performance',
       title: 'Implement Intersection Observer for Animations',
-      description: 'Use Intersection Observer API to trigger animations only when elements are visible',
+      description:
+        'Use Intersection Observer API to trigger animations only when elements are visible',
       implementation: {
         complexity: 'moderate',
         estimatedTime: '2-3 hours',
@@ -1142,7 +1156,7 @@ export class AnimationEnhancerAgent implements UIAgent {
           'Set up Intersection Observer',
           'Create animation trigger system',
           'Add stagger delays for multiple elements',
-          'Test performance impact'
+          'Test performance impact',
         ],
         code: `
           // Intersection Observer for scroll animations
@@ -1164,21 +1178,21 @@ export class AnimationEnhancerAgent implements UIAgent {
           document.querySelectorAll('.r6-animate-on-scroll').forEach(el => {
             observer.observe(el);
           });
-        `
+        `,
       },
       impact: {
         userExperience: 9,
         performance: 8,
         accessibility: 5,
-        maintainability: 7
-      }
-    })
+        maintainability: 7,
+      },
+    });
 
-    return recommendations
+    return recommendations;
   }
 
   private generateElementAnimationRecommendations(element: UIElement): Recommendation[] {
-    const recommendations = []
+    const recommendations = [];
 
     if (element.type === 'button') {
       recommendations.push({
@@ -1191,60 +1205,70 @@ export class AnimationEnhancerAgent implements UIAgent {
         implementation: {
           complexity: 'simple',
           estimatedTime: '30 minutes',
-          requirements: ['Add hover animations', 'Include press feedback', 'Test accessibility']
+          requirements: ['Add hover animations', 'Include press feedback', 'Test accessibility'],
         },
         impact: {
           userExperience: 8,
           performance: 2,
           accessibility: 6,
-          maintainability: 5
-        }
-      })
+          maintainability: 5,
+        },
+      });
     }
 
-    return recommendations
+    return recommendations;
   }
 
   // Helper methods
   private isInteractiveElement(element: UIElement): boolean {
-    const interactiveTypes = ['button', 'link', 'input', 'select', 'textarea']
-    return interactiveTypes.includes(element.type) ||
-           !!element.props?.onClick ||
-           !!element.accessibility?.focusable
+    const interactiveTypes = ['button', 'link', 'input', 'select', 'textarea'];
+    return (
+      interactiveTypes.includes(element.type) ||
+      !!element.props?.onClick ||
+      !!element.accessibility?.focusable
+    );
   }
 
   private hasStateStyles(element: UIElement, state: string): boolean {
-    const styles = element.styles
+    const styles = element.styles;
     if (typeof styles === 'object' && styles[state as keyof typeof styles]) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 
   private hasMicroInteractionEffects(element: UIElement): boolean {
-    const styles = element.styles
-    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles
-    
-    return styleString.includes('::before') ||
-           styleString.includes('::after') ||
-           styleString.includes('transform') ||
-           styleString.includes('box-shadow')
+    const styles = element.styles;
+    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles;
+
+    return (
+      styleString.includes('::before') ||
+      styleString.includes('::after') ||
+      styleString.includes('transform') ||
+      styleString.includes('box-shadow')
+    );
   }
 
   private calculateAnimationScore(issues: any[], strengths: string[]): number {
-    let score = 7 // Start with decent animation score
-    
-    issues.forEach(issue => {
+    let score = 7; // Start with decent animation score
+
+    issues.forEach((issue) => {
       switch (issue.severity) {
-        case 'high': score -= 2; break
-        case 'medium': score -= 1; break
-        case 'low': score -= 0.5; break
+        case 'high':
+          score -= 2;
+          break;
+        case 'medium':
+          score -= 1;
+          break;
+        case 'low':
+          score -= 0.5;
+          break;
       }
-    })
-    
+    });
+
     // Bonus for animation strengths
-    score += Math.min(strengths.length * 0.5, 3)
-    
-    return Math.max(1, Math.min(10, score))
+    score += Math.min(strengths.length * 0.5, 3);
+
+    return Math.max(1, Math.min(10, score));
   }
 }

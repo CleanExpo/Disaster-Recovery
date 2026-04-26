@@ -1,13 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Upload, FileText, Image, Calendar, MapPin, DollarSign, AlertTriangle, CheckCircle, Plus, X, Eye } from 'lucide-react';
+import {
+  Upload,
+  FileText,
+  Image,
+  Calendar,
+  MapPin,
+  DollarSign,
+  AlertTriangle,
+  CheckCircle,
+  Plus,
+  X,
+  Eye,
+} from 'lucide-react';
 import DocumentUpload from './DocumentUpload';
 
-import type {
-  ProofOfWorkEvidenceInput,
-  ProofOfWorkInput,
-} from '@/lib/validation/schemas';
+import type { ProofOfWorkEvidenceInput, ProofOfWorkInput } from '@/lib/validation/schemas';
 import { clientLogger } from '@/lib/observability/client-logger';
 
 // Component-local: evidence always has a client-generated id here, and the
@@ -34,13 +43,22 @@ const WORK_TYPES = [
   'biohazard-cleaning',
   'trauma-scene-cleaning',
   'vandalism-repair',
-  'emergency-board-up'
+  'emergency-board-up',
 ];
 
 const DAMAGE_TYPES = [
-  'Water Damage', 'Fire Damage', 'Smoke Damage', 'Mould Growth',
-  'Storm Damage', 'Flood Damage', 'Sewage Overflow', 'Biohazard',
-  'Trauma Scene', 'Vandalism', 'Structural Damage', 'Contents Damage'
+  'Water Damage',
+  'Fire Damage',
+  'Smoke Damage',
+  'Mould Growth',
+  'Storm Damage',
+  'Flood Damage',
+  'Sewage Overflow',
+  'Biohazard',
+  'Trauma Scene',
+  'Vandalism',
+  'Structural Damage',
+  'Contents Damage',
 ];
 
 const EVIDENCE_TYPES = [
@@ -55,7 +73,7 @@ const EVIDENCE_TYPES = [
 export default function ProofOfWorkSubmission({
   contractorId,
   requiredWorkTypes,
-  onSubmissionComplete
+  onSubmissionComplete,
 }: ProofOfWorkSubmissionProps) {
   const [claims, setClaims] = useState<ProofOfWorkClaim[]>([]);
   const [currentClaim, setCurrentClaim] = useState<ProofOfWorkClaim | null>(null);
@@ -64,7 +82,7 @@ export default function ProofOfWorkSubmission({
 
   // Initialize empty claims for each required work type
   useEffect(() => {
-    const initialClaims = requiredWorkTypes.map(workType => ({
+    const initialClaims = requiredWorkTypes.map((workType) => ({
       workType,
       projectName: '',
       clientName: '',
@@ -78,33 +96,37 @@ export default function ProofOfWorkSubmission({
       emergencyResponse: false,
       insuranceClaim: false,
       evidence: [],
-      verificationStatus: 'PENDING' as const }));
+      verificationStatus: 'PENDING' as const,
+    }));
     setClaims(initialClaims);
   }, [requiredWorkTypes]);
 
   const openClaimForm = (workType: string) => {
-    const existingClaim = claims.find(c => c.workType === workType);
-    setCurrentClaim(existingClaim || {
-      workType,
-      projectName: '',
-      clientName: '',
-      clientContact: '',
-      projectAddress: '',
-      completionDate: '',
-      projectValue: 0,
-      projectDescription: '',
-      damageType: [],
-      propertyType: 'RESIDENTIAL',
-      emergencyResponse: false,
-      insuranceClaim: false,
-      evidence: [],
-      verificationStatus: 'PENDING' });
+    const existingClaim = claims.find((c) => c.workType === workType);
+    setCurrentClaim(
+      existingClaim || {
+        workType,
+        projectName: '',
+        clientName: '',
+        clientContact: '',
+        projectAddress: '',
+        completionDate: '',
+        projectValue: 0,
+        projectDescription: '',
+        damageType: [],
+        propertyType: 'RESIDENTIAL',
+        emergencyResponse: false,
+        insuranceClaim: false,
+        evidence: [],
+        verificationStatus: 'PENDING',
+      },
+    );
     setShowClaimForm(true);
   };
 
   const saveClaim = (claim: ProofOfWorkClaim) => {
-    setClaims(prev => {
-      const updated = prev.filter(c => c.workType !== claim.workType);
+    setClaims((prev) => {
+      const updated = prev.filter((c) => c.workType !== claim.workType);
       return [...updated, claim];
     });
     setShowClaimForm(false);
@@ -112,7 +134,7 @@ export default function ProofOfWorkSubmission({
   };
 
   const removeClaim = (workType: string) => {
-    setClaims(prev => prev.filter(c => c.workType !== workType));
+    setClaims((prev) => prev.filter((c) => c.workType !== workType));
   };
 
   const submitAllClaims = async () => {
@@ -120,11 +142,11 @@ export default function ProofOfWorkSubmission({
     try {
       // Validate all claims have minimum required evidence
       for (const claim of claims) {
-        const requiredEvidence = EVIDENCE_TYPES.filter(et => et.required);
-        const hasAllRequired = requiredEvidence.every(required =>
-          claim.evidence.some(ev => ev.type === required.value)
+        const requiredEvidence = EVIDENCE_TYPES.filter((et) => et.required);
+        const hasAllRequired = requiredEvidence.every((required) =>
+          claim.evidence.some((ev) => ev.type === required.value),
         );
-        
+
         if (!hasAllRequired) {
           throw new Error(`Claim for ${claim.workType} is missing required evidence`);
         }
@@ -136,23 +158,27 @@ export default function ProofOfWorkSubmission({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contractorId,
-          claims
-        }) });
+          claims,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to submit proof of work claims');
       }
 
       const result = await response.json();
-      
+
       if (onSubmissionComplete) {
         onSubmissionComplete(result.claims);
       }
 
       alert('Proof of work claims submitted successfully!');
-      
     } catch (error) {
-      clientLogger.error('Error submitting claims:', { source: 'contractor/ProofOfWorkSubmission' }, error);
+      clientLogger.error(
+        'Error submitting claims:',
+        { source: 'contractor/ProofOfWorkSubmission' },
+        error,
+      );
       alert(error instanceof Error ? error.message : 'Failed to submit claims');
     } finally {
       setSubmitting(false);
@@ -160,34 +186,34 @@ export default function ProofOfWorkSubmission({
   };
 
   const isClaimComplete = (workType: string) => {
-    const claim = claims.find(c => c.workType === workType);
+    const claim = claims.find((c) => c.workType === workType);
     if (!claim) return false;
 
-    const hasBasicInfo = claim.projectName && claim.clientName && claim.completionDate && claim.projectValue > 0;
-    const requiredEvidence = EVIDENCE_TYPES.filter(et => et.required);
-    const hasAllRequired = requiredEvidence.every(required =>
-      claim.evidence.some(ev => ev.type === required.value)
+    const hasBasicInfo =
+      claim.projectName && claim.clientName && claim.completionDate && claim.projectValue > 0;
+    const requiredEvidence = EVIDENCE_TYPES.filter((et) => et.required);
+    const hasAllRequired = requiredEvidence.every((required) =>
+      claim.evidence.some((ev) => ev.type === required.value),
     );
 
     return hasBasicInfo && hasAllRequired;
   };
 
   const getCompletionCount = () => {
-    return requiredWorkTypes.filter(workType => isClaimComplete(workType)).length;
+    return requiredWorkTypes.filter((workType) => isClaimComplete(workType)).length;
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="bg-white rounded-xl shadow-lg p-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Proof of Work Submission
-          </h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Proof of Work Submission</h2>
           <p className="text-gray-600 mb-6">
-            You must provide evidence of at least 5 completed projects for each work type you wish to be certified for. 
-            Each claim requires before/after photos, invoices, and project details.
+            You must provide evidence of at least 5 completed projects for each work type you wish
+            to be certified for. Each claim requires before/after photos, invoices, and project
+            details.
           </p>
-          
+
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
             <div className="flex items-center gap-2 mb-2">
               <AlertTriangle className="w-5 h-5 text-blue-600" />
@@ -223,29 +249,32 @@ export default function ProofOfWorkSubmission({
         {/* Work Type Cards */}
         <div className="space-y-6 mb-8">
           {requiredWorkTypes.map((workType) => {
-            const claim = claims.find(c => c.workType === workType);
+            const claim = claims.find((c) => c.workType === workType);
             const isComplete = isClaimComplete(workType);
-            
+
             return (
-              <div key={workType} className={`
+              <div
+                key={workType}
+                className={`
                 border-2 rounded-lg p-6 transition-all
                 ${isComplete ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'}
-              `}>
+              `}
+              >
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {workType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                      {workType.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                     </h3>
                     <p className="text-gray-600">
-                      {claim ? `${claim.evidence.length} evidence items uploaded` : 'No evidence submitted yet'}
+                      {claim
+                        ? `${claim.evidence.length} evidence items uploaded`
+                        : 'No evidence submitted yet'}
                     </p>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
-                    {isComplete && (
-                      <CheckCircle className="w-6 h-6 text-green-600" />
-                    )}
-                    
+                    {isComplete && <CheckCircle className="w-6 h-6 text-green-600" />}
+
                     <button
                       onClick={() => openClaimForm(workType)}
                       className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -268,10 +297,12 @@ export default function ProofOfWorkSubmission({
                     </div>
                     <div>
                       <p className="font-medium text-gray-600">Status</p>
-                      <span className={`
+                      <span
+                        className={`
                         inline-flex px-2 py-1 rounded-full text-xs font-medium
                         ${isComplete ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}
-                      `}>
+                      `}
+                      >
                         {isComplete ? 'Complete' : 'Incomplete'}
                       </span>
                     </div>
@@ -332,7 +363,7 @@ function ClaimFormModal({
   claim,
   onSave,
   onClose,
-  contractorId
+  contractorId,
 }: {
   claim: ProofOfWorkClaim;
   onSave: (claim: ProofOfWorkClaim) => void;
@@ -344,7 +375,12 @@ function ClaimFormModal({
 
   const handleSave = () => {
     // Validate required fields
-    if (!formData.projectName || !formData.clientName || !formData.completionDate || formData.projectValue <= 0) {
+    if (
+      !formData.projectName ||
+      !formData.clientName ||
+      !formData.completionDate ||
+      formData.projectValue <= 0
+    ) {
       alert('Please fill in all required project details');
       return;
     }
@@ -353,16 +389,16 @@ function ClaimFormModal({
   };
 
   const addEvidence = (evidence: ProofOfWorkEvidence) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      evidence: [...prev.evidence, evidence]
+      evidence: [...prev.evidence, evidence],
     }));
   };
 
   const removeEvidence = (evidenceId: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      evidence: prev.evidence.filter(e => e.id !== evidenceId)
+      evidence: prev.evidence.filter((e) => e.id !== evidenceId),
     }));
   };
 
@@ -372,22 +408,21 @@ function ClaimFormModal({
         <div className="p-6 border-b">
           <div className="flex items-center justify-between">
             <h3 className="text-2xl font-bold text-gray-900">
-              {formData.workType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Claims
+              {formData.workType.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())} Claims
             </h3>
-            <button
-              onClick={onClose}
-              className="text-gray-600 hover:text-gray-600"
-            >
+            <button onClick={onClose} className="text-gray-600 hover:text-gray-600">
               <X className="w-6 h-6" />
             </button>
           </div>
-          
+
           {/* Tabs */}
           <div className="flex gap-4 mt-4">
             <button
               onClick={() => setActiveTab('details')}
               className={`px-4 py-2 rounded-lg font-medium ${
-                activeTab === 'details' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:text-gray-600'
+                activeTab === 'details'
+                  ? 'bg-blue-100 text-blue-700'
+                  : 'text-gray-500 hover:text-gray-600'
               }`}
             >
               Project Details
@@ -395,7 +430,9 @@ function ClaimFormModal({
             <button
               onClick={() => setActiveTab('evidence')}
               className={`px-4 py-2 rounded-lg font-medium ${
-                activeTab === 'evidence' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:text-gray-600'
+                activeTab === 'evidence'
+                  ? 'bg-blue-100 text-blue-700'
+                  : 'text-gray-500 hover:text-gray-600'
               }`}
             >
               Evidence ({formData.evidence.length})
@@ -438,7 +475,7 @@ function ClaimFormModal({
 // Project details form component
 function ProjectDetailsForm({
   formData,
-  setFormData
+  setFormData,
 }: {
   formData: ProofOfWorkClaim;
   setFormData: (data: ProofOfWorkClaim) => void;
@@ -446,65 +483,55 @@ function ProjectDetailsForm({
   return (
     <div className="grid md:grid-cols-2 gap-6">
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Project Name *
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Project Name *</label>
         <input
           type="text"
           value={formData.projectName}
-          onChange={(e) => setFormData({...formData, projectName: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="e.g., Residential Water Damage Restoration"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Client Name *
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Client Name *</label>
         <input
           type="text"
           value={formData.clientName}
-          onChange={(e) => setFormData({...formData, clientName: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Client or company name"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Client Contact *
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Client Contact *</label>
         <input
           type="text"
           value={formData.clientContact}
-          onChange={(e) => setFormData({...formData, clientContact: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, clientContact: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Phone or email for verification"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Project Address *
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Project Address *</label>
         <input
           type="text"
           value={formData.projectAddress}
-          onChange={(e) => setFormData({...formData, projectAddress: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, projectAddress: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Full address of project site"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Completion Date *
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Completion Date *</label>
         <input
           type="date"
           value={formData.completionDate}
-          onChange={(e) => setFormData({...formData, completionDate: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, completionDate: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           max={new Date().toISOString().split('T')[0]}
         />
@@ -518,19 +545,17 @@ function ProjectDetailsForm({
           type="number"
           min="1000"
           value={formData.projectValue}
-          onChange={(e) => setFormData({...formData, projectValue: Number(e.target.value)})}
+          onChange={(e) => setFormData({ ...formData, projectValue: Number(e.target.value) })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Minimum $1,000"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Property Type *
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Property Type *</label>
         <select
           value={formData.propertyType}
-          onChange={(e) => setFormData({...formData, propertyType: e.target.value as any})}
+          onChange={(e) => setFormData({ ...formData, propertyType: e.target.value as any })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           <option value="RESIDENTIAL">Residential</option>
@@ -541,33 +566,32 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Insurance Company
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Insurance Company</label>
         <input
           type="text"
           value={formData.insuranceCompany || ''}
-          onChange={(e) => setFormData({...formData, insuranceCompany: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, insuranceCompany: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="If insurance claim"
         />
       </div>
 
       <div className="md:col-span-2">
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Damage Types
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Damage Types</label>
         <div className="flex flex-wrap gap-2">
-          {DAMAGE_TYPES.map(type => (
+          {DAMAGE_TYPES.map((type) => (
             <label key={type} className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
                 checked={formData.damageType.includes(type)}
                 onChange={(e) => {
                   if (e.target.checked) {
-                    setFormData({...formData, damageType: [...formData.damageType, type]});
+                    setFormData({ ...formData, damageType: [...formData.damageType, type] });
                   } else {
-                    setFormData({...formData, damageType: formData.damageType.filter(t => t !== type)});
+                    setFormData({
+                      ...formData,
+                      damageType: formData.damageType.filter((t) => t !== type),
+                    });
                   }
                 }}
                 className="rounded border-gray-300"
@@ -584,7 +608,7 @@ function ProjectDetailsForm({
         </label>
         <textarea
           value={formData.projectDescription}
-          onChange={(e) => setFormData({...formData, projectDescription: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, projectDescription: e.target.value })}
           rows={4}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Detailed description of the damage, restoration process, and outcome"
@@ -597,7 +621,7 @@ function ProjectDetailsForm({
             <input
               type="checkbox"
               checked={formData.emergencyResponse}
-              onChange={(e) => setFormData({...formData, emergencyResponse: e.target.checked})}
+              onChange={(e) => setFormData({ ...formData, emergencyResponse: e.target.checked })}
               className="rounded border-gray-300"
             />
             Emergency Response (24/7 call-out)
@@ -607,7 +631,7 @@ function ProjectDetailsForm({
             <input
               type="checkbox"
               checked={formData.insuranceClaim}
-              onChange={(e) => setFormData({...formData, insuranceClaim: e.target.checked})}
+              onChange={(e) => setFormData({ ...formData, insuranceClaim: e.target.checked })}
               className="rounded border-gray-300"
             />
             Insurance Claim
@@ -623,7 +647,7 @@ function EvidenceUploadSection({
   evidence,
   onAddEvidence,
   onRemoveEvidence,
-  contractorId
+  contractorId,
 }: {
   evidence: ProofOfWorkEvidence[];
   onAddEvidence: (evidence: ProofOfWorkEvidence) => void;
@@ -635,31 +659,31 @@ function EvidenceUploadSection({
   const handleEvidenceUpload = (result: any) => {
     const newEvidence: ProofOfWorkEvidence = {
       id: Date.now().toString(),
-      type: selectedEvidenceType as any,
+      type: selectedEvidenceType,
       url: result.documentUrl,
       description: `${selectedEvidenceType.replace(/_/g, ' ')} - ${result.file.name}`,
-      uploadedAt: new Date().toISOString() };
+      uploadedAt: new Date().toISOString(),
+    };
     onAddEvidence(newEvidence);
   };
 
   const getEvidenceTypeCount = (type: string) => {
-    return evidence.filter(e => e.type === type).length;
+    return evidence.filter((e) => e.type === type).length;
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
-          Evidence Type
-        </label>
+        <label className="block text-sm font-medium text-gray-600 mb-2">Evidence Type</label>
         <select
           value={selectedEvidenceType}
           onChange={(e) => setSelectedEvidenceType(e.target.value)}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
-          {EVIDENCE_TYPES.map(type => (
+          {EVIDENCE_TYPES.map((type) => (
             <option key={type.value} value={type.value}>
-              {type.label} {type.required ? '(Required)' : '(Optional)'} - {getEvidenceTypeCount(type.value)} uploaded
+              {type.label} {type.required ? '(Required)' : '(Optional)'} -{' '}
+              {getEvidenceTypeCount(type.value)} uploaded
             </option>
           ))}
         </select>
@@ -669,7 +693,7 @@ function EvidenceUploadSection({
       <DocumentUpload
         contractorId={contractorId}
         documentType="PROOF_OF_WORK"
-        title={`Upload ${EVIDENCE_TYPES.find(et => et.value === selectedEvidenceType)?.label}`}
+        title={`Upload ${EVIDENCE_TYPES.find((et) => et.value === selectedEvidenceType)?.label}`}
         description="Upload clear, high-quality images or documents that support this proof of work claim"
         onUploadComplete={handleEvidenceUpload}
       />
@@ -684,7 +708,7 @@ function EvidenceUploadSection({
                 <div className="flex items-start justify-between mb-2">
                   <div>
                     <p className="font-medium text-gray-900">
-                      {EVIDENCE_TYPES.find(et => et.value === item.type)?.label}
+                      {EVIDENCE_TYPES.find((et) => et.value === item.type)?.label}
                     </p>
                     <p className="text-sm text-gray-600">{item.description}</p>
                   </div>
@@ -708,10 +732,10 @@ function EvidenceUploadSection({
       <div className="bg-gray-50 rounded-lg p-4">
         <h4 className="font-medium text-gray-900 mb-3">Evidence Requirements</h4>
         <div className="space-y-2">
-          {EVIDENCE_TYPES.map(type => {
+          {EVIDENCE_TYPES.map((type) => {
             const count = getEvidenceTypeCount(type.value);
             const isComplete = type.required ? count > 0 : true;
-            
+
             return (
               <div key={type.value} className="flex items-center justify-between text-sm">
                 <span className={isComplete ? 'text-green-700' : 'text-red-700'}>

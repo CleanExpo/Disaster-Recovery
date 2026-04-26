@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  FileText, 
-  Download, 
-  Send, 
-  Eye, 
+import {
+  FileText,
+  Download,
+  Send,
+  Eye,
   Check,
   X,
   AlertTriangle,
@@ -19,7 +19,7 @@ import {
   DollarSign,
   TrendingUp,
   CheckCircle,
-  Info
+  Info,
 } from 'lucide-react';
 import { JobEstimate, EstimateLineItem, EstimateTotals } from '@/types/estimate-generation';
 
@@ -38,9 +38,11 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
   onApprove,
   onReject,
   onDownload,
-  onSend
+  onSend,
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'breakdown' | 'scope' | 'comparison'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'breakdown' | 'scope' | 'comparison'>(
+    'overview',
+  );
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [rejectReason, setRejectReason] = useState('');
 
@@ -48,7 +50,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
     return new Intl.NumberFormat('en-AU', {
       style: 'currency',
       currency: 'AUD',
-      minimumFractionDigits: 2
+      minimumFractionDigits: 2,
     }).format(amount);
   };
 
@@ -58,7 +60,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
       pending_review: 'bg-yellow-100 text-yellow-800',
       sent_to_client: 'bg-blue-100 text-blue-800',
       approved: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800'
+      rejected: 'bg-red-100 text-red-800',
     };
     return colours[status] || 'bg-gray-100 text-gray-800';
   };
@@ -69,7 +71,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
       moderate: 'text-yellow-600',
       significant: 'text-blue-700',
       severe: 'text-red-600',
-      total_loss: 'text-red-800'
+      total_loss: 'text-red-800',
     };
     return colours[level] || 'text-gray-600';
   };
@@ -84,11 +86,15 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
               <h1 className="text-2xl font-bold text-gray-900">
                 Estimate #{estimate.estimateNumber}
               </h1>
-              <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(estimate.status)}`}>
+              <span
+                className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(estimate.status)}`}
+              >
                 {estimate.status.replace('_', ' ').toUpperCase()}
               </span>
             </div>
-            <p className="text-gray-600">Version {estimate.version} • {estimate.type} Estimate</p>
+            <p className="text-gray-600">
+              Version {estimate.version} • {estimate.type} Estimate
+            </p>
             {estimate.claimNumber && (
               <p className="text-sm text-gray-300 mt-1">Claim #: {estimate.claimNumber}</p>
             )}
@@ -138,7 +144,9 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
         <div className="grid grid-cols-4 gap-4 pt-4 border-t">
           <div>
             <p className="text-sm text-gray-300">Total Amount</p>
-            <p className="text-xl font-bold text-gray-900">{formatCurrency(estimate.totals.total)}</p>
+            <p className="text-xl font-bold text-gray-900">
+              {formatCurrency(estimate.totals.total)}
+            </p>
             <p className="text-xs text-gray-300">Inc. GST</p>
           </div>
           <div>
@@ -169,7 +177,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
             {['overview', 'breakdown', 'scope', 'comparison'].map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab as any)}
+                onClick={() => setActiveTab(tab)}
                 className={`py-4 px-1 border-b-2 font-medium text-sm capitalize ${
                   activeTab === tab
                     ? 'border-blue-500 text-blue-600'
@@ -202,15 +210,21 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Property Type</p>
-                    <p className="font-medium capitalize">{estimate.assessment.propertyDetails.propertyType}</p>
+                    <p className="font-medium capitalize">
+                      {estimate.assessment.propertyDetails.propertyType}
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Total Area</p>
-                    <p className="font-medium">{estimate.assessment.propertyDetails.totalArea} sqm</p>
+                    <p className="font-medium">
+                      {estimate.assessment.propertyDetails.totalArea} sqm
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Affected Area</p>
-                    <p className="font-medium text-blue-700">{estimate.assessment.propertyDetails.affectedArea} sqm</p>
+                    <p className="font-medium text-blue-700">
+                      {estimate.assessment.propertyDetails.affectedArea} sqm
+                    </p>
                   </div>
                 </div>
               </div>
@@ -225,25 +239,33 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <p className="text-sm text-gray-600">Primary Cause</p>
-                      <p className="font-semibold capitalize">{estimate.assessment.damageAssessment.primaryCause.replace('_', ' ')}</p>
+                      <p className="font-semibold capitalize">
+                        {estimate.assessment.damageAssessment.primaryCause.replace('_', ' ')}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">IICRC Category</p>
-                      <p className="font-semibold">Category {estimate.assessment.damageAssessment.category}</p>
+                      <p className="font-semibold">
+                        Category {estimate.assessment.damageAssessment.category}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">IICRC Class</p>
-                      <p className="font-semibold">Class {estimate.assessment.damageAssessment.class}</p>
+                      <p className="font-semibold">
+                        Class {estimate.assessment.damageAssessment.class}
+                      </p>
                     </div>
                   </div>
                   {estimate.assessment.damageAssessment.hazardLevel !== 'none' && (
                     <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded">
                       <p className="text-sm font-medium text-red-800">
-                        Hazard Level: {estimate.assessment.damageAssessment.hazardLevel.toUpperCase()}
+                        Hazard Level:{' '}
+                        {estimate.assessment.damageAssessment.hazardLevel.toUpperCase()}
                       </p>
                       {estimate.assessment.damageAssessment.contaminants && (
                         <p className="text-sm text-red-600 mt-1">
-                          Contaminants: {estimate.assessment.damageAssessment.contaminants.join(', ')}
+                          Contaminants:{' '}
+                          {estimate.assessment.damageAssessment.contaminants.join(', ')}
                         </p>
                       )}
                     </div>
@@ -261,7 +283,10 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <p className="font-medium">{estimate.assessment.technician.name}</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {estimate.assessment.technician.certifications.map((cert, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
+                      <span
+                        key={idx}
+                        className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                      >
                         {cert}
                       </span>
                     ))}
@@ -276,7 +301,8 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <div>
                     <p className="font-semibold text-blue-900">Compliance & Standards</p>
                     <p className="text-sm text-blue-800 mt-1">
-                      This estimate complies with IICRC S500:2025-2021 standards and Australian Consumer Law requirements.
+                      This estimate complies with IICRC S500:2025-2021 standards and Australian
+                      Consumer Law requirements.
                     </p>
                     {estimate.metadata.compliance.buildingCodes.length > 0 && (
                       <p className="text-xs text-blue-700 mt-2">
@@ -296,11 +322,21 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Description</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Quantity</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Unit Price</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Total</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Source</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">
+                        Description
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">
+                        Quantity
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">
+                        Unit Price
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">
+                        Total
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">
+                        Source
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
@@ -333,7 +369,10 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   </tbody>
                   <tfoot className="bg-gray-50">
                     <tr>
-                      <td colSpan={3} className="px-6 py-3 text-right text-sm font-medium text-gray-900">
+                      <td
+                        colSpan={3}
+                        className="px-6 py-3 text-right text-sm font-medium text-gray-900"
+                      >
                         Subtotal
                       </td>
                       <td className="px-6 py-3 text-sm font-bold text-gray-900">
@@ -342,7 +381,10 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                       <td></td>
                     </tr>
                     <tr>
-                      <td colSpan={3} className="px-6 py-3 text-right text-sm font-medium text-gray-900">
+                      <td
+                        colSpan={3}
+                        className="px-6 py-3 text-right text-sm font-medium text-gray-900"
+                      >
                         Contingency (10%)
                       </td>
                       <td className="px-6 py-3 text-sm font-bold text-gray-900">
@@ -351,7 +393,10 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                       <td></td>
                     </tr>
                     <tr>
-                      <td colSpan={3} className="px-6 py-3 text-right text-sm font-medium text-gray-900">
+                      <td
+                        colSpan={3}
+                        className="px-6 py-3 text-right text-sm font-medium text-gray-900"
+                      >
                         GST
                       </td>
                       <td className="px-6 py-3 text-sm font-bold text-gray-900">
@@ -360,7 +405,10 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                       <td></td>
                     </tr>
                     <tr>
-                      <td colSpan={3} className="px-6 py-3 text-right text-lg font-bold text-gray-900">
+                      <td
+                        colSpan={3}
+                        className="px-6 py-3 text-right text-lg font-bold text-gray-900"
+                      >
                         Total
                       </td>
                       <td className="px-6 py-3 text-lg font-bold text-blue-600">
@@ -414,9 +462,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                         <h4 className="font-semibold">
                           Phase {phase.phase}: {phase.name}
                         </h4>
-                        <span className="text-sm text-gray-300">
-                          {phase.duration} days
-                        </span>
+                        <span className="text-sm text-gray-300">{phase.duration} days</span>
                       </div>
                       <p className="text-sm text-gray-600 mb-3">{phase.description}</p>
                       <div className="space-y-1">
@@ -471,7 +517,8 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <div>
                     <p className="font-semibold text-blue-900">Price Transparency</p>
                     <p className="text-sm text-blue-800 mt-1">
-                      This estimate shows comparisons between NRPG guidelines, contractor rates, and industry averages to ensure fair and transparent pricing.
+                      This estimate shows comparisons between NRPG guidelines, contractor rates, and
+                      industry averages to ensure fair and transparent pricing.
                     </p>
                   </div>
                 </div>
@@ -481,12 +528,24 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                 <table className="min-w-full">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Category</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">NRPG Guideline</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Contractor Rate</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Industry Avg</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Selected</th>
-                      <th className="px-6 py-3 text-center text-xs font-medium text-gray-300 uppercase">Variance</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">
+                        Category
+                      </th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">
+                        NRPG Guideline
+                      </th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">
+                        Contractor Rate
+                      </th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">
+                        Industry Avg
+                      </th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">
+                        Selected
+                      </th>
+                      <th className="px-6 py-3 text-center text-xs font-medium text-gray-300 uppercase">
+                        Variance
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
@@ -508,15 +567,18 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                           {formatCurrency(comparison.selectedPrice)}
                         </td>
                         <td className="px-6 py-4 text-center">
-                          <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
-                            Math.abs(comparison.variance) <= 5 
-                              ? 'bg-green-100 text-green-800'
-                              : Math.abs(comparison.variance) <= 10
-                              ? 'bg-yellow-100 text-yellow-800'
-                              : 'bg-red-100 text-red-800'
-                          }`}>
+                          <span
+                            className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
+                              Math.abs(comparison.variance) <= 5
+                                ? 'bg-green-100 text-green-800'
+                                : Math.abs(comparison.variance) <= 10
+                                  ? 'bg-yellow-100 text-yellow-800'
+                                  : 'bg-red-100 text-red-800'
+                            }`}
+                          >
                             <TrendingUp className="h-3 w-3 mr-1" />
-                            {comparison.variance > 0 ? '+' : ''}{comparison.variance.toFixed(1)}%
+                            {comparison.variance > 0 ? '+' : ''}
+                            {comparison.variance.toFixed(1)}%
                           </span>
                         </td>
                       </tr>
@@ -527,8 +589,9 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
 
               <div className="bg-gray-50 p-4 rounded">
                 <p className="text-sm text-gray-600">
-                  <strong>Note:</strong> Variance shows the percentage difference between the selected price and NRPG guidelines. 
-                  Variances within ±10% are considered standard market rates.
+                  <strong>Note:</strong> Variance shows the percentage difference between the
+                  selected price and NRPG guidelines. Variances within ±10% are considered standard
+                  market rates.
                 </p>
               </div>
             </div>
@@ -542,7 +605,10 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
         <div className="space-y-2 text-sm text-gray-600">
           <p>{estimate.metadata.disclaimer.text}</p>
           {estimate.metadata.disclaimer.sections.map((section, idx) => (
-            <div key={idx} className={section.emphasis === 'highlighted' ? 'bg-yellow-50 p-3 rounded' : ''}>
+            <div
+              key={idx}
+              className={section.emphasis === 'highlighted' ? 'bg-yellow-50 p-3 rounded' : ''}
+            >
               <p className="font-semibold">{section.title}</p>
               <p>{section.content}</p>
             </div>
