@@ -9,7 +9,9 @@
  * Usage:
  *   export async function POST(request: Request) {
  *     const log = requestLogger(request, { route: '/api/claims/submit' });
- *     log.info('claim intake received', { email: input.email });
+ *     // APP 11: never log raw PII. Hash identifiers via
+ *     // hashIdentifier() from src/lib/compliance/events.ts.
+ *     log.info('claim intake received', { email_hash: hashIdentifier(input.email) });
  *     try {
  *       // ...
  *     } catch (err) {
@@ -42,9 +44,7 @@ type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
 export function requestLogger(request: Request, ctx: RequestLoggerContext): BoundLogger {
   const requestId =
-    request.headers.get('x-request-id') ??
-    request.headers.get('x-vercel-id') ??
-    randomUUID();
+    request.headers.get('x-request-id') ?? request.headers.get('x-vercel-id') ?? randomUUID();
 
   const base: Record<string, unknown> = {
     request_id: requestId,
