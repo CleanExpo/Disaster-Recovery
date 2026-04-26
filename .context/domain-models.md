@@ -23,27 +23,27 @@ start here. If you are writing a new API contract, start here.
 
 ## Prisma mapping table
 
-| Domain concept       | Prisma model / location                                           | Notes                                                                                                |
-| -------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Claim**            | `InsuranceClaimAU` in `prisma/schema.prisma`                      | Canonical claim entity. AU-specific. NZ claims reuse the same model with `country: 'NZ'` and CGA fields populated. |
-| **Contractor**       | `User` with `role = 'contractor'` + `Contractor` profile          | Auth via `User`; domain data on `Contractor`. Applications flow through `ContractorApplication` before `Contractor` is created. |
-| **Contractor application** | `ContractorApplication`                                    | Seven-step onboarding. Step data persisted incrementally. Becomes a `Contractor` on final approval.  |
-| **Booking**          | *(no persistent model yet — see [Known drift](#known-drift))*     | Currently an in-memory concept in the `/claim` flow. Persists as a `Claim` with `status: 'submitted'`. |
-| **Invoice**          | `Invoice`, `ContractorInvoice`                                    | `Invoice` for agency-side billing; `ContractorInvoice` for contractor subscriptions and payouts.     |
-| **Agency**           | `Agency`                                                          | Owning organisation (parent of `User`, `Client`, `Contractor`).                                      |
-| **Client**           | `Client`                                                          | End-customer / policyholder. Linked from `InsuranceClaimAU.clientId`.                                |
-| **Lead**             | `Lead`, `LeadTracking`, `LeadNote`                                | Pre-claim funnel entity. A converted `Lead` produces a `Client` + `InsuranceClaimAU`.                |
-| **Voice call**       | *(no persistent model yet — see [Known drift](#known-drift))*     | DR-708 pipeline is flag-off; transcripts planned to persist via DR-714 redaction + retention cron.   |
-| **Finance referral** | *(in-memory only — see [Known drift](#known-drift))*              | DR-689 Equipped consent form is flag-gated, no API wiring, no persistent store yet.                  |
-| **Compliance event** | `compliance_events` table via raw SQL / Prisma `ComplianceEvent`  | DR-624 writer is feature-flagged. Append-only, structured for APP 12 access requests.                |
-| **Consent record**   | `Consent`, `ConsentEvent`                                         | APP 3 (collection) + APP 8 (overseas disclosure) + consent-mode v2 surface.                          |
-| **Partner**          | `Partner`, `PartnerBilling`, `PartnerPayment`                     | Commercial partnerships (finance, insurance, referral networks).                                     |
-| **Enquiry**          | `Enquiry`                                                         | General contact-form submissions that have not been qualified into a `Lead`.                         |
-| **Notification**     | `Notification`                                                    | User-facing in-app notifications. SMS/email delivery handled out-of-band.                            |
-| **Certification**    | `ContractorCertification`                                         | IICRC S500/S520, WHS tickets, insurance evidence. Expiry-driven reminders.                           |
-| **Territory**        | `ContractorTerritory`                                             | Service area geofencing. Joined to suburb data for claim routing.                                    |
-| **KPI**              | `ContractorKPI`                                                   | Response time, completion rate, client rating aggregates.                                            |
-| **Audit**            | `Audit`                                                           | Generic audit trail for admin-triggered state changes.                                               |
+| Domain concept             | Prisma model / location                                          | Notes                                                                                                                                                  |
+| -------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Claim**                  | `InsuranceClaimAU` in `prisma/schema.prisma`                     | Canonical claim entity. AU-specific. NZ claims reuse the same model with `country: 'NZ'` and CGA fields populated.                                     |
+| **Contractor**             | `User` with `role = 'contractor'` + `Contractor` profile         | Auth via `User`; domain data on `Contractor`. Applications flow through `ContractorApplication` before `Contractor` is created.                        |
+| **Contractor application** | `ContractorApplication`                                          | Seven-step onboarding. Step data persisted incrementally. Becomes a `Contractor` on final approval.                                                    |
+| **Booking**                | _(no persistent model yet — see [Known drift](#known-drift))_    | Currently an in-memory concept in the `/claim` flow. Persists as a `Claim` with `status: 'submitted'`.                                                 |
+| **Invoice**                | `Invoice`, `ContractorInvoice`                                   | `Invoice` for agency-side billing; `ContractorInvoice` for contractor subscriptions and payouts.                                                       |
+| **Agency**                 | `Agency`                                                         | Owning organisation (parent of `User`, `Client`, `Contractor`).                                                                                        |
+| **Client**                 | `Client`                                                         | End-customer / policyholder. Linked from `InsuranceClaimAU.clientId`.                                                                                  |
+| **Lead**                   | `Lead`, `LeadTracking`, `LeadNote`                               | Pre-claim funnel entity. A converted `Lead` produces a `Client` + `InsuranceClaimAU`.                                                                  |
+| **Voice call**             | `VoiceCall` + `CallTranscript` (audit B13 scaffold)              | Prisma models landed; webhook extractor wiring still owed (separate PR). Flag-gated via `VOICE_AGENT_ENABLED`. DR-714 retention cron now has a target. |
+| **Finance referral**       | _(in-memory only — see [Known drift](#known-drift))_             | DR-689 Equipped consent form is flag-gated, no API wiring, no persistent store yet.                                                                    |
+| **Compliance event**       | `compliance_events` table via raw SQL / Prisma `ComplianceEvent` | DR-624 writer is feature-flagged. Append-only, structured for APP 12 access requests.                                                                  |
+| **Consent record**         | `Consent`, `ConsentEvent`                                        | APP 3 (collection) + APP 8 (overseas disclosure) + consent-mode v2 surface.                                                                            |
+| **Partner**                | `Partner`, `PartnerBilling`, `PartnerPayment`                    | Commercial partnerships (finance, insurance, referral networks).                                                                                       |
+| **Enquiry**                | `Enquiry`                                                        | General contact-form submissions that have not been qualified into a `Lead`.                                                                           |
+| **Notification**           | `Notification`                                                   | User-facing in-app notifications. SMS/email delivery handled out-of-band.                                                                              |
+| **Certification**          | `ContractorCertification`                                        | IICRC S500/S520, WHS tickets, insurance evidence. Expiry-driven reminders.                                                                             |
+| **Territory**              | `ContractorTerritory`                                            | Service area geofencing. Joined to suburb data for claim routing.                                                                                      |
+| **KPI**                    | `ContractorKPI`                                                  | Response time, completion rate, client rating aggregates.                                                                                              |
+| **Audit**                  | `Audit`                                                          | Generic audit trail for admin-triggered state changes.                                                                                                 |
 
 ### How to use this table
 
@@ -181,9 +181,13 @@ or ticket tracking the resolution.
   consent form behind a feature flag with no API wiring. Persistence
   will arrive when the partner DPA finalises. See ADR on finance
   partner switch in PR #77.
-- **VoiceCall has no persistent model.** DR-708 pipeline is flag-off.
-  DR-714 scaffolds redaction + retention cron but the transcript
-  storage model is still pending. Kill-switch (DR-715) is live.
+- ~~**VoiceCall has no persistent model.**~~ Resolved by audit B13
+  scaffold (this PR): `VoiceCall` + `CallTranscript` Prisma models
+  landed with the DR-714 retention cron now having a target. DR-708
+  pipeline is still flag-off; kill-switch (DR-715) is live. Follow-up
+  owed: webhook extractor wiring at
+  `app/api/voice/elevenlabs/webhook/route.ts` to populate the new
+  tables (separate PR).
 - **Compliance events schema is append-only raw SQL.** The Prisma
   client reads it via a typed view; writes go via a raw SQL helper
   feature-flagged behind `COMPLIANCE_EVENTS_WRITER_ENABLED`. A future

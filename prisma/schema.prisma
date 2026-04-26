@@ -30,7 +30,7 @@ model User {
   email         String    @unique
   password      String
   name          String?
-  role          String    @default("user")  // "user" | "contractor" | "admin" | "super_admin"
+  role          String    @default("user") // "user" | "contractor" | "admin" | "super_admin"
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
@@ -406,9 +406,9 @@ model Contractor {
   applications ContractorApplication[]
 
   // Proof of work and competency
-  proofOfWork          ProofOfWork[]
+  proofOfWork           ProofOfWork[]
   competencyTestResults CompetencyTestResult[]
-  inspectionReports    InspectionReport[]
+  inspectionReports     InspectionReport[]
 
   // ── Job Matching Fields ──────────────────────────────────────────────────
   // Base location for distance calculations
@@ -417,7 +417,7 @@ model Contractor {
 
   // Radius tier purchased on signup
   serviceRadiusTier String? // "25km" | "50km" | "100km" | "rural"
-  maxKmRadius       Int?    // For rural tier — contractor's custom max km
+  maxKmRadius       Int? // For rural tier — contractor's custom max km
 
   // IICRC / industry certifications held (codes: S500, S700, S520, WRT, ASD, CDS, TCST, OCT, HST, CPT, FSRT)
   iicrcCertifications String[] @default([])
@@ -428,7 +428,7 @@ model Contractor {
 }
 
 model ContractorApplication {
-  id        String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Optional link to a Contractor once created/approved
   contractorId String?
@@ -439,7 +439,7 @@ model ContractorApplication {
   contactName  String?
   email        String?
   phone        String?
-  status       String   @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, APPROVED, REJECTED
+  status       String  @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, APPROVED, REJECTED
 
   // Full JSON snapshot of the onboarding wizard data
   data Json
@@ -797,34 +797,34 @@ model ContractorKPI {
 }
 
 model ProofOfWork {
-  id           String   @id @default(cuid())
+  id           String     @id @default(cuid())
   contractorId String
   contractor   Contractor @relation(fields: [contractorId], references: [id])
 
-  workType            String // WATER_DAMAGE, MOULD_REMEDIATION, FIRE_DAMAGE, etc.
-  projectName         String
-  clientName          String
-  clientContact       String
-  projectAddress      String?
-  completionDate      DateTime
-  projectValue        Float
-  projectDescription  String?
-  damageType          String[] @default([])
-  propertyType        String   // RESIDENTIAL, COMMERCIAL, INDUSTRIAL, INSTITUTIONAL
-  emergencyResponse   Boolean  @default(false)
-  insuranceClaim      Boolean  @default(false)
-  insuranceCompany    String?
+  workType           String // WATER_DAMAGE, MOULD_REMEDIATION, FIRE_DAMAGE, etc.
+  projectName        String
+  clientName         String
+  clientContact      String
+  projectAddress     String?
+  completionDate     DateTime
+  projectValue       Float
+  projectDescription String?
+  damageType         String[] @default([])
+  propertyType       String // RESIDENTIAL, COMMERCIAL, INDUSTRIAL, INSTITUTIONAL
+  emergencyResponse  Boolean  @default(false)
+  insuranceClaim     Boolean  @default(false)
+  insuranceCompany   String?
 
   // Evidence stored as JSON: array of {type, url, description, uploadedAt}
-  evidence            String   @default("[]")
+  evidence String @default("[]")
 
-  verificationStatus  String   @default("PENDING") // PENDING, VERIFIED, REJECTED
-  verifiedBy          String?
-  verifiedAt          DateTime?
-  rejectionReason     String?
+  verificationStatus String    @default("PENDING") // PENDING, VERIFIED, REJECTED
+  verifiedBy         String?
+  verifiedAt         DateTime?
+  rejectionReason    String?
 
-  submittedAt         DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  submittedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@index([contractorId])
   @@index([verificationStatus])
@@ -832,20 +832,20 @@ model ProofOfWork {
 }
 
 model CompetencyTestResult {
-  id           String   @id @default(cuid())
+  id           String     @id @default(cuid())
   contractorId String
   contractor   Contractor @relation(fields: [contractorId], references: [id])
 
-  category        String // CompetencyCategory enum value
-  attemptNumber   Int    @default(1)
-  score           Int    // raw score
-  totalPossible   Int
-  percentage      Float
-  passed          Boolean
+  category      String // CompetencyCategory enum value
+  attemptNumber Int     @default(1)
+  score         Int // raw score
+  totalPossible Int
+  percentage    Float
+  passed        Boolean
 
   // Time tracking
-  startedAt       DateTime
-  completedAt     DateTime?
+  startedAt        DateTime
+  completedAt      DateTime?
   timeTakenSeconds Int?
 
   // Certification issued on pass
@@ -1377,11 +1377,11 @@ model Job {
   conversations BotConversation[]
   outcome       JobOutcome?
 
+  jobOffers JobOffer[]
+
   @@index([status, urgency])
   @@index([contractorId, status])
   @@index([suburb, state])
-
-  jobOffers JobOffer[]
 }
 
 // ============================================
@@ -1397,7 +1397,7 @@ model JobOffer {
   contractor   Contractor @relation(fields: [contractorId], references: [id])
 
   // Lifecycle
-  status    String @default("pending") // "pending" | "accepted" | "declined" | "expired"
+  status    String   @default("pending") // "pending" | "accepted" | "declined" | "expired"
   offeredAt DateTime @default(now())
   expiresAt DateTime
 
@@ -1425,7 +1425,7 @@ model JobOffer {
 model JobOutcome {
   id               String   @id @default(cuid())
   jobId            String   @unique
-  outcome          String   // COMPLETED | DECLINED | CANCELLED
+  outcome          String // COMPLETED | DECLINED | CANCELLED
   jobType          String
   contractorId     String?
   clientId         String?
@@ -1441,12 +1441,12 @@ model JobOutcome {
   state           String?
   suburb          String?
   postcode        String?
-  urgency         String?  // emergency | urgent | standard
-  insuranceClaim  Boolean  @default(false)
+  urgency         String? // emergency | urgent | standard
+  insuranceClaim  Boolean @default(false)
   insurerName     String?
-  responseMinutes Int?     // assignedAt → acceptedAt
-  durationMinutes Int?     // acceptedAt → completedAt
-  totalMinutes    Int?     // createdAt → completedAt (end-to-end)
+  responseMinutes Int? // assignedAt → acceptedAt
+  durationMinutes Int? // acceptedAt → completedAt
+  totalMinutes    Int? // createdAt → completedAt (end-to-end)
 
   job        Job         @relation(fields: [jobId], references: [id])
   contractor Contractor? @relation(fields: [contractorId], references: [id])
@@ -1628,7 +1628,7 @@ model ContractorProfile {
 }
 
 model InspectionReport {
-  id                   String    @id @default(cuid())
+  id                   String     @id @default(cuid())
   reportNumber         String
   bookingId            String
   insuranceClaimId     String?
@@ -1638,28 +1638,28 @@ model InspectionReport {
   jurisdiction         String
   applicableCodes      String[]
   iicrcStandards       String[]
-  status               String    @default("SCHEDULED")
-  version              Int       @default(1)
-  isDraft              Boolean   @default(true)
+  status               String     @default("SCHEDULED")
+  version              Int        @default(1)
+  isDraft              Boolean    @default(true)
   technicalReviewerId  String?
   technicalReviewDate  DateTime?
-  technicalReviewNotes String?   @db.Text
+  technicalReviewNotes String?    @db.Text
   managerReviewerId    String?
   managerReviewDate    DateTime?
-  managerReviewNotes   String?   @db.Text
+  managerReviewNotes   String?    @db.Text
   finalApproverId      String?
   finalApprovalDate    DateTime?
-  executiveSummary     String?   @db.Text
-  scopeOfWork          String    @db.Text
-  findings             String    @db.Text
-  recommendations      String    @db.Text
-  limitations          String?   @db.Text
+  executiveSummary     String?    @db.Text
+  scopeOfWork          String     @db.Text
+  findings             String     @db.Text
+  recommendations      String     @db.Text
+  limitations          String?    @db.Text
   pdfUrl               String?
   pdfGeneratedAt       DateTime?
-  pdfVersion           Int       @default(0)
+  pdfVersion           Int        @default(0)
   complianceStatus     String?
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
   createdBy            String
   tenantId             String?
 
@@ -1816,7 +1816,7 @@ model Payment {
 model RedditContentPillar {
   id          String   @id @default(cuid())
   code        String   @unique // A, B, C, D, E
-  name        String   // e.g. "Indoor Environmental Health"
+  name        String // e.g. "Indoor Environmental Health"
   description String?
   categories  String[] // PostCategory values mapped to this pillar
   lastUsedAt  DateTime @default(now())
@@ -1829,24 +1829,24 @@ model RedditContentPillar {
 }
 
 model RedditPost {
-  id        String @id @default(cuid())
-  title     String
-  body      String @db.Text
-  tldr      String?
-  category  String // PostCategory value
-  brands    String // JSON string of BrandId[]
-  geoSignals String @db.Text // JSON of GEOSignal[]
+  id         String  @id @default(cuid())
+  title      String
+  body       String  @db.Text
+  tldr       String?
+  category   String // PostCategory value
+  brands     String // JSON string of BrandId[]
+  geoSignals String  @db.Text // JSON of GEOSignal[]
 
   // Targeting
   subreddit String @default("Disaster_Recovery_Qld")
 
   // AI metadata
-  aiModel        String?
-  aiPromptVersion String?
+  aiModel          String?
+  aiPromptVersion  String?
   generationTokens Int?
 
   // Safety
-  safetyStatus     String  @default("PENDING") // PENDING | PASSED | FAILED
+  safetyStatus      String  @default("PENDING") // PENDING | PASSED | FAILED
   safetyGateResults String? @db.Text // JSON of SafetyGateResult[]
 
   // GEO compliance
@@ -1860,12 +1860,12 @@ model RedditPost {
   imageFormat    String? // e.g. "infographic", "before-after", "comparison-table"
 
   // Lifecycle
-  status       String   @default("SCHEDULED") // SCHEDULED | GENERATED | VALIDATED | POSTED | FAILED
-  scheduledFor DateTime?
-  generatedAt  DateTime?
-  validatedAt  DateTime?
-  postedAt     DateTime?
-  failedAt     DateTime?
+  status        String    @default("SCHEDULED") // SCHEDULED | GENERATED | VALIDATED | POSTED | FAILED
+  scheduledFor  DateTime?
+  generatedAt   DateTime?
+  validatedAt   DateTime?
+  postedAt      DateTime?
+  failedAt      DateTime?
   failureReason String?
 
   // Reddit IDs
@@ -1873,31 +1873,31 @@ model RedditPost {
   redditUrl String?
 
   // Performance metrics
-  upvotes      Int    @default(0)
-  downvotes    Int    @default(0)
-  commentCount Int    @default(0)
-  upvoteRatio  Float  @default(0)
+  upvotes      Int     @default(0)
+  downvotes    Int     @default(0)
+  commentCount Int     @default(0)
+  upvoteRatio  Float   @default(0)
   isRemoved    Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  contentPillarId String?
-  contentPillar   RedditContentPillar? @relation(fields: [contentPillarId], references: [id])
-  safetyAudits    RedditSafetyAudit[]
-  performanceLogs RedditPerformanceLog[]
+  contentPillarId   String?
+  contentPillar     RedditContentPillar?   @relation(fields: [contentPillarId], references: [id])
+  safetyAudits      RedditSafetyAudit[]
+  performanceLogs   RedditPerformanceLog[]
   orchestratorRunId String?
   orchestratorRun   RedditOrchestratorRun? @relation(fields: [orchestratorRunId], references: [id])
 }
 
 model RedditSafetyAudit {
-  id         String  @id @default(cuid())
-  gateName   String  // claim-labelling | hallucination | spam | mod-safety
-  gateModel  String  // e.g. "claude-haiku-4-5-20251001"
+  id         String   @id @default(cuid())
+  gateName   String // claim-labelling | hallucination | spam | mod-safety
+  gateModel  String // e.g. "claude-haiku-4-5-20251001"
   passed     Boolean
   confidence Float
-  findings   String  @db.Text // JSON of findings
+  findings   String   @db.Text // JSON of findings
   tokensUsed Int?
   durationMs Int?
   createdAt  DateTime @default(now())
@@ -1920,18 +1920,18 @@ model RedditPerformanceLog {
 }
 
 model RedditOrchestratorRun {
-  id              String   @id @default(cuid())
-  triggerType     String   // CRON | MANUAL | API
-  command         String?  // e.g. "DAILY-AUTO", "CATEGORY:water-damage"
-  status          String   @default("RUNNING") // RUNNING | COMPLETED | FAILED
-  postsGenerated  Int      @default(0)
-  postsValidated  Int      @default(0)
-  postsPosted     Int      @default(0)
-  postsFailed     Int      @default(0)
-  totalTokensUsed Int      @default(0)
-  totalDurationMs Int      @default(0)
+  id              String    @id @default(cuid())
+  triggerType     String // CRON | MANUAL | API
+  command         String? // e.g. "DAILY-AUTO", "CATEGORY:water-damage"
+  status          String    @default("RUNNING") // RUNNING | COMPLETED | FAILED
+  postsGenerated  Int       @default(0)
+  postsValidated  Int       @default(0)
+  postsPosted     Int       @default(0)
+  postsFailed     Int       @default(0)
+  totalTokensUsed Int       @default(0)
+  totalDurationMs Int       @default(0)
   errorMessage    String?
-  startedAt       DateTime @default(now())
+  startedAt       DateTime  @default(now())
   completedAt     DateTime?
 
   posts RedditPost[]
@@ -1971,19 +1971,19 @@ model PushToken {
 /// Data-class: CONFIDENTIAL when joined to a claim (property PII).
 /// Never log the objectKey alongside client contact details.
 model ClaimPhotoAttachment {
-  id              String   @id @default(uuid())
-  claimId         String
+  id           String   @id @default(uuid())
+  claimId      String
   /// Object key in the `claim-photos` Supabase Storage bucket.
   /// Shape: `<claimId|unassigned>/<uuid>.<ext>`.
-  objectKey       String
-  platform        String   // "ios" | "android"
-  capturedAt      DateTime
-  geoLat          Float?
-  geoLng          Float?
-  geoAccuracyM    Float?
-  sizeBytes       Int
-  mimeType        String
-  createdAt       DateTime @default(now())
+  objectKey    String
+  platform     String // "ios" | "android"
+  capturedAt   DateTime
+  geoLat       Float?
+  geoLng       Float?
+  geoAccuracyM Float?
+  sizeBytes    Int
+  mimeType     String
+  createdAt    DateTime @default(now())
 
   @@index([claimId])
   @@index([createdAt])
@@ -1994,7 +1994,7 @@ model ClaimPhotoAttachment {
 model ClaimNotification {
   id        String   @id @default(cuid())
   claimId   String
-  status    String   // The new status value that triggered this notification
+  status    String // The new status value that triggered this notification
   title     String
   message   String
   read      Boolean  @default(false)
@@ -2011,7 +2011,7 @@ model ClaimNotification {
 
 /// A licensed external sub-contractor registered by an NRPG primary contractor.
 model SubContractor {
-  id                       String   @id @default(cuid())
+  id                       String    @id @default(cuid())
   /// ABN — 11 digits, no spaces
   abn                      String
   businessName             String
@@ -2019,22 +2019,22 @@ model SubContractor {
   contactName              String
   contactEmail             String
   contactPhone             String
-  tradeType                String   // SubContractorTradeType enum
+  tradeType                String // SubContractorTradeType enum
   licenceNumber            String
-  licenceState             String   // AustralianState
+  licenceState             String // AustralianState
   licenceExpiry            DateTime
   /// Public liability coverage in AUD
   publicLiabilityCoverage  Float
   publicLiabilityInsurer   String
   publicLiabilityExpiry    DateTime
-  onboardingStatus         String   @default("NOT_STARTED") // OnboardingStatus
-  status                   String   @default("PENDING")     // SubContractorStatus
+  onboardingStatus         String    @default("NOT_STARTED") // OnboardingStatus
+  status                   String    @default("PENDING") // SubContractorStatus
   agreementSignedAt        DateTime?
   agreementSignedBy        String?
   /// The primary NRPG contractor who registered this sub-contractor
   registeredByContractorId String
-  createdAt                DateTime @default(now())
-  updatedAt                DateTime @updatedAt
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
 
   engagements SubContractorEngagement[]
 
@@ -2046,30 +2046,30 @@ model SubContractor {
 
 /// Links a job to a sub-contractor engagement with markup applied.
 model SubContractorEngagement {
-  id                       String    @id @default(cuid())
-  jobId                    String
-  subContractorId          String
-  primaryContractorId      String
-  tradeType                String    // SubContractorTradeType
+  id                        String    @id @default(cuid())
+  jobId                     String
+  subContractorId           String
+  primaryContractorId       String
+  tradeType                 String // SubContractorTradeType
   /// Description of the work scope
-  workScope                String    @db.Text
+  workScope                 String    @db.Text
   /// Sub-contractor quoted invoice amount in AUD (excl. GST)
-  subInvoiceAmount         Float
+  subInvoiceAmount          Float
   /// Markup percentage applied — minimum 15
-  markupPercent            Float
+  markupPercent             Float
   /// Amount charged to customer (excl. GST)
-  customerChargeAmount     Float
+  customerChargeAmount      Float
   /// GST on customer charge
-  gstAmount                Float
+  gstAmount                 Float
   /// customerChargeAmount + gstAmount
   customerChargeTotalIncGst Float
-  status                   String    @default("QUOTED") // EngagementStatus
-  authorisedAt             DateTime?
-  completedAt              DateTime?
-  invoicedAt               DateTime?
-  notes                    String?
-  createdAt                DateTime  @default(now())
-  updatedAt                DateTime  @updatedAt
+  status                    String    @default("QUOTED") // EngagementStatus
+  authorisedAt              DateTime?
+  completedAt               DateTime?
+  invoicedAt                DateTime?
+  notes                     String?
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
 
   subContractor SubContractor @relation(fields: [subContractorId], references: [id])
 
@@ -2097,39 +2097,39 @@ model SubContractorEngagement {
 ///   creating a new PII honeypot on DR infrastructure.
 /// - Rows are append-only; there is no `updatedAt`. Corrections are new rows.
 model FinanceReferral {
-  id                          String   @id @default(uuid())
-  createdAt                   DateTime @default(now())
-  updatedAt                   DateTime @updatedAt
-  country                     String   // "AU" | "NZ" (NZ pathway is Phase 2)
-  customerType                String   // "business" | "consumer"
-  fundingBand                 String   // "<10k" | "10-25k" | "25-50k" | "50-100k" | "100-250k" | ">250k"
-  disasterCategory            String   // "water" | "fire" | "storm" | "mould" | "biohazard" | "other"
-  source                      String   // e.g. "disasterrecovery.com.au/finance"
-  disclosureVersion           String   // version ID of the referrer-disclosure shown at submit time
-  privacyNoticeVersion        String   // version ID of the privacy collection statement shown at submit time
-  consentShareEquipped        Boolean  // must be true for the row to exist
-  consentReferralDisclosure   Boolean  // must be true for the row to exist
-  consentMarketing            Boolean  @default(false)
-  payloadHash                 String   // SHA-256 of the JSON payload sent to Equipped (proof-of-transmission)
-  ip                          String?
-  userAgent                   String?  @db.Text
-  receiver                    String   // e.g. "equippedcf.com.au"
-  handoffAck                  Boolean  @default(false) // flipped when Equipped's embed posts ACK
+  id                        String   @id @default(uuid())
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+  country                   String // "AU" | "NZ" (NZ pathway is Phase 2)
+  customerType              String // "business" | "consumer"
+  fundingBand               String // "<10k" | "10-25k" | "25-50k" | "50-100k" | "100-250k" | ">250k"
+  disasterCategory          String // "water" | "fire" | "storm" | "mould" | "biohazard" | "other"
+  source                    String // e.g. "disasterrecovery.com.au/finance"
+  disclosureVersion         String // version ID of the referrer-disclosure shown at submit time
+  privacyNoticeVersion      String // version ID of the privacy collection statement shown at submit time
+  consentShareEquipped      Boolean // must be true for the row to exist
+  consentReferralDisclosure Boolean // must be true for the row to exist
+  consentMarketing          Boolean  @default(false)
+  payloadHash               String // SHA-256 of the JSON payload sent to Equipped (proof-of-transmission)
+  ip                        String?
+  userAgent                 String?  @db.Text
+  receiver                  String // e.g. "equippedcf.com.au"
+  handoffAck                Boolean  @default(false) // flipped when Equipped's embed posts ACK
 
   // L9 Phase 2 (2026-05-01) — status webhook fields populated by /api/finance/status.
   // `equippedReferralId` is Equipped's opaque identifier from their webhook payload;
   // separate from our internal `id` so cross-system tracing works either direction.
-  equippedReferralId          String?  @unique
-  entityIdentifierHash        String?  // SHA-256 of customer identifier from webhook metadata
-  stage                       String?  // canonical: "received" | "qualified" | "approved" | "funded" | "declined" | "withdrawn" | "unknown"
-  lastStatus                  String?  // raw status string from Equipped (may differ from stage)
-  consentVersion              String?  // consent string version captured at submit, mirrored from webhook
-  smsSent                     Boolean  @default(false)
-  metadata                    Json?    // free-form passthrough from webhook payload
-  statusWebhookLastStatus     String?  // mirror of latest status webhook (legacy alias of lastStatus)
-  statusWebhookLastAt         DateTime?
+  equippedReferralId      String?   @unique
+  entityIdentifierHash    String? // SHA-256 of customer identifier from webhook metadata
+  stage                   String? // canonical: "received" | "qualified" | "approved" | "funded" | "declined" | "withdrawn" | "unknown"
+  lastStatus              String? // raw status string from Equipped (may differ from stage)
+  consentVersion          String? // consent string version captured at submit, mirrored from webhook
+  smsSent                 Boolean   @default(false)
+  metadata                Json? // free-form passthrough from webhook payload
+  statusWebhookLastStatus String? // mirror of latest status webhook (legacy alias of lastStatus)
+  statusWebhookLastAt     DateTime?
 
-  events                      FinanceReferralEvent[]
+  events FinanceReferralEvent[]
 
   @@index([createdAt])
   @@index([country, customerType])
@@ -2141,18 +2141,85 @@ model FinanceReferral {
 /// callback from Equipped at a unique timestamp. Replaces the
 /// in-memory `seenEvents` Set in the legacy referral-store.
 model FinanceReferralEvent {
-  id                String           @id @default(uuid())
-  receivedAt        DateTime         @default(now())
-  referralId        String           // FK to FinanceReferral.id (or equippedReferralId fallback)
-  eventKey          String           @unique // `${referralId}::${webhookTimestamp}`
-  webhookTimestamp  String           // raw timestamp string from webhook payload
-  stage             String           // resolved stage at the time
-  status            String           // raw status from webhook
-  unknownStage      Boolean          @default(false)
-  payload           Json?            // optional raw payload snapshot (no PII)
+  id               String   @id @default(uuid())
+  receivedAt       DateTime @default(now())
+  referralId       String // FK to FinanceReferral.id (or equippedReferralId fallback)
+  eventKey         String   @unique // `${referralId}::${webhookTimestamp}`
+  webhookTimestamp String // raw timestamp string from webhook payload
+  stage            String // resolved stage at the time
+  status           String // raw status from webhook
+  unknownStage     Boolean  @default(false)
+  payload          Json? // optional raw payload snapshot (no PII)
 
-  referral          FinanceReferral? @relation(fields: [referralId], references: [id], onDelete: SetNull)
+  referral FinanceReferral? @relation(fields: [referralId], references: [id], onDelete: SetNull)
 
   @@index([referralId, receivedAt])
   @@index([receivedAt])
+}
+
+/// VoiceCall — persistent record of an ElevenLabs convai conversation.
+///
+/// Audit B13 scaffold (DR-714 retention target). The web-widget surface
+/// (PR #205, MEMORY 2026-04-26) puts voice agents in-browser; until this
+/// model existed, those conversations left no DR-side trail beyond the
+/// `compliance_events` consent receipt.
+///
+/// Data class: CONFIDENTIAL (per .claude/rules/privacy.md §1).
+/// - `redactedSummary` is post-redaction only. Raw transcripts never land
+///   here — they go on the linked `CallTranscript` after the DR-714
+///   redactor runs.
+/// - `conversationId` is the ElevenLabs `conversation_id`, used as the
+///   idempotency key when the webhook extractor (separate PR) upserts.
+/// - All write paths are flag-gated via `VOICE_AGENT_ENABLED`. When the
+///   flag is off, no rows are inserted.
+model VoiceCall {
+  id                     String    @id @default(cuid())
+  agentId                String // ElevenLabs agent_id (Sarah / Olivia / Maya)
+  agentRole              String // "claims-intake" | "support-chat" | "contractor-onboarding"
+  conversationId         String    @unique // ElevenLabs conversation_id (idempotency key)
+  channel                String // "voice" | "chat" | "voice+chat"
+  surface                String    @default("web_widget") // "web_widget" | "phone"
+  consentGivenAt         DateTime?
+  consentVersion         String?
+  consentMethod          String? // mirrors compliance_events: "web_widget" | "voice_sarah" | ...
+  startedAt              DateTime
+  endedAt                DateTime?
+  durationSeconds        Int?
+  outcome                String? // "completed" | "abandoned" | "escalated_to_human" | "error"
+  redactedSummary        String?   @db.Text // post-redaction summary; never raw
+  correlationClaimId     String? // optional FK-by-id to InsuranceClaimAU when a draft claim was created
+  correlationApplicantId String? // optional FK-by-id to ContractorApplication when onboarding was started
+  metadata               Json? // forward-compat bag (e.g. EL model id, voice id, locale)
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  transcripts CallTranscript[]
+
+  @@index([agentId, startedAt])
+  @@index([conversationId])
+  @@index([correlationClaimId])
+}
+
+/// CallTranscript — redacted transcript text for a VoiceCall.
+///
+/// Audit B13 scaffold. The DR-714 redactor MUST run BEFORE insert; the
+/// `redactionApplied` boolean is a sanity bit, not a guarantee. The
+/// retention cron (DR-714) sweeps rows where `retentionExpiresAt` is in
+/// the past — default is 90 days from creation per privacy.md §3.
+///
+/// Data class: CONFIDENTIAL even after redaction (transcripts can hint
+/// at identity through context). Cascades on parent VoiceCall deletion.
+model CallTranscript {
+  id                 String    @id @default(cuid())
+  voiceCallId        String
+  voiceCall          VoiceCall @relation(fields: [voiceCallId], references: [id], onDelete: Cascade)
+  redactedText       String    @db.Text // post-redaction transcript
+  language           String? // ISO 639-1 (e.g. "en", "en-AU")
+  wordCount          Int?
+  redactionApplied   Boolean   @default(true) // sanity bit; insert path must run redactor
+  retentionExpiresAt DateTime // set by DR-714 cron; default 90 days from createdAt
+  createdAt          DateTime  @default(now())
+
+  @@index([voiceCallId])
+  @@index([retentionExpiresAt])
 }
