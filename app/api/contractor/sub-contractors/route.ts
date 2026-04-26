@@ -6,6 +6,7 @@ import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const AustralianStateSchema = z.enum(['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT']);
 
@@ -163,6 +164,21 @@ export async function POST(request: NextRequest) {
         agreementSignedAt: new Date(),
         agreementSignedBy: data.electronicSignature,
         registeredByContractorId: data.registeredByContractorId,
+      },
+    });
+
+    void logComplianceEvent({
+      eventType: 'contractor_dispatched',
+      correlationId: subContractor.id,
+      correlationType: 'contractor_membership',
+      entityType: 'contractor',
+      entityIdentifier: subContractor.id,
+      metadata: {
+        action: 'sub_contractor_registered',
+        primary_contractor_id: data.registeredByContractorId,
+        trade_type: data.tradeType,
+        licence_state: data.licenceState,
+        request_id: log.requestId,
       },
     });
 

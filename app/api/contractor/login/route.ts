@@ -9,6 +9,7 @@ import {
   getRolePermissions,
 } from '@/lib/jwt-auth';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/contractor/login' });
@@ -45,6 +46,17 @@ export async function POST(request: NextRequest) {
         ipAddress,
         userAgent,
       });
+      void logComplianceEvent({
+        eventType: 'auth_login_failure',
+        correlationId: log.requestId,
+        correlationType: 'system',
+        entityType: 'contractor',
+        entityIdentifier: username,
+        metadata: {
+          reason: 'contractor_not_found',
+          request_id: log.requestId,
+        },
+      });
       return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
     }
 
@@ -56,6 +68,17 @@ export async function POST(request: NextRequest) {
         contractorId: contractor.id,
         ipAddress,
         userAgent,
+      });
+      void logComplianceEvent({
+        eventType: 'auth_login_failure',
+        correlationId: contractor.id,
+        correlationType: 'contractor_membership',
+        entityType: 'contractor',
+        entityIdentifier: contractor.id,
+        metadata: {
+          reason: 'invalid_password',
+          request_id: log.requestId,
+        },
       });
       return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
     }
@@ -113,6 +136,17 @@ export async function POST(request: NextRequest) {
     };
     const accessToken = await generateAccessToken(userPayload);
     const refreshToken = await generateRefreshToken(contractor.id);
+
+    void logComplianceEvent({
+      eventType: 'auth_login_success',
+      correlationId: contractor.id,
+      correlationType: 'contractor_membership',
+      entityType: 'contractor',
+      entityIdentifier: contractor.id,
+      metadata: {
+        request_id: log.requestId,
+      },
+    });
 
     // Return contractor data (excluding sensitive information)
     const response = {

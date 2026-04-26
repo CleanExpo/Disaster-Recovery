@@ -10,6 +10,7 @@ import {
 } from '@/lib/auth-middleware';
 import { PaymentAuditLogger } from '@/lib/payment-security';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 // SECURITY: Enhanced validation schema for registration with sanitization
 const registrationSchema = z.object({
@@ -385,6 +386,19 @@ async function handleRegistration(
 
     // Trigger background check process (implement background check service)
     // await initiateBackgroundCheck(result.id);
+
+    void logComplianceEvent({
+      eventType: 'kyc_triggered',
+      correlationId: result.id,
+      correlationType: 'contractor_membership',
+      entityType: 'contractor',
+      entityIdentifier: result.id,
+      metadata: {
+        action: 'contractor_registration_submitted',
+        background_check_consent: validatedData.backgroundCheck.consentGiven,
+        request_id: log.requestId,
+      },
+    });
 
     return NextResponse.json({
       success: true,

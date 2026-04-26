@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const VerifyBodySchema = z.object({
   claimId: z.string().min(1),
@@ -126,6 +127,23 @@ export async function POST(req: NextRequest) {
           },
         });
       }
+    }
+
+    if (verificationStatus === 'VERIFIED' || verificationStatus === 'REJECTED') {
+      void logComplianceEvent({
+        eventType: 'kyc_triggered',
+        correlationId: existingClaim.contractorId,
+        correlationType: 'contractor_membership',
+        entityType: 'contractor',
+        entityIdentifier: existingClaim.contractorId,
+        metadata: {
+          action: 'proof_of_work_verification',
+          verification_status: verificationStatus,
+          work_type: existingClaim.workType,
+          proof_of_work_id: claimId,
+          request_id: log.requestId,
+        },
+      });
     }
 
     return NextResponse.json({

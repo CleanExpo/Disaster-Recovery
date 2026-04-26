@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import FraudDetectionService, { DocumentAnalysisInput } from '@/lib/ai/fraud-detection';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const ValidDocumentTypes = [
   'INSURANCE_POLICY',
@@ -80,6 +81,28 @@ export async function POST(req: NextRequest) {
         await prisma.contractor.update({
           where: { id: contractorId },
           data: { status: 'UNDER_REVIEW' },
+        });
+      }
+
+      // Compliance ledger — log fraud-driven status changes against the
+      // contractor membership. KYC is the closest existing event type.
+      if (
+        analysisResult.recommendedAction === 'REJECT' ||
+        analysisResult.recommendedAction === 'REVIEW'
+      ) {
+        void logComplianceEvent({
+          eventType: 'kyc_triggered',
+          correlationId: contractorId,
+          correlationType: 'contractor_membership',
+          entityType: 'contractor',
+          entityIdentifier: contractorId,
+          metadata: {
+            action: 'fraud_detection_status_change',
+            document_type: documentType,
+            recommended_action: analysisResult.recommendedAction,
+            new_status: analysisResult.recommendedAction === 'REJECT' ? 'REJECTED' : 'UNDER_REVIEW',
+            request_id: log.requestId,
+          },
         });
       }
     }
