@@ -77,7 +77,9 @@ be explicitly scoped. Default is "no access".
 
 ### Kill switch layers (any ONE disables the agent)
 
-1. **Env var:** `NEXT_PUBLIC_VOICE_AGENT_ENABLED=false` (default off).
+1. **Env var:** `VOICE_AGENT_ENABLED=false` (default off, server-only — voice
+   runs entirely server-side via Twilio + ElevenLabs webhooks; no client-side
+   read, so no `NEXT_PUBLIC_` prefix).
 2. **TwiML consent:** if caller presses 0 or says "no" / "human" at the
    consent prompt, route to human — no LLM call.
 3. **HMAC signature:** every webhook from Twilio must carry a valid

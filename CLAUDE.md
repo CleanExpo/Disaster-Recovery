@@ -208,12 +208,13 @@ npm run check:scripts   # verify all scripts resolve
 
 - Sarah voice agent is a CLOSED-WORLD system: specific prompt + 5-tool surface + HMAC auth + output filter + 5-layer kill switch.
 - First caller utterance after pickup MUST be the APP 8 consent prompt (see `compliance.md`).
-- All voice flows are flag-gated (`NEXT_PUBLIC_VOICE_AGENT_ENABLED`); off by default in prod.
+- All voice flows are flag-gated (`VOICE_AGENT_ENABLED`, server-only — voice runs entirely server-side via Twilio + ElevenLabs webhooks, no client-side bundle reads it); off by default in prod.
 - See @docs/adr/ADR-003-voice-agent-consent-and-data-boundary-model.md.
 
 ### 5.3 Feature flags — convention
 
-- Name: `NEXT_PUBLIC_<FEATURE>_ENABLED` — reads as `'true'` only.
+- **Client-readable flags:** `NEXT_PUBLIC_<FEATURE>_ENABLED` — reads as `'true'` only. Use this when the client-side bundle conditionally renders UI.
+- **Server-only flags:** `<FEATURE>_ENABLED` (no `NEXT_PUBLIC_` prefix). Use this for flags that ONLY gate server-side behaviour (API routes, webhooks, cron). Examples: `VOICE_AGENT_ENABLED`, `COMPLIANCE_EVENTS_ENABLED` — both server-only.
 - Default: OFF. Flag-gated code MUST be zero-impact when the flag is off.
 - Kill switches are SEPARATE from feature flags (see `privacy.md` for the voice 5-layer kill switch).
 - Rollback = flip the env var in Vercel. No redeploy needed.
