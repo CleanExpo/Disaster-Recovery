@@ -7,8 +7,20 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
@@ -29,7 +41,7 @@ import {
   AlertCircle,
   FileText,
   Paperclip,
-  Star
+  Star,
 } from 'lucide-react';
 import { clientLogger } from '@/lib/observability/client-logger';
 
@@ -41,7 +53,7 @@ interface Ticket {
   description: string;
   category: 'technical' | 'billing' | 'compliance' | 'territory' | 'general';
   priority: 'low' | 'medium' | 'high' | 'urgent';
-  status: 'open' | 'in_progress' | 'waiting_on_customer' | 'resolved' | 'closed';
+  status: 'open' | 'in_progress' | 'waiting_on_client' | 'resolved' | 'closed';
   createdAt: string;
   updatedAt: string;
   responseTime?: number;
@@ -75,7 +87,9 @@ export function SupportTickets() {
   const fetchTickets = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/admin/tickets?status=${filterStatus}&priority=${filterPriority}`);
+      const response = await fetch(
+        `/api/admin/tickets?status=${filterStatus}&priority=${filterPriority}`,
+      );
       const data = await response.json();
       setTickets(data);
     } catch (error) {
@@ -87,22 +101,33 @@ export function SupportTickets() {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return 'bg-red-100 text-red-800';
-      case 'high': return 'bg-orange-100 text-orange-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'low': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'urgent':
+        return 'bg-red-100 text-red-800';
+      case 'high':
+        return 'bg-orange-100 text-orange-800';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'low':
+        return 'bg-green-100 text-green-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'open': return 'bg-blue-100 text-blue-800';
-      case 'in_progress': return 'bg-yellow-100 text-yellow-800';
-      case 'waiting_on_customer': return 'bg-orange-100 text-orange-800';
-      case 'resolved': return 'bg-green-100 text-green-800';
-      case 'closed': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'open':
+        return 'bg-blue-100 text-blue-800';
+      case 'in_progress':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'waiting_on_client':
+        return 'bg-orange-100 text-orange-800';
+      case 'resolved':
+        return 'bg-green-100 text-green-800';
+      case 'closed':
+        return 'bg-gray-100 text-gray-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
@@ -115,8 +140,8 @@ export function SupportTickets() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: replyMessage,
-          sender: 'Admin'
-        })
+          sender: 'Admin',
+        }),
       });
 
       if (response.ok) {
@@ -134,27 +159,32 @@ export function SupportTickets() {
       const response = await fetch(`/api/admin/tickets/${ticket.id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
+        body: JSON.stringify({ status: newStatus }),
       });
 
       if (response.ok) {
         fetchTickets();
       }
     } catch (error) {
-      clientLogger.error('Failed to update ticket status:', { source: 'sections/SupportTickets' }, error);
+      clientLogger.error(
+        'Failed to update ticket status:',
+        { source: 'sections/SupportTickets' },
+        error,
+      );
     }
   };
 
-  const filteredTickets = tickets.filter(ticket =>
-    (filterStatus === 'all' || ticket.status === filterStatus) &&
-    (filterPriority === 'all' || ticket.priority === filterPriority) &&
-    (searchTerm === '' || 
-     ticket.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     ticket.contractorName.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredTickets = tickets.filter(
+    (ticket) =>
+      (filterStatus === 'all' || ticket.status === filterStatus) &&
+      (filterPriority === 'all' || ticket.priority === filterPriority) &&
+      (searchTerm === '' ||
+        ticket.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        ticket.contractorName.toLowerCase().includes(searchTerm.toLowerCase())),
   );
 
-  const openTickets = tickets.filter(t => t.status === 'open');
-  const urgentTickets = tickets.filter(t => t.priority === 'urgent' && t.status !== 'closed');
+  const openTickets = tickets.filter((t) => t.status === 'open');
+  const urgentTickets = tickets.filter((t) => t.priority === 'urgent' && t.status !== 'closed');
 
   return (
     <div className="space-y-6">
@@ -179,7 +209,7 @@ export function SupportTickets() {
               <SelectItem value="all">All Status</SelectItem>
               <SelectItem value="open">Open</SelectItem>
               <SelectItem value="in_progress">In Progress</SelectItem>
-              <SelectItem value="waiting_on_customer">Waiting</SelectItem>
+              <SelectItem value="waiting_on_client">Waiting</SelectItem>
               <SelectItem value="resolved">Resolved</SelectItem>
               <SelectItem value="closed">Closed</SelectItem>
             </SelectContent>
@@ -256,7 +286,7 @@ export function SupportTickets() {
       <Card>
         <CardContent className="p-0">
           <div className="divide-y">
-            {filteredTickets.map(ticket => (
+            {filteredTickets.map((ticket) => (
               <div
                 key={ticket.id}
                 className="p-4 hover:bg-gray-50 cursor-pointer"
@@ -266,16 +296,12 @@ export function SupportTickets() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <p className="font-medium">{ticket.subject}</p>
-                      <Badge className={getPriorityColor(ticket.priority)}>
-                        {ticket.priority}
-                      </Badge>
+                      <Badge className={getPriorityColor(ticket.priority)}>{ticket.priority}</Badge>
                       <Badge className={getStatusColor(ticket.status)}>
                         {ticket.status.replace('_', ' ')}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-700 line-clamp-2 mb-2">
-                      {ticket.description}
-                    </p>
+                    <p className="text-sm text-gray-700 line-clamp-2 mb-2">{ticket.description}</p>
                     <div className="flex items-center gap-4 text-xs text-gray-700">
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" />
@@ -346,13 +372,11 @@ export function SupportTickets() {
               <div>
                 <Label className="text-sm text-gray-700 mb-2">Conversation</Label>
                 <div className="space-y-3 mt-2 max-h-64 overflow-y-auto border rounded-lg p-3">
-                  {selectedTicket.messages.map(message => (
+                  {selectedTicket.messages.map((message) => (
                     <div
                       key={message.id}
                       className={`p-3 rounded-lg ${
-                        message.isAdmin
-                          ? 'bg-blue-50 ml-8'
-                          : 'bg-gray-50 mr-8'
+                        message.isAdmin ? 'bg-blue-50 ml-8' : 'bg-gray-50 mr-8'
                       }`}
                     >
                       <div className="flex justify-between items-start mb-1">
@@ -393,7 +417,7 @@ export function SupportTickets() {
                   <SelectContent>
                     <SelectItem value="open">Open</SelectItem>
                     <SelectItem value="in_progress">In Progress</SelectItem>
-                    <SelectItem value="waiting_on_customer">Waiting on Customer</SelectItem>
+                    <SelectItem value="waiting_on_client">Waiting on Client</SelectItem>
                     <SelectItem value="resolved">Resolved</SelectItem>
                     <SelectItem value="closed">Closed</SelectItem>
                   </SelectContent>
