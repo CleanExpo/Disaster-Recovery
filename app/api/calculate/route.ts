@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const MINIMUM_EX_GST = 2750;
 const GST_RATE = 0.1;
 
 const requestSchema = z.object({
-  job_type: z.enum(['water_damage', 'mould_remediation', 'fire_smoke', 'storm_damage', 'biohazard']),
-  inputs: z.record(z.any())
+  job_type: z.enum([
+    'water_damage',
+    'mould_remediation',
+    'fire_smoke',
+    'storm_damage',
+    'biohazard',
+  ]),
+  inputs: z.record(z.any()),
 });
 
 type JobType = z.infer<typeof requestSchema>['job_type'];
@@ -49,7 +56,7 @@ function clampArea(area: number): number {
 
 function totals(
   items: LineItem[],
-  validationBand: CalculationResult['validation_band']
+  validationBand: CalculationResult['validation_band'],
 ): Omit<CalculationResult, 'job_type' | 'inputs_received'> {
   const rawSubtotal = items.reduce((sum, item) => sum + item.subtotal, 0);
   const subtotalExGst = Math.max(rawSubtotal, MINIMUM_EX_GST);
@@ -62,7 +69,7 @@ function totals(
     gst_amount: gstAmount,
     total_inc_gst: totalIncGst,
     minimum_applied: subtotalExGst === MINIMUM_EX_GST,
-    validation_band: validationBand
+    validation_band: validationBand,
   };
 }
 
@@ -75,11 +82,32 @@ function calculateWaterDamage(inputs: Record<string, unknown>): CalculationResul
   const roomRate = 120;
   const dryingRate = 80;
 
-  const result = totals([
-    { name: 'Water extraction', quantity: area, unit_rate: extractionRate, subtotal: area * extractionRate, rate_source: 'NRPG' },
-    { name: 'Affected room complexity', quantity: rooms, unit_rate: roomRate, subtotal: rooms * roomRate, rate_source: 'NRPG' },
-    { name: 'Drying day allowance', quantity: dryingDays, unit_rate: dryingRate, subtotal: dryingDays * dryingRate, rate_source: 'NRPG' }
-  ], { p25: 3024, median: 8671, p75: 9557 });
+  const result = totals(
+    [
+      {
+        name: 'Water extraction',
+        quantity: area,
+        unit_rate: extractionRate,
+        subtotal: area * extractionRate,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Affected room complexity',
+        quantity: rooms,
+        unit_rate: roomRate,
+        subtotal: rooms * roomRate,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Drying day allowance',
+        quantity: dryingDays,
+        unit_rate: dryingRate,
+        subtotal: dryingDays * dryingRate,
+        rate_source: 'NRPG',
+      },
+    ],
+    { p25: 3024, median: 8671, p75: 9557 },
+  );
 
   return { job_type: 'water_damage', inputs_received: inputs, ...result };
 }
@@ -91,10 +119,25 @@ function calculateMouldRemediation(inputs: Record<string, unknown>): Calculation
   const baseRate = 22;
   const containmentFee = containmentRequired ? 850 : 0;
 
-  const result = totals([
-    { name: 'Mould remediation', quantity: area, unit_rate: baseRate, subtotal: area * baseRate, rate_source: 'NRPG' },
-    { name: 'Containment setup', quantity: containmentRequired ? 1 : 0, unit_rate: 850, subtotal: containmentFee, rate_source: 'NRPG' }
-  ], { p25: 3290, median: 7450, p75: 11820 });
+  const result = totals(
+    [
+      {
+        name: 'Mould remediation',
+        quantity: area,
+        unit_rate: baseRate,
+        subtotal: area * baseRate,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Containment setup',
+        quantity: containmentRequired ? 1 : 0,
+        unit_rate: 850,
+        subtotal: containmentFee,
+        rate_source: 'NRPG',
+      },
+    ],
+    { p25: 3290, median: 7450, p75: 11820 },
+  );
 
   return { job_type: 'mould_remediation', inputs_received: inputs, ...result };
 }
@@ -108,11 +151,32 @@ function calculateFireSmoke(inputs: Record<string, unknown>): CalculationResult 
   const roomRate = 150;
   const odourFee = hasOdourTreatment ? 1500 : 0;
 
-  const result = totals([
-    { name: 'Fire/smoke restoration', quantity: area, unit_rate: baseRate, subtotal: area * baseRate, rate_source: 'NRPG' },
-    { name: 'Room-level remediation', quantity: rooms, unit_rate: roomRate, subtotal: rooms * roomRate, rate_source: 'NRPG' },
-    { name: 'Odour treatment', quantity: hasOdourTreatment ? 1 : 0, unit_rate: 1500, subtotal: odourFee, rate_source: 'NRPG' }
-  ], { p25: 4120, median: 10240, p75: 18500 });
+  const result = totals(
+    [
+      {
+        name: 'Fire/smoke restoration',
+        quantity: area,
+        unit_rate: baseRate,
+        subtotal: area * baseRate,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Room-level remediation',
+        quantity: rooms,
+        unit_rate: roomRate,
+        subtotal: rooms * roomRate,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Odour treatment',
+        quantity: hasOdourTreatment ? 1 : 0,
+        unit_rate: 1500,
+        subtotal: odourFee,
+        rate_source: 'NRPG',
+      },
+    ],
+    { p25: 4120, median: 10240, p75: 18500 },
+  );
 
   return { job_type: 'fire_smoke', inputs_received: inputs, ...result };
 }
@@ -126,11 +190,32 @@ function calculateStormDamage(inputs: Record<string, unknown>): CalculationResul
   const roofFee = roofDamage ? 1800 : 0;
   const structuralFee = structuralAssessment ? 950 : 0;
 
-  const result = totals([
-    { name: 'Storm damage restoration', quantity: area, unit_rate: baseRate, subtotal: area * baseRate, rate_source: 'NRPG' },
-    { name: 'Roof damage response', quantity: roofDamage ? 1 : 0, unit_rate: 1800, subtotal: roofFee, rate_source: 'NRPG' },
-    { name: 'Structural assessment', quantity: structuralAssessment ? 1 : 0, unit_rate: 950, subtotal: structuralFee, rate_source: 'NRPG' }
-  ], { p25: 3650, median: 9120, p75: 16780 });
+  const result = totals(
+    [
+      {
+        name: 'Storm damage restoration',
+        quantity: area,
+        unit_rate: baseRate,
+        subtotal: area * baseRate,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Roof damage response',
+        quantity: roofDamage ? 1 : 0,
+        unit_rate: 1800,
+        subtotal: roofFee,
+        rate_source: 'NRPG',
+      },
+      {
+        name: 'Structural assessment',
+        quantity: structuralAssessment ? 1 : 0,
+        unit_rate: 950,
+        subtotal: structuralFee,
+        rate_source: 'NRPG',
+      },
+    ],
+    { p25: 3650, median: 9120, p75: 16780 },
+  );
 
   return { job_type: 'storm_damage', inputs_received: inputs, ...result };
 }
@@ -143,14 +228,24 @@ function calculateBiohazard(inputs: Record<string, unknown>): CalculationResult 
   const baseRate = 30;
   const adjustedRate = Number((baseRate * hazardMultiplier).toFixed(2));
 
-  const result = totals([
-    { name: 'Biohazard/sewage remediation', quantity: area, unit_rate: adjustedRate, subtotal: area * adjustedRate, rate_source: 'NRPG' }
-  ], { p25: 4500, median: 11900, p75: 22100 });
+  const result = totals(
+    [
+      {
+        name: 'Biohazard/sewage remediation',
+        quantity: area,
+        unit_rate: adjustedRate,
+        subtotal: area * adjustedRate,
+        rate_source: 'NRPG',
+      },
+    ],
+    { p25: 4500, median: 11900, p75: 22100 },
+  );
 
   return { job_type: 'biohazard', inputs_received: inputs, ...result };
 }
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/calculate' });
   try {
     const body = await request.json();
     const parsed = requestSchema.safeParse(body);
@@ -158,7 +253,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { error: 'Invalid input. Please provide valid job_type and inputs.' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -168,15 +263,22 @@ export async function POST(request: NextRequest) {
       mould_remediation: calculateMouldRemediation,
       fire_smoke: calculateFireSmoke,
       storm_damage: calculateStormDamage,
-      biohazard: calculateBiohazard
+      biohazard: calculateBiohazard,
     };
 
     const calculationResult = calculators[job_type](inputs);
     return NextResponse.json(calculationResult);
-  } catch {
+  } catch (err) {
+    log.error('calculation failed', {
+      error: err instanceof Error ? err.message : String(err),
+    });
+    captureException(err, {
+      tags: { route: '/api/calculate' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       { error: 'Calculation service is temporarily unavailable.' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

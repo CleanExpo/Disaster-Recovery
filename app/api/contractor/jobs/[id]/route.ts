@@ -15,6 +15,7 @@ import { handleAPIError, successResponse, APIError } from '@/lib/api-error-handl
 import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { z } from 'zod';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const jobUpdateSchema = z.object({
   status: z.enum(['active', 'in_progress', 'completed', 'cancelled']).optional(),
@@ -39,10 +40,7 @@ function minutesBetween(a: Date | null | undefined, b: Date | null | undefined):
   return Math.round(Math.abs(b.getTime() - a.getTime()) / 60_000);
 }
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const user = await verifyAuth(request);
@@ -60,10 +58,7 @@ export async function GET(
     }
 
     // Contractors can only see their own jobs
-    if (
-      user.role === UserRole.CONTRACTOR &&
-      job.contractorId !== user.id
-    ) {
+    if (user.role === UserRole.CONTRACTOR && job.contractorId !== user.id) {
       throw new APIError('Job not found', 404);
     }
 
@@ -73,10 +68,8 @@ export async function GET(
   }
 }
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const log = requestLogger(request, { route: '/api/contractor/jobs/[id]' });
   try {
     const { id } = await params;
     const user = await verifyAuth(request);
@@ -96,23 +89,17 @@ export async function PATCH(
       throw new APIError('Job not found', 404);
     }
 
-    if (
-      user.role === UserRole.CONTRACTOR &&
-      existing.contractorId !== user.id
-    ) {
+    if (user.role === UserRole.CONTRACTOR && existing.contractorId !== user.id) {
       throw new APIError('Job not found', 404);
     }
 
-    const dbStatus = validatedData.status
-      ? STATUS_MAP[validatedData.status]
-      : undefined;
+    const dbStatus = validatedData.status ? STATUS_MAP[validatedData.status] : undefined;
 
-    const completedAt =
-      validatedData.completedAt
-        ? new Date(validatedData.completedAt)
-        : validatedData.status === 'completed' || validatedData.status === 'cancelled'
-          ? new Date()
-          : undefined;
+    const completedAt = validatedData.completedAt
+      ? new Date(validatedData.completedAt)
+      : validatedData.status === 'completed' || validatedData.status === 'cancelled'
+        ? new Date()
+        : undefined;
 
     // Update the Job row
     const updatedJob = await prisma.job.update({
@@ -126,38 +113,36 @@ export async function PATCH(
     });
 
     // ---------- DR-322 Path B: log JobOutcome on terminal states ----------
-    const isTerminal =
-      validatedData.status === 'completed' || validatedData.status === 'cancelled';
+    const isTerminal = validatedData.status === 'completed' || validatedData.status === 'cancelled';
 
     if (isTerminal && !existing.outcome) {
-      const outcomeCode =
-        validatedData.status === 'completed' ? 'COMPLETED' : 'CANCELLED';
+      const outcomeCode = validatedData.status === 'completed' ? 'COMPLETED' : 'CANCELLED';
 
       const now = completedAt ?? new Date();
 
       await prisma.jobOutcome.create({
         data: {
-          jobId:           existing.id,
-          outcome:         outcomeCode,
-          jobType:         existing.serviceType,
-          contractorId:    existing.contractorId ?? undefined,
+          jobId: existing.id,
+          outcome: outcomeCode,
+          jobType: existing.serviceType,
+          contractorId: existing.contractorId ?? undefined,
           insuranceClaimId: existing.claimNumber ?? undefined,
-          actualCost:      validatedData.actualCost ?? undefined,
-          hoursWorked:     validatedData.hoursWorked ?? undefined,
-          loggedByUserId:  user.id ?? 'SYSTEM',
+          actualCost: validatedData.actualCost ?? undefined,
+          hoursWorked: validatedData.hoursWorked ?? undefined,
+          loggedByUserId: user.id ?? 'SYSTEM',
 
           // KPI geo/classification columns
-          state:           existing.state,
-          suburb:          existing.suburb,
-          postcode:        existing.postcode,
-          urgency:         existing.urgency,
-          insuranceClaim:  existing.insuranceClaim,
-          insurerName:     existing.insurerName ?? undefined,
+          state: existing.state,
+          suburb: existing.suburb,
+          postcode: existing.postcode,
+          urgency: existing.urgency,
+          insuranceClaim: existing.insuranceClaim,
+          insurerName: existing.insurerName ?? undefined,
 
           // Timing metrics
           responseMinutes: minutesBetween(existing.assignedAt, existing.acceptedAt),
           durationMinutes: minutesBetween(existing.acceptedAt, now),
-          totalMinutes:    minutesBetween(existing.createdAt, now),
+          totalMinutes: minutesBetween(existing.createdAt, now),
         },
       });
     }
@@ -166,8 +151,7 @@ export async function PATCH(
     // DR-455: fire review solicitation email when job completes (non-fatal)
     if (validatedData.status === 'completed' && existing.customerEmail) {
       const GOOGLE_REVIEW_URL =
-        process.env.GOOGLE_REVIEW_URL ||
-        'https://g.page/r/disasterrecovery-au/review';
+        process.env.GOOGLE_REVIEW_URL || 'https://g.page/r/disasterrecovery-au/review';
       sendEmail(
         existing.customerEmail,
         emailTemplates.reviewSolicitation(
@@ -175,7 +159,9 @@ export async function PATCH(
           existing.serviceType,
           GOOGLE_REVIEW_URL,
         ),
-      ).catch(() => {/* non-fatal */});
+      ).catch(() => {
+        /* non-fatal */
+      });
     }
 
     return successResponse({
@@ -183,14 +169,19 @@ export async function PATCH(
       job: updatedJob,
     });
   } catch (error) {
+    captureException(error, {
+      tags: { route: '/api/contractor/jobs/[id]', method: 'PATCH' },
+      extra: { requestId: log.requestId },
+    });
     return handleAPIError(error);
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const log = requestLogger(request, { route: '/api/contractor/jobs/[id]' });
   try {
     const { id } = await params;
     const user = await verifyAuth(request);
@@ -217,18 +208,18 @@ export async function DELETE(
     if (!existing.outcome) {
       await prisma.jobOutcome.create({
         data: {
-          jobId:           existing.id,
-          outcome:         'CANCELLED',
-          jobType:         existing.serviceType,
-          contractorId:    existing.contractorId ?? undefined,
-          loggedByUserId:  user.id ?? 'SYSTEM',
-          state:           existing.state,
-          suburb:          existing.suburb,
-          postcode:        existing.postcode,
-          urgency:         existing.urgency,
-          insuranceClaim:  existing.insuranceClaim,
-          insurerName:     existing.insurerName ?? undefined,
-          totalMinutes:    minutesBetween(existing.createdAt, now),
+          jobId: existing.id,
+          outcome: 'CANCELLED',
+          jobType: existing.serviceType,
+          contractorId: existing.contractorId ?? undefined,
+          loggedByUserId: user.id ?? 'SYSTEM',
+          state: existing.state,
+          suburb: existing.suburb,
+          postcode: existing.postcode,
+          urgency: existing.urgency,
+          insuranceClaim: existing.insuranceClaim,
+          insurerName: existing.insurerName ?? undefined,
+          totalMinutes: minutesBetween(existing.createdAt, now),
         },
       });
     }
@@ -238,6 +229,10 @@ export async function DELETE(
       jobId: id,
     });
   } catch (error) {
+    captureException(error, {
+      tags: { route: '/api/contractor/jobs/[id]', method: 'DELETE' },
+      extra: { requestId: log.requestId },
+    });
     return handleAPIError(error);
   }
 }

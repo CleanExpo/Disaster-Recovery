@@ -3,8 +3,10 @@ import { POST_TEMPLATES, getPostsByCategory } from '@/lib/reddit/content/post-te
 import { formatRedditPost, validateGEOCompliance } from '@/lib/reddit/content/geo-formatter';
 import { submitTextPost, verifyAuth, delay } from '@/lib/reddit/reddit-client';
 import type { PostCategory, RedditPostResult } from '@/lib/reddit/reddit-types';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/reddit/seed' });
   try {
     const body = await request.json();
     const dryRun = body.dryRun === true;
@@ -12,9 +14,7 @@ export async function POST(request: NextRequest) {
     const delayMs = typeof body.delay === 'number' ? body.delay : 600000;
 
     // Determine which posts to process
-    const posts = category
-      ? getPostsByCategory(category)
-      : POST_TEMPLATES;
+    const posts = category ? getPostsByCategory(category) : POST_TEMPLATES;
 
     if (posts.length === 0) {
       return NextResponse.json(
@@ -86,10 +86,11 @@ export async function POST(request: NextRequest) {
       results,
     });
   } catch (error: unknown) {
+    captureException(error, {
+      tags: { route: '/api/reddit/seed' },
+      extra: { requestId: log.requestId },
+    });
     const message = error instanceof Error ? error.message : String(error);
-    return NextResponse.json(
-      { success: false, error: message },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

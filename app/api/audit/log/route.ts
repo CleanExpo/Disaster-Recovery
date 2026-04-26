@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const CreateAuditLogSchema = z.object({
   action: z.string().min(1),
@@ -12,6 +13,7 @@ const CreateAuditLogSchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const log = requestLogger(req, { route: '/api/audit/log' });
   try {
     const session = await getServerSession();
     const body = await req.json();
@@ -20,7 +22,7 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { error: 'Validation failed', issues: parsed.error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -44,6 +46,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, logId: auditLog.id });
   } catch (error) {
+    captureException(error, {
+      tags: { route: '/api/audit/log' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

@@ -6,6 +6,7 @@ import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { calculateSubContractorMarkup } from '@/types/sub-contractor';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const TradeTypeSchema = z.enum([
   'pest_termite',
@@ -36,7 +37,7 @@ export async function GET(request: NextRequest) {
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       return NextResponse.json(
         { success: false, message: 'Contractor authentication required' },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -46,15 +47,12 @@ export async function GET(request: NextRequest) {
     if (!contractorId) {
       return NextResponse.json(
         { success: false, message: 'contractorId query parameter required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (user.role !== UserRole.ADMIN && user.id !== contractorId) {
-      return NextResponse.json(
-        { success: false, message: 'Access denied' },
-        { status: 403 }
-      );
+      return NextResponse.json({ success: false, message: 'Access denied' }, { status: 403 });
     }
 
     const engagements = await prisma.subContractorEngagement.findMany({
@@ -76,12 +74,13 @@ export async function GET(request: NextRequest) {
 // ─── POST /api/contractor/sub-contractors/engagements ─────────────────────────
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/sub-contractors/engagements' });
   try {
     const user = await verifyAuth(request);
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       return NextResponse.json(
         { success: false, message: 'Contractor authentication required' },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -90,7 +89,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { success: false, message: 'Validation failed', errors: parsed.error.flatten() },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -104,21 +103,24 @@ export async function POST(request: NextRequest) {
     if (!subContractor) {
       return NextResponse.json(
         { success: false, message: 'Sub-contractor not found' },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
     if (subContractor.registeredByContractorId !== data.primaryContractorId) {
       return NextResponse.json(
         { success: false, message: 'Sub-contractor not registered under this contractor' },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
     if (subContractor.onboardingStatus !== 'COMPLETE' || subContractor.status !== 'ACTIVE') {
       return NextResponse.json(
-        { success: false, message: 'Sub-contractor onboarding must be complete before engaging on a job' },
-        { status: 422 }
+        {
+          success: false,
+          message: 'Sub-contractor onboarding must be complete before engaging on a job',
+        },
+        { status: 422 },
       );
     }
 
@@ -143,11 +145,12 @@ export async function POST(request: NextRequest) {
       include: { subContractor: true },
     });
 
-    return NextResponse.json(
-      { success: true, engagement },
-      { status: 201 }
-    );
+    return NextResponse.json({ success: true, engagement }, { status: 201 });
   } catch (err) {
+    captureException(err, {
+      tags: { route: '/api/contractor/sub-contractors/engagements' },
+      extra: { requestId: log.requestId },
+    });
     const message = err instanceof Error ? err.message : 'Internal server error';
     return NextResponse.json({ success: false, message }, { status: 500 });
   }

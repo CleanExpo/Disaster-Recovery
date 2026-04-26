@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
-import { handleAPIError, successResponse, APIError, validateRequired } from '@/lib/api-error-handler';
+import {
+  handleAPIError,
+  successResponse,
+  APIError,
+  validateRequired,
+} from '@/lib/api-error-handler';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { requestLogger, captureException } from '@/lib/observability';
 
 const profileUpdateSchema = z.object({
   companyName: z.string().optional(),
@@ -12,17 +18,21 @@ const profileUpdateSchema = z.object({
   address: z.string().optional(),
   serviceRadius: z.number().min(5).max(200).optional(),
   services: z.array(z.string()).optional(),
-  availability: z.object({
-    247: z.boolean().optional(),
-    emergencyResponse: z.boolean().optional(),
-    responseTime: z.number().optional()
-  }).optional(),
-  insurance: z.object({
-    publicLiability: z.boolean().optional(),
-    professionalIndemnity: z.boolean().optional(),
-    workCover: z.boolean().optional()
-  }).optional(),
-  certifications: z.array(z.string()).optional()
+  availability: z
+    .object({
+      247: z.boolean().optional(),
+      emergencyResponse: z.boolean().optional(),
+      responseTime: z.number().optional(),
+    })
+    .optional(),
+  insurance: z
+    .object({
+      publicLiability: z.boolean().optional(),
+      professionalIndemnity: z.boolean().optional(),
+      workCover: z.boolean().optional(),
+    })
+    .optional(),
+  certifications: z.array(z.string()).optional(),
 });
 
 export async function GET(request: NextRequest) {
@@ -35,7 +45,7 @@ export async function GET(request: NextRequest) {
 
     // Query ContractorProfile by userId
     const contractorProfile = await prisma.contractorProfile.findFirst({
-      where: { userId: user.id }
+      where: { userId: user.id },
     });
 
     // Query Contractor record for extended data (company, certs, insurance, KPIs)
@@ -48,8 +58,8 @@ export async function GET(request: NextRequest) {
           select: {
             certificationName: true,
             certificationType: true,
-            expiryDate: true
-          }
+            expiryDate: true,
+          },
         },
         insurance: {
           where: { status: 'ACTIVE' },
@@ -57,8 +67,8 @@ export async function GET(request: NextRequest) {
             insuranceType: true,
             coverageAmount: true,
             expiryDate: true,
-            verified: true
-          }
+            verified: true,
+          },
         },
         territories: {
           where: { active: true },
@@ -68,8 +78,8 @@ export async function GET(request: NextRequest) {
             emergencyResponse: true,
             afterHours: true,
             maxJobsPerDay: true,
-            currentActiveJobs: true
-          }
+            currentActiveJobs: true,
+          },
         },
         kpiMetrics: {
           orderBy: { periodStart: 'desc' },
@@ -80,31 +90,35 @@ export async function GET(request: NextRequest) {
             customerSatisfaction: true,
             averageResponseTime: true,
             totalRevenue: true,
-            averageJobValue: true
-          }
+            averageJobValue: true,
+          },
         },
         subscription: {
           select: {
             tier: true,
             status: true,
-            baseRadius: true
-          }
+            baseRadius: true,
+          },
         },
-        availability: true
-      }
+        availability: true,
+      },
     });
 
     // Count completed jobs for this contractor
-    const completedJobsCount = contractor ? await prisma.job.count({
-      where: { contractorId: contractor.id, status: 'completed' }
-    }) : 0;
+    const completedJobsCount = contractor
+      ? await prisma.job.count({
+          where: { contractorId: contractor.id, status: 'completed' },
+        })
+      : 0;
 
     // Get average rating from Rating table
-    const ratingAgg = contractorProfile ? await prisma.rating.aggregate({
-      where: { contractorId: contractorProfile.userId },
-      _avg: { rating: true },
-      _count: { rating: true }
-    }) : null;
+    const ratingAgg = contractorProfile
+      ? await prisma.rating.aggregate({
+          where: { contractorId: contractorProfile.userId },
+          _avg: { rating: true },
+          _count: { rating: true },
+        })
+      : null;
 
     // Build insurance summary from ContractorInsurance records
     const insuranceMap: Record<string, boolean> = {};
@@ -112,10 +126,14 @@ export async function GET(request: NextRequest) {
     const insuranceExpiry: Record<string, string> = {};
     if (contractor?.insurance) {
       for (const ins of contractor.insurance) {
-        const key = ins.insuranceType === 'PUBLIC_LIABILITY' ? 'publicLiability'
-          : ins.insuranceType === 'PROFESSIONAL_INDEMNITY' ? 'professionalIndemnity'
-          : ins.insuranceType === 'WORKERS_COMP' ? 'workCover'
-          : ins.insuranceType.toLowerCase();
+        const key =
+          ins.insuranceType === 'PUBLIC_LIABILITY'
+            ? 'publicLiability'
+            : ins.insuranceType === 'PROFESSIONAL_INDEMNITY'
+              ? 'professionalIndemnity'
+              : ins.insuranceType === 'WORKERS_COMP'
+                ? 'workCover'
+                : ins.insuranceType.toLowerCase();
         insuranceMap[key] = ins.verified;
         insuranceAmounts[`${key}Amount`] = ins.coverageAmount;
         if (ins.expiryDate) {
@@ -125,8 +143,11 @@ export async function GET(request: NextRequest) {
     }
 
     // Determine service radius from subscription or territory
-    const serviceRadius = contractor?.subscription?.baseRadius
-      ?? (contractor?.territories?.[0]?.radiusKm ? Math.round(contractor.territories[0].radiusKm) : null);
+    const serviceRadius =
+      contractor?.subscription?.baseRadius ??
+      (contractor?.territories?.[0]?.radiusKm
+        ? Math.round(contractor.territories[0].radiusKm)
+        : null);
 
     // Latest KPI data
     const latestKPI = contractor?.kpiMetrics?.[0] ?? null;
@@ -134,9 +155,17 @@ export async function GET(request: NextRequest) {
     // Build the profile response, matching the original response structure
     const profile = {
       id: user.id,
-      companyName: contractor?.companyProfile?.companyName ?? contractorProfile?.businessName ?? null,
+      companyName:
+        contractor?.companyProfile?.companyName ?? contractorProfile?.businessName ?? null,
       contactName: contractor?.companyProfile
-        ? (() => { try { const dirs = JSON.parse(contractor.companyProfile.directors); return dirs?.[0]?.name ?? null; } catch { return null; } })()
+        ? (() => {
+            try {
+              const dirs = JSON.parse(contractor.companyProfile.directors);
+              return dirs?.[0]?.name ?? null;
+            } catch {
+              return null;
+            }
+          })()
         : null,
       email: user.email,
       phone: contractor?.mobileNumber ?? contractorProfile?.phone ?? null,
@@ -149,10 +178,12 @@ export async function GET(request: NextRequest) {
       serviceRadius: serviceRadius ?? null,
       services: contractorProfile?.services ?? [],
       availability: {
-        247: contractor?.availability?.some(a => a.available) ?? false,
-        emergencyResponse: contractor?.territories?.some(t => t.emergencyResponse) ?? false,
-        responseTime: latestKPI?.averageResponseTime ? Math.round(latestKPI.averageResponseTime * 60) : null,
-        blackoutDates: []
+        247: contractor?.availability?.some((a) => a.available) ?? false,
+        emergencyResponse: contractor?.territories?.some((t) => t.emergencyResponse) ?? false,
+        responseTime: latestKPI?.averageResponseTime
+          ? Math.round(latestKPI.averageResponseTime * 60)
+          : null,
+        blackoutDates: [],
       },
       insurance: {
         publicLiability: insuranceMap.publicLiability ?? false,
@@ -160,51 +191,56 @@ export async function GET(request: NextRequest) {
         professionalIndemnity: insuranceMap.professionalIndemnity ?? false,
         professionalIndemnityAmount: insuranceAmounts.professionalIndemnityAmount ?? null,
         workCover: insuranceMap.workCover ?? false,
-        expiryDates: insuranceExpiry
+        expiryDates: insuranceExpiry,
       },
-      certifications: contractor?.certifications?.map(c => c.certificationName) ?? [],
+      certifications: contractor?.certifications?.map((c) => c.certificationName) ?? [],
       performance: {
         totalJobs: latestKPI?.totalJobs ?? contractorProfile?.totalJobs ?? completedJobsCount,
-        completionRate: latestKPI && latestKPI.totalJobs > 0
-          ? parseFloat(((latestKPI.completedJobs / latestKPI.totalJobs) * 100).toFixed(1))
-          : null,
+        completionRate:
+          latestKPI && latestKPI.totalJobs > 0
+            ? parseFloat(((latestKPI.completedJobs / latestKPI.totalJobs) * 100).toFixed(1))
+            : null,
         averageRating: ratingAgg?._avg?.rating
           ? parseFloat(ratingAgg._avg.rating.toFixed(1))
-          : contractorProfile?.rating ?? null,
+          : (contractorProfile?.rating ?? null),
         responseTime: latestKPI?.averageResponseTime
           ? `${Math.round(latestKPI.averageResponseTime * 60)} minutes`
           : null,
-        memberSince: contractor?.createdAt?.toISOString().split('T')[0]
-          ?? contractorProfile?.createdAt?.toISOString().split('T')[0]
-          ?? null,
-        tier: contractor?.subscription?.tier ?? null
+        memberSince:
+          contractor?.createdAt?.toISOString().split('T')[0] ??
+          contractorProfile?.createdAt?.toISOString().split('T')[0] ??
+          null,
+        tier: contractor?.subscription?.tier ?? null,
       },
       bankDetails: null,
       preferences: {
         notifications: {
           email: true,
           sms: true,
-          push: false
+          push: false,
         },
         leadTypes: [],
         minJobValue: null,
-        maxActiveJobs: contractor?.territories?.[0]?.maxJobsPerDay ?? null
+        maxActiveJobs: contractor?.territories?.[0]?.maxJobsPerDay ?? null,
       },
       status: contractor?.status ?? contractorProfile?.availability ?? null,
-      verificationStatus: contractorProfile?.isVerified ? 'VERIFIED' : (contractor?.status === 'APPROVED' ? 'VERIFIED' : 'UNVERIFIED'),
-      lastUpdated: contractor?.updatedAt?.toISOString()
-        ?? contractorProfile?.updatedAt?.toISOString()
-        ?? null
+      verificationStatus: contractorProfile?.isVerified
+        ? 'VERIFIED'
+        : contractor?.status === 'APPROVED'
+          ? 'VERIFIED'
+          : 'UNVERIFIED',
+      lastUpdated:
+        contractor?.updatedAt?.toISOString() ?? contractorProfile?.updatedAt?.toISOString() ?? null,
     };
 
     return successResponse(profile);
-
   } catch (error) {
     return handleAPIError(error);
   }
 }
 
 export async function PATCH(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/profile' });
   try {
     const user = await verifyAuth(request);
 
@@ -217,7 +253,7 @@ export async function PATCH(request: NextRequest) {
 
     // Find or create the ContractorProfile
     const existingProfile = await prisma.contractorProfile.findFirst({
-      where: { userId: user.id }
+      where: { userId: user.id },
     });
 
     if (!existingProfile) {
@@ -230,15 +266,15 @@ export async function PATCH(request: NextRequest) {
           address: validatedData.address ?? null,
           services: validatedData.services ?? [],
           serviceAreas: [],
-        }
+        },
       });
 
       return successResponse({
         message: 'Profile created successfully',
         profile: {
           ...newProfile,
-          lastUpdated: newProfile.updatedAt.toISOString()
-        }
+          lastUpdated: newProfile.updatedAt.toISOString(),
+        },
       });
     }
 
@@ -263,19 +299,19 @@ export async function PATCH(request: NextRequest) {
 
     const updatedProfile = await prisma.contractorProfile.update({
       where: { id: existingProfile.id },
-      data: updateData
+      data: updateData,
     });
 
     // If there is a linked Contractor record, update the company profile too
     const contractor = await prisma.contractor.findFirst({
       where: { email: user.email },
-      include: { companyProfile: true }
+      include: { companyProfile: true },
     });
 
     if (contractor?.companyProfile && validatedData.companyName !== undefined) {
       await prisma.contractorCompany.update({
         where: { id: contractor.companyProfile.id },
-        data: { companyName: validatedData.companyName }
+        data: { companyName: validatedData.companyName },
       });
     }
 
@@ -287,11 +323,14 @@ export async function PATCH(request: NextRequest) {
         phone: updatedProfile.phone,
         address: updatedProfile.address,
         services: updatedProfile.services,
-        lastUpdated: updatedProfile.updatedAt.toISOString()
-      }
+        lastUpdated: updatedProfile.updatedAt.toISOString(),
+      },
     });
-
   } catch (error) {
+    captureException(error, {
+      tags: { route: '/api/contractor/profile' },
+      extra: { requestId: log.requestId },
+    });
     return handleAPIError(error);
   }
 }

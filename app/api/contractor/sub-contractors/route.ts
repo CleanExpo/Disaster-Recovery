@@ -5,10 +5,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
+import { requestLogger, captureException } from '@/lib/observability';
 
-const AustralianStateSchema = z.enum([
-  'NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT',
-]);
+const AustralianStateSchema = z.enum(['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT']);
 
 const TradeTypeSchema = z.enum([
   'pest_termite',
@@ -33,14 +32,14 @@ const registerSubContractorSchema = z.object({
   tradeType: TradeTypeSchema,
   licenceNumber: z.string().min(3, 'Licence number required'),
   licenceState: AustralianStateSchema,
-  licenceExpiry: z.string().refine(v => new Date(v) > new Date(), {
+  licenceExpiry: z.string().refine((v) => new Date(v) > new Date(), {
     message: 'Licence has expired',
   }),
 
   // Insurance
   publicLiabilityCoverage: z.number().min(5_000_000, 'Minimum $5M public liability required'),
   publicLiabilityInsurer: z.string().min(2, 'Insurer name required'),
-  publicLiabilityExpiry: z.string().refine(v => new Date(v) > new Date(), {
+  publicLiabilityExpiry: z.string().refine((v) => new Date(v) > new Date(), {
     message: 'Insurance has expired',
   }),
 
@@ -62,7 +61,7 @@ export async function GET(request: NextRequest) {
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       return NextResponse.json(
         { success: false, message: 'Contractor authentication required' },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -70,16 +69,13 @@ export async function GET(request: NextRequest) {
     if (!contractorId) {
       return NextResponse.json(
         { success: false, message: 'contractorId query parameter required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Verify the requesting user is the contractor (or admin)
     if (user.role !== UserRole.ADMIN && user.id !== contractorId) {
-      return NextResponse.json(
-        { success: false, message: 'Access denied' },
-        { status: 403 }
-      );
+      return NextResponse.json({ success: false, message: 'Access denied' }, { status: 403 });
     }
 
     const subContractors = await prisma.subContractor.findMany({
@@ -97,12 +93,13 @@ export async function GET(request: NextRequest) {
 // ─── POST /api/contractor/sub-contractors ─────────────────────────────────────
 
 export async function POST(request: NextRequest) {
+  const log = requestLogger(request, { route: '/api/contractor/sub-contractors' });
   try {
     const user = await verifyAuth(request);
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       return NextResponse.json(
         { success: false, message: 'Contractor authentication required' },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -111,7 +108,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { success: false, message: 'Validation failed', errors: parsed.error.flatten() },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -169,11 +166,12 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json(
-      { success: true, subContractor },
-      { status: 201 }
-    );
+    return NextResponse.json({ success: true, subContractor }, { status: 201 });
   } catch (err) {
+    captureException(err, {
+      tags: { route: '/api/contractor/sub-contractors' },
+      extra: { requestId: log.requestId },
+    });
     const message = err instanceof Error ? err.message : 'Internal server error';
     return NextResponse.json({ success: false, message }, { status: 500 });
   }
