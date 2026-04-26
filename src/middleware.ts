@@ -19,6 +19,14 @@ const RATE_LIMIT_RULES: Readonly<Record<string, RateLimitRule>> = {
   '/api/claims/submit': { windowMs: 60_000, maxRequests: 5 },
   '/api/contact/submit': { windowMs: 60_000, maxRequests: 10 },
   '/api/bookings/create': { windowMs: 60_000, maxRequests: 10 },
+  // Health-check audit A9 (P2, 2026-04-26): expand rate limiting to
+  // contractor onboarding (prevent fake-application spam) + voice tool
+  // surface (defence-in-depth on top of HMAC auth + 5-tool whitelist).
+  '/api/contractor/register': { windowMs: 3_600_000, maxRequests: 5 },
+  '/api/contractor/onboarding/submit': { windowMs: 3_600_000, maxRequests: 5 },
+  '/api/contractors/apply/start': { windowMs: 3_600_000, maxRequests: 10 },
+  '/api/voice/tools/send-payment-link': { windowMs: 60_000, maxRequests: 20 },
+  '/api/finance/referral': { windowMs: 60_000, maxRequests: 10 },
 };
 
 function checkRateLimit(
