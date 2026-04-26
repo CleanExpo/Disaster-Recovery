@@ -242,6 +242,9 @@ export async function createOnboardingCheckoutSession(
       type: 'onboarding',
       ...extraMetadata,
     },
+    payment_intent_data: {
+      statement_descriptor: 'NRPG ONBOARDING',
+    },
     success_url: successUrl,
     cancel_url: cancelUrl,
   });

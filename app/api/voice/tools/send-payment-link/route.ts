@@ -46,12 +46,22 @@ async function createStripeCheckoutUrl(draft_id: string): Promise<string | null>
         },
       ],
       metadata: { dr_claim_id: draft_id, dr_source_channel: 'voice' },
+      payment_intent_data: {
+        statement_descriptor: 'DISASTER RECOVERY',
+      },
       success_url: 'https://disasterrecovery.com.au/payment/success?cs={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://disasterrecovery.com.au/payment/cancelled',
     });
     return session.url || null;
   } catch (err) {
-    console.error(JSON.stringify({ level: 'warn', source: 'api/voice/tools/send-payment-link', msg: 'stripe error', error: err instanceof Error ? err.message : String(err) }));
+    console.error(
+      JSON.stringify({
+        level: 'warn',
+        source: 'api/voice/tools/send-payment-link',
+        msg: 'stripe error',
+        error: err instanceof Error ? err.message : String(err),
+      }),
+    );
     return null;
   }
 }
@@ -81,7 +91,7 @@ export async function POST(request: Request) {
   const url = stripeUrl || `https://disasterrecovery.com.au/payment/${draft_id}`;
 
   const smsBody = sanitiseSmsBody(
-    `Disaster Recovery: tap to pay your callout fee: ${url}. Expires 1h. Reply STOP to opt out.`
+    `Disaster Recovery: tap to pay your callout fee: ${url}. Expires 1h. Reply STOP to opt out.`,
   );
 
   const hasTwilio =
