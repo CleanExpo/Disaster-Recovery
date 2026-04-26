@@ -7,6 +7,7 @@ import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { calculateSubContractorMarkup } from '@/types/sub-contractor';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const TradeTypeSchema = z.enum([
   'pest_termite',
@@ -143,6 +144,24 @@ export async function POST(request: NextRequest) {
         notes: data.notes ?? null,
       },
       include: { subContractor: true },
+    });
+
+    void logComplianceEvent({
+      eventType: 'contractor_dispatched',
+      correlationId: engagement.id,
+      correlationType: 'contractor_dispatch',
+      entityType: 'contractor',
+      entityIdentifier: data.primaryContractorId,
+      amountCents: Math.round(calc.customerChargeTotalIncGst * 100),
+      amountCurrency: 'AUD',
+      metadata: {
+        action: 'sub_contractor_engagement_created',
+        job_id: data.jobId,
+        sub_contractor_id: data.subContractorId,
+        trade_type: data.tradeType,
+        markup_percent: calc.markupPercent,
+        request_id: log.requestId,
+      },
     });
 
     return NextResponse.json({ success: true, engagement }, { status: 201 });

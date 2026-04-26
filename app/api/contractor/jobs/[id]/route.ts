@@ -16,6 +16,7 @@ import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { z } from 'zod';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const jobUpdateSchema = z.object({
   status: z.enum(['active', 'in_progress', 'completed', 'cancelled']).optional(),
@@ -148,6 +149,23 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     }
     // ----------------------------------------------------------------------
 
+    // Compliance ledger — log on terminal job transitions (completed/cancelled).
+    if (isTerminal) {
+      void logComplianceEvent({
+        eventType: 'contractor_dispatched',
+        correlationId: existing.id,
+        correlationType: 'contractor_dispatch',
+        entityType: 'contractor',
+        entityIdentifier: existing.contractorId ?? 'unassigned',
+        metadata: {
+          action: validatedData.status === 'completed' ? 'job_completed' : 'job_cancelled',
+          job_id: existing.id,
+          service_type: existing.serviceType,
+          request_id: log.requestId,
+        },
+      });
+    }
+
     // DR-455: fire review solicitation email when job completes (non-fatal)
     if (validatedData.status === 'completed' && existing.customerEmail) {
       const GOOGLE_REVIEW_URL =
@@ -223,6 +241,21 @@ export async function DELETE(
         },
       });
     }
+
+    void logComplianceEvent({
+      eventType: 'contractor_dispatched',
+      correlationId: existing.id,
+      correlationType: 'contractor_dispatch',
+      entityType: 'contractor',
+      entityIdentifier: existing.contractorId ?? 'unassigned',
+      metadata: {
+        action: 'job_admin_cancelled',
+        job_id: existing.id,
+        service_type: existing.serviceType,
+        cancelled_by: user.id,
+        request_id: log.requestId,
+      },
+    });
 
     return successResponse({
       message: `Job ${id} cancelled successfully`,
