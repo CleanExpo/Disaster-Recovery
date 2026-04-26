@@ -1,10 +1,13 @@
 'use client';
 
-
+import dynamic from 'next/dynamic';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 // Investor Pitch - Powerful storytelling version with emotional narrative
-import PitchDeckPowerful from '../../../components/pitch/PitchDeckPowerful';
+// Lazy-loaded: pitch deck ships framer-motion and is non-critical traffic.
+const PitchDeckPowerful = dynamic(() => import('../../../components/pitch/PitchDeckPowerful'), {
+  ssr: false,
+});
 
 function InvestorPitchPageOriginal() {
   return <PitchDeckPowerful />;

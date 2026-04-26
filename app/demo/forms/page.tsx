@@ -1,27 +1,32 @@
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { Suspense } from 'react'
-import FormDemonstration from '@/components/demo/FormDemonstration'
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+
+// Lazy-loaded: demo page ships framer-motion + audio cues and is non-critical traffic.
+const FormDemonstration = dynamic(() => import('@/components/demo/FormDemonstration'));
 
 export const metadata = {
   title: 'Form Demonstration',
-  description: 'Watch our HRM-powered platform demonstrate intelligent form processing with realistic mock data for emergency restoration requests.',
-}
+  description:
+    'Watch our HRM-powered platform demonstrate intelligent form processing with realistic mock data for emergency restoration requests.',
+};
 
 function FormDemoPageOriginal() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center">
-        <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p>Loading Form Demonstration...</p>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+          <div className="text-white text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <p>Loading Form Demonstration...</p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <FormDemonstration />
     </Suspense>
-  )
+  );
 }
 export default function FormDemoPage() {
   return (

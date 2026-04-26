@@ -1,7 +1,11 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
-import ScenarioPageComponent from '../../../components/whos-first/scenario-page';
 import { WhosFirstGenerator } from '../../../lib/whos-first-generator';
+
+// Lazy-loaded: scenario page ships framer-motion. Kept SSR-on so the
+// scenario body still server-renders for SEO.
+const ScenarioPageComponent = dynamic(() => import('../../../components/whos-first/scenario-page'));
 
 interface PageProps {
   params: Promise<{
@@ -21,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     parts[1], // variation
     parts[2] || 'immediate', // time factor
     parts[3] || 'residential', // property type
-    parts[4] // location (optional)
+    parts[4], // location (optional)
   );
 
   if (!scenario) {
@@ -73,14 +77,14 @@ export default async function WhosFirstScenarioPage({ params }: PageProps) {
   const { scenario: scenarioId } = await params;
   // Parse scenario ID to extract components
   const parts = scenarioId.split('-');
-  
+
   // Generate scenario data
   const scenario = WhosFirstGenerator.generateScenario(
     parts[0], // damage type
     parts[1], // variation
     parts[2] || 'immediate', // time factor
     parts[3] || 'residential', // property type
-    parts[4] // location (optional)
+    parts[4], // location (optional)
   );
 
   if (!scenario) {
