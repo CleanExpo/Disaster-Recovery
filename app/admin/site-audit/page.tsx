@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   AlertCircle,
   ArrowRight,
@@ -18,7 +19,13 @@ import {
   XCircle,
   Zap,
 } from 'lucide-react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent admin route bundle no longer ships recharts; it loads in a separate
+// chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const StatusBreakdownChart = dynamic(() => import('./Charts').then((m) => m.StatusBreakdownChart), {
+  ssr: false,
+});
 
 interface AuditItem {
   category: string;
@@ -30,42 +37,261 @@ interface AuditItem {
 }
 
 const AUDIT_RESULTS_MOCK: AuditItem[] = [
-  { category: 'Navigation', item: 'Header Component', status: 'pass', severity: 'critical', details: 'Header component with full navigation implemented' },
-  { category: 'Navigation', item: 'Footer Component', status: 'pass', severity: 'critical', details: 'Footer component with comprehensive links implemented' },
-  { category: 'Navigation', item: 'Mobile Navigation', status: 'pass', severity: 'high', details: 'Responsive mobile menu with hamburger navigation' },
-  { category: 'Navigation', item: 'Breadcrumbs', status: 'warning', severity: 'medium', details: 'Breadcrumb component exists but not implemented on all pages', recommendation: 'Add breadcrumbs to all interior pages for better navigation' },
-  { category: 'Google Services', item: 'Google Analytics (GA4)', status: 'pass', severity: 'critical', details: 'GA4 tracking implemented in layout.tsx' },
-  { category: 'Google Services', item: 'Google Tag Manager', status: 'pass', severity: 'high', details: 'GTM container implemented and configured' },
-  { category: 'Google Services', item: 'Google Search Console', status: 'pass', severity: 'high', details: 'Verification file present: google8f4d3e5a7b9c2d1e.html' },
-  { category: 'Google Services', item: 'Google Maps Integration', status: 'warning', severity: 'low', details: 'API key configured but not implemented', recommendation: 'Add interactive maps for service areas' },
-  { category: 'Microsoft Services', item: 'Microsoft Clarity', status: 'pass', severity: 'high', details: 'Clarity analytics script implemented' },
-  { category: 'Microsoft Services', item: 'Bing Webmaster Tools', status: 'pass', severity: 'medium', details: 'BingSiteAuth.xml verification file present' },
-  { category: 'Microsoft Services', item: 'Windows App Manifest', status: 'pass', severity: 'low', details: 'PWA manifest configured for Windows' },
-  { category: 'SEO', item: 'SEMrush Integration', status: 'pass', severity: 'high', details: 'SEMrush API integration configured for keyword tracking' },
-  { category: 'SEO', item: 'Meta Tags', status: 'pass', severity: 'critical', details: 'All pages have unique title and description tags' },
-  { category: 'SEO', item: 'Structured Data', status: 'pass', severity: 'high', details: 'Schema.org ProfessionalService markup implemented' },
-  { category: 'SEO', item: 'Sitemap.xml', status: 'pass', severity: 'high', details: 'Dynamic sitemap generation implemented' },
-  { category: 'SEO', item: 'Robots.txt', status: 'pass', severity: 'medium', details: 'Robots.txt file properly configured' },
-  { category: 'SEO', item: 'Canonical URLs', status: 'pass', severity: 'high', details: 'Canonical tags implemented on all pages' },
-  { category: 'Performance', item: 'Lighthouse Scores', status: 'pass', severity: 'critical', details: 'All pages achieve 100/100 Lighthouse scores' },
-  { category: 'Performance', item: 'Image Optimisation', status: 'pass', severity: 'high', details: 'Next/Image component with WebP/AVIF formats' },
-  { category: 'Performance', item: 'Code Splitting', status: 'pass', severity: 'high', details: 'Dynamic imports and route-based splitting' },
-  { category: 'Performance', item: 'Caching Headers', status: 'pass', severity: 'medium', details: 'Proper cache-control headers configured' },
-  { category: 'Security', item: 'HTTPS', status: 'pass', severity: 'critical', details: 'SSL certificate configured' },
-  { category: 'Security', item: 'Security Headers', status: 'pass', severity: 'high', details: 'CSP, HSTS, X-Frame-Options configured' },
-  { category: 'Security', item: 'Environment Variables', status: 'pass', severity: 'critical', details: 'Sensitive data properly secured in .env' },
-  { category: 'Functionality', item: 'Contact Forms', status: 'pass', severity: 'critical', details: 'Get Help form with radius-based matching' },
-  { category: 'Functionality', item: 'Error Handling', status: 'pass', severity: 'high', details: 'Custom 404 page and error boundaries' },
-  { category: 'Functionality', item: 'Email Configuration', status: 'warning', severity: 'high', details: 'SMTP configured but needs production credentials', recommendation: 'Update email credentials for production' },
-  { category: 'Content', item: 'Page Count', status: 'pass', severity: 'high', details: '400+ pages generated for comprehensive coverage' },
-  { category: 'Content', item: 'Dynamic Routes', status: 'pass', severity: 'high', details: 'Catch-all route for dynamic content generation' },
-  { category: 'Content', item: 'Coming Soon Mode', status: 'pass', severity: 'medium', details: 'Area activation system implemented' },
-  { category: 'Accessibility', item: 'WCAG Compliance', status: 'pass', severity: 'critical', details: 'WCAG AAA colour contrast and ARIA labels' },
-  { category: 'Accessibility', item: 'Skip Links', status: 'pass', severity: 'high', details: 'Skip to main content links implemented' },
-  { category: 'Accessibility', item: 'Keyboard Navigation', status: 'pass', severity: 'high', details: 'Full keyboard navigation support' },
-  { category: 'Infrastructure', item: 'Database', status: 'pass', severity: 'critical', details: 'SQLite database configured with Prisma ORM' },
-  { category: 'Infrastructure', item: 'API Routes', status: 'pass', severity: 'high', details: 'Next.js API routes for lead capture' },
-  { category: 'Infrastructure', item: 'Authentication', status: 'pass', severity: 'high', details: 'NextAuth.js configured for partner portal' },
+  {
+    category: 'Navigation',
+    item: 'Header Component',
+    status: 'pass',
+    severity: 'critical',
+    details: 'Header component with full navigation implemented',
+  },
+  {
+    category: 'Navigation',
+    item: 'Footer Component',
+    status: 'pass',
+    severity: 'critical',
+    details: 'Footer component with comprehensive links implemented',
+  },
+  {
+    category: 'Navigation',
+    item: 'Mobile Navigation',
+    status: 'pass',
+    severity: 'high',
+    details: 'Responsive mobile menu with hamburger navigation',
+  },
+  {
+    category: 'Navigation',
+    item: 'Breadcrumbs',
+    status: 'warning',
+    severity: 'medium',
+    details: 'Breadcrumb component exists but not implemented on all pages',
+    recommendation: 'Add breadcrumbs to all interior pages for better navigation',
+  },
+  {
+    category: 'Google Services',
+    item: 'Google Analytics (GA4)',
+    status: 'pass',
+    severity: 'critical',
+    details: 'GA4 tracking implemented in layout.tsx',
+  },
+  {
+    category: 'Google Services',
+    item: 'Google Tag Manager',
+    status: 'pass',
+    severity: 'high',
+    details: 'GTM container implemented and configured',
+  },
+  {
+    category: 'Google Services',
+    item: 'Google Search Console',
+    status: 'pass',
+    severity: 'high',
+    details: 'Verification file present: google8f4d3e5a7b9c2d1e.html',
+  },
+  {
+    category: 'Google Services',
+    item: 'Google Maps Integration',
+    status: 'warning',
+    severity: 'low',
+    details: 'API key configured but not implemented',
+    recommendation: 'Add interactive maps for service areas',
+  },
+  {
+    category: 'Microsoft Services',
+    item: 'Microsoft Clarity',
+    status: 'pass',
+    severity: 'high',
+    details: 'Clarity analytics script implemented',
+  },
+  {
+    category: 'Microsoft Services',
+    item: 'Bing Webmaster Tools',
+    status: 'pass',
+    severity: 'medium',
+    details: 'BingSiteAuth.xml verification file present',
+  },
+  {
+    category: 'Microsoft Services',
+    item: 'Windows App Manifest',
+    status: 'pass',
+    severity: 'low',
+    details: 'PWA manifest configured for Windows',
+  },
+  {
+    category: 'SEO',
+    item: 'SEMrush Integration',
+    status: 'pass',
+    severity: 'high',
+    details: 'SEMrush API integration configured for keyword tracking',
+  },
+  {
+    category: 'SEO',
+    item: 'Meta Tags',
+    status: 'pass',
+    severity: 'critical',
+    details: 'All pages have unique title and description tags',
+  },
+  {
+    category: 'SEO',
+    item: 'Structured Data',
+    status: 'pass',
+    severity: 'high',
+    details: 'Schema.org ProfessionalService markup implemented',
+  },
+  {
+    category: 'SEO',
+    item: 'Sitemap.xml',
+    status: 'pass',
+    severity: 'high',
+    details: 'Dynamic sitemap generation implemented',
+  },
+  {
+    category: 'SEO',
+    item: 'Robots.txt',
+    status: 'pass',
+    severity: 'medium',
+    details: 'Robots.txt file properly configured',
+  },
+  {
+    category: 'SEO',
+    item: 'Canonical URLs',
+    status: 'pass',
+    severity: 'high',
+    details: 'Canonical tags implemented on all pages',
+  },
+  {
+    category: 'Performance',
+    item: 'Lighthouse Scores',
+    status: 'pass',
+    severity: 'critical',
+    details: 'All pages achieve 100/100 Lighthouse scores',
+  },
+  {
+    category: 'Performance',
+    item: 'Image Optimisation',
+    status: 'pass',
+    severity: 'high',
+    details: 'Next/Image component with WebP/AVIF formats',
+  },
+  {
+    category: 'Performance',
+    item: 'Code Splitting',
+    status: 'pass',
+    severity: 'high',
+    details: 'Dynamic imports and route-based splitting',
+  },
+  {
+    category: 'Performance',
+    item: 'Caching Headers',
+    status: 'pass',
+    severity: 'medium',
+    details: 'Proper cache-control headers configured',
+  },
+  {
+    category: 'Security',
+    item: 'HTTPS',
+    status: 'pass',
+    severity: 'critical',
+    details: 'SSL certificate configured',
+  },
+  {
+    category: 'Security',
+    item: 'Security Headers',
+    status: 'pass',
+    severity: 'high',
+    details: 'CSP, HSTS, X-Frame-Options configured',
+  },
+  {
+    category: 'Security',
+    item: 'Environment Variables',
+    status: 'pass',
+    severity: 'critical',
+    details: 'Sensitive data properly secured in .env',
+  },
+  {
+    category: 'Functionality',
+    item: 'Contact Forms',
+    status: 'pass',
+    severity: 'critical',
+    details: 'Get Help form with radius-based matching',
+  },
+  {
+    category: 'Functionality',
+    item: 'Error Handling',
+    status: 'pass',
+    severity: 'high',
+    details: 'Custom 404 page and error boundaries',
+  },
+  {
+    category: 'Functionality',
+    item: 'Email Configuration',
+    status: 'warning',
+    severity: 'high',
+    details: 'SMTP configured but needs production credentials',
+    recommendation: 'Update email credentials for production',
+  },
+  {
+    category: 'Content',
+    item: 'Page Count',
+    status: 'pass',
+    severity: 'high',
+    details: '400+ pages generated for comprehensive coverage',
+  },
+  {
+    category: 'Content',
+    item: 'Dynamic Routes',
+    status: 'pass',
+    severity: 'high',
+    details: 'Catch-all route for dynamic content generation',
+  },
+  {
+    category: 'Content',
+    item: 'Coming Soon Mode',
+    status: 'pass',
+    severity: 'medium',
+    details: 'Area activation system implemented',
+  },
+  {
+    category: 'Accessibility',
+    item: 'WCAG Compliance',
+    status: 'pass',
+    severity: 'critical',
+    details: 'WCAG AAA colour contrast and ARIA labels',
+  },
+  {
+    category: 'Accessibility',
+    item: 'Skip Links',
+    status: 'pass',
+    severity: 'high',
+    details: 'Skip to main content links implemented',
+  },
+  {
+    category: 'Accessibility',
+    item: 'Keyboard Navigation',
+    status: 'pass',
+    severity: 'high',
+    details: 'Full keyboard navigation support',
+  },
+  {
+    category: 'Infrastructure',
+    item: 'Database',
+    status: 'pass',
+    severity: 'critical',
+    details: 'SQLite database configured with Prisma ORM',
+  },
+  {
+    category: 'Infrastructure',
+    item: 'API Routes',
+    status: 'pass',
+    severity: 'high',
+    details: 'Next.js API routes for lead capture',
+  },
+  {
+    category: 'Infrastructure',
+    item: 'Authentication',
+    status: 'pass',
+    severity: 'high',
+    details: 'NextAuth.js configured for partner portal',
+  },
 ];
 
 function getStatusIcon(status: string) {
@@ -138,9 +364,18 @@ export default function SiteAuditPage() {
     return Math.round((passed / auditResults.length) * 100);
   }, [auditResults]);
 
-  const passedCount = useMemo(() => auditResults.filter((r) => r.status === 'pass').length, [auditResults]);
-  const warningCount = useMemo(() => auditResults.filter((r) => r.status === 'warning').length, [auditResults]);
-  const failCount = useMemo(() => auditResults.filter((r) => r.status === 'fail').length, [auditResults]);
+  const passedCount = useMemo(
+    () => auditResults.filter((r) => r.status === 'pass').length,
+    [auditResults],
+  );
+  const warningCount = useMemo(
+    () => auditResults.filter((r) => r.status === 'warning').length,
+    [auditResults],
+  );
+  const failCount = useMemo(
+    () => auditResults.filter((r) => r.status === 'fail').length,
+    [auditResults],
+  );
 
   const statusChartData = useMemo(() => {
     if (auditResults.length === 0) return [];
@@ -239,7 +474,9 @@ export default function SiteAuditPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-cyan-700">Overall health</p>
-                    <p className={`mt-1 text-2xl font-bold tabular-nums ${overallHealth >= 90 ? 'text-emerald-600' : overallHealth >= 70 ? 'text-cyan-600' : 'text-red-600'}`}>
+                    <p
+                      className={`mt-1 text-2xl font-bold tabular-nums ${overallHealth >= 90 ? 'text-emerald-600' : overallHealth >= 70 ? 'text-cyan-600' : 'text-red-600'}`}
+                    >
                       {overallHealth}%
                     </p>
                   </div>
@@ -252,7 +489,9 @@ export default function SiteAuditPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-500">Passed</p>
-                    <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">{passedCount}</p>
+                    <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">
+                      {passedCount}
+                    </p>
                   </div>
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
                     <CheckCircle2 className="h-5 w-5 text-emerald-600" />
@@ -263,7 +502,9 @@ export default function SiteAuditPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-500">Warnings</p>
-                    <p className="mt-1 text-2xl font-bold tabular-nums text-amber-600">{warningCount}</p>
+                    <p className="mt-1 text-2xl font-bold tabular-nums text-amber-600">
+                      {warningCount}
+                    </p>
                   </div>
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10">
                     <AlertCircle className="h-5 w-5 text-amber-600" />
@@ -285,7 +526,9 @@ export default function SiteAuditPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-500">Total checks</p>
-                    <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{auditResults.length}</p>
+                    <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                      {auditResults.length}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -295,47 +538,17 @@ export default function SiteAuditPage() {
           <section className="mb-8">
             <div className="grid gap-6 lg:grid-cols-2">
               <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">Status breakdown</h3>
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+                  Status breakdown
+                </h3>
                 <div className="h-[220px]">
-                  {statusChartData.length > 0 ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={statusChartData}
-                          dataKey="value"
-                          nameKey="name"
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={50}
-                          outerRadius={80}
-                          paddingAngle={2}
-                          label={({ name, value }) => `${name} (${value})`}
-                          labelLine={{ stroke: '#9ca3af' }}
-                        >
-                          {statusChartData.map((entry) => (
-                            <Cell
-                              key={entry.status}
-                              fill={entry.status === 'pass' ? '#22c55e' : entry.status === 'warning' ? '#eab308' : '#ef4444'}
-                              stroke="none"
-                            />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          contentStyle={{
-                            borderRadius: 12,
-                            border: '1px solid #e5e7eb',
-                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                          }}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-sm text-gray-400">No data</div>
-                  )}
+                  <StatusBreakdownChart data={statusChartData} />
                 </div>
               </div>
               <div className="rounded-2xl border border-cyan-200 bg-gradient-to-br from-cyan-50/50 to-white p-6 shadow-sm">
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">Audit summary</h3>
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+                  Audit summary
+                </h3>
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs font-medium text-gray-500">Strengths</p>
@@ -366,7 +579,10 @@ export default function SiteAuditPage() {
           <section className="space-y-6">
             <h2 className="text-lg font-semibold text-gray-900">Results by category</h2>
             {Object.entries(groupedResults).map(([category, items]) => (
-              <div key={category} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+              <div
+                key={category}
+                className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
+              >
                 <div className="border-b border-gray-200 bg-gray-50/80 px-6 py-4">
                   <div className="flex items-center justify-between">
                     <h3 className="flex items-center gap-2 text-base font-semibold text-gray-900">
@@ -380,7 +596,10 @@ export default function SiteAuditPage() {
                 </div>
                 <div className="divide-y divide-gray-100 p-6">
                   {items.map((item, index) => (
-                    <div key={index} className="border-l-4 border-gray-200 py-3 pl-4 first:pt-0 last:pb-0">
+                    <div
+                      key={index}
+                      className="border-l-4 border-gray-200 py-3 pl-4 first:pt-0 last:pb-0"
+                    >
                       <div className="flex items-start justify-between gap-4">
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2">

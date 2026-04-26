@@ -1,15 +1,15 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Award, 
-  Clock, 
-  CheckCircle2, 
+import dynamic from 'next/dynamic';
+import {
+  TrendingUp,
+  TrendingDown,
+  Award,
+  Clock,
+  CheckCircle2,
   XCircle,
   AlertTriangle,
   Star,
@@ -22,25 +22,19 @@ import {
   PieChart,
   Filter,
   Download,
-  RefreshCw
+  RefreshCw,
 } from 'lucide-react';
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  PieChart as RePieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  RadialBarChart,
-  RadialBar
-} from 'recharts';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent contractor route bundle no longer ships recharts; it loads in a
+// separate chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const PerformanceTrendChart = dynamic(
+  () => import('./Charts').then((m) => m.PerformanceTrendChart),
+  { ssr: false },
+);
+const JobDistributionChart = dynamic(() => import('./Charts').then((m) => m.JobDistributionChart), {
+  ssr: false,
+});
 
 interface KPIMetric {
   id: string;
@@ -91,7 +85,7 @@ function KPITrackingPageOriginal() {
       trend: 'down',
       trendValue: -15,
       status: 'excellent',
-      category: 'performance'
+      category: 'performance',
     },
     {
       id: 'completion-rate',
@@ -102,7 +96,7 @@ function KPITrackingPageOriginal() {
       trend: 'up',
       trendValue: 2.3,
       status: 'excellent',
-      category: 'performance'
+      category: 'performance',
     },
     {
       id: 'customer-satisfaction',
@@ -113,7 +107,7 @@ function KPITrackingPageOriginal() {
       trend: 'up',
       trendValue: 0.2,
       status: 'excellent',
-      category: 'customer'
+      category: 'customer',
     },
     {
       id: 'first-time-fix',
@@ -124,7 +118,7 @@ function KPITrackingPageOriginal() {
       trend: 'stable',
       trendValue: 0,
       status: 'good',
-      category: 'efficiency'
+      category: 'efficiency',
     },
     {
       id: 'documentation-quality',
@@ -135,7 +129,7 @@ function KPITrackingPageOriginal() {
       trend: 'up',
       trendValue: 5,
       status: 'good',
-      category: 'quality'
+      category: 'quality',
     },
     {
       id: 'payment-release',
@@ -146,8 +140,8 @@ function KPITrackingPageOriginal() {
       trend: 'up',
       trendValue: 3,
       status: 'excellent',
-      category: 'efficiency'
-    }
+      category: 'efficiency',
+    },
   ];
 
   // Performance trend data
@@ -195,10 +189,12 @@ function KPITrackingPageOriginal() {
             customerRating: 5,
             photosTaken: 25,
             reportSubmitted: true,
-            insuranceApproved: true },
+            insuranceApproved: true,
+          },
           status: 'completed',
           completedAt: '2024-06-15',
-          paymentReleased: 2200 },
+          paymentReleased: 2200,
+        },
         {
           jobId: 'JOB-002',
           bookingId: 'NRPG-2024-DEF456',
@@ -211,9 +207,11 @@ function KPITrackingPageOriginal() {
             customerRating: 4.5,
             photosTaken: 30,
             reportSubmitted: true,
-            insuranceApproved: false },
+            insuranceApproved: false,
+          },
           status: 'in_progress',
-          paymentReleased: 1100 },
+          paymentReleased: 1100,
+        },
       ]);
       setLoading(false);
     }, 1000);
@@ -221,19 +219,27 @@ function KPITrackingPageOriginal() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'excellent': return 'text-green-600 bg-green-100';
-      case 'good': return 'text-blue-600 bg-blue-100';
-      case 'warning': return 'text-yellow-600 bg-yellow-100';
-      case 'critical': return 'text-red-600 bg-red-100';
-      default: return 'text-gray-700 bg-gray-100';
+      case 'excellent':
+        return 'text-green-600 bg-green-100';
+      case 'good':
+        return 'text-blue-600 bg-blue-100';
+      case 'warning':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'critical':
+        return 'text-red-600 bg-red-100';
+      default:
+        return 'text-gray-700 bg-gray-100';
     }
   };
 
   const getTrendIcon = (trend: 'up' | 'down' | 'stable') => {
     switch (trend) {
-      case 'up': return <TrendingUp className="h-4 w-4 text-green-500" />;
-      case 'down': return <TrendingDown className="h-4 w-4 text-red-500" />;
-      default: return <Activity className="h-4 w-4 text-gray-700" />;
+      case 'up':
+        return <TrendingUp className="h-4 w-4 text-green-500" />;
+      case 'down':
+        return <TrendingDown className="h-4 w-4 text-red-500" />;
+      default:
+        return <Activity className="h-4 w-4 text-gray-700" />;
     }
   };
 
@@ -254,7 +260,9 @@ function KPITrackingPageOriginal() {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">KPI Performance Dashboard</h1>
-          <p className="text-gray-700">Track your performance metrics and earn more with better KPIs</p>
+          <p className="text-gray-700">
+            Track your performance metrics and earn more with better KPIs
+          </p>
         </div>
 
         {/* Controls */}
@@ -271,7 +279,7 @@ function KPITrackingPageOriginal() {
                 <option value="quarter">Last Quarter</option>
                 <option value="year">Last Year</option>
               </select>
-              
+
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
@@ -284,7 +292,7 @@ function KPITrackingPageOriginal() {
                 <option value="customer">Customer</option>
               </select>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <button className="p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colours">
                 <RefreshCw className="h-5 w-5" />
@@ -327,36 +335,47 @@ function KPITrackingPageOriginal() {
                     <span className="text-sm text-gray-700">{metric.unit}</span>
                   </div>
                 </div>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(metric.status)}`}>
+                <span
+                  className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(metric.status)}`}
+                >
                   {metric.status}
                 </span>
               </div>
-              
+
               <div className="flex items-center justify-between pt-3 border-t">
                 <div className="flex items-center gap-2">
                   {getTrendIcon(metric.trend)}
-                  <span className={`text-sm font-medium ${
-                    metric.trend === 'up' ? 'text-green-600' : 
-                    metric.trend === 'down' ? 'text-red-600' : 
-                    'text-gray-700'
-                  }`}>
-                    {metric.trendValue > 0 ? '+' : ''}{metric.trendValue}%
+                  <span
+                    className={`text-sm font-medium ${
+                      metric.trend === 'up'
+                        ? 'text-green-600'
+                        : metric.trend === 'down'
+                          ? 'text-red-600'
+                          : 'text-gray-700'
+                    }`}
+                  >
+                    {metric.trendValue > 0 ? '+' : ''}
+                    {metric.trendValue}%
                   </span>
                 </div>
                 <div className="text-sm text-gray-700">
-                  Target: {metric.target}{metric.unit}
+                  Target: {metric.target}
+                  {metric.unit}
                 </div>
               </div>
-              
+
               {/* Progress bar */}
               <div className="mt-3">
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className={`h-2 rounded-full ${
-                      metric.status === 'excellent' ? 'bg-green-500' :
-                      metric.status === 'good' ? 'bg-blue-500' :
-                      metric.status === 'warning' ? 'bg-blue-600' :
-                      'bg-red-500'
+                      metric.status === 'excellent'
+                        ? 'bg-green-500'
+                        : metric.status === 'good'
+                          ? 'bg-blue-500'
+                          : metric.status === 'warning'
+                            ? 'bg-blue-600'
+                            : 'bg-red-500'
                     }`}
                     style={{ width: `${Math.min((metric.value / metric.target) * 100, 100)}%` }}
                   />
@@ -371,53 +390,13 @@ function KPITrackingPageOriginal() {
           {/* Performance Trend Chart */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Trend</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={performanceTrend}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line 
-                  type="monotone" 
-                  dataKey="responseTime" 
-                  stroke="#3B82F6" 
-                  name="Response Time (min)"
-                  strokeWidth={2}
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="completionRate" 
-                  stroke="#10B981" 
-                  name="Completion Rate (%)"
-                  strokeWidth={2}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            <PerformanceTrendChart data={performanceTrend} />
           </div>
 
           {/* Job Distribution Pie Chart */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Job Distribution</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <RePieChart>
-                <Pie
-                  data={jobDistribution}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={(entry) => `${entry.name}: ${entry.value}%`}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {jobDistribution.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.colour} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </RePieChart>
-            </ResponsiveContainer>
+            <JobDistributionChart data={jobDistribution} />
           </div>
         </div>
 
@@ -458,10 +437,11 @@ function KPITrackingPageOriginal() {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {recentJobs.map((job) => {
-                  const kpisCount = Object.values(job.kpis).filter(v => v === true).length + 
-                                   (job.kpis.customerRating && job.kpis.customerRating >= 4 ? 1 : 0);
+                  const kpisCount =
+                    Object.values(job.kpis).filter((v) => v === true).length +
+                    (job.kpis.customerRating && job.kpis.customerRating >= 4 ? 1 : 0);
                   const totalKpis = 7;
-                  
+
                   return (
                     <tr key={job.jobId} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -487,7 +467,7 @@ function KPITrackingPageOriginal() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <div className="w-20 bg-gray-200 rounded-full h-2">
-                            <div 
+                            <div
                               className="bg-green-500 h-2 rounded-full"
                               style={{ width: `${(kpisCount / totalKpis) * 100}%` }}
                             />
@@ -501,11 +481,15 @@ function KPITrackingPageOriginal() {
                         ${job.paymentReleased}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                          job.status === 'completed' ? 'bg-green-100 text-green-800' :
-                          job.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
-                          'bg-gray-100 text-gray-800'
-                        }`}>
+                        <span
+                          className={`px-2 py-1 text-xs font-medium rounded-full ${
+                            job.status === 'completed'
+                              ? 'bg-green-100 text-green-800'
+                              : job.status === 'in_progress'
+                                ? 'bg-blue-100 text-blue-800'
+                                : 'bg-gray-100 text-gray-800'
+                          }`}
+                        >
                           {job.status.replace('_', ' ')}
                         </span>
                       </td>

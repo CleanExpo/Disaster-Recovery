@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   AlertTriangle,
   ArrowRight,
@@ -15,18 +16,14 @@ import {
   Shield,
   ShieldAlert,
 } from 'lucide-react';
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent admin route bundle no longer ships recharts; it loads in a separate
+// chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const RiskChart = dynamic(() => import('./Charts').then((m) => m.RiskChart), { ssr: false });
+const DocTypeChart = dynamic(() => import('./Charts').then((m) => m.DocTypeChart), {
+  ssr: false,
+});
 
 interface FraudDetectionLog {
   id: string;
@@ -51,12 +48,6 @@ interface Pagination {
   total: number;
   pages: number;
 }
-
-const RISK_COLORS: Record<string, string> = {
-  LOW: '#22c55e',
-  MEDIUM: '#eab308',
-  HIGH: '#ef4444',
-};
 
 const DOCUMENT_TYPES = [
   'INSURANCE_POLICY',
@@ -95,14 +86,25 @@ function getStatusClass(status: string) {
 }
 
 function formatDocType(s: string) {
-  return s.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase());
+  return s
+    .replace(/_/g, ' ')
+    .toLowerCase()
+    .replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
 export default function FraudDetectionAdminPage() {
   const [logs, setLogs] = useState<FraudDetectionLog[]>([]);
-  const [pagination, setPagination] = useState<Pagination>({ page: 1, limit: 20, total: 0, pages: 0 });
+  const [pagination, setPagination] = useState<Pagination>({
+    page: 1,
+    limit: 20,
+    total: 0,
+    pages: 0,
+  });
   const [loading, setLoading] = useState(true);
-  const [statistics, setStatistics] = useState<{ total: number; byRiskLevel: Record<string, number> }>({
+  const [statistics, setStatistics] = useState<{
+    total: number;
+    byRiskLevel: Record<string, number>;
+  }>({
     total: 0,
     byRiskLevel: {},
   });
@@ -122,9 +124,7 @@ export default function FraudDetectionAdminPage() {
       const res = await fetch(`/api/fraud-detection/analyze?${params}`);
       const data = await res.json();
       setLogs(data.logs ?? []);
-      setPagination(
-        data.pagination ?? { page: 1, limit: 20, total: 0, pages: 0 }
-      );
+      setPagination(data.pagination ?? { page: 1, limit: 20, total: 0, pages: 0 });
       setStatistics({
         total: data.statistics?.total ?? 0,
         byRiskLevel: data.statistics?.byRiskLevel ?? {},
@@ -147,10 +147,7 @@ export default function FraudDetectionAdminPage() {
     if (page >= 1 && page <= pagination.pages) fetchLogs(page);
   };
 
-  const needsReviewCount = useMemo(
-    () => logs.filter((l) => l.reviewRequired).length,
-    [logs]
-  );
+  const needsReviewCount = useMemo(() => logs.filter((l) => l.reviewRequired).length, [logs]);
 
   const riskChartData = useMemo(() => {
     const r = statistics.byRiskLevel || {};
@@ -217,7 +214,9 @@ export default function FraudDetectionAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Total analysed</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{statistics.total}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                  {statistics.total}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-500/10">
                 <Shield className="h-5 w-5 text-gray-600" />
@@ -267,7 +266,9 @@ export default function FraudDetectionAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-700">Needs review</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-red-900">{needsReviewCount}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-red-900">
+                  {needsReviewCount}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-500/10">
                 <Eye className="h-5 w-5 text-red-600" />
@@ -284,44 +285,7 @@ export default function FraudDetectionAdminPage() {
               Risk level breakdown
             </h3>
             <div className="h-[260px]">
-              {riskChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={riskChartData}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={90}
-                      paddingAngle={2}
-                      label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
-                      labelLine={{ stroke: '#9ca3af' }}
-                    >
-                      {riskChartData.map((entry) => (
-                        <Cell
-                          key={entry.riskLevel}
-                          fill={RISK_COLORS[entry.riskLevel] ?? '#94a3b8'}
-                          stroke="none"
-                        />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                      formatter={((value: number, name: string) => [value, name]) as any}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">
-                  No analysis data yet
-                </div>
-              )}
+              <RiskChart data={riskChartData} />
             </div>
           </div>
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -329,33 +293,7 @@ export default function FraudDetectionAdminPage() {
               By document type
             </h3>
             <div className="h-[260px]">
-              {docTypeChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={docTypeChartData} margin={{ left: 0, right: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
-                    <XAxis
-                      dataKey="name"
-                      tick={{ fontSize: 11, fill: '#6b7280' }}
-                      angle={-25}
-                      textAnchor="end"
-                      height={60}
-                    />
-                    <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#6b7280' }} width={28} />
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                    />
-                    <Bar dataKey="value" name="Documents" fill="#ef4444" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">
-                  No documents yet
-                </div>
-              )}
+              <DocTypeChart data={docTypeChartData} />
             </div>
           </div>
         </div>
@@ -383,7 +321,9 @@ export default function FraudDetectionAdminPage() {
             >
               <option value="">All risk levels</option>
               {RISK_LEVELS.map((level) => (
-                <option key={level} value={level}>{level}</option>
+                <option key={level} value={level}>
+                  {level}
+                </option>
               ))}
             </select>
             <select
@@ -393,7 +333,9 @@ export default function FraudDetectionAdminPage() {
             >
               <option value="">All document types</option>
               {DOCUMENT_TYPES.map((type) => (
-                <option key={type} value={type}>{formatDocType(type)}</option>
+                <option key={type} value={type}>
+                  {formatDocType(type)}
+                </option>
               ))}
             </select>
             <select
@@ -417,7 +359,9 @@ export default function FraudDetectionAdminPage() {
           ) : logs.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
               <Inbox className="h-14 w-14 text-gray-300" />
-              <p className="mt-3 text-base font-medium text-gray-600">No fraud detection logs found</p>
+              <p className="mt-3 text-base font-medium text-gray-600">
+                No fraud detection logs found
+              </p>
               <p className="mt-1 text-sm text-gray-500">Analysis results will appear here</p>
             </div>
           ) : (
@@ -454,30 +398,46 @@ export default function FraudDetectionAdminPage() {
                       <tr key={log.id} className="transition-colors hover:bg-gray-50/50">
                         <td className="px-6 py-4">
                           <div>
-                            <p className="font-medium text-gray-900">{log.contractor.username || 'N/A'}</p>
+                            <p className="font-medium text-gray-900">
+                              {log.contractor.username || 'N/A'}
+                            </p>
                             <p className="text-sm text-gray-500">{log.contractor.email}</p>
-                            <p className="text-xs text-gray-500">{log.contractor.status.replace(/_/g, ' ')}</p>
+                            <p className="text-xs text-gray-500">
+                              {log.contractor.status.replace(/_/g, ' ')}
+                            </p>
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <p className="text-sm font-medium text-gray-900">{formatDocType(log.documentType)}</p>
+                          <p className="text-sm font-medium text-gray-900">
+                            {formatDocType(log.documentType)}
+                          </p>
                           {log.suspiciousElements && log.suspiciousElements.length > 0 && (
-                            <p className="text-xs text-red-600 mt-0.5">{log.suspiciousElements.length} concern(s)</p>
+                            <p className="text-xs text-red-600 mt-0.5">
+                              {log.suspiciousElements.length} concern(s)
+                            </p>
                           )}
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${getRiskClass(log.riskLevel)}`}>
+                          <span
+                            className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${getRiskClass(log.riskLevel)}`}
+                          >
                             {log.riskLevel || 'N/A'}
                           </span>
                         </td>
                         <td className="px-6 py-4">
                           {log.confidenceScore != null ? (
                             <div>
-                              <span className="text-sm font-medium text-gray-900">{log.confidenceScore}%</span>
+                              <span className="text-sm font-medium text-gray-900">
+                                {log.confidenceScore}%
+                              </span>
                               <div className="mt-1 h-1.5 w-20 overflow-hidden rounded-full bg-gray-200">
                                 <div
                                   className={`h-full rounded-full ${
-                                    log.confidenceScore >= 70 ? 'bg-emerald-500' : log.confidenceScore >= 40 ? 'bg-amber-500' : 'bg-red-500'
+                                    log.confidenceScore >= 70
+                                      ? 'bg-emerald-500'
+                                      : log.confidenceScore >= 40
+                                        ? 'bg-amber-500'
+                                        : 'bg-red-500'
                                   }`}
                                   style={{ width: `${log.confidenceScore}%` }}
                                 />
@@ -489,7 +449,9 @@ export default function FraudDetectionAdminPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="space-y-1">
-                            <span className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${getStatusClass(log.analysisStatus)}`}>
+                            <span
+                              className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${getStatusClass(log.analysisStatus)}`}
+                            >
                               {log.analysisStatus}
                             </span>
                             {log.reviewRequired && (
