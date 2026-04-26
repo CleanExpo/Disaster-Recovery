@@ -53,7 +53,12 @@ export type ComplianceCorrelationType =
 
 export type ComplianceEntityType = 'customer' | 'contractor' | 'finance_partner' | 'system';
 
-export type ComplianceConsentMethod = 'web_form' | 'voice_sarah' | 'voice_human' | 'chat';
+export type ComplianceConsentMethod =
+  | 'web_form'
+  | 'voice_sarah'
+  | 'voice_human'
+  | 'chat'
+  | 'web_widget';
 
 export interface ComplianceEventInput {
   eventType: ComplianceEventType;

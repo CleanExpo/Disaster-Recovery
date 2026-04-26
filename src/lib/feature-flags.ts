@@ -52,6 +52,15 @@ export const FEATURE_FLAGS = {
    */
   IOS_NATIVE_BRIDGE: isTrue(process.env.NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED),
 
+  /**
+   * ElevenLabs convai widget on /contractor/apply (Olivia) and /claim
+   * (Sarah). When off, neither widget renders and no script tag is
+   * injected — zero impact on bundle / network. APP 8 consent gate is
+   * a separate React modal that runs BEFORE the widget initialises;
+   * declining consent never loads the widget script.
+   */
+  VOICE_WIDGET: isTrue(process.env.NEXT_PUBLIC_VOICE_WIDGET_ENABLED),
+
   // ── SERVER-ONLY (no NEXT_PUBLIC_ prefix) ─────────────────────────────────
   /**
    * compliance_events writer (DR-624). When off, logComplianceEvent is a
