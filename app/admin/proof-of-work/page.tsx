@@ -19,21 +19,21 @@ import {
   XCircle,
 } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useState } from 'react';
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
 
 import type { ProofOfWorkInput } from '@/lib/validation/schemas';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent admin route bundle no longer ships recharts; it loads in a separate
+// chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const VerificationStatusChart = dynamic(
+  () => import('./Charts').then((m) => m.VerificationStatusChart),
+  { ssr: false },
+);
+const WorkTypeChart = dynamic(() => import('./Charts').then((m) => m.WorkTypeChart), {
+  ssr: false,
+});
 
 // Admin view extends the proof-of-work submission with server-assigned
 // fields (id, contractorId, submittedAt) and a joined contractor summary.
@@ -76,12 +76,6 @@ const WORK_TYPES = [
 ];
 const PROPERTY_TYPES = ['RESIDENTIAL', 'COMMERCIAL', 'INDUSTRIAL', 'INSTITUTIONAL'];
 const VERIFICATION_STATUSES = ['PENDING', 'VERIFIED', 'REJECTED'];
-
-const STATUS_COLORS: Record<string, string> = {
-  PENDING: '#eab308',
-  VERIFIED: '#22c55e',
-  REJECTED: '#ef4444',
-};
 
 function getStatusClass(status: string) {
   switch (status) {
@@ -203,8 +197,7 @@ function ClaimReviewModal({
                 <div>
                   <p className="text-xs font-medium text-gray-500">Project value</p>
                   <p className="flex items-center gap-1 text-sm font-medium text-gray-900">
-                    <DollarSign className="h-3 w-3" />
-                    ${claim.projectValue.toLocaleString()}
+                    <DollarSign className="h-3 w-3" />${claim.projectValue.toLocaleString()}
                   </p>
                 </div>
                 <div>
@@ -452,7 +445,9 @@ export default function ProofOfWorkAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Total claims</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{statistics.total}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                  {statistics.total}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10">
                 <ClipboardCheck className="h-5 w-5 text-violet-600" />
@@ -508,44 +503,7 @@ export default function ProofOfWorkAdminPage() {
               Verification status
             </h3>
             <div className="h-[260px]">
-              {statusChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={statusChartData}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={90}
-                      paddingAngle={2}
-                      label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
-                      labelLine={{ stroke: '#9ca3af' }}
-                    >
-                      {statusChartData.map((entry) => (
-                        <Cell
-                          key={entry.status}
-                          fill={STATUS_COLORS[entry.status] ?? '#94a3b8'}
-                          stroke="none"
-                        />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                      formatter={((value: number, name: string) => [value, name]) as any}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">
-                  No claims yet
-                </div>
-              )}
+              <VerificationStatusChart data={statusChartData} />
             </div>
           </div>
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -553,33 +511,7 @@ export default function ProofOfWorkAdminPage() {
               By work type
             </h3>
             <div className="h-[260px]">
-              {workTypeChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={workTypeChartData} margin={{ left: 0, right: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
-                    <XAxis
-                      dataKey="name"
-                      tick={{ fontSize: 11, fill: '#6b7280' }}
-                      angle={-25}
-                      textAnchor="end"
-                      height={60}
-                    />
-                    <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#6b7280' }} width={28} />
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                    />
-                    <Bar dataKey="value" name="Claims" fill="#7c3aed" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">
-                  No claims yet
-                </div>
-              )}
+              <WorkTypeChart data={workTypeChartData} />
             </div>
           </div>
         </div>
@@ -619,7 +551,9 @@ export default function ProofOfWorkAdminPage() {
             >
               <option value="">All statuses</option>
               {VERIFICATION_STATUSES.map((status) => (
-                <option key={status} value={status}>{status}</option>
+                <option key={status} value={status}>
+                  {status}
+                </option>
               ))}
             </select>
             <select
@@ -629,7 +563,9 @@ export default function ProofOfWorkAdminPage() {
             >
               <option value="">All property types</option>
               {PROPERTY_TYPES.map((type) => (
-                <option key={type} value={type}>{type}</option>
+                <option key={type} value={type}>
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -644,7 +580,9 @@ export default function ProofOfWorkAdminPage() {
           ) : claims.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
               <Inbox className="h-14 w-14 text-gray-300" />
-              <p className="mt-3 text-base font-medium text-gray-600">No proof of work claims found</p>
+              <p className="mt-3 text-base font-medium text-gray-600">
+                No proof of work claims found
+              </p>
               <p className="mt-1 text-sm text-gray-500">Submitted claims will appear here</p>
             </div>
           ) : (
@@ -690,11 +628,15 @@ export default function ProofOfWorkAdminPage() {
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <p className="font-medium text-gray-900">{claim.contractor.username || 'N/A'}</p>
+                          <p className="font-medium text-gray-900">
+                            {claim.contractor.username || 'N/A'}
+                          </p>
                           <p className="text-sm text-gray-500">{claim.contractor.email}</p>
                         </td>
                         <td className="px-6 py-4">
-                          <p className="text-sm font-medium text-gray-900">{formatWorkType(claim.workType)}</p>
+                          <p className="text-sm font-medium text-gray-900">
+                            {formatWorkType(claim.workType)}
+                          </p>
                           <p className="text-xs text-gray-500">{claim.propertyType}</p>
                         </td>
                         <td className="px-6 py-4">
