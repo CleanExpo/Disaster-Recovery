@@ -67,19 +67,23 @@ if (mode === 'UNKNOWN') {
 }
 
 // ---------- expected catalogue (mirrors src/lib/stripe.ts) ----------
+// Live IDs from acct_1GNs4CC8kkd3m9ZX (Disaster Recovery Qld Pty Ltd),
+// created 2026-04-26 via scripts/setup-stripe-products.mjs.
 
 const EXPECTED_PRICE_IDS = {
-  APPLICATION_FEE: process.env.STRIPE_APPLICATION_FEE_PRICE_ID || 'price_1TJVrEGib5mMf28diz8uurMV',
-  JOINING_FEE: process.env.STRIPE_JOINING_FEE_PRICE_ID || 'price_1TJVrEGib5mMf28dmbv8SOcE',
-  CALLOUT_FEE: process.env.STRIPE_CALLOUT_FEE_PRICE_ID || 'price_1TJVrFGib5mMf28dG3pvVzOj',
-  TIER_25KM: process.env.STRIPE_SUB_TIER_25KM_PRICE_ID || 'price_1TJVrFGib5mMf28diy66Zxhw',
-  TIER_50KM: process.env.STRIPE_SUB_TIER_50KM_PRICE_ID || 'price_1TJVrGGib5mMf28datKelIPp',
-  TIER_75KM: process.env.STRIPE_SUB_TIER_75KM_PRICE_ID || 'price_1TJVrGGib5mMf28dyzPtJ7t2',
-  TIER_100KM: process.env.STRIPE_SUB_TIER_100KM_PRICE_ID || 'price_1TJVrGGib5mMf28dv09Ck9zX',
-  SUB_MONTH_1: process.env.STRIPE_SUB_MONTH_1_PRICE_ID || 'price_1TJVrGGib5mMf28dEdUMHFza',
-  SUB_MONTH_2: process.env.STRIPE_SUB_MONTH_2_PRICE_ID || 'price_1TJVrHGib5mMf28dOTaEeb86',
-  SUB_MONTH_3: process.env.STRIPE_SUB_MONTH_3_PRICE_ID || 'price_1TJVrHGib5mMf28d7aBrgiVy',
-  SUB_REGULAR: process.env.STRIPE_SUB_REGULAR_PRICE_ID || 'price_1TJVrFGib5mMf28diy66Zxhw',
+  APPLICATION_FEE: process.env.STRIPE_APPLICATION_FEE_PRICE_ID || 'price_1TQFiOC8kkd3m9ZX8gtVr6Lu',
+  JOINING_FEE: process.env.STRIPE_JOINING_FEE_PRICE_ID || 'price_1TQFiQC8kkd3m9ZXkF0FOH2Y',
+  PERFORMANCE_BOND:
+    process.env.STRIPE_PERFORMANCE_BOND_PRICE_ID || 'price_1TQFiRC8kkd3m9ZXmNY5A8DV',
+  CALLOUT_FEE: process.env.STRIPE_CALLOUT_FEE_PRICE_ID || 'price_1TQFiSC8kkd3m9ZX6Chj4itf',
+  TIER_25KM: process.env.STRIPE_SUB_TIER_25KM_PRICE_ID || 'price_1TQFiTC8kkd3m9ZXWwi6zfPk',
+  TIER_50KM: process.env.STRIPE_SUB_TIER_50KM_PRICE_ID || 'price_1TQFiVC8kkd3m9ZXDeaZadrd',
+  TIER_75KM: process.env.STRIPE_SUB_TIER_75KM_PRICE_ID || 'price_1TQFiWC8kkd3m9ZXY83C62Kw',
+  TIER_100KM: process.env.STRIPE_SUB_TIER_100KM_PRICE_ID || 'price_1TQFiXC8kkd3m9ZXX196023b',
+  SUB_MONTH_1: process.env.STRIPE_SUB_MONTH_1_PRICE_ID || 'price_1TQFiZC8kkd3m9ZXBswDxvqj',
+  SUB_MONTH_2: process.env.STRIPE_SUB_MONTH_2_PRICE_ID || 'price_1TQFibC8kkd3m9ZX28Sd19KW',
+  SUB_MONTH_3: process.env.STRIPE_SUB_MONTH_3_PRICE_ID || 'price_1TQFicC8kkd3m9ZXN7cu13aC',
+  SUB_REGULAR: process.env.STRIPE_SUB_REGULAR_PRICE_ID || 'price_1TQFidC8kkd3m9ZXYqLAX6KR',
 };
 
 // ---------- main ----------
@@ -92,15 +96,20 @@ const fmt = (cents, currency = 'aud') =>
 async function main() {
   console.log(`\n=== Stripe verification — ${mode} mode (${keyType} key) ===\n`);
 
-  // 1) Account
-  const acct = await stripe.accounts.retrieve();
-  console.log('Account');
-  console.log(`  id:           ${acct.id}`);
-  console.log(`  business:     ${acct.business_profile?.name || acct.settings?.dashboard?.display_name || '(none)'}`);
-  console.log(`  country:      ${acct.country}`);
-  console.log(`  charges_enabled:  ${acct.charges_enabled}`);
-  console.log(`  payouts_enabled:  ${acct.payouts_enabled}`);
-  console.log(`  details_submitted: ${acct.details_submitted}`);
+  // 1) Account (skip if account.read permission not granted on restricted key)
+  let acct = null;
+  try {
+    acct = await stripe.accounts.retrieve();
+    console.log('Account');
+    console.log(`  id:           ${acct.id}`);
+    console.log(`  business:     ${acct.business_profile?.name || acct.settings?.dashboard?.display_name || '(none)'}`);
+    console.log(`  country:      ${acct.country}`);
+    console.log(`  charges_enabled:  ${acct.charges_enabled}`);
+    console.log(`  payouts_enabled:  ${acct.payouts_enabled}`);
+    console.log(`  details_submitted: ${acct.details_submitted}`);
+  } catch (err) {
+    console.log('Account: (account.read permission not granted on this key — skipping identity check)');
+  }
   console.log('');
 
   // 2) Expected price IDs — resolve each
@@ -129,22 +138,29 @@ async function main() {
   }
   console.log('');
 
-  // 4) Webhook endpoints
-  const webhooks = await stripe.webhookEndpoints.list({ limit: 100 });
-  console.log(`Webhook endpoints (${webhooks.data.length})`);
-  for (const w of webhooks.data) {
-    console.log(`  - ${w.id}`);
-    console.log(`    url:    ${w.url}`);
-    console.log(`    status: ${w.status}`);
-    console.log(`    events: ${w.enabled_events.length === 1 && w.enabled_events[0] === '*' ? '(all)' : w.enabled_events.join(', ')}`);
+  // 4) Webhook endpoints (skip if webhook.read permission not granted)
+  let webhooks = { data: [] };
+  try {
+    webhooks = await stripe.webhookEndpoints.list({ limit: 100 });
+    console.log(`Webhook endpoints (${webhooks.data.length})`);
+    for (const w of webhooks.data) {
+      console.log(`  - ${w.id}`);
+      console.log(`    url:    ${w.url}`);
+      console.log(`    status: ${w.status}`);
+      console.log(`    events: ${w.enabled_events.length === 1 && w.enabled_events[0] === '*' ? '(all)' : w.enabled_events.join(', ')}`);
+    }
+  } catch (err) {
+    console.log('Webhook endpoints: (webhook.read permission not granted on this key — skipping)');
   }
   console.log('');
 
   // 5) Summary
   console.log('=== Summary ===');
   console.log(`  Mode:              ${mode}`);
-  console.log(`  Account:           ${acct.id}`);
-  console.log(`  Charges enabled:   ${acct.charges_enabled ? 'yes' : 'NO'}`);
+  console.log(`  Account:           ${acct?.id ?? '(account.read not granted)'}`);
+  if (acct) {
+    console.log(`  Charges enabled:   ${acct.charges_enabled ? 'yes' : 'NO'}`);
+  }
   console.log(`  Expected prices:   ${Object.keys(EXPECTED_PRICE_IDS).length} expected, ${missing} missing`);
   console.log(`  Webhooks:          ${webhooks.data.length}`);
   console.log('');
