@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   ArrowRight,
   Calculator,
@@ -13,20 +14,18 @@ import {
   Shield,
   Zap,
 } from 'lucide-react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from 'recharts';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent rates route bundle no longer ships recharts; it loads in a separate
+// chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const CategoryPieChart = dynamic(() => import('./Charts').then((m) => m.CategoryPieChart), {
+  ssr: false,
+});
+const CategoryBarChart = dynamic(() => import('./Charts').then((m) => m.CategoryBarChart), {
+  ssr: false,
+});
 
 const RATES: Record<string, Array<{ 'Service Item': string; Unit: string; Rate: string }>> = {
   'Water Damage': [
@@ -84,11 +83,19 @@ export default function RatesPage() {
   }, []);
 
   const pieData = useMemo(
-    () => categoryStats.map((c, i) => ({ name: c.name, value: c.count, fill: CATEGORY_COLORS[i % CATEGORY_COLORS.length] })),
-    [categoryStats]
+    () =>
+      categoryStats.map((c, i) => ({
+        name: c.name,
+        value: c.count,
+        fill: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
+      })),
+    [categoryStats],
   );
 
-  const totalLineItems = useMemo(() => categoryStats.reduce((s, c) => s + c.count, 0), [categoryStats]);
+  const totalLineItems = useMemo(
+    () => categoryStats.reduce((s, c) => s + c.count, 0),
+    [categoryStats],
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -139,7 +146,9 @@ export default function RatesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-500">Service categories</p>
-                  <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{categoryStats.length}</p>
+                  <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                    {categoryStats.length}
+                  </p>
                 </div>
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
                   <FileText className="h-5 w-5 text-emerald-600" />
@@ -150,7 +159,9 @@ export default function RatesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-500">Line items</p>
-                  <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{totalLineItems}</p>
+                  <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                    {totalLineItems}
+                  </p>
                 </div>
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
                   <Receipt className="h-5 w-5 text-blue-600" />
@@ -161,7 +172,9 @@ export default function RatesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-emerald-700">Minimum charge</p>
-                  <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-900">${MIN_CHARGE.toLocaleString()}</p>
+                  <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-900">
+                    ${MIN_CHARGE.toLocaleString()}
+                  </p>
                   <p className="text-xs text-emerald-600">ex GST per callout</p>
                 </div>
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
@@ -192,34 +205,7 @@ export default function RatesPage() {
                 Items per category
               </h3>
               <div className="h-[260px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={pieData}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={90}
-                      paddingAngle={2}
-                      label={({ name, value }) => `${name} (${value})`}
-                      labelLine={{ stroke: '#9ca3af' }}
-                    >
-                      {pieData.map((entry, i) => (
-                        <Cell key={entry.name} fill={entry.fill} stroke="none" />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                      formatter={((value: number, name: string) => [value, `${name} items`]) as any}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
+                <CategoryPieChart data={pieData} />
               </div>
             </div>
             <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -227,28 +213,7 @@ export default function RatesPage() {
                 Line items by category
               </h3>
               <div className="h-[260px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={categoryStats} margin={{ left: 0, right: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
-                    <XAxis
-                      dataKey="name"
-                      tick={{ fontSize: 11, fill: '#6b7280' }}
-                      angle={-25}
-                      textAnchor="end"
-                      height={60}
-                    />
-                    <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#6b7280' }} width={28} />
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                      formatter={((value: number) => [value, 'Items']) as any}
-                    />
-                    <Bar dataKey="count" name="Items" fill="#10b981" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
+                <CategoryBarChart data={categoryStats} />
               </div>
             </div>
           </div>
@@ -273,7 +238,9 @@ export default function RatesPage() {
                     <div className="flex items-center gap-3">
                       <div
                         className="flex h-10 w-10 items-center justify-center rounded-xl"
-                        style={{ backgroundColor: `${CATEGORY_COLORS[idx % CATEGORY_COLORS.length]}20` }}
+                        style={{
+                          backgroundColor: `${CATEGORY_COLORS[idx % CATEGORY_COLORS.length]}20`,
+                        }}
                       >
                         <Zap
                           className="h-5 w-5"
@@ -309,8 +276,13 @@ export default function RatesPage() {
                         </thead>
                         <tbody className="divide-y divide-gray-100 bg-white">
                           {items.map((row) => (
-                            <tr key={row['Service Item']} className="transition-colors hover:bg-gray-50/50">
-                              <td className="px-6 py-4 font-medium text-gray-900">{row['Service Item']}</td>
+                            <tr
+                              key={row['Service Item']}
+                              className="transition-colors hover:bg-gray-50/50"
+                            >
+                              <td className="px-6 py-4 font-medium text-gray-900">
+                                {row['Service Item']}
+                              </td>
                               <td className="px-6 py-4 text-sm text-gray-600">{row.Unit}</td>
                               <td className="px-6 py-4 text-sm text-gray-600">{row.Rate || '—'}</td>
                             </tr>
@@ -329,7 +301,10 @@ export default function RatesPage() {
         <div className="mt-8 rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-6 shadow-sm">
           <p className="text-sm font-medium text-amber-900">
             These rates are used to calculate transparent cost estimates at{' '}
-            <Link href="/tools/cost-estimator" className="font-semibold text-amber-700 underline hover:text-amber-800">
+            <Link
+              href="/tools/cost-estimator"
+              className="font-semibold text-amber-700 underline hover:text-amber-800"
+            >
               disasterrecovery.com.au/tools/cost-estimator
             </Link>
             . Use the cost estimator for a personalised range, then lodge a claim to get started.
@@ -338,8 +313,9 @@ export default function RatesPage() {
 
         <footer className="mt-8 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
           <p>
-            Minimum charge ${MIN_CHARGE.toLocaleString()} ex GST applies to all professional callouts. All rates
-            exclude GST. Rates set under the NRPG Professional Framework. Last reviewed March 2026.
+            Minimum charge ${MIN_CHARGE.toLocaleString()} ex GST applies to all professional
+            callouts. All rates exclude GST. Rates set under the NRPG Professional Framework. Last
+            reviewed March 2026.
           </p>
         </footer>
       </div>

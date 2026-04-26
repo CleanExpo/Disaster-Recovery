@@ -2,28 +2,18 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  BarChart3,
-  Eye,
-  Inbox,
-  MapPin,
-  Plus,
-  RefreshCw,
-  Search,
-} from 'lucide-react';
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import dynamic from 'next/dynamic';
+import { ArrowRight, BarChart3, Eye, Inbox, MapPin, Plus, RefreshCw, Search } from 'lucide-react';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent admin route bundle no longer ships recharts; it loads in a separate
+// chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const StateChart = dynamic(() => import('./Charts').then((m) => m.StateChart), {
+  ssr: false,
+});
+const ServiceChart = dynamic(() => import('./Charts').then((m) => m.ServiceChart), {
+  ssr: false,
+});
 
 interface SEOPage {
   id: string;
@@ -147,10 +137,16 @@ export default function SEOPagesAdminPage() {
   };
 
   const totalClicks = useMemo(() => pages.reduce((sum, p) => sum + p.organicClicks, 0), [pages]);
-  const totalVolume = useMemo(() => pages.reduce((sum, p) => sum + p.estimatedSearchVolume, 0), [pages]);
+  const totalVolume = useMemo(
+    () => pages.reduce((sum, p) => sum + p.estimatedSearchVolume, 0),
+    [pages],
+  );
   const avgPriority = useMemo(
-    () => (pages.length > 0 ? Math.round(pages.reduce((sum, p) => sum + p.priorityScore, 0) / pages.length) : 0),
-    [pages]
+    () =>
+      pages.length > 0
+        ? Math.round(pages.reduce((sum, p) => sum + p.priorityScore, 0) / pages.length)
+        : 0,
+    [pages],
   );
 
   const stateChartData = useMemo(() => {
@@ -224,7 +220,9 @@ export default function SEOPagesAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Total pages</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{pagination.total.toLocaleString()}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                  {pagination.total.toLocaleString()}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
                 <BarChart3 className="h-5 w-5 text-blue-600" />
@@ -246,7 +244,9 @@ export default function SEOPagesAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Total clicks</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{totalClicks.toLocaleString()}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                  {totalClicks.toLocaleString()}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10">
                 <Eye className="h-5 w-5 text-violet-600" />
@@ -257,7 +257,9 @@ export default function SEOPagesAdminPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Est. search vol.</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{totalVolume.toLocaleString()}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                  {totalVolume.toLocaleString()}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10">
                 <Search className="h-5 w-5 text-amber-600" />
@@ -269,7 +271,9 @@ export default function SEOPagesAdminPage() {
 
       <section className="mb-8">
         <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">Generate new pages</h3>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+            Generate new pages
+          </h3>
           <div className="flex flex-wrap items-end gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Number of pages</label>
@@ -278,7 +282,9 @@ export default function SEOPagesAdminPage() {
                 min={1}
                 max={1000}
                 value={generationConfig.limit}
-                onChange={(e) => setGenerationConfig((c) => ({ ...c, limit: parseInt(e.target.value, 10) || 1 }))}
+                onChange={(e) =>
+                  setGenerationConfig((c) => ({ ...c, limit: parseInt(e.target.value, 10) || 1 }))
+                }
                 className="mt-1 w-32 rounded-xl border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
             </div>
@@ -289,7 +295,12 @@ export default function SEOPagesAdminPage() {
                 min={0}
                 max={100}
                 value={generationConfig.priority}
-                onChange={(e) => setGenerationConfig((c) => ({ ...c, priority: parseInt(e.target.value, 10) || 0 }))}
+                onChange={(e) =>
+                  setGenerationConfig((c) => ({
+                    ...c,
+                    priority: parseInt(e.target.value, 10) || 0,
+                  }))
+                }
                 className="mt-1 w-32 rounded-xl border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
             </div>
@@ -310,63 +321,19 @@ export default function SEOPagesAdminPage() {
       <section className="mb-8">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">By state</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+              By state
+            </h3>
             <div className="h-[260px]">
-              {stateChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={stateChartData}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={90}
-                      paddingAngle={2}
-                      label={({ name, value }) => `${name} (${value})`}
-                      labelLine={{ stroke: '#9ca3af' }}
-                    >
-                      {stateChartData.map((entry, i) => (
-                        <Cell key={entry.name} fill={['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'][i % 5]} stroke="none" />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">No data yet</div>
-              )}
+              <StateChart data={stateChartData} />
             </div>
           </div>
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">By service type</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+              By service type
+            </h3>
             <div className="h-[260px]">
-              {serviceChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={serviceChartData} margin={{ left: 0, right: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
-                    <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} angle={-25} textAnchor="end" height={60} />
-                    <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#6b7280' }} width={28} />
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                    />
-                    <Bar dataKey="value" name="Pages" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">No data yet</div>
-              )}
+              <ServiceChart data={serviceChartData} />
             </div>
           </div>
         </div>
@@ -383,7 +350,9 @@ export default function SEOPagesAdminPage() {
             >
               <option value="">All states</option>
               {STATES.map((state) => (
-                <option key={state} value={state}>{state}</option>
+                <option key={state} value={state}>
+                  {state}
+                </option>
               ))}
             </select>
             <select
@@ -393,7 +362,9 @@ export default function SEOPagesAdminPage() {
             >
               <option value="">All services</option>
               {SERVICE_TYPES.map((service) => (
-                <option key={service} value={service}>{formatService(service)}</option>
+                <option key={service} value={service}>
+                  {formatService(service)}
+                </option>
               ))}
             </select>
             <select
@@ -403,7 +374,9 @@ export default function SEOPagesAdminPage() {
             >
               <option value="">All priorities</option>
               {[90, 85, 80, 75, 70, 65, 60, 0].map((p) => (
-                <option key={p} value={p}>{p === 0 ? 'Any' : `≥ ${p}`}</option>
+                <option key={p} value={p}>
+                  {p === 0 ? 'Any' : `≥ ${p}`}
+                </option>
               ))}
             </select>
           </div>
@@ -427,20 +400,36 @@ export default function SEOPagesAdminPage() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50/80">
                     <tr>
-                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Page</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Location</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Service</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Priority</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Est. volume</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Clicks</th>
-                      <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">Action</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Page
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Location
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Service
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Priority
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Est. volume
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Clicks
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100 bg-white">
                     {pages.map((page) => (
                       <tr key={page.id} className="transition-colors hover:bg-gray-50/50">
                         <td className="px-6 py-4">
-                          <p className="max-w-xs truncate font-medium text-gray-900">{page.title}</p>
+                          <p className="max-w-xs truncate font-medium text-gray-900">
+                            {page.title}
+                          </p>
                           <p className="max-w-xs truncate text-xs text-gray-500">/{page.slug}</p>
                         </td>
                         <td className="px-6 py-4">
@@ -454,20 +443,30 @@ export default function SEOPagesAdminPage() {
                           <p className="text-sm font-medium text-gray-900">{page.serviceName}</p>
                           <p className="text-xs text-gray-500">{page.propertyType}</p>
                           {page.businessType && (
-                            <p className="text-xs text-blue-600">{page.businessType.replace(/-/g, ' ')}</p>
+                            <p className="text-xs text-blue-600">
+                              {page.businessType.replace(/-/g, ' ')}
+                            </p>
                           )}
                         </td>
                         <td className="px-6 py-4">
                           <span
                             className={`text-sm font-medium ${
-                              page.priorityScore >= 90 ? 'text-emerald-600' : page.priorityScore >= 75 ? 'text-amber-600' : 'text-gray-700'
+                              page.priorityScore >= 90
+                                ? 'text-emerald-600'
+                                : page.priorityScore >= 75
+                                  ? 'text-amber-600'
+                                  : 'text-gray-700'
                             }`}
                           >
                             {page.priorityScore}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{page.estimatedSearchVolume.toLocaleString()}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{page.organicClicks.toLocaleString()}</td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {page.estimatedSearchVolume.toLocaleString()}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {page.organicClicks.toLocaleString()}
+                        </td>
                         <td className="px-6 py-4 text-right">
                           <Link
                             href={`/services/${page.slug}`}

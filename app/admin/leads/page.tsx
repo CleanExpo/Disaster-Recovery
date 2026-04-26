@@ -21,25 +21,31 @@ import {
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useState } from 'react';
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+
+// C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
+// The parent admin route bundle no longer ships recharts; it loads in a separate
+// chunk after hydration. See ./Charts.tsx for the extracted subtree.
+const StatusChart = dynamic(() => import('./Charts').then((m) => m.StatusChart), {
+  ssr: false,
+});
+const UrgencyChart = dynamic(() => import('./Charts').then((m) => m.UrgencyChart), {
+  ssr: false,
+});
 
 interface Lead {
   id: string;
   bookingId: string;
   createdAt: string;
-  customer: { name: string; email: string; address: string; suburb: string; state: string; postcode: string };
+  customer: {
+    name: string;
+    email: string;
+    address: string;
+    suburb: string;
+    state: string;
+    postcode: string;
+  };
   service: {
     type: string;
     urgency: 'emergency' | 'urgent' | 'standard';
@@ -87,21 +93,6 @@ interface LeadsStats {
   urgencyData: Array<{ name: string; value: number }>;
 }
 
-const STATUS_COLORS: Record<string, string> = {
-  new: '#3b82f6',
-  contacted: '#eab308',
-  assigned: '#8b5cf6',
-  in_progress: '#6366f1',
-  completed: '#22c55e',
-  cancelled: '#ef4444',
-};
-
-const URGENCY_COLORS: Record<string, string> = {
-  emergency: '#ef4444',
-  urgent: '#f97316',
-  standard: '#3b82f6',
-};
-
 function getStatusStyle(status: Lead['status']) {
   const map: Record<Lead['status'], string> = {
     new: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -136,7 +127,12 @@ function getTimeSince(date: string) {
 
 export default function AdminLeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [pagination, setPagination] = useState<Pagination>({ page: 1, limit: 20, total: 0, pages: 0 });
+  const [pagination, setPagination] = useState<Pagination>({
+    page: 1,
+    limit: 20,
+    total: 0,
+    pages: 0,
+  });
   const [stats, setStats] = useState<LeadsStats | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
@@ -270,7 +266,9 @@ export default function AdminLeadsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Total leads</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{statsLoading ? '—' : kpis.total}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                  {statsLoading ? '—' : kpis.total}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-500/10">
                 <Inbox className="h-5 w-5 text-gray-600" />
@@ -281,7 +279,9 @@ export default function AdminLeadsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">New</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-blue-600">{statsLoading ? '—' : kpis.new}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-blue-600">
+                  {statsLoading ? '—' : kpis.new}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
                 <FileText className="h-5 w-5 text-blue-600" />
@@ -292,7 +292,9 @@ export default function AdminLeadsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Assigned</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-violet-600">{statsLoading ? '—' : kpis.assigned}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-violet-600">
+                  {statsLoading ? '—' : kpis.assigned}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10">
                 <User className="h-5 w-5 text-violet-600" />
@@ -303,7 +305,9 @@ export default function AdminLeadsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Completed</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">{statsLoading ? '—' : kpis.completed}</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">
+                  {statsLoading ? '—' : kpis.completed}
+                </p>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600" />
@@ -360,44 +364,7 @@ export default function AdminLeadsPage() {
               Status breakdown
             </h3>
             <div className="h-[260px]">
-              {statusChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={statusChartData}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={90}
-                      paddingAngle={2}
-                      label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
-                      labelLine={{ stroke: '#9ca3af' }}
-                    >
-                      {statusChartData.map((entry) => (
-                        <Cell
-                          key={entry.status}
-                          fill={STATUS_COLORS[entry.status] ?? '#94a3b8'}
-                          stroke="none"
-                        />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                      formatter={((value: number, name: string) => [value, name]) as any}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">
-                  No leads yet
-                </div>
-              )}
+              <StatusChart data={statusChartData} />
             </div>
           </div>
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -405,36 +372,7 @@ export default function AdminLeadsPage() {
               By urgency
             </h3>
             <div className="h-[260px]">
-              {urgencyChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={urgencyChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" horizontal={false} />
-                    <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: '#6b7280' }} />
-                    <YAxis
-                      type="category"
-                      dataKey="name"
-                      tick={{ fontSize: 12, fill: '#6b7280' }}
-                      width={80}
-                    />
-                    <Tooltip
-                      contentStyle={{
-                        borderRadius: 12,
-                        border: '1px solid #e5e7eb',
-                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                      }}
-                    />
-                    <Bar dataKey="value" name="Leads" radius={[0, 4, 4, 0]}>
-                      {urgencyChartData.map((entry, i) => (
-                        <Cell key={i} fill={URGENCY_COLORS[entry.name] ?? '#94a3b8'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-gray-400">
-                  No leads yet
-                </div>
-              )}
+              <UrgencyChart data={urgencyChartData} />
             </div>
           </div>
         </div>
@@ -510,152 +448,157 @@ export default function AdminLeadsPage() {
             </div>
           ) : (
             <>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50/80">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Lead
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Customer
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Service
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Payment
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Contractor
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Status
-                    </th>
-                    <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 bg-white">
-                  {leads.map((lead) => (
-                    <tr key={lead.id} className="transition-colors hover:bg-gray-50/50">
-                      <td className="px-6 py-4">
-                        <div>
-                          <p className="font-medium text-gray-900">{lead.bookingId}</p>
-                          <p className="text-sm text-gray-500">{getTimeSince(lead.createdAt)}</p>
-                          {lead.priority === 'high' && (
-                            <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-xs font-medium text-red-800">
-                              <Zap className="h-3 w-3" />
-                              High priority
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100">
-                            <User className="h-5 w-5 text-gray-500" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-gray-900">{lead.customer.name}</p>
-                            <p className="text-sm text-gray-500">
-                              {lead.customer.suburb}, {lead.customer.state}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          {getUrgencyIcon(lead.service.urgency)}
-                          <div>
-                            <p className="text-sm font-medium text-gray-900">{lead.service.type}</p>
-                            <p className="text-xs text-gray-500">
-                              {lead.service.propertyType} · {lead.service.affectedAreas.join(', ')}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <p className="font-medium text-gray-900">
-                          ${lead.payment.amount.toLocaleString()}
-                        </p>
-                        <span
-                          className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${
-                            lead.payment.status === 'completed'
-                              ? 'border-emerald-200 bg-emerald-100 text-emerald-800'
-                              : lead.payment.status === 'processing'
-                                ? 'border-amber-200 bg-amber-100 text-amber-800'
-                                : lead.payment.status === 'failed'
-                                  ? 'border-red-200 bg-red-100 text-red-800'
-                                  : 'border-gray-200 bg-gray-100 text-gray-800'
-                          }`}
-                        >
-                          {lead.payment.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        {lead.contractor.assigned ? (
-                          <div>
-                            <p className="text-sm font-medium text-gray-900">{lead.contractor.username}</p>
-                            <p className="text-xs text-gray-500">
-                              Response: {lead.contractor.responseTime} min
-                            </p>
-                          </div>
-                        ) : (
-                          <span className="text-sm text-gray-500">Not assigned</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${getStatusStyle(lead.status)}`}
-                        >
-                          {lead.status.replace('_', ' ')}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedLead(lead)}
-                          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
-                          style={{ backgroundColor: '#059669', color: '#ffffff' }}
-                        >
-                          View
-                          <ChevronRight className="h-4 w-4" />
-                        </button>
-                      </td>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50/80">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Lead
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Customer
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Service
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Payment
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Contractor
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Status
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Action
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            {pagination.pages > 1 ? (
-              <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-200 bg-gray-50/50 px-6 py-4">
-                <p className="text-sm text-gray-600">
-                  Page <span className="font-medium">{pagination.page}</span> of{' '}
-                  <span className="font-medium">{pagination.pages}</span> ·{' '}
-                  <span className="font-medium">{pagination.total}</span> total
-                </p>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => handlePageChange(pagination.page - 1)}
-                    disabled={pagination.page <= 1}
-                    className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-                  >
-                    Previous
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handlePageChange(pagination.page + 1)}
-                    disabled={pagination.page >= pagination.pages}
-                    className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-                  >
-                    Next
-                  </button>
-                </div>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 bg-white">
+                    {leads.map((lead) => (
+                      <tr key={lead.id} className="transition-colors hover:bg-gray-50/50">
+                        <td className="px-6 py-4">
+                          <div>
+                            <p className="font-medium text-gray-900">{lead.bookingId}</p>
+                            <p className="text-sm text-gray-500">{getTimeSince(lead.createdAt)}</p>
+                            {lead.priority === 'high' && (
+                              <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-xs font-medium text-red-800">
+                                <Zap className="h-3 w-3" />
+                                High priority
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100">
+                              <User className="h-5 w-5 text-gray-500" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-900">{lead.customer.name}</p>
+                              <p className="text-sm text-gray-500">
+                                {lead.customer.suburb}, {lead.customer.state}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            {getUrgencyIcon(lead.service.urgency)}
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">
+                                {lead.service.type}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {lead.service.propertyType} ·{' '}
+                                {lead.service.affectedAreas.join(', ')}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <p className="font-medium text-gray-900">
+                            ${lead.payment.amount.toLocaleString()}
+                          </p>
+                          <span
+                            className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${
+                              lead.payment.status === 'completed'
+                                ? 'border-emerald-200 bg-emerald-100 text-emerald-800'
+                                : lead.payment.status === 'processing'
+                                  ? 'border-amber-200 bg-amber-100 text-amber-800'
+                                  : lead.payment.status === 'failed'
+                                    ? 'border-red-200 bg-red-100 text-red-800'
+                                    : 'border-gray-200 bg-gray-100 text-gray-800'
+                            }`}
+                          >
+                            {lead.payment.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          {lead.contractor.assigned ? (
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">
+                                {lead.contractor.username}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                Response: {lead.contractor.responseTime} min
+                              </p>
+                            </div>
+                          ) : (
+                            <span className="text-sm text-gray-500">Not assigned</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${getStatusStyle(lead.status)}`}
+                          >
+                            {lead.status.replace('_', ' ')}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedLead(lead)}
+                            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                            style={{ backgroundColor: '#059669', color: '#ffffff' }}
+                          >
+                            View
+                            <ChevronRight className="h-4 w-4" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            ) : null}
+              {pagination.pages > 1 ? (
+                <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-200 bg-gray-50/50 px-6 py-4">
+                  <p className="text-sm text-gray-600">
+                    Page <span className="font-medium">{pagination.page}</span> of{' '}
+                    <span className="font-medium">{pagination.pages}</span> ·{' '}
+                    <span className="font-medium">{pagination.total}</span> total
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(pagination.page - 1)}
+                      disabled={pagination.page <= 1}
+                      className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(pagination.page + 1)}
+                      disabled={pagination.page >= pagination.pages}
+                      className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              ) : null}
             </>
           )}
         </div>
@@ -734,7 +677,9 @@ export default function AdminLeadsPage() {
                   </p>
                   <p className="text-sm">
                     <span className="text-gray-500">Affected areas:</span>{' '}
-                    <span className="text-gray-900">{selectedLead.service.affectedAreas.join(', ')}</span>
+                    <span className="text-gray-900">
+                      {selectedLead.service.affectedAreas.join(', ')}
+                    </span>
                   </p>
                 </div>
               </div>
