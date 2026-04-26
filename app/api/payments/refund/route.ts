@@ -7,10 +7,11 @@ import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 
 // Initialize Stripe or use mock
-const stripe = process.env.STRIPE_SECRET_KEY 
+const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-06-20' as const })
-  : getMockStripe() as any;
+      apiVersion: '2024-06-20' as const,
+    })
+  : (getMockStripe() as any);
 
 const emailService = process.env.EMAIL_SERVER_HOST
   ? null // Use real email service when configured
@@ -31,13 +32,13 @@ export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/payments/refund' });
   try {
     const refundData: RefundRequest = await request.json();
-    
+
     // Validate cooling-off period for consumer protection
     const coolingOff = calculateCoolingOffPeriod(new Date(refundData.bookingDate));
-    
+
     // Automatic approval for cooling-off period cancellations
     const autoApprove = refundData.reason === 'cooling_off' && coolingOff.canCancel;
-    
+
     // Calculate refund amount
     let refundAmount = refundData.amount;
     if (!refundAmount) {
@@ -49,20 +50,23 @@ export async function POST(request: NextRequest) {
         refundAmount = 270000; // $2,700 (keeping $50 processing fee)
       }
     }
-    
+
     // Process refund through Stripe
-    const refund = await stripe.refunds.create({
-      payment_intent: refundData.paymentIntentId,
-      amount: refundAmount,
-      reason: mapRefundReason(refundData.reason),
-      metadata: {
-        bookingId: refundData.bookingId,
-        customerReason: refundData.reason,
-        description: refundData.description || '',
-        autoApproved: autoApprove.toString()
-      }
-    });
-    
+    const refund = await stripe.refunds.create(
+      {
+        payment_intent: refundData.paymentIntentId,
+        amount: refundAmount,
+        reason: mapRefundReason(refundData.reason),
+        metadata: {
+          bookingId: refundData.bookingId,
+          customerReason: refundData.reason,
+          description: refundData.description || '',
+          autoApproved: autoApprove.toString(),
+        },
+      },
+      { idempotencyKey: `dr-refund-${refundData.paymentIntentId}-${refundAmount}` },
+    );
+
     // Update payment record with refund info
     try {
       await (prisma.payment.updateMany as any)({
@@ -75,7 +79,9 @@ export async function POST(request: NextRequest) {
         },
       });
     } catch (dbError) {
-      log.error('failed to update payment record', { error: dbError instanceof Error ? dbError.message : String(dbError) });
+      log.error('failed to update payment record', {
+        error: dbError instanceof Error ? dbError.message : String(dbError),
+      });
       // Don't fail the request — Stripe refund already processed
     }
 
@@ -85,10 +91,10 @@ export async function POST(request: NextRequest) {
         to: refundData.customerEmail,
         subject: `Refund Processed - ${refundData.bookingId}`,
         html: generateRefundEmail(refundData, refundAmount, refund.id),
-        text: `Your refund of $${(refundAmount / 100).toFixed(2)} has been processed.`
+        text: `Your refund of $${(refundAmount / 100).toFixed(2)} has been processed.`,
       });
     }
-    
+
     return NextResponse.json({
       success: true,
       refundId: refund.id,
@@ -96,45 +102,43 @@ export async function POST(request: NextRequest) {
       status: refund.status,
       estimatedArrival: '5-10 business days',
       coolingOffApplied: refundData.reason === 'cooling_off',
-      message: autoApprove 
+      message: autoApprove
         ? 'Refund automatically approved under cooling-off period rights'
-        : 'Refund processed successfully'
+        : 'Refund processed successfully',
     });
-    
   } catch (error: any) {
     log.error('refund error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/payments/refund' }, extra: { requestId: log.requestId } });
+    captureException(error, {
+      tags: { route: '/api/payments/refund' },
+      extra: { requestId: log.requestId },
+    });
 
     return NextResponse.json(
       {
         success: false,
         message: error.message || 'Failed to process refund',
-        code: error.code
+        code: error.code,
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }
 
 function mapRefundReason(reason: string): string {
   const reasonMap: Record<string, string> = {
-    'cooling_off': 'requested_by_customer',
-    'service_not_provided': 'requested_by_customer',
-    'quality_issue': 'requested_by_customer',
-    'duplicate_payment': 'duplicate',
-    'other': 'requested_by_customer'
+    cooling_off: 'requested_by_customer',
+    service_not_provided: 'requested_by_customer',
+    quality_issue: 'requested_by_customer',
+    duplicate_payment: 'duplicate',
+    other: 'requested_by_customer',
   };
-  
+
   return reasonMap[reason] || 'requested_by_customer';
 }
 
-function generateRefundEmail(
-  refundData: RefundRequest,
-  amount: number,
-  refundId: string
-): string {
+function generateRefundEmail(refundData: RefundRequest, amount: number, refundId: string): string {
   const amountFormatted = (amount / 100).toFixed(2);
-  
+
   return `
     <!DOCTYPE html>
     <html>

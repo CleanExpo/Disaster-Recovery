@@ -4,7 +4,8 @@ import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-06-20' as const });
+  apiVersion: '2024-06-20' as const,
+});
 
 interface KPICheckpoint {
   id: string;
@@ -63,43 +64,51 @@ const defaultKPIs: KPICheckpoint[] = [
     name: 'Initial Contact',
     description: 'Contractor has contacted the customer within the agreed timeframe',
     required: true,
-    status: 'pending' },
+    status: 'pending',
+  },
   {
     id: 'kpi-002',
     name: 'Site Attendance',
     description: 'Contractor has attended the property for initial assessment',
     required: true,
-    status: 'pending' },
+    status: 'pending',
+  },
   {
     id: 'kpi-003',
     name: 'Damage Assessment',
     description: 'Complete damage assessment report submitted',
     required: true,
-    status: 'pending' },
+    status: 'pending',
+  },
   {
     id: 'kpi-004',
     name: 'Work Commencement',
     description: 'Emergency mitigation work has commenced',
     required: true,
-    status: 'pending' },
+    status: 'pending',
+  },
   {
     id: 'kpi-005',
     name: 'Customer Confirmation',
     description: 'Customer has confirmed contractor attendance and work commencement',
     required: true,
-    status: 'pending' },
+    status: 'pending',
+  },
 ];
 
 // Validate KPIs are met for payment release
-function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
+function validateKPIs(
+  kpiCheckpoints: KPICheckpoint[],
+  releaseType: string,
+): {
   valid: boolean;
   message: string;
   completedCount: number;
   requiredCount: number;
 } {
-  const requiredKPIs = kpiCheckpoints.filter(kpi => kpi.required);
-  const completedRequired = requiredKPIs.filter(kpi => 
-    kpi.status === 'completed' || kpi.status === 'waived'
+  const requiredKPIs = kpiCheckpoints.filter((kpi) => kpi.required);
+  const completedRequired = requiredKPIs.filter(
+    (kpi) => kpi.status === 'completed' || kpi.status === 'waived',
   );
 
   if (releaseType === 'emergency') {
@@ -110,13 +119,15 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
         valid: true,
         message: 'Emergency release criteria met',
         completedCount: completedRequired.length,
-        requiredCount: minRequiredForEmergency };
+        requiredCount: minRequiredForEmergency,
+      };
     }
     return {
       valid: false,
       message: `Emergency release requires at least ${minRequiredForEmergency} KPIs completed`,
       completedCount: completedRequired.length,
-      requiredCount: minRequiredForEmergency };
+      requiredCount: minRequiredForEmergency,
+    };
   }
 
   if (releaseType === 'partial') {
@@ -128,13 +139,15 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
         valid: true,
         message: 'Partial release criteria met',
         completedCount: completedRequired.length,
-        requiredCount: minRequired };
+        requiredCount: minRequired,
+      };
     }
     return {
       valid: false,
       message: `Partial release requires at least ${minRequired} KPIs completed`,
       completedCount: completedRequired.length,
-      requiredCount: minRequired };
+      requiredCount: minRequired,
+    };
   }
 
   // Full release requires all required KPIs
@@ -143,14 +156,16 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
       valid: true,
       message: 'All required KPIs completed',
       completedCount: completedRequired.length,
-      requiredCount: requiredKPIs.length };
+      requiredCount: requiredKPIs.length,
+    };
   }
 
   return {
     valid: false,
     message: `Full release requires all ${requiredKPIs.length} KPIs to be completed`,
     completedCount: completedRequired.length,
-    requiredCount: requiredKPIs.length };
+    requiredCount: requiredKPIs.length,
+  };
 }
 
 export async function POST(request: NextRequest) {
@@ -160,15 +175,20 @@ export async function POST(request: NextRequest) {
 
     // Validate KPIs
     const kpiValidation = validateKPIs(releaseRequest.kpiCheckpoints, releaseRequest.releaseType);
-    
+
     if (!kpiValidation.valid) {
-      return NextResponse.json({
-        success: false,
-        message: kpiValidation.message,
-        data: {
-          completedKPIs: kpiValidation.completedCount,
-          requiredKPIs: kpiValidation.requiredCount,
-          kpiDetails: releaseRequest.kpiCheckpoints } }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: kpiValidation.message,
+          data: {
+            completedKPIs: kpiValidation.completedCount,
+            requiredKPIs: kpiValidation.requiredCount,
+            kpiDetails: releaseRequest.kpiCheckpoints,
+          },
+        },
+        { status: 400 },
+      );
     }
 
     // Calculate release amount
@@ -217,33 +237,42 @@ export async function POST(request: NextRequest) {
     }
 
     if (!stripeAccountId) {
-      return NextResponse.json({
-        success: false,
-        message: 'Contractor has no connected payment account' }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Contractor has no connected payment account',
+        },
+        { status: 400 },
+      );
     }
 
     try {
       // Create a transfer to the contractor's Stripe Connect account
-      const transfer = await stripe.transfers.create({
-        amount: releaseAmount,
-        currency: 'aud',
-        destination: stripeAccountId,
-        transfer_group: releaseRequest.bookingId,
-        description: `Payment release for job ${releaseRequest.bookingId}`,
-        metadata: {
-          bookingId: releaseRequest.bookingId,
-          contractorId: releaseRequest.contractorId,
-          jobId: releaseRequest.jobId,
-          releaseType: releaseRequest.releaseType,
-          kpisCompleted: releaseRequest.kpiCheckpoints
-            .filter(kpi => kpi.status === 'completed')
-            .map(kpi => kpi.id)
-            .join(','),
-          authorizedBy: releaseRequest.authorizedBy } });
+      const transfer = await stripe.transfers.create(
+        {
+          amount: releaseAmount,
+          currency: 'aud',
+          destination: stripeAccountId,
+          transfer_group: releaseRequest.bookingId,
+          description: `Payment release for job ${releaseRequest.bookingId}`,
+          metadata: {
+            bookingId: releaseRequest.bookingId,
+            contractorId: releaseRequest.contractorId,
+            jobId: releaseRequest.jobId,
+            releaseType: releaseRequest.releaseType,
+            kpisCompleted: releaseRequest.kpiCheckpoints
+              .filter((kpi) => kpi.status === 'completed')
+              .map((kpi) => kpi.id)
+              .join(','),
+            authorizedBy: releaseRequest.authorizedBy,
+          },
+        },
+        { idempotencyKey: `dr-release-${releaseRequest.jobId}-${stripeAccountId}` },
+      );
 
       // Create payout to contractor's bank account (optional - Connect handles this)
       // Contractors can configure their payout schedule in their Connect dashboard
-      
+
       // Record the payment release
       const paymentRelease: PaymentRelease = {
         id: `REL-${Date.now()}`,
@@ -252,10 +281,11 @@ export async function POST(request: NextRequest) {
         releasedAt: new Date().toISOString(),
         stripeTransferId: transfer.id,
         kpisCompleted: releaseRequest.kpiCheckpoints
-          .filter(kpi => kpi.status === 'completed')
-          .map(kpi => kpi.id),
+          .filter((kpi) => kpi.status === 'completed')
+          .map((kpi) => kpi.id),
         authorizedBy: releaseRequest.authorizedBy,
-        notes: releaseRequest.adminNotes };
+        notes: releaseRequest.adminNotes,
+      };
 
       // Record the payment in the database
       await prisma.payment.create({
@@ -287,7 +317,9 @@ export async function POST(request: NextRequest) {
           amount: releaseAmount,
           type: releaseRequest.releaseType,
           transferId: transfer.id,
-          expectedArrival: '1-2 business days' } };
+          expectedArrival: '1-2 business days',
+        },
+      };
 
       // Calculate remaining balance
       const remainingBalance = contractorTotalAmount - releaseAmount;
@@ -306,22 +338,34 @@ export async function POST(request: NextRequest) {
           kpisCompleted: kpiValidation.completedCount,
           totalKPIs: kpiValidation.requiredCount,
           notification: contractorNotification,
-          nextSteps: remainingBalance > 0 ? 
-            'Complete remaining KPIs for full payment release' : 
-            'All payments have been released' } });
-
+          nextSteps:
+            remainingBalance > 0
+              ? 'Complete remaining KPIs for full payment release'
+              : 'All payments have been released',
+        },
+      });
     } catch (stripeError) {
-      log.error('stripe transfer error', { error: stripeError instanceof Error ? stripeError.message : String(stripeError) });
+      log.error('stripe transfer error', {
+        error: stripeError instanceof Error ? stripeError.message : String(stripeError),
+      });
       throw new Error('Failed to process payment transfer');
     }
-
   } catch (error) {
-    log.error('payment release error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/contractors/release-payment' }, extra: { requestId: log.requestId } });
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to release payment',
-      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
+    log.error('payment release error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/contractors/release-payment' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to release payment',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 },
+    );
   }
 }
 
@@ -333,35 +377,40 @@ export async function GET(request: NextRequest) {
   const contractorId = searchParams.get('contractorId');
 
   if (!bookingId && !contractorId) {
-    return NextResponse.json({
-      success: false,
-      message: 'Either bookingId or contractorId is required' }, { status: 400 });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Either bookingId or contractorId is required',
+      },
+      { status: 400 },
+    );
   }
 
   try {
     // Query real payment records from the database
     const payments = await prisma.payment.findMany({
-      where: bookingId
-        ? { bookingId }
-        : { contractorId: contractorId! },
+      where: bookingId ? { bookingId } : { contractorId: contractorId! },
       orderBy: { createdAt: 'desc' },
     });
 
     // Calculate totals from real data
     const totalReleased = payments
-      .filter(p => p.status === 'COMPLETED')
+      .filter((p) => p.status === 'COMPLETED')
       .reduce((sum, p) => sum + p.amountAUD, 0);
 
     // Look up the booking to get estimated cost as total amount
     const booking = bookingId
-      ? await prisma.booking.findUnique({ where: { id: bookingId }, select: { estimatedCostAUD: true } })
+      ? await prisma.booking.findUnique({
+          where: { id: bookingId },
+          select: { estimatedCostAUD: true },
+        })
       : null;
 
     const totalAmount = booking?.estimatedCostAUD || totalReleased;
     const amountPending = Math.max(0, totalAmount - totalReleased);
 
     // Build releases from payment records
-    const releases: PaymentRelease[] = payments.map(p => ({
+    const releases: PaymentRelease[] = payments.map((p) => ({
       id: p.id,
       amount: Math.round(p.amountAUD * 100), // Convert to cents for consistency
       type: 'partial' as const,
@@ -379,12 +428,13 @@ export async function GET(request: NextRequest) {
       amountReleased: Math.round(totalReleased * 100),
       amountPending: Math.round(amountPending * 100),
       serviceFee: 0,
-      status: totalReleased === 0 ? 'held' : amountPending > 0 ? 'partial_released' : 'fully_released',
+      status:
+        totalReleased === 0 ? 'held' : amountPending > 0 ? 'partial_released' : 'fully_released',
       releases,
     };
 
     // Return current KPI status (default, since KPI tracking is per-release)
-    const currentKPIs = defaultKPIs.map(kpi => ({
+    const currentKPIs = defaultKPIs.map((kpi) => ({
       ...kpi,
       status: kpi.status as string,
       completedAt: undefined as string | undefined,
@@ -400,14 +450,26 @@ export async function GET(request: NextRequest) {
           released: `$${totalReleased.toFixed(2)}`,
           pending: `$${amountPending.toFixed(2)}`,
           releaseCount: releases.length,
-          completedKPIs: currentKPIs.filter(k => k.status === 'completed').length,
-          totalKPIs: currentKPIs.length } } });
+          completedKPIs: currentKPIs.filter((k) => k.status === 'completed').length,
+          totalKPIs: currentKPIs.length,
+        },
+      },
+    });
   } catch (error) {
-    log.error('payment history fetch error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/contractors/release-payment' }, extra: { requestId: log.requestId } });
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to fetch payment history',
-      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
+    log.error('payment history fetch error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/contractors/release-payment' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to fetch payment history',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 },
+    );
   }
 }
