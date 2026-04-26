@@ -102,10 +102,12 @@ const nextConfig = {
     // unused packages (@google/generative-ai, exceljs, pdfjs-dist, cmdk —
     // verified zero or near-zero client imports) added build memory pressure
     // for no client-bundle benefit.
+    // Verification pass (C2 finishing pass, 2026-04-26): removed
+    // @radix-ui/react-alert-dialog — zero client imports across src/ and app/
+    // (only present in package.json as a transitive ui-component dependency).
     optimizePackageImports: [
       '@hookform/resolvers',
       '@radix-ui/react-accordion',
-      '@radix-ui/react-alert-dialog',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
       '@radix-ui/react-popover',
