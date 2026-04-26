@@ -114,7 +114,16 @@ const validCities = [
   'cairns',
 ];
 
-// Generate static params for all city-service AND city-suburb-service combinations
+// ISR config — long-tail suburb pages build on first request, then cache as static.
+// Pre-built pages refresh every 24h.
+export const dynamicParams = true;
+export const revalidate = 86400;
+
+// Pre-build the 90 high-priority city-service pages at build time.
+// The 1,062 suburb-service pages are deferred to first-request (ISR) to keep
+// peak build memory under the Vercel container ceiling (was OOM'ing at ~20 min
+// when all 1,152 routes were pre-built simultaneously). Suburb pages still
+// pre-render on first crawler visit and serve as static thereafter.
 export async function generateStaticParams() {
   const params: { city: string; slug: string[] }[] = [];
 
@@ -125,15 +134,14 @@ export async function generateStaticParams() {
     }
   }
 
-  // Suburb-service pages (177 suburbs × 6 services = 1062 pages)
-  for (const city of suburbCities) {
-    const suburbs = getSuburbSlugs(city);
-    for (const suburb of suburbs) {
-      for (const service of validServices) {
-        params.push({ city, slug: [suburb, service] });
-      }
-    }
-  }
+  // Suburb-service pages: deferred to ISR. Build on first request via
+  // dynamicParams + revalidate. To pre-build a specific suburb at build time
+  // (e.g. for a campaign), append it here explicitly.
+  // Reference: 177 suburbs × 6 services = 1,062 routes available via ISR.
+  // suburbCities and getSuburbSlugs(city) still drive runtime resolution
+  // through the validation block below.
+  void suburbCities;
+  void getSuburbSlugs;
 
   return params;
 }
