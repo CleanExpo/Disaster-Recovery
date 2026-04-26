@@ -36,26 +36,29 @@ async function createStripeCheckoutUrl(draft_id: string): Promise<string | null>
     // as a dependency (^16.12.0) so the dynamic import should succeed.
     const Stripe = (await import('stripe')).default;
     const stripe = new Stripe(key);
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      expires_at: Math.floor(Date.now() / 1000) + 3600,
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            currency: 'aud',
-            unit_amount: CALLOUT_FEE_AUD_CENTS,
-            product_data: { name: 'Disaster Recovery callout fee' },
+    const session = await stripe.checkout.sessions.create(
+      {
+        mode: 'payment',
+        expires_at: Math.floor(Date.now() / 1000) + 3600,
+        line_items: [
+          {
+            quantity: 1,
+            price_data: {
+              currency: 'aud',
+              unit_amount: CALLOUT_FEE_AUD_CENTS,
+              product_data: { name: 'Disaster Recovery callout fee' },
+            },
           },
+        ],
+        metadata: { dr_claim_id: draft_id, dr_source_channel: 'voice' },
+        payment_intent_data: {
+          statement_descriptor: 'DISASTER RECOVERY',
         },
-      ],
-      metadata: { dr_claim_id: draft_id, dr_source_channel: 'voice' },
-      payment_intent_data: {
-        statement_descriptor: 'DISASTER RECOVERY',
+        success_url: 'https://disasterrecovery.com.au/payment/success?cs={CHECKOUT_SESSION_ID}',
+        cancel_url: 'https://disasterrecovery.com.au/payment/cancelled',
       },
-      success_url: 'https://disasterrecovery.com.au/payment/success?cs={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://disasterrecovery.com.au/payment/cancelled',
-    });
+      { idempotencyKey: `dr-voice-callout-${draft_id}` },
+    );
     return session.url || null;
   } catch (err) {
     console.error(

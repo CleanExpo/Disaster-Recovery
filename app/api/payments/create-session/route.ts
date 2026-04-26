@@ -70,14 +70,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     );
   }
 
-  const {
-    claim_id,
-    amount_cents,
-    currency,
-    customer_email,
-    customer_phone,
-    metadata,
-  } = parsed;
+  const { claim_id, amount_cents, currency, customer_email, customer_phone, metadata } = parsed;
 
   // 1. Reuse existing customer by email, else create.
   let customerId: string;
@@ -86,11 +79,14 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (existing.data.length > 0) {
       customerId = existing.data[0]!.id;
     } else {
-      const created = await stripe.customers.create({
-        email: customer_email,
-        phone: customer_phone,
-        metadata: { dr_claim_id: claim_id },
-      });
+      const created = await stripe.customers.create(
+        {
+          email: customer_email,
+          phone: customer_phone,
+          metadata: { dr_claim_id: claim_id },
+        },
+        { idempotencyKey: `dr-consumer-customer-${claim_id}` },
+      );
       customerId = created.id;
     }
   } catch (err) {
@@ -153,8 +149,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         },
         payment_method_options: {
           card: {
-            request_three_d_secure:
-              amount_cents >= threeDsThresholdCents ? 'any' : 'automatic',
+            request_three_d_secure: amount_cents >= threeDsThresholdCents ? 'any' : 'automatic',
           },
         },
         metadata: sharedMetadata,

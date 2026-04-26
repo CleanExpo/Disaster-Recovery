@@ -62,15 +62,18 @@ export async function createStripeCustomer(
     throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
   }
 
-  const customer = await stripe.customers.create({
-    email,
-    name,
-    metadata: {
-      contractorId,
-      platform: 'NRPG',
-      ...metadata,
+  const customer = await stripe.customers.create(
+    {
+      email,
+      name,
+      metadata: {
+        contractorId,
+        platform: 'NRPG',
+        ...metadata,
+      },
     },
-  });
+    { idempotencyKey: `dr-customer-${contractorId}` },
+  );
 
   return customer;
 }
@@ -82,19 +85,22 @@ export async function createOnboardingPaymentIntent(customerId: string, contract
   }
   const totalAmount = PAYMENT_AMOUNTS.APPLICATION_FEE + PAYMENT_AMOUNTS.JOINING_FEE;
 
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: totalAmount,
-    currency: 'aud',
-    customer: customerId,
-    metadata: {
-      contractorId,
-      type: 'onboarding',
-      applicationFee: PAYMENT_AMOUNTS.APPLICATION_FEE.toString(),
-      joiningFee: PAYMENT_AMOUNTS.JOINING_FEE.toString(),
+  const paymentIntent = await stripe.paymentIntents.create(
+    {
+      amount: totalAmount,
+      currency: 'aud',
+      customer: customerId,
+      metadata: {
+        contractorId,
+        type: 'onboarding',
+        applicationFee: PAYMENT_AMOUNTS.APPLICATION_FEE.toString(),
+        joiningFee: PAYMENT_AMOUNTS.JOINING_FEE.toString(),
+      },
+      description: 'NRPG Contractor Onboarding - Application Fee ($275) + Joining Fee ($2,200)',
+      statement_descriptor: 'NRPG ONBOARDING',
     },
-    description: 'NRPG Contractor Onboarding - Application Fee ($275) + Joining Fee ($2,200)',
-    statement_descriptor: 'NRPG ONBOARDING',
-  });
+    { idempotencyKey: `dr-onboarding-pi-${contractorId}` },
+  );
 
   return paymentIntent;
 }
@@ -105,58 +111,68 @@ export async function createContractorSubscription(customerId: string, contracto
     throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
   }
   // Create subscription with trial period for first free month
-  const subscription = await stripe.subscriptions.create({
-    customer: customerId,
-    items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
-    trial_period_days: 30, // First month free
-    metadata: {
-      contractorId,
-      promoSchedule: 'month1_free_month2_60off_month3_50off',
+  const subscription = await stripe.subscriptions.create(
+    {
+      customer: customerId,
+      items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
+      trial_period_days: 30, // First month free
+      metadata: {
+        contractorId,
+        promoSchedule: 'month1_free_month2_60off_month3_50off',
+      },
+      description: 'NRPG Contractor Subscription',
     },
-    description: 'NRPG Contractor Subscription',
-  });
+    { idempotencyKey: `dr-subscription-${contractorId}` },
+  );
 
   // Schedule price changes for months 2 and 3
-  await createSubscriptionSchedule(subscription.id, customerId);
+  await createSubscriptionSchedule(subscription.id, customerId, contractorId);
 
   return subscription;
 }
 
 // Create subscription schedule for promotional pricing
-async function createSubscriptionSchedule(subscriptionId: string, _customerId: string) {
+async function createSubscriptionSchedule(
+  subscriptionId: string,
+  _customerId: string,
+  contractorId: string,
+) {
   if (!stripe) {
     throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
   }
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
-  const schedule = await (stripe.subscriptionSchedules.create as any)({
-    from_subscription: subscriptionId,
-    phases: [
-      {
-        // Month 1: Free trial (30 days)
-        start_date: subscription.trial_end || 'now',
-        end_date: subscription.trial_end ? (subscription.trial_end as number) + 2592000 : 'now', // +30 days
-        items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
-        coupon: 'free_month', // 100% off coupon
-      },
-      {
-        // Month 2: 60% off (30 days)
-        items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
-        coupon: 'sixty_percent_off', // 60% off coupon
-        iterations: 1,
-      },
-      {
-        // Month 3: 50% off (30 days)
-        items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
-        coupon: 'fifty_percent_off', // 50% off coupon
-        iterations: 1,
-      },
-      {
-        // Month 4+: Regular price
-        items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
-      },
-    ],
-  });
+  const schedule = await (stripe.subscriptionSchedules.create as any)(
+    {
+      from_subscription: subscriptionId,
+      phases: [
+        {
+          // Month 1: Free trial (30 days)
+          start_date: subscription.trial_end || 'now',
+          end_date: subscription.trial_end ? (subscription.trial_end as number) + 2592000 : 'now', // +30 days
+          items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
+          coupon: 'free_month', // 100% off coupon
+        },
+        {
+          // Month 2: 60% off (30 days)
+          items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
+          coupon: 'sixty_percent_off', // 60% off coupon
+          iterations: 1,
+        },
+        {
+          // Month 3: 50% off (30 days)
+          items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
+          coupon: 'fifty_percent_off', // 50% off coupon
+          iterations: 1,
+        },
+        {
+          // Month 4+: Regular price
+          items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
+        },
+      ],
+    },
+    { idempotencyKey: `dr-schedule-${contractorId}` },
+  );
 
   return schedule;
 }
@@ -180,45 +196,48 @@ export async function createOnboardingCheckoutSession(
     throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
   }
 
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    mode: 'payment',
-    customer_email: email,
-    line_items: [
-      {
-        price_data: {
-          currency: 'aud',
-          product_data: {
-            name: 'Application Fee',
-            description: 'NRPG Contractor Application Processing Fee',
+  const session = await stripe.checkout.sessions.create(
+    {
+      payment_method_types: ['card'],
+      mode: 'payment',
+      customer_email: email,
+      line_items: [
+        {
+          price_data: {
+            currency: 'aud',
+            product_data: {
+              name: 'Application Fee',
+              description: 'NRPG Contractor Application Processing Fee',
+            },
+            unit_amount: PAYMENT_AMOUNTS.APPLICATION_FEE,
           },
-          unit_amount: PAYMENT_AMOUNTS.APPLICATION_FEE,
+          quantity: 1,
         },
-        quantity: 1,
-      },
-      {
-        price_data: {
-          currency: 'aud',
-          product_data: {
-            name: 'Joining Fee',
-            description: 'NRPG Network Access & Training Materials',
+        {
+          price_data: {
+            currency: 'aud',
+            product_data: {
+              name: 'Joining Fee',
+              description: 'NRPG Network Access & Training Materials',
+            },
+            unit_amount: PAYMENT_AMOUNTS.JOINING_FEE,
           },
-          unit_amount: PAYMENT_AMOUNTS.JOINING_FEE,
+          quantity: 1,
         },
-        quantity: 1,
+      ],
+      metadata: {
+        contractorId,
+        type: 'onboarding',
+        ...extraMetadata,
       },
-    ],
-    metadata: {
-      contractorId,
-      type: 'onboarding',
-      ...extraMetadata,
+      payment_intent_data: {
+        statement_descriptor: 'NRPG ONBOARDING',
+      },
+      success_url: successUrl,
+      cancel_url: cancelUrl,
     },
-    payment_intent_data: {
-      statement_descriptor: 'NRPG ONBOARDING',
-    },
-    success_url: successUrl,
-    cancel_url: cancelUrl,
-  });
+    { idempotencyKey: `dr-onboarding-checkout-${contractorId}` },
+  );
 
   return session;
 }
@@ -244,11 +263,14 @@ export async function createRefund(paymentIntentId: string, amount?: number, rea
   if (!stripe) {
     throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
   }
-  const refund = await stripe.refunds.create({
-    payment_intent: paymentIntentId,
-    amount, // If not specified, refunds entire amount
-    reason: (reason as Stripe.RefundCreateParams.Reason) || 'requested_by_customer',
-  });
+  const refund = await stripe.refunds.create(
+    {
+      payment_intent: paymentIntentId,
+      amount, // If not specified, refunds entire amount
+      reason: (reason as Stripe.RefundCreateParams.Reason) || 'requested_by_customer',
+    },
+    { idempotencyKey: `dr-refund-${paymentIntentId}` },
+  );
 
   return refund;
 }
