@@ -1,3 +1,22 @@
+/**
+ * @deprecated Path A (ADR-011 Accepted 2026-04-26) — DR is NOT in the
+ * funds path between client and contractor. The contractor charges the
+ * client directly on-site; DR collects platform fees from the contractor
+ * (see `business-rules.md §2`).
+ *
+ * This route was scaffolded under the (now-rejected) Path B model where
+ * DR would have settled a $2,750 client callout fee into its own Stripe
+ * balance and released ~$2,200 to the contractor on KPI completion.
+ *
+ * It is NOT wired in to the live `/claim` form (which posts to
+ * `/api/claims/submit`, not here). Kept in the tree for reference during
+ * the Path A migration. A follow-up PR will remove it entirely after a
+ * one-week grace window confirms no caller exists in production.
+ *
+ * If you are about to call this route, STOP — Path A means contractors
+ * bill clients directly. Linear: DR-789.
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { getMockStripe } from '@/lib/services/mock/mockStripe';

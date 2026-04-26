@@ -704,23 +704,27 @@ function OnlineClaimPageOriginal() {
           </Alert>
         )}
 
-        {/* Pricing Breakdown Banner */}
+        {/* Pricing Indicator Banner — Path A (DR-789, ADR-011 Accepted) */}
+        {/* DR is a network orchestrator. Your IICRC-certified contractor */}
+        {/* will quote and bill you directly on-site, not via Disaster Recovery. */}
         <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
           <h2 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
             <DollarSign className="h-5 w-5 text-blue-600" />
-            Emergency Make-Safe Fee: ${PLATFORM_FEE.toFixed(2)}
+            Emergency Make-Safe — Indicative Cost
           </h2>
           <div className="space-y-1.5 text-sm text-gray-700 ms-7">
             <div className="flex items-center gap-2">
               <span className="text-blue-500">├─</span>
               <span>
-                <strong>$550</strong> Platform Fee (contractor matching + claims documentation)
+                <strong>From ~${PLATFORM_FEE.toFixed(0)}</strong> — typical emergency make-safe
+                callout, varies by job type and severity
               </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-blue-500">├─</span>
               <span>
-                <strong>$2,200</strong> Held for Your Contractor (credited toward restoration)
+                Your assigned <strong>IICRC-certified contractor</strong> will give you a firm Scope
+                of Works on-site and bill you directly
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -734,7 +738,8 @@ function OnlineClaimPageOriginal() {
                   className="text-blue-600 font-medium hover:underline"
                 >
                   Equipped Commercial Finance
-                </a>
+                </a>{' '}
+                if you need them
               </span>
             </div>
           </div>
@@ -751,8 +756,9 @@ function OnlineClaimPageOriginal() {
                   {estimate.high.toLocaleString()}
                 </p>
                 <p className="text-sm text-emerald-700 mt-1">
-                  The $2,750 emergency make-safe fee gets work started immediately. $2,200 is
-                  credited toward your total restoration.
+                  Your assigned IICRC-certified contractor will give you a firm Scope of Works
+                  on-site and bill you directly. Indicative emergency make-safe callouts start from
+                  around ${PLATFORM_FEE.toFixed(0)}.
                 </p>
               </div>
             </div>

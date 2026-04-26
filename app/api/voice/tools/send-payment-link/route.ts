@@ -1,5 +1,20 @@
 // NOT LEGAL ADVICE — flag-gated scaffold.
 //
+// @deprecated Path A (ADR-011 Accepted 2026-04-26) — DR is NOT in the
+// funds path between client and contractor. The contractor charges the
+// client directly on-site; DR collects platform fees from the contractor
+// (see `business-rules.md §2`).
+//
+// This tool was scaffolded under the (now-rejected) Path B model where
+// the voice agent would issue a Stripe Checkout link to the caller for
+// a $2,750 callout fee settling into DR's account. Path A explicitly
+// rejects that model.
+//
+// The tool is gated `VOICE_AGENT_ENABLED=false` in production and never
+// fires from a real call. Kept for reference; a follow-up PR will refactor
+// to either (a) remove the tool entirely, or (b) redirect to a contractor-
+// side payment surface once that exists. Linear: DR-789.
+//
 // Tool 4: send_payment_link(draft_id, phone) → { sent: boolean }
 //
 // Creates a Stripe Checkout Session when STRIPE_SECRET_KEY is set, otherwise

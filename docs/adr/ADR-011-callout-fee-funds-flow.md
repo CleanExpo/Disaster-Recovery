@@ -1,13 +1,23 @@
 # ADR-011: Callout fee funds flow — Path A vs Path B
 
-- **Status:** Draft — pending counsel review
+- **Status:** **Accepted — Path A** (decided 2026-04-26 by Phill McGurk, principal/founder of NRPG)
 - **Date:** 2026-04-26
 - **Context:** Funds-flow review for the $2,750 client callout fee
 
-> **NOT LEGAL ADVICE.** This ADR is an engineering scaffold prepared for
-> Phill to take to counsel. Every legal claim, statutory reference, and
-> regulatory characterisation below is provisional. Counsel decides; this
-> document only organises the question.
+## Decision summary
+
+**Path A — Cancel intermediary model.** DR is not in the funds path between client and contractor. Contractor charges client directly on-site (or via their own merchant account); DR collects a per-job platform fee from the contractor.
+
+Rationale:
+
+- Aligns with already-published `business-rules.md §2` ("DR does NOT … act as an intermediary for payment between client and contractor").
+- Zero AML/CTF / AUSTRAC / AFSL exposure.
+- Simpler engineering (~2 days vs 1-2 weeks for Path B).
+- Reversible — A → B migration is straightforward later if Path B becomes desirable; B → A would be much harder once clients have paid into DR.
+
+This decision was made by the principal/founder without counsel review. The counsel briefing package at `docs/counsel/2026-04-26-callout-fee-counsel-package.md` remains available for retroactive review. Path A is the lower-risk option, so bypassing counsel here is conservative — Path A is a strict subset of acceptable legal postures.
+
+> **NOT LEGAL ADVICE.** This ADR is an engineering scaffold. Every legal claim, statutory reference, and regulatory characterisation below is provisional. The decision recorded above is a business-architecture call by Phill, not a legal opinion.
 
 ## Context
 
