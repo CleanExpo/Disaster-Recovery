@@ -131,6 +131,7 @@ const PRIORITY_MAP: Record<string, number> = {
   '/guides/how-to-make-an-insurance-claim-australia': 0.9,
   '/guides/insurance-claim-rejected-what-to-do': 0.9,
   '/about/nrpg-expertise': 0.85,
+  '/guides/insurance/affordability-anxiety-2026': 0.85,
   '/qld/bundaberg-flood-damage-claims': 0.9,
   '/wa/carnarvon-cyclone-narelle-claims': 0.9,
   '/nsw/liverpool-fairfield-storm-damage-claims': 0.9,
@@ -361,6 +362,7 @@ const FREQUENCY_MAP: Record<string, MetadataRoute.Sitemap[0]['changeFrequency']>
   '/guides/how-to-make-an-insurance-claim-australia': 'weekly',
   '/guides/insurance-claim-rejected-what-to-do': 'weekly',
   '/about/nrpg-expertise': 'monthly',
+  '/guides/insurance/affordability-anxiety-2026': 'monthly',
   '/events/victoria-bushfires-2026': 'daily',
   '/events/victoria-bushfires-2025': 'weekly',
   '/events/cyclone-alfred-queensland-2025': 'weekly',
@@ -425,7 +427,7 @@ function getPriority(route: string): number {
 
   // Check prefix matches (longest prefix wins)
   const prefixes = Object.keys(PRIORITY_MAP)
-    .filter(p => route.startsWith(p) && p !== '/')
+    .filter((p) => route.startsWith(p) && p !== '/')
     .sort((a, b) => b.length - a.length);
 
   return prefixes.length > 0 ? PRIORITY_MAP[prefixes[0]] : 0.5;
@@ -437,7 +439,7 @@ function getChangeFrequency(route: string): MetadataRoute.Sitemap[0]['changeFreq
 
   // Check prefix matches (longest prefix wins)
   const prefixes = Object.keys(FREQUENCY_MAP)
-    .filter(p => route.startsWith(p) && p !== '/')
+    .filter((p) => route.startsWith(p) && p !== '/')
     .sort((a, b) => b.length - a.length);
 
   return prefixes.length > 0 ? FREQUENCY_MAP[prefixes[0]] : 'weekly';
@@ -453,11 +455,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Filter out excluded routes
   const publicRoutes = allRoutes.filter(
-    route => !EXCLUDED_PREFIXES.some(prefix => route.startsWith(prefix))
+    (route) => !EXCLUDED_PREFIXES.some((prefix) => route.startsWith(prefix)),
   );
 
   // Generate sitemap entries for static pages
-  const staticEntries: MetadataRoute.Sitemap = publicRoutes.map(route => ({
+  const staticEntries: MetadataRoute.Sitemap = publicRoutes.map((route) => ({
     url: route === '/' ? baseUrl : `${baseUrl}${route}`,
     lastModified: currentDate,
     changeFrequency: getChangeFrequency(route),
@@ -466,9 +468,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Generate entries for dynamic city-service pages
   const cities = [
-    'sydney', 'melbourne', 'brisbane', 'perth', 'adelaide',
-    'darwin', 'hobart', 'canberra', 'newcastle', 'wollongong',
-    'gold-coast', 'sunshine-coast', 'geelong', 'townsville', 'cairns',
+    'sydney',
+    'melbourne',
+    'brisbane',
+    'perth',
+    'adelaide',
+    'darwin',
+    'hobart',
+    'canberra',
+    'newcastle',
+    'wollongong',
+    'gold-coast',
+    'sunshine-coast',
+    'geelong',
+    'townsville',
+    'cairns',
   ];
   const cityServiceEntries: MetadataRoute.Sitemap = [];
   for (const city of cities) {
