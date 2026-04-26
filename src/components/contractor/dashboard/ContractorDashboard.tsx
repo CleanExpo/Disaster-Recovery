@@ -25,7 +25,7 @@ import {
   Clock,
   DollarSign,
   Star,
-  Activity
+  Activity,
 } from 'lucide-react';
 
 import type { ContractorDashboard, ContractorStatus } from '@/types/contractor';
@@ -56,7 +56,11 @@ export function ContractorDashboard() {
       const data = await response.json();
       setDashboardData(data);
     } catch (error) {
-      clientLogger.error('Failed to fetch dashboard data:', { source: 'dashboard/ContractorDashboard' }, error);
+      clientLogger.error(
+        'Failed to fetch dashboard data:',
+        { source: 'dashboard/ContractorDashboard' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -72,17 +76,25 @@ export function ContractorDashboard() {
 
   const getStatusColor = (status: ContractorStatus) => {
     switch (status) {
-      case 'APPROVED': return 'bg-green-100 text-green-800';
-      case 'PENDING': return 'bg-yellow-100 text-yellow-800';
-      case 'UNDER_REVIEW': return 'bg-blue-100 text-blue-800';
-      case 'SUSPENDED': return 'bg-red-100 text-red-800';
-      case 'REJECTED': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'APPROVED':
+        return 'bg-green-100 text-green-800';
+      case 'PENDING':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'UNDER_REVIEW':
+        return 'bg-blue-100 text-blue-800';
+      case 'SUSPENDED':
+        return 'bg-red-100 text-red-800';
+      case 'REJECTED':
+        return 'bg-gray-100 text-gray-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
-  const urgentNotifications = dashboardData.notifications.filter(n => n.priority === 'URGENT');
-  const complianceIssues = dashboardData.compliance.items.filter(i => i.status !== 'VALID').length;
+  const urgentNotifications = dashboardData.notifications.filter((n) => n.priority === 'URGENT');
+  const complianceIssues = dashboardData.compliance.items.filter(
+    (i) => i.status !== 'VALID',
+  ).length;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -91,12 +103,8 @@ export function ContractorDashboard() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Contractor Portal
-              </h1>
-              <p className="text-gray-700">
-                Welcome back, {dashboardData.profile.companyName}
-              </p>
+              <h1 className="text-2xl font-bold text-gray-900">Contractor Portal</h1>
+              <p className="text-gray-700">Welcome back, {dashboardData.profile.companyName}</p>
             </div>
             <div className="flex items-center gap-4">
               <Badge className={getStatusColor(dashboardData.profile.status)}>
@@ -122,7 +130,8 @@ export function ContractorDashboard() {
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription>
-              You have {urgentNotifications.length} urgent notification(s) requiring immediate attention.
+              You have {urgentNotifications.length} urgent notification(s) requiring immediate
+              attention.
             </AlertDescription>
           </Alert>
         </div>
@@ -133,7 +142,8 @@ export function ContractorDashboard() {
           <Alert className="bg-yellow-50 border-yellow-200">
             <Clock className="h-4 w-4 text-yellow-600" />
             <AlertDescription className="text-yellow-800">
-              {complianceIssues} compliance item(s) require your attention to maintain active status.
+              {complianceIssues} compliance item(s) require your attention to maintain active
+              status.
             </AlertDescription>
           </Alert>
         </div>
@@ -228,7 +238,7 @@ export function ContractorDashboard() {
                   <div>
                     <p className="text-sm text-gray-700">Next Billing</p>
                     <p className="font-semibold">
-                      {dashboardData.subscription.nextBillingDate 
+                      {dashboardData.subscription.nextBillingDate
                         ? new Date(dashboardData.subscription.nextBillingDate).toLocaleDateString()
                         : 'N/A'}
                     </p>
@@ -251,8 +261,8 @@ export function ContractorDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {dashboardData.notifications.slice(0, 5).map(notification => (
-                    <div 
+                  {dashboardData.notifications.slice(0, 5).map((notification) => (
+                    <div
                       key={notification.id}
                       className="flex items-start justify-between p-3 bg-gray-50 rounded-lg"
                     >
@@ -284,13 +294,13 @@ export function ContractorDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between mb-4">
-                  <Badge 
+                  <Badge
                     className={
                       dashboardData.compliance.overallStatus === 'COMPLIANT'
                         ? 'bg-green-100 text-green-800'
                         : dashboardData.compliance.overallStatus === 'ACTION_REQUIRED'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
                     }
                   >
                     {dashboardData.compliance.overallStatus}
@@ -303,14 +313,14 @@ export function ContractorDashboard() {
                   {dashboardData.compliance.items.slice(0, 3).map((item, index) => (
                     <div key={index} className="flex justify-between items-center">
                       <span className="text-sm">{item.name}</span>
-                      <Badge 
+                      <Badge
                         variant="outline"
                         className={
                           item.status === 'VALID'
                             ? 'border-green-600 text-green-600'
                             : item.status === 'EXPIRING'
-                            ? 'border-yellow-600 text-yellow-600'
-                            : 'border-red-600 text-red-600'
+                              ? 'border-yellow-600 text-yellow-600'
+                              : 'border-red-600 text-red-600'
                         }
                       >
                         {item.status}
@@ -324,15 +334,17 @@ export function ContractorDashboard() {
 
           {/* Performance/KPI Tab */}
           <TabsContent value="kpi">
-            <KPIMetrics data={{
-              ...dashboardData.kpi,
-              activeJobs: dashboardData.kpi.totalJobs - dashboardData.kpi.completedJobs
-            }} />
+            <KPIMetrics
+              data={{
+                ...dashboardData.kpi,
+                activeJobs: dashboardData.kpi.totalJobs - dashboardData.kpi.completedJobs,
+              }}
+            />
           </TabsContent>
 
           {/* Compliance Tab */}
           <TabsContent value="compliance">
-            <CompliancePanel 
+            <CompliancePanel
               compliance={{
                 ...dashboardData.compliance,
                 items: dashboardData.compliance.items.map((item, index) => ({
@@ -342,8 +354,8 @@ export function ContractorDashboard() {
                   expiryDate: item.expiryDate ? item.expiryDate.toString() : undefined,
                   lastUpdated: undefined,
                   required: true,
-                  category: item.type
-                }))
+                  category: item.type,
+                })),
               }}
               certifications={dashboardData.profile.certifications}
               insurance={dashboardData.profile.insurance}
@@ -352,51 +364,59 @@ export function ContractorDashboard() {
 
           {/* Territory Tab */}
           <TabsContent value="territory">
-            <TerritoryManager territories={dashboardData.profile.territories.map((territory, index) => ({
-              id: `territory-${index}`,
-              name: territory.name,
-              type: territory.type === 'RADIUS' ? 'PRIMARY' : 'SECONDARY' as any,
-              status: 'ACTIVE' as any,
-              coverage: {
-                radius: territory.radiusKm || 25,
-                unit: 'km' as const
-              },
-              postcode: territory.postcodes?.[0],
-              state: 'NSW',
-              responseTime: territory.emergencyResponse ? '1 hour' : '2 hours'
-            }))} />
+            <TerritoryManager
+              territories={dashboardData.profile.territories.map((territory, index) => ({
+                id: `territory-${index}`,
+                name: territory.name,
+                type: (territory.type === 'RADIUS' ? 'PRIMARY' : 'SECONDARY') as const,
+                status: 'ACTIVE' as const,
+                coverage: {
+                  radius: territory.radiusKm || 25,
+                  unit: 'km' as const,
+                },
+                postcode: territory.postcodes?.[0],
+                state: 'NSW',
+                responseTime: territory.emergencyResponse ? '1 hour' : '2 hours',
+              }))}
+            />
           </TabsContent>
 
           {/* Training Tab */}
           <TabsContent value="training">
-            <TrainingTracker trainings={dashboardData.training.map(training => ({
-              ...training,
-              type: 'OTHER' as const,
-              status: training.status.toLowerCase().replace('_', '-') as any
-            }))} />
+            <TrainingTracker
+              trainings={dashboardData.training.map((training) => ({
+                ...training,
+                type: 'OTHER' as const,
+                status: training.status.toLowerCase().replace('_', '-') as any,
+              }))}
+            />
           </TabsContent>
 
           {/* Billing Tab */}
           <TabsContent value="billing">
-            <BillingSection subscription={{
-              ...dashboardData.subscription,
-              nextBillingDate: dashboardData.subscription.nextBillingDate?.toString()
-            }} />
+            <BillingSection
+              subscription={{
+                ...dashboardData.subscription,
+                nextBillingDate: dashboardData.subscription.nextBillingDate?.toString(),
+              }}
+            />
           </TabsContent>
 
           {/* Support Tab */}
           <TabsContent value="support">
-            <SupportTickets tickets={dashboardData.support.recentTickets.map(ticket => ({
-              id: ticket.id,
-              subject: ticket.subject,
-              description: ticket.subject,
-              status: ticket.status.toUpperCase() as any,
-              priority: ticket.priority.toUpperCase() as any,
-              category: 'General',
-              createdAt: ticket.createdAt.toString(),
-              updatedAt: ticket.updatedAt.toString(),
-              responseCount: 0
-            }))} />
+            <SupportTickets
+              tickets={dashboardData.support.recentTickets.map((ticket) => ({
+                id: ticket.id,
+                subject: ticket.subject,
+                description: ticket.subject,
+                status: ticket.status.toUpperCase() as any,
+                priority: ticket.priority.toUpperCase() as any,
+                category: 'General',
+                createdAt: ticket.createdAt.toString(),
+                updatedAt: ticket.updatedAt.toString(),
+                responseCount: 0,
+              }))}
+            />
           </TabsContent>
         </Tabs>
       </div>
