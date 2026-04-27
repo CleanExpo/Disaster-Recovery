@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
+import { captureException } from '@/lib/observability/vercel';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,24 +16,36 @@ export async function GET(request: NextRequest) {
 
   const where = status ? { status } : {};
 
-  const [applications, total] = await Promise.all([
-    prisma.contractorApplication.findMany({
-      where,
-      orderBy: { createdAt: 'desc' },
-      skip: (page - 1) * limit,
-      take: limit,
-      select: {
-        id: true,
-        businessName: true,
-        contactName: true,
-        email: true,
-        phone: true,
-        status: true,
-        createdAt: true,
+  let applications, total;
+  try {
+    [applications, total] = await Promise.all([
+      prisma.contractorApplication.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        skip: (page - 1) * limit,
+        take: limit,
+        select: {
+          id: true,
+          businessName: true,
+          contactName: true,
+          email: true,
+          phone: true,
+          status: true,
+          createdAt: true,
+        },
+      }),
+      prisma.contractorApplication.count({ where }),
+    ]);
+  } catch (e) {
+    captureException(e, {
+      tags: {
+        route: '/api/admin/contractor-applications',
+        model: 'contractorApplication',
+        op: 'findMany+count',
       },
-    }),
-    prisma.contractorApplication.count({ where }),
-  ]);
+    });
+    throw e;
+  }
 
   return NextResponse.json({
     applications,
