@@ -278,9 +278,8 @@ model Partner {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  leads    Lead[]
-  billing  PartnerBilling[]
-  payments PartnerPayment[]
+  leads   Lead[]
+  billing PartnerBilling[]
 }
 
 model PartnerBilling {
@@ -302,22 +301,6 @@ model PartnerBilling {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model PartnerPayment {
-  id        String  @id @default(cuid())
-  partnerId String
-  partner   Partner @relation(fields: [partnerId], references: [id])
-
-  amount Float
-  type   String // CREDIT_PURCHASE, LEAD_PAYMENT, REFUND
-  method String // CARD, BANK_TRANSFER, PAYPAL
-  status String // PENDING, COMPLETED, FAILED
-
-  transactionId String?
-  description   String?
-
-  createdAt DateTime @default(now())
 }
 
 model LeadTracking {
@@ -382,25 +365,17 @@ model Contractor {
   lastLoginAt DateTime?
 
   // Relations
-  companyProfile   ContractorCompany?
-  certifications   ContractorCertification[]
-  insurance        ContractorInsurance[]
-  references       ContractorReference[]
-  backgroundChecks BackgroundCheck[]
-  subscription     ContractorSubscription?
-  documents        ContractorDocument[]
-  territories      ContractorTerritory[]
-  kpiMetrics       ContractorKPI[]
-  notifications    ContractorNotification[]
-  auditLogs        ContractorAuditLog[]
-  agreements       ContractorAgreement[]
-  trainings        ContractorTraining[]
-  projects         ContractorProject[]
-  supportTickets   ContractorSupport[]
-  availability     ContractorAvailability[]
-  jobs             Job[]
-  jobOutcomes      JobOutcome[]
-  jobOffers        JobOffer[]
+  companyProfile ContractorCompany?
+  insurance      ContractorInsurance[]
+  subscription   ContractorSubscription?
+  documents      ContractorDocument[]
+  territories    ContractorTerritory[]
+  kpiMetrics     ContractorKPI[]
+  notifications  ContractorNotification[]
+  auditLogs      ContractorAuditLog[]
+  jobs           Job[]
+  jobOutcomes    JobOutcome[]
+  jobOffers      JobOffer[]
 
   // Applications submitted via /contractor/apply (raw snapshot of the onboarding wizard)
   applications ContractorApplication[]
@@ -492,32 +467,6 @@ model ContractorCompany {
   updatedAt DateTime @updatedAt
 }
 
-model ContractorCertification {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  certificationType   String // CPP40421, IICRC_WRT, IICRC_ASD, IICRC_AMRT, etc.
-  certificationName   String
-  certificationNumber String
-  issuingOrganization String
-  issueDate           DateTime
-  expiryDate          DateTime?
-
-  // Verification
-  documentUrl       String // URL to uploaded certificate
-  verified          Boolean   @default(false)
-  verifiedAt        DateTime?
-  verifiedBy        String?
-  verificationNotes String?
-
-  // Status
-  status String @default("PENDING") // PENDING, VERIFIED, EXPIRED, REJECTED
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model ContractorInsurance {
   id           String     @id @default(cuid())
   contractorId String
@@ -547,62 +496,6 @@ model ContractorInsurance {
   updatedAt DateTime @updatedAt
 
   @@index([expiryDate])
-}
-
-model ContractorReference {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  referenceName      String
-  companyName        String
-  position           String
-  email              String
-  phone              String
-  relationship       String // CLIENT, SUPPLIER, PARTNER, OTHER
-  projectDescription String?
-
-  // Verification
-  contacted   Boolean   @default(false)
-  contactedAt DateTime?
-  rating      Int? // 1-5
-  feedback    String?
-  verified    Boolean   @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model BackgroundCheck {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  checkType         String // CRIMINAL, CREDIT, IDENTITY, QUALIFICATION
-  provider          String // Third-party provider name
-  providerReference String?
-
-  // Consent
-  consentGiven    Boolean
-  consentDate     DateTime
-  consentDocument String? // URL to signed consent
-
-  // Results
-  status        String  @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, FAILED
-  result        String? // CLEAR, FLAGGED, REQUIRES_REVIEW
-  resultDetails String? // JSON object with detailed results
-  reportUrl     String? // URL to full report
-
-  // Scoring
-  riskScore Int? // 0-100
-  riskLevel String? // LOW, MEDIUM, HIGH
-
-  requestedAt DateTime  @default(now())
-  completedAt DateTime?
-  expiresAt   DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model ContractorSubscription {
@@ -642,7 +535,6 @@ model ContractorSubscription {
 
   // Relations
   payments ContractorPayment[]
-  invoices ContractorInvoice[]
 }
 
 model ContractorPayment {
@@ -663,30 +555,6 @@ model ContractorPayment {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model ContractorInvoice {
-  id             String                 @id @default(cuid())
-  subscriptionId String
-  subscription   ContractorSubscription @relation(fields: [subscriptionId], references: [id])
-
-  invoiceNumber String @unique
-  amount        Float
-  gst           Float
-  total         Float
-
-  status String @default("DRAFT") // DRAFT, ISSUED, PAID, OVERDUE, CANCELLED
-
-  issueDate DateTime
-  dueDate   DateTime
-  paidAt    DateTime?
-
-  items String // JSON array of line items
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([invoiceNumber])
 }
 
 model ContractorDocument {
@@ -862,121 +730,6 @@ model CompetencyTestResult {
   @@index([passed])
 }
 
-model ContractorAgreement {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  agreementType String // PARTNERSHIP, CODE_OF_CONDUCT, WHS, PRIVACY, NDA
-  agreementName String
-  version       String
-
-  // Content
-  documentUrl String? // URL to agreement document
-  content     String? // Agreement text
-
-  // Acceptance
-  accepted         Boolean   @default(false)
-  acceptedAt       DateTime?
-  acceptanceMethod String? // DIGITAL_SIGNATURE, CHECKBOX, EMAIL
-  ipAddress        String?
-  userAgent        String?
-
-  // Digital Signature
-  signatureData  String? // Base64 encoded signature image
-  signedName     String?
-  signedPosition String?
-
-  // Validity
-  effectiveDate DateTime
-  expiryDate    DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([agreementType, accepted])
-}
-
-model ContractorTraining {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  trainingType String // CARSI, WHS, TECHNICAL, COMPLIANCE, PRODUCT
-  trainingName String
-  provider     String
-
-  // Progress
-  status   String @default("NOT_STARTED") // NOT_STARTED, IN_PROGRESS, COMPLETED
-  progress Int    @default(0) // 0-100
-
-  // Completion
-  completedAt       DateTime?
-  certificateUrl    String?
-  certificateNumber String?
-
-  // CEU Points
-  ceuPoints Float?
-
-  // Validity
-  validFrom  DateTime?
-  validUntil DateTime?
-
-  // Tracking
-  enrolledAt     DateTime  @default(now())
-  lastAccessedAt DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([trainingType, status])
-}
-
-model ContractorProject {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  projectName String
-  projectType String // WATER, FIRE, MOLD, STORM, BIOHAZARD
-  clientName  String
-  location    String
-
-  // Timeline
-  startDate DateTime
-  endDate   DateTime?
-  duration  Int? // in days
-
-  // Scope
-  scopeOfWork  String // Detailed description
-  areaAffected Float? // in square meters
-
-  // Financial
-  projectValue     Float?
-  insuranceCompany String?
-  claimNumber      String?
-
-  // Documentation
-  beforePhotos String? // JSON array of photo URLs
-  afterPhotos  String? // JSON array of photo URLs
-  reportUrl    String?
-
-  // Quality
-  customerRating   Float? // 0-5
-  customerFeedback String?
-
-  // Used for verification
-  canContact   Boolean @default(false)
-  contactName  String?
-  contactPhone String?
-  contactEmail String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([projectType, startDate])
-}
-
 model ContractorNotification {
   id           String     @id @default(cuid())
   contractorId String
@@ -1006,59 +759,6 @@ model ContractorNotification {
   createdAt DateTime @default(now())
 
   @@index([type, read, priority])
-}
-
-model ContractorSupport {
-  id           String     @id @default(cuid())
-  contractorId String
-  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-
-  ticketNumber String @unique
-  category     String // TECHNICAL, BILLING, COMPLIANCE, GENERAL
-  priority     String @default("NORMAL") // LOW, NORMAL, HIGH, URGENT
-
-  subject     String
-  description String
-
-  status String @default("OPEN") // OPEN, IN_PROGRESS, WAITING, RESOLVED, CLOSED
-
-  // Assignment
-  assignedTo String?
-  assignedAt DateTime?
-
-  // Resolution
-  resolution String?
-  resolvedAt DateTime?
-  closedAt   DateTime?
-
-  // Satisfaction
-  satisfactionRating   Int? // 1-5
-  satisfactionFeedback String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  messages SupportMessage[]
-
-  @@index([ticketNumber])
-  @@index([status, priority])
-}
-
-model SupportMessage {
-  id              String            @id @default(cuid())
-  supportTicketId String
-  supportTicket   ContractorSupport @relation(fields: [supportTicketId], references: [id], onDelete: Cascade)
-
-  message    String
-  isInternal Boolean @default(false)
-
-  authorId   String
-  authorType String // CONTRACTOR, ADMIN, SYSTEM
-  authorName String
-
-  attachments String? // JSON array of attachment URLs
-
-  createdAt DateTime @default(now())
 }
 
 model ContractorAuditLog {
@@ -1134,21 +834,6 @@ model ModuleProgress {
 }
 
 // Subscription Pricing Model (MVP - Placeholder)
-model SubscriptionPricing {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  description String?
-  price       Float
-  currency    String   @default("AUD")
-  interval    String   @default("month") // month, year
-  features    String? // JSON string of features
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([isActive])
-}
-
 // Error Log Model
 model ErrorLog {
   id        String   @id @default(uuid())
@@ -1223,28 +908,7 @@ model StepByStepGuide {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  steps GuideStep[]
-
   @@index([type, userType, active])
-}
-
-model GuideStep {
-  id            String   @id @default(cuid())
-  guideId       String
-  stepNumber    Int
-  title         String
-  description   String   @db.Text
-  warningNotes  String[]
-  estimatedTime String?
-  requiredTools String[]
-  imageUrl      String?
-  videoUrl      String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  guide StepByStepGuide @relation(fields: [guideId], references: [id])
-
-  @@index([guideId, stepNumber])
 }
 
 // ============================================
@@ -1312,21 +976,6 @@ model InsuranceProcess {
 // ============================================
 // CONTRACTOR AVAILABILITY
 // ============================================
-
-model ContractorAvailability {
-  id           String   @id @default(cuid())
-  contractorId String
-  dayOfWeek    Int // 0-6 (Sunday-Saturday)
-  startTime    String // HH:MM format
-  endTime      String // HH:MM format
-  available    Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  contractor Contractor @relation(fields: [contractorId], references: [id])
-
-  @@index([contractorId, dayOfWeek])
-}
 
 // ============================================
 // JOBS & LEADS
@@ -1516,35 +1165,6 @@ model ComplianceAudit {
 // ============================================
 // BOT METRICS
 // ============================================
-
-model BotMetrics {
-  id   String   @id @default(cuid())
-  date DateTime @default(now())
-
-  // Performance Metrics
-  totalRequests   Int   @default(0)
-  avgResponseTime Float @default(0) // milliseconds
-  successRate     Float @default(0) // percentage
-
-  // Usage Metrics
-  uniqueSessions    Int @default(0)
-  messagesProcessed Int @default(0)
-  emergencyRequests Int @default(0)
-  claimsProcessed   Int @default(0)
-
-  // Channel Distribution
-  webRequests      Int @default(0)
-  smsRequests      Int @default(0)
-  whatsappRequests Int @default(0)
-  emailRequests    Int @default(0)
-
-  // Error Tracking
-  totalErrors      Int @default(0)
-  validationErrors Int @default(0)
-  systemErrors     Int @default(0)
-
-  @@index([date])
-}
 
 // ============================================
 // Supabase Platform Models (Priority Tables)
