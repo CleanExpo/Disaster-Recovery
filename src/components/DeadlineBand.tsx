@@ -53,12 +53,13 @@ export function DeadlineBand({ programKey, contactHref = '/contact' }: DeadlineB
   }
 
   if (state === 'closing-soon') {
+    const headline =
+      daysRemaining === 0
+        ? `🚨 ${program.name}: Apply now — closes today`
+        : `🚨 ${program.name}: Apply now — closes in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}`;
     return (
       <div className="rounded-lg bg-red-50 border border-red-400 px-4 py-3 text-sm text-red-900 my-4">
-        <p className="font-bold text-red-700 mb-1">
-          🚨 {program.name}: Apply now — closes in {daysRemaining} day
-          {daysRemaining === 1 ? '' : 's'}
-        </p>
+        <p className="font-bold text-red-700 mb-1">{headline}</p>
         <p>
           Applications close <strong>{closeDateLabel} AEST</strong>. Do not wait — processing takes
           time.

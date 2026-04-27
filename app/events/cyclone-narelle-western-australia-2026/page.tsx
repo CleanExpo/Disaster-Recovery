@@ -18,6 +18,9 @@ import type { Metadata } from 'next'
 import DisasterEventPage from '@/components/events/DisasterEventPage'
 import { PROGRAM_DEADLINES, deadlineStatusText } from '@/lib/deadlines'
 
+// DR-794 / GAP-121: revalidate every 60s so deadline copy reflects rollover at 00:00 AEST.
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: 'Cyclone Narelle WA 2026 — Category 4 Recovery & Insurance Claims | Disaster Recovery',
   description:

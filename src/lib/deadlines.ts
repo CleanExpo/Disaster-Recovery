@@ -103,18 +103,19 @@ export function getDeadlineState(
   const program = PROGRAM_DEADLINES[programKey];
 
   // closeDate is the last day applications are accepted (inclusive).
-  // At 00:00 AEST on closeDate+1, the state becomes 'closed'.
-  const closeDay = new Date(program.extendedCloseDate ?? program.closeDate);
-  // Treat closeDate as end-of-day AEST (UTC+10 = UTC+600min)
-  const closeDayEnd = new Date(
-    Date.UTC(closeDay.getUTCFullYear(), closeDay.getUTCMonth(), closeDay.getUTCDate(), 14, 0, 0), // 00:00 AEST next day
-  );
+  // State becomes 'closed' at 00:00 AEST the day after closeDate.
+  // Parse with explicit AEST offset (+10:00) — Brisbane does not observe DST.
+  // ACL s18/s29(1)(g) exposure if this drifts: live fix per DR-794 / GAP-121.
+  const activeCloseDate = program.extendedCloseDate ?? program.closeDate;
+  const closeDayEnd = new Date(`${activeCloseDate}T23:59:59.999+10:00`);
 
   const msRemaining = closeDayEnd.getTime() - now.getTime();
-  const daysRemaining = Math.ceil(msRemaining / (1000 * 60 * 60 * 24));
+  // Floor on partial days so "closes in N days" never overstates the time available.
+  // 23h remaining → 0 days (renders "<24 hours" / "today" copy via the closing-soon branch
+  // when daysRemaining === 0 but msRemaining > 0).
+  const daysRemaining = msRemaining <= 0 ? 0 : Math.max(0, Math.floor(msRemaining / (1000 * 60 * 60 * 24)));
 
-  const activeCloseDate = program.extendedCloseDate ?? program.closeDate;
-  const closeDateLabel = new Date(activeCloseDate).toLocaleDateString('en-AU', {
+  const closeDateLabel = new Date(`${activeCloseDate}T12:00:00+10:00`).toLocaleDateString('en-AU', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -122,11 +123,13 @@ export function getDeadlineState(
   });
 
   let state: DeadlineState;
-  if (daysRemaining <= 0) {
+  if (msRemaining <= 0) {
     state = 'closed';
   } else if (program.extendedCloseDate) {
     state = 'extended';
   } else if (daysRemaining <= 7) {
+    // includes the final < 24h window — daysRemaining can be 0 here; the band
+    // renders "today" copy via DeadlineBand.tsx when daysRemaining === 0.
     state = 'closing-soon';
   } else {
     state = 'active';

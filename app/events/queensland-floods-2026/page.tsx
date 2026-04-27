@@ -19,6 +19,10 @@ import Link from 'next/link'
 import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice'
 import { DeadlineBand } from '@/components/DeadlineBand'
 
+// DR-794 / GAP-121: revalidate every 60s so DeadlineBand reflects rollover at 00:00 AEST.
+// Without this the prerender freezes "closes in N days" copy until next deploy.
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title:
     'Queensland Floods 2026 — Bundaberg, Burnett River & Tropical Low 29U Recovery | Disaster Recovery',

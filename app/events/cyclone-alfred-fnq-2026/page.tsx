@@ -19,6 +19,9 @@ import { DeadlineBand } from '@/components/DeadlineBand';
  * Privacy collection notice adjacent to all CTA and lodge links.
  */
 
+// DR-794 / GAP-121: revalidate every 60s so DeadlineBand reflects rollover at 00:00 AEST.
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: 'Ex-TC Alfred FNQ Recovery — Final PERILS AU$1.877 Billion | Claim Support',
   description:
