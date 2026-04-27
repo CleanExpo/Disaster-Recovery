@@ -174,7 +174,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
       <div className="bg-white rounded-lg shadow">
         <div className="border-b">
           <nav className="flex space-x-8 px-6">
-            {['overview', 'breakdown', 'scope', 'comparison'].map((tab) => (
+            {(['overview', 'breakdown', 'scope', 'comparison'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
