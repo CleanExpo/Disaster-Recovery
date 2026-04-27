@@ -1,13 +1,35 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Upload, Shield, CheckCircle, AlertTriangle, Clock, X, ExternalLink, Calendar, FileText, Award } from 'lucide-react';
+import {
+  Upload,
+  Shield,
+  CheckCircle,
+  AlertTriangle,
+  Clock,
+  X,
+  ExternalLink,
+  Calendar,
+  FileText,
+  Award,
+} from 'lucide-react';
 import DocumentUpload from './DocumentUpload';
 import { clientLogger } from '@/lib/observability/client-logger';
 
 interface Certification {
   id: string;
-  type: 'IICRC' | 'BLUE_CARD' | 'WHITE_CARD' | 'WWC' | 'POLICE_CHECK' | 'ASBESTOS_AWARENESS' | 'CONFINED_SPACE' | 'WORKING_AT_HEIGHTS' | 'FIRST_AID' | 'FIRE_SAFETY' | 'OTHER';
+  type:
+    | 'IICRC'
+    | 'BLUE_CARD'
+    | 'WHITE_CARD'
+    | 'WWC'
+    | 'POLICE_CHECK'
+    | 'ASBESTOS_AWARENESS'
+    | 'CONFINED_SPACE'
+    | 'WORKING_AT_HEIGHTS'
+    | 'FIRST_AID'
+    | 'FIRE_SAFETY'
+    | 'OTHER';
   certificationNumber?: string;
   issuingAuthority: string;
   issueDate: string;
@@ -25,16 +47,30 @@ interface CertificationVerificationProps {
   onVerificationComplete?: (certifications: Certification[]) => void;
 }
 
-const CERTIFICATION_TYPES = [
+const CERTIFICATION_TYPES: Array<{
+  type: Certification['type'];
+  name: string;
+  description: string;
+  required: boolean;
+  categories?: string[];
+  verificationMethod: string;
+  renewalPeriod: number | null;
+  website?: string;
+}> = [
   {
     type: 'IICRC',
     name: 'IICRC Certification',
     description: 'Institute of Inspection, Cleaning and Restoration Certification',
     required: true,
-    categories: ['Water Damage', 'Fire & Smoke', 'Applied Microbial Remediation', 'Upholstery & Fabric'],
+    categories: [
+      'Water Damage',
+      'Fire & Smoke',
+      'Applied Microbial Remediation',
+      'Upholstery & Fabric',
+    ],
     verificationMethod: 'ONLINE_DATABASE',
     renewalPeriod: 12, // months
-    website: 'https://www.iicrc.org/consumers/find-a-professional'
+    website: 'https://www.iicrc.org/consumers/find-a-professional',
   },
   {
     type: 'BLUE_CARD',
@@ -43,7 +79,7 @@ const CERTIFICATION_TYPES = [
     required: true,
     verificationMethod: 'GOVERNMENT_DATABASE',
     renewalPeriod: 36,
-    website: 'https://www.worksafe.qld.gov.au/'
+    website: 'https://www.worksafe.qld.gov.au/',
   },
   {
     type: 'WHITE_CARD',
@@ -52,7 +88,7 @@ const CERTIFICATION_TYPES = [
     required: true,
     verificationMethod: 'GOVERNMENT_DATABASE',
     renewalPeriod: null, // No expiry
-    website: 'https://www.safeworkaustralia.gov.au/'
+    website: 'https://www.safeworkaustralia.gov.au/',
   },
   {
     type: 'WWC',
@@ -61,7 +97,7 @@ const CERTIFICATION_TYPES = [
     required: true,
     verificationMethod: 'GOVERNMENT_DATABASE',
     renewalPeriod: 36,
-    website: 'https://www.ccyp.wa.gov.au/working-with-children/apply-for-a-wwc-check/'
+    website: 'https://www.ccyp.wa.gov.au/working-with-children/apply-for-a-wwc-check/',
   },
   {
     type: 'POLICE_CHECK',
@@ -70,7 +106,7 @@ const CERTIFICATION_TYPES = [
     required: true,
     verificationMethod: 'MANUAL_REVIEW',
     renewalPeriod: 12,
-    website: 'https://www.acic.gov.au/services/national-police-checks'
+    website: 'https://www.acic.gov.au/services/national-police-checks',
   },
   {
     type: 'ASBESTOS_AWARENESS',
@@ -78,44 +114,49 @@ const CERTIFICATION_TYPES = [
     description: 'Required for buildings constructed before 1990',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 24 },
+    renewalPeriod: 24,
+  },
   {
     type: 'CONFINED_SPACE',
     name: 'Confined Space Entry',
     description: 'Required for basement, tank, and enclosed space work',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 36 },
+    renewalPeriod: 36,
+  },
   {
     type: 'WORKING_AT_HEIGHTS',
     name: 'Working at Heights',
     description: 'Required for multi-story building work',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 24 },
+    renewalPeriod: 24,
+  },
   {
     type: 'FIRST_AID',
     name: 'First Aid Certificate',
     description: 'Current first aid certification',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 36 },
+    renewalPeriod: 36,
+  },
   {
     type: 'FIRE_SAFETY',
     name: 'Fire Safety Training',
     description: 'Fire safety and emergency response training',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 12 }
+    renewalPeriod: 12,
+  },
 ];
 
 export default function CertificationVerification({
   contractorId,
   requiredCertifications,
-  onVerificationComplete
+  onVerificationComplete,
 }: CertificationVerificationProps) {
   const [certifications, setCertifications] = useState<Certification[]>([]);
-  const [selectedCert, setSelectedCert] = useState<string | null>(null);
+  const [selectedCert, setSelectedCert] = useState<Certification['type'] | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [verifying, setVerifying] = useState<string | null>(null);
@@ -133,7 +174,11 @@ export default function CertificationVerification({
         setCertifications(data.certifications || []);
       }
     } catch (error) {
-      clientLogger.error('Error loading certifications:', { source: 'contractor/CertificationVerification' }, error);
+      clientLogger.error(
+        'Error loading certifications:',
+        { source: 'contractor/CertificationVerification' },
+        error,
+      );
     }
   };
 
@@ -145,15 +190,16 @@ export default function CertificationVerification({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contractorId,
-          ...certData
-        }) });
+          ...certData,
+        }),
+      });
 
       if (response.ok) {
         const result = await response.json();
-        setCertifications(prev => [...prev, result.certification]);
+        setCertifications((prev) => [...prev, result.certification]);
         setShowAddModal(false);
         setSelectedCert(null);
-        
+
         // Auto-verify if possible
         if (result.certification.type === 'IICRC' && result.certification.certificationNumber) {
           verifyCertification(result.certification.id);
@@ -163,7 +209,11 @@ export default function CertificationVerification({
         alert(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      clientLogger.error('Error adding certification:', { source: 'contractor/CertificationVerification' }, error);
+      clientLogger.error(
+        'Error adding certification:',
+        { source: 'contractor/CertificationVerification' },
+        error,
+      );
       alert('Failed to add certification');
     } finally {
       setLoading(false);
@@ -176,21 +226,26 @@ export default function CertificationVerification({
       const response = await fetch('/api/certifications/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ certificationId }) });
+        body: JSON.stringify({ certificationId }),
+      });
 
       if (response.ok) {
         const result = await response.json();
-        setCertifications(prev =>
-          prev.map(cert =>
-            cert.id === certificationId ? { ...cert, ...result.certification } : cert
-          )
+        setCertifications((prev) =>
+          prev.map((cert) =>
+            cert.id === certificationId ? { ...cert, ...result.certification } : cert,
+          ),
         );
       } else {
         const errorData = await response.json();
         alert(`Verification error: ${errorData.error}`);
       }
     } catch (error) {
-      clientLogger.error('Error verifying certification:', { source: 'contractor/CertificationVerification' }, error);
+      clientLogger.error(
+        'Error verifying certification:',
+        { source: 'contractor/CertificationVerification' },
+        error,
+      );
       alert('Failed to verify certification');
     } finally {
       setVerifying(null);
@@ -202,15 +257,20 @@ export default function CertificationVerification({
 
     try {
       const response = await fetch(`/api/certifications/${certificationId}`, {
-        method: 'DELETE' });
+        method: 'DELETE',
+      });
 
       if (response.ok) {
-        setCertifications(prev => prev.filter(cert => cert.id !== certificationId));
+        setCertifications((prev) => prev.filter((cert) => cert.id !== certificationId));
       } else {
         alert('Failed to remove certification');
       }
     } catch (error) {
-      clientLogger.error('Error removing certification:', { source: 'contractor/CertificationVerification' }, error);
+      clientLogger.error(
+        'Error removing certification:',
+        { source: 'contractor/CertificationVerification' },
+        error,
+      );
       alert('Failed to remove certification');
     }
   };
@@ -220,12 +280,15 @@ export default function CertificationVerification({
       setLoading(true);
 
       // Check if all required certifications are present and verified
-      const requiredCertTypes = CERTIFICATION_TYPES
-        .filter(ct => requiredCertifications.includes(ct.type))
-        .map(ct => ct.type);
+      const requiredCertTypes = CERTIFICATION_TYPES.filter((ct) =>
+        requiredCertifications.includes(ct.type),
+      ).map((ct) => ct.type);
 
-      const missingRequired = requiredCertTypes.filter(type =>
-        !certifications.find(cert => cert.type === type && cert.verificationStatus === 'VERIFIED')
+      const missingRequired = requiredCertTypes.filter(
+        (type) =>
+          !certifications.find(
+            (cert) => cert.type === type && cert.verificationStatus === 'VERIFIED',
+          ),
       );
 
       if (missingRequired.length > 0) {
@@ -238,8 +301,9 @@ export default function CertificationVerification({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contractorId,
-          certificationIds: certifications.map(c => c.id)
-        }) });
+          certificationIds: certifications.map((c) => c.id),
+        }),
+      });
 
       if (response.ok) {
         const result = await response.json();
@@ -252,7 +316,11 @@ export default function CertificationVerification({
         alert(`Submission error: ${errorData.error}`);
       }
     } catch (error) {
-      clientLogger.error('Error submitting certifications:', { source: 'contractor/CertificationVerification' }, error);
+      clientLogger.error(
+        'Error submitting certifications:',
+        { source: 'contractor/CertificationVerification' },
+        error,
+      );
       alert('Failed to submit certifications');
     } finally {
       setLoading(false);
@@ -261,21 +329,31 @@ export default function CertificationVerification({
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'VERIFIED': return 'text-green-600 bg-green-100';
-      case 'EXPIRED': return 'text-red-600 bg-red-100';
-      case 'INVALID': return 'text-red-600 bg-red-100';
-      case 'PENDING': return 'text-yellow-600 bg-yellow-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case 'VERIFIED':
+        return 'text-green-600 bg-green-100';
+      case 'EXPIRED':
+        return 'text-red-600 bg-red-100';
+      case 'INVALID':
+        return 'text-red-600 bg-red-100';
+      case 'PENDING':
+        return 'text-yellow-600 bg-yellow-100';
+      default:
+        return 'text-gray-600 bg-gray-100';
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'VERIFIED': return <CheckCircle className="w-4 h-4" />;
-      case 'EXPIRED': return <AlertTriangle className="w-4 h-4" />;
-      case 'INVALID': return <X className="w-4 h-4" />;
-      case 'PENDING': return <Clock className="w-4 h-4" />;
-      default: return <AlertTriangle className="w-4 h-4" />;
+      case 'VERIFIED':
+        return <CheckCircle className="w-4 h-4" />;
+      case 'EXPIRED':
+        return <AlertTriangle className="w-4 h-4" />;
+      case 'INVALID':
+        return <X className="w-4 h-4" />;
+      case 'PENDING':
+        return <Clock className="w-4 h-4" />;
+      default:
+        return <AlertTriangle className="w-4 h-4" />;
     }
   };
 
@@ -288,12 +366,12 @@ export default function CertificationVerification({
   };
 
   const getCompletionCount = () => {
-    const requiredCertTypes = CERTIFICATION_TYPES
-      .filter(ct => requiredCertifications.includes(ct.type))
-      .map(ct => ct.type);
+    const requiredCertTypes = CERTIFICATION_TYPES.filter((ct) =>
+      requiredCertifications.includes(ct.type),
+    ).map((ct) => ct.type);
 
-    return requiredCertTypes.filter(type =>
-      certifications.find(cert => cert.type === type && cert.verificationStatus === 'VERIFIED')
+    return requiredCertTypes.filter((type) =>
+      certifications.find((cert) => cert.type === type && cert.verificationStatus === 'VERIFIED'),
     ).length;
   };
 
@@ -301,11 +379,9 @@ export default function CertificationVerification({
     <div className="max-w-4xl mx-auto p-6">
       <div className="bg-white rounded-xl shadow-lg p-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Certification Verification
-          </h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Certification Verification</h2>
           <p className="text-gray-600 mb-6">
-            Upload and verify your professional certifications, licences, and training credentials. 
+            Upload and verify your professional certifications, licences, and training credentials.
             All certifications are automatically verified against official databases where possible.
           </p>
 
@@ -314,16 +390,19 @@ export default function CertificationVerification({
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-blue-900">Certification Progress</h3>
               <span className="text-sm text-blue-700">
-                {getCompletionCount()} of {requiredCertifications.length} required certifications verified
+                {getCompletionCount()} of {requiredCertifications.length} required certifications
+                verified
               </span>
             </div>
             <div className="w-full bg-blue-200 rounded-full h-2 mb-4">
               <div
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${(getCompletionCount() / requiredCertifications.length) * 100}%` }}
+                style={{
+                  width: `${(getCompletionCount() / requiredCertifications.length) * 100}%`,
+                }}
               ></div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800">
               <div>✓ Automatic verification against official databases</div>
               <div>✓ Expiry date monitoring and renewal reminders</div>
@@ -337,136 +416,148 @@ export default function CertificationVerification({
         <div className="mb-8">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Required Certifications</h3>
           <div className="grid gap-4">
-            {CERTIFICATION_TYPES
-              .filter(certType => requiredCertifications.includes(certType.type))
-              .map((certType) => {
-                const existingCert = certifications.find(c => c.type === certType.type);
-                const isComplete = existingCert?.verificationStatus === 'VERIFIED';
-                
-                return (
-                  <div key={certType.type} className={`
+            {CERTIFICATION_TYPES.filter((certType) =>
+              requiredCertifications.includes(certType.type),
+            ).map((certType) => {
+              const existingCert = certifications.find((c) => c.type === certType.type);
+              const isComplete = existingCert?.verificationStatus === 'VERIFIED';
+
+              return (
+                <div
+                  key={certType.type}
+                  className={`
                     border-2 rounded-lg p-6 transition-all
                     ${isComplete ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'}
-                  `}>
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Shield className={`w-6 h-6 ${isComplete ? 'text-green-600' : 'text-gray-600'}`} />
-                          <h4 className="text-lg font-semibold text-gray-900">{certType.name}</h4>
-                          {isComplete && <CheckCircle className="w-5 h-5 text-green-600" />}
-                        </div>
-                        <p className="text-gray-600 mb-3">{certType.description}</p>
-                        
-                        {existingCert && (
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                              {getStatusIcon(existingCert.verificationStatus)}
-                              <span className={`
+                  `}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Shield
+                          className={`w-6 h-6 ${isComplete ? 'text-green-600' : 'text-gray-600'}`}
+                        />
+                        <h4 className="text-lg font-semibold text-gray-900">{certType.name}</h4>
+                        {isComplete && <CheckCircle className="w-5 h-5 text-green-600" />}
+                      </div>
+                      <p className="text-gray-600 mb-3">{certType.description}</p>
+
+                      {existingCert && (
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            {getStatusIcon(existingCert.verificationStatus)}
+                            <span
+                              className={`
                                 inline-flex px-2 py-1 text-xs font-medium rounded-full
                                 ${getStatusColor(existingCert.verificationStatus)}
-                              `}>
-                                {existingCert.verificationStatus}
+                              `}
+                            >
+                              {existingCert.verificationStatus}
+                            </span>
+                            {existingCert.autoVerified && (
+                              <span className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">
+                                Auto-verified
                               </span>
-                              {existingCert.autoVerified && (
-                                <span className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">
-                                  Auto-verified
-                                </span>
-                              )}
-                            </div>
-                            
-                            {existingCert.certificationNumber && (
-                              <p className="text-sm text-gray-600">
-                                <strong>Number:</strong> {existingCert.certificationNumber}
-                              </p>
-                            )}
-                            
-                            {existingCert.expiryDate && (
-                              <div className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4 text-gray-500" />
-                                <span className={`text-sm ${
-                                  isExpiryWarning(existingCert) ? 'text-red-600 font-medium' : 'text-gray-600'
-                                }`}>
-                                  Expires: {new Date(existingCert.expiryDate).toLocaleDateString('en-AU')}
-                                </span>
-                                {isExpiryWarning(existingCert) && (
-                                  <AlertTriangle className="w-4 h-4 text-red-600" />
-                                )}
-                              </div>
                             )}
                           </div>
-                        )}
-                        
-                        {certType.website && (
-                          <a
-                            href={certType.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 mt-2"
-                          >
-                            <ExternalLink className="w-3 h-3" />
-                            Verify Online
-                          </a>
-                        )}
-                      </div>
 
-                      <div className="flex items-center gap-2">
-                        {existingCert && existingCert.verificationStatus === 'PENDING' && (
-                          <button
-                            onClick={() => verifyCertification(existingCert.id)}
-                            disabled={verifying === existingCert.id}
-                            className="flex items-center gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-                          >
-                            {verifying === existingCert.id ? (
-                              <>
-                                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
-                                Verifying...
-                              </>
-                            ) : (
-                              <>
-                                <Shield className="w-3 h-3" />
-                                Verify
-                              </>
-                            )}
-                          </button>
-                        )}
+                          {existingCert.certificationNumber && (
+                            <p className="text-sm text-gray-600">
+                              <strong>Number:</strong> {existingCert.certificationNumber}
+                            </p>
+                          )}
 
-                        <button
-                          onClick={() => {
-                            setSelectedCert(certType.type);
-                            setShowAddModal(true);
-                          }}
-                          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition ${
-                            existingCert
-                              ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                              : 'bg-blue-600 text-white hover:bg-blue-700'
-                          }`}
+                          {existingCert.expiryDate && (
+                            <div className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4 text-gray-500" />
+                              <span
+                                className={`text-sm ${
+                                  isExpiryWarning(existingCert)
+                                    ? 'text-red-600 font-medium'
+                                    : 'text-gray-600'
+                                }`}
+                              >
+                                Expires:{' '}
+                                {new Date(existingCert.expiryDate).toLocaleDateString('en-AU')}
+                              </span>
+                              {isExpiryWarning(existingCert) && (
+                                <AlertTriangle className="w-4 h-4 text-red-600" />
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {certType.website && (
+                        <a
+                          href={certType.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 mt-2"
                         >
-                          {existingCert ? (
+                          <ExternalLink className="w-3 h-3" />
+                          Verify Online
+                        </a>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      {existingCert && existingCert.verificationStatus === 'PENDING' && (
+                        <button
+                          onClick={() => verifyCertification(existingCert.id)}
+                          disabled={verifying === existingCert.id}
+                          className="flex items-center gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                        >
+                          {verifying === existingCert.id ? (
                             <>
-                              <FileText className="w-4 h-4" />
-                              Update
+                              <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
+                              Verifying...
                             </>
                           ) : (
                             <>
-                              <Upload className="w-4 h-4" />
-                              Upload
+                              <Shield className="w-3 h-3" />
+                              Verify
                             </>
                           )}
                         </button>
-                        
-                        {existingCert && (
-                          <button
-                            onClick={() => removeCertification(existingCert.id)}
-                            className="text-red-600 hover:text-red-800 p-1"
-                          >
-                            <X className="w-4 h-4" />
-                          </button>
+                      )}
+
+                      <button
+                        onClick={() => {
+                          setSelectedCert(certType.type);
+                          setShowAddModal(true);
+                        }}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition ${
+                          existingCert
+                            ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            : 'bg-blue-600 text-white hover:bg-blue-700'
+                        }`}
+                      >
+                        {existingCert ? (
+                          <>
+                            <FileText className="w-4 h-4" />
+                            Update
+                          </>
+                        ) : (
+                          <>
+                            <Upload className="w-4 h-4" />
+                            Upload
+                          </>
                         )}
-                      </div>
+                      </button>
+
+                      {existingCert && (
+                        <button
+                          onClick={() => removeCertification(existingCert.id)}
+                          className="text-red-600 hover:text-red-800 p-1"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -475,43 +566,49 @@ export default function CertificationVerification({
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Certifications</h3>
           <div className="bg-gray-50 rounded-lg p-4">
             <p className="text-gray-600 mb-4">
-              Add additional certifications to increase your qualification score and access to specialised work types.
+              Add additional certifications to increase your qualification score and access to
+              specialised work types.
             </p>
-            
+
             <div className="grid md:grid-cols-2 gap-4">
-              {CERTIFICATION_TYPES
-                .filter(certType => !requiredCertifications.includes(certType.type))
-                .map((certType) => {
-                  const existingCert = certifications.find(c => c.type === certType.type);
-                  
-                  return (
-                    <div key={certType.type} className="bg-white border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h5 className="font-medium text-gray-900">{certType.name}</h5>
-                          <p className="text-sm text-gray-600">{certType.description}</p>
-                          {existingCert && (
-                            <span className={`
+              {CERTIFICATION_TYPES.filter(
+                (certType) => !requiredCertifications.includes(certType.type),
+              ).map((certType) => {
+                const existingCert = certifications.find((c) => c.type === certType.type);
+
+                return (
+                  <div
+                    key={certType.type}
+                    className="bg-white border border-gray-200 rounded-lg p-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h5 className="font-medium text-gray-900">{certType.name}</h5>
+                        <p className="text-sm text-gray-600">{certType.description}</p>
+                        {existingCert && (
+                          <span
+                            className={`
                               inline-flex px-2 py-1 text-xs font-medium rounded-full mt-2
                               ${getStatusColor(existingCert.verificationStatus)}
-                            `}>
-                              {existingCert.verificationStatus}
-                            </span>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => {
-                            setSelectedCert(certType.type);
-                            setShowAddModal(true);
-                          }}
-                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                        >
-                          {existingCert ? 'Update' : 'Add'}
-                        </button>
+                            `}
+                          >
+                            {existingCert.verificationStatus}
+                          </span>
+                        )}
                       </div>
+                      <button
+                        onClick={() => {
+                          setSelectedCert(certType.type);
+                          setShowAddModal(true);
+                        }}
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      >
+                        {existingCert ? 'Update' : 'Add'}
+                      </button>
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -524,7 +621,8 @@ export default function CertificationVerification({
                 Complete all required certifications to proceed with onboarding
               </p>
               <p className="text-xs text-gray-500 mt-1">
-                Certifications are verified against official databases and renewal dates are monitored
+                Certifications are verified against official databases and renewal dates are
+                monitored
               </p>
             </div>
             <button
@@ -569,24 +667,25 @@ function AddCertificationModal({
   certificationType,
   contractorId,
   onClose,
-  onSave
+  onSave,
 }: {
-  certificationType: string;
+  certificationType: Certification['type'];
   contractorId: string;
   onClose: () => void;
   onSave: (certData: Partial<Certification>) => void;
 }) {
-  const certType = CERTIFICATION_TYPES.find(ct => ct.type === certificationType);
+  const certType = CERTIFICATION_TYPES.find((ct) => ct.type === certificationType);
   const [formData, setFormData] = useState({
     certificationNumber: '',
     issuingAuthority: certType?.name || '',
     issueDate: '',
     expiryDate: '',
-    documentUrl: '' });
+    documentUrl: '',
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate required fields
     if (!formData.issuingAuthority || !formData.issueDate) {
       alert('Please fill in all required fields');
@@ -602,18 +701,19 @@ function AddCertificationModal({
     }
 
     onSave({
-      type: certificationType as any,
+      type: certificationType,
       certificationNumber: formData.certificationNumber || undefined,
       issuingAuthority: formData.issuingAuthority,
       issueDate: formData.issueDate,
       expiryDate: calculatedExpiryDate || undefined,
       documentUrl: formData.documentUrl || undefined,
       verificationStatus: 'PENDING',
-      autoVerified: false });
+      autoVerified: false,
+    });
   };
 
   const handleDocumentUpload = (result: any) => {
-    setFormData(prev => ({ ...prev, documentUrl: result.documentUrl }));
+    setFormData((prev) => ({ ...prev, documentUrl: result.documentUrl }));
   };
 
   return (
@@ -621,16 +721,12 @@ function AddCertificationModal({
       <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
         <div className="p-6 border-b">
           <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold text-gray-900">
-              Add {certType?.name}
-            </h3>
+            <h3 className="text-2xl font-bold text-gray-900">Add {certType?.name}</h3>
             <button onClick={onClose} className="text-gray-600 hover:text-gray-600">
               <X className="w-6 h-6" />
             </button>
           </div>
-          {certType?.description && (
-            <p className="text-gray-600 mt-2">{certType.description}</p>
-          )}
+          {certType?.description && <p className="text-gray-600 mt-2">{certType.description}</p>}
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
@@ -642,7 +738,9 @@ function AddCertificationModal({
               <input
                 type="text"
                 value={formData.certificationNumber}
-                onChange={(e) => setFormData(prev => ({ ...prev, certificationNumber: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, certificationNumber: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Enter certification number"
               />
@@ -655,7 +753,9 @@ function AddCertificationModal({
               <input
                 type="text"
                 value={formData.issuingAuthority}
-                onChange={(e) => setFormData(prev => ({ ...prev, issuingAuthority: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, issuingAuthority: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="e.g., IICRC, WorkSafe QLD"
                 required
@@ -663,13 +763,11 @@ function AddCertificationModal({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
-                Issue Date *
-              </label>
+              <label className="block text-sm font-medium text-gray-600 mb-2">Issue Date *</label>
               <input
                 type="date"
                 value={formData.issueDate}
-                onChange={(e) => setFormData(prev => ({ ...prev, issueDate: e.target.value }))}
+                onChange={(e) => setFormData((prev) => ({ ...prev, issueDate: e.target.value }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 max={new Date().toISOString().split('T')[0]}
                 required
@@ -678,12 +776,13 @@ function AddCertificationModal({
 
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-2">
-                Expiry Date {certType?.renewalPeriod && `(Auto-calculated: ${certType.renewalPeriod} months)`}
+                Expiry Date{' '}
+                {certType?.renewalPeriod && `(Auto-calculated: ${certType.renewalPeriod} months)`}
               </label>
               <input
                 type="date"
                 value={formData.expiryDate}
-                onChange={(e) => setFormData(prev => ({ ...prev, expiryDate: e.target.value }))}
+                onChange={(e) => setFormData((prev) => ({ ...prev, expiryDate: e.target.value }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 min={new Date().toISOString().split('T')[0]}
               />
@@ -708,13 +807,13 @@ function AddCertificationModal({
               <div className="text-sm text-blue-800">
                 <p className="font-medium mb-1">Automatic Verification</p>
                 <p>
-                  {certType?.verificationMethod === 'ONLINE_DATABASE' && 
+                  {certType?.verificationMethod === 'ONLINE_DATABASE' &&
                     'This certification will be automatically verified against the official database.'}
-                  {certType?.verificationMethod === 'GOVERNMENT_DATABASE' && 
+                  {certType?.verificationMethod === 'GOVERNMENT_DATABASE' &&
                     'This certification will be verified against government records.'}
-                  {certType?.verificationMethod === 'DOCUMENT_VERIFICATION' && 
+                  {certType?.verificationMethod === 'DOCUMENT_VERIFICATION' &&
                     'This certification will be manually reviewed by our team.'}
-                  {certType?.verificationMethod === 'MANUAL_REVIEW' && 
+                  {certType?.verificationMethod === 'MANUAL_REVIEW' &&
                     'This document requires manual verification and may take 1-2 business days.'}
                 </p>
               </div>

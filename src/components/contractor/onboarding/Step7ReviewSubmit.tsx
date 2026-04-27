@@ -1,23 +1,30 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { 
-  CheckCircle2, 
-  AlertCircle, 
-  FileText, 
-  User, 
-  Shield, 
-  Briefcase, 
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+  CheckCircle2,
+  AlertCircle,
+  FileText,
+  User,
+  Shield,
+  Briefcase,
   Wrench,
   Heart,
   DollarSign,
@@ -32,8 +39,8 @@ import {
   ArrowLeft,
   Loader2,
   AlertTriangle,
-  Info
-} from 'lucide-react'
+  Info,
+} from 'lucide-react';
 import {
   Form,
   FormControl,
@@ -41,64 +48,66 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage } from "@/components/ui/form"
+  FormMessage,
+} from '@/components/ui/form';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger } from "@/components/ui/accordion"
-import { Progress } from "@/components/ui/progress"
-import { toast } from "@/components/ui/use-toast"
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Progress } from '@/components/ui/progress';
+import { toast } from '@/components/ui/use-toast';
 
 const reviewSchema = z.object({
-  confirmDataAccuracy: z.boolean().refine(val => val === true, {
-    message: "You must confirm all information is accurate"
+  confirmDataAccuracy: z.boolean().refine((val) => val === true, {
+    message: 'You must confirm all information is accurate',
   }),
-  confirmTermsAccepted: z.boolean().refine(val => val === true, {
-    message: "You must accept the terms and conditions"
+  confirmTermsAccepted: z.boolean().refine((val) => val === true, {
+    message: 'You must accept the terms and conditions',
   }),
-  confirmPaymentAuthorized: z.boolean().refine(val => val === true, {
-    message: "You must authorise the payment"
+  confirmPaymentAuthorized: z.boolean().refine((val) => val === true, {
+    message: 'You must authorise the payment',
   }),
-  confirmCommitment: z.boolean().refine(val => val === true, {
-    message: "You must confirm your commitment to NRPG standards"
+  confirmCommitment: z.boolean().refine((val) => val === true, {
+    message: 'You must confirm your commitment to NRPG standards',
   }),
-  agreeToBackground: z.boolean().refine(val => val === true, {
-    message: "You must agree to background verification"
+  agreeToBackground: z.boolean().refine((val) => val === true, {
+    message: 'You must agree to background verification',
   }),
-  electronicSignature: z.string().min(1, "Electronic signature is required"),
-  signatureDate: z.string().min(1, "Signature date is required")
-})
+  electronicSignature: z.string().min(1, 'Electronic signature is required'),
+  signatureDate: z.string().min(1, 'Signature date is required'),
+});
 
-type ReviewFormValues = z.infer<typeof reviewSchema>
+type ReviewFormValues = z.infer<typeof reviewSchema>;
 
 interface Step7ReviewSubmitProps {
-  onNext: (data: ReviewFormValues) => void
-  onPrevious: () => void
-  defaultValues?: Partial<ReviewFormValues>
-  applicationData?: any // Full application data from all previous steps
+  onNext: (data: ReviewFormValues) => void;
+  onPrevious: () => void;
+  defaultValues?: Partial<ReviewFormValues>;
+  applicationData?: any; // Full application data from all previous steps
 }
 
 interface SectionReview {
-  title: string
-  icon: React.ReactNode
-  status: 'complete' | 'incomplete' | 'warning'
+  title: string;
+  icon: React.ReactNode;
+  status: 'complete' | 'incomplete' | 'warning';
   items: Array<{
-    label: string
-    value: string | number | boolean
-    required?: boolean
-    missing?: boolean
-  }>
+    label: string;
+    value: string | number | boolean;
+    required?: boolean;
+    missing?: boolean;
+  }>;
 }
 
-export default function Step7ReviewSubmit({ 
-  onNext, 
-  onPrevious, 
+export default function Step7ReviewSubmit({
+  onNext,
+  onPrevious,
   defaultValues,
-  applicationData = {}
+  applicationData = {},
 }: Step7ReviewSubmitProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showFullReview, setShowFullReview] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showFullReview, setShowFullReview] = useState(false);
 
   // Normalise raw application data from all steps into a review-friendly shape
   const reviewData = {
@@ -109,7 +118,7 @@ export default function Step7ReviewSubmit({
       businessName:
         applicationData.businessInfo?.businessName ||
         applicationData.businessInfo?.companyName ||
-        ''
+        '',
     },
     insurance: {
       // Map flat insurance fields from step 2 into a summary object
@@ -120,15 +129,14 @@ export default function Step7ReviewSubmit({
         applicationData.contractorLicenseNumber,
         applicationData.asbestosLicense,
         applicationData.plumbingLicense,
-        applicationData.electricalLicense
-      ].filter(Boolean)
+        applicationData.electricalLicense,
+      ].filter(Boolean),
     },
     experience: {
-      yearsExperience:
-        applicationData.yearsInBusiness || applicationData.yearsInDisasterRecovery,
+      yearsExperience: applicationData.yearsInBusiness || applicationData.yearsInDisasterRecovery,
       primaryServices: applicationData.specializations || [],
       previousProjects: applicationData.workExperience || [],
-      references: applicationData.references || []
+      references: applicationData.references || [],
     },
     equipment: {
       vehicleFleet: applicationData.vehicles || [],
@@ -138,10 +146,10 @@ export default function Step7ReviewSubmit({
         ...(applicationData.airQualityEquipment || []),
         ...(applicationData.cleaningEquipment || []),
         ...(applicationData.safetyEquipment || []),
-        ...(applicationData.measurementTools || [])
+        ...(applicationData.measurementTools || []),
       ],
       teamSize: applicationData.totalEmployees,
-      technicians: applicationData.certifiedTechnicians
+      technicians: applicationData.certifiedTechnicians,
     },
     healthSafety: {
       whsPolicy: Boolean(applicationData.whsPolicyDocument),
@@ -149,16 +157,16 @@ export default function Step7ReviewSubmit({
       trainingRecords: Array.isArray(applicationData.mandatoryTraining)
         ? applicationData.mandatoryTraining.length > 0
         : false,
-      incidentReporting: applicationData.incidentReportingSystem
+      incidentReporting: applicationData.incidentReportingSystem,
     },
     banking: {
       accountName: applicationData.accountName,
       bsb: applicationData.bsb,
       accountNumber: applicationData.accountNumber,
       gstRegistered: applicationData.gstRegistered,
-      paymentTerms: applicationData.paymentTerms
-    }
-  }
+      paymentTerms: applicationData.paymentTerms,
+    },
+  };
 
   const form = useForm<ReviewFormValues>({
     resolver: zodResolver(reviewSchema),
@@ -170,23 +178,23 @@ export default function Step7ReviewSubmit({
       agreeToBackground: false,
       electronicSignature: '',
       signatureDate: new Date().toISOString().split('T')[0],
-      ...defaultValues
-    }
-  })
+      ...defaultValues,
+    },
+  });
 
   // Calculate completion status for each section
   const getSectionStatus = (section: string): 'complete' | 'incomplete' | 'warning' => {
-    const data = (reviewData as any)[section]
-    if (!data) return 'incomplete'
-    
+    const data = (reviewData as Record<string, Record<string, unknown> | undefined>)[section];
+    if (!data) return 'incomplete';
+
     // Check if all required fields are filled
-    const requiredFields = getRequiredFields(section)
-    const missingFields = requiredFields.filter(field => !data[field])
-    
-    if (missingFields.length === 0) return 'complete'
-    if (missingFields.length <= 2) return 'warning'
-    return 'incomplete'
-  }
+    const requiredFields = getRequiredFields(section);
+    const missingFields = requiredFields.filter((field) => !data[field]);
+
+    if (missingFields.length === 0) return 'complete';
+    if (missingFields.length <= 2) return 'warning';
+    return 'incomplete';
+  };
 
   const getRequiredFields = (section: string): string[] => {
     const requiredFieldsMap: Record<string, string[]> = {
@@ -195,10 +203,10 @@ export default function Step7ReviewSubmit({
       experience: ['yearsExperience', 'primaryServices', 'previousProjects'],
       equipment: ['vehicleFleet', 'specializedEquipment', 'teamSize'],
       healthSafety: ['whsPolicy', 'safeWorkProcedures', 'incidentReporting'],
-      banking: ['accountName', 'bsb', 'accountNumber', 'gstRegistered']
-    }
-    return requiredFieldsMap[section] || []
-  }
+      banking: ['accountName', 'bsb', 'accountNumber', 'gstRegistered'],
+    };
+    return requiredFieldsMap[section] || [];
+  };
 
   // Generate review sections
   const reviewSections: SectionReview[] = [
@@ -207,127 +215,226 @@ export default function Step7ReviewSubmit({
       icon: <Briefcase className="h-5 w-5" />,
       status: getSectionStatus('businessInfo'),
       items: [
-        { label: 'Business Name', value: reviewData.businessInfo?.businessName || 'Not provided', required: true },
+        {
+          label: 'Business Name',
+          value: reviewData.businessInfo?.businessName || 'Not provided',
+          required: true,
+        },
         { label: 'ABN', value: reviewData.businessInfo?.abn || 'Not provided', required: true },
         { label: 'Trading Name', value: reviewData.businessInfo?.tradingName || 'Not provided' },
-        { label: 'Business Type', value: reviewData.businessInfo?.businessType || 'Not provided', required: true },
-        { label: 'Year Established', value: reviewData.businessInfo?.yearEstablished || 'Not provided', required: true },
+        {
+          label: 'Business Type',
+          value: reviewData.businessInfo?.businessType || 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Year Established',
+          value: reviewData.businessInfo?.yearEstablished || 'Not provided',
+          required: true,
+        },
         { label: 'Website', value: reviewData.businessInfo?.website || 'Not provided' },
-      ]
+      ],
     },
     {
       title: 'Insurance & Licensing',
       icon: <Shield className="h-5 w-5" />,
       status: getSectionStatus('insurance'),
       items: [
-        { label: 'Public Liability', value: reviewData.insurance?.publicLiability || 'Not provided', required: true },
-        { label: 'Professional Indemnity', value: reviewData.insurance?.professionalIndemnity || 'Not provided', required: true },
-        { label: 'Workers Compensation', value: reviewData.insurance?.workersComp ? 'Active' : 'Not provided', required: true },
-        { label: 'Licences', value: reviewData.insurance?.licenses?.length ? `${reviewData.insurance.licenses.length} licences` : 'None provided' },
-      ]
+        {
+          label: 'Public Liability',
+          value: reviewData.insurance?.publicLiability || 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Professional Indemnity',
+          value: reviewData.insurance?.professionalIndemnity || 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Workers Compensation',
+          value: reviewData.insurance?.workersComp ? 'Active' : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Licences',
+          value: reviewData.insurance?.licenses?.length
+            ? `${reviewData.insurance.licenses.length} licences`
+            : 'None provided',
+        },
+      ],
     },
     {
       title: 'Experience & References',
       icon: <User className="h-5 w-5" />,
       status: getSectionStatus('experience'),
       items: [
-        { label: 'Years in Business', value: reviewData.experience?.yearsExperience || 'Not provided', required: true },
-        { label: 'Primary Services', value: reviewData.experience?.primaryServices?.join(', ') || 'Not provided', required: true },
-        { label: 'Previous Projects', value: reviewData.experience?.previousProjects?.length ? `${reviewData.experience.previousProjects.length} projects` : 'None provided', required: true },
-        { label: 'References', value: reviewData.experience?.references?.length ? `${reviewData.experience.references.length} references` : 'None provided', required: true },
-      ]
+        {
+          label: 'Years in Business',
+          value: reviewData.experience?.yearsExperience || 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Primary Services',
+          value: reviewData.experience?.primaryServices?.join(', ') || 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Previous Projects',
+          value: reviewData.experience?.previousProjects?.length
+            ? `${reviewData.experience.previousProjects.length} projects`
+            : 'None provided',
+          required: true,
+        },
+        {
+          label: 'References',
+          value: reviewData.experience?.references?.length
+            ? `${reviewData.experience.references.length} references`
+            : 'None provided',
+          required: true,
+        },
+      ],
     },
     {
       title: 'Equipment & Resources',
       icon: <Wrench className="h-5 w-5" />,
       status: getSectionStatus('equipment'),
       items: [
-        { label: 'Vehicle Fleet', value: reviewData.equipment?.vehicleFleet?.length ? `${reviewData.equipment.vehicleFleet.length} vehicles` : 'Not provided', required: true },
-        { label: 'Specialised Equipment', value: reviewData.equipment?.specializedEquipment?.length ? `${reviewData.equipment.specializedEquipment.length} items` : 'Not provided', required: true },
-        { label: 'Team Size', value: reviewData.equipment?.teamSize || 'Not provided', required: true },
+        {
+          label: 'Vehicle Fleet',
+          value: reviewData.equipment?.vehicleFleet?.length
+            ? `${reviewData.equipment.vehicleFleet.length} vehicles`
+            : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Specialised Equipment',
+          value: reviewData.equipment?.specializedEquipment?.length
+            ? `${reviewData.equipment.specializedEquipment.length} items`
+            : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Team Size',
+          value: reviewData.equipment?.teamSize || 'Not provided',
+          required: true,
+        },
         { label: 'Technicians', value: reviewData.equipment?.technicians || 'Not provided' },
-      ]
+      ],
     },
     {
       title: 'Health & Safety',
       icon: <Heart className="h-5 w-5" />,
       status: getSectionStatus('healthSafety'),
       items: [
-        { label: 'WHS Policy', value: reviewData.healthSafety?.whsPolicy ? 'Provided' : 'Not provided', required: true },
-        { label: 'Safe Work Procedures', value: reviewData.healthSafety?.safeWorkProcedures ? 'Documented' : 'Not provided', required: true },
-        { label: 'Training Records', value: reviewData.healthSafety?.trainingRecords ? 'Maintained' : 'Not provided', required: true },
-        { label: 'Incident Reporting', value: reviewData.healthSafety?.incidentReporting ? 'System in place' : 'Not provided', required: true },
-      ]
+        {
+          label: 'WHS Policy',
+          value: reviewData.healthSafety?.whsPolicy ? 'Provided' : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Safe Work Procedures',
+          value: reviewData.healthSafety?.safeWorkProcedures ? 'Documented' : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Training Records',
+          value: reviewData.healthSafety?.trainingRecords ? 'Maintained' : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'Incident Reporting',
+          value: reviewData.healthSafety?.incidentReporting ? 'System in place' : 'Not provided',
+          required: true,
+        },
+      ],
     },
     {
       title: 'Banking & Payment',
       icon: <DollarSign className="h-5 w-5" />,
       status: getSectionStatus('banking'),
       items: [
-        { label: 'Account Name', value: reviewData.banking?.accountName || 'Not provided', required: true },
+        {
+          label: 'Account Name',
+          value: reviewData.banking?.accountName || 'Not provided',
+          required: true,
+        },
         { label: 'BSB', value: reviewData.banking?.bsb || 'Not provided', required: true },
-        { label: 'Account Number', value: reviewData.banking?.accountNumber ? '****' + String(reviewData.banking.accountNumber).slice(-4) : 'Not provided', required: true },
-        { label: 'GST Registered', value: reviewData.banking?.gstRegistered ? 'Yes' : 'No', required: true },
+        {
+          label: 'Account Number',
+          value: reviewData.banking?.accountNumber
+            ? '****' + String(reviewData.banking.accountNumber).slice(-4)
+            : 'Not provided',
+          required: true,
+        },
+        {
+          label: 'GST Registered',
+          value: reviewData.banking?.gstRegistered ? 'Yes' : 'No',
+          required: true,
+        },
         { label: 'Payment Terms', value: reviewData.banking?.paymentTerms || '30 days' },
-      ]
-    }
-  ]
+      ],
+    },
+  ];
 
-  const totalSections = reviewSections.length
-  const completeSections = reviewSections.filter(s => s.status === 'complete').length
-  const warningSections = reviewSections.filter(s => s.status === 'warning').length
-  const incompleteSections = reviewSections.filter(s => s.status === 'incomplete').length
-  const completionPercentage = (completeSections / totalSections) * 100
+  const totalSections = reviewSections.length;
+  const completeSections = reviewSections.filter((s) => s.status === 'complete').length;
+  const warningSections = reviewSections.filter((s) => s.status === 'warning').length;
+  const incompleteSections = reviewSections.filter((s) => s.status === 'incomplete').length;
+  const completionPercentage = (completeSections / totalSections) * 100;
 
   const onSubmit = async (data: ReviewFormValues) => {
-    setIsSubmitting(true)
-    
+    setIsSubmitting(true);
+
     // Check for incomplete sections
     if (incompleteSections > 0) {
       toast({
-        title: "Incomplete Application",
+        title: 'Incomplete Application',
         description: `Please complete all required sections before submitting. ${incompleteSections} section(s) are incomplete.`,
-        variant: "destructive" })
-      setIsSubmitting(false)
-      return
+        variant: 'destructive',
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Process payment
       toast({
-        title: "Processing Application",
-        description: "Submitting your application..." })
-      
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      onNext(data)
-      
+        title: 'Processing Application',
+        description: 'Submitting your application...',
+      });
+
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      onNext(data);
+
       toast({
-        title: "Application Submitted Successfully!",
-        description: "Welcome to National Recovery Partners. Check your email for next steps." })
+        title: 'Application Submitted Successfully!',
+        description: 'Welcome to National Recovery Partners. Check your email for next steps.',
+      });
     } catch (error) {
       toast({
-        title: "Submission Failed",
-        description: "There was an error submitting your application. Please try again.",
-        variant: "destructive" })
+        title: 'Submission Failed',
+        description: 'There was an error submitting your application. Please try again.',
+        variant: 'destructive',
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const getStatusIcon = (status: 'complete' | 'incomplete' | 'warning') => {
     switch (status) {
       case 'complete':
-        return <CheckCircle2 className="h-5 w-5 text-green-500" />
+        return <CheckCircle2 className="h-5 w-5 text-green-500" />;
       case 'warning':
-        return <AlertTriangle className="h-5 w-5 text-blue-600" />
+        return <AlertTriangle className="h-5 w-5 text-blue-600" />;
       case 'incomplete':
-        return <XCircle className="h-5 w-5 text-red-500" />
+        return <XCircle className="h-5 w-5 text-red-500" />;
     }
-  }
+  };
 
   return (
     <Card className="w-full max-w-4xl mx-auto">
@@ -342,7 +449,7 @@ export default function Step7ReviewSubmit({
               </CardDescription>
             </div>
           </div>
-          <Badge variant={completionPercentage === 100 ? "default" : "secondary"}>
+          <Badge variant={completionPercentage === 100 ? 'default' : 'secondary'}>
             {completionPercentage.toFixed(0)}% Complete
           </Badge>
         </div>
@@ -356,11 +463,7 @@ export default function Step7ReviewSubmit({
               <Info className="h-5 w-5" />
               Application Overview
             </h3>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowFullReview(!showFullReview)}
-            >
+            <Button variant="outline" size="sm" onClick={() => setShowFullReview(!showFullReview)}>
               <Eye className="h-4 w-4 mr-2" />
               {showFullReview ? 'Hide' : 'Show'} Full Review
             </Button>
@@ -407,7 +510,9 @@ export default function Step7ReviewSubmit({
                             {item.label}
                             {item.required && <span className="text-red-500 ml-1">*</span>}
                           </span>
-                          <span className={`text-sm font-medium ${item.value === 'Not provided' ? 'text-red-500' : ''}`}>
+                          <span
+                            className={`text-sm font-medium ${item.value === 'Not provided' ? 'text-red-500' : ''}`}
+                          >
                             {item.value}
                           </span>
                         </div>
@@ -420,8 +525,9 @@ export default function Step7ReviewSubmit({
                           onClick={() => {
                             // Navigate to specific section for editing
                             toast({
-                              title: "Edit Section",
-                              description: `Navigate to ${section.title} section to make changes` })
+                              title: 'Edit Section',
+                              description: `Navigate to ${section.title} section to make changes`,
+                            });
                           }}
                         >
                           <Edit className="h-4 w-4 mr-2" />
@@ -442,7 +548,8 @@ export default function Step7ReviewSubmit({
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Incomplete Application</AlertTitle>
             <AlertDescription>
-              You have {incompleteSections} incomplete section(s). Please complete all required information before submitting your application.
+              You have {incompleteSections} incomplete section(s). Please complete all required
+              information before submitting your application.
             </AlertDescription>
           </Alert>
         )}
@@ -452,7 +559,8 @@ export default function Step7ReviewSubmit({
             <AlertTriangle className="h-4 w-4" />
             <AlertTitle>Review Recommended</AlertTitle>
             <AlertDescription>
-              Some sections may be missing optional information. You can still submit, but providing complete information may speed up approval.
+              Some sections may be missing optional information. You can still submit, but providing
+              complete information may speed up approval.
             </AlertDescription>
           </Alert>
         )}
@@ -467,12 +575,18 @@ export default function Step7ReviewSubmit({
           </CardHeader>
           <CardContent className="space-y-2">
             <p className="text-sm text-muted-foreground">
-              The NRPG fee structure — including application, joining, and ongoing subscription fees — is confirmed in your contractor agreement. Fees are payable via EFT (Bank Transfer).
+              The NRPG fee structure — including application, joining, and ongoing subscription fees
+              — is confirmed in your contractor agreement. Fees are payable via EFT (Bank Transfer).
             </p>
             <Separator />
             <p className="text-sm text-muted-foreground">
               For current rates, visit the{' '}
-              <a href="/rates" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+              <a
+                href="/rates"
+                className="text-blue-600 underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Rate Schedule
               </a>{' '}
               or contact NRPG directly.
@@ -497,10 +611,7 @@ export default function Step7ReviewSubmit({
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                       <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
@@ -520,15 +631,10 @@ export default function Step7ReviewSubmit({
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                       <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>
-                          I accept the NRPG Contractor Terms and Conditions
-                        </FormLabel>
+                        <FormLabel>I accept the NRPG Contractor Terms and Conditions</FormLabel>
                         <FormDescription>
                           <Button
                             type="button"
@@ -550,17 +656,15 @@ export default function Step7ReviewSubmit({
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                       <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
                           I authorise payment of any applicable NRPG application fees
                         </FormLabel>
                         <FormDescription>
-                          Fees are confirmed in the contractor agreement and paid via EFT (Bank Transfer)
+                          Fees are confirmed in the contractor agreement and paid via EFT (Bank
+                          Transfer)
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -573,17 +677,15 @@ export default function Step7ReviewSubmit({
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                       <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
                           I commit to maintaining NRPG quality and service standards
                         </FormLabel>
                         <FormDescription>
-                          Including 24/7 availability, rapid response times, and professional conduct
+                          Including 24/7 availability, rapid response times, and professional
+                          conduct
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -596,15 +698,10 @@ export default function Step7ReviewSubmit({
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                       <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel>
-                          I agree to background and reference verification
-                        </FormLabel>
+                        <FormLabel>I agree to background and reference verification</FormLabel>
                         <FormDescription>
                           NRPG will verify insurance, licences, and contact references
                         </FormDescription>
@@ -663,12 +760,7 @@ export default function Step7ReviewSubmit({
       </CardContent>
 
       <CardFooter className="flex justify-between">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={onPrevious}
-          disabled={isSubmitting}
-        >
+        <Button type="button" variant="outline" onClick={onPrevious} disabled={isSubmitting}>
           <ArrowLeft className="h-4 w-4 mr-2" />
           Previous
         </Button>
@@ -680,8 +772,9 @@ export default function Step7ReviewSubmit({
             onClick={() => {
               // Save draft functionality
               toast({
-                title: "Draft Saved",
-                description: "Your application has been saved. You can continue later." })
+                title: 'Draft Saved',
+                description: 'Your application has been saved. You can continue later.',
+              });
             }}
             disabled={isSubmitting}
           >
@@ -708,5 +801,5 @@ export default function Step7ReviewSubmit({
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

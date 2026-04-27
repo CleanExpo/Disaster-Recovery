@@ -555,7 +555,12 @@ function ProjectDetailsForm({
         <label className="block text-sm font-medium text-gray-600 mb-2">Property Type *</label>
         <select
           value={formData.propertyType}
-          onChange={(e) => setFormData({ ...formData, propertyType: e.target.value as any })}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              propertyType: e.target.value as ProofOfWorkClaim['propertyType'],
+            })
+          }
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           <option value="RESIDENTIAL">Residential</option>
