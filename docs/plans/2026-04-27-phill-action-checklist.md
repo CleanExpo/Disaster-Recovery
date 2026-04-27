@@ -9,17 +9,31 @@ this order so the agent on machine 2/3/4 can resume without waiting.
 
 ---
 
-## ☐ 1. Send the two counsel emails (15 min)
+## ☑ 1. Counsel emails — DEFERRED (drafts saved on disk)
 
-File: `docs/counsel/2026-04-27-emails-to-send.md`
+**Status:** Drafted, **not sent**. Funds-constrained — defer until
+budget allows. NOT a blocker on D2 voice GA.
 
-- Open the file. Copy Email 1 body. Paste into your mail client.
-  Replace `[counsel@firm.com.au]` and `[mobile]`. Send.
-- Repeat for Email 2.
-- Add a calendar reminder for Wed 29 Apr to chase if no reply.
+File: `docs/counsel/2026-04-27-emails-to-send.md` (drafts retained for
+when funds available).
 
-**Why first:** D2 voice GA launch is gated on Email 2 returning a
-confirm. Send today, get back tomorrow, ship Tuesday.
+**Posture going forward:**
+
+- ADR-011 Path A is the engineering-team decision and the published
+  business-rules posture. We ship under it without counsel
+  pre-confirmation.
+- APP 8 voice consent wording is canonical per
+  `.claude/rules/compliance.md` §3 — already in production code at
+  `src/lib/voice/consent-utterance.ts`. We ship under it without
+  counsel pre-confirmation.
+- Risk acknowledged: belt-and-braces sign-off is deferred. If a
+  regulator queries either, the engineering documentation
+  (ADR-011, ADR-003, compliance.md) is the audit trail.
+- When budget allows, send the drafted emails — same wording, just
+  later.
+
+**Effect on D1-D5 plan:** D2 voice GA launch proceeds on engineering
+authority. No external dependency.
 
 ---
 
