@@ -31,9 +31,9 @@ export class BrowserAutomationAgent extends EventEmitter {
           { action: 'fill', selector: 'input[name="password"]', value: 'SecurePass123!' },
           { action: 'click', selector: 'button[type="submit"]' },
           { action: 'wait', value: 2000 },
-          { action: 'assert', selector: '.success-message', assertion: 'visible' }
+          { action: 'assert', selector: '.success-message', assertion: 'visible' },
         ],
-        expectedResult: 'Form successfully submitted with validation'
+        expectedResult: 'Form successfully submitted with validation',
       },
       {
         name: 'Navigation Flow Test',
@@ -43,9 +43,9 @@ export class BrowserAutomationAgent extends EventEmitter {
           { action: 'click', selector: 'nav a[href="/about"]' },
           { action: 'assert', value: '/about', assertion: 'url-contains' },
           { action: 'click', selector: 'nav a[href="/services"]' },
-          { action: 'assert', value: '/services', assertion: 'url-contains' }
+          { action: 'assert', value: '/services', assertion: 'url-contains' },
         ],
-        expectedResult: 'Navigation works correctly across pages'
+        expectedResult: 'Navigation works correctly across pages',
       },
       {
         name: 'Responsive Design Test',
@@ -55,9 +55,9 @@ export class BrowserAutomationAgent extends EventEmitter {
           { action: 'navigate', value: '/' },
           { action: 'assert', selector: '.mobile-menu', assertion: 'visible' },
           { action: 'setViewport', value: { width: 1920, height: 1080 } },
-          { action: 'assert', selector: '.desktop-menu', assertion: 'visible' }
+          { action: 'assert', selector: '.desktop-menu', assertion: 'visible' },
         ],
-        expectedResult: 'UI adapts correctly to different screen sizes'
+        expectedResult: 'UI adapts correctly to different screen sizes',
       },
       {
         name: 'API Integration Test',
@@ -66,9 +66,9 @@ export class BrowserAutomationAgent extends EventEmitter {
           { action: 'navigate', value: '/data-page' },
           { action: 'waitForSelector', selector: '.loading-spinner' },
           { action: 'waitForSelector', selector: '.data-table', value: { timeout: 10000 } },
-          { action: 'assert', selector: '.data-row', assertion: 'count-greater-than-0' }
+          { action: 'assert', selector: '.data-row', assertion: 'count-greater-than-0' },
         ],
-        expectedResult: 'API data loads and displays correctly'
+        expectedResult: 'API data loads and displays correctly',
       },
       {
         name: 'Error Handling Test',
@@ -78,13 +78,18 @@ export class BrowserAutomationAgent extends EventEmitter {
           { action: 'fill', selector: 'input[name="email"]', value: 'invalid-email' },
           { action: 'click', selector: 'button[type="submit"]' },
           { action: 'assert', selector: '.error-message', assertion: 'visible' },
-          { action: 'assert', selector: '.error-message', value: 'valid email', assertion: 'text-contains' }
+          {
+            action: 'assert',
+            selector: '.error-message',
+            value: 'valid email',
+            assertion: 'text-contains',
+          },
         ],
-        expectedResult: 'Error messages display appropriately'
-      }
+        expectedResult: 'Error messages display appropriately',
+      },
     ];
 
-    patterns.forEach(pattern => {
+    patterns.forEach((pattern) => {
       this.testPatterns.set(pattern.name.toLowerCase(), pattern);
     });
   }
@@ -95,7 +100,7 @@ export class BrowserAutomationAgent extends EventEmitter {
       defaultTimeout: 30000,
       viewport: {
         width: 1280,
-        height: 720
+        height: 720,
       },
       userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       args: [
@@ -105,8 +110,8 @@ export class BrowserAutomationAgent extends EventEmitter {
         '--disable-accelerated-2d-canvas',
         '--no-first-run',
         '--no-zygote',
-        '--disable-gpu'
-      ]
+        '--disable-gpu',
+      ],
     };
   }
 
@@ -118,19 +123,25 @@ export class BrowserAutomationAgent extends EventEmitter {
       contextOptions: {
         viewport: { width: 1280, height: 720 },
         ignoreHTTPSErrors: true,
-        recordVideo: process.env.RECORD_VIDEO === 'true' ? {
-          dir: './test-results/videos',
-          size: { width: 1280, height: 720 }
-        } : undefined,
-        recordHar: process.env.RECORD_HAR === 'true' ? {
-          path: './test-results/har'
-        } : undefined
+        recordVideo:
+          process.env.RECORD_VIDEO === 'true'
+            ? {
+                dir: './test-results/videos',
+                size: { width: 1280, height: 720 },
+              }
+            : undefined,
+        recordHar:
+          process.env.RECORD_HAR === 'true'
+            ? {
+                path: './test-results/har',
+              }
+            : undefined,
       },
       automation: {
         waitForSelector: { timeout: 30000 },
         waitForNavigation: { waitUntil: 'networkidle' },
-        screenshot: { fullPage: false, type: 'png' }
-      }
+        screenshot: { fullPage: false, type: 'png' },
+      },
     };
   }
 
@@ -153,28 +164,28 @@ export class BrowserAutomationAgent extends EventEmitter {
       performance: {},
       accessibility: {},
       recommendations: [],
-      confidence: 0.90
+      confidence: 0.9,
     };
 
     try {
       // Analyze task for browser automation needs
       const automationPlan = this.createAutomationPlan(task);
-      
+
       // Generate test cases
       result.tests = this.generateTestCases(task, automationPlan);
-      
+
       // Create automation scripts
       const scripts = this.generateAutomationScripts(result.tests);
-      
+
       // Analyze performance requirements
       result.performance = this.analyzePerformanceRequirements(task);
-      
+
       // Check accessibility requirements
       result.accessibility = this.checkAccessibilityRequirements(task);
-      
+
       // Generate recommendations
       result.recommendations = this.generateAutomationRecommendations(task, result.tests);
-      
+
       // Create summary
       result.summary = this.createAutomationSummary(result);
 
@@ -196,7 +207,7 @@ export class BrowserAutomationAgent extends EventEmitter {
       browsers: ['chromium'],
       viewports: ['desktop'],
       interactions: [] as string[],
-      validations: [] as string[]
+      validations: [] as string[],
     };
 
     const description = task.description.toLowerCase();
@@ -220,15 +231,11 @@ export class BrowserAutomationAgent extends EventEmitter {
 
     // Identify interactions
     const interactionKeywords = ['click', 'fill', 'submit', 'navigate', 'scroll', 'hover'];
-    plan.interactions = interactionKeywords.filter(keyword => 
-      description.includes(keyword)
-    );
+    plan.interactions = interactionKeywords.filter((keyword) => description.includes(keyword));
 
     // Identify validations
     const validationKeywords = ['assert', 'verify', 'check', 'validate', 'test'];
-    plan.validations = validationKeywords.filter(keyword => 
-      description.includes(keyword)
-    );
+    plan.validations = validationKeywords.filter((keyword) => description.includes(keyword));
 
     return plan;
   }
@@ -246,7 +253,7 @@ export class BrowserAutomationAgent extends EventEmitter {
         browsers: plan.browsers,
         steps: this.adaptStepsToTask(pattern.steps, task),
         assertions: this.generateAssertions(pattern, task),
-        expectedResult: pattern.expectedResult
+        expectedResult: pattern.expectedResult,
       };
       testCases.push(testCase);
     }
@@ -287,10 +294,10 @@ export class BrowserAutomationAgent extends EventEmitter {
 
   private adaptStepsToTask(steps: any[], task: ResearchTask): any[] {
     // Adapt generic steps to specific task context
-    return steps.map(step => ({
+    return steps.map((step) => ({
       ...step,
       context: task.context,
-      timeout: task.timeout || 30000
+      timeout: task.timeout || 30000,
     }));
   }
 
@@ -298,7 +305,7 @@ export class BrowserAutomationAgent extends EventEmitter {
     const assertions: string[] = [];
 
     // Extract assertions from pattern steps
-    pattern.steps.forEach(step => {
+    pattern.steps.forEach((step) => {
       if (step.action === 'assert' && step.assertion) {
         assertions.push(step.assertion);
       }
@@ -306,7 +313,7 @@ export class BrowserAutomationAgent extends EventEmitter {
 
     // Add task-specific assertions
     if (task.requirements) {
-      task.requirements.forEach(req => {
+      task.requirements.forEach((req) => {
         assertions.push(`Verify: ${req}`);
       });
     }
@@ -327,31 +334,31 @@ export class BrowserAutomationAgent extends EventEmitter {
         { action: 'click', selector: 'form button[type="submit"]' },
         { action: 'waitForNavigation' },
         { action: 'screenshot', value: 'success-page' },
-        { action: 'assert', selector: '.success-message', assertion: 'visible' }
+        { action: 'assert', selector: '.success-message', assertion: 'visible' },
       ],
       assertions: [
         'User can navigate through complete flow',
         'Forms submit successfully',
-        'Success state is reached'
+        'Success state is reached',
       ],
-      expectedResult: 'Complete user journey works end-to-end'
+      expectedResult: 'Complete user journey works end-to-end',
     };
   }
 
   private generateAutomationScripts(testCases: any[]): any {
-    const scripts = {
+    const scripts: { playwright: string[]; puppeteer: string[]; selenium: string[] } = {
       playwright: [],
       puppeteer: [],
-      selenium: []
-    } as any;
+      selenium: [],
+    };
 
     for (const testCase of testCases) {
       // Generate Playwright script (primary)
       scripts.playwright.push(this.generatePlaywrightScript(testCase));
-      
+
       // Generate Puppeteer script (alternative)
       scripts.puppeteer.push(this.generatePuppeteerScript(testCase));
-      
+
       // Generate Selenium script (fallback)
       scripts.selenium.push(this.generateSeleniumScript(testCase));
     }
@@ -362,7 +369,7 @@ export class BrowserAutomationAgent extends EventEmitter {
   private generatePlaywrightScript(testCase: any): string {
     let script = `import { test, expect } from '@playwright/test';\n\n`;
     script += `test('${testCase.name}', async ({ page }) => {\n`;
-    
+
     for (const step of testCase.steps) {
       switch (step.action) {
         case 'navigate':
@@ -384,7 +391,7 @@ export class BrowserAutomationAgent extends EventEmitter {
           break;
       }
     }
-    
+
     script += `});\n`;
     return script;
   }
@@ -401,18 +408,20 @@ const browser = await puppeteer.launch({
 const page = await browser.newPage();
 await page.setViewport({ width: 1280, height: 720 });
 
-${testCase.steps.map((step: any) => {
-  switch (step.action) {
-    case 'navigate':
-      return `await page.goto('${step.value}');`;
-    case 'click':
-      return `await page.click('${step.selector}');`;
-    case 'fill':
-      return `await page.type('${step.selector}', '${step.value}');`;
-    default:
-      return `// ${step.action}`;
-  }
-}).join('\n')}
+${testCase.steps
+  .map((step: any) => {
+    switch (step.action) {
+      case 'navigate':
+        return `await page.goto('${step.value}');`;
+      case 'click':
+        return `await page.click('${step.selector}');`;
+      case 'fill':
+        return `await page.type('${step.selector}', '${step.value}');`;
+      default:
+        return `// ${step.action}`;
+    }
+  })
+  .join('\n')}
 
 await browser.close();`;
   }
@@ -426,18 +435,20 @@ const driver = await new Builder()
   .build();
 
 try {
-${testCase.steps.map((step: any) => {
-  switch (step.action) {
-    case 'navigate':
-      return `  await driver.get('${step.value}');`;
-    case 'click':
-      return `  await driver.findElement(By.css('${step.selector}')).click();`;
-    case 'fill':
-      return `  await driver.findElement(By.css('${step.selector}')).sendKeys('${step.value}');`;
-    default:
-      return `  // ${step.action}`;
-  }
-}).join('\n')}
+${testCase.steps
+  .map((step: any) => {
+    switch (step.action) {
+      case 'navigate':
+        return `  await driver.get('${step.value}');`;
+      case 'click':
+        return `  await driver.findElement(By.css('${step.selector}')).click();`;
+      case 'fill':
+        return `  await driver.findElement(By.css('${step.selector}')).sendKeys('${step.value}');`;
+      default:
+        return `  // ${step.action}`;
+    }
+  })
+  .join('\n')}
 } finally {
   await driver.quit();
 }`;
@@ -450,14 +461,14 @@ ${testCase.steps.map((step: any) => {
         'Largest Contentful Paint': '< 2.5s',
         'Time to Interactive': '< 3.8s',
         'Total Blocking Time': '< 300ms',
-        'Cumulative Layout Shift': '< 0.1'
+        'Cumulative Layout Shift': '< 0.1',
       },
       recommendations: [
         'Optimise image loading with lazy loading',
         'Minimise JavaScript bundle size',
         'Use code splitting for better performance',
-        'Implement caching strategies'
-      ]
+        'Implement caching strategies',
+      ],
     };
   }
 
@@ -469,13 +480,13 @@ ${testCase.steps.map((step: any) => {
         'All images have alt text',
         'Forms have proper labels',
         'Keyboard navigation works',
-        'Screen reader compatibility'
+        'Screen reader compatibility',
       ],
       tools: [
         'axe-core for automated testing',
         'WAVE for visual feedback',
-        'Lighthouse for audits'
-      ]
+        'Lighthouse for audits',
+      ],
     };
   }
 
@@ -484,21 +495,21 @@ ${testCase.steps.map((step: any) => {
 
     // Test coverage recommendations
     recommendations.push(`Implement ${testCases.length} test cases for comprehensive coverage`);
-    
+
     // Browser recommendations
     if (task.description.includes('mobile')) {
       recommendations.push('Include mobile viewport testing with touch interactions');
     }
-    
+
     // Performance recommendations
     recommendations.push('Add performance monitoring to track Core Web Vitals');
-    
+
     // CI/CD recommendations
     recommendations.push('Integrate tests into CI/CD pipeline for automated validation');
-    
+
     // Visual testing
     recommendations.push('Implement visual regression testing with screenshot comparison');
-    
+
     // Error monitoring
     recommendations.push('Add error boundary testing and monitoring');
 

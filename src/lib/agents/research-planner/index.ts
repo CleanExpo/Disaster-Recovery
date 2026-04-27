@@ -36,22 +36,16 @@ export class ResearchPlannerAgent extends EventEmitter {
         'theme-customization',
         'accessibility-compliance',
         'responsive-design',
-        'animation-patterns'
+        'animation-patterns',
       ],
-      confidence: 0.95
+      confidence: 0.95,
     });
 
     this.capabilities.set('ui-designer', {
       name: 'UI Designer',
       description: 'Creates and optimizes user interface designs',
-      skills: [
-        'layout-design',
-        'color-theory',
-        'typography',
-        'user-experience',
-        'design-systems'
-      ],
-      confidence: 0.92
+      skills: ['layout-design', 'color-theory', 'typography', 'user-experience', 'design-systems'],
+      confidence: 0.92,
     });
 
     this.capabilities.set('browser-automation', {
@@ -62,9 +56,9 @@ export class ResearchPlannerAgent extends EventEmitter {
         'ui-testing',
         'performance-monitoring',
         'cross-browser-testing',
-        'screenshot-capture'
+        'screenshot-capture',
       ],
-      confidence: 0.90
+      confidence: 0.9,
     });
 
     this.capabilities.set('documentation', {
@@ -75,9 +69,9 @@ export class ResearchPlannerAgent extends EventEmitter {
         'code-examples',
         'best-practices',
         'migration-guides',
-        'troubleshooting'
+        'troubleshooting',
       ],
-      confidence: 0.88
+      confidence: 0.88,
     });
 
     this.capabilities.set('code-analysis', {
@@ -88,9 +82,9 @@ export class ResearchPlannerAgent extends EventEmitter {
         'pattern-recognition',
         'performance-analysis',
         'security-scanning',
-        'refactoring-suggestions'
+        'refactoring-suggestions',
       ],
-      confidence: 0.91
+      confidence: 0.91,
     });
   }
 
@@ -106,16 +100,16 @@ export class ResearchPlannerAgent extends EventEmitter {
 
     // Analyze task to determine required agents
     const requiredAgents = this.determineRequiredAgents(task);
-    
+
     // Create execution plan
     const executionPlan = this.createExecutionPlan(task, requiredAgents);
-    
+
     // Execute plan with appropriate agents
     const results = await this.executeResearchPlan(executionPlan);
-    
+
     // Synthesize results
     const synthesizedResult = this.synthesizeResults(results);
-    
+
     this.emit('planning-completed', synthesizedResult);
     return synthesizedResult;
   }
@@ -126,37 +120,47 @@ export class ResearchPlannerAgent extends EventEmitter {
     const taskType = task.type;
 
     // Determine agents based on task content
-    if (taskDescription.includes('shadcn') || 
-        taskDescription.includes('component') || 
-        taskDescription.includes('ui library')) {
+    if (
+      taskDescription.includes('shadcn') ||
+      taskDescription.includes('component') ||
+      taskDescription.includes('ui library')
+    ) {
       requiredAgents.push('shadcn-expert');
     }
 
-    if (taskDescription.includes('design') || 
-        taskDescription.includes('layout') || 
-        taskDescription.includes('user interface') ||
-        taskDescription.includes('ux')) {
+    if (
+      taskDescription.includes('design') ||
+      taskDescription.includes('layout') ||
+      taskDescription.includes('user interface') ||
+      taskDescription.includes('ux')
+    ) {
       requiredAgents.push('ui-designer');
     }
 
-    if (taskDescription.includes('test') || 
-        taskDescription.includes('browser') || 
-        taskDescription.includes('automation') ||
-        taskDescription.includes('scrape')) {
+    if (
+      taskDescription.includes('test') ||
+      taskDescription.includes('browser') ||
+      taskDescription.includes('automation') ||
+      taskDescription.includes('scrape')
+    ) {
       requiredAgents.push('browser-automation');
     }
 
-    if (taskDescription.includes('documentation') || 
-        taskDescription.includes('api') || 
-        taskDescription.includes('guide') ||
-        taskType === 'documentation') {
+    if (
+      taskDescription.includes('documentation') ||
+      taskDescription.includes('api') ||
+      taskDescription.includes('guide') ||
+      taskType === 'documentation'
+    ) {
       requiredAgents.push('documentation');
     }
 
-    if (taskDescription.includes('analyze') || 
-        taskDescription.includes('codebase') || 
-        taskDescription.includes('refactor') ||
-        taskType === 'analysis') {
+    if (
+      taskDescription.includes('analyze') ||
+      taskDescription.includes('codebase') ||
+      taskDescription.includes('refactor') ||
+      taskType === 'analysis'
+    ) {
       requiredAgents.push('code-analysis');
     }
 
@@ -171,9 +175,15 @@ export class ResearchPlannerAgent extends EventEmitter {
   private createExecutionPlan(task: ResearchTask, agentNames: string[]): any {
     const plan = {
       task,
-      steps: [] as any[],
+      steps: [] as Array<{
+        agentName: string;
+        agent: unknown;
+        capability: unknown;
+        priority: number;
+        dependencies: string[];
+      }>,
       parallel: task.parallel !== false,
-      timeout: task.timeout || 30000
+      timeout: task.timeout || 30000,
     };
 
     // Create execution steps for each agent
@@ -187,7 +197,7 @@ export class ResearchPlannerAgent extends EventEmitter {
           agent,
           capability,
           priority: this.calculatePriority(task, capability),
-          dependencies: this.identifyDependencies(agentName, agentNames)
+          dependencies: this.identifyDependencies(agentName, agentNames),
         });
       }
     }
@@ -214,8 +224,8 @@ export class ResearchPlannerAgent extends EventEmitter {
 
     // Boost priority for matching skills
     const taskKeywords = task.description.toLowerCase().split(' ');
-    const matchingSkills = capability.skills.filter(skill => 
-      taskKeywords.some(keyword => skill.includes(keyword))
+    const matchingSkills = capability.skills.filter((skill) =>
+      taskKeywords.some((keyword) => skill.includes(keyword)),
     );
     priority += matchingSkills.length * 10;
 
@@ -231,9 +241,11 @@ export class ResearchPlannerAgent extends EventEmitter {
     }
 
     // Code analysis provides context for other agents
-    if (agentName !== 'code-analysis' && 
-        agentName !== 'documentation' && 
-        allAgents.includes('code-analysis')) {
+    if (
+      agentName !== 'code-analysis' &&
+      agentName !== 'documentation' &&
+      allAgents.includes('code-analysis')
+    ) {
       dependencies.push('code-analysis');
     }
 
@@ -244,7 +256,7 @@ export class ResearchPlannerAgent extends EventEmitter {
 
     // Browser automation typically runs last
     if (agentName === 'browser-automation') {
-      allAgents.forEach(agent => {
+      allAgents.forEach((agent) => {
         if (agent !== 'browser-automation' && !dependencies.includes(agent)) {
           dependencies.push(agent);
         }
@@ -265,7 +277,7 @@ export class ResearchPlannerAgent extends EventEmitter {
       // Execute agent task
       this.emit('agent-executing', {
         agent: step.agentName,
-        task: plan.task
+        task: plan.task,
       });
 
       try {
@@ -274,14 +286,14 @@ export class ResearchPlannerAgent extends EventEmitter {
           agent: step.agentName,
           capability: step.capability,
           result,
-          success: true
+          success: true,
         });
       } catch (error) {
         results.push({
           agent: step.agentName,
           capability: step.capability,
           error: error instanceof Error ? error.message : String(error),
-          success: false
+          success: false,
         });
       }
 
@@ -289,7 +301,7 @@ export class ResearchPlannerAgent extends EventEmitter {
 
       this.emit('agent-completed', {
         agent: step.agentName,
-        success: results[results.length - 1].success
+        success: results[results.length - 1].success,
       });
     }
 
@@ -297,19 +309,19 @@ export class ResearchPlannerAgent extends EventEmitter {
   }
 
   private async waitForDependencies(
-    dependencies: string[], 
-    executedAgents: Set<string>
+    dependencies: string[],
+    executedAgents: Set<string>,
   ): Promise<void> {
     for (const dep of dependencies) {
       while (!executedAgents.has(dep)) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       }
     }
   }
 
   private synthesizeResults(results: any[]): ResearchResult {
-    const successfulResults = results.filter(r => r.success);
-    const failedResults = results.filter(r => !r.success);
+    const successfulResults = results.filter((r) => r.success);
+    const failedResults = results.filter((r) => !r.success);
 
     const synthesis: ResearchResult = {
       success: successfulResults.length > 0,
@@ -321,14 +333,14 @@ export class ResearchPlannerAgent extends EventEmitter {
         totalAgents: results.length,
         successfulAgents: successfulResults.length,
         failedAgents: failedResults.length,
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     };
 
     // Aggregate details from all agents
     for (const result of successfulResults) {
       synthesis.details[result.agent] = result.result;
-      
+
       // Extract recommendations if available
       if (result.result.recommendations) {
         synthesis.recommendations.push(...result.result.recommendations);
@@ -337,9 +349,9 @@ export class ResearchPlannerAgent extends EventEmitter {
 
     // Add error information
     if (failedResults.length > 0) {
-      synthesis.errors = failedResults.map(r => ({
+      synthesis.errors = failedResults.map((r) => ({
         agent: r.agent,
-        error: r.error
+        error: r.error,
       }));
     }
 
@@ -361,10 +373,10 @@ export class ResearchPlannerAgent extends EventEmitter {
   private calculateOverallConfidence(results: any[]): number {
     if (results.length === 0) return 0;
 
-    const successfulResults = results.filter(r => r.success);
+    const successfulResults = results.filter((r) => r.success);
     const totalConfidence = successfulResults.reduce(
-      (sum, r) => sum + (r.capability.confidence * (r.result.confidence || 1)),
-      0
+      (sum, r) => sum + r.capability.confidence * (r.result.confidence || 1),
+      0,
     );
 
     return totalConfidence / results.length;
@@ -396,11 +408,11 @@ export class ResearchPlannerAgent extends EventEmitter {
 
   public getAgentStatus(): Map<string, boolean> {
     const status = new Map<string, boolean>();
-    
+
     for (const [name, agent] of this.agents) {
       status.set(name, agent.isReady ? agent.isReady() : true);
     }
-    
+
     return status;
   }
 }

@@ -32,20 +32,21 @@ export class ShadcnExpertAgent extends EventEmitter {
         props: {
           variant: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
           size: ['default', 'sm', 'lg', 'icon'],
-          asChild: 'boolean'
+          asChild: 'boolean',
         },
         examples: [
           '<Button variant="outline">Click me</Button>',
-          '<Button size="lg" className="w-full">Submit</Button>'
+          '<Button size="lg" className="w-full">Submit</Button>',
         ],
         accessibility: ['aria-label', 'aria-pressed', 'role="button"'],
-        variants: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link']
+        variants: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
       },
       {
         name: 'Card',
         category: 'layout',
         description: 'Container component for grouping related content',
-        usage: 'import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"',
+        usage:
+          'import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"',
         examples: [
           `<Card>
   <CardHeader>
@@ -54,19 +55,20 @@ export class ShadcnExpertAgent extends EventEmitter {
   </CardHeader>
   <CardContent>Content here</CardContent>
   <CardFooter>Footer content</CardFooter>
-</Card>`
+</Card>`,
         ],
-        dependencies: ['@radix-ui/react-slot']
+        dependencies: ['@radix-ui/react-slot'],
       },
       {
         name: 'Dialog',
         category: 'overlay',
         description: 'Modal dialog for important interactions',
-        usage: 'import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"',
+        usage:
+          'import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"',
         props: {
           open: 'boolean',
           onOpenChange: '(open: boolean) => void',
-          modal: 'boolean'
+          modal: 'boolean',
         },
         examples: [
           `<Dialog>
@@ -79,16 +81,17 @@ export class ShadcnExpertAgent extends EventEmitter {
       <DialogDescription>This action cannot be undone.</DialogDescription>
     </DialogHeader>
   </DialogContent>
-</Dialog>`
+</Dialog>`,
         ],
         dependencies: ['@radix-ui/react-dialog'],
-        accessibility: ['aria-modal', 'role="dialog"', 'focus-trap']
+        accessibility: ['aria-modal', 'role="dialog"', 'focus-trap'],
       },
       {
         name: 'Form',
         category: 'forms',
         description: 'Form component with react-hook-form integration',
-        usage: 'import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"',
+        usage:
+          'import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"',
         dependencies: ['react-hook-form', '@hookform/resolvers', 'zod'],
         examples: [
           `<Form {...form}>
@@ -108,15 +111,16 @@ export class ShadcnExpertAgent extends EventEmitter {
       )}
     />
   </form>
-</Form>`
+</Form>`,
         ],
-        accessibility: ['aria-describedby', 'aria-invalid', 'role="form"']
+        accessibility: ['aria-describedby', 'aria-invalid', 'role="form"'],
       },
       {
         name: 'Select',
         category: 'forms',
         description: 'Dropdown selection component',
-        usage: 'import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"',
+        usage:
+          'import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"',
         dependencies: ['@radix-ui/react-select'],
         examples: [
           `<Select>
@@ -127,14 +131,15 @@ export class ShadcnExpertAgent extends EventEmitter {
     <SelectItem value="option1">Option 1</SelectItem>
     <SelectItem value="option2">Option 2</SelectItem>
   </SelectContent>
-</Select>`
-        ]
+</Select>`,
+        ],
       },
       {
         name: 'Table',
         category: 'data-display',
         description: 'Data table component',
-        usage: 'import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"',
+        usage:
+          'import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"',
         examples: [
           `<Table>
   <TableCaption>A list of recent invoices.</TableCaption>
@@ -152,8 +157,8 @@ export class ShadcnExpertAgent extends EventEmitter {
       <TableCell>$250.00</TableCell>
     </TableRow>
   </TableBody>
-</Table>`
-        ]
+</Table>`,
+        ],
       },
       {
         name: 'Toast',
@@ -165,12 +170,12 @@ export class ShadcnExpertAgent extends EventEmitter {
           `const { toast } = useToast();
 toast({
   title: "Success",
-  description: "Your action was completed." })`
-        ]
-      }
+  description: "Your action was completed." })`,
+        ],
+      },
     ];
 
-    components.forEach(comp => {
+    components.forEach((comp) => {
       this.componentKnowledge.set(comp.name.toLowerCase(), comp);
     });
   }
@@ -185,7 +190,7 @@ toast({
       muted: 'hsl(var(--muted))',
       accent: 'hsl(var(--accent))',
       border: 'hsl(var(--border))',
-      ring: 'hsl(var(--ring))'
+      ring: 'hsl(var(--ring))',
     });
 
     this.themePatterns.set('spacing', {
@@ -193,7 +198,7 @@ toast({
       sm: '1rem',
       md: '1.5rem',
       lg: '2rem',
-      xl: '3rem'
+      xl: '3rem',
     });
 
     this.themePatterns.set('radius', {
@@ -202,7 +207,7 @@ toast({
       md: 'calc(var(--radius) - 2px)',
       lg: 'var(--radius)',
       xl: 'calc(var(--radius) + 4px)',
-      full: '9999px'
+      full: '9999px',
     });
   }
 
@@ -212,7 +217,7 @@ toast({
       'Provide focus indicators',
       'Include ARIA labels for screen readers',
       'Support escape key to close overlays',
-      'Maintain focus trap in modals'
+      'Maintain focus trap in modals',
     ]);
 
     this.accessibilityRules.set('forms', [
@@ -220,7 +225,7 @@ toast({
       'Provide error messages with aria-describedby',
       'Mark required fields appropriately',
       'Group related fields with fieldset',
-      'Announce form validation errors'
+      'Announce form validation errors',
     ]);
 
     this.accessibilityRules.set('content', [
@@ -228,7 +233,7 @@ toast({
       'Provide alternative text for images',
       'Maintain proper heading hierarchy',
       'Ensure sufficient color contrast',
-      'Support reduced motion preferences'
+      'Support reduced motion preferences',
     ]);
   }
 
@@ -239,8 +244,8 @@ toast({
       summary: '',
       components: [] as ComponentPattern[],
       recommendations: [] as string[],
-      implementation: {} as any,
-      confidence: 0.9
+      implementation: {} as Record<string, unknown>,
+      confidence: 0.9,
     };
 
     // Analyze task to identify relevant components
@@ -273,8 +278,8 @@ toast({
     }
 
     // Sort by relevance
-    return relevant.sort((a, b) => 
-      this.calculateRelevance(b, keywords) - this.calculateRelevance(a, keywords)
+    return relevant.sort(
+      (a, b) => this.calculateRelevance(b, keywords) - this.calculateRelevance(a, keywords),
     );
   }
 
@@ -287,27 +292,24 @@ toast({
     }
 
     // Check category match
-    if (keywords.some(k => pattern.category.includes(k))) {
+    if (keywords.some((k) => pattern.category.includes(k))) {
       score += 0.3;
     }
 
     // Check description match
     const descWords = pattern.description.toLowerCase().split(' ');
-    const matchCount = keywords.filter(k => descWords.includes(k)).length;
+    const matchCount = keywords.filter((k) => descWords.includes(k)).length;
     score += matchCount * 0.1;
 
     return Math.min(score, 1);
   }
 
-  private generateImplementation(
-    task: ResearchTask, 
-    components: ComponentPattern[]
-  ): any {
+  private generateImplementation(task: ResearchTask, components: ComponentPattern[]): any {
     const implementation = {
       imports: [] as string[],
       code: [] as string[],
       dependencies: new Set<string>(),
-      styling: {} as any
+      styling: {} as Record<string, unknown>,
     };
 
     // Generate imports
@@ -316,7 +318,7 @@ toast({
         implementation.imports.push(component.usage);
       }
       if (component.dependencies) {
-        component.dependencies.forEach(dep => implementation.dependencies.add(dep));
+        component.dependencies.forEach((dep) => implementation.dependencies.add(dep));
       }
     }
 
@@ -332,29 +334,26 @@ toast({
     implementation.styling = {
       theme: this.themePatterns.get('colors'),
       spacing: this.themePatterns.get('spacing'),
-      radius: this.themePatterns.get('radius')
+      radius: this.themePatterns.get('radius'),
     };
 
     return implementation;
   }
 
-  private generateRecommendations(
-    task: ResearchTask,
-    components: ComponentPattern[]
-  ): string[] {
+  private generateRecommendations(task: ResearchTask, components: ComponentPattern[]): string[] {
     const recommendations: string[] = [];
 
     // Component-specific recommendations
     for (const component of components.slice(0, 3)) {
       if (component.variants && component.variants.length > 0) {
         recommendations.push(
-          `Consider using ${component.name} with variant "${component.variants[0]}" for better visual hierarchy`
+          `Consider using ${component.name} with variant "${component.variants[0]}" for better visual hierarchy`,
         );
       }
 
       if (component.accessibility && component.accessibility.length > 0) {
         recommendations.push(
-          `Ensure ${component.name} includes ${component.accessibility[0]} for accessibility`
+          `Ensure ${component.name} includes ${component.accessibility[0]} for accessibility`,
         );
       }
     }
@@ -378,11 +377,11 @@ toast({
     return recommendations.slice(0, 5);
   }
 
-  private createSummary(
-    components: ComponentPattern[],
-    recommendations: string[]
-  ): string {
-    const componentList = components.slice(0, 3).map(c => c.name).join(', ');
+  private createSummary(components: ComponentPattern[], recommendations: string[]): string {
+    const componentList = components
+      .slice(0, 3)
+      .map((c) => c.name)
+      .join(', ');
     return `Identified ${components.length} relevant shadcn/ui components (${componentList}) with ${recommendations.length} implementation recommendations. Components follow Radix UI patterns with full accessibility support.`;
   }
 

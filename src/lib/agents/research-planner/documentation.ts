@@ -27,74 +27,74 @@ export class DocumentationAgent extends EventEmitter {
         url: 'https://nextjs.org/docs',
         type: 'official',
         relevance: 0.95,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'React Documentation',
         url: 'https://react.dev',
         type: 'official',
         relevance: 0.93,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'Tailwind CSS',
         url: 'https://tailwindcss.com/docs',
         type: 'official',
-        relevance: 0.90,
-        lastUpdated: '2024-01'
+        relevance: 0.9,
+        lastUpdated: '2024-01',
       },
       {
         name: 'shadcn/ui',
         url: 'https://ui.shadcn.com',
         type: 'community',
         relevance: 0.92,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'Radix UI',
         url: 'https://www.radix-ui.com/docs',
         type: 'official',
         relevance: 0.88,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'Prisma',
         url: 'https://www.prisma.io/docs',
         type: 'official',
         relevance: 0.87,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'TypeScript',
         url: 'https://www.typescriptlang.org/docs',
         type: 'official',
         relevance: 0.91,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'MDN Web Docs',
         url: 'https://developer.mozilla.org',
         type: 'official',
         relevance: 0.89,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'Browserbase MCP',
         url: 'https://github.com/browserbase/mcp-server-browserbase',
         type: 'official',
         relevance: 0.85,
-        lastUpdated: '2024-01'
+        lastUpdated: '2024-01',
       },
       {
         name: 'Stagehand',
         url: 'https://github.com/browserbase/stagehand',
         type: 'official',
         relevance: 0.84,
-        lastUpdated: '2024-01'
-      }
+        lastUpdated: '2024-01',
+      },
     ];
 
-    sources.forEach(source => {
+    sources.forEach((source) => {
       this.documentationSources.set(source.name.toLowerCase(), source);
     });
   }
@@ -106,23 +106,17 @@ export class DocumentationAgent extends EventEmitter {
       'usage',
       'example',
       'api',
-      'reference'
+      'reference',
     ]);
 
-    this.searchPatterns.set('hook', [
-      'hook',
-      'useState',
-      'useEffect',
-      'custom hook',
-      'lifecycle'
-    ]);
+    this.searchPatterns.set('hook', ['hook', 'useState', 'useEffect', 'custom hook', 'lifecycle']);
 
     this.searchPatterns.set('routing', [
       'routing',
       'navigation',
       'pages',
       'app router',
-      'dynamic routes'
+      'dynamic routes',
     ]);
 
     this.searchPatterns.set('styling', [
@@ -131,24 +125,17 @@ export class DocumentationAgent extends EventEmitter {
       'tailwind',
       'theme',
       'responsive',
-      'dark mode'
+      'dark mode',
     ]);
 
-    this.searchPatterns.set('data', [
-      'fetching',
-      'api',
-      'database',
-      'prisma',
-      'query',
-      'mutation'
-    ]);
+    this.searchPatterns.set('data', ['fetching', 'api', 'database', 'prisma', 'query', 'mutation']);
 
     this.searchPatterns.set('deployment', [
       'deploy',
       'vercel',
       'production',
       'environment',
-      'build'
+      'build',
     ]);
   }
 
@@ -164,11 +151,11 @@ export class DocumentationAgent extends EventEmitter {
     const result = {
       summary: '',
       sources: [] as DocumentationSource[],
-      content: {} as any,
+      content: {} as Record<string, unknown>,
       examples: [] as string[],
-      apiReference: {} as any,
+      apiReference: {} as Record<string, unknown>,
       recommendations: [] as string[],
-      confidence: 0.88
+      confidence: 0.88,
     };
 
     try {
@@ -218,7 +205,7 @@ export class DocumentationAgent extends EventEmitter {
   private calculateSourceRelevance(
     source: DocumentationSource,
     keywords: string[],
-    task: ResearchTask
+    task: ResearchTask,
   ): number {
     let score = source.relevance;
 
@@ -243,15 +230,12 @@ export class DocumentationAgent extends EventEmitter {
     return Math.min(score, 1);
   }
 
-  private searchDocumentation(
-    task: ResearchTask,
-    sources: DocumentationSource[]
-  ): any {
+  private searchDocumentation(task: ResearchTask, sources: DocumentationSource[]): any {
     const content = {
-      concepts: [] as any[],
-      apis: [] as any[],
-      guides: [] as any[],
-      troubleshooting: [] as any[]
+      concepts: [] as Record<string, unknown>[],
+      apis: [] as Record<string, unknown>[],
+      guides: [] as Record<string, unknown>[],
+      troubleshooting: [] as Record<string, unknown>[],
     };
 
     // Identify search patterns
@@ -265,19 +249,19 @@ export class DocumentationAgent extends EventEmitter {
           content.concepts.push({
             source: source.name,
             topic: 'Component Architecture',
-            content: 'React component patterns and best practices'
+            content: 'React component patterns and best practices',
           });
         } else if (pattern === 'routing') {
           content.guides.push({
             source: source.name,
             topic: 'Routing Guide',
-            content: 'Next.js App Router navigation patterns'
+            content: 'Next.js App Router navigation patterns',
           });
         } else if (pattern === 'data') {
           content.apis.push({
             source: source.name,
             topic: 'Data Fetching',
-            content: 'Server Components and Client Components data patterns'
+            content: 'Server Components and Client Components data patterns',
           });
         }
       }
@@ -291,7 +275,7 @@ export class DocumentationAgent extends EventEmitter {
     const descLower = description.toLowerCase();
 
     for (const [category, keywords] of this.searchPatterns) {
-      if (keywords.some(keyword => descLower.includes(keyword))) {
+      if (keywords.some((keyword) => descLower.includes(keyword))) {
         patterns.push(category);
       }
     }
@@ -354,10 +338,10 @@ export async function getUsers() {
 
   private generateAPIReference(task: ResearchTask, content: any): any {
     const apiRef = {
-      methods: [] as any[],
-      props: [] as any[],
-      types: [] as any[],
-      hooks: [] as any[]
+      methods: [] as Record<string, unknown>[],
+      props: [] as Record<string, unknown>[],
+      types: [] as Record<string, unknown>[],
+      hooks: [] as Record<string, unknown>[],
     };
 
     // Generate API reference based on task context
@@ -366,13 +350,13 @@ export async function getUsers() {
         {
           name: 'useState',
           signature: 'const [state, setState] = useState<T>(initialValue: T)',
-          description: 'React state hook for managing component state'
+          description: 'React state hook for managing component state',
         },
         {
           name: 'useEffect',
           signature: 'useEffect(() => { /* effect */ }, [dependencies])',
-          description: 'React effect hook for side effects'
-        }
+          description: 'React effect hook for side effects',
+        },
       ];
     }
 
@@ -381,30 +365,25 @@ export async function getUsers() {
         {
           name: 'className',
           type: 'string',
-          description: 'CSS class names for styling'
+          description: 'CSS class names for styling',
         },
         {
           name: 'children',
           type: 'React.ReactNode',
-          description: 'Child elements to render'
-        }
+          description: 'Child elements to render',
+        },
       ];
     }
 
     return apiRef;
   }
 
-  private generateDocumentationRecommendations(
-    task: ResearchTask,
-    result: any
-  ): string[] {
+  private generateDocumentationRecommendations(task: ResearchTask, result: any): string[] {
     const recommendations: string[] = [];
 
     // Source-based recommendations
     if (result.sources.length > 0) {
-      recommendations.push(
-        `Refer to ${result.sources[0].name} for authoritative guidance`
-      );
+      recommendations.push(`Refer to ${result.sources[0].name} for authoritative guidance`);
     }
 
     // Pattern-based recommendations
@@ -430,10 +409,12 @@ export async function getUsers() {
     const sourceNames = result.sources.map((s: DocumentationSource) => s.name).join(', ');
     const exampleCount = result.examples.length;
     const conceptCount = result.content.concepts?.length || 0;
-    
-    return `Found ${result.sources.length} relevant documentation sources (${sourceNames}). ` +
-           `Extracted ${exampleCount} code examples and ${conceptCount} key concepts. ` +
-           `Generated API reference with ${Object.keys(result.apiReference).length} sections.`;
+
+    return (
+      `Found ${result.sources.length} relevant documentation sources (${sourceNames}). ` +
+      `Extracted ${exampleCount} code examples and ${conceptCount} key concepts. ` +
+      `Generated API reference with ${Object.keys(result.apiReference).length} sections.`
+    );
   }
 
   public isReady(): boolean {
