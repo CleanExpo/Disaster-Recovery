@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+// D5 perf: lazy-loaded motion runtime — see app/guides/water-damage/page.tsx for rationale.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 import { AntigravityNavbar } from '@/components/antigravity';
@@ -368,7 +369,7 @@ function StormDamageGuidePageOriginal() {
       <section className="relative bg-gradient-to-r from-slate-900 to-sky-900 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -397,14 +398,14 @@ function StormDamageGuidePageOriginal() {
                 Storm Coverage Check
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Storm Types */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -431,7 +432,7 @@ function StormDamageGuidePageOriginal() {
               ))}
             </div>
 
-            <motion.div
+            <m.div
               key={selectedStormType}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -505,15 +506,15 @@ function StormDamageGuidePageOriginal() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
       {/* Damage Categories */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -525,7 +526,7 @@ function StormDamageGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {damageCategories.map((category, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -563,17 +564,17 @@ function StormDamageGuidePageOriginal() {
                       Urgency: {category.urgency}
                     </span>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Emergency Actions Timeline */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -585,7 +586,7 @@ function StormDamageGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {emergencyActions.map((phase, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -623,17 +624,17 @@ function StormDamageGuidePageOriginal() {
                       </span>
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Restoration Process */}
       <section className="py-16 bg-gradient-to-br from-sky-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -645,7 +646,7 @@ function StormDamageGuidePageOriginal() {
             </h2>
             <div className="space-y-6">
               {restorationSteps.map((step, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -676,17 +677,17 @@ function StormDamageGuidePageOriginal() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Insurance Considerations */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -705,7 +706,7 @@ function StormDamageGuidePageOriginal() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {insuranceConsiderations.map((item, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -729,7 +730,7 @@ function StormDamageGuidePageOriginal() {
                   <div className="pt-3 border-t border-gray-200">
                     <p className="text-sm font-semibold text-blue-600">Action: {item.action}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
             <div className="mt-8 text-center">
@@ -741,14 +742,14 @@ function StormDamageGuidePageOriginal() {
                 Check Your Storm Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Regional Considerations */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -760,7 +761,7 @@ function StormDamageGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {regionalConsiderations.map((region, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -793,17 +794,17 @@ function StormDamageGuidePageOriginal() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Property Type Considerations */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -814,7 +815,7 @@ function StormDamageGuidePageOriginal() {
               Property-Specific Storm Considerations
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -836,9 +837,9 @@ function StormDamageGuidePageOriginal() {
                 >
                   Residential Storm Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -860,9 +861,9 @@ function StormDamageGuidePageOriginal() {
                 >
                   Commercial Storm Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -884,16 +885,16 @@ function StormDamageGuidePageOriginal() {
                 >
                   Industrial Storm Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* FAQs */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -905,7 +906,7 @@ function StormDamageGuidePageOriginal() {
             </h2>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -929,17 +930,17 @@ function StormDamageGuidePageOriginal() {
                       <p className="pt-4">{faq.answer}</p>
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Related Resources */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -986,7 +987,7 @@ function StormDamageGuidePageOriginal() {
                 <p className="text-gray-600 text-sm">Find storm repairs in your area</p>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -1062,7 +1063,7 @@ function StormDamageGuidePageOriginal() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-sky-600 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -1088,7 +1089,7 @@ function StormDamageGuidePageOriginal() {
                 Check Storm Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </div>
@@ -1161,7 +1162,7 @@ const stormDamageArticleSchema = generateArticleSchema({
 
 export default function StormDamageGuidePage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <StructuredData data={stormDamageArticleSchema} />
       <Script id="storm-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
         {stormDamageFaqSchema}
@@ -1169,6 +1170,6 @@ export default function StormDamageGuidePage() {
       <AntigravityNavbar />
       <StormDamageGuidePageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

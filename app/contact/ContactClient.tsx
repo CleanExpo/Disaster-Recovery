@@ -4,7 +4,8 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// D5 perf: lazy-loaded motion runtime (LazyMotion + domAnimation + m).
+import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion';
 import {
   MessageSquare,
   Mail,
@@ -139,7 +140,7 @@ function ModernContactPageOriginal() {
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
+        <m.div
           className="absolute inset-0"
           animate={{
             background: [
@@ -155,13 +156,13 @@ function ModernContactPageOriginal() {
       {/* Hero Section */}
       <section className="relative z-10 px-4 sm:px-6 pt-24 sm:pt-32 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <motion.div
+            <m.div
               className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-blue-600/20 border border-red-600/30"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -170,7 +171,7 @@ function ModernContactPageOriginal() {
               <span className="text-sm font-medium text-red-400">
                 24/7 Online Emergency Response
               </span>
-            </motion.div>
+            </m.div>
 
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-white via-red-100 to-orange-100 bg-clip-text text-transparent">
@@ -186,7 +187,7 @@ function ModernContactPageOriginal() {
               Connect with certified restoration specialists in minutes. Available 24/7 for all
               emergency disaster recovery needs.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -205,7 +206,7 @@ function ModernContactPageOriginal() {
                 ' bg-opacity-20';
 
               return (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -220,7 +221,7 @@ function ModernContactPageOriginal() {
                     <p className="text-xl font-bold mb-1">{info.value}</p>
                     <p className="text-xs text-gray-300">{info.subtext}</p>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -232,7 +233,7 @@ function ModernContactPageOriginal() {
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             {!submitted ? (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
@@ -252,7 +253,7 @@ function ModernContactPageOriginal() {
 
                   {/* Error Message */}
                   {error && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="error bg-red-500/20 border border-red-500/30 rounded-xl p-4 mb-6"
@@ -260,7 +261,7 @@ function ModernContactPageOriginal() {
                       aria-live="polite"
                     >
                       <p className="text-red-400 text-sm">{error}</p>
-                    </motion.div>
+                    </m.div>
                   )}
 
                   {/* Hidden alert for audit detection */}
@@ -271,7 +272,7 @@ function ModernContactPageOriginal() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       {/* Name Field */}
-                      <motion.div whileTap={{ scale: 0.995 }} className="relative">
+                      <m.div whileTap={{ scale: 0.995 }} className="relative">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Your Name *
                         </label>
@@ -286,18 +287,18 @@ function ModernContactPageOriginal() {
                           placeholder="John Smith"
                         />
                         {activeField === 'name' && (
-                          <motion.div
+                          <m.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="absolute -top-2 left-2 bg-gray-900 px-2"
                           >
                             <span className="text-xs text-purple-400">Full name</span>
-                          </motion.div>
+                          </m.div>
                         )}
-                      </motion.div>
+                      </m.div>
 
                       {/* Email Field */}
-                      <motion.div whileTap={{ scale: 0.995 }} className="relative">
+                      <m.div whileTap={{ scale: 0.995 }} className="relative">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Email Address *
                         </label>
@@ -311,10 +312,10 @@ function ModernContactPageOriginal() {
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
                           placeholder="john@example.com"
                         />
-                      </motion.div>
+                      </m.div>
 
                       {/* Service Field */}
-                      <motion.div whileTap={{ scale: 0.995 }}>
+                      <m.div whileTap={{ scale: 0.995 }}>
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Service Required *
                         </label>
@@ -331,10 +332,10 @@ function ModernContactPageOriginal() {
                             </option>
                           ))}
                         </select>
-                      </motion.div>
+                      </m.div>
 
                       {/* Phone Field */}
-                      <motion.div whileTap={{ scale: 0.995 }} className="relative">
+                      <m.div whileTap={{ scale: 0.995 }} className="relative">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Phone Number *
                         </label>
@@ -348,7 +349,7 @@ function ModernContactPageOriginal() {
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
                           placeholder="0400 123 456"
                         />
-                      </motion.div>
+                      </m.div>
                     </div>
 
                     {/* Urgency Selection */}
@@ -368,7 +369,7 @@ function ModernContactPageOriginal() {
                             ' rounded-xl opacity-20';
 
                           return (
-                            <motion.button
+                            <m.button
                               key={level.value}
                               type="button"
                               whileHover={{ scale: 1.05 }}
@@ -377,20 +378,17 @@ function ModernContactPageOriginal() {
                               className={buttonClassName}
                             >
                               {formData.urgency === level.value && (
-                                <motion.div
-                                  layoutId="urgency-selector"
-                                  className={overlayClassName}
-                                />
+                                <m.div layoutId="urgency-selector" className={overlayClassName} />
                               )}
                               <span className="relative text-sm font-medium">{level.label}</span>
-                            </motion.button>
+                            </m.button>
                           );
                         })}
                       </div>
                     </div>
 
                     {/* Message Field */}
-                    <motion.div whileTap={{ scale: 0.995 }}>
+                    <m.div whileTap={{ scale: 0.995 }}>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
                         Describe Your Situation *
                       </label>
@@ -402,7 +400,7 @@ function ModernContactPageOriginal() {
                         className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400 resize-none"
                         placeholder="Please describe the damage or emergency situation..."
                       />
-                    </motion.div>
+                    </m.div>
 
                     {/* APP 3 Collection Notice */}
                     <p className="text-xs text-gray-400 leading-relaxed">
@@ -415,7 +413,7 @@ function ModernContactPageOriginal() {
                     </p>
 
                     {/* Submit Button */}
-                    <motion.button
+                    <m.button
                       type="submit"
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
@@ -427,7 +425,7 @@ function ModernContactPageOriginal() {
                       <div className="relative bg-gradient-to-r from-red-600 to-blue-700 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
                         {isSubmitting ? (
                           <>
-                            <motion.div
+                            <m.div
                               animate={{ rotate: 360 }}
                               transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
                               className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
@@ -442,7 +440,7 @@ function ModernContactPageOriginal() {
                           </>
                         )}
                       </div>
-                    </motion.button>
+                    </m.button>
 
                     {/* Trust Indicators */}
                     <div className="flex items-center justify-center gap-6 text-xs text-gray-300">
@@ -461,9 +459,9 @@ function ModernContactPageOriginal() {
                     </div>
                   </form>
                 </div>
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="max-w-2xl mx-auto text-center"
@@ -473,15 +471,15 @@ function ModernContactPageOriginal() {
                   role="alert"
                   aria-live="polite"
                 >
-                  <motion.div
+                  <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', delay: 0.2 }}
                   >
                     <CheckCircle className="w-24 h-24 text-emerald-400 mx-auto mb-6" />
-                  </motion.div>
+                  </m.div>
 
-                  <motion.h2
+                  <m.h2
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
@@ -490,18 +488,18 @@ function ModernContactPageOriginal() {
                     <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
                       Request Received!
                     </span>
-                  </motion.h2>
+                  </m.h2>
 
-                  <motion.p
+                  <m.p
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
                     className="text-xl text-gray-300 mb-8"
                   >
                     Our emergency response team will contact you within minutes.
-                  </motion.p>
+                  </m.p>
 
-                  <motion.div
+                  <m.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
@@ -524,9 +522,9 @@ function ModernContactPageOriginal() {
                       <span className="text-emerald-400">3.</span>
                       <span className="text-gray-300">On-site assessment and immediate action</span>
                     </div>
-                  </motion.div>
+                  </m.div>
 
-                  <motion.button
+                  <m.button
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
@@ -545,9 +543,9 @@ function ModernContactPageOriginal() {
                     className="mt-8 px-6 py-3 bg-gray-800 hover:bg-gray-900 rounded-xl transition-colours"
                   >
                     Submit Another Request
-                  </motion.button>
+                  </m.button>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -555,7 +553,7 @@ function ModernContactPageOriginal() {
 
       {/* Emergency Claim CTA */}
       <section className="relative z-10 px-4 sm:px-6 pb-12 sm:pb-20">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -573,7 +571,7 @@ function ModernContactPageOriginal() {
               Submit an emergency claim online — a contractor will call you as soon as a certified
               contractor is confirmed for your area.
             </p>
-            <motion.a
+            <m.a
               href="/claim"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -581,19 +579,19 @@ function ModernContactPageOriginal() {
             >
               <ArrowRight className="w-5 h-5" />
               Lodge Emergency Claim
-            </motion.a>
+            </m.a>
           </div>
-        </motion.div>
+        </m.div>
       </section>
     </div>
   );
 }
 export default function ModernContactPage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <AntigravityNavbar />
       <ModernContactPageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

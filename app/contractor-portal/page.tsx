@@ -1,15 +1,15 @@
-'use client'
-
+'use client';
 
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { 
-  LayoutDashboard, 
-  Briefcase, 
-  DollarSign, 
-  MapPin, 
+import { useState } from 'react';
+// D5 perf: lazy-loaded motion runtime.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
+import {
+  LayoutDashboard,
+  Briefcase,
+  DollarSign,
+  MapPin,
   Star,
   TrendingUp,
   Award,
@@ -21,12 +21,12 @@ import {
   ChevronRight,
   Clock,
   CheckCircle,
-  Target
-} from 'lucide-react'
-import Link from 'next/link'
+  Target,
+} from 'lucide-react';
+import Link from 'next/link';
 
 function ContractorPortalPageOriginal() {
-  const [activeTab, setActiveTab] = useState('dashboard')
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   const jobs = [
     {
@@ -36,7 +36,7 @@ function ContractorPortalPageOriginal() {
       distance: '5.2 km',
       value: '$8,500',
       urgency: 'immediate',
-      status: 'new'
+      status: 'new',
     },
     {
       id: 'JOB-2024-102',
@@ -45,7 +45,7 @@ function ContractorPortalPageOriginal() {
       distance: '8.7 km',
       value: '$12,000',
       urgency: 'urgent',
-      status: 'new'
+      status: 'new',
     },
     {
       id: 'JOB-2024-103',
@@ -54,30 +54,30 @@ function ContractorPortalPageOriginal() {
       distance: '3.1 km',
       value: '$4,200',
       urgency: 'standard',
-      status: 'in-progress'
-    }
-  ]
+      status: 'in-progress',
+    },
+  ];
 
   const earnings = {
     thisWeek: '$12,450',
     thisMonth: '$47,830',
     pending: '$8,500',
-    nextPayout: '2024-02-01'
-  }
+    nextPayout: '2024-02-01',
+  };
 
   const stats = [
     { label: 'Jobs Completed', value: '147', change: '+12%', icon: Briefcase },
     { label: 'Average Rating', value: '4.9', change: '+0.2', icon: Star },
     { label: 'Response Time', value: '32min', change: '-5min', icon: Clock },
-    { label: 'Completion Rate', value: '98%', change: '+2%', icon: CheckCircle }
-  ]
+    { label: 'Completion Rate', value: '98%', change: '+2%', icon: CheckCircle },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white">
         <div className="container mx-auto px-4 py-12">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-6xl mx-auto"
@@ -99,7 +99,7 @@ function ContractorPortalPageOriginal() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
@@ -113,8 +113,8 @@ function ContractorPortalPageOriginal() {
               { id: 'earnings', label: 'Earnings', icon: DollarSign },
               { id: 'training', label: 'Training', icon: Award },
               { id: 'vision', label: 'Vision Board', icon: Target },
-              { id: 'resources', label: 'Resources', icon: FileText }
-            ].map(tab => (
+              { id: 'resources', label: 'Resources', icon: FileText },
+            ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
@@ -136,15 +136,11 @@ function ContractorPortalPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
           {activeTab === 'dashboard' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="space-y-8"
-            >
+            <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
               {/* Stats Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat, index) => (
-                  <motion.div
+                  <m.div
                     key={stat.label}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -153,15 +149,17 @@ function ContractorPortalPageOriginal() {
                   >
                     <div className="flex items-center justify-between mb-4">
                       <stat.icon className="h-8 w-8 text-indigo-600" />
-                      <span className={`text-sm font-medium ${
-                        stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
-                      }`}>
+                      <span
+                        className={`text-sm font-medium ${
+                          stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
+                        }`}
+                      >
                         {stat.change}
                       </span>
                     </div>
                     <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                     <div className="text-sm text-gray-700">{stat.label}</div>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
 
@@ -169,7 +167,7 @@ function ContractorPortalPageOriginal() {
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold">Available Jobs Near You</h2>
-                  <Link 
+                  <Link
                     href="/contractor-portal/jobs"
                     className="text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1"
                   >
@@ -177,8 +175,11 @@ function ContractorPortalPageOriginal() {
                   </Link>
                 </div>
                 <div className="space-y-4">
-                  {jobs.map(job => (
-                    <div key={job.id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                  {jobs.map((job) => (
+                    <div
+                      key={job.id}
+                      className="border rounded-lg p-6 hover:shadow-md transition-shadow"
+                    >
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <h3 className="text-lg font-semibold">{job.type}</h3>
@@ -192,15 +193,20 @@ function ContractorPortalPageOriginal() {
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-2">
-                          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            job.urgency === 'immediate' 
-                              ? 'bg-red-100 text-red-700'
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium ${
+                              job.urgency === 'immediate'
+                                ? 'bg-red-100 text-red-700'
+                                : job.urgency === 'urgent'
+                                  ? 'bg-yellow-100 text-yellow-700'
+                                  : 'bg-green-100 text-green-700'
+                            }`}
+                          >
+                            {job.urgency === 'immediate'
+                              ? 'Immediate'
                               : job.urgency === 'urgent'
-                              ? 'bg-yellow-100 text-yellow-700'
-                              : 'bg-green-100 text-green-700'
-                          }`}>
-                            {job.urgency === 'immediate' ? 'Immediate' : 
-                             job.urgency === 'urgent' ? 'Urgent' : 'Standard'}
+                                ? 'Urgent'
+                                : 'Standard'}
                           </span>
                           {job.status === 'new' && (
                             <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">
@@ -237,14 +243,16 @@ function ContractorPortalPageOriginal() {
                     </div>
                     <div className="flex justify-between items-center py-3 border-b">
                       <span className="text-gray-700">Pending Payment</span>
-                      <span className="text-xl font-semibold text-yellow-600">{earnings.pending}</span>
+                      <span className="text-xl font-semibold text-yellow-600">
+                        {earnings.pending}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center py-3">
                       <span className="text-gray-700">Next Payout</span>
                       <span className="text-gray-900">{earnings.nextPayout}</span>
                     </div>
                   </div>
-                  <Link 
+                  <Link
                     href="/contractor-portal/earnings"
                     className="mt-6 w-full block text-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
                   >
@@ -295,11 +303,11 @@ function ContractorPortalPageOriginal() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'jobs' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
@@ -307,11 +315,11 @@ function ContractorPortalPageOriginal() {
               <h2 className="text-2xl font-bold mb-6">Job Board</h2>
               <p className="text-gray-700">Browse and accept available jobs in your area.</p>
               {/* Add detailed job board here */}
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'earnings' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
@@ -319,41 +327,45 @@ function ContractorPortalPageOriginal() {
               <h2 className="text-2xl font-bold mb-6">Earnings & Payments</h2>
               <p className="text-gray-700">Track your income and payment history.</p>
               {/* Add earnings management here */}
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'training' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-2xl font-bold mb-6">Training & Certification</h2>
-              <p className="text-gray-700">Access courses to improve your skills and earn certifications.</p>
+              <p className="text-gray-700">
+                Access courses to improve your skills and earn certifications.
+              </p>
               {/* Add training content here */}
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'vision' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
             >
               <h2 className="text-2xl font-bold mb-6">Vision Board</h2>
-              <p className="text-gray-700 mb-6">Track your achievements, certifications, and goals.</p>
-              <Link 
+              <p className="text-gray-700 mb-6">
+                Track your achievements, certifications, and goals.
+              </p>
+              <Link
                 href="/contractor-portal/vision-board"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
               >
                 <Target className="w-5 h-5" />
                 Go to Vision Board
               </Link>
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'resources' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
@@ -361,19 +373,19 @@ function ContractorPortalPageOriginal() {
               <h2 className="text-2xl font-bold mb-6">Resources & Tools</h2>
               <p className="text-gray-700">Access documentation, tools, and support materials.</p>
               {/* Add resources here */}
-            </motion.div>
+            </m.div>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 export default function ContractorPortalPage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <AntigravityNavbar />
       <ContractorPortalPageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

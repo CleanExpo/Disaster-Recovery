@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// D5 perf: switched to lazy-loaded motion runtime (LazyMotion + domAnimation + m).
+// Drops framer-motion bundle from ~34kb → ~6kb gzip, animation features load on demand.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 import {
   Droplets,
   AlertTriangle,
@@ -175,7 +177,7 @@ function WaterDamageGuidePageOriginal() {
       <section className="relative py-20 px-4 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('/water-pattern.svg')] opacity-10" />
         <div className="relative max-w-7xl mx-auto">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
@@ -205,7 +207,7 @@ function WaterDamageGuidePageOriginal() {
                 Check Insurance Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -222,7 +224,7 @@ function WaterDamageGuidePageOriginal() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {Object.entries(waterCategories).map(([key, category]) => (
-              <motion.div
+              <m.div
                 key={key}
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelectedCategory(key as any)}
@@ -270,7 +272,7 @@ function WaterDamageGuidePageOriginal() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -285,7 +287,7 @@ function WaterDamageGuidePageOriginal() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {damageClasses.map((dmgClass, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -305,7 +307,7 @@ function WaterDamageGuidePageOriginal() {
                     <p className="text-blue-600 font-semibold">{dmgClass.dryTime}</p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -323,7 +325,7 @@ function WaterDamageGuidePageOriginal() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {timeline.map((phase, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -363,7 +365,7 @@ function WaterDamageGuidePageOriginal() {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -381,7 +383,7 @@ function WaterDamageGuidePageOriginal() {
               const Icon = property.icon;
               return (
                 <Link key={index} href={property.link} className="group">
-                  <motion.div
+                  <m.div
                     whileHover={{ scale: 1.05 }}
                     className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all"
                   >
@@ -402,7 +404,7 @@ function WaterDamageGuidePageOriginal() {
                       Learn More
                       <ArrowRight className="w-5 h-5" />
                     </div>
-                  </motion.div>
+                  </m.div>
                 </Link>
               );
             })}
@@ -767,7 +769,7 @@ const waterDamageArticleSchema = generateArticleSchema({
 
 export default function WaterDamageGuidePage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <StructuredData data={waterDamageArticleSchema} />
       <Script id="water-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
         {waterDamageFaqSchema}
@@ -775,6 +777,6 @@ export default function WaterDamageGuidePage() {
       <AntigravityNavbar />
       <WaterDamageGuidePageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

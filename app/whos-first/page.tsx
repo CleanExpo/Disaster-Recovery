@@ -1,11 +1,24 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, AlertCircle, Clock, Shield, CheckCircle, ArrowRight, Home, Building, Droplets, Flame, Wind, Heart } from 'lucide-react';
+// D5 perf: lazy-loaded motion runtime.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
+import {
+  Phone,
+  AlertCircle,
+  Clock,
+  Shield,
+  CheckCircle,
+  ArrowRight,
+  Home,
+  Building,
+  Droplets,
+  Flame,
+  Wind,
+  Heart,
+} from 'lucide-react';
 
 function WhosFirstPageOriginal() {
   const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
@@ -20,7 +33,8 @@ function WhosFirstPageOriginal() {
       question: 'House is flooding?',
       answer: 'Call Disaster Recovery First',
       why: 'We coordinate emergency water shutoff, document damage for insurance, and prevent mould growth - all in the right order.',
-      mistakes: 'Calling a plumber first might fix the leak but miss critical insurance documentation.',
+      mistakes:
+        'Calling a plumber first might fix the leak but miss critical insurance documentation.',
     },
     {
       id: 'fire-damage',
@@ -29,7 +43,8 @@ function WhosFirstPageOriginal() {
       question: 'After a house fire?',
       answer: 'Call Disaster Recovery First',
       why: 'We assess structural safety, coordinate with fire department reports, and manage smoke/water damage simultaneously.',
-      mistakes: 'Calling insurance first delays emergency mitigation, potentially increasing damage.',
+      mistakes:
+        'Calling insurance first delays emergency mitigation, potentially increasing damage.',
     },
     {
       id: 'storm-damage',
@@ -53,11 +68,11 @@ function WhosFirstPageOriginal() {
 
   const quizQuestions = [
     {
-      question: "What type of property is affected?",
+      question: 'What type of property is affected?',
       options: [
         { value: 'residential', label: 'Residential Home', icon: Home },
         { value: 'commercial', label: 'Commercial Property', icon: Building },
-      ]
+      ],
     },
     {
       question: "What's the primary damage type?",
@@ -66,16 +81,16 @@ function WhosFirstPageOriginal() {
         { value: 'fire', label: 'Fire/Smoke', icon: Flame },
         { value: 'storm', label: 'Storm/Wind', icon: Wind },
         { value: 'mould', label: 'Mould/Health Hazard', icon: Heart },
-      ]
+      ],
     },
     {
-      question: "When did this happen?",
+      question: 'When did this happen?',
       options: [
         { value: 'now', label: 'Happening Now', icon: AlertCircle },
         { value: 'today', label: 'Within 24 Hours', icon: Clock },
         { value: 'recent', label: '2-7 Days Ago', icon: Shield },
         { value: 'old', label: 'Over a Week Ago', icon: CheckCircle },
-      ]
+      ],
     },
   ];
 
@@ -107,22 +122,22 @@ function WhosFirstPageOriginal() {
       <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-90" />
         <div className="relative max-w-7xl mx-auto text-center text-white">
-          <motion.h1 
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-bold mb-6"
           >
             Who's First?
-          </motion.h1>
-          <motion.p 
+          </m.h1>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-2xl md:text-3xl mb-8"
           >
             When disaster strikes and you don't know who to call...
-          </motion.p>
-          <motion.div 
+          </m.p>
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
@@ -130,7 +145,7 @@ function WhosFirstPageOriginal() {
           >
             <p className="text-3xl md:text-4xl font-bold">Disaster Recovery</p>
             <p className="text-lg mt-2">Your First Call. Always.</p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -141,36 +156,39 @@ function WhosFirstPageOriginal() {
             Why Your First Call Matters
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.div 
+            <m.div
               whileHover={{ scale: 1.05 }}
               className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg"
             >
               <Clock className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-xl font-bold mb-3">Critical Timing</h3>
               <p className="text-gray-600">
-                The first 24 hours determine claim success. Wrong first call = missed documentation, increased damage, denied claims.
+                The first 24 hours determine claim success. Wrong first call = missed documentation,
+                increased damage, denied claims.
               </p>
-            </motion.div>
-            <motion.div 
+            </m.div>
+            <m.div
               whileHover={{ scale: 1.05 }}
               className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg"
             >
               <Shield className="w-12 h-12 text-green-600 mb-4" />
               <h3 className="text-xl font-bold mb-3">Complete Protection</h3>
               <p className="text-gray-600">
-                We see the whole picture: immediate safety, insurance requirements, long-term prevention. Others see only their piece.
+                We see the whole picture: immediate safety, insurance requirements, long-term
+                prevention. Others see only their piece.
               </p>
-            </motion.div>
-            <motion.div 
+            </m.div>
+            <m.div
               whileHover={{ scale: 1.05 }}
               className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg"
             >
               <CheckCircle className="w-12 h-12 text-purple-600 mb-4" />
               <h3 className="text-xl font-bold mb-3">Right Sequence</h3>
               <p className="text-gray-600">
-                We orchestrate all services in the correct order. No rework, no conflicts, no delays. Maximum claim value.
+                We orchestrate all services in the correct order. No rework, no conflicts, no
+                delays. Maximum claim value.
               </p>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -185,7 +203,7 @@ function WhosFirstPageOriginal() {
             {scenarios.map((scenario) => {
               const Icon = scenario.icon;
               return (
-                <motion.div
+                <m.div
                   key={scenario.id}
                   whileHover={{ scale: 1.02 }}
                   className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer"
@@ -210,7 +228,7 @@ function WhosFirstPageOriginal() {
                       <p className="text-gray-600 text-sm">{scenario.mistakes}</p>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -223,7 +241,7 @@ function WhosFirstPageOriginal() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Find Your "Who's First?" Answer
           </h2>
-          
+
           {!selectedScenario ? (
             <div className="bg-gray-50 rounded-2xl p-8 shadow-xl">
               <div className="mb-8">
@@ -242,7 +260,7 @@ function WhosFirstPageOriginal() {
                 </p>
               </div>
 
-              <motion.div
+              <m.div
                 key={quizStep}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -255,7 +273,7 @@ function WhosFirstPageOriginal() {
                   {quizQuestions[quizStep].options.map((option) => {
                     const Icon = option.icon;
                     return (
-                      <motion.button
+                      <m.button
                         key={option.value}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -264,11 +282,11 @@ function WhosFirstPageOriginal() {
                       >
                         <Icon className="w-8 h-8 text-blue-600" />
                         <span className="text-lg font-semibold">{option.label}</span>
-                      </motion.button>
+                      </m.button>
                     );
                   })}
                 </div>
-              </motion.div>
+              </m.div>
 
               {quizStep > 0 && (
                 <button
@@ -280,7 +298,7 @@ function WhosFirstPageOriginal() {
               )}
             </div>
           ) : (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 shadow-xl"
@@ -290,33 +308,41 @@ function WhosFirstPageOriginal() {
                 <h3 className="text-2xl font-bold mb-2">Your Personalised First-Call Plan</h3>
                 <p className="text-gray-600">Based on your specific situation</p>
               </div>
-              
+
               <div className="bg-white rounded-lg p-6 mb-6">
                 <h4 className="text-xl font-bold mb-4 text-blue-800">
                   Your First Call: Disaster Recovery
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      1
+                    </span>
                     <p>Lodge your claim online for immediate 24/7 response</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      2
+                    </span>
                     <p>We'll guide you through emergency mitigation steps</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      3
+                    </span>
                     <p>We coordinate all necessary services in the right order</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      4
+                    </span>
                     <p>We assist with your insurance claim for maximum coverage</p>
                   </div>
                 </div>
               </div>
 
               <div className="flex gap-4 justify-center">
-                <motion.a
+                <m.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="/claim"
@@ -324,7 +350,7 @@ function WhosFirstPageOriginal() {
                 >
                   <Phone className="w-5 h-5" />
                   Get Help Now
-                </motion.a>
+                </m.a>
                 <button
                   onClick={resetQuiz}
                   className="bg-gray-800 text-white px-8 py-3 rounded-lg font-bold shadow-lg hover:bg-gray-900"
@@ -332,7 +358,7 @@ function WhosFirstPageOriginal() {
                   Start Over
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </div>
       </section>
@@ -340,9 +366,7 @@ function WhosFirstPageOriginal() {
       {/* Value Proposition */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Why We're Always The First Call
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Why We're Always The First Call</h2>
           <div className="grid md:grid-cols-4 gap-6 mb-12">
             <div className="bg-white/10 backdrop-blur rounded-lg p-6">
               <p className="text-4xl font-bold mb-2">100%</p>
@@ -361,7 +385,7 @@ function WhosFirstPageOriginal() {
               <p className="text-blue-200">Upfront Costs</p>
             </div>
           </div>
-          <motion.a
+          <m.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="/claim"
@@ -370,7 +394,7 @@ function WhosFirstPageOriginal() {
             <Phone className="w-6 h-6" />
             Make Us Your First Choice
             <ArrowRight className="w-6 h-6" />
-          </motion.a>
+          </m.a>
         </div>
       </section>
     </div>
@@ -378,10 +402,10 @@ function WhosFirstPageOriginal() {
 }
 export default function WhosFirstPage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <AntigravityNavbar />
       <WhosFirstPageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

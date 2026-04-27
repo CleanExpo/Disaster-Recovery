@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+// D5 perf: lazy-loaded motion runtime — see app/guides/water-damage/page.tsx for rationale.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 import { AntigravityNavbar } from '@/components/antigravity';
@@ -345,7 +346,7 @@ function FireDamageGuidePageOriginal() {
       <section className="relative bg-gradient-to-r from-orange-900 to-red-900 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -374,14 +375,14 @@ function FireDamageGuidePageOriginal() {
                 Check Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Emergency Steps */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -393,7 +394,7 @@ function FireDamageGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {emergencySteps.map((step, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -419,17 +420,17 @@ function FireDamageGuidePageOriginal() {
                   >
                     {step.timing}
                   </span>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Fire Damage Classes */}
       <section className="py-16 bg-gradient-to-br from-orange-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -456,7 +457,7 @@ function FireDamageGuidePageOriginal() {
               ))}
             </div>
 
-            <motion.div
+            <m.div
               key={selectedClass}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -516,15 +517,15 @@ function FireDamageGuidePageOriginal() {
                   </ul>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
       {/* Smoke Types */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -536,7 +537,7 @@ function FireDamageGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {smokeTypes.map((smoke, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -578,17 +579,17 @@ function FireDamageGuidePageOriginal() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Restoration Timeline */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -600,7 +601,7 @@ function FireDamageGuidePageOriginal() {
             </h2>
             <div className="space-y-6">
               {restorationPhases.map((phase, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -631,17 +632,17 @@ function FireDamageGuidePageOriginal() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Insurance Coverage */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -701,14 +702,14 @@ function FireDamageGuidePageOriginal() {
                 Check Your Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Property Type Considerations */}
       <section className="py-16 bg-gradient-to-br from-orange-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -719,7 +720,7 @@ function FireDamageGuidePageOriginal() {
               Property-Specific Considerations
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -741,9 +742,9 @@ function FireDamageGuidePageOriginal() {
                 >
                   Residential Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -765,9 +766,9 @@ function FireDamageGuidePageOriginal() {
                 >
                   Commercial Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -789,16 +790,16 @@ function FireDamageGuidePageOriginal() {
                 >
                   Industrial Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* FAQs */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -810,7 +811,7 @@ function FireDamageGuidePageOriginal() {
             </h2>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -832,17 +833,17 @@ function FireDamageGuidePageOriginal() {
                   {expandedFAQ === index && (
                     <div className="px-6 pb-4 text-gray-600">{faq.answer}</div>
                   )}
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Related Resources */}
       <section className="py-16 bg-gradient-to-br from-gray-100 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -893,7 +894,7 @@ function FireDamageGuidePageOriginal() {
                 <p className="text-gray-600 text-sm">Find fire damage restoration in your area</p>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -969,7 +970,7 @@ function FireDamageGuidePageOriginal() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -997,7 +998,7 @@ function FireDamageGuidePageOriginal() {
                 Check Insurance Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </div>
@@ -1070,7 +1071,7 @@ const fireDamageArticleSchema = generateArticleSchema({
 
 export default function FireDamageGuidePage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <StructuredData data={fireDamageArticleSchema} />
       <Script id="fire-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
         {fireDamageFaqSchema}
@@ -1078,6 +1079,6 @@ export default function FireDamageGuidePage() {
       <AntigravityNavbar />
       <FireDamageGuidePageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }
