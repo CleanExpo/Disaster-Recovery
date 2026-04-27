@@ -368,7 +368,7 @@ export function ContractorDashboard() {
               territories={dashboardData.profile.territories.map((territory, index) => ({
                 id: `territory-${index}`,
                 name: territory.name,
-                type: (territory.type === 'RADIUS' ? 'PRIMARY' : 'SECONDARY') as const,
+                type: territory.type === 'RADIUS' ? ('PRIMARY' as const) : ('SECONDARY' as const),
                 status: 'ACTIVE' as const,
                 coverage: {
                   radius: territory.radiusKm || 25,
