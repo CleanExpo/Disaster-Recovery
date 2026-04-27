@@ -177,28 +177,32 @@ or ticket tracking the resolution.
   `Claim` directly with `status: 'submitted'`. A future `Booking` model
   would sit between the form and the claim (scheduling, slot holds,
   deferred payment capture). Tracked under the claim-flow epic.
-- ~~**FinanceReferral is in-memory only.**~~ Resolved by audit B12
-  scaffold (this PR): `FinanceReferral` + `FinanceReferralEvent`
-  Prisma models landed (already populated by L9 Phase 2 work in PR
-  #77 follow-ups), and the B13-style persistence helper is now at
-  `src/lib/finance/persistence.ts`, flag-gated via
-  `FINANCE_REFERRAL_WRITER_ENABLED`. Follow-up owed: wire the live
-  submission path (`app/api/finance/referral/route.ts`) and the
-  webhook store (`src/lib/finance/referral-store.ts`) onto the
-  helper — separate PR, gated on partner DPA finalising. See ADR on
-  finance partner switch in PR #77.
-- ~~**VoiceCall has no persistent model.**~~ Resolved by audit B13
-  scaffold (this PR): `VoiceCall` + `CallTranscript` Prisma models
-  landed with the DR-714 retention cron now having a target. DR-708
-  pipeline is still flag-off; kill-switch (DR-715) is live. Follow-up
-  owed: webhook extractor wiring at
-  `app/api/voice/elevenlabs/webhook/route.ts` to populate the new
-  tables (separate PR).
-- **Compliance events schema is append-only raw SQL.** The Prisma
-  client reads it via a typed view; writes go via a raw SQL helper
-  feature-flagged behind `COMPLIANCE_EVENTS_WRITER_ENABLED`. A future
-  ADR will decide whether to promote to a first-class Prisma model or
-  keep as raw SQL for append-only guarantees.
+- ~~**FinanceReferral is in-memory only.**~~ **Resolved.** Live route
+  `app/api/finance/referral/route.ts:202` writes via
+  `prisma.financeReferral.create()` directly (verified 2026-04-27).
+  `src/lib/finance/referral-store.ts` (webhook side) is also Prisma-
+  backed since L9 Phase 2 (PR #77). The persistence helper at
+  `src/lib/finance/persistence.ts` is the _idempotent upsert_ surface;
+  wiring through it is owed FOR CONSISTENCY (not correctness) and
+  remains gated on partner DPA finalising. See
+  `docs/finance-referral-persistence-state-2026-04.md` for the full
+  current-state note.
+- ~~**VoiceCall has no persistent model.**~~ **Resolved.** `VoiceCall` +
+  `CallTranscript` Prisma models landed (B13 scaffold). Webhook
+  extractor wiring at `app/api/voice/elevenlabs/webhook/route.ts`
+  landed in PR #219. DR-708 pipeline is flag-off; kill-switch
+  (DR-715) is live. Retention cron target documented; cron infra
+  setup deferred to next sprint.
+- ~~**Compliance events schema is append-only raw SQL.**~~ **No longer
+  drift — architectural exception.** See ADR-013
+  (`docs/adr/ADR-013-compliance-events-raw-sql-append-only.md`,
+  proposed 2026-04-27). The raw-SQL writer pattern is intentional:
+  Prisma cannot express append-only at the type level, but Postgres
+  CAN via `REVOKE UPDATE, DELETE`. ADR-013 implementation PR will
+  add the database-level guarantee + a typed reader helper.
+  Compliance_events deliberately has no Prisma model — see
+  `src/lib/compliance/events.ts` for the writer; do NOT add a Prisma
+  model for this table.
 - **Territory geofencing uses string suburb names, not geometries.**
   Service-area matching is coarse. A future `Territory` enhancement
   would use PostGIS polygons.
