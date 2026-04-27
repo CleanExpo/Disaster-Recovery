@@ -9,7 +9,6 @@
 import dynamic from 'next/dynamic';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityHero } from './AntigravityHero';
-import { AntigravityQuickAssessment } from './AntigravityQuickAssessment';
 import { AntigravityTrustBanner } from './AntigravityTrustBanner';
 import { AntigravityRecoveryProcess } from './AntigravityRecoveryProcess';
 import { AntigravityServicePillarCard } from './AntigravityServicePillarCard';
@@ -21,7 +20,14 @@ import { AntigravityFooter } from './AntigravityFooter';
 // Deferred — drag/touch JS removed from critical path. SSR still renders placeholder height.
 const AntigravityBeforeAfterSlider = dynamic(
   () => import('./AntigravityBeforeAfterSlider').then((m) => m.AntigravityBeforeAfterSlider),
-  { ssr: false, loading: () => <div style={{ height: '500px', background: '#0f2942' }} /> }
+  { ssr: false, loading: () => <div style={{ height: '500px', background: '#0f2942' }} /> },
+);
+
+// Deferred — interactive bento grid (mouse-tracking glow + IntersectionObserver) is below-fold.
+// SSR still renders the section so SEO/crawlers see the content; client JS arrives later.
+const AntigravityQuickAssessment = dynamic(
+  () => import('./AntigravityQuickAssessment').then((m) => m.AntigravityQuickAssessment),
+  { ssr: true, loading: () => <div style={{ minHeight: '400px' }} /> },
 );
 
 const servicePillars = [
@@ -48,7 +54,8 @@ const servicePillars = [
   },
   {
     title: 'Precision Laser Cleaning',
-    description: 'Non-abrasive restoration laser vaporisation for smoke, soot, and historic brickwork recovery.',
+    description:
+      'Non-abrasive restoration laser vaporisation for smoke, soot, and historic brickwork recovery.',
     imageSrc: '/images/generated/disaster-recovery/service-laser-cleaning.webp',
     certBadge: 'Advanced Tech',
     href: '/services/laser-cleaning',
@@ -69,8 +76,16 @@ export function AntigravityHomePage() {
       <section className="ag-services-overview ag-container">
         <div className="ag-section-header">
           <h2>Complete Disaster Recovery Services</h2>
-          <p style={{ color: 'var(--ag-text-muted)', fontSize: '1.125rem', maxWidth: 600, margin: '0 auto' }}>
-            IICRC-certified restoration for every emergency scenario across Australia and New Zealand.
+          <p
+            style={{
+              color: 'var(--ag-text-muted)',
+              fontSize: '1.125rem',
+              maxWidth: 600,
+              margin: '0 auto',
+            }}
+          >
+            IICRC-certified restoration for every emergency scenario across Australia and New
+            Zealand.
           </p>
         </div>
         <div className="ag-services-grid">

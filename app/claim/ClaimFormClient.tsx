@@ -1,15 +1,33 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { PrivacyCollectionNoticeSection } from './PrivacyCollectionNotice';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { VoiceWidget } from '@/components/voice/VoiceWidget';
 import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
-import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
-import OfflineBanner from '@/components/claim/OfflineBanner';
-import OfflineQueueBanner from '@/components/claim/OfflineQueueBanner';
-import UseCurrentLocationButton from '@/components/claim/UseCurrentLocationButton';
+
+// Deferred — these components are below-fold or interaction-gated.
+// SSR=false on VoiceWidget (loads ElevenLabs script on click) keeps it out of initial HTML.
+// DamageMediaCapture (~370 lines + camera/upload UI) is hidden until the media-capture step.
+// OfflineBanner / OfflineQueueBanner / UseCurrentLocationButton are conditionally rendered
+// and depend on browser APIs (online status, geolocation) — safe to defer.
+const DamageMediaCapture = dynamic(() => import('@/components/claim/DamageMediaCapture'), {
+  ssr: false,
+  loading: () => <div className="h-32 bg-slate-100 rounded-lg animate-pulse" aria-hidden="true" />,
+});
+const OfflineBanner = dynamic(() => import('@/components/claim/OfflineBanner'), { ssr: false });
+const OfflineQueueBanner = dynamic(() => import('@/components/claim/OfflineQueueBanner'), {
+  ssr: false,
+});
+const UseCurrentLocationButton = dynamic(
+  () => import('@/components/claim/UseCurrentLocationButton'),
+  { ssr: false },
+);
+const VoiceWidget = dynamic(
+  () => import('@/components/voice/VoiceWidget').then((m) => ({ default: m.VoiceWidget })),
+  { ssr: false },
+);
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
 import { enqueueClaim, replayQueue, isOfflineQueueEnabled } from '@/lib/offline-queue';
