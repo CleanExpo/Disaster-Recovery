@@ -99,7 +99,9 @@ const registrationSchema = z.object({
         companyName: z.string(),
         position: z.string(),
         email: z.string().email(),
-
+        // Prisma ContractorReference.phone is required; default to empty
+        // string when caller omits to preserve back-compat.
+        phone: z.string().optional().default(''),
         relationship: z.enum(['CLIENT', 'SUPPLIER', 'PARTNER', 'OTHER']),
         projectDescription: z.string().optional(),
       }),
@@ -265,7 +267,7 @@ async function handleRegistration(
               companyName: ref.companyName,
               position: ref.position,
               email: ref.email,
-              phone: (ref as any).phone || '',
+              phone: ref.phone || '',
               relationship: ref.relationship,
               projectDescription: ref.projectDescription,
             },

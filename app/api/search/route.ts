@@ -40,122 +40,192 @@ const searchDatabase: SearchResult[] = [
     id: 'service-water-damage-emergency',
     type: 'service',
     title: 'Emergency Water Damage Restoration',
-    description: '24/7 emergency water damage restoration with rapid response. Professional water extraction, structural drying, and mould prevention services.',
+    description:
+      '24/7 emergency water damage restoration with rapid response. Professional water extraction, structural drying, and mould prevention services.',
     category: 'Water Damage',
     location: 'Brisbane CBD',
     rating: 4.9,
     responseTime: '< 30 minutes',
     price: 150,
-    tags: ['emergency', 'water damage', 'flood', 'burst pipes', 'IICRC certified', '24/7', 'IICRC certified'],
+    tags: [
+      'emergency',
+      'water damage',
+      'flood',
+      'burst pipes',
+      'IICRC certified',
+      '24/7',
+      'IICRC certified',
+    ],
     url: '/services/emergency-water-damage',
     priority: 'emergency',
     metadata: {
       certifications: ['IICRC', 'WRT', 'ASD'],
       insuranceApproved: true,
       emergencyAvailable: true,
-      servicesOffered: ['water extraction', 'structural drying', 'mould prevention', 'damage assessment']
+      servicesOffered: [
+        'water extraction',
+        'structural drying',
+        'mould prevention',
+        'damage assessment',
+      ],
     },
-    relevanceScore: 0
+    relevanceScore: 0,
   },
   {
     id: 'service-fire-damage-restoration',
     type: 'service',
     title: 'Fire and Smoke Damage Restoration',
-    description: 'Complete fire damage restoration including smoke removal, odour elimination, structural repairs, and content cleaning.',
+    description:
+      'Complete fire damage restoration including smoke removal, odour elimination, structural repairs, and content cleaning.',
     category: 'Fire Damage',
     location: 'Gold Coast',
     rating: 4.8,
     responseTime: '< 45 minutes',
     price: 200,
-    tags: ['fire damage', 'smoke removal', 'odour elimination', 'structural repair', 'content cleaning', 'IICRC certified'],
+    tags: [
+      'fire damage',
+      'smoke removal',
+      'odour elimination',
+      'structural repair',
+      'content cleaning',
+      'IICRC certified',
+    ],
     url: '/services/fire-damage-restoration',
     priority: 'urgent',
     metadata: {
       certifications: ['IICRC', 'FSRT'],
       insuranceApproved: true,
       emergencyAvailable: true,
-      servicesOffered: ['fire damage restoration', 'smoke removal', 'odour elimination', 'content cleaning']
+      servicesOffered: [
+        'fire damage restoration',
+        'smoke removal',
+        'odour elimination',
+        'content cleaning',
+      ],
     },
-    relevanceScore: 0
+    relevanceScore: 0,
   },
   {
     id: 'contractor-elite-restoration',
     type: 'contractor',
     title: 'Elite Restoration Services',
-    description: 'Premier IICRC certified restoration contractor with 15+ years experience. Specialising in water damage, fire restoration, and emergency response.',
+    description:
+      'Premier IICRC certified restoration contractor with 15+ years experience. Specialising in water damage, fire restoration, and emergency response.',
     category: 'Restoration Contractor',
     location: 'Sydney',
     rating: 4.9,
     responseTime: '< 20 minutes',
-    tags: ['IICRC certified', 'experienced', 'IICRC certified', 'comprehensive', 'emergency response', 'water damage', 'fire restoration'],
+    tags: [
+      'IICRC certified',
+      'experienced',
+      'IICRC certified',
+      'comprehensive',
+      'emergency response',
+      'water damage',
+      'fire restoration',
+    ],
     url: '/contractors/elite-restoration',
     metadata: {
       certifications: ['IICRC', 'WRT', 'FSRT', 'ASD', 'CCT'],
       insuranceApproved: true,
       emergencyAvailable: true,
       yearsExperience: 15,
-      serviceAreas: ['Sydney', 'Central Coast', 'Blue Mountains']
+      serviceAreas: ['Sydney', 'Central Coast', 'Blue Mountains'],
     },
-    relevanceScore: 0
+    relevanceScore: 0,
   },
   {
     id: 'article-water-damage-guide',
     type: 'article',
     title: 'Complete Water Damage Emergency Response Guide',
-    description: 'Step-by-step guide on handling water damage emergencies. Immediate actions, safety precautions, and when to call professionals.',
+    description:
+      'Step-by-step guide on handling water damage emergencies. Immediate actions, safety precautions, and when to call professionals.',
     category: 'Emergency Guide',
-    tags: ['water damage', 'emergency response', 'prevention', 'DIY tips', 'safety', 'insurance claims'],
+    tags: [
+      'water damage',
+      'emergency response',
+      'prevention',
+      'DIY tips',
+      'safety',
+      'insurance claims',
+    ],
     url: '/resources/water-damage-emergency-guide',
     metadata: {
       readTime: '8 minutes',
       lastUpdated: '2024-01-15',
       difficulty: 'beginner',
-      topics: ['emergency response', 'safety', 'prevention', 'insurance']
+      topics: ['emergency response', 'safety', 'prevention', 'insurance'],
     },
-    relevanceScore: 0
+    relevanceScore: 0,
   },
   {
     id: 'service-mould-remediation',
     type: 'service',
     title: 'Professional Mould Inspection and Remediation',
-    description: 'Comprehensive mould services including inspection, testing, safe removal, and prevention strategies. Health-focused approach.',
+    description:
+      'Comprehensive mould services including inspection, testing, safe removal, and prevention strategies. Health-focused approach.',
     category: 'Mould Services',
     location: 'Melbourne',
     rating: 4.7,
     responseTime: '< 2 hours',
     price: 120,
-    tags: ['mould remediation', 'health safety', 'prevention', 'inspection', 'testing', 'air quality'],
+    tags: [
+      'mould remediation',
+      'health safety',
+      'prevention',
+      'inspection',
+      'testing',
+      'air quality',
+    ],
     url: '/services/mould-remediation',
     priority: 'normal',
     metadata: {
       certifications: ['IICRC', 'AMRT'],
       insuranceApproved: true,
       emergencyAvailable: false,
-      servicesOffered: ['mould inspection', 'air quality testing', 'mould removal', 'prevention consulting']
+      servicesOffered: [
+        'mould inspection',
+        'air quality testing',
+        'mould removal',
+        'prevention consulting',
+      ],
     },
-    relevanceScore: 0
+    relevanceScore: 0,
   },
   {
     id: 'service-storm-damage-repair',
     type: 'service',
     title: 'Storm Damage Repair and Recovery',
-    description: 'Complete storm damage restoration including roof repairs, water intrusion, structural damage, and emergency tarping services.',
+    description:
+      'Complete storm damage restoration including roof repairs, water intrusion, structural damage, and emergency tarping services.',
     category: 'Storm Damage',
     location: 'Perth',
     rating: 4.6,
     responseTime: '< 1 hour',
     price: 180,
-    tags: ['storm damage', 'roof repair', 'emergency tarping', 'water intrusion', 'structural damage', 'insurance claims'],
+    tags: [
+      'storm damage',
+      'roof repair',
+      'emergency tarping',
+      'water intrusion',
+      'structural damage',
+      'insurance claims',
+    ],
     url: '/services/storm-damage-repair',
     priority: 'urgent',
     metadata: {
       certifications: ['IICRC', 'WRT'],
       insuranceApproved: true,
       emergencyAvailable: true,
-      servicesOffered: ['emergency tarping', 'roof repair', 'water extraction', 'structural assessment']
+      servicesOffered: [
+        'emergency tarping',
+        'roof repair',
+        'water extraction',
+        'structural assessment',
+      ],
     },
-    relevanceScore: 0
-  }
+    relevanceScore: 0,
+  },
 ];
 
 function calculateRelevanceScore(item: SearchResult, query: string): number {
@@ -171,7 +241,7 @@ function calculateRelevanceScore(item: SearchResult, query: string): number {
   }
 
   // Tag matches (high weight)
-  const tagMatches = item.tags.filter(tag => tag.toLowerCase().includes(queryLower));
+  const tagMatches = item.tags.filter((tag) => tag.toLowerCase().includes(queryLower));
   score += tagMatches.length * 30;
 
   // Category match (medium weight)
@@ -203,20 +273,27 @@ function calculateRelevanceScore(item: SearchResult, query: string): number {
 }
 
 function filterResults(results: SearchResult[], params: SearchParams): SearchResult[] {
-  return results.filter(item => {
+  return results.filter((item) => {
     // Type filter
     if (params.type && item.type !== params.type) {
       return false;
     }
 
     // Category filter
-    if (params.category && params.category !== 'All Categories' && item.category !== params.category) {
+    if (
+      params.category &&
+      params.category !== 'All Categories' &&
+      item.category !== params.category
+    ) {
       return false;
     }
 
     // Location filter
-    if (params.location && params.location !== 'All Locations' && 
-        (!item.location || !item.location.includes(params.location))) {
+    if (
+      params.location &&
+      params.location !== 'All Locations' &&
+      (!item.location || !item.location.includes(params.location))
+    ) {
       return false;
     }
 
@@ -236,7 +313,10 @@ function filterResults(results: SearchResult[], params: SearchParams): SearchRes
     }
 
     // Certified only filter
-    if (params.certifiedOnly && (!item.metadata.certifications || item.metadata.certifications.length === 0)) {
+    if (
+      params.certifiedOnly &&
+      (!item.metadata.certifications || item.metadata.certifications.length === 0)
+    ) {
       return false;
     }
 
@@ -270,36 +350,47 @@ export async function GET(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/search' });
   try {
     const { searchParams } = new URL(request.url);
-    
+
+    const SEARCH_TYPES = ['service', 'contractor', 'article', 'location'] as const;
+    const SORT_BY_VALUES = ['relevance', 'rating', 'location', 'price', 'responseTime'] as const;
+    const rawType = searchParams.get('type');
+    const rawSortBy = searchParams.get('sortBy');
+
     const params: SearchParams = {
       q: searchParams.get('q') || undefined,
       category: searchParams.get('category') || undefined,
       location: searchParams.get('location') || undefined,
-      type: (searchParams.get('type') as any) || undefined,
-      minRating: searchParams.get('minRating') ? parseFloat(searchParams.get('minRating')!) : undefined,
+      type: (SEARCH_TYPES as readonly string[]).includes(rawType ?? '')
+        ? (rawType as SearchParams['type'])
+        : undefined,
+      minRating: searchParams.get('minRating')
+        ? parseFloat(searchParams.get('minRating')!)
+        : undefined,
       emergencyOnly: searchParams.get('emergencyOnly') === 'true',
       insuranceApproved: searchParams.get('insuranceApproved') === 'true',
       certifiedOnly: searchParams.get('certifiedOnly') === 'true',
-      sortBy: (searchParams.get('sortBy') as any) || 'relevance',
+      sortBy: (SORT_BY_VALUES as readonly string[]).includes(rawSortBy ?? '')
+        ? (rawSortBy as SearchParams['sortBy'])
+        : 'relevance',
       page: parseInt(searchParams.get('page') || '1'),
-      limit: parseInt(searchParams.get('limit') || '10')
+      limit: parseInt(searchParams.get('limit') || '10'),
     };
 
     let results = [...searchDatabase];
 
     // Calculate relevance scores if there's a query
     if (params.q) {
-      results.forEach(item => {
+      results.forEach((item) => {
         item.relevanceScore = calculateRelevanceScore(item, params.q!);
       });
-      
+
       // Filter by relevance threshold
-      results = results.filter(item => item.relevanceScore > 0);
+      results = results.filter((item) => item.relevanceScore > 0);
     } else {
       // If no query, give all items a base relevance score
-      results.forEach(item => {
-        item.relevanceScore = item.priority === 'emergency' ? 50 : 
-                             item.priority === 'urgent' ? 30 : 10;
+      results.forEach((item) => {
+        item.relevanceScore =
+          item.priority === 'emergency' ? 50 : item.priority === 'urgent' ? 30 : 10;
       });
     }
 
@@ -315,14 +406,18 @@ export async function GET(request: NextRequest) {
     const paginatedResults = results.slice(startIndex, endIndex);
 
     // Generate search suggestions if no results
-    const suggestions = params.q ? [
-      'water damage restoration',
-      'fire damage repair',
-      'emergency services',
-      'mould remediation',
-      'storm damage repair',
-      'insurance approved contractors'
-    ].filter(s => s.toLowerCase().includes(params.q!.toLowerCase())).slice(0, 5) : [];
+    const suggestions = params.q
+      ? [
+          'water damage restoration',
+          'fire damage repair',
+          'emergency services',
+          'mould remediation',
+          'storm damage repair',
+          'insurance approved contractors',
+        ]
+          .filter((s) => s.toLowerCase().includes(params.q!.toLowerCase()))
+          .slice(0, 5)
+      : [];
 
     return NextResponse.json({
       success: true,
@@ -332,26 +427,33 @@ export async function GET(request: NextRequest) {
           page: params.page || 1,
           limit: params.limit || 10,
           total: results.length,
-          totalPages: Math.ceil(results.length / (params.limit || 10))
+          totalPages: Math.ceil(results.length / (params.limit || 10)),
         },
         facets: {
-          categories: [...new Set(searchDatabase.map(item => item.category))],
-          locations: [...new Set(searchDatabase.map(item => item.location).filter(Boolean))],
-          types: [...new Set(searchDatabase.map(item => item.type))]
+          categories: [...new Set(searchDatabase.map((item) => item.category))],
+          locations: [...new Set(searchDatabase.map((item) => item.location).filter(Boolean))],
+          types: [...new Set(searchDatabase.map((item) => item.type))],
         },
         suggestions: results.length === 0 ? suggestions : [],
-        query: params.q
-      }
+        query: params.q,
+      },
     });
-
   } catch (error) {
-    log.error('search api error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/search' }, extra: { requestId: log.requestId } });
-    return NextResponse.json({
-      success: false,
-      message: 'Search failed',
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    log.error('search api error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/search' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Search failed',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 },
+    );
   }
 }
 
@@ -363,16 +465,30 @@ export async function POST(request: NextRequest) {
 
     // This would handle more complex search scenarios
     // For now, redirect to GET with query parameters
-    const queryString = new URLSearchParams(params as any).toString();
+    // URLSearchParams accepts Record<string, string>; coerce numeric/bool params
+    // to strings and drop undefined values.
+    const queryRecord: Record<string, string> = {};
+    for (const [key, value] of Object.entries(params)) {
+      if (value !== undefined && value !== null) queryRecord[key] = String(value);
+    }
+    const queryString = new URLSearchParams(queryRecord).toString();
     const results = await GET(new NextRequest(`${request.url}?${queryString}`));
-    
+
     return results;
   } catch (error) {
-    log.error('search POST api error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/search' }, extra: { requestId: log.requestId } });
-    return NextResponse.json({
-      success: false,
-      message: 'Search failed'
-    }, { status: 500 });
+    log.error('search POST api error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/search' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Search failed',
+      },
+      { status: 500 },
+    );
   }
 }
