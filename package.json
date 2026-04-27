@@ -25,7 +25,8 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
     "check:scripts": "node --input-type=module -e \"import{readFileSync}from'fs';const p=JSON.parse(readFileSync('./package.json','utf8'));const required=['build','lint','dev','start'];const missing=required.filter(s=>!p.scripts[s]);if(missing.length){console.error('Missing required scripts:',missing);process.exit(1);}console.log('Script governance OK — all required scripts present:',required.join(', '));\"",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "audit:gbp-rating": "tsx scripts/audit-google-places.ts"
   },
   "prisma": {
     "seed": "tsx scripts/core/seed.ts"
