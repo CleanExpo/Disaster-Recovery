@@ -1,10 +1,11 @@
-import { PrismaClient } from '@prisma/client'
-import bcrypt from 'bcryptjs'
+import { PrismaClient } from '@prisma/client';
+import { randomUUID } from 'node:crypto';
+import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Starting seed...')
+  console.log('Starting seed...');
 
   // Create demo agency
   const agency = await prisma.agency.create({
@@ -14,37 +15,37 @@ async function main() {
       domain: 'demo.cleanexpo.com',
       primaryColor: '#3B82F6',
     },
-  })
+  });
 
-  console.log('Created agency:', agency.name)
+  console.log('Created agency:', agency.name);
 
   // Create admin user
-  const adminPassword = await bcrypt.hash('admin123', 10)
+  const adminPassword = await bcrypt.hash('admin123', 10);
   const admin = await prisma.user.create({
     data: {
+      id: randomUUID(),
       email: 'admin@demo.com',
       password: adminPassword,
       name: 'Admin User',
-      role: 'ADMIN',
-      agencyId: agency.id,
+      userType: 'ADMIN',
     },
-  })
+  });
 
-  console.log('Created admin user:', admin.email)
+  console.log('Created admin user:', admin.email);
 
   // Create manager user
-  const managerPassword = await bcrypt.hash('manager123', 10)
+  const managerPassword = await bcrypt.hash('manager123', 10);
   const manager = await prisma.user.create({
     data: {
+      id: randomUUID(),
       email: 'manager@demo.com',
       password: managerPassword,
       name: 'Manager User',
-      role: 'MANAGER',
-      agencyId: agency.id,
+      userType: 'ADMIN',
     },
-  })
+  });
 
-  console.log('Created manager user:', manager.email)
+  console.log('Created manager user:', manager.email);
 
   // Create sample clients
   const clients = await Promise.all([
@@ -93,9 +94,9 @@ async function main() {
         agencyId: agency.id,
       },
     }),
-  ])
+  ]);
 
-  console.log(`Created ${clients.length} sample clients`)
+  console.log(`Created ${clients.length} sample clients`);
 
   // Create sample audits
   const audit1 = await prisma.audit.create({
@@ -118,7 +119,7 @@ async function main() {
       clientId: clients[0].id,
       createdById: admin.id,
     },
-  })
+  });
 
   const audit2 = await prisma.audit.create({
     data: {
@@ -130,9 +131,9 @@ async function main() {
       clientId: clients[1].id,
       createdById: manager.id,
     },
-  })
+  });
 
-  console.log('Created sample audits')
+  console.log('Created sample audits');
 
   // Create sample proposals
   const proposal1 = await prisma.proposal.create({
@@ -154,9 +155,9 @@ async function main() {
       auditId: audit1.id,
       createdById: admin.id,
     },
-  })
+  });
 
-  console.log('Created sample proposals')
+  console.log('Created sample proposals');
 
   // Create sample invoices
   const invoice1 = await prisma.invoice.create({
@@ -171,9 +172,9 @@ async function main() {
       clientId: clients[0].id,
       proposalId: proposal1.id,
     },
-  })
+  });
 
-  console.log('Created sample invoices')
+  console.log('Created sample invoices');
 
   // Create sample enquiries
   const enquiries = await Promise.all([
@@ -194,9 +195,9 @@ async function main() {
         source: 'referral',
       },
     }),
-  ])
+  ]);
 
-  console.log(`Created ${enquiries.length} sample enquiries`)
+  console.log(`Created ${enquiries.length} sample enquiries`);
 
   // Create sample notifications
   await prisma.notification.createMany({
@@ -220,21 +221,21 @@ async function main() {
         userId: manager.id,
       },
     ],
-  })
+  });
 
-  console.log('Created sample notifications')
+  console.log('Created sample notifications');
 
-  console.log('Seed completed successfully!')
-  console.log('\\nYou can now login with:')
-  console.log('Admin: admin@demo.com / admin123')
-  console.log('Manager: manager@demo.com / manager123')
+  console.log('Seed completed successfully!');
+  console.log('\\nYou can now login with:');
+  console.log('Admin: admin@demo.com / admin123');
+  console.log('Manager: manager@demo.com / manager123');
 }
 
 main()
   .catch((e) => {
-    console.error('Error during seed:', e)
-    process.exit(1)
+    console.error('Error during seed:', e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });
