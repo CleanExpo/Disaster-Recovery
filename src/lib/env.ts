@@ -78,7 +78,8 @@ export function validateEnv(): EnvValidationResult {
   }
 
   if (warnings.length > 0 && process.env.NODE_ENV !== 'test') {
-    clientLogger.warn([
+    clientLogger.warn(
+      [
         '',
         '┌──────────────────────────────────────────────────────────────┐',
         '│  WARNING: Recommended environment variables are missing      │',
@@ -89,7 +90,9 @@ export function validateEnv(): EnvValidationResult {
         '',
         'Add these in Vercel project settings → Environment Variables.',
         '',
-      ].join('\n'), { source: 'lib/env' });
+      ].join('\n'),
+      { source: 'lib/env' },
+    );
   }
 
   return { valid: true, missing: [], warnings: warnings.map((w) => w.trim()) };
@@ -113,7 +116,11 @@ export const env = {
   // Email / claim notifications
   resendApiKey: () => required('RESEND_API_KEY'),
   claimNotificationEmail: () => required('CLAIM_NOTIFICATION_EMAIL'),
-  emailFrom: () => optional('RESEND_FROM_EMAIL', 'noreply@disasterrecovery.com.au'),
+  // Sender domain: disasterrecovery.au is the verified Resend domain (DR-524 closed
+  // 2026-04-27 — the .com.au DNS lives on a lost Cloudflare account so DKIM was
+  // never possible there). Body content links to disasterrecovery.com.au; only
+  // the FROM header uses the .au variant.
+  emailFrom: () => optional('RESEND_FROM_EMAIL', 'noreply@disasterrecovery.au'),
 
   // Database
   databaseUrl: () => optional('DATABASE_URL'),
