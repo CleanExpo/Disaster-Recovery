@@ -6,12 +6,14 @@ import { calculateCoolingOffPeriod } from '@/lib/utils/australian-compliance';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 
-// Initialize Stripe or use mock
-const stripe = process.env.STRIPE_SECRET_KEY
+// Initialize Stripe or use mock. The mock is a partial implementation
+// of the Stripe SDK surface used by this route — `as unknown as Stripe`
+// is the boundary cast (see TS Phase 2 cluster guidance §"Cast-replacement").
+const stripe: Stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-06-20' as const,
     })
-  : (getMockStripe() as any);
+  : (getMockStripe() as unknown as Stripe);
 
 const emailService = process.env.EMAIL_SERVER_HOST
   ? null // Use real email service when configured
@@ -69,6 +71,11 @@ export async function POST(request: NextRequest) {
 
     // Update payment record with refund info
     try {
+      // TODO(DR-700 Phase 2 follow-up): the `as any` here hides a Prisma
+      // schema mismatch — `stripePaymentId` and `refundAmount` are not
+      // declared on the current `Payment` model. Either the schema is
+      // missing these fields or this route targets the wrong model.
+      // Investigate before clearing the cast.
       await (prisma.payment.updateMany as any)({
         where: { stripePaymentId: refundData.paymentIntentId },
         data: {
@@ -124,8 +131,8 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function mapRefundReason(reason: string): string {
-  const reasonMap: Record<string, string> = {
+function mapRefundReason(reason: string): Stripe.RefundCreateParams.Reason {
+  const reasonMap: Record<string, Stripe.RefundCreateParams.Reason> = {
     cooling_off: 'requested_by_customer',
     service_not_provided: 'requested_by_customer',
     quality_issue: 'requested_by_customer',

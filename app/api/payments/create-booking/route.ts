@@ -24,12 +24,14 @@ import { isProductionMode } from '@/lib/services/mock';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 
-// Initialize Stripe with your secret key or use mock in demo mode
-const stripe = process.env.STRIPE_SECRET_KEY
+// Initialize Stripe with your secret key or use mock in demo mode.
+// `as unknown as Stripe` is the boundary cast for the partial mock
+// (see TS Phase 2 cluster guidance §"Cast-replacement").
+const stripe: Stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-06-20' as const,
     })
-  : (getMockStripe() as any);
+  : (getMockStripe() as unknown as Stripe);
 
 interface BookingData {
   // Service details
@@ -154,7 +156,10 @@ export async function POST(request: NextRequest) {
         { idempotencyKey: `dr-booking-pi-${bookingId}` },
       );
 
-      // Persist payment record to database
+      // TODO(DR-700 Phase 2 follow-up): `as any` hides a Prisma schema
+      // mismatch — `amount` is not declared on the current `Payment`
+      // model. This route is also @deprecated under Path A (see file
+      // header). Resolve in the deletion PR rather than here.
       await (prisma.payment.create as any)({
         data: {
           bookingId,
