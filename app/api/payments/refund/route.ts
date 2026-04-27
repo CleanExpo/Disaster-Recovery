@@ -1,17 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { randomUUID } from 'node:crypto';
 import { getMockStripe } from '@/lib/services/mock/mockStripe';
 import { mockEmailService } from '@/lib/services/mock/mockEmail';
 import { calculateCoolingOffPeriod } from '@/lib/utils/australian-compliance';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
-// Initialize Stripe or use mock
-const stripe = process.env.STRIPE_SECRET_KEY
+// Initialize Stripe or use mock. The mock is a partial implementation
+// of the Stripe SDK surface used by this route — `as unknown as Stripe`
+// is the boundary cast.
+const stripe: Stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-06-20' as const,
     })
-  : (getMockStripe() as any);
+  : (getMockStripe() as unknown as Stripe);
 
 const emailService = process.env.EMAIL_SERVER_HOST
   ? null // Use real email service when configured
@@ -67,22 +71,62 @@ export async function POST(request: NextRequest) {
       { idempotencyKey: `dr-refund-${refundData.paymentIntentId}-${refundAmount}` },
     );
 
-    // Update payment record with refund info
+    // Update payment record with refund info.
+    // CRITICAL: Stripe refund has already fired by this point (line above).
+    // If this DB write fails, money has left Stripe but we have no record.
+    // We MUST emit a loud signal so an Operator can reconcile manually —
+    // never silently swallow.
     try {
-      await (prisma.payment.updateMany as any)({
-        where: { stripePaymentId: refundData.paymentIntentId },
+      await prisma.payment.updateMany({
+        where: { stripePaymentIntentId: refundData.paymentIntentId },
         data: {
           status: 'REFUNDED',
-          refundAmount: refundAmount / 100,
+          refundAmountAUD: refundAmount / 100,
           refundReason: refundData.reason,
           refundedAt: new Date(),
         },
       });
     } catch (dbError) {
-      log.error('failed to update payment record', {
-        error: dbError instanceof Error ? dbError.message : String(dbError),
+      const errorMessage = dbError instanceof Error ? dbError.message : String(dbError);
+      log.error('refund DB write failed AFTER Stripe refund succeeded', {
+        stripeRefundId: refund.id,
+        bookingId: refundData.bookingId,
+        paymentIntentId: refundData.paymentIntentId,
+        amountCents: refundAmount,
+        error: errorMessage,
       });
-      // Don't fail the request — Stripe refund already processed
+      captureException(dbError, {
+        tags: {
+          route: '/api/payments/refund',
+          severity: 'critical',
+          reconciliation_required: 'true',
+        },
+        extra: {
+          stripeRefundId: refund.id,
+          bookingId: refundData.bookingId,
+          paymentIntentId: refundData.paymentIntentId,
+          amountCents: refundAmount,
+        },
+      });
+      // Emit a compliance event so the Operator dashboard surfaces this
+      // as a manual-reconciliation task. Best-effort — if compliance
+      // events are flag-off the captureException above is the audit trail.
+      await logComplianceEvent({
+        eventType: 'payment_refund_db_failure',
+        correlationId: randomUUID(),
+        correlationType: 'system',
+        amountCents: refundAmount,
+        amountCurrency: 'AUD',
+        metadata: {
+          stripeRefundId: refund.id,
+          bookingId: refundData.bookingId,
+          paymentIntentId: refundData.paymentIntentId,
+          dbError: errorMessage,
+          customerEmailHash: 'use-hashIdentifier-on-read',
+        },
+      });
+      // Still return success to the caller — the customer HAS been
+      // refunded. The reconciliation task is internal.
     }
 
     // Send confirmation email
@@ -124,8 +168,8 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function mapRefundReason(reason: string): string {
-  const reasonMap: Record<string, string> = {
+function mapRefundReason(reason: string): Stripe.RefundCreateParams.Reason {
+  const reasonMap: Record<string, Stripe.RefundCreateParams.Reason> = {
     cooling_off: 'requested_by_customer',
     service_not_provided: 'requested_by_customer',
     quality_issue: 'requested_by_customer',

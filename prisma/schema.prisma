@@ -1804,6 +1804,14 @@ model Payment {
   failureReason         String?
   receiptUrl            String?
   invoiceNumber         String?
+  // Refund-tracking fields (DR-700 P0 fix 2026-04-27).
+  // Populated by app/api/payments/refund/route.ts after a successful
+  // Stripe refund. Nullable so existing rows continue to validate.
+  refundAmountAUD       Float?
+  refundReason          String?
+  refundedAt            DateTime?
+  description           String?
+  metadata              Json?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   tenantId              String?

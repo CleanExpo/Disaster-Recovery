@@ -42,7 +42,11 @@ export type ComplianceEventType =
   | 'breach_suspected'
   | 'data_deletion_request'
   | 'data_access_request'
-  | 'privacy_notice_shown';
+  | 'privacy_notice_shown'
+  // Payments: emitted when Stripe-side refund succeeded but the
+  // matching DB write failed. Operator must reconcile manually.
+  // See app/api/payments/refund/route.ts.
+  | 'payment_refund_db_failure';
 
 export type ComplianceCorrelationType =
   | 'claim'
