@@ -654,7 +654,8 @@ function EvidenceUploadSection({
   onRemoveEvidence: (evidenceId: string) => void;
   contractorId: string;
 }) {
-  const [selectedEvidenceType, setSelectedEvidenceType] = useState<string>('BEFORE_PHOTO');
+  const [selectedEvidenceType, setSelectedEvidenceType] =
+    useState<ProofOfWorkEvidence['type']>('BEFORE_PHOTO');
 
   const handleEvidenceUpload = (result: any) => {
     const newEvidence: ProofOfWorkEvidence = {
@@ -677,7 +678,7 @@ function EvidenceUploadSection({
         <label className="block text-sm font-medium text-gray-600 mb-2">Evidence Type</label>
         <select
           value={selectedEvidenceType}
-          onChange={(e) => setSelectedEvidenceType(e.target.value)}
+          onChange={(e) => setSelectedEvidenceType(e.target.value as ProofOfWorkEvidence['type'])}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           {EVIDENCE_TYPES.map((type) => (
