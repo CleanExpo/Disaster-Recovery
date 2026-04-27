@@ -10,7 +10,7 @@ import { logComplianceEvent } from '@/lib/compliance/events';
 
 // Initialize Stripe or use mock. The mock is a partial implementation
 // of the Stripe SDK surface used by this route — `as unknown as Stripe`
-// is the boundary cast.
+// is the boundary cast (see TS Phase 2 cluster guidance §"Cast-replacement").
 const stripe: Stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-06-20' as const,
@@ -77,6 +77,9 @@ export async function POST(request: NextRequest) {
     // We MUST emit a loud signal so an Operator can reconcile manually —
     // never silently swallow.
     try {
+      // The `as any` cast that lived here previously (PR #230 TODO) is
+      // resolved by this PR — schema migration adds the missing fields
+      // and the canonical name is `stripePaymentIntentId`.
       await prisma.payment.updateMany({
         where: { stripePaymentIntentId: refundData.paymentIntentId },
         data: {
