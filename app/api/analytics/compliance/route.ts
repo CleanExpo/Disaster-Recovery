@@ -22,7 +22,6 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-
     const { searchParams } = new URL(req.url);
     const timeframe = searchParams.get('timeframe') ?? '30d';
     const reportType = searchParams.get('type') ?? 'summary';
@@ -52,19 +51,14 @@ export async function GET(req: NextRequest) {
     const certifiedContractors = await prisma.contractor.count({
       where: {
         status: 'APPROVED',
-        certifications: { some: { status: 'VERIFIED' } },
+        iicrcCertifications: { isEmpty: false },
       },
     });
 
     const iicrcCertified = await prisma.contractor.count({
       where: {
         status: 'APPROVED',
-        certifications: {
-          some: {
-            status: 'VERIFIED',
-            certificationType: { startsWith: 'IICRC' },
-          },
-        },
+        iicrcCertifications: { isEmpty: false },
       },
     });
 
@@ -135,7 +129,7 @@ export async function GET(req: NextRequest) {
             ? Math.round(
                 ((certifiedContractors + insuredContractors + completedTraining) /
                   (totalContractors * 3)) *
-                  100
+                  100,
               )
             : 0,
         totalContractors,
@@ -145,39 +139,30 @@ export async function GET(req: NextRequest) {
         totalCertified: certifiedContractors,
         iicrcCertified,
         complianceRate:
-          totalContractors > 0
-            ? Math.round((certifiedContractors / totalContractors) * 100)
-            : 0,
+          totalContractors > 0 ? Math.round((certifiedContractors / totalContractors) * 100) : 0,
       },
       training: {
         completed: completedTraining,
         complianceRate:
-          totalContractors > 0
-            ? Math.round((completedTraining / totalContractors) * 100)
-            : 0,
+          totalContractors > 0 ? Math.round((completedTraining / totalContractors) * 100) : 0,
       },
       insurance: {
         validInsurance: insuredContractors,
         expiringSoon,
         complianceRate:
-          totalContractors > 0
-            ? Math.round((insuredContractors / totalContractors) * 100)
-            : 0,
+          totalContractors > 0 ? Math.round((insuredContractors / totalContractors) * 100) : 0,
       },
       quality: {
         reportsSubmitted,
         approved: approvedReports,
         rejected: rejectedReports,
         approvalRate:
-          reportsSubmitted > 0
-            ? Math.round((approvedReports / reportsSubmitted) * 100)
-            : 0,
+          reportsSubmitted > 0 ? Math.round((approvedReports / reportsSubmitted) * 100) : 0,
       },
       audit: {
         totalEvents: auditEvents,
         failedEvents: criticalEvents,
-        failureRate:
-          auditEvents > 0 ? Math.round((criticalEvents / auditEvents) * 100) : 0,
+        failureRate: auditEvents > 0 ? Math.round((criticalEvents / auditEvents) * 100) : 0,
       },
     };
 
@@ -211,9 +196,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-function calculateContractorComplianceScore(contractor: {
-  onboardingStep: number | null;
-}): number {
+function calculateContractorComplianceScore(contractor: { onboardingStep: number | null }): number {
   const score = (contractor.onboardingStep ?? 0) >= 14 ? 1 : 0;
   return Math.round((score / 1) * 100);
 }

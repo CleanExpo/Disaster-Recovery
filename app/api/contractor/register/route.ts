@@ -236,56 +236,10 @@ async function handleRegistration(
         ),
       );
 
-      // Create certification records
-      const certificationRecords = await Promise.all(
-        validatedData.certifications.map((cert) =>
-          tx.contractorCertification.create({
-            data: {
-              contractorId: contractor.id,
-              certificationType: cert.type,
-              certificationName: cert.name,
-              certificationNumber: cert.number,
-              issuingOrganization: cert.issuingOrganization,
-              issueDate: new Date(cert.issueDate),
-              expiryDate: cert.expiryDate ? new Date(cert.expiryDate) : null,
-              documentUrl: '', // Will be updated when documents are uploaded
-              status: 'PENDING',
-            },
-          }),
-        ),
-      );
-
-      // Create reference records
-      const referenceRecords = await Promise.all(
-        validatedData.backgroundCheck.references.map((ref) =>
-          tx.contractorReference.create({
-            data: {
-              contractorId: contractor.id,
-              referenceName: ref.name,
-              companyName: ref.companyName,
-              position: ref.position,
-              email: ref.email,
-              phone: (ref as any).phone || '',
-              relationship: ref.relationship,
-              projectDescription: ref.projectDescription,
-            },
-          }),
-        ),
-      );
-
-      // Create background check consent record
-      if (validatedData.backgroundCheck.consentGiven) {
-        await tx.backgroundCheck.create({
-          data: {
-            contractorId: contractor.id,
-            checkType: 'IDENTITY',
-            provider: 'PISA',
-            consentGiven: true,
-            consentDate: new Date(),
-            status: 'PENDING',
-          },
-        });
-      }
+      // Certification, reference, and background-check records were
+      // previously created here; the corresponding Prisma models were
+      // deleted in PR #246. Onboarding wizard data is captured via
+      // ContractorApplication; IICRC codes live on Contractor.iicrcCertifications.
 
       // Create subscription record
       const subscription = await tx.contractorSubscription.create({
@@ -327,31 +281,8 @@ async function handleRegistration(
         ),
       );
 
-      // Create agreement acceptance records
-      const agreementTypes = [
-        { type: 'PARTNERSHIP', accepted: validatedData.agreements.partnershipAgreement },
-        { type: 'CODE_OF_CONDUCT', accepted: validatedData.agreements.codeOfConduct },
-        { type: 'WHS', accepted: validatedData.agreements.whsCompliance },
-        { type: 'DUTY_OF_CARE', accepted: validatedData.agreements.dutyOfCare },
-        { type: 'PRIVACY', accepted: validatedData.agreements.ongoingMonitoring },
-      ];
-
-      const agreementRecords = await Promise.all(
-        agreementTypes.map((agreement) =>
-          tx.contractorAgreement.create({
-            data: {
-              contractorId: contractor.id,
-              agreementType: agreement.type,
-              agreementName: `${agreement.type} Agreement`,
-              version: '1.0',
-              accepted: agreement.accepted,
-              acceptedAt: agreement.accepted ? new Date() : null,
-              acceptanceMethod: 'CHECKBOX',
-              effectiveDate: new Date(),
-            },
-          }),
-        ),
-      );
+      // ContractorAgreement model was deleted in PR #246.
+      // Agreement acceptance is captured in the ContractorApplication snapshot.
 
       // Create initial notification
       await tx.contractorNotification.create({

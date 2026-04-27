@@ -53,14 +53,6 @@ export async function GET(request: NextRequest) {
       where: { email: user.email },
       include: {
         companyProfile: true,
-        certifications: {
-          where: { status: 'VERIFIED' },
-          select: {
-            certificationName: true,
-            certificationType: true,
-            expiryDate: true,
-          },
-        },
         insurance: {
           where: { status: 'ACTIVE' },
           select: {
@@ -100,7 +92,6 @@ export async function GET(request: NextRequest) {
             baseRadius: true,
           },
         },
-        availability: true,
       },
     });
 
@@ -178,7 +169,7 @@ export async function GET(request: NextRequest) {
       serviceRadius: serviceRadius ?? null,
       services: contractorProfile?.services ?? [],
       availability: {
-        247: contractor?.availability?.some((a) => a.available) ?? false,
+        247: false,
         emergencyResponse: contractor?.territories?.some((t) => t.emergencyResponse) ?? false,
         responseTime: latestKPI?.averageResponseTime
           ? Math.round(latestKPI.averageResponseTime * 60)
@@ -193,7 +184,7 @@ export async function GET(request: NextRequest) {
         workCover: insuranceMap.workCover ?? false,
         expiryDates: insuranceExpiry,
       },
-      certifications: contractor?.certifications?.map((c) => c.certificationName) ?? [],
+      certifications: contractor?.iicrcCertifications ?? [],
       performance: {
         totalJobs: latestKPI?.totalJobs ?? contractorProfile?.totalJobs ?? completedJobsCount,
         completionRate:
