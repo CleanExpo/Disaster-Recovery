@@ -7,6 +7,11 @@ import crypto from 'crypto';
 
 const PAYMENT_AMOUNT_AUD = 2475;
 
+/** True if `value` is a non-null, non-array plain object (safe for Prisma `Json`). */
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
 export async function POST(request: Request) {
   const log = requestLogger(request, { route: '/api/contractor/onboarding/submit' });
   const ip =
@@ -55,10 +60,17 @@ export async function POST(request: Request) {
     // Generate the application id up-front (live `id text NOT NULL` has no default).
     const applicationId = crypto.randomUUID();
 
-    // 1. Save the ContractorApplication (flat-column shape — matches live table).
-    //    Wizard fields outside this projection (insurance, experience, equipment,
-    //    healthSafety, banking) are NOT persisted on this row; they belong to the
-    //    OnboardingPayment / contractor-profile flow.
+    // DR-815 — wizard sections that don't fit the flat shape are persisted
+    // as JSONB blobs on the same row. Admin reads them; contractor writes once.
+    const insuranceData = isPlainObject(application.insurance) ? application.insurance : null;
+    const experienceData = isPlainObject(application.experience) ? application.experience : null;
+    const equipmentData = isPlainObject(application.equipment) ? application.equipment : null;
+    const healthSafetyData = isPlainObject(application.healthSafety)
+      ? application.healthSafety
+      : null;
+    const bankingData = isPlainObject(application.banking) ? application.banking : null;
+
+    // 1. Save the ContractorApplication (flat columns + 5 JSONB sections).
     const record = await prisma.contractorApplication.create({
       data: {
         id: applicationId,
@@ -76,6 +88,11 @@ export async function POST(request: Request) {
         utmCampaign: typeof utm.campaign === 'string' ? utm.campaign : null,
         utmContent: typeof utm.content === 'string' ? utm.content : null,
         utmTerm: typeof utm.term === 'string' ? utm.term : null,
+        insuranceData,
+        experienceData,
+        equipmentData,
+        healthSafetyData,
+        bankingData,
       },
     });
 
