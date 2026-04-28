@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+// D5 perf: lazy-loaded motion runtime — see app/guides/water-damage/page.tsx for rationale.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -414,7 +415,7 @@ function MouldRemediationGuidePageOriginal() {
       <section className="relative bg-gradient-to-r from-green-900 to-teal-900 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -443,7 +444,7 @@ function MouldRemediationGuidePageOriginal() {
                 Check Mould Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -468,7 +469,7 @@ function MouldRemediationGuidePageOriginal() {
       {/* Mould Types Identification */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -495,7 +496,7 @@ function MouldRemediationGuidePageOriginal() {
               ))}
             </div>
 
-            <motion.div
+            <m.div
               key={selectedMouldType}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -606,15 +607,15 @@ function MouldRemediationGuidePageOriginal() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
       {/* Efflorescence vs Mould */}
       <section className="py-16 bg-gradient-to-br from-amber-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -711,14 +712,14 @@ function MouldRemediationGuidePageOriginal() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Health Symptoms */}
       <section id="health-effects" className="py-16 bg-gradient-to-br from-red-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -730,7 +731,7 @@ function MouldRemediationGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {healthSymptoms.map((category, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -767,7 +768,7 @@ function MouldRemediationGuidePageOriginal() {
                       <span className="font-semibold">At Risk:</span> {category.atRisk}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
             <div className="mt-8 bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6">
@@ -777,14 +778,14 @@ function MouldRemediationGuidePageOriginal() {
                 symptoms and exposure for medical assessment.
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Mould Classifications */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -796,7 +797,7 @@ function MouldRemediationGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {mouldClassifications.map((level, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -824,17 +825,17 @@ function MouldRemediationGuidePageOriginal() {
                     </p>
                     <p className="text-gray-600 italic">{level.examples}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Remediation Process */}
       <section className="py-16 bg-gradient-to-br from-teal-50 to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -846,7 +847,7 @@ function MouldRemediationGuidePageOriginal() {
             </h2>
             <div className="space-y-4">
               {remediationStages.map((stage, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -884,17 +885,17 @@ function MouldRemediationGuidePageOriginal() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Prevention Strategies */}
       <section id="prevention" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -906,7 +907,7 @@ function MouldRemediationGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {preventionStrategies.map((strategy, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -928,17 +929,17 @@ function MouldRemediationGuidePageOriginal() {
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Insurance Coverage */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -957,7 +958,7 @@ function MouldRemediationGuidePageOriginal() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {insuranceAspects.map((aspect, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -983,7 +984,7 @@ function MouldRemediationGuidePageOriginal() {
                   <div className="pt-3 border-t border-gray-200">
                     <p className="text-sm font-semibold text-blue-600">💡 {aspect.tip}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
             <div className="mt-8 text-center">
@@ -995,14 +996,14 @@ function MouldRemediationGuidePageOriginal() {
                 Check Your Mould Coverage
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Property Type Considerations */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -1013,7 +1014,7 @@ function MouldRemediationGuidePageOriginal() {
               Property-Specific Mould Considerations
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -1035,9 +1036,9 @@ function MouldRemediationGuidePageOriginal() {
                 >
                   Residential Mould Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -1059,9 +1060,9 @@ function MouldRemediationGuidePageOriginal() {
                 >
                   Commercial Mould Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -1083,16 +1084,16 @@ function MouldRemediationGuidePageOriginal() {
                 >
                   Industrial Mould Guide <ChevronRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* FAQs */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -1104,7 +1105,7 @@ function MouldRemediationGuidePageOriginal() {
             </h2>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -1128,17 +1129,17 @@ function MouldRemediationGuidePageOriginal() {
                       <p className="pt-4">{faq.answer}</p>
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Related Resources */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -1187,7 +1188,7 @@ function MouldRemediationGuidePageOriginal() {
                 <p className="text-gray-600 text-sm">Find mould specialists in your area</p>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -1262,7 +1263,7 @@ function MouldRemediationGuidePageOriginal() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-teal-600 to-green-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -1290,7 +1291,7 @@ function MouldRemediationGuidePageOriginal() {
                 Self-Inspection Checklist
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </div>
@@ -1363,7 +1364,7 @@ const mouldArticleSchema = generateArticleSchema({
 
 export default function MouldRemediationGuidePage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <StructuredData data={mouldArticleSchema} />
       <Script id="mould-faq-schema" type="application/ld+json" strategy="afterInteractive">
         {mouldFaqSchema}
@@ -1371,6 +1372,6 @@ export default function MouldRemediationGuidePage() {
       <AntigravityNavbar />
       <MouldRemediationGuidePageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

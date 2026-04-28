@@ -1,10 +1,10 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// D5 perf: lazy-loaded motion runtime.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { Users, Building2, TrendingUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,8 +24,8 @@ function PitchSelectionOriginal() {
         '$3M Series A Investment Ask',
         'Market Analysis & Projections',
         'Emotional Founder Story',
-        'Exit Strategy & Returns'
-      ]
+        'Exit Strategy & Returns',
+      ],
     },
     {
       id: 'client',
@@ -39,9 +39,9 @@ function PitchSelectionOriginal() {
         '2-Hour Emergency Response',
         'Direct Insurance Integration',
         'Real-Time Tracking',
-        '24/7 Support System'
+        '24/7 Support System',
       ],
-      videoUrl: 'PENDING_CLIENT_VIDEO_URL' // Will be updated when you provide the URL
+      videoUrl: 'PENDING_CLIENT_VIDEO_URL', // Will be updated when you provide the URL
     },
     {
       id: 'contractor',
@@ -55,33 +55,33 @@ function PitchSelectionOriginal() {
         'Instant KPI-Based Payments',
         'Quality Lead Generation',
         'Clean Claims Integration',
-        'No More 90-Day Wait'
+        'No More 90-Day Wait',
       ],
-      videoUrl: 'PENDING_CONTRACTOR_VIDEO_URL' // Will be updated when you provide the URL
-    }
+      videoUrl: 'PENDING_CONTRACTOR_VIDEO_URL', // Will be updated when you provide the URL
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
+        <m.div
           className="absolute inset-0 opacity-20"
           animate={{
             background: [
               'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)',
               'radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)',
               'radial-gradient(circle at 20% 60%, rgba(34, 197, 94, 0.3) 0%, transparent 50%)',
-            ]
+            ],
           }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 20, repeat: Infinity, repeatType: 'reverse' }}
         />
       </div>
 
       <div className="relative z-10 px-6 py-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -100,12 +100,12 @@ function PitchSelectionOriginal() {
               Select the presentation tailored to your needs and discover how Disaster Recovery Pro
               is revolutionising the industry for everyone involved.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Pitch Cards */}
           <div className="grid md:grid-cols-3 gap-8">
             {pitchOptions.map((pitch, index) => (
-              <motion.div
+              <m.div
                 key={pitch.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -115,55 +115,71 @@ function PitchSelectionOriginal() {
                 className="relative group"
               >
                 <Link href={pitch.link}>
-                  <div className={`
+                  <div
+                    className={`
                     relative overflow-hidden rounded-2xl border border-gray-800 
                     bg-gray-900/50 backdrop-blur-sm p-8
                     transition-all duration-300 cursor-pointer
                     ${hoveredCard === pitch.id ? 'scale-105 border-gray-600' : ''}
-                  `}>
+                  `}
+                  >
                     {/* Gradient Overlay */}
-                    <div className={`
+                    <div
+                      className={`
                       absolute inset-0 bg-gradient-to-br ${pitch.color} opacity-0 
                       group-hover:opacity-10 transition-opacity duration-300
-                    `} />
+                    `}
+                    />
 
                     {/* Icon */}
-                    <div className={`
+                    <div
+                      className={`
                       w-16 h-16 rounded-xl bg-gradient-to-r ${pitch.color} 
                       flex items-center justify-center mb-6
-                    `}>
+                    `}
+                    >
                       <pitch.icon className="w-8 h-8 text-white" />
                     </div>
 
                     {/* Content */}
                     <h3 className="text-2xl font-bold mb-2">{pitch.title}</h3>
-                    <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>{pitch.subtitle}</p>
-                    <p className="mb-6" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>{pitch.description}</p>
+                    <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+                      {pitch.subtitle}
+                    </p>
+                    <p className="mb-6" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                      {pitch.description}
+                    </p>
 
                     {/* Features */}
                     <ul className="space-y-2 mb-6">
                       {pitch.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <div className={`
+                          <div
+                            className={`
                             w-1.5 h-1.5 rounded-full bg-gradient-to-r ${pitch.color} 
                             mt-2 flex-shrink-0
-                          `} />
-                          <span className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>{feature}</span>
+                          `}
+                          />
+                          <span className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                            {feature}
+                          </span>
                         </li>
                       ))}
                     </ul>
 
                     {/* CTA */}
-                    <div className={`
+                    <div
+                      className={`
                       flex items-center gap-2 text-white font-semibold
                       group-hover:gap-4 transition-all duration-300
-                    `}>
+                    `}
+                    >
                       <span>View Presentation</span>
                       <ArrowRight className="w-5 h-5" />
                     </div>
 
                     {/* Hover Effect */}
-                    <motion.div
+                    <m.div
                       className={`
                         absolute bottom-0 left-0 right-0 h-1 
                         bg-gradient-to-r ${pitch.color}
@@ -174,22 +190,22 @@ function PitchSelectionOriginal() {
                     />
                   </div>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
           {/* Footer Note */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
             className="text-center mt-16"
           >
             <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-              Each presentation is specifically crafted for its audience. 
-              Choose the one that best fits your role in the disaster recovery ecosystem.
+              Each presentation is specifically crafted for its audience. Choose the one that best
+              fits your role in the disaster recovery ecosystem.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </div>
@@ -197,10 +213,10 @@ function PitchSelectionOriginal() {
 }
 export default function PitchSelection() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <AntigravityNavbar />
       <PitchSelectionOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

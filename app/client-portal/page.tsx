@@ -1,15 +1,15 @@
-'use client'
-
+'use client';
 
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { 
-  LayoutDashboard, 
-  FileText, 
-  MessageSquare, 
-  Clock, 
+import { useState } from 'react';
+// D5 perf: lazy-loaded motion runtime.
+import { LazyMotion, domAnimation, m } from 'framer-motion';
+import {
+  LayoutDashboard,
+  FileText,
+  MessageSquare,
+  Clock,
   CheckCircle,
   AlertCircle,
   TrendingUp,
@@ -17,12 +17,12 @@ import {
   Download,
   Calendar,
   DollarSign,
-  Home
-} from 'lucide-react'
-import Link from 'next/link'
+  Home,
+} from 'lucide-react';
+import Link from 'next/link';
 
 function ClientPortalPageOriginal() {
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState('overview');
 
   const claims = [
     {
@@ -33,7 +33,7 @@ function ClientPortalPageOriginal() {
       progress: 65,
       submitted: '2024-01-15',
       estimatedCompletion: '2024-02-01',
-      value: '$45,000'
+      value: '$45,000',
     },
     {
       id: 'CLM-2024-002',
@@ -43,23 +43,23 @@ function ClientPortalPageOriginal() {
       progress: 25,
       submitted: '2024-01-20',
       estimatedCompletion: '2024-02-15',
-      value: '$120,000'
-    }
-  ]
+      value: '$120,000',
+    },
+  ];
 
   const stats = [
     { label: 'Active Claims', value: '2', icon: FileText, color: 'text-blue-600' },
     { label: 'Total Recovery Value', value: '$165,000', icon: DollarSign, color: 'text-green-600' },
     { label: 'Avg. Response Time', value: '47 min', icon: Clock, color: 'text-purple-600' },
-    { label: 'Properties Protected', value: '3', icon: Home, color: 'text-indigo-600' }
-  ]
+    { label: 'Properties Protected', value: '3', icon: Home, color: 'text-indigo-600' },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-20">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="container mx-auto px-4 py-12">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-6xl mx-auto"
@@ -68,7 +68,7 @@ function ClientPortalPageOriginal() {
             <p className="text-xl text-blue-200">
               Track your recovery progress and manage all claims in one place
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
@@ -80,8 +80,8 @@ function ClientPortalPageOriginal() {
               { id: 'overview', label: 'Overview', icon: LayoutDashboard },
               { id: 'claims', label: 'Claims', icon: FileText },
               { id: 'documents', label: 'Documents', icon: Download },
-              { id: 'messages', label: 'Messages', icon: MessageSquare }
-            ].map(tab => (
+              { id: 'messages', label: 'Messages', icon: MessageSquare },
+            ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
@@ -103,15 +103,11 @@ function ClientPortalPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
           {activeTab === 'overview' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="space-y-8"
-            >
+            <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
               {/* Stats Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat, index) => (
-                  <motion.div
+                  <m.div
                     key={stat.label}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -124,7 +120,7 @@ function ClientPortalPageOriginal() {
                     </div>
                     <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                     <div className="text-sm text-gray-700">{stat.label}</div>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
 
@@ -132,7 +128,7 @@ function ClientPortalPageOriginal() {
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold mb-6">Active Claims</h2>
                 <div className="space-y-6">
-                  {claims.map(claim => (
+                  {claims.map((claim) => (
                     <div key={claim.id} className="border rounded-lg p-6">
                       <div className="flex items-start justify-between mb-4">
                         <div>
@@ -143,15 +139,17 @@ function ClientPortalPageOriginal() {
                             <span className="text-sm text-gray-700">Value: {claim.value}</span>
                           </div>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          claim.status === 'in-progress' 
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-yellow-100 text-yellow-700'
-                        }`}>
+                        <span
+                          className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            claim.status === 'in-progress'
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-yellow-100 text-yellow-700'
+                          }`}
+                        >
                           {claim.status === 'in-progress' ? 'In Progress' : 'Assessment'}
                         </span>
                       </div>
-                      
+
                       {/* Progress Bar */}
                       <div className="mb-4">
                         <div className="flex justify-between text-sm text-gray-700 mb-2">
@@ -159,7 +157,7 @@ function ClientPortalPageOriginal() {
                           <span>{claim.progress}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div 
+                          <div
                             className="bg-blue-600 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${claim.progress}%` }}
                           />
@@ -178,7 +176,7 @@ function ClientPortalPageOriginal() {
                       </div>
 
                       <div className="mt-4 flex gap-3">
-                        <Link 
+                        <Link
                           href={`/client-portal/claims/${claim.id}`}
                           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                         >
@@ -197,7 +195,7 @@ function ClientPortalPageOriginal() {
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Link 
+                  <Link
                     href="/client-portal/new-claim"
                     className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all"
                   >
@@ -209,8 +207,8 @@ function ClientPortalPageOriginal() {
                       <div className="text-sm text-gray-700">Start recovery process</div>
                     </div>
                   </Link>
-                  
-                  <Link 
+
+                  <Link
                     href="/client-portal/schedule"
                     className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all"
                   >
@@ -222,8 +220,8 @@ function ClientPortalPageOriginal() {
                       <div className="text-sm text-gray-700">Book inspection time</div>
                     </div>
                   </Link>
-                  
-                  <Link 
+
+                  <Link
                     href="/client-portal/support"
                     className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all"
                   >
@@ -237,11 +235,11 @@ function ClientPortalPageOriginal() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'claims' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
@@ -249,11 +247,11 @@ function ClientPortalPageOriginal() {
               <h2 className="text-2xl font-bold mb-6">All Claims</h2>
               <p className="text-gray-700">View and manage all your insurance claims.</p>
               {/* Add detailed claims management here */}
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'documents' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
@@ -261,11 +259,11 @@ function ClientPortalPageOriginal() {
               <h2 className="text-2xl font-bold mb-6">Documents</h2>
               <p className="text-gray-700">Access all your reports, invoices, and documentation.</p>
               {/* Add document management here */}
-            </motion.div>
+            </m.div>
           )}
 
           {activeTab === 'messages' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bg-white rounded-xl shadow-lg p-8"
@@ -273,19 +271,19 @@ function ClientPortalPageOriginal() {
               <h2 className="text-2xl font-bold mb-6">Messages</h2>
               <p className="text-gray-700">Communicate with your recovery team.</p>
               {/* Add messaging interface here */}
-            </motion.div>
+            </m.div>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 export default function ClientPortalPage() {
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <AntigravityNavbar />
       <ClientPortalPageOriginal />
       <AntigravityFooter />
-    </>
+    </LazyMotion>
   );
 }

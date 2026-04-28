@@ -525,11 +525,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
+        {/* D5 perf: gtag deferred from afterInteractive → lazyOnload to free TTI on initial paint. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-98HWF2NV95'}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
