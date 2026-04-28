@@ -46,7 +46,10 @@ export type ComplianceEventType =
   // Payments: emitted when Stripe-side refund succeeded but the
   // matching DB write failed. Operator must reconcile manually.
   // See app/api/payments/refund/route.ts.
-  | 'payment_refund_db_failure';
+  | 'payment_refund_db_failure'
+  // Payments: contractor self-service subscription cancellation.
+  // See app/api/contractor/subscription/cancel/route.ts (audit B8).
+  | 'payment_subscription_cancel';
 
 export type ComplianceCorrelationType =
   | 'claim'
