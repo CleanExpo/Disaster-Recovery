@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Professional male voice for investor pitches
@@ -56,7 +57,19 @@ export async function POST(request: NextRequest) {
 
     // Stream the audio response
     const audioStream = response.body;
-    
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/elevenlabs/narrate',
+        request_id: log.requestId,
+        text_length: text.length,
+      },
+    });
+
     return new NextResponse(audioStream, {
       status: 200,
       headers: {

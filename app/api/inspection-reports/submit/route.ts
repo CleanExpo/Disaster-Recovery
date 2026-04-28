@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { InspectionReport } from '@/lib/templates/inspection-report-template';
 import { validateInspectionSubmission } from '@/lib/templates/inspection-submission-requirements';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export async function POST(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/inspection-reports/submit' });
@@ -69,6 +70,20 @@ export async function POST(req: NextRequest) {
         limitations: JSON.stringify(report.safetyConsiderations || {}),
         complianceStatus: validation.completionScore >= 80 ? 'COMPLIANT' : 'REVIEW_REQUIRED',
         createdBy: report.contractorId,
+      },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'contractor',
+      metadata: {
+        route: '/api/inspection-reports/submit',
+        request_id: log.requestId,
+        report_id: inspectionReport.id,
+        contractor_id: report.contractorId,
+        validation_score: validation.completionScore,
       },
     });
 

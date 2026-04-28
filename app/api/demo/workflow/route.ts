@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 // Store demo workflows in a way that works with serverless
 // In production, this would be a database
@@ -81,6 +82,18 @@ export async function POST(request: NextRequest) {
     // Start workflow progression
     setTimeout(() => progressWorkflow(ticketId, 2), 2000); // CRM Connection
     
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/demo/workflow',
+        request_id: log.requestId,
+        ticket_id: ticketId,
+      },
+    });
+
     return NextResponse.json({
       success: true,
       ticketId: ticketId,
