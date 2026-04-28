@@ -143,7 +143,7 @@ export function KPIPerformanceDashboard() {
         `${data.periodComparison.previous}h`,
         `${data.periodComparison.change}%`,
       ],
-      ['Customer Satisfaction', data.customerSatisfactionScore, '', ''],
+      ['Client Satisfaction', data.customerSatisfactionScore, '', ''],
       ['Clean Claims Compliance', `${data.cleanClaimsCompliance}%`, '', ''],
       ['Total Fines', `$${data.totalFines}`, '', ''],
       ['Total Bonuses', `$${data.totalBonuses}`, '', ''],
@@ -176,14 +176,14 @@ export function KPIPerformanceDashboard() {
     { type: 'Late Response', count: 3 },
     { type: 'Documentation', count: 5 },
     { type: 'Quality Issues', count: 2 },
-    { type: 'Customer Complaints', count: 1 },
+    { type: 'Client Complaints', count: 1 },
   ];
 
   const radarData = [
     { metric: 'Response Time', value: 85 },
     { metric: 'Report Quality', value: 92 },
     { metric: 'Compliance', value: 88 },
-    { metric: 'Customer Satisfaction', value: 94 },
+    { metric: 'Client Satisfaction', value: 94 },
     { metric: 'Efficiency', value: 78 },
     { metric: 'Training', value: 90 },
   ];
@@ -306,7 +306,7 @@ export function KPIPerformanceDashboard() {
           <CardHeader className="pb-3">
             <CardTitle className="text-sm flex items-center gap-2">
               <Star className="h-4 w-4" />
-              Customer Satisfaction
+              Client Satisfaction
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -422,8 +422,8 @@ export function KPIPerformanceDashboard() {
         <TabsContent value="satisfaction">
           <Card>
             <CardHeader>
-              <CardTitle>Customer Satisfaction Scores</CardTitle>
-              <CardDescription>Monthly customer feedback and ratings</CardDescription>
+              <CardTitle>Client Satisfaction Scores</CardTitle>
+              <CardDescription>Monthly client feedback and ratings</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -497,7 +497,7 @@ export function KPIPerformanceDashboard() {
                   </div>
                   <div className="p-4 border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium">Customer Communication</span>
+                      <span className="text-sm font-medium">Client Communication</span>
                       <Badge className="bg-green-100 text-green-800">94%</Badge>
                     </div>
                     <Progress value={94} className="h-2" />
@@ -627,7 +627,7 @@ export function KPIPerformanceDashboard() {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>Strongest Area:</span>
-                    <span className="font-medium">Customer Satisfaction (94%)</span>
+                    <span className="font-medium">Client Satisfaction (94%)</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Needs Improvement:</span>
