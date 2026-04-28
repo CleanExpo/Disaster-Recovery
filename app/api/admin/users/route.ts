@@ -47,12 +47,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const [users, total] = await Promise.all([
       prisma.user.findMany({
-        where: { role: { in: ['admin', 'super_admin', 'ADMIN', 'MANAGER'] } },
+        where: { userType: { in: ['ADMIN', 'SUPER_ADMIN'] } },
         select: {
           id: true,
           name: true,
           email: true,
-          role: true,
+          userType: true,
           createdAt: true,
         },
         orderBy: { createdAt: 'desc' },
@@ -60,7 +60,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         take: limit,
       }),
       prisma.user.count({
-        where: { role: { in: ['admin', 'super_admin', 'ADMIN', 'MANAGER'] } },
+        where: { userType: { in: ['ADMIN', 'SUPER_ADMIN'] } },
       }),
     ]);
 
@@ -75,7 +75,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     });
   } catch (err) {
     log.error('database error', { error: err instanceof Error ? err.message : String(err) });
-    captureException(err, { tags: { route: '/api/admin/users' }, extra: { requestId: log.requestId } });
+    captureException(err, {
+      tags: { route: '/api/admin/users' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

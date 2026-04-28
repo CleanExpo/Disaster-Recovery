@@ -10,6 +10,7 @@
  */
 
 import { PrismaClient } from '@prisma/client';
+import { randomUUID } from 'node:crypto';
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
@@ -20,13 +21,15 @@ async function main() {
 
   if (!email || !password) {
     console.error('Error: ADMIN_EMAIL and ADMIN_PASSWORD environment variables are required.');
-    console.error('Usage: ADMIN_EMAIL=you@example.com ADMIN_PASSWORD=secret npx tsx scripts/core/seed-admin.ts');
+    console.error(
+      'Usage: ADMIN_EMAIL=you@example.com ADMIN_PASSWORD=secret npx tsx scripts/core/seed-admin.ts',
+    );
     process.exit(1);
   }
 
   // Check if a super_admin already exists
   const existing = await prisma.user.findFirst({
-    where: { role: 'super_admin' },
+    where: { userType: 'SUPER_ADMIN' },
   });
 
   if (existing) {
@@ -38,12 +41,13 @@ async function main() {
 
   const user = await prisma.user.upsert({
     where: { email },
-    update: { role: 'super_admin', password: hashed },
+    update: { userType: 'SUPER_ADMIN', password: hashed },
     create: {
+      id: randomUUID(),
       email,
       password: hashed,
       name: 'Super Admin',
-      role: 'super_admin',
+      userType: 'SUPER_ADMIN',
     },
   });
 

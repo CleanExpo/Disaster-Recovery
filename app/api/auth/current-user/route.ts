@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
+import { captureException } from '@/lib/observability/vercel';
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic';
@@ -19,7 +20,7 @@ export async function GET() {
         id: true,
         email: true,
         name: true,
-        role: true,
+        userType: true,
         createdAt: true,
       },
     });
@@ -35,6 +36,9 @@ export async function GET() {
       },
     });
   } catch (error) {
+    captureException(error, {
+      tags: { route: '/api/auth/current-user', model: 'user', op: 'findUnique' },
+    });
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
