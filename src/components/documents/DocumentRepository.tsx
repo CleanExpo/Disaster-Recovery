@@ -2,19 +2,43 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Folder, File, Upload, Download, Search, Filter, Grid, List, 
-  MoreHorizontal, Eye, Share2, Archive, Trash2, Star, Clock,
-  FileText, Image, Video, Music, Code, Database, Lock, AlertTriangle,
-  ChevronRight, ChevronDown, Plus, ArrowUpDown, RefreshCw
+  Folder,
+  File,
+  Upload,
+  Download,
+  Search,
+  Filter,
+  Grid,
+  List,
+  MoreHorizontal,
+  Eye,
+  Share2,
+  Archive,
+  Trash2,
+  Star,
+  Clock,
+  FileText,
+  Image,
+  Video,
+  Music,
+  Code,
+  Database,
+  Lock,
+  AlertTriangle,
+  ChevronRight,
+  ChevronDown,
+  Plus,
+  ArrowUpDown,
+  RefreshCw,
 } from 'lucide-react';
-import type { 
-  Document, 
-  DocumentFolder, 
-  DocumentSearch, 
-  DocumentCategory, 
-  DocumentStatus, 
+import type {
+  Document,
+  DocumentFolder,
+  DocumentSearch,
+  DocumentCategory,
+  DocumentStatus,
   AccessLevel,
-  DocumentUploadProgress 
+  DocumentUploadProgress,
 } from '@/types/document-management';
 import { clientLogger } from '@/lib/observability/client-logger';
 
@@ -27,7 +51,7 @@ interface DocumentRepositoryProps {
 const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
   contractorId,
   userRole,
-  className = ''
+  className = '',
 }) => {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [folders, setFolders] = useState<DocumentFolder[]>([]);
@@ -37,7 +61,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
   const [filters, setFilters] = useState({
     category: [] as DocumentCategory[],
     status: [] as DocumentStatus[],
-    accessLevel: [] as AccessLevel[]
+    accessLevel: [] as AccessLevel[],
   });
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [sortBy, setSortBy] = useState<'name' | 'date' | 'size'>('name');
@@ -80,8 +104,8 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
             contractorId: 'contractor_001',
             signatureRequired: false,
             relatedDocuments: [],
-            customFields: {}
-          }
+            customFields: {},
+          },
         },
         {
           id: 'doc_002',
@@ -106,8 +130,8 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
             contractorId: 'contractor_001',
             signatureRequired: false,
             relatedDocuments: [],
-            customFields: {}
-          }
+            customFields: {},
+          },
         },
         {
           id: 'doc_003',
@@ -132,14 +156,18 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
             signatureRequired: true,
             signatureStatus: 'sent',
             relatedDocuments: [],
-            customFields: {}
-          }
-        }
+            customFields: {},
+          },
+        },
       ];
 
       setDocuments(mockDocuments);
     } catch (error) {
-      clientLogger.error('Error loading documents:', { source: 'documents/DocumentRepository' }, error);
+      clientLogger.error(
+        'Error loading documents:',
+        { source: 'documents/DocumentRepository' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -157,7 +185,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
           createdBy: 'admin_001',
           createdAt: '2024-01-01T00:00:00Z',
           documentCount: 5,
-          subfolders: []
+          subfolders: [],
         },
         {
           id: 'folder_002',
@@ -167,7 +195,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
           createdBy: 'admin_001',
           createdAt: '2024-01-01T00:00:00Z',
           documentCount: 8,
-          subfolders: []
+          subfolders: [],
         },
         {
           id: 'folder_003',
@@ -177,7 +205,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
           createdBy: 'admin_001',
           createdAt: '2024-01-01T00:00:00Z',
           documentCount: 12,
-          subfolders: []
+          subfolders: [],
         },
         {
           id: 'folder_004',
@@ -187,19 +215,23 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
           createdBy: 'contractor_001',
           createdAt: '2024-01-01T00:00:00Z',
           documentCount: 24,
-          subfolders: []
-        }
+          subfolders: [],
+        },
       ];
 
       setFolders(mockFolders);
     } catch (error) {
-      clientLogger.error('Error loading folders:', { source: 'documents/DocumentRepository' }, error);
+      clientLogger.error(
+        'Error loading folders:',
+        { source: 'documents/DocumentRepository' },
+        error,
+      );
     }
   };
 
   const handleFileUpload = async (files: FileList) => {
     const uploadFiles = Array.from(files);
-    
+
     for (const file of uploadFiles) {
       const uploadId = `upload_${Date.now()}_${Math.random()}`;
       const progressItem: DocumentUploadProgress = {
@@ -208,39 +240,41 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
         fileSize: file.size,
         uploadedBytes: 0,
         progress: 0,
-        status: 'uploading'
+        status: 'uploading',
       };
 
-      setUploadProgress(prev => [...prev, progressItem]);
+      setUploadProgress((prev) => [...prev, progressItem]);
 
       // Simulate upload progress
       const interval = setInterval(() => {
-        setUploadProgress(prev => prev.map(item => {
-          if (item.fileId === uploadId && item.status === 'uploading') {
-            const newProgress = Math.min(item.progress + 10, 100);
-            return {
-              ...item,
-              progress: newProgress,
-              uploadedBytes: Math.floor((newProgress / 100) * file.size),
-              status: newProgress === 100 ? 'processing' : 'uploading'
-            };
-          }
-          return item;
-        }));
+        setUploadProgress((prev) =>
+          prev.map((item) => {
+            if (item.fileId === uploadId && item.status === 'uploading') {
+              const newProgress = Math.min(item.progress + 10, 100);
+              return {
+                ...item,
+                progress: newProgress,
+                uploadedBytes: Math.floor((newProgress / 100) * file.size),
+                status: newProgress === 100 ? 'processing' : 'uploading',
+              };
+            }
+            return item;
+          }),
+        );
       }, 200);
 
       // Complete upload after simulation
       setTimeout(() => {
         clearInterval(interval);
-        setUploadProgress(prev => prev.map(item => 
-          item.fileId === uploadId 
-            ? { ...item, status: 'completed', progress: 100 }
-            : item
-        ));
+        setUploadProgress((prev) =>
+          prev.map((item) =>
+            item.fileId === uploadId ? { ...item, status: 'completed', progress: 100 } : item,
+          ),
+        );
 
         // Remove completed uploads after delay
         setTimeout(() => {
-          setUploadProgress(prev => prev.filter(item => item.fileId !== uploadId));
+          setUploadProgress((prev) => prev.filter((item) => item.fileId !== uploadId));
         }, 2000);
 
         // Refresh documents list
@@ -262,7 +296,8 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
     if (mimeType.startsWith('video/')) return <Video className="w-5 h-5 text-purple-600" />;
     if (mimeType.startsWith('audio/')) return <Music className="w-5 h-5 text-green-600" />;
     if (mimeType.includes('pdf')) return <FileText className="w-5 h-5 text-red-600" />;
-    if (mimeType.includes('code') || mimeType.includes('text')) return <Code className="w-5 h-5 text-gray-700" />;
+    if (mimeType.includes('code') || mimeType.includes('text'))
+      return <Code className="w-5 h-5 text-gray-700" />;
     return <File className="w-5 h-5 text-gray-700" />;
   };
 
@@ -275,12 +310,14 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
       signed: { colour: 'bg-purple-700 text-white', label: 'Signed' },
       archived: { colour: 'bg-gray-100 text-gray-800', label: 'Archived' },
       rejected: { colour: 'bg-red-100 text-red-800', label: 'Rejected' },
-      draft: { colour: 'bg-orange-100 text-orange-800', label: 'Draft' }
+      draft: { colour: 'bg-orange-100 text-orange-800', label: 'Draft' },
     };
 
     const config = statusConfig[status];
     return (
-      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${config.colour}`}>
+      <span
+        className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${config.colour}`}
+      >
         {config.label}
       </span>
     );
@@ -288,10 +325,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
 
   const Breadcrumb = () => (
     <nav className="flex items-center space-x-2 text-sm text-gray-700 mb-6">
-      <button 
-        onClick={() => setCurrentFolder(null)}
-        className="hover:text-blue-600"
-      >
+      <button onClick={() => setCurrentFolder(null)} className="hover:text-blue-600">
         Documents
       </button>
       {currentFolder && (
@@ -315,13 +349,15 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
               <span className="text-sm text-gray-700">{upload.progress}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
+              <div
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${upload.progress}%` }}
               ></div>
             </div>
             <div className="flex justify-between text-xs text-gray-700 mt-1">
-              <span>{formatFileSize(upload.uploadedBytes)} / {formatFileSize(upload.fileSize)}</span>
+              <span>
+                {formatFileSize(upload.uploadedBytes)} / {formatFileSize(upload.fileSize)}
+              </span>
               <span className="capitalize">{upload.status.replace('_', ' ')}</span>
             </div>
           </div>
@@ -363,37 +399,37 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
           }`}
           onClick={() => {
             if (selectedDocuments.includes(doc.id)) {
-              setSelectedDocuments(prev => prev.filter(id => id !== doc.id));
+              setSelectedDocuments((prev) => prev.filter((id) => id !== doc.id));
             } else {
-              setSelectedDocuments(prev => [...prev, doc.id]);
+              setSelectedDocuments((prev) => [...prev, doc.id]);
             }
           }}
         >
           <div className="flex items-start justify-between mb-3">
-            <div className="p-2 bg-gray-50 rounded-lg">
-              {getFileIcon(doc.mimeType)}
-            </div>
+            <div className="p-2 bg-gray-50 rounded-lg">{getFileIcon(doc.mimeType)}</div>
             <button className="p-1 hover:bg-gray-100 rounded">
               <MoreHorizontal className="w-4 h-4 text-gray-700" />
             </button>
           </div>
-          
+
           <h3 className="font-medium text-gray-900 mb-2 truncate" title={doc.title}>
             {doc.title}
           </h3>
-          
+
           <div className="space-y-2">
             {getStatusBadge(doc.status)}
-            
+
             <div className="text-xs text-gray-700">
               <p>Size: {formatFileSize(doc.fileSize)}</p>
               <p>Modified: {new Date(doc.lastModifiedAt).toLocaleDateString()}</p>
               {doc.expiryDate && (
-                <p className={`flex items-center ${
-                  doc.status === 'expired' || doc.status === 'expiring_soon' 
-                    ? 'text-red-600' 
-                    : 'text-gray-700'
-                }`}>
+                <p
+                  className={`flex items-center ${
+                    doc.status === 'expired' || doc.status === 'expiring_soon'
+                      ? 'text-red-600'
+                      : 'text-gray-700'
+                  }`}
+                >
                   <Clock className="w-3 h-3 mr-1" />
                   Expires: {new Date(doc.expiryDate).toLocaleDateString()}
                 </p>
@@ -415,7 +451,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
                 type="checkbox"
                 onChange={(e) => {
                   if (e.target.checked) {
-                    setSelectedDocuments(documents.map(doc => doc.id));
+                    setSelectedDocuments(documents.map((doc) => doc.id));
                   } else {
                     setSelectedDocuments([]);
                   }
@@ -452,27 +488,27 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
                   checked={selectedDocuments.includes(doc.id)}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      setSelectedDocuments(prev => [...prev, doc.id]);
+                      setSelectedDocuments((prev) => [...prev, doc.id]);
                     } else {
-                      setSelectedDocuments(prev => prev.filter(id => id !== doc.id));
+                      setSelectedDocuments((prev) => prev.filter((id) => id !== doc.id));
                     }
                   }}
                 />
               </td>
               <td className="px-6 py-4">
                 <div className="flex items-center">
-                  <div className="p-2 bg-gray-50 rounded-lg mr-3">
-                    {getFileIcon(doc.mimeType)}
-                  </div>
+                  <div className="p-2 bg-gray-50 rounded-lg mr-3">{getFileIcon(doc.mimeType)}</div>
                   <div>
                     <p className="font-medium text-gray-900">{doc.title}</p>
                     <p className="text-sm text-gray-700">{doc.fileName}</p>
                     {doc.expiryDate && (
-                      <p className={`text-xs flex items-center mt-1 ${
-                        doc.status === 'expired' || doc.status === 'expiring_soon' 
-                          ? 'text-red-600' 
-                          : 'text-gray-700'
-                      }`}>
+                      <p
+                        className={`text-xs flex items-center mt-1 ${
+                          doc.status === 'expired' || doc.status === 'expiring_soon'
+                            ? 'text-red-600'
+                            : 'text-gray-700'
+                        }`}
+                      >
                         <Clock className="w-3 h-3 mr-1" />
                         Expires: {new Date(doc.expiryDate).toLocaleDateString()}
                       </p>
@@ -480,15 +516,11 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
                   </div>
                 </div>
               </td>
-              <td className="px-6 py-4">
-                {getStatusBadge(doc.status)}
-              </td>
+              <td className="px-6 py-4">{getStatusBadge(doc.status)}</td>
               <td className="px-6 py-4 text-sm text-gray-900 capitalize">
                 {doc.category.replace('_', ' ')}
               </td>
-              <td className="px-6 py-4 text-sm text-gray-900">
-                {formatFileSize(doc.fileSize)}
-              </td>
+              <td className="px-6 py-4 text-sm text-gray-900">{formatFileSize(doc.fileSize)}</td>
               <td className="px-6 py-4 text-sm text-gray-900">
                 {new Date(doc.lastModifiedAt).toLocaleDateString()}
               </td>
@@ -521,7 +553,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
         <div className="animate-pulse">
           <div className="h-8 bg-gray-200 rounded mb-4"></div>
           <div className="grid grid-cols-4 gap-4 mb-8">
-            {[1, 2, 3, 4].map(i => (
+            {[1, 2, 3, 4].map((i) => (
               <div key={i} className="h-24 bg-gray-200 rounded"></div>
             ))}
           </div>
@@ -582,14 +614,14 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
         <div className="flex items-center space-x-2">
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) => setSortBy(e.target.value as 'name' | 'date' | 'size')}
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
           >
             <option value="name">Sort by Name</option>
             <option value="date">Sort by Date</option>
             <option value="size">Sort by Size</option>
           </select>
-          
+
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setViewMode('list')}
@@ -632,7 +664,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
       <UploadProgress />
 
       {!currentFolder && <FolderGrid />}
-      
+
       {viewMode === 'grid' ? <DocumentGrid /> : <DocumentList />}
 
       {documents.length === 0 && !loading && (

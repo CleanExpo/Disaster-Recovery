@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Upload, 
-  FileSpreadsheet, 
+import {
+  Upload,
+  FileSpreadsheet,
   CheckCircle,
   XCircle,
   AlertCircle,
@@ -15,15 +15,16 @@ import {
   Edit,
   RefreshCw,
   TrendingUp,
-  AlertTriangle
+  AlertTriangle,
 } from 'lucide-react';
-import { 
+import {
   ContractorRate,
   PriceGuideline,
   ValidationResult,
   PriceUpload,
   RateStatus,
-  PriceCategory
+  PriceCategory,
+  PriceUnit,
 } from '@/types/billing-pricing';
 
 interface UploadProgress {
@@ -44,7 +45,7 @@ const ContractorPriceUpload: React.FC = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [filterStatus, setFilterStatus] = useState<RateStatus | 'all'>('all');
   const [filterCategory, setFilterCategory] = useState<PriceCategory | 'all'>('all');
-  
+
   // Form state for adding/editing rates
   const [rateForm, setRateForm] = useState({
     category: 'labour' as PriceCategory,
@@ -52,8 +53,8 @@ const ContractorPriceUpload: React.FC = () => {
     price: 0,
     normalHoursPrice: 0,
     afterHoursPrice: 0,
-    unit: 'per_hour',
-    notes: ''
+    unit: 'per_hour' as PriceUnit,
+    notes: '',
   });
 
   useEffect(() => {
@@ -83,12 +84,12 @@ const ContractorPriceUpload: React.FC = () => {
           isWithinRange: true,
           percentageDeviation: 0,
           flags: [],
-          requiresReview: false
+          requiresReview: false,
         },
         submittedAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
         reviewedAt: new Date(Date.now() - 20 * 60 * 60 * 1000).toISOString(),
         reviewedBy: 'system',
-        validFrom: '2024-01-01'
+        validFrom: '2024-01-01',
       },
       {
         id: 'CR002',
@@ -106,13 +107,13 @@ const ContractorPriceUpload: React.FC = () => {
           percentageDeviation: 15,
           flags: [
             { type: 'new_item', severity: 'warning', message: 'New item not in guidelines' },
-            { type: 'unusual_unit', severity: 'info', message: 'Review pricing structure' }
+            { type: 'unusual_unit', severity: 'info', message: 'Review pricing structure' },
           ],
           requiresReview: true,
-          message: 'Custom item requires admin review'
+          message: 'Custom item requires admin review',
         },
         submittedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-        validFrom: '2024-01-01'
+        validFrom: '2024-01-01',
       },
       {
         id: 'CR003',
@@ -130,12 +131,12 @@ const ContractorPriceUpload: React.FC = () => {
           isWithinRange: true,
           percentageDeviation: 0,
           flags: [],
-          requiresReview: false
+          requiresReview: false,
         },
         submittedAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
         reviewedAt: new Date(Date.now() - 47 * 60 * 60 * 1000).toISOString(),
         reviewedBy: 'system',
-        validFrom: '2024-01-01'
+        validFrom: '2024-01-01',
       },
       {
         id: 'CR004',
@@ -153,15 +154,19 @@ const ContractorPriceUpload: React.FC = () => {
           isWithinRange: false,
           percentageDeviation: 25,
           flags: [
-            { type: 'out_of_range', severity: 'warning', message: 'Price exceeds guideline by 25%' },
-            { type: 'excessive_deviation', severity: 'error', message: 'Requires justification' }
+            {
+              type: 'out_of_range',
+              severity: 'warning',
+              message: 'Price exceeds guideline by 25%',
+            },
+            { type: 'excessive_deviation', severity: 'error', message: 'Requires justification' },
           ],
           requiresReview: true,
-          message: 'Price significantly above guideline range'
+          message: 'Price significantly above guideline range',
         },
         submittedAt: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
-        validFrom: '2024-01-01'
-      }
+        validFrom: '2024-01-01',
+      },
     ];
 
     setContractorRates(mockRates);
@@ -185,7 +190,7 @@ const ContractorPriceUpload: React.FC = () => {
         processedItems: 45,
         approvedItems: 38,
         rejectedItems: 2,
-        flaggedItems: 5
+        flaggedItems: 5,
       },
       {
         id: 'UP002',
@@ -198,8 +203,8 @@ const ContractorPriceUpload: React.FC = () => {
         processedItems: 32,
         approvedItems: 30,
         rejectedItems: 0,
-        flaggedItems: 2
-      }
+        flaggedItems: 2,
+      },
     ];
 
     setUploadHistory(mockHistory);
@@ -225,7 +230,7 @@ const ContractorPriceUpload: React.FC = () => {
 
     const interval = setInterval(() => {
       processed++;
-      
+
       // Simulate validation results
       const random = Math.random();
       if (random < 0.7) {
@@ -249,15 +254,17 @@ const ContractorPriceUpload: React.FC = () => {
 
   const validateRate = (rate: ContractorRate): ValidationResult => {
     // Mock validation logic
-    const guideline = guidelines.find(g => g.id === rate.guidelineId);
-    
+    const guideline = guidelines.find((g) => g.id === rate.guidelineId);
+
     if (!guideline && !rate.customItem) {
       return {
         isValid: false,
         isWithinRange: false,
-        flags: [{ type: 'missing_guideline', severity: 'error', message: 'No matching guideline found' }],
+        flags: [
+          { type: 'missing_guideline', severity: 'error', message: 'No matching guideline found' },
+        ],
         requiresReview: true,
-        message: 'Missing guideline reference'
+        message: 'Missing guideline reference',
       };
     }
 
@@ -267,7 +274,7 @@ const ContractorPriceUpload: React.FC = () => {
         isWithinRange: false,
         flags: [{ type: 'new_item', severity: 'warning', message: 'Custom item requires review' }],
         requiresReview: true,
-        message: 'Custom item needs admin approval'
+        message: 'Custom item needs admin approval',
       };
     }
 
@@ -279,14 +286,16 @@ const ContractorPriceUpload: React.FC = () => {
       isValid: isWithinRange,
       isWithinRange,
       percentageDeviation: deviation,
-      flags: isWithinRange ? [] : [
-        { 
-          type: 'out_of_range', 
-          severity: deviation > 20 ? 'error' : 'warning',
-          message: `Price ${deviation > 0 ? 'above' : 'below'} guideline by ${Math.abs(deviation).toFixed(1)}%`
-        }
-      ],
-      requiresReview: !isWithinRange
+      flags: isWithinRange
+        ? []
+        : [
+            {
+              type: 'out_of_range',
+              severity: deviation > 20 ? 'error' : 'warning',
+              message: `Price ${deviation > 0 ? 'above' : 'below'} guideline by ${Math.abs(deviation).toFixed(1)}%`,
+            },
+          ],
+      requiresReview: !isWithinRange,
     };
   };
 
@@ -298,14 +307,14 @@ const ContractorPriceUpload: React.FC = () => {
       category: rateForm.category,
       itemName: rateForm.itemName,
       customItem: true,
-      unit: rateForm.unit as any,
+      unit: rateForm.unit,
       price: rateForm.price,
       normalHoursPrice: rateForm.normalHoursPrice,
       afterHoursPrice: rateForm.afterHoursPrice,
       notes: rateForm.notes,
       status: 'pending',
       submittedAt: new Date().toISOString(),
-      validFrom: new Date().toISOString()
+      validFrom: new Date().toISOString(),
     };
 
     // Validate the new rate
@@ -325,7 +334,7 @@ const ContractorPriceUpload: React.FC = () => {
       normalHoursPrice: 0,
       afterHoursPrice: 0,
       unit: 'per_hour',
-      notes: ''
+      notes: '',
     });
   };
 
@@ -336,25 +345,35 @@ const ContractorPriceUpload: React.FC = () => {
 
   const getStatusIcon = (status: RateStatus) => {
     switch (status) {
-      case 'approved': return CheckCircle;
-      case 'rejected': return XCircle;
-      case 'flagged': return AlertCircle;
-      case 'pending': return RefreshCw;
-      default: return AlertCircle;
+      case 'approved':
+        return CheckCircle;
+      case 'rejected':
+        return XCircle;
+      case 'flagged':
+        return AlertCircle;
+      case 'pending':
+        return RefreshCw;
+      default:
+        return AlertCircle;
     }
   };
 
   const getStatusColor = (status: RateStatus) => {
     switch (status) {
-      case 'approved': return 'text-green-600 bg-green-100';
-      case 'rejected': return 'text-red-600 bg-red-100';
-      case 'flagged': return 'text-yellow-600 bg-yellow-100';
-      case 'pending': return 'text-blue-600 bg-blue-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case 'approved':
+        return 'text-green-600 bg-green-100';
+      case 'rejected':
+        return 'text-red-600 bg-red-100';
+      case 'flagged':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'pending':
+        return 'text-blue-600 bg-blue-100';
+      default:
+        return 'text-gray-600 bg-gray-100';
     }
   };
 
-  const filteredRates = contractorRates.filter(rate => {
+  const filteredRates = contractorRates.filter((rate) => {
     const matchesStatus = filterStatus === 'all' || rate.status === filterStatus;
     const matchesCategory = filterCategory === 'all' || rate.category === filterCategory;
     return matchesStatus && matchesCategory;
@@ -403,7 +422,7 @@ const ContractorPriceUpload: React.FC = () => {
                 </p>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
+                <div
                   className="bg-purple-600 h-2 rounded-full transition-all duration-200"
                   style={{ width: `${(uploadProgress.processed / uploadProgress.total) * 100}%` }}
                 />
@@ -453,7 +472,7 @@ const ContractorPriceUpload: React.FC = () => {
               <label className="text-sm font-medium">Status:</label>
               <select
                 value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value as any)}
+                onChange={(e) => setFilterStatus(e.target.value as RateStatus | 'all')}
                 className="px-3 py-1 border border-gray-300 rounded-lg text-sm"
               >
                 <option value="all">All Status</option>
@@ -467,7 +486,7 @@ const ContractorPriceUpload: React.FC = () => {
               <label className="text-sm font-medium">Category:</label>
               <select
                 value={filterCategory}
-                onChange={(e) => setFilterCategory(e.target.value as any)}
+                onChange={(e) => setFilterCategory(e.target.value as PriceCategory | 'all')}
                 className="px-3 py-1 border border-gray-300 rounded-lg text-sm"
               >
                 <option value="all">All Categories</option>
@@ -478,9 +497,7 @@ const ContractorPriceUpload: React.FC = () => {
               </select>
             </div>
           </div>
-          <div className="text-sm text-gray-600">
-            {filteredRates.length} items
-          </div>
+          <div className="text-sm text-gray-600">{filteredRates.length} items</div>
         </div>
       </div>
 
@@ -490,13 +507,27 @@ const ContractorPriceUpload: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Unit</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Validation</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Status
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Category
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Item
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Price
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Unit
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Validation
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -505,14 +536,14 @@ const ContractorPriceUpload: React.FC = () => {
                 return (
                   <tr key={rate.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
-                      <span className={`inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-full ${getStatusColor(rate.status)}`}>
+                      <span
+                        className={`inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-full ${getStatusColor(rate.status)}`}
+                      >
                         <StatusIcon className="h-3 w-3" />
                         <span className="capitalize">{rate.status}</span>
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-900 capitalize">
-                      {rate.category}
-                    </td>
+                    <td className="px-4 py-3 text-sm text-gray-900 capitalize">{rate.category}</td>
                     <td className="px-4 py-3">
                       <div>
                         <p className="text-sm font-medium text-gray-900">{rate.itemName}</p>
@@ -540,11 +571,13 @@ const ContractorPriceUpload: React.FC = () => {
                           {rate.validationResult.isWithinRange ? (
                             <span className="text-green-600 text-sm">Within range</span>
                           ) : rate.validationResult.percentageDeviation !== undefined ? (
-                            <span className={`text-sm ${
-                              Math.abs(rate.validationResult.percentageDeviation) > 20 
-                                ? 'text-red-600' 
-                                : 'text-yellow-600'
-                            }`}>
+                            <span
+                              className={`text-sm ${
+                                Math.abs(rate.validationResult.percentageDeviation) > 20
+                                  ? 'text-red-600'
+                                  : 'text-yellow-600'
+                              }`}
+                            >
                               {rate.validationResult.percentageDeviation > 0 ? '+' : ''}
                               {rate.validationResult.percentageDeviation.toFixed(1)}%
                             </span>
@@ -596,13 +629,17 @@ const ContractorPriceUpload: React.FC = () => {
         </h3>
         <div className="space-y-3">
           {uploadHistory.map((upload) => (
-            <div key={upload.id} className="flex items-center justify-between p-3 border rounded-lg">
+            <div
+              key={upload.id}
+              className="flex items-center justify-between p-3 border rounded-lg"
+            >
               <div className="flex items-center space-x-3">
                 <FileSpreadsheet className="h-5 w-5 text-gray-600" />
                 <div>
                   <p className="font-medium text-sm">{upload.filename}</p>
                   <p className="text-xs text-gray-500">
-                    Uploaded {new Date(upload.uploadedAt).toLocaleDateString()} by {upload.uploadedBy}
+                    Uploaded {new Date(upload.uploadedAt).toLocaleDateString()} by{' '}
+                    {upload.uploadedBy}
                   </p>
                 </div>
               </div>
@@ -626,13 +663,15 @@ const ContractorPriceUpload: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Add New Rate</h3>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Category</label>
                 <select
                   value={rateForm.category}
-                  onChange={(e) => setRateForm({ ...rateForm, category: e.target.value as PriceCategory })}
+                  onChange={(e) =>
+                    setRateForm({ ...rateForm, category: e.target.value as PriceCategory })
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                 >
                   <option value="labour">Labour</option>
@@ -660,7 +699,9 @@ const ContractorPriceUpload: React.FC = () => {
                     <input
                       type="number"
                       value={rateForm.normalHoursPrice}
-                      onChange={(e) => setRateForm({ ...rateForm, normalHoursPrice: parseFloat(e.target.value) })}
+                      onChange={(e) =>
+                        setRateForm({ ...rateForm, normalHoursPrice: parseFloat(e.target.value) })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                       placeholder="0.00"
                     />
@@ -670,7 +711,9 @@ const ContractorPriceUpload: React.FC = () => {
                     <input
                       type="number"
                       value={rateForm.afterHoursPrice}
-                      onChange={(e) => setRateForm({ ...rateForm, afterHoursPrice: parseFloat(e.target.value) })}
+                      onChange={(e) =>
+                        setRateForm({ ...rateForm, afterHoursPrice: parseFloat(e.target.value) })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                       placeholder="0.00"
                     />
@@ -682,7 +725,9 @@ const ContractorPriceUpload: React.FC = () => {
                   <input
                     type="number"
                     value={rateForm.price}
-                    onChange={(e) => setRateForm({ ...rateForm, price: parseFloat(e.target.value) })}
+                    onChange={(e) =>
+                      setRateForm({ ...rateForm, price: parseFloat(e.target.value) })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                     placeholder="0.00"
                   />
@@ -693,7 +738,7 @@ const ContractorPriceUpload: React.FC = () => {
                 <label className="block text-sm font-medium mb-2">Unit</label>
                 <select
                   value={rateForm.unit}
-                  onChange={(e) => setRateForm({ ...rateForm, unit: e.target.value })}
+                  onChange={(e) => setRateForm({ ...rateForm, unit: e.target.value as PriceUnit })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                 >
                   <option value="per_hour">Per Hour</option>

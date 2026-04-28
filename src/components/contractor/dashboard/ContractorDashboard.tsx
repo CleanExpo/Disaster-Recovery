@@ -387,7 +387,10 @@ export function ContractorDashboard() {
               trainings={dashboardData.training.map((training) => ({
                 ...training,
                 type: 'OTHER' as const,
-                status: training.status.toLowerCase().replace('_', '-') as any,
+                status: training.status.toLowerCase().replace('_', '-') as
+                  | 'not_started'
+                  | 'in_progress'
+                  | 'completed',
               }))}
             />
           </TabsContent>
@@ -409,8 +412,12 @@ export function ContractorDashboard() {
                 id: ticket.id,
                 subject: ticket.subject,
                 description: ticket.subject,
-                status: ticket.status.toUpperCase() as any,
-                priority: ticket.priority.toUpperCase() as any,
+                status: ticket.status.toUpperCase() as
+                  | 'OPEN'
+                  | 'IN_PROGRESS'
+                  | 'RESOLVED'
+                  | 'CLOSED',
+                priority: ticket.priority.toUpperCase() as 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT',
                 category: 'General',
                 createdAt: ticket.createdAt.toString(),
                 updatedAt: ticket.updatedAt.toString(),

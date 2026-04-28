@@ -37,7 +37,13 @@ export function Search() {
   const popularSearches: SearchSuggestion[] = [
     { id: '1', text: 'Emergency water damage', type: 'popular', category: 'Water Damage' },
     { id: '2', text: 'Fire restoration services', type: 'popular', category: 'Fire Damage' },
-    { id: '3', text: 'Mould inspection Brisbane', type: 'popular', category: 'Mould Services', location: 'Brisbane' },
+    {
+      id: '3',
+      text: 'Mould inspection Brisbane',
+      type: 'popular',
+      category: 'Mould Services',
+      location: 'Brisbane',
+    },
     { id: '4', text: 'Storm damage repair', type: 'popular', category: 'Storm Damage' },
     { id: '5', text: 'IICRC-certified contractors', type: 'popular' },
   ];
@@ -52,12 +58,12 @@ export function Search() {
     if (query.length > 2) {
       setIsLoading(true);
       setShowSuggestions(true);
-      
+
       // Simulate API delay
       const timer = setTimeout(() => {
         // Filter suggestions based on query
         const filteredSuggestions = [...popularSearches, ...recentSearches]
-          .filter(s => s.text.toLowerCase().includes(query.toLowerCase()))
+          .filter((s) => s.text.toLowerCase().includes(query.toLowerCase()))
           .slice(0, 5);
 
         setSuggestions(filteredSuggestions);
@@ -70,7 +76,7 @@ export function Search() {
             description: '24/7 emergency response for water damage incidents...',
             url: '/services/water-damage',
             category: 'Water Damage',
-            type: 'service' as const
+            type: 'service' as const,
           },
           {
             id: '2',
@@ -78,12 +84,13 @@ export function Search() {
             description: 'IICRC certified contractors specialising in...',
             url: '/contractors/elite-restoration',
             category: 'Contractor',
-            type: 'contractor' as const
-          }
+            type: 'contractor' as const,
+          },
         ];
-        const mockQuickResults = allQuickResults.filter(r =>
-          r.title.toLowerCase().includes(query.toLowerCase()) ||
-          r.description.toLowerCase().includes(query.toLowerCase())
+        const mockQuickResults = allQuickResults.filter(
+          (r) =>
+            r.title.toLowerCase().includes(query.toLowerCase()) ||
+            r.description.toLowerCase().includes(query.toLowerCase()),
         );
 
         setQuickResults(mockQuickResults);
@@ -99,16 +106,16 @@ export function Search() {
     }
   }, [query]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent | Event) => {
     e.preventDefault();
     if (query.trim()) {
       // Save to recent searches (in real app, this would persist)
       const newRecent: SearchSuggestion = {
         id: Date.now().toString(),
         text: query,
-        type: 'recent'
+        type: 'recent',
       };
-      
+
       router.push(`/search?q=${encodeURIComponent(query)}`);
       setIsOpen(false);
       setQuery('');
@@ -156,13 +163,13 @@ export function Search() {
       >
         <SearchIcon className="h-5 w-5" />
       </Button>
-      
+
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         >
-          <div className="container mx-auto pt-20 px-4" onClick={e => e.stopPropagation()}>
+          <div className="container mx-auto pt-20 px-4" onClick={(e) => e.stopPropagation()}>
             <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
               {/* Search Header */}
               <div className="p-6 border-b">
@@ -177,7 +184,7 @@ export function Search() {
                     <X className="h-5 w-5" />
                   </Button>
                 </div>
-                
+
                 <form onSubmit={handleSearch}>
                   <div className="relative">
                     <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
@@ -193,7 +200,10 @@ export function Search() {
                     {query && (
                       <button
                         type="button"
-                        onClick={() => {setQuery(''); setShowSuggestions(false);}}
+                        onClick={() => {
+                          setQuery('');
+                          setShowSuggestions(false);
+                        }}
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full"
                       >
                         <X className="h-4 w-4 text-gray-600" />
@@ -224,7 +234,9 @@ export function Search() {
                               <div className="flex justify-between items-start">
                                 <div className="flex-1">
                                   <h4 className="font-medium text-gray-900 mb-1">{result.title}</h4>
-                                  <p className="text-sm text-gray-600 line-clamp-2">{result.description}</p>
+                                  <p className="text-sm text-gray-600 line-clamp-2">
+                                    {result.description}
+                                  </p>
                                   <span className="inline-block mt-1 text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full">
                                     {result.category}
                                   </span>
@@ -288,9 +300,13 @@ export function Search() {
                             onClick={() => handleSuggestionClick(term)}
                             className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 rounded-lg text-left border border-blue-100 hover:border-blue-200 transition-colours"
                           >
-                            <span className="text-sm font-medium text-gray-900 block">{term.text}</span>
+                            <span className="text-sm font-medium text-gray-900 block">
+                              {term.text}
+                            </span>
                             {term.category && (
-                              <span className="text-xs text-blue-600 mt-1 block">{term.category}</span>
+                              <span className="text-xs text-blue-600 mt-1 block">
+                                {term.category}
+                              </span>
                             )}
                           </button>
                         ))}
@@ -299,24 +315,24 @@ export function Search() {
 
                     {/* Emergency Quick Access */}
                     <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                      <h3 className="text-sm font-semibold text-red-800 mb-2">Emergency Services</h3>
+                      <h3 className="text-sm font-semibold text-red-800 mb-2">
+                        Emergency Services
+                      </h3>
                       <div className="flex gap-2">
-                        {[
-                          'Water damage emergency',
-                          'Fire damage help',
-                          'Storm damage repair'
-                        ].map((emergency, index) => (
-                          <button
-                            key={index}
-                            onClick={() => {
-                              setQuery(emergency);
-                              handleSearch(new Event('submit') as any);
-                            }}
-                            className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-800 rounded-full text-xs font-medium transition-colours"
-                          >
-                            {emergency}
-                          </button>
-                        ))}
+                        {['Water damage emergency', 'Fire damage help', 'Storm damage repair'].map(
+                          (emergency, index) => (
+                            <button
+                              key={index}
+                              onClick={() => {
+                                setQuery(emergency);
+                                handleSearch(new Event('submit'));
+                              }}
+                              className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-800 rounded-full text-xs font-medium transition-colours"
+                            >
+                              {emergency}
+                            </button>
+                          ),
+                        )}
                       </div>
                     </div>
                   </div>
@@ -328,7 +344,7 @@ export function Search() {
                 <div className="flex items-center justify-between text-xs text-gray-300">
                   <span>Press ESC to close</span>
                   <div className="flex items-center gap-4">
-                    <button 
+                    <button
                       onClick={() => router.push('/search')}
                       className="flex items-center gap-1 hover:text-blue-600 transition-colours"
                     >

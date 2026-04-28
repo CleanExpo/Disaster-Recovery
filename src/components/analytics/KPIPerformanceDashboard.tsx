@@ -4,7 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
@@ -27,7 +33,7 @@ import {
   Filter,
   ArrowUp,
   ArrowDown,
-  Minus
+  Minus,
 } from 'lucide-react';
 import {
   LineChart,
@@ -49,7 +55,7 @@ import {
   PolarRadiusAxis,
   Radar,
   Area,
-  AreaChart
+  AreaChart,
 } from 'recharts';
 import { KPIMetrics, AnalyticsDateRange } from '@/types/analytics';
 import { usePermissions } from '@/hooks/usePermissions';
@@ -60,7 +66,7 @@ export function KPIPerformanceDashboard() {
   const [dateRange, setDateRange] = useState<AnalyticsDateRange>({
     preset: 'last_30_days',
     startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-    endDate: new Date()
+    endDate: new Date(),
   });
   const [loading, setLoading] = useState(false);
   const [selectedMetric, setSelectedMetric] = useState<string>('overview');
@@ -78,14 +84,18 @@ export function KPIPerformanceDashboard() {
         startDate: dateRange.startDate.toISOString(),
         endDate: dateRange.endDate.toISOString(),
         userId: user?.id || '',
-        companyId: user?.companyId || ''
+        companyId: user?.companyId || '',
       });
 
       const response = await fetch(`/api/analytics/kpi?${params}`);
       const data = await response.json();
       setMetrics(data);
     } catch (error) {
-      clientLogger.error('Failed to fetch KPI metrics:', { source: 'analytics/KPIPerformanceDashboard' }, error);
+      clientLogger.error(
+        'Failed to fetch KPI metrics:',
+        { source: 'analytics/KPIPerformanceDashboard' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -93,9 +103,12 @@ export function KPIPerformanceDashboard() {
 
   const getTrendIcon = (trend: 'up' | 'down' | 'stable') => {
     switch (trend) {
-      case 'up': return <TrendingUp className="h-4 w-4 text-green-500" />;
-      case 'down': return <TrendingDown className="h-4 w-4 text-red-500" />;
-      case 'stable': return <Minus className="h-4 w-4 text-gray-700" />;
+      case 'up':
+        return <TrendingUp className="h-4 w-4 text-green-500" />;
+      case 'down':
+        return <TrendingDown className="h-4 w-4 text-red-500" />;
+      case 'stable':
+        return <Minus className="h-4 w-4 text-gray-700" />;
     }
   };
 
@@ -118,21 +131,26 @@ export function KPIPerformanceDashboard() {
 
   const generateCSVReport = (data: KPIMetrics | null) => {
     if (!data) return '';
-    
+
     const rows = [
       ['KPI Performance Report'],
       ['Generated:', new Date().toLocaleString()],
       [''],
       ['Metric', 'Value', 'Previous Period', 'Change'],
-      ['Average Response Time', `${data.avgResponseTime}h`, `${data.periodComparison.previous}h`, `${data.periodComparison.change}%`],
+      [
+        'Average Response Time',
+        `${data.avgResponseTime}h`,
+        `${data.periodComparison.previous}h`,
+        `${data.periodComparison.change}%`,
+      ],
       ['Customer Satisfaction', data.customerSatisfactionScore, '', ''],
       ['Clean Claims Compliance', `${data.cleanClaimsCompliance}%`, '', ''],
       ['Total Fines', `$${data.totalFines}`, '', ''],
       ['Total Bonuses', `$${data.totalBonuses}`, '', ''],
-      ['Performance Score', `${data.performanceScore}/100`, '', '']
+      ['Performance Score', `${data.performanceScore}/100`, '', ''],
     ];
-    
-    return rows.map(row => row.join(',')).join('\n');
+
+    return rows.map((row) => row.join(',')).join('\n');
   };
 
   // Sample chart data (would come from API)
@@ -142,7 +160,7 @@ export function KPIPerformanceDashboard() {
     { month: 'Mar', time: 2.1 },
     { month: 'Apr', time: 1.9 },
     { month: 'May', time: 1.8 },
-    { month: 'Jun', time: 1.7 }
+    { month: 'Jun', time: 1.7 },
   ];
 
   const satisfactionData = [
@@ -151,14 +169,14 @@ export function KPIPerformanceDashboard() {
     { month: 'Mar', score: 4.5 },
     { month: 'Apr', score: 4.4 },
     { month: 'May', score: 4.6 },
-    { month: 'Jun', score: 4.7 }
+    { month: 'Jun', score: 4.7 },
   ];
 
   const incidentData = [
     { type: 'Late Response', count: 3 },
     { type: 'Documentation', count: 5 },
     { type: 'Quality Issues', count: 2 },
-    { type: 'Customer Complaints', count: 1 }
+    { type: 'Customer Complaints', count: 1 },
   ];
 
   const radarData = [
@@ -167,7 +185,7 @@ export function KPIPerformanceDashboard() {
     { metric: 'Compliance', value: 88 },
     { metric: 'Customer Satisfaction', value: 94 },
     { metric: 'Efficiency', value: 78 },
-    { metric: 'Training', value: 90 }
+    { metric: 'Training', value: 90 },
   ];
 
   const Colours = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
@@ -197,14 +215,17 @@ export function KPIPerformanceDashboard() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Select value={dateRange.preset} onValueChange={(value) => {
-            // Update date range based on preset
-            setDateRange({
-              preset: value as any,
-              startDate: new Date(), // Calculate based on preset
-              endDate: new Date()
-            });
-          }}>
+          <Select
+            value={dateRange.preset}
+            onValueChange={(value) => {
+              // Update date range based on preset
+              setDateRange({
+                preset: value as AnalyticsDateRange['preset'],
+                startDate: new Date(), // Calculate based on preset
+                endDate: new Date(),
+              });
+            }}
+          >
             <SelectTrigger className="w-40">
               <SelectValue />
             </SelectTrigger>
@@ -234,7 +255,9 @@ export function KPIPerformanceDashboard() {
             <div>
               <p className="text-sm text-gray-700">Overall Performance Score</p>
               <div className="flex items-baseline gap-3 mt-2">
-                <span className={`text-5xl font-bold ${getPerformanceColor(metrics.performanceScore)}`}>
+                <span
+                  className={`text-5xl font-bold ${getPerformanceColor(metrics.performanceScore)}`}
+                >
                   {metrics.performanceScore}
                 </span>
                 <span className="text-2xl text-gray-700">/100</span>
@@ -243,8 +266,13 @@ export function KPIPerformanceDashboard() {
               <Progress value={metrics.performanceScore} className="mt-4 h-3" />
             </div>
             <div className="text-right">
-              <Badge className={metrics.trend === 'up' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                {metrics.periodComparison.change > 0 ? '+' : ''}{metrics.periodComparison.change}%
+              <Badge
+                className={
+                  metrics.trend === 'up' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                }
+              >
+                {metrics.periodComparison.change > 0 ? '+' : ''}
+                {metrics.periodComparison.change}%
               </Badge>
               <p className="text-xs text-gray-700 mt-1">vs last period</p>
             </div>
@@ -330,9 +358,7 @@ export function KPIPerformanceDashboard() {
               </div>
             </div>
             <div className="mt-2">
-              <p className="text-lg font-bold">
-                ${metrics.totalBonuses - metrics.totalFines}
-              </p>
+              <p className="text-lg font-bold">${metrics.totalBonuses - metrics.totalFines}</p>
               <p className="text-xs text-gray-700">Net Impact</p>
             </div>
           </CardContent>
@@ -353,9 +379,7 @@ export function KPIPerformanceDashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Response Time Trends</CardTitle>
-              <CardDescription>
-                Average time to respond to leads and jobs
-              </CardDescription>
+              <CardDescription>Average time to respond to leads and jobs</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -365,17 +389,17 @@ export function KPIPerformanceDashboard() {
                   <YAxis label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
                   <Tooltip />
                   <Legend />
-                  <Line 
-                    type="monotone" 
-                    dataKey="time" 
-                    stroke="#3b82f6" 
+                  <Line
+                    type="monotone"
+                    dataKey="time"
+                    stroke="#3b82f6"
                     name="Response Time"
                     strokeWidth={2}
                   />
-                  <Line 
-                    type="monotone" 
-                    dataKey={() => 2} 
-                    stroke="#ef4444" 
+                  <Line
+                    type="monotone"
+                    dataKey={() => 2}
+                    stroke="#ef4444"
                     strokeDasharray="5 5"
                     name="Target (2h)"
                   />
@@ -386,8 +410,8 @@ export function KPIPerformanceDashboard() {
                 <Alert className="mt-4 bg-yellow-50 border-yellow-200">
                   <AlertTriangle className="h-4 w-4 text-yellow-600" />
                   <AlertDescription className="text-yellow-700">
-                    Your average response time is above the 2-hour target. Consider optimising your workflow
-                    or coverage to improve response times.
+                    Your average response time is above the 2-hour target. Consider optimising your
+                    workflow or coverage to improve response times.
                   </AlertDescription>
                 </Alert>
               )}
@@ -399,22 +423,23 @@ export function KPIPerformanceDashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Customer Satisfaction Scores</CardTitle>
-              <CardDescription>
-                Monthly customer feedback and ratings
-              </CardDescription>
+              <CardDescription>Monthly customer feedback and ratings</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={satisfactionData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis domain={[0, 5]} label={{ value: 'Rating', angle: -90, position: 'insideLeft' }} />
+                  <YAxis
+                    domain={[0, 5]}
+                    label={{ value: 'Rating', angle: -90, position: 'insideLeft' }}
+                  />
                   <Tooltip />
                   <Legend />
-                  <Area 
-                    type="monotone" 
-                    dataKey="score" 
-                    stroke="#10b981" 
+                  <Area
+                    type="monotone"
+                    dataKey="score"
+                    stroke="#10b981"
                     fill="#10b981"
                     fillOpacity={0.3}
                     name="Satisfaction Score"
@@ -444,9 +469,7 @@ export function KPIPerformanceDashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Clean Claims Compliance Events</CardTitle>
-              <CardDescription>
-                Track compliance with Clean Claims requirements
-              </CardDescription>
+              <CardDescription>Track compliance with Clean Claims requirements</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -509,9 +532,7 @@ export function KPIPerformanceDashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Incidents and Fines</CardTitle>
-              <CardDescription>
-                Track incidents, fines, and bonus history
-              </CardDescription>
+              <CardDescription>Track incidents, fines, and bonus history</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -524,7 +545,9 @@ export function KPIPerformanceDashboard() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
+                        label={({ name, percent }) =>
+                          `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
+                        }
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="count"
@@ -558,9 +581,13 @@ export function KPIPerformanceDashboard() {
                     <div className="border-t pt-3">
                       <div className="flex justify-between items-center">
                         <p className="font-medium">Net Impact</p>
-                        <p className={`text-xl font-bold ${
-                          metrics.totalBonuses - metrics.totalFines >= 0 ? 'text-green-600' : 'text-red-600'
-                        }`}>
+                        <p
+                          className={`text-xl font-bold ${
+                            metrics.totalBonuses - metrics.totalFines >= 0
+                              ? 'text-green-600'
+                              : 'text-red-600'
+                          }`}
+                        >
                           ${metrics.totalBonuses - metrics.totalFines}
                         </p>
                       </div>
@@ -576,9 +603,7 @@ export function KPIPerformanceDashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Overall Performance Analysis</CardTitle>
-              <CardDescription>
-                Multi-dimensional performance assessment
-              </CardDescription>
+              <CardDescription>Multi-dimensional performance assessment</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={400}>
@@ -586,12 +611,12 @@ export function KPIPerformanceDashboard() {
                   <PolarGrid />
                   <PolarAngleAxis dataKey="metric" />
                   <PolarRadiusAxis angle={90} domain={[0, 100]} />
-                  <Radar 
-                    name="Current Performance" 
-                    dataKey="value" 
-                    stroke="#3b82f6" 
-                    fill="#3b82f6" 
-                    fillOpacity={0.6} 
+                  <Radar
+                    name="Current Performance"
+                    dataKey="value"
+                    stroke="#3b82f6"
+                    fill="#3b82f6"
+                    fillOpacity={0.6}
                   />
                   <Legend />
                 </RadarChart>

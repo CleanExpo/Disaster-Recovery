@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Scale, 
-  FileText, 
+import {
+  Scale,
+  FileText,
   Shield,
   Activity,
   TrendingUp,
@@ -16,15 +16,15 @@ import {
   Download,
   Filter,
   Search,
-  Eye
+  Eye,
 } from 'lucide-react';
-import { 
-  AllocationEvent, 
+import {
+  AllocationEvent,
   LoadBalancingConfig,
   Contractor,
   Lead,
   AllocationEventType,
-  EligibleContractor
+  EligibleContractor,
 } from '@/types/workload-distribution';
 
 interface AuditLogEntry {
@@ -90,11 +90,11 @@ const LoadBalancingAuditSystem: React.FC = () => {
     saturationProtection: {
       enabled: true,
       maxCapacityUtilization: 80,
-      cooldownPeriod: 30
+      cooldownPeriod: 30,
     },
     fairnessWeight: 0.4,
     performanceWeight: 0.4,
-    proximityWeight: 0.2
+    proximityWeight: 0.2,
   });
   const [selectedLog, setSelectedLog] = useState<AuditLogEntry | null>(null);
   const [filterType, setFilterType] = useState<AllocationEventType | 'all'>('all');
@@ -132,8 +132,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
           kpiScore: 94,
           distance: 3.2,
           capacity: 70,
-          leadShare: 22
-        }
+          leadShare: 22,
+        },
       },
       {
         id: 'AL002',
@@ -153,8 +153,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
         details: {
           reason: 'At maximum capacity',
           currentJobs: 12,
-          maxJobs: 12
-        }
+          maxJobs: 12,
+        },
       },
       {
         id: 'AL003',
@@ -173,9 +173,9 @@ const LoadBalancingAuditSystem: React.FC = () => {
         success: true,
         details: {
           previousContractor: 'C001',
-          reason: 'Customer request'
-        }
-      }
+          reason: 'Customer request',
+        },
+      },
     ];
 
     // Mock load metrics
@@ -191,7 +191,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
         sharePercentage: 28,
         targetShare: 25,
         deviation: 3,
-        status: 'optimal'
+        status: 'optimal',
       },
       {
         contractorId: 'C002',
@@ -204,7 +204,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
         sharePercentage: 35,
         targetShare: 25,
         deviation: 10,
-        status: 'near_capacity'
+        status: 'near_capacity',
       },
       {
         contractorId: 'C003',
@@ -217,7 +217,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
         sharePercentage: 19,
         targetShare: 25,
         deviation: -6,
-        status: 'underutilized'
+        status: 'underutilized',
       },
       {
         contractorId: 'C004',
@@ -230,8 +230,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
         sharePercentage: 18,
         targetShare: 25,
         deviation: -7,
-        status: 'at_capacity'
-      }
+        status: 'at_capacity',
+      },
     ];
 
     // Mock system health
@@ -240,7 +240,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
       efficiencyScore: 85,
       responseTimeAvg: 28,
       acceptanceRate: 82,
-      redistributionNeeded: mockMetrics.some(m => Math.abs(m.deviation) > 10),
+      redistributionNeeded: mockMetrics.some((m) => Math.abs(m.deviation) > 10),
       alerts: [
         {
           id: 'HA001',
@@ -249,7 +249,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
           message: 'Rapid Response Team approaching maximum capacity',
           contractor: 'C002',
           timestamp: new Date().toISOString(),
-          resolved: false
+          resolved: false,
         },
         {
           id: 'HA002',
@@ -257,9 +257,9 @@ const LoadBalancingAuditSystem: React.FC = () => {
           type: 'fairness',
           message: 'Load distribution variance exceeds threshold',
           timestamp: new Date().toISOString(),
-          resolved: false
-        }
-      ]
+          resolved: false,
+        },
+      ],
     };
 
     setAuditLogs(mockLogs);
@@ -268,16 +268,22 @@ const LoadBalancingAuditSystem: React.FC = () => {
   };
 
   const calculateFairnessScore = (metrics: LoadMetrics[]): number => {
-    const shares = metrics.map(m => m.sharePercentage);
+    const shares = metrics.map((m) => m.sharePercentage);
     const avgShare = shares.reduce((a, b) => a + b, 0) / shares.length;
-    const variance = shares.reduce((sum, share) => sum + Math.pow(share - avgShare, 2), 0) / shares.length;
+    const variance =
+      shares.reduce((sum, share) => sum + Math.pow(share - avgShare, 2), 0) / shares.length;
     const stdDev = Math.sqrt(variance);
-    return Math.max(0, Math.round(100 - (stdDev * 2)));
+    return Math.max(0, Math.round(100 - stdDev * 2));
   };
 
   const generateNewEvent = () => {
     const eventTypes: AllocationEventType[] = ['lead_assigned', 'lead_accepted', 'lead_declined'];
-    const contractors = ['Elite Restoration Co', 'Rapid Response Team', 'Premier Services', 'Quick Fix Solutions'];
+    const contractors = [
+      'Elite Restoration Co',
+      'Rapid Response Team',
+      'Premier Services',
+      'Quick Fix Solutions',
+    ];
     const methods = ['kpi_based', 'round_robin', 'proximity_based', 'weighted_random'];
 
     const newLog: AuditLogEntry = {
@@ -295,18 +301,18 @@ const LoadBalancingAuditSystem: React.FC = () => {
       ipAddress: '192.168.1.1',
       duration: Math.floor(Math.random() * 2000) + 500,
       success: Math.random() > 0.2,
-      details: {}
+      details: {},
     };
 
-    setAuditLogs(prev => [newLog, ...prev].slice(0, 100));
+    setAuditLogs((prev) => [newLog, ...prev].slice(0, 100));
   };
 
   const triggerRebalance = () => {
     // Simulate rebalancing
-    const rebalancedMetrics = loadMetrics.map(metric => ({
+    const rebalancedMetrics = loadMetrics.map((metric) => ({
       ...metric,
       sharePercentage: metric.targetShare + (Math.random() - 0.5) * 5,
-      deviation: (Math.random() - 0.5) * 5
+      deviation: (Math.random() - 0.5) * 5,
     }));
 
     setLoadMetrics(rebalancedMetrics);
@@ -330,26 +336,37 @@ const LoadBalancingAuditSystem: React.FC = () => {
       success: true,
       details: {
         previousFairness: systemHealth?.fairnessScore,
-        contractorsAffected: loadMetrics.length
-      }
+        contractorsAffected: loadMetrics.length,
+      },
     };
 
-    setAuditLogs(prev => [rebalanceLog, ...prev]);
+    setAuditLogs((prev) => [rebalanceLog, ...prev]);
   };
 
   const exportAuditLogs = () => {
     const csv = [
-      ['Timestamp', 'Event Type', 'Lead ID', 'Contractor', 'Method', 'Score', 'Success', 'Duration (ms)'].join(','),
-      ...auditLogs.map(log => [
-        log.timestamp,
-        log.eventType,
-        log.leadId,
-        log.contractorName,
-        log.method,
-        log.score,
-        log.success,
-        log.duration
-      ].join(','))
+      [
+        'Timestamp',
+        'Event Type',
+        'Lead ID',
+        'Contractor',
+        'Method',
+        'Score',
+        'Success',
+        'Duration (ms)',
+      ].join(','),
+      ...auditLogs.map((log) =>
+        [
+          log.timestamp,
+          log.eventType,
+          log.leadId,
+          log.contractorName,
+          log.method,
+          log.score,
+          log.success,
+          log.duration,
+        ].join(','),
+      ),
     ].join('\n');
 
     const blob = new Blob([csv], { type: 'text/csv' });
@@ -362,37 +379,53 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'underutilized': return 'bg-blue-100 text-blue-800';
-      case 'optimal': return 'bg-green-100 text-green-800';
-      case 'near_capacity': return 'bg-yellow-100 text-yellow-800';
-      case 'at_capacity': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'underutilized':
+        return 'bg-blue-100 text-blue-800';
+      case 'optimal':
+        return 'bg-green-100 text-green-800';
+      case 'near_capacity':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'at_capacity':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
-      case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-blue-700 bg-orange-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'low': return 'text-blue-600 bg-blue-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case 'critical':
+        return 'text-red-600 bg-red-100';
+      case 'high':
+        return 'text-blue-700 bg-orange-100';
+      case 'medium':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'low':
+        return 'text-blue-600 bg-blue-100';
+      default:
+        return 'text-gray-600 bg-gray-100';
     }
   };
 
   const getEventIcon = (eventType: AllocationEventType) => {
     switch (eventType) {
-      case 'lead_assigned': return CheckCircle;
-      case 'lead_accepted': return CheckCircle;
-      case 'lead_declined': return XCircle;
-      case 'lead_reassigned': return Activity;
-      default: return FileText;
+      case 'lead_assigned':
+        return CheckCircle;
+      case 'lead_accepted':
+        return CheckCircle;
+      case 'lead_declined':
+        return XCircle;
+      case 'lead_reassigned':
+        return Activity;
+      default:
+        return FileText;
     }
   };
 
-  const filteredLogs = auditLogs.filter(log => {
+  const filteredLogs = auditLogs.filter((log) => {
     const matchesType = filterType === 'all' || log.eventType === filterType;
-    const matchesSearch = searchTerm === '' || 
+    const matchesSearch =
+      searchTerm === '' ||
       log.contractorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       log.leadId.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesType && matchesSearch;
@@ -409,7 +442,9 @@ const LoadBalancingAuditSystem: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Load Balancing & Audit System</h2>
-              <p className="text-sm text-gray-500">Fair distribution monitoring and complete allocation history</p>
+              <p className="text-sm text-gray-500">
+                Fair distribution monitoring and complete allocation history
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -493,10 +528,12 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 <input
                   type="checkbox"
                   checked={loadBalancingConfig.enabled}
-                  onChange={(e) => setLoadBalancingConfig({
-                    ...loadBalancingConfig,
-                    enabled: e.target.checked
-                  })}
+                  onChange={(e) =>
+                    setLoadBalancingConfig({
+                      ...loadBalancingConfig,
+                      enabled: e.target.checked,
+                    })
+                  }
                   className="sr-only peer"
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
@@ -511,13 +548,17 @@ const LoadBalancingAuditSystem: React.FC = () => {
                   min="20"
                   max="60"
                   value={loadBalancingConfig.maxLeadSharePercentage}
-                  onChange={(e) => setLoadBalancingConfig({
-                    ...loadBalancingConfig,
-                    maxLeadSharePercentage: parseInt(e.target.value)
-                  })}
+                  onChange={(e) =>
+                    setLoadBalancingConfig({
+                      ...loadBalancingConfig,
+                      maxLeadSharePercentage: parseInt(e.target.value),
+                    })
+                  }
                   className="flex-1"
                 />
-                <span className="text-sm font-medium w-12">{loadBalancingConfig.maxLeadSharePercentage}%</span>
+                <span className="text-sm font-medium w-12">
+                  {loadBalancingConfig.maxLeadSharePercentage}%
+                </span>
               </div>
             </div>
 
@@ -525,10 +566,12 @@ const LoadBalancingAuditSystem: React.FC = () => {
               <label className="text-sm font-medium">Evaluation Period</label>
               <select
                 value={loadBalancingConfig.evaluationPeriod}
-                onChange={(e) => setLoadBalancingConfig({
-                  ...loadBalancingConfig,
-                  evaluationPeriod: e.target.value as any
-                })}
+                onChange={(e) =>
+                  setLoadBalancingConfig({
+                    ...loadBalancingConfig,
+                    evaluationPeriod: e.target.value as LoadBalancingConfig['evaluationPeriod'],
+                  })
+                }
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
               >
                 <option value="daily">Daily</option>
@@ -544,15 +587,21 @@ const LoadBalancingAuditSystem: React.FC = () => {
               <div className="space-y-2 mt-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Fairness</span>
-                  <span className="text-sm font-medium">{Math.round(loadBalancingConfig.fairnessWeight * 100)}%</span>
+                  <span className="text-sm font-medium">
+                    {Math.round(loadBalancingConfig.fairnessWeight * 100)}%
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Performance</span>
-                  <span className="text-sm font-medium">{Math.round(loadBalancingConfig.performanceWeight * 100)}%</span>
+                  <span className="text-sm font-medium">
+                    {Math.round(loadBalancingConfig.performanceWeight * 100)}%
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Proximity</span>
-                  <span className="text-sm font-medium">{Math.round(loadBalancingConfig.proximityWeight * 100)}%</span>
+                  <span className="text-sm font-medium">
+                    {Math.round(loadBalancingConfig.proximityWeight * 100)}%
+                  </span>
                 </div>
               </div>
             </div>
@@ -563,13 +612,15 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 <input
                   type="checkbox"
                   checked={loadBalancingConfig.saturationProtection.enabled}
-                  onChange={(e) => setLoadBalancingConfig({
-                    ...loadBalancingConfig,
-                    saturationProtection: {
-                      ...loadBalancingConfig.saturationProtection,
-                      enabled: e.target.checked
-                    }
-                  })}
+                  onChange={(e) =>
+                    setLoadBalancingConfig({
+                      ...loadBalancingConfig,
+                      saturationProtection: {
+                        ...loadBalancingConfig.saturationProtection,
+                        enabled: e.target.checked,
+                      },
+                    })
+                  }
                   className="sr-only peer"
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
@@ -593,7 +644,9 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 <div>
                   <p className="font-medium">{metric.companyName}</p>
                   <div className="flex items-center space-x-4 mt-1">
-                    <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(metric.status)}`}>
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${getStatusColor(metric.status)}`}
+                    >
                       {metric.status.replace('_', ' ')}
                     </span>
                     <span className="text-sm text-gray-600">
@@ -611,10 +664,13 @@ const LoadBalancingAuditSystem: React.FC = () => {
               <div className="relative h-8 bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className={`h-full transition-all duration-500 ${
-                    metric.utilizationRate > 80 ? 'bg-red-500' :
-                    metric.utilizationRate > 60 ? 'bg-blue-600' :
-                    metric.utilizationRate > 30 ? 'bg-green-500' :
-                    'bg-blue-500'
+                    metric.utilizationRate > 80
+                      ? 'bg-red-500'
+                      : metric.utilizationRate > 60
+                        ? 'bg-blue-600'
+                        : metric.utilizationRate > 30
+                          ? 'bg-green-500'
+                          : 'bg-blue-500'
                   }`}
                   style={{ width: `${metric.utilizationRate}%` }}
                 />
@@ -642,12 +698,17 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Deviation</p>
-                  <p className={`text-sm font-medium ${
-                    Math.abs(metric.deviation) > 10 ? 'text-red-600' :
-                    Math.abs(metric.deviation) > 5 ? 'text-yellow-600' :
-                    'text-green-600'
-                  }`}>
-                    {metric.deviation > 0 ? '+' : ''}{metric.deviation}%
+                  <p
+                    className={`text-sm font-medium ${
+                      Math.abs(metric.deviation) > 10
+                        ? 'text-red-600'
+                        : Math.abs(metric.deviation) > 5
+                          ? 'text-yellow-600'
+                          : 'text-green-600'
+                    }`}
+                  >
+                    {metric.deviation > 0 ? '+' : ''}
+                    {metric.deviation}%
                   </p>
                 </div>
               </div>
@@ -666,15 +727,23 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
           <div className="space-y-3">
             {systemHealth.alerts.map((alert) => (
-              <div key={alert.id} className={`border-l-4 pl-4 py-2 ${
-                alert.severity === 'critical' ? 'border-red-600' :
-                alert.severity === 'high' ? 'border-blue-600' :
-                alert.severity === 'medium' ? 'border-blue-600' :
-                'border-blue-500'
-              }`}>
+              <div
+                key={alert.id}
+                className={`border-l-4 pl-4 py-2 ${
+                  alert.severity === 'critical'
+                    ? 'border-red-600'
+                    : alert.severity === 'high'
+                      ? 'border-blue-600'
+                      : alert.severity === 'medium'
+                        ? 'border-blue-600'
+                        : 'border-blue-500'
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <span className={`px-2 py-1 text-xs rounded-full ${getSeverityColor(alert.severity)}`}>
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${getSeverityColor(alert.severity)}`}
+                    >
                       {alert.severity}
                     </span>
                     <p className="text-sm font-medium">{alert.message}</p>
@@ -687,8 +756,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
                     onClick={() => {
                       // Mark alert as resolved
                       if (systemHealth) {
-                        const updatedAlerts = systemHealth.alerts.map(a =>
-                          a.id === alert.id ? { ...a, resolved: true } : a
+                        const updatedAlerts = systemHealth.alerts.map((a) =>
+                          a.id === alert.id ? { ...a, resolved: true } : a,
                         );
                         setSystemHealth({ ...systemHealth, alerts: updatedAlerts });
                       }
@@ -723,7 +792,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             </div>
             <select
               value={filterType}
-              onChange={(e) => setFilterType(e.target.value as any)}
+              onChange={(e) => setFilterType(e.target.value as AllocationEventType | 'all')}
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
             >
               <option value="all">All Events</option>
@@ -739,14 +808,30 @@ const LoadBalancingAuditSystem: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Event</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Lead</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contractor</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Method</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Score</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Time
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Event
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Lead
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Contractor
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Method
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Score
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Duration
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -759,15 +844,19 @@ const LoadBalancingAuditSystem: React.FC = () => {
                     </td>
                     <td className="px-4 py-2">
                       <div className="flex items-center space-x-2">
-                        <Icon className={`h-4 w-4 ${
-                          log.success ? 'text-green-500' : 'text-red-500'
-                        }`} />
-                        <span className="text-sm capitalize">{log.eventType.replace('_', ' ')}</span>
+                        <Icon
+                          className={`h-4 w-4 ${log.success ? 'text-green-500' : 'text-red-500'}`}
+                        />
+                        <span className="text-sm capitalize">
+                          {log.eventType.replace('_', ' ')}
+                        </span>
                       </div>
                     </td>
                     <td className="px-4 py-2 text-sm text-gray-900">{log.leadId}</td>
                     <td className="px-4 py-2 text-sm text-gray-900">{log.contractorName}</td>
-                    <td className="px-4 py-2 text-sm text-gray-600 capitalize">{log.method.replace('_', ' ')}</td>
+                    <td className="px-4 py-2 text-sm text-gray-600 capitalize">
+                      {log.method.replace('_', ' ')}
+                    </td>
                     <td className="px-4 py-2">
                       <span className="text-sm font-medium">{log.score || '-'}</span>
                     </td>
@@ -794,8 +883,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Confirm Load Rebalancing</h3>
             <p className="text-gray-600 mb-6">
-              This will redistribute leads among contractors to achieve better fairness. 
-              Current fairness score: {systemHealth?.fairnessScore}%
+              This will redistribute leads among contractors to achieve better fairness. Current
+              fairness score: {systemHealth?.fairnessScore}%
             </p>
             <div className="flex justify-end space-x-3">
               <button
@@ -832,7 +921,9 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Event Type</p>
-                  <p className="font-medium capitalize">{selectedLog.eventType.replace('_', ' ')}</p>
+                  <p className="font-medium capitalize">
+                    {selectedLog.eventType.replace('_', ' ')}
+                  </p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Lead ID</p>

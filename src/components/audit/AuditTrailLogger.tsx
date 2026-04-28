@@ -2,18 +2,43 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  History, FileText, Upload, Download, Eye, Shield, User, Clock,
-  Filter, Search, Calendar, Activity, Database, Link, Archive,
-  AlertTriangle, CheckCircle, XCircle, Edit3, Trash2, Camera,
-  Paperclip, File, Image, Video, ChevronDown, ChevronRight,
-  Plus, Building2, Award
+  History,
+  FileText,
+  Upload,
+  Download,
+  Eye,
+  Shield,
+  User,
+  Clock,
+  Filter,
+  Search,
+  Calendar,
+  Activity,
+  Database,
+  Link,
+  Archive,
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Edit3,
+  Trash2,
+  Camera,
+  Paperclip,
+  File,
+  Image,
+  Video,
+  ChevronDown,
+  ChevronRight,
+  Plus,
+  Building2,
+  Award,
 } from 'lucide-react';
-import type { 
-  AuditTrail, 
-  EvidenceFile, 
+import type {
+  AuditTrail,
+  EvidenceFile,
   EntityType,
   AuditAction,
-  EvidenceCategory
+  EvidenceCategory,
 } from '@/types/audit-compliance';
 import { clientLogger } from '@/lib/observability/client-logger';
 
@@ -30,15 +55,19 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
   entityId,
   userRole,
   userId,
-  className = ''
+  className = '',
 }) => {
   const [auditTrails, setAuditTrails] = useState<AuditTrail[]>([]);
   const [evidenceFiles, setEvidenceFiles] = useState<EvidenceFile[]>([]);
   const [filteredTrails, setFilteredTrails] = useState<AuditTrail[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedEntityType, setSelectedEntityType] = useState<EntityType | 'all'>(entityType || 'all');
+  const [selectedEntityType, setSelectedEntityType] = useState<EntityType | 'all'>(
+    entityType || 'all',
+  );
   const [selectedAction, setSelectedAction] = useState<AuditAction | 'all'>('all');
-  const [selectedDateRange, setSelectedDateRange] = useState<'today' | '7d' | '30d' | '90d' | 'all'>('30d');
+  const [selectedDateRange, setSelectedDateRange] = useState<
+    'today' | '7d' | '30d' | '90d' | 'all'
+  >('30d');
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [selectedEvidence, setSelectedEvidence] = useState<EvidenceFile | null>(null);
@@ -70,8 +99,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           description: 'Annual Compliance Audit 2024 created',
           metadata: {
             auditTitle: 'Annual Compliance Audit 2024',
-            auditType: 'scheduled'
-          }
+            auditType: 'scheduled',
+          },
         },
         {
           id: 'trail_002',
@@ -87,8 +116,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           description: 'Water Damage Certification status updated to warning',
           metadata: {
             indicatorName: 'Water Damage Certification',
-            reason: 'Certificate expiring soon'
-          }
+            reason: 'Certificate expiring soon',
+          },
         },
         {
           id: 'trail_003',
@@ -103,8 +132,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           metadata: {
             fileName: 'liability_insurance_2024.pdf',
             fileSize: 2048000,
-            category: 'document'
-          }
+            category: 'document',
+          },
         },
         {
           id: 'trail_004',
@@ -118,8 +147,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           description: 'Non-compliance finding created: Missing Safety Equipment',
           metadata: {
             severity: 'major',
-            auditId: 'audit_002'
-          }
+            auditId: 'audit_002',
+          },
         },
         {
           id: 'trail_005',
@@ -134,8 +163,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           metadata: {
             taskTitle: 'Implement safety training program',
             assignee: 'contractor_002',
-            dueDate: '2024-04-25'
-          }
+            dueDate: '2024-04-25',
+          },
         },
         {
           id: 'trail_006',
@@ -149,8 +178,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           description: 'Network Participation Agreement viewed',
           metadata: {
             documentTitle: 'Network Participation Agreement',
-            version: 2
-          }
+            version: 2,
+          },
         },
         {
           id: 'trail_007',
@@ -164,14 +193,18 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           description: 'Contractor account approved for network participation',
           metadata: {
             contractorName: 'ABC Restoration Inc.',
-            approvalLevel: 'full'
-          }
-        }
+            approvalLevel: 'full',
+          },
+        },
       ];
 
       setAuditTrails(mockTrails);
     } catch (error) {
-      clientLogger.error('Error loading audit trails:', { source: 'audit/AuditTrailLogger' }, error);
+      clientLogger.error(
+        'Error loading audit trails:',
+        { source: 'audit/AuditTrailLogger' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -195,8 +228,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           url: '/evidence/liability_insurance_2024.pdf',
           metadata: {
             expiryDate: '2024-12-31',
-            coverageAmount: '$2,000,000'
-          }
+            coverageAmount: '$2,000,000',
+          },
         },
         {
           id: 'evidence_002',
@@ -212,8 +245,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           url: '/evidence/safety_violation_photo.jpg',
           metadata: {
             location: 'Job Site 1',
-            timestamp: '2024-04-14T14:00:00Z'
-          }
+            timestamp: '2024-04-14T14:00:00Z',
+          },
         },
         {
           id: 'evidence_003',
@@ -226,13 +259,17 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           category: 'log',
           relatedItemId: 'ind_004',
           relatedItemType: 'indicator',
-          url: '/evidence/training_log.xlsx'
-        }
+          url: '/evidence/training_log.xlsx',
+        },
       ];
 
       setEvidenceFiles(mockEvidence);
     } catch (error) {
-      clientLogger.error('Error loading evidence files:', { source: 'audit/AuditTrailLogger' }, error);
+      clientLogger.error(
+        'Error loading evidence files:',
+        { source: 'audit/AuditTrailLogger' },
+        error,
+      );
     }
   };
 
@@ -240,28 +277,33 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
     let filtered = auditTrails;
 
     if (searchQuery) {
-      filtered = filtered.filter(trail => 
-        trail.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        trail.performedBy.toLowerCase().includes(searchQuery.toLowerCase())
+      filtered = filtered.filter(
+        (trail) =>
+          trail.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          trail.performedBy.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
 
     if (selectedEntityType !== 'all') {
-      filtered = filtered.filter(trail => trail.entityType === selectedEntityType);
+      filtered = filtered.filter((trail) => trail.entityType === selectedEntityType);
     }
 
     if (selectedAction !== 'all') {
-      filtered = filtered.filter(trail => trail.action === selectedAction);
+      filtered = filtered.filter((trail) => trail.action === selectedAction);
     }
 
     if (selectedDateRange !== 'all') {
       const now = new Date();
-      const rangeMs = selectedDateRange === 'today' ? 24 * 60 * 60 * 1000 :
-                     selectedDateRange === '7d' ? 7 * 24 * 60 * 60 * 1000 :
-                     selectedDateRange === '30d' ? 30 * 24 * 60 * 60 * 1000 :
-                     90 * 24 * 60 * 60 * 1000;
-      
-      filtered = filtered.filter(trail => {
+      const rangeMs =
+        selectedDateRange === 'today'
+          ? 24 * 60 * 60 * 1000
+          : selectedDateRange === '7d'
+            ? 7 * 24 * 60 * 60 * 1000
+            : selectedDateRange === '30d'
+              ? 30 * 24 * 60 * 60 * 1000
+              : 90 * 24 * 60 * 60 * 1000;
+
+      filtered = filtered.filter((trail) => {
         const trailDate = new Date(trail.performedAt);
         return now.getTime() - trailDate.getTime() <= rangeMs;
       });
@@ -272,53 +314,85 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
   const getActionIcon = (action: AuditAction) => {
     switch (action) {
-      case 'created': return <Plus className="w-4 h-4" />;
-      case 'updated': return <Edit3 className="w-4 h-4" />;
-      case 'deleted': return <Trash2 className="w-4 h-4" />;
-      case 'viewed': return <Eye className="w-4 h-4" />;
-      case 'downloaded': return <Download className="w-4 h-4" />;
-      case 'approved': return <CheckCircle className="w-4 h-4" />;
-      case 'rejected': return <XCircle className="w-4 h-4" />;
-      case 'assigned': return <User className="w-4 h-4" />;
-      case 'completed': return <CheckCircle className="w-4 h-4" />;
-      default: return <Activity className="w-4 h-4" />;
+      case 'created':
+        return <Plus className="w-4 h-4" />;
+      case 'updated':
+        return <Edit3 className="w-4 h-4" />;
+      case 'deleted':
+        return <Trash2 className="w-4 h-4" />;
+      case 'viewed':
+        return <Eye className="w-4 h-4" />;
+      case 'downloaded':
+        return <Download className="w-4 h-4" />;
+      case 'approved':
+        return <CheckCircle className="w-4 h-4" />;
+      case 'rejected':
+        return <XCircle className="w-4 h-4" />;
+      case 'assigned':
+        return <User className="w-4 h-4" />;
+      case 'completed':
+        return <CheckCircle className="w-4 h-4" />;
+      default:
+        return <Activity className="w-4 h-4" />;
     }
   };
 
   const getActionColor = (action: AuditAction) => {
     switch (action) {
-      case 'created': return 'bg-green-50 text-green-600';
-      case 'updated': return 'bg-blue-50 text-blue-600';
-      case 'deleted': return 'bg-red-50 text-red-600';
-      case 'approved': return 'bg-green-50 text-green-600';
-      case 'rejected': return 'bg-red-50 text-red-600';
-      default: return 'bg-gray-50 text-gray-700';
+      case 'created':
+        return 'bg-green-50 text-green-600';
+      case 'updated':
+        return 'bg-blue-50 text-blue-600';
+      case 'deleted':
+        return 'bg-red-50 text-red-600';
+      case 'approved':
+        return 'bg-green-50 text-green-600';
+      case 'rejected':
+        return 'bg-red-50 text-red-600';
+      default:
+        return 'bg-gray-50 text-gray-700';
     }
   };
 
   const getEntityIcon = (type: EntityType) => {
     switch (type) {
-      case 'compliance_indicator': return <Shield className="w-4 h-4" />;
-      case 'audit': return <FileText className="w-4 h-4" />;
-      case 'finding': return <AlertTriangle className="w-4 h-4" />;
-      case 'remediation_task': return <CheckCircle className="w-4 h-4" />;
-      case 'evidence': return <Paperclip className="w-4 h-4" />;
-      case 'document': return <File className="w-4 h-4" />;
-      case 'user': return <User className="w-4 h-4" />;
-      case 'contractor': return <Building2 className="w-4 h-4" />;
-      default: return <Database className="w-4 h-4" />;
+      case 'compliance_indicator':
+        return <Shield className="w-4 h-4" />;
+      case 'audit':
+        return <FileText className="w-4 h-4" />;
+      case 'finding':
+        return <AlertTriangle className="w-4 h-4" />;
+      case 'remediation_task':
+        return <CheckCircle className="w-4 h-4" />;
+      case 'evidence':
+        return <Paperclip className="w-4 h-4" />;
+      case 'document':
+        return <File className="w-4 h-4" />;
+      case 'user':
+        return <User className="w-4 h-4" />;
+      case 'contractor':
+        return <Building2 className="w-4 h-4" />;
+      default:
+        return <Database className="w-4 h-4" />;
     }
   };
 
   const getEvidenceIcon = (category: EvidenceCategory) => {
     switch (category) {
-      case 'photo': return <Image className="w-5 h-5 text-blue-600" />;
-      case 'video': return <Video className="w-5 h-5 text-purple-600" />;
-      case 'document': return <FileText className="w-5 h-5 text-green-600" />;
-      case 'certificate': return <Award className="w-5 h-5 text-blue-700" />;
-      case 'log': return <Database className="w-5 h-5 text-gray-700" />;
-      case 'screenshot': return <Camera className="w-5 h-5 text-indigo-600" />;
-      default: return <File className="w-5 h-5 text-gray-700" />;
+      case 'photo':
+        return <Image className="w-5 h-5 text-blue-600" />;
+      case 'video':
+        return <Video className="w-5 h-5 text-purple-600" />;
+      case 'document':
+        return <FileText className="w-5 h-5 text-green-600" />;
+      case 'certificate':
+        return <Award className="w-5 h-5 text-blue-700" />;
+      case 'log':
+        return <Database className="w-5 h-5 text-gray-700" />;
+      case 'screenshot':
+        return <Camera className="w-5 h-5 text-indigo-600" />;
+      default:
+        return <File className="w-5 h-5 text-gray-700" />;
     }
   };
 
@@ -331,10 +405,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
   };
 
   const toggleExpanded = (id: string) => {
-    setExpandedItems(prev => 
-      prev.includes(id) 
-        ? prev.filter(item => item !== id)
-        : [...prev, id]
+    setExpandedItems((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
     );
   };
 
@@ -343,7 +415,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
     return (
       <div className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-        <div 
+        <div
           className="flex items-start justify-between cursor-pointer"
           onClick={() => toggleExpanded(trail.id)}
         >
@@ -370,7 +442,11 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
             </div>
           </div>
           <button className="p-1 hover:bg-gray-100 rounded">
-            {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+            {isExpanded ? (
+              <ChevronDown className="w-4 h-4" />
+            ) : (
+              <ChevronRight className="w-4 h-4" />
+            )}
           </button>
         </div>
 
@@ -387,7 +463,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
                   <p className="font-mono">{trail.entityId}</p>
                 </div>
               </div>
-              
+
               <div className="text-sm">
                 <p className="text-gray-700">User Agent:</p>
                 <p className="font-mono text-xs">{trail.userAgent}</p>
@@ -416,7 +492,9 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
                   <div className="bg-white p-2 rounded">
                     {Object.entries(trail.metadata).map(([key, value]) => (
                       <div key={key} className="flex justify-between py-1">
-                        <span className="text-gray-700">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                        <span className="text-gray-700">
+                          {key.replace(/([A-Z])/g, ' $1').trim()}:
+                        </span>
                         <span className="font-medium">{String(value)}</span>
                       </div>
                     ))}
@@ -441,7 +519,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-900">Evidence Files</h3>
-        <button 
+        <button
           onClick={() => setShowUploadModal(true)}
           className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
         >
@@ -454,28 +532,20 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
         {evidenceFiles.map((evidence) => (
           <div key={evidence.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-sm">
             <div className="flex items-start justify-between mb-3">
-              <div className="p-2 bg-gray-50 rounded-lg">
-                {getEvidenceIcon(evidence.category)}
-              </div>
-              <span className="text-xs text-gray-700 capitalize">
-                {evidence.category}
-              </span>
+              <div className="p-2 bg-gray-50 rounded-lg">{getEvidenceIcon(evidence.category)}</div>
+              <span className="text-xs text-gray-700 capitalize">{evidence.category}</span>
             </div>
-            
-            <h4 className="font-medium text-gray-900 mb-1 truncate">
-              {evidence.fileName}
-            </h4>
-            
-            <p className="text-sm text-gray-700 mb-3 line-clamp-2">
-              {evidence.description}
-            </p>
-            
+
+            <h4 className="font-medium text-gray-900 mb-1 truncate">{evidence.fileName}</h4>
+
+            <p className="text-sm text-gray-700 mb-3 line-clamp-2">{evidence.description}</p>
+
             <div className="space-y-1 text-xs text-gray-700">
               <p>Size: {formatFileSize(evidence.fileSize)}</p>
               <p>Uploaded: {new Date(evidence.uploadedAt).toLocaleDateString()}</p>
               <p>By: {evidence.uploadedBy}</p>
             </div>
-            
+
             <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
               <button className="flex items-center px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50">
                 <Eye className="w-3 h-3 mr-1" />
@@ -498,7 +568,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
         <div className="animate-pulse">
           <div className="h-8 bg-gray-200 rounded mb-6"></div>
           <div className="space-y-4">
-            {[1, 2, 3].map(i => (
+            {[1, 2, 3].map((i) => (
               <div key={i} className="h-24 bg-gray-200 rounded-lg"></div>
             ))}
           </div>
@@ -512,7 +582,9 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Audit Trail & Evidence</h1>
-          <p className="text-gray-700 mt-1">Complete log of compliance events and supporting evidence</p>
+          <p className="text-gray-700 mt-1">
+            Complete log of compliance events and supporting evidence
+          </p>
         </div>
         <div className="flex items-center space-x-2">
           <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -535,7 +607,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            
+
             <select
               value={selectedEntityType}
               onChange={(e) => setSelectedEntityType(e.target.value as EntityType | 'all')}
@@ -550,7 +622,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
               <option value="document">Documents</option>
               <option value="user">Users</option>
             </select>
-            
+
             <select
               value={selectedAction}
               onChange={(e) => setSelectedAction(e.target.value as AuditAction | 'all')}
@@ -565,10 +637,12 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
               <option value="approved">Approved</option>
               <option value="rejected">Rejected</option>
             </select>
-            
+
             <select
               value={selectedDateRange}
-              onChange={(e) => setSelectedDateRange(e.target.value as any)}
+              onChange={(e) =>
+                setSelectedDateRange(e.target.value as 'today' | '7d' | '30d' | '90d' | 'all')
+              }
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="today">Today</option>
@@ -591,9 +665,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
               <p className="text-gray-700">No audit trail events found</p>
             </div>
           ) : (
-            filteredTrails.map((trail) => (
-              <AuditTrailItem key={trail.id} trail={trail} />
-            ))
+            filteredTrails.map((trail) => <AuditTrailItem key={trail.id} trail={trail} />)
           )}
         </div>
       </div>
