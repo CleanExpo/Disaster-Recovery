@@ -8,7 +8,7 @@ import {
   withValidation,
   combineMiddleware,
 } from '@/lib/auth-middleware';
-import { PaymentAuditLogger } from '@/lib/payment-security';
+import { PaymentAuditLogger, PRICING_CONSTANTS } from '@/lib/payment-security';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
 
@@ -382,14 +382,26 @@ function getRadiusFromTier(tier: string): number {
   return radiusMap[tier] || 50;
 }
 
+/**
+ * DR-780 — wires subscription amount to canonical PRICING_CONSTANTS
+ * (src/lib/payment-security.ts). Previously hard-coded values undercharged
+ * by $196-$396/month per tier. Returns dollars (schema field is Float in
+ * dollars; canonical constants are in cents — divide by 100).
+ *
+ * Tier mapping:
+ *   TIER_25KM → $495/mo  (was $299; +$196)
+ *   TIER_50KM → $795/mo  (was $499; +$296)
+ *   TIER_75KM → $995/mo  (was $699; +$296)
+ *   TIER_100KM → $1,295/mo (was $899; +$396)
+ *   RURAL → TIER_100KM ($1,295/mo) — RURAL is a frontend label that maps
+ *     to TIER_100KM canonically; canonical SUBSCRIPTION_TIERS has no RURAL.
+ */
 function getSubscriptionAmount(tier: string, frequency: string): number {
-  const baseAmounts: Record<string, number> = {
-    TIER_25KM: 299,
-    TIER_50KM: 499,
-    TIER_75KM: 699,
-    TIER_100KM: 899,
-    RURAL: 1199,
-  };
+  const tierKey =
+    tier === 'RURAL' ? 'TIER_100KM' : (tier as keyof typeof PRICING_CONSTANTS.SUBSCRIPTION_TIERS);
+
+  const baseCents =
+    PRICING_CONSTANTS.SUBSCRIPTION_TIERS[tierKey] ?? PRICING_CONSTANTS.SUBSCRIPTION_TIERS.TIER_50KM;
 
   const multipliers: Record<string, number> = {
     MONTHLY: 1,
@@ -397,5 +409,5 @@ function getSubscriptionAmount(tier: string, frequency: string): number {
     ANNUAL: 10.5,
   };
 
-  return (baseAmounts[tier] || 499) * (multipliers[frequency] || 1);
+  return (baseCents / 100) * (multipliers[frequency] || 1);
 }
