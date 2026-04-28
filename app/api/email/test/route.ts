@@ -8,23 +8,31 @@ export async function POST(request: NextRequest) {
   try {
     // Verify authentication and admin role
     const user = await verifyAuth(request);
-    
+
     if (!user || !hasRole(user.role as UserRole, [UserRole.ADMIN])) {
-      return NextResponse.json({
-        success: false,
-        message: 'Admin authentication required' }, { status: 401 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Admin authentication required',
+        },
+        { status: 401 },
+      );
     }
-    
+
     // Parse request body
     const body = await request.json();
     const { recipientEmail } = body;
-    
+
     if (!recipientEmail) {
-      return NextResponse.json({
-        success: false,
-        message: 'Recipient email is required' }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Recipient email is required',
+        },
+        { status: 400 },
+      );
     }
-    
+
     // Send test email
     const testEmail = {
       subject: 'Test Email - Disaster Recovery',
@@ -48,7 +56,7 @@ export async function POST(request: NextRequest) {
             <ul>
               <li>SMTP Host: ${process.env.SMTP_HOST || 'smtp.gmail.com'}</li>
               <li>SMTP Port: ${process.env.SMTP_PORT || '587'}</li>
-              <li>From Address: ${process.env.EMAIL_FROM || 'noreply@disasterrecovery.com.au'}</li>
+              <li>From Address: ${process.env.EMAIL_FROM || 'noreply@disasterrecovery.au'}</li>
               <li>Timestamp: ${new Date().toLocaleString('en-AU')}</li>
             </ul>
             
@@ -61,28 +69,45 @@ export async function POST(request: NextRequest) {
             <p>Disaster Recovery - Email System Test</p>
           </div>
         </div>
-      ` };
-    
+      `,
+    };
+
     const sent = await sendEmail(recipientEmail, testEmail);
 
     if (sent) {
-      return NextResponse.json({
-        success: true,
-        message: 'Test email sent successfully' }, { status: 200 });
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Test email sent successfully',
+        },
+        { status: 200 },
+      );
     } else {
-      return NextResponse.json({
-        success: false,
-        message: 'Failed to send test email — check RESEND_API_KEY in environment' }, { status: 500 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Failed to send test email — check RESEND_API_KEY in environment',
+        },
+        { status: 500 },
+      );
     }
-    
   } catch (error) {
-    log.error('email test error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/email/test' }, extra: { requestId: log.requestId } });
+    log.error('email test error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/email/test' },
+      extra: { requestId: log.requestId },
+    });
 
-    return NextResponse.json({
-      success: false,
-      message: 'An error occurred during email test',
-      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'An error occurred during email test',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 },
+    );
   }
 }
 
@@ -91,30 +116,42 @@ export async function GET(request: NextRequest) {
   try {
     // Verify authentication and admin role
     const user = await verifyAuth(request);
-    
-    if (!user || !hasRole(user.role as UserRole, [UserRole.ADMIN])) {
-      return NextResponse.json({
-        success: false,
-        message: 'Admin authentication required' }, { status: 401 });
-    }
-    
-    const configured = !!process.env.RESEND_API_KEY;
-    return NextResponse.json({
-      success: true,
-      configured,
-      settings: {
-        provider: 'Resend',
-        from: process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev',
-        fromName: process.env.RESEND_FROM_NAME ?? 'Disaster Recovery',
-        keyConfigured: configured,
-      },
-    }, { status: 200 });
-    
-  } catch (error) {
-    log.error('email config check error', { error: error instanceof Error ? error.message : String(error) });
 
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to check email configuration' }, { status: 500 });
+    if (!user || !hasRole(user.role as UserRole, [UserRole.ADMIN])) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Admin authentication required',
+        },
+        { status: 401 },
+      );
+    }
+
+    const configured = !!process.env.RESEND_API_KEY;
+    return NextResponse.json(
+      {
+        success: true,
+        configured,
+        settings: {
+          provider: 'Resend',
+          from: process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev',
+          fromName: process.env.RESEND_FROM_NAME ?? 'Disaster Recovery',
+          keyConfigured: configured,
+        },
+      },
+      { status: 200 },
+    );
+  } catch (error) {
+    log.error('email config check error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to check email configuration',
+      },
+      { status: 500 },
+    );
   }
 }

@@ -17,7 +17,7 @@ interface MockEmail {
 
 class MockEmailService {
   private sentEmails: MockEmail[] = [];
-  
+
   async sendEmail(params: {
     to: string;
     subject: string;
@@ -26,34 +26,37 @@ class MockEmailService {
     from?: string;
   }): Promise<{ success: boolean; messageId: string }> {
     // Simulate email sending delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     const email: MockEmail = {
       id: `email_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       to: params.to,
-      from: params.from || 'noreply@disasterrecovery.com.au',
+      from: params.from || 'noreply@disasterrecovery.au',
       subject: params.subject,
       html: params.html,
       text: params.text,
       sentAt: new Date().toISOString(),
-      status: 'sent'
+      status: 'sent',
     };
-    
+
     this.sentEmails.push(email);
-    
+
     // Log to console in demo mode
-    clientLogger.info('📧 Mock Email Sent:', { source: 'mock/mockEmail', data: {
-      to: email.to,
-      subject: email.subject,
-      preview: email.text?.substring(0, 100) + '...'
-    } });
-    
+    clientLogger.info('📧 Mock Email Sent:', {
+      source: 'mock/mockEmail',
+      data: {
+        to: email.to,
+        subject: email.subject,
+        preview: email.text?.substring(0, 100) + '...',
+      },
+    });
+
     return {
       success: true,
-      messageId: email.id
+      messageId: email.id,
     };
   }
-  
+
   async sendBookingConfirmation(booking: any): Promise<void> {
     const html = `
       <h2>Booking Confirmation</h2>
@@ -67,15 +70,15 @@ class MockEmailService {
       </ul>
       <p>Thank you for choosing Disaster Recovery.</p>
     `;
-    
+
     await this.sendEmail({
       to: booking.email,
       subject: `Booking Confirmation - ${booking.id}`,
       html,
-      text: html.replace(/<[^>]*>/g, '')
+      text: html.replace(/<[^>]*>/g, ''),
     });
   }
-  
+
   async sendContractorNotification(contractor: any, job: any): Promise<void> {
     const html = `
       <h2>New Job Assignment</h2>
@@ -89,15 +92,15 @@ class MockEmailService {
       </ul>
       <p>Please log in to your dashboard to accept this job.</p>
     `;
-    
+
     await this.sendEmail({
       to: contractor.email,
       subject: `🚨 ${job.urgencyLevel.toUpperCase()} Job Assignment - ${job.id}`,
       html,
-      text: html.replace(/<[^>]*>/g, '')
+      text: html.replace(/<[^>]*>/g, ''),
     });
   }
-  
+
   async sendPaymentReleasedNotification(contractor: any, amount: number): Promise<void> {
     const html = `
       <h2>Payment Released</h2>
@@ -109,15 +112,15 @@ class MockEmailService {
       </ul>
       <p>Thank you for your excellent service!</p>
     `;
-    
+
     await this.sendEmail({
       to: contractor.email,
       subject: '💰 Payment Released - $' + amount.toFixed(2),
       html,
-      text: html.replace(/<[^>]*>/g, '')
+      text: html.replace(/<[^>]*>/g, ''),
     });
   }
-  
+
   getSentEmails(): MockEmail[] {
     return this.sentEmails;
   }
