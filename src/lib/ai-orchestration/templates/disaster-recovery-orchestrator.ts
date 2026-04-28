@@ -9,7 +9,7 @@ import {
   EmergencyOrchestrationRequest,
   EmergencyOrchestrationResponse,
   AgentPersona,
-  OrchestrationError
+  OrchestrationError,
 } from '../core/types';
 import { SequentialThinkingEngine } from '../pipelines/sequential-thinking-engine';
 import { MultiAgentDiscussionEngine } from '../agents/multi-agent-discussion';
@@ -74,7 +74,7 @@ export class DisasterRecoveryOrchestrator {
   private fallbackManager: FallbackManager;
   private contextManager: ContextManager;
   private realTimeManager: RealTimeOrchestrationManager;
-  
+
   private templates: DisasterRecoveryTemplates;
   private metrics: DisasterSpecificMetrics;
 
@@ -87,7 +87,7 @@ export class DisasterRecoveryOrchestrator {
       fallback: FallbackManager;
       context: ContextManager;
       realTime: RealTimeOrchestrationManager;
-    }
+    },
   ) {
     this.aiService = aiService;
     this.sequentialEngine = engines.sequential;
@@ -96,7 +96,7 @@ export class DisasterRecoveryOrchestrator {
     this.fallbackManager = engines.fallback;
     this.contextManager = engines.context;
     this.realTimeManager = engines.realTime;
-    
+
     this.initializeTemplates();
     this.initializeMetrics();
 
@@ -113,7 +113,7 @@ export class DisasterRecoveryOrchestrator {
       userId?: string;
       forceApproach?: 'single-agent' | 'sequential-thinking' | 'multi-agent-discussion';
       enableRealTime?: boolean;
-    }
+    },
   ): Promise<EmergencyOrchestrationResponse> {
     const startTime = Date.now();
     const contextId = this.contextManager.createContext(
@@ -123,22 +123,19 @@ export class DisasterRecoveryOrchestrator {
       {
         userId: options?.userId,
         sessionId: options?.sessionId,
-        tags: [request.scenario.type, `severity-${request.scenario.severity}`, request.urgency]
-      }
+        tags: [request.scenario.type, `severity-${request.scenario.severity}`, request.urgency],
+      },
     );
 
     // Create real-time session if requested
     let realTimeSessionId: string | undefined;
     if (options?.enableRealTime) {
-      realTimeSessionId = this.realTimeManager.createSession(
-        'hybrid',
-        {
-          taskType: 'disaster-response',
-          priority: this.mapUrgencyToPriority(request.urgency),
-          emergency: request.urgency === 'immediate',
-          userId: options.userId
-        }
-      );
+      realTimeSessionId = this.realTimeManager.createSession('hybrid', {
+        taskType: 'disaster-response',
+        priority: this.mapUrgencyToPriority(request.urgency),
+        emergency: request.urgency === 'immediate',
+        userId: options.userId,
+      });
     }
 
     try {
@@ -147,7 +144,7 @@ export class DisasterRecoveryOrchestrator {
         this.contextManager.updateProgress(contextId, {
           stage: 'Initializing Real-time Monitoring',
           percentage: 5,
-          currentActivity: 'Setting up real-time updates'
+          currentActivity: 'Setting up real-time updates',
         });
       }
 
@@ -158,15 +155,15 @@ export class DisasterRecoveryOrchestrator {
         {
           forceApproach: options?.forceApproach,
           maxTime: request.constraints.maxTime * 60 * 1000, // Convert to milliseconds
-          maxCost: request.constraints.maxCost
-        }
+          maxCost: request.constraints.maxCost,
+        },
       );
 
       logger.info('Emergency routing decision made', {
         approach: routingDecision.recommendedApproach,
         confidence: routingDecision.confidenceInRouting,
         estimatedTime: routingDecision.estimatedTime,
-        scenario: request.scenario.type
+        scenario: request.scenario.type,
       });
 
       // Execute orchestrated response with fallback protection
@@ -180,31 +177,27 @@ export class DisasterRecoveryOrchestrator {
           options: {
             maxTime: request.constraints.maxTime * 60 * 1000,
             realTimeSessionId,
-            contextId
-          }
-        }
+            contextId,
+          },
+        },
       );
 
       if (!orchestrationResult.success) {
         throw new OrchestrationError(
           'Emergency orchestration failed',
           'EMERGENCY_ORCHESTRATION_FAILED',
-          { request, result: orchestrationResult }
+          { request, result: orchestrationResult },
         );
       }
 
       // Process and structure the response
-      const response = await this.buildEmergencyResponse(
-        request,
-        orchestrationResult.result,
-        {
-          approach: orchestrationResult.approach,
-          processingTime: Date.now() - startTime,
-          confidence: this.calculateResponseConfidence(orchestrationResult.result),
-          fallbackLevel: orchestrationResult.fallbackLevel,
-          contextId
-        }
-      );
+      const response = await this.buildEmergencyResponse(request, orchestrationResult.result, {
+        approach: orchestrationResult.approach,
+        processingTime: Date.now() - startTime,
+        confidence: this.calculateResponseConfidence(orchestrationResult.result),
+        fallbackLevel: orchestrationResult.fallbackLevel,
+        contextId,
+      });
 
       // Update context with final result
       this.contextManager.setFinalResult(contextId, {
@@ -213,7 +206,7 @@ export class DisasterRecoveryOrchestrator {
         approach: orchestrationResult.approach,
         processingTime: Date.now() - startTime,
         cost: this.estimateCost(orchestrationResult),
-        metadata: { scenario: request.scenario, urgency: request.urgency }
+        metadata: { scenario: request.scenario, urgency: request.urgency },
       });
 
       // Close real-time session
@@ -225,16 +218,15 @@ export class DisasterRecoveryOrchestrator {
         scenario: request.scenario.type,
         approach: orchestrationResult.approach,
         processingTime: Date.now() - startTime,
-        confidence: response.confidence
+        confidence: response.confidence,
       });
 
       return response;
-
     } catch (error) {
       logger.error('Emergency orchestration failed', {
         error: error instanceof Error ? error.message : 'Unknown error',
         contextId,
-        scenario: request.scenario.type
+        scenario: request.scenario.type,
       });
 
       // Close real-time session on error
@@ -257,7 +249,7 @@ export class DisasterRecoveryOrchestrator {
       includeCostEstimation?: boolean;
       includeTimelineProjection?: boolean;
       accuracyLevel?: 'standard' | 'high' | 'critical';
-    }
+    },
   ): Promise<{
     assessment: any;
     confidence: number;
@@ -270,34 +262,26 @@ export class DisasterRecoveryOrchestrator {
 
     // Use sequential thinking for complex damage assessments
     if (scenario.severity >= 3 || options?.includeStructuralAnalysis) {
-      const chain = await this.sequentialEngine.startThinkingChain(
-        taskDescription,
-        context,
-        {
-          maxSteps: 8,
-          primaryAgent: AgentPersona.TECHNICAL_EXPERT,
-          requirePeerReview: options?.accuracyLevel === 'critical'
-        }
-      );
+      const chain = await this.sequentialEngine.startThinkingChain(taskDescription, context, {
+        maxSteps: 8,
+        primaryAgent: AgentPersona.TECHNICAL_EXPERT,
+        requirePeerReview: options?.accuracyLevel === 'critical',
+      });
 
       return this.processDamageAssessmentChain(chain, scenario);
     }
 
     // Use multi-agent discussion for complex stakeholder scenarios
     if (this.hasMultipleStakeholders(scenario)) {
-      const discussion = await this.discussionEngine.startDiscussion(
-        taskDescription,
-        context,
-        {
-          participants: [
-            AgentPersona.TECHNICAL_EXPERT,
-            AgentPersona.SAFETY_INSPECTOR,
-            AgentPersona.COST_ANALYST
-          ],
-          maxRounds: 3,
-          consensusThreshold: 0.8
-        }
-      );
+      const discussion = await this.discussionEngine.startDiscussion(taskDescription, context, {
+        participants: [
+          AgentPersona.TECHNICAL_EXPERT,
+          AgentPersona.SAFETY_INSPECTOR,
+          AgentPersona.COST_ANALYST,
+        ],
+        maxRounds: 3,
+        consensusThreshold: 0.8,
+      });
 
       return this.processDamageAssessmentDiscussion(discussion, scenario);
     }
@@ -307,17 +291,17 @@ export class DisasterRecoveryOrchestrator {
       [
         {
           role: 'system',
-          content: this.templates.emergencyAssessment.singleAgent
+          content: this.templates.emergencyAssessment.singleAgent,
         },
         {
           role: 'user',
-          content: taskDescription
-        }
+          content: taskDescription,
+        },
       ],
       context,
       {
-        preferredProvider: AIProvider.OPENROUTER_GPT_OSS_120B
-      }
+        preferredProvider: AIProvider.OPENROUTER_GPT_OSS_120B,
+      },
     );
 
     return this.processSingleAgentDamageAssessment(singleAgentResponse, scenario);
@@ -339,12 +323,12 @@ export class DisasterRecoveryOrchestrator {
       includeNegotiationStrategy?: boolean;
       prioritizeSpeed?: boolean;
       maximizeSettlement?: boolean;
-    }
+    },
   ): Promise<{
     analysis: {
       coverageAssessment: any;
       documentationGaps: string[];
-      estimatedSettlement: { min: number; max: number; };
+      estimatedSettlement: { min: number; max: number };
       negotiationPoints: string[];
       timeline: any;
     };
@@ -365,25 +349,21 @@ export class DisasterRecoveryOrchestrator {
       costSensitive: false,
       userContext: {
         sessionId: `insurance-${Date.now()}`,
-        emergency: false
-      }
+        emergency: false,
+      },
     };
 
     // Use multi-agent discussion for insurance claims (multiple perspectives needed)
-    const discussion = await this.discussionEngine.startDiscussion(
-      taskDescription,
-      context,
-      {
-        participants: [
-          AgentPersona.COST_ANALYST,
-          AgentPersona.TECHNICAL_EXPERT,
-          AgentPersona.QUALITY_AUDITOR
-        ],
-        maxRounds: 4,
-        consensusThreshold: 0.75,
-        enableDebate: true
-      }
-    );
+    const discussion = await this.discussionEngine.startDiscussion(taskDescription, context, {
+      participants: [
+        AgentPersona.COST_ANALYST,
+        AgentPersona.TECHNICAL_EXPERT,
+        AgentPersona.QUALITY_AUDITOR,
+      ],
+      maxRounds: 4,
+      consensusThreshold: 0.75,
+      enableDebate: true,
+    });
 
     return this.processInsuranceClaimDiscussion(discussion, claimDetails);
   }
@@ -413,13 +393,13 @@ export class DisasterRecoveryOrchestrator {
         urgency: 'immediate' | 'urgent' | 'standard';
         constraints: string[];
       };
-    }
+    },
   ): Promise<{
     allocation: {
       contractors: any[];
       equipment: any[];
       timeline: any;
-      totalCost: { min: number; max: number; };
+      totalCost: { min: number; max: number };
     };
     optimisation: {
       efficiency: number;
@@ -436,19 +416,15 @@ export class DisasterRecoveryOrchestrator {
       priority: this.mapTimelineToPriority(availableResources.timeline.urgency),
       maxResponseTime: 180000,
       accuracyRequired: 'high',
-      costSensitive: true
+      costSensitive: true,
     };
 
     // Use sequential thinking for complex resource optimisation
-    const chain = await this.sequentialEngine.startThinkingChain(
-      taskDescription,
-      context,
-      {
-        maxSteps: 6,
-        primaryAgent: AgentPersona.COST_ANALYST,
-        requirePeerReview: true
-      }
-    );
+    const chain = await this.sequentialEngine.startThinkingChain(taskDescription, context, {
+      maxSteps: 6,
+      primaryAgent: AgentPersona.COST_ANALYST,
+      requirePeerReview: true,
+    });
 
     return this.processResourceAllocationChain(chain, availableResources);
   }
@@ -494,7 +470,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       damage: AITaskType.DAMAGE_ASSESSMENT,
       cost: AITaskType.BUSINESS_ANALYTICS,
       timeline: AITaskType.ESTIMATE_GENERATION,
-      resources: AITaskType.CONTRACTOR_MATCHING
+      resources: AITaskType.CONTRACTOR_MATCHING,
     };
 
     // Primary task type based on most critical analysis needed
@@ -505,14 +481,18 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       type: taskType,
       priority: this.mapUrgencyToPriority(request.urgency),
       maxResponseTime: request.constraints.maxTime * 60 * 1000,
-      accuracyRequired: request.constraints.minConfidence >= 0.9 ? 'critical' : 
-                        request.constraints.minConfidence >= 0.7 ? 'high' : 'standard',
+      accuracyRequired:
+        request.constraints.minConfidence >= 0.9
+          ? 'critical'
+          : request.constraints.minConfidence >= 0.7
+            ? 'high'
+            : 'standard',
       costSensitive: request.constraints.maxCost < 1000,
       userContext: {
         emergency: request.urgency === 'immediate',
         location: request.scenario.location.address,
-        sessionId: `disaster-${Date.now()}`
-      }
+        sessionId: `disaster-${Date.now()}`,
+      },
     };
   }
 
@@ -525,17 +505,20 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       confidence: number;
       fallbackLevel: number;
       contextId: string;
-    }
+    },
   ): Promise<EmergencyOrchestrationResponse> {
     // Parse and structure the orchestration result
     const parsedResult = this.parseOrchestrationResult(orchestrationResult, request);
 
     return {
       assessmentId: metadata.contextId,
-      approach: metadata.approach as any,
+      approach: metadata.approach as
+        | 'single-agent'
+        | 'sequential-thinking'
+        | 'multi-agent-discussion',
       timeline: {
         estimatedCompletion: new Date(Date.now() + this.estimateCompletionTime(request)),
-        milestones: this.generateMilestones(request, parsedResult)
+        milestones: this.generateMilestones(request, parsedResult),
       },
       safety: this.extractSafetyInfo(parsedResult, request),
       damage: this.extractDamageInfo(parsedResult, request),
@@ -544,12 +527,16 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       recommendations: this.extractRecommendations(parsedResult),
       confidence: metadata.confidence,
       reasoning: {
-        chainId: metadata.approach === 'sequential-thinking' ? orchestrationResult.chainId : undefined,
-        discussionId: metadata.approach === 'multi-agent-discussion' ? orchestrationResult.discussionId : undefined,
+        chainId:
+          metadata.approach === 'sequential-thinking' ? orchestrationResult.chainId : undefined,
+        discussionId:
+          metadata.approach === 'multi-agent-discussion'
+            ? orchestrationResult.discussionId
+            : undefined,
         keyFactors: this.extractKeyFactors(parsedResult),
         assumptions: this.extractAssumptions(parsedResult),
-        uncertainties: this.extractUncertainties(parsedResult)
-      }
+        uncertainties: this.extractUncertainties(parsedResult),
+      },
     };
   }
 
@@ -561,7 +548,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
     if (typeof result === 'string') {
       return { content: result, metadata: {} };
     }
-    
+
     return result;
   }
 
@@ -571,7 +558,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       immediateHazards: this.getDefaultHazards(request.scenario),
       requiredPPE: this.getDefaultPPE(request.scenario),
       evacuationRecommended: request.scenario.severity >= 4,
-      emergencyServices: request.urgency === 'immediate'
+      emergencyServices: request.urgency === 'immediate',
     };
 
     // Parse safety info from result content if available
@@ -592,10 +579,11 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         water: request.scenario.type === 'flood' ? Math.min(request.scenario.severity, 5) : 1,
         fire: request.scenario.type === 'fire' ? Math.min(request.scenario.severity, 5) : 1,
         mould: request.scenario.type === 'flood' ? Math.min(request.scenario.severity - 1, 5) : 1,
-        contamination: request.scenario.type === 'sewage' ? Math.min(request.scenario.severity, 5) : 1
+        contamination:
+          request.scenario.type === 'sewage' ? Math.min(request.scenario.severity, 5) : 1,
       },
       totalScore: request.scenario.severity,
-      description: `${request.scenario.type} damage to ${request.scenario.propertyType} property`
+      description: `${request.scenario.type} damage to ${request.scenario.propertyType} property`,
     };
   }
 
@@ -603,33 +591,33 @@ Please provide comprehensive disaster recovery guidance addressing all required 
     return {
       contractors: this.generateContractorRequirements(request.scenario),
       equipment: this.generateEquipmentRequirements(request.scenario),
-      materials: this.generateMaterialRequirements(request.scenario)
+      materials: this.generateMaterialRequirements(request.scenario),
     };
   }
 
   private extractCostInfo(result: any, request: EmergencyOrchestrationRequest): any {
     const baseCost = this.calculateBaseCost(request.scenario);
     const multiplier = 1 + (request.scenario.severity - 1) * 0.5;
-    
+
     return {
-      emergency: { 
-        min: Math.round(baseCost * 0.2 * multiplier), 
-        max: Math.round(baseCost * 0.4 * multiplier) 
+      emergency: {
+        min: Math.round(baseCost * 0.2 * multiplier),
+        max: Math.round(baseCost * 0.4 * multiplier),
       },
-      restoration: { 
-        min: Math.round(baseCost * 0.8 * multiplier), 
-        max: Math.round(baseCost * 1.5 * multiplier) 
+      restoration: {
+        min: Math.round(baseCost * 0.8 * multiplier),
+        max: Math.round(baseCost * 1.5 * multiplier),
       },
-      temporary: { 
-        min: Math.round(baseCost * 0.1 * multiplier), 
-        max: Math.round(baseCost * 0.3 * multiplier) 
+      temporary: {
+        min: Math.round(baseCost * 0.1 * multiplier),
+        max: Math.round(baseCost * 0.3 * multiplier),
       },
-      total: { 
-        min: Math.round(baseCost * multiplier), 
-        max: Math.round(baseCost * 2 * multiplier) 
+      total: {
+        min: Math.round(baseCost * multiplier),
+        max: Math.round(baseCost * 2 * multiplier),
       },
       currency: 'AUD' as const,
-      confidence: 0.7
+      confidence: 0.7,
     };
   }
 
@@ -643,20 +631,20 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         'Ensure immediate safety of all occupants',
         'Document damage with photographs',
         'Contact insurance provider',
-        'Secure property if safe to do so'
+        'Secure property if safe to do so',
       ],
       shortTerm: [
         'Obtain professional damage assessment',
         'Begin emergency repairs if necessary',
         'Coordinate with contractors',
-        'Set up temporary accommodations if needed'
+        'Set up temporary accommodations if needed',
       ],
       longTerm: [
         'Complete full restoration work',
         'Implement prevention measures',
         'Review and update insurance coverage',
-        'Document lessons learned'
-      ]
+        'Document lessons learned',
+      ],
     };
   }
 
@@ -666,7 +654,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       'Property type and construction',
       'Time elapsed since incident',
       'Weather conditions',
-      'Availability of utilities'
+      'Availability of utilities',
     ];
   }
 
@@ -675,7 +663,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       'Property structure is salvageable',
       'Standard repair methods are applicable',
       'Contractors are available within reasonable timeframe',
-      'Insurance coverage is adequate'
+      'Insurance coverage is adequate',
     ];
   }
 
@@ -684,7 +672,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       'Hidden structural damage',
       'Long-term effects of water damage',
       'Availability of specialised contractors',
-      'Final insurance settlement amount'
+      'Final insurance settlement amount',
     ];
   }
 
@@ -693,19 +681,27 @@ Please provide comprehensive disaster recovery guidance addressing all required 
    */
   private mapUrgencyToPriority(urgency: string): 'low' | 'medium' | 'high' | 'critical' {
     switch (urgency) {
-      case 'immediate': return 'critical';
-      case 'urgent': return 'high';
-      case 'standard': return 'medium';
-      default: return 'medium';
+      case 'immediate':
+        return 'critical';
+      case 'urgent':
+        return 'high';
+      case 'standard':
+        return 'medium';
+      default:
+        return 'medium';
     }
   }
 
   private mapTimelineToPriority(timeline: string): 'low' | 'medium' | 'high' | 'critical' {
     switch (timeline) {
-      case 'immediate': return 'critical';
-      case 'urgent': return 'high';
-      case 'standard': return 'medium';
-      default: return 'medium';
+      case 'immediate':
+        return 'critical';
+      case 'urgent':
+        return 'high';
+      case 'standard':
+        return 'medium';
+      default:
+        return 'medium';
     }
   }
 
@@ -714,14 +710,14 @@ Please provide comprehensive disaster recovery guidance addressing all required 
     if (result.confidence !== undefined) {
       return result.confidence;
     }
-    
+
     // Default confidence calculation
     let confidence = 0.7;
-    
+
     if (result.approach === 'sequential-thinking') confidence += 0.1;
     if (result.approach === 'multi-agent-discussion') confidence += 0.05;
     if (result.fallbackLevel === 0) confidence += 0.1;
-    
+
     return Math.min(confidence, 0.95);
   }
 
@@ -729,7 +725,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
     const baseTime = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
     const severityMultiplier = request.scenario.severity;
     const urgencyMultiplier = request.urgency === 'immediate' ? 0.5 : 1;
-    
+
     return baseTime * severityMultiplier * urgencyMultiplier;
   }
 
@@ -738,37 +734,42 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       {
         name: 'Safety Assessment Complete',
         expectedTime: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours
-        dependencies: []
+        dependencies: [],
       },
       {
         name: 'Emergency Stabilisation',
         expectedTime: new Date(Date.now() + 6 * 60 * 60 * 1000), // 6 hours
-        dependencies: ['Safety Assessment Complete']
+        dependencies: ['Safety Assessment Complete'],
       },
       {
         name: 'Full Damage Assessment',
         expectedTime: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-        dependencies: ['Emergency Stabilisation']
+        dependencies: ['Emergency Stabilisation'],
       },
       {
         name: 'Restoration Planning',
         expectedTime: new Date(Date.now() + 48 * 60 * 60 * 1000), // 48 hours
-        dependencies: ['Full Damage Assessment']
-      }
+        dependencies: ['Full Damage Assessment'],
+      },
     ];
   }
 
   private getDefaultHazards(scenario: DisasterScenario): string[] {
     const hazardMap = {
-      flood: ['Water contamination', 'Electrical hazards', 'Structural instability', 'Mould growth'],
+      flood: [
+        'Water contamination',
+        'Electrical hazards',
+        'Structural instability',
+        'Mould growth',
+      ],
       fire: ['Smoke inhalation', 'Structural weakness', 'Toxic residues', 'Heat damage'],
       storm: ['Falling debris', 'Electrical hazards', 'Structural damage', 'Glass fragments'],
       earthquake: ['Structural collapse', 'Gas leaks', 'Electrical hazards', 'Aftershocks'],
       mould: ['Respiratory hazards', 'Toxic exposure', 'Structural deterioration'],
       sewage: ['Biological contamination', 'Chemical hazards', 'Disease vectors'],
-      biohazard: ['Biological contamination', 'Chemical exposure', 'Infectious agents']
+      biohazard: ['Biological contamination', 'Chemical exposure', 'Infectious agents'],
     };
-    
+
     return hazardMap[scenario.type] || ['General property damage', 'Potential safety hazards'];
   }
 
@@ -779,10 +780,20 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       storm: ['Hard hat', 'Safety boots', 'Eye protection', 'High-visibility clothing'],
       earthquake: ['Hard hat', 'Safety boots', 'First aid kit'],
       mould: ['N95 respirator', 'Protective clothing', 'Rubber gloves', 'Eye protection'],
-      sewage: ['Full body protection', 'Respirator', 'Chemical-resistant gloves', 'Waterproof boots'],
-      biohazard: ['Full hazmat suit', 'Respirator', 'Chemical-resistant gloves', 'Decontamination supplies']
+      sewage: [
+        'Full body protection',
+        'Respirator',
+        'Chemical-resistant gloves',
+        'Waterproof boots',
+      ],
+      biohazard: [
+        'Full hazmat suit',
+        'Respirator',
+        'Chemical-resistant gloves',
+        'Decontamination supplies',
+      ],
     };
-    
+
     return ppeMap[scenario.type] || ['Basic safety equipment', 'Protective clothing'];
   }
 
@@ -794,13 +805,13 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       earthquake: 35000,
       mould: 8000,
       sewage: 18000,
-      biohazard: 30000
+      biohazard: 30000,
     };
-    
+
     const baseCost = baseCosts[scenario.type] || 15000;
     const areaMultiplier = Math.max(1, scenario.affectedArea / 100);
     const propertyMultiplier = scenario.propertyType === 'commercial' ? 1.5 : 1;
-    
+
     return baseCost * areaMultiplier * propertyMultiplier;
   }
 
@@ -809,18 +820,18 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       {
         type: 'Water Damage Specialist',
         quantity: 1,
-        urgency: 'immediate' as const
+        urgency: 'immediate' as const,
       },
       {
         type: 'Structural Engineer',
         quantity: 1,
-        urgency: '24h' as const
+        urgency: '24h' as const,
       },
       {
         type: 'General Restoration Contractor',
         quantity: 1,
-        urgency: 'week' as const
-      }
+        urgency: 'week' as const,
+      },
     ];
   }
 
@@ -829,18 +840,18 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       {
         type: 'Dehumidifier',
         quantity: 2,
-        duration: 7
+        duration: 7,
       },
       {
         type: 'Air Scrubber',
         quantity: 1,
-        duration: 5
+        duration: 5,
       },
       {
         type: 'Generator',
         quantity: 1,
-        duration: 3
-      }
+        duration: 3,
+      },
     ];
   }
 
@@ -849,18 +860,18 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       {
         type: 'Drywall',
         quantity: '20 sheets',
-        supplier: 'Local building supply'
+        supplier: 'Local building supply',
       },
       {
         type: 'Insulation',
         quantity: '500 sq ft',
-        supplier: 'Insulation contractor'
+        supplier: 'Insulation contractor',
       },
       {
         type: 'Flooring',
         quantity: '300 sq ft',
-        supplier: 'Flooring specialist'
-      }
+        supplier: 'Flooring specialist',
+      },
     ];
   }
 
@@ -870,37 +881,43 @@ Please provide comprehensive disaster recovery guidance addressing all required 
   }
 
   private estimateCost(result: any): number {
-    return result.fallbackLevel * 0.10 + 0.50; // Base cost with fallback penalty
+    return result.fallbackLevel * 0.1 + 0.5; // Base cost with fallback penalty
   }
 
   private initializeTemplates(): void {
     this.templates = {
       emergencyAssessment: {
-        sequential: "You are conducting a step-by-step emergency assessment...",
-        multiAgent: "You are participating in an emergency consultation...",
-        singleAgent: "You are providing emergency disaster recovery guidance..."
+        sequential: 'You are conducting a step-by-step emergency assessment...',
+        multiAgent: 'You are participating in an emergency consultation...',
+        singleAgent: 'You are providing emergency disaster recovery guidance...',
       },
       safetyAnalysis: {
-        checklist: ["Structural integrity", "Electrical safety", "Water contamination"],
-        protocols: ["Evacuation procedures", "PPE requirements", "Emergency contacts"],
-        escalationMatrix: ["Minor hazards", "Moderate risks", "Severe dangers", "Life-threatening situations"]
+        checklist: ['Structural integrity', 'Electrical safety', 'Water contamination'],
+        protocols: ['Evacuation procedures', 'PPE requirements', 'Emergency contacts'],
+        escalationMatrix: [
+          'Minor hazards',
+          'Moderate risks',
+          'Severe dangers',
+          'Life-threatening situations',
+        ],
       },
       resourceAllocation: {
-        contractors: "Optimise contractor assignment based on specialisation, availability, and location...",
-        equipment: "Allocate equipment based on priority, efficiency, and cost-effectiveness...",
-        materials: "Prioritize material procurement based on timeline and availability..."
+        contractors:
+          'Optimise contractor assignment based on specialisation, availability, and location...',
+        equipment: 'Allocate equipment based on priority, efficiency, and cost-effectiveness...',
+        materials: 'Prioritize material procurement based on timeline and availability...',
       },
       insuranceClaims: {
-        documentation: "Ensure comprehensive documentation for insurance claims...",
-        assessment: "Provide detailed damage assessment for insurance purposes...",
-        negotiation: "Develop negotiation strategy for optimal insurance settlement..."
+        documentation: 'Ensure comprehensive documentation for insurance claims...',
+        assessment: 'Provide detailed damage assessment for insurance purposes...',
+        negotiation: 'Develop negotiation strategy for optimal insurance settlement...',
       },
       stakeholderCommunication: {
-        homeowner: "Clear, empathetic communication focusing on immediate actions...",
-        insurance: "Professional, detailed communication with supporting evidence...",
-        contractor: "Technical specifications and timeline expectations...",
-        emergency: "Urgent, concise communication prioritizing immediate safety..."
-      }
+        homeowner: 'Clear, empathetic communication focusing on immediate actions...',
+        insurance: 'Professional, detailed communication with supporting evidence...',
+        contractor: 'Technical specifications and timeline expectations...',
+        emergency: 'Urgent, concise communication prioritizing immediate safety...',
+      },
     };
   }
 
@@ -909,7 +926,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       responseTime: {
         emergency: 0,
         urgent: 0,
-        standard: 0
+        standard: 0,
       },
       accuracyByDisasterType: {},
       successRateByComplexity: {},
@@ -917,23 +934,30 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       costEffectiveness: {
         averageCostPerAssessment: 0,
         timeToValue: 0,
-        accuracyVsCost: 0
-      }
+        accuracyVsCost: 0,
+      },
     };
   }
 
   // Placeholder methods for complex processing
-  private buildDamageAssessmentTask(scenario: DisasterScenario, images?: string[], options?: any): string {
+  private buildDamageAssessmentTask(
+    scenario: DisasterScenario,
+    images?: string[],
+    options?: any,
+  ): string {
     return `Damage assessment for ${scenario.type} at ${scenario.location.address}`;
   }
 
-  private buildDamageAssessmentContext(scenario: DisasterScenario, accuracy?: string): AITaskContext {
+  private buildDamageAssessmentContext(
+    scenario: DisasterScenario,
+    accuracy?: string,
+  ): AITaskContext {
     return {
       type: AITaskType.DAMAGE_ASSESSMENT,
       priority: 'high',
       maxResponseTime: 300000,
-      accuracyRequired: accuracy as any || 'high',
-      costSensitive: false
+      accuracyRequired: (accuracy as 'standard' | 'high' | 'critical' | undefined) || 'high',
+      costSensitive: false,
     };
   }
 
@@ -957,7 +981,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       confidence: chain.totalConfidence,
       methodology: 'sequential-thinking',
       recommendations: [],
-      nextSteps: []
+      nextSteps: [],
     };
   }
 
@@ -967,7 +991,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       confidence: discussion.confidenceLevel,
       methodology: 'multi-agent-discussion',
       recommendations: [],
-      nextSteps: []
+      nextSteps: [],
     };
   }
 
@@ -977,7 +1001,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       confidence: 0.8,
       methodology: 'single-agent',
       recommendations: [],
-      nextSteps: []
+      nextSteps: [],
     };
   }
 
@@ -988,15 +1012,15 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         documentationGaps: [],
         estimatedSettlement: { min: 0, max: 0 },
         negotiationPoints: [],
-        timeline: {}
+        timeline: {},
       },
       strategy: {
         approach: '',
         keyArguments: [],
         supportingEvidence: [],
-        fallbackOptions: []
+        fallbackOptions: [],
       },
-      confidence: discussion.confidenceLevel
+      confidence: discussion.confidenceLevel,
     };
   }
 
@@ -1006,16 +1030,16 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         contractors: [],
         equipment: [],
         timeline: {},
-        totalCost: { min: 0, max: 0 }
+        totalCost: { min: 0, max: 0 },
       },
       optimisation: {
         efficiency: 0,
         costEffectiveness: 0,
         timeToCompletion: 0,
-        riskMitigation: 0
+        riskMitigation: 0,
       },
       alternatives: [],
-      confidence: chain.totalConfidence
+      confidence: chain.totalConfidence,
     };
   }
 
@@ -1029,18 +1053,17 @@ Please provide comprehensive disaster recovery guidance addressing all required 
   updateMetrics(scenario: DisasterScenario, response: any, processingTime: number): void {
     // Update response time metrics
     if (scenario.severity >= 4) {
-      this.metrics.responseTime.emergency = 
+      this.metrics.responseTime.emergency =
         (this.metrics.responseTime.emergency + processingTime) / 2;
     } else if (scenario.severity >= 3) {
-      this.metrics.responseTime.urgent = 
-        (this.metrics.responseTime.urgent + processingTime) / 2;
+      this.metrics.responseTime.urgent = (this.metrics.responseTime.urgent + processingTime) / 2;
     } else {
-      this.metrics.responseTime.standard = 
+      this.metrics.responseTime.standard =
         (this.metrics.responseTime.standard + processingTime) / 2;
     }
 
     // Update accuracy by disaster type
-    this.metrics.accuracyByDisasterType[scenario.type] = 
+    this.metrics.accuracyByDisasterType[scenario.type] =
       ((this.metrics.accuracyByDisasterType[scenario.type] || 0) + response.confidence) / 2;
   }
 }

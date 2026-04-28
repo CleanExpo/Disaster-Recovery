@@ -48,11 +48,16 @@ abstract class ExpertAgent {
   protected async reason(problem: string, type: string = 'general'): Promise<any> {
     const response = await this.hrmProvider.reason({
       problem,
-      problemType: type as any,
+      problemType: type as
+        | 'disaster-assessment'
+        | 'path-finding'
+        | 'resource-allocation'
+        | 'pattern-recognition'
+        | 'general',
       constraints: {
         maxTime: 20000,
-        requiredAccuracy: 0.9
-      }
+        requiredAccuracy: 0.9,
+      },
     });
     return response;
   }
@@ -66,27 +71,29 @@ class PsychologyExpert extends ExpertAgent {
     super(
       'Dr. Neural Mind',
       'Psychology, Neuroscience, Behavioral Economics, Persuasion',
-      hrmProvider
+      hrmProvider,
     );
   }
 
   async analyze(context: any): Promise<AgentAnalysis> {
-    const analysis = await this.reason(JSON.stringify({
-      question: 'How to leverage human psychology for $20M platform growth?',
-      context: {
-        current: '$2.5M disaster recovery platform',
-        target: '$20M valuation',
-        userPain: 'Disaster trauma, insurance complexity',
-        psychology: [
-          'Loss aversion',
-          'Urgency bias',
-          'Social proof',
-          'Authority principle',
-          'Reciprocity',
-          'Commitment consistency'
-        ]
-      }
-    }));
+    const analysis = await this.reason(
+      JSON.stringify({
+        question: 'How to leverage human psychology for $20M platform growth?',
+        context: {
+          current: '$2.5M disaster recovery platform',
+          target: '$20M valuation',
+          userPain: 'Disaster trauma, insurance complexity',
+          psychology: [
+            'Loss aversion',
+            'Urgency bias',
+            'Social proof',
+            'Authority principle',
+            'Reciprocity',
+            'Commitment consistency',
+          ],
+        },
+      }),
+    );
 
     return {
       agent: this.name,
@@ -100,26 +107,26 @@ class PsychologyExpert extends ExpertAgent {
         'Implement social proof with live recovery feeds',
         'Establish authority through AI superiority messaging',
         'Create reciprocity with free AI assessments',
-        'Build commitment through progress tracking'
+        'Build commitment through progress tracking',
       ],
       criticalFactors: [
         'Trust must be established in first 10 seconds',
         'Emotional support as important as technical solution',
         'Decision fatigue reduction through AI guidance',
-        'Cognitive load minimisation in UI/UX'
+        'Cognitive load minimisation in UI/UX',
       ],
       risks: [
         'Over-automation losing human touch',
         'Trust erosion from AI errors',
-        'Decision paralysis from too many options'
+        'Decision paralysis from too many options',
       ],
       opportunities: [
         'Become emotional support system not just service',
         'Create addiction through gamification',
         'Build community around recovery stories',
-        'Leverage FOMO for contractor sign-ups'
+        'Leverage FOMO for contractor sign-ups',
       ],
-      confidence: 0.92
+      confidence: 0.92,
     };
   }
 }
@@ -132,25 +139,28 @@ class BusinessStrategyExpert extends ExpertAgent {
     super(
       'Prof. Market Dominator',
       'Business Strategy, Economics, Finance, Market Dynamics',
-      hrmProvider
+      hrmProvider,
     );
   }
 
   async analyze(context: any): Promise<AgentAnalysis> {
-    const analysis = await this.reason(JSON.stringify({
-      question: 'How to achieve 8x growth from $2.5M to $20M?',
-      context: {
-        market: '$1B Australian disaster recovery',
-        currentShare: 0.0025,
-        targetShare: 0.02,
-        model: 'B2B2C marketplace',
-        economics: {
-          CAC: 50,
-          LTV: 5000,
-          margin: 0.9
-        }
-      }
-    }), 'resource-allocation');
+    const analysis = await this.reason(
+      JSON.stringify({
+        question: 'How to achieve 8x growth from $2.5M to $20M?',
+        context: {
+          market: '$1B Australian disaster recovery',
+          currentShare: 0.0025,
+          targetShare: 0.02,
+          model: 'B2B2C marketplace',
+          economics: {
+            CAC: 50,
+            LTV: 5000,
+            margin: 0.9,
+          },
+        },
+      }),
+      'resource-allocation',
+    );
 
     return {
       agent: this.name,
@@ -164,27 +174,27 @@ class BusinessStrategyExpert extends ExpertAgent {
         'Develop data moat: Exclusive insurance claim patterns',
         'Establish platform lock-in: API integrations everywhere',
         'Generate recurring revenue: Subscription tiers for contractors',
-        'Create winner-take-all dynamics through scale'
+        'Create winner-take-all dynamics through scale',
       ],
       criticalFactors: [
         'Network effects must activate before competitors',
         'Gross margin maintenance above 85%',
         'Capital efficiency: Reach profitability in 12 months',
-        'Market share capture speed critical'
+        'Market share capture speed critical',
       ],
       risks: [
         'Competitor platform with more capital',
         'Insurance company building in-house',
         'Regulatory changes limiting operations',
-        'Economic downturn reducing claims'
+        'Economic downturn reducing claims',
       ],
       opportunities: [
         'Roll-up smaller competitors',
         'Expand internationally to $10B market',
         'Vertical integration into insurance',
-        'Data monetization to reinsurers'
+        'Data monetization to reinsurers',
       ],
-      confidence: 0.89
+      confidence: 0.89,
     };
   }
 }
@@ -194,28 +204,26 @@ class BusinessStrategyExpert extends ExpertAgent {
  */
 class TechnologyExpert extends ExpertAgent {
   constructor(hrmProvider: HRMProvider) {
-    super(
-      'Dr. Silicon Brain',
-      'AI, Software Architecture, Scalability, Innovation',
-      hrmProvider
-    );
+    super('Dr. Silicon Brain', 'AI, Software Architecture, Scalability, Innovation', hrmProvider);
   }
 
   async analyze(context: any): Promise<AgentAnalysis> {
-    const analysis = await this.reason(JSON.stringify({
-      question: 'How to build unbeatable technical advantage?',
-      context: {
-        current: 'HRM 27M params, basic platform',
-        target: 'AI-first autonomous platform',
-        scale: '1M claims/year',
-        innovations: [
-          'Computer vision damage assessment',
-          'Predictive disaster modelling',
-          'Autonomous contractor dispatch',
-          'Real-time optimization'
-        ]
-      }
-    }));
+    const analysis = await this.reason(
+      JSON.stringify({
+        question: 'How to build unbeatable technical advantage?',
+        context: {
+          current: 'HRM 27M params, basic platform',
+          target: 'AI-first autonomous platform',
+          scale: '1M claims/year',
+          innovations: [
+            'Computer vision damage assessment',
+            'Predictive disaster modelling',
+            'Autonomous contractor dispatch',
+            'Real-time optimization',
+          ],
+        },
+      }),
+    );
 
     return {
       agent: this.name,
@@ -229,27 +237,27 @@ class TechnologyExpert extends ExpertAgent {
         'Develop self-improving AI through reinforcement learning',
         'Build real-time digital twin of all properties',
         'Create AI-powered pricing engine',
-        'Implement quantum-ready algorithms for future'
+        'Implement quantum-ready algorithms for future',
       ],
       criticalFactors: [
         'Sub-100ms response time mandatory',
         '99.99% uptime non-negotiable',
         'AI accuracy must exceed human experts',
-        'Scalability to 1M concurrent users'
+        'Scalability to 1M concurrent users',
       ],
       risks: [
         'AI model drift over time',
         'Cybersecurity vulnerabilities',
         'Technology commoditization',
-        'Dependence on third-party APIs'
+        'Dependence on third-party APIs',
       ],
       opportunities: [
         'Patent core AI innovations',
         'License technology to other industries',
         'Build AI marketplace for plugins',
-        'Create industry-standard APIs'
+        'Create industry-standard APIs',
       ],
-      confidence: 0.94
+      confidence: 0.94,
     };
   }
 }
@@ -262,20 +270,22 @@ class MarketingExpert extends ExpertAgent {
     super(
       'Ms. Growth Hacker',
       'Marketing, SEO, Growth, Viral Mechanics, Brand Building',
-      hrmProvider
+      hrmProvider,
     );
   }
 
   async analyze(context: any): Promise<AgentAnalysis> {
-    const analysis = await this.reason(JSON.stringify({
-      question: 'How to achieve market domination through marketing?',
-      context: {
-        current: 'Unknown brand',
-        target: 'Category king',
-        channels: ['SEO', 'Social', 'Partnerships', 'Content'],
-        budget: 'Limited, must be efficient'
-      }
-    }));
+    const analysis = await this.reason(
+      JSON.stringify({
+        question: 'How to achieve market domination through marketing?',
+        context: {
+          current: 'Unknown brand',
+          target: 'Category king',
+          channels: ['SEO', 'Social', 'Partnerships', 'Content'],
+          budget: 'Limited, must be efficient',
+        },
+      }),
+    );
 
     return {
       agent: this.name,
@@ -289,27 +299,27 @@ class MarketingExpert extends ExpertAgent {
         'Programmatic PR for every successful recovery',
         'Community building around contractors',
         'Referral program with 2x viral coefficient',
-        'Brand positioning as "The Google of Disaster Recovery"'
+        'Brand positioning as "The Google of Disaster Recovery"',
       ],
       criticalFactors: [
         'SEO monopoly before competitors wake up',
         'Brand trust establishment in 6 months',
         'Viral coefficient must exceed 1.5',
-        'Content velocity of 1000 pages/week'
+        'Content velocity of 1000 pages/week',
       ],
       risks: [
         'Google algorithm changes',
         'Negative PR from failed recovery',
         'Competitor outspending on ads',
-        'Brand dilution from rapid growth'
+        'Brand dilution from rapid growth',
       ],
       opportunities: [
         'Become media company for disasters',
         'Create disaster recovery standard',
         'Build strongest brand in category',
-        'Expand to adjacent markets'
+        'Expand to adjacent markets',
       ],
-      confidence: 0.91
+      confidence: 0.91,
     };
   }
 }
@@ -322,18 +332,21 @@ class DataScienceExpert extends ExpertAgent {
     super(
       'Prof. Data Prophet',
       'Data Science, ML, Analytics, Prediction, Optimization',
-      hrmProvider
+      hrmProvider,
     );
   }
 
   async analyze(context: any): Promise<AgentAnalysis> {
-    const analysis = await this.reason(JSON.stringify({
-      question: 'How to leverage data for competitive advantage?',
-      context: {
-        data: ['Claims', 'Damage patterns', 'Contractor performance', 'Pricing'],
-        goal: 'Predictive superiority and optimization'
-      }
-    }), 'pattern-recognition');
+    const analysis = await this.reason(
+      JSON.stringify({
+        question: 'How to leverage data for competitive advantage?',
+        context: {
+          data: ['Claims', 'Damage patterns', 'Contractor performance', 'Pricing'],
+          goal: 'Predictive superiority and optimization',
+        },
+      }),
+      'pattern-recognition',
+    );
 
     return {
       agent: this.name,
@@ -347,27 +360,27 @@ class DataScienceExpert extends ExpertAgent {
         'Build fraud detection systems',
         'Create customer lifetime value predictions',
         'Develop market expansion models',
-        'Build competitive intelligence system'
+        'Build competitive intelligence system',
       ],
       criticalFactors: [
         'Data quality and completeness',
         'Model accuracy above 95%',
         'Real-time processing capability',
-        'Privacy and compliance'
+        'Privacy and compliance',
       ],
       risks: [
         'Data breaches destroying trust',
         'Model bias leading to errors',
         'Regulatory restrictions on data use',
-        'Competitive data acquisition'
+        'Competitive data acquisition',
       ],
       opportunities: [
         'Sell insights to insurance companies',
         'Predict and prevent disasters',
         'Optimize entire industry',
-        'Create new data-driven products'
+        'Create new data-driven products',
       ],
-      confidence: 0.93
+      confidence: 0.93,
     };
   }
 }
@@ -377,22 +390,20 @@ class DataScienceExpert extends ExpertAgent {
  */
 class LegalComplianceExpert extends ExpertAgent {
   constructor(hrmProvider: HRMProvider) {
-    super(
-      'Judge Safeguard',
-      'Legal, Compliance, IP, Regulatory, Risk Management',
-      hrmProvider
-    );
+    super('Judge Safeguard', 'Legal, Compliance, IP, Regulatory, Risk Management', hrmProvider);
   }
 
   async analyze(context: any): Promise<AgentAnalysis> {
-    const analysis = await this.reason(JSON.stringify({
-      question: 'How to build legal moats and ensure compliance?',
-      context: {
-        jurisdictions: 'Australia, Pacific',
-        regulations: ['Insurance', 'Data protection', 'Consumer rights'],
-        ip: ['Patents', 'Trademarks', 'Trade secrets']
-      }
-    }));
+    const analysis = await this.reason(
+      JSON.stringify({
+        question: 'How to build legal moats and ensure compliance?',
+        context: {
+          jurisdictions: 'Australia, Pacific',
+          regulations: ['Insurance', 'Data protection', 'Consumer rights'],
+          ip: ['Patents', 'Trademarks', 'Trade secrets'],
+        },
+      }),
+    );
 
     return {
       agent: this.name,
@@ -406,27 +417,27 @@ class LegalComplianceExpert extends ExpertAgent {
         'Establish data governance protocols',
         'Implement privacy-by-design architecture',
         'Create defensive patent portfolio',
-        'Build compliance automation systems'
+        'Build compliance automation systems',
       ],
       criticalFactors: [
         'IP protection before competitors copy',
         'Compliance automation for scale',
         'Contract standardization across platform',
-        'Risk management frameworks'
+        'Risk management frameworks',
       ],
       risks: [
         'Patent infringement lawsuits',
         'Regulatory changes blocking operations',
         'Data breach liability',
-        'Contractor classification issues'
+        'Contractor classification issues',
       ],
       opportunities: [
         'Become regulatory standard setter',
         'License IP to competitors',
         'Expand through regulatory expertise',
-        'Create compliance-as-a-service'
+        'Create compliance-as-a-service',
       ],
-      confidence: 0.88
+      confidence: 0.88,
     };
   }
 }
@@ -447,7 +458,7 @@ export class MultiAgentOrchestrator extends EventEmitter {
       new TechnologyExpert(hrmProvider),
       new MarketingExpert(hrmProvider),
       new DataScienceExpert(hrmProvider),
-      new LegalComplianceExpert(hrmProvider)
+      new LegalComplianceExpert(hrmProvider),
     ];
   }
 
@@ -460,7 +471,7 @@ export class MultiAgentOrchestrator extends EventEmitter {
     masterPlan: any;
   }> {
     console.log('\n🤖 INITIATING MULTI-AGENT ORCHESTRATION...\n');
-    
+
     // Phase 1: Individual Agent Analysis
     const analyses: AgentAnalysis[] = [];
     for (const agent of this.agents) {
@@ -472,14 +483,14 @@ export class MultiAgentOrchestrator extends EventEmitter {
 
     // Phase 2: Build Consensus
     const consensus = await this.buildConsensus(analyses);
-    
+
     // Phase 3: Create Master Plan
     const masterPlan = await this.createMasterPlan(analyses, consensus);
 
     return {
       analyses,
       consensus,
-      masterPlan
+      masterPlan,
     };
   }
 
@@ -488,11 +499,11 @@ export class MultiAgentOrchestrator extends EventEmitter {
    */
   private async buildConsensus(analyses: AgentAnalysis[]): Promise<ConsensusReport> {
     // Find agreements
-    const allRecommendations = analyses.flatMap(a => a.recommendations);
+    const allRecommendations = analyses.flatMap((a) => a.recommendations);
     const agreements = this.findCommonThemes(allRecommendations);
 
     // Find disagreements
-    const allRisks = analyses.flatMap(a => a.risks);
+    const allRisks = analyses.flatMap((a) => a.risks);
     const riskPatterns = this.findCommonThemes(allRisks);
 
     // Calculate success probability
@@ -504,15 +515,16 @@ export class MultiAgentOrchestrator extends EventEmitter {
         'Network effects must be established quickly',
         'Speed of execution determines winner',
         'Data moat provides lasting advantage',
-        'Trust and brand are foundational'
+        'Trust and brand are foundational',
       ],
       disagreements: [
         'Level of automation vs human touch',
         'Growth vs profitability timeline',
         'Geographic expansion timing',
-        'Technology build vs buy decisions'
+        'Technology build vs buy decisions',
       ],
-      synthesis: 'Unanimous agreement: Platform can reach $20M through AI-powered network effects, but execution speed is critical. Main debate centres on resource allocation between growth and sustainability.',
+      synthesis:
+        'Unanimous agreement: Platform can reach $20M through AI-powered network effects, but execution speed is critical. Main debate centres on resource allocation between growth and sustainability.',
       actionPlan: [
         '1. Deploy HRM across platform (Week 1)',
         '2. Launch contractor onboarding (Week 1)',
@@ -521,15 +533,15 @@ export class MultiAgentOrchestrator extends EventEmitter {
         '5. Create viral content engine (Week 4)',
         '6. Patent core innovations (Month 2)',
         '7. Achieve product-market fit (Month 3)',
-        '8. Scale aggressively (Month 4-12)'
+        '8. Scale aggressively (Month 4-12)',
       ],
       priorityMatrix: {
         urgent_important: ['HRM deployment', 'Contractor onboarding', 'SEO launch'],
         important_not_urgent: ['Patent filing', 'International expansion', 'Data monetization'],
         urgent_not_important: ['PR campaigns', 'Conference speaking', 'Awards'],
-        not_urgent_not_important: ['Office expansion', 'Company culture', 'Perks']
+        not_urgent_not_important: ['Office expansion', 'Company culture', 'Perks'],
       },
-      successProbability: avgConfidence
+      successProbability: avgConfidence,
     };
   }
 
@@ -538,12 +550,14 @@ export class MultiAgentOrchestrator extends EventEmitter {
    */
   private async createMasterPlan(
     analyses: AgentAnalysis[],
-    consensus: ConsensusReport
+    consensus: ConsensusReport,
   ): Promise<any> {
     const masterPlan = {
-      vision: 'Become the autonomous AI platform that makes disaster recovery instant, perfect, and profitable',
-      mission: 'Leverage HRM and multi-agent AI to create an unstoppable $20M platform in 18 months',
-      
+      vision:
+        'Become the autonomous AI platform that makes disaster recovery instant, perfect, and profitable',
+      mission:
+        'Leverage HRM and multi-agent AI to create an unstoppable $20M platform in 18 months',
+
       strategicPillars: {
         pillar1: {
           name: 'AI Supremacy',
@@ -552,11 +566,11 @@ export class MultiAgentOrchestrator extends EventEmitter {
             'Deploy HRM for all assessments',
             'Build computer vision damage assessment',
             'Create predictive disaster models',
-            'Implement autonomous orchestration'
+            'Implement autonomous orchestration',
           ],
           owner: 'CTO',
           timeline: '6 months',
-          budget: '$2M'
+          budget: '$2M',
         },
         pillar2: {
           name: 'Network Domination',
@@ -565,11 +579,11 @@ export class MultiAgentOrchestrator extends EventEmitter {
             'Onboard 10,000 contractors',
             'Lock in insurance partnerships',
             'Build contractor dependency',
-            'Create viral referral loops'
+            'Create viral referral loops',
           ],
           owner: 'COO',
           timeline: '12 months',
-          budget: '$3M'
+          budget: '$3M',
         },
         pillar3: {
           name: 'Market Monopoly',
@@ -578,11 +592,11 @@ export class MultiAgentOrchestrator extends EventEmitter {
             'SEO domination strategy',
             'Content fortress building',
             'Brand supremacy campaign',
-            'Geographic saturation'
+            'Geographic saturation',
           ],
           owner: 'CMO',
           timeline: '18 months',
-          budget: '$2M'
+          budget: '$2M',
         },
         pillar4: {
           name: 'Economic Moat',
@@ -591,12 +605,12 @@ export class MultiAgentOrchestrator extends EventEmitter {
             'Achieve 90% gross margins',
             'Create recurring revenue',
             'Build data monetization',
-            'Establish pricing power'
+            'Establish pricing power',
           ],
           owner: 'CFO',
           timeline: '12 months',
-          budget: '$1M'
-        }
+          budget: '$1M',
+        },
       },
 
       executionPhases: {
@@ -607,14 +621,14 @@ export class MultiAgentOrchestrator extends EventEmitter {
             '✓ HRM fully deployed',
             '✓ 100 contractors onboarded',
             '✓ 1000 AI assessments completed',
-            '✓ First insurance partnership'
+            '✓ First insurance partnership',
           ],
           successMetrics: {
             revenue: '$500K/month',
             contractors: 100,
             assessments: 1000,
-            nps: 70
-          }
+            nps: 70,
+          },
         },
         phase2: {
           name: 'Growth (Months 4-9)',
@@ -623,14 +637,14 @@ export class MultiAgentOrchestrator extends EventEmitter {
             '✓ 1000 contractors active',
             '✓ 10,000 monthly assessments',
             '✓ Page 1 SEO nationally',
-            '✓ 10 insurance partnerships'
+            '✓ 10 insurance partnerships',
           ],
           successMetrics: {
             revenue: '$2M/month',
             contractors: 1000,
             assessments: 10000,
-            marketShare: 0.05
-          }
+            marketShare: 0.05,
+          },
         },
         phase3: {
           name: 'Scale (Months 10-15)',
@@ -639,14 +653,14 @@ export class MultiAgentOrchestrator extends EventEmitter {
             '✓ 5000 contractors',
             '✓ 50,000 monthly assessments',
             '✓ Pacific expansion complete',
-            '✓ 80% processes automated'
+            '✓ 80% processes automated',
           ],
           successMetrics: {
             revenue: '$5M/month',
             contractors: 5000,
             assessments: 50000,
-            marketShare: 0.15
-          }
+            marketShare: 0.15,
+          },
         },
         phase4: {
           name: 'Domination (Months 16-18)',
@@ -655,15 +669,15 @@ export class MultiAgentOrchestrator extends EventEmitter {
             '✓ 10,000 contractors',
             '✓ 100,000 monthly assessments',
             '✓ Market leader position',
-            '✓ $20M valuation achieved'
+            '✓ $20M valuation achieved',
           ],
           successMetrics: {
             revenue: '$10M/month',
             contractors: 10000,
             assessments: 100000,
-            valuation: 20000000
-          }
-        }
+            valuation: 20000000,
+          },
+        },
       },
 
       criticalSuccessFactors: [
@@ -671,40 +685,36 @@ export class MultiAgentOrchestrator extends EventEmitter {
         '🧠 AI: Maintain 10x technical advantage',
         '🔗 Network: Create unbreakable lock-in',
         '💰 Economics: Keep 90% gross margins',
-        '🏆 Brand: Become the obvious choice'
+        '🏆 Brand: Become the obvious choice',
       ],
 
       risks: {
         high: [
           'Competitor with more funding',
           'Insurance company builds in-house',
-          'Regulatory changes'
+          'Regulatory changes',
         ],
-        medium: [
-          'Technology commoditization',
-          'Contractor platform revolt',
-          'Economic downturn'
-        ],
+        medium: ['Technology commoditization', 'Contractor platform revolt', 'Economic downturn'],
         low: [
           'Natural disaster destroying infrastructure',
           'Key person dependency',
-          'Currency fluctuations'
-        ]
+          'Currency fluctuations',
+        ],
       },
 
       resourceRequirements: {
         capital: '$8M total (currently have $2M)',
         team: '50 people by month 12',
         technology: 'HRM, cloud infrastructure, AI models',
-        partnerships: 'Insurance, government, contractors'
+        partnerships: 'Insurance, government, contractors',
       },
 
       expectedOutcome: {
         valuation: '$20M (conservative), $50M (realistic), $100M (optimistic)',
         marketShare: '20% of Australian market',
         moats: 'Network effects, data, brand, technology',
-        exitOptions: 'Strategic acquisition, IPO, PE buyout'
-      }
+        exitOptions: 'Strategic acquisition, IPO, PE buyout',
+      },
     };
 
     return masterPlan;
@@ -717,17 +727,17 @@ export class MultiAgentOrchestrator extends EventEmitter {
     // Simple theme extraction (in production, use NLP)
     const themes = new Set<string>();
     const keywords = ['AI', 'network', 'data', 'speed', 'brand', 'automation'];
-    
-    items.forEach(item => {
-      keywords.forEach(keyword => {
+
+    items.forEach((item) => {
+      keywords.forEach((keyword) => {
         if (item.toLowerCase().includes(keyword.toLowerCase())) {
           themes.add(keyword);
         }
       });
     });
 
-    return Array.from(themes).map(theme => 
-      `${theme.charAt(0).toUpperCase() + theme.slice(1)} is critical for success`
+    return Array.from(themes).map(
+      (theme) => `${theme.charAt(0).toUpperCase() + theme.slice(1)} is critical for success`,
     );
   }
 
@@ -749,12 +759,19 @@ Success Probability: ${(results.consensus.successProbability * 100).toFixed(0)}%
 
 🤖 AGENT ANALYSES
 ─────────────────
-${results.analyses.map((a: AgentAnalysis) => `
+${results.analyses
+  .map(
+    (a: AgentAnalysis) => `
 ${a.agent} (${a.expertise})
 Confidence: ${(a.confidence * 100).toFixed(0)}%
 Key Insights:
-${a.recommendations.slice(0, 3).map((r: string) => `  • ${r}`).join('\n')}
-`).join('\n')}
+${a.recommendations
+  .slice(0, 3)
+  .map((r: string) => `  • ${r}`)
+  .join('\n')}
+`,
+  )
+  .join('\n')}
 
 🤝 CONSENSUS FINDINGS
 ─────────────────────
@@ -766,11 +783,18 @@ ${results.consensus.disagreements.map((d: string) => `  ⚡ ${d}`).join('\n')}
 
 📋 MASTER EXECUTION PLAN
 ────────────────────────
-${Object.values(results.masterPlan.strategicPillars).map((p: any) => `
+${Object.values(results.masterPlan.strategicPillars)
+  .map(
+    (p: any) => `
 ${p.name}: ${p.objective}
   Timeline: ${p.timeline} | Budget: ${p.budget} | Owner: ${p.owner}
-  ${p.initiatives.slice(0, 2).map((i: string) => `  • ${i}`).join('\n')}
-`).join('')}
+  ${p.initiatives
+    .slice(0, 2)
+    .map((i: string) => `  • ${i}`)
+    .join('\n')}
+`,
+  )
+  .join('')}
 
 📈 GROWTH TRAJECTORY
 ────────────────────
@@ -796,7 +820,10 @@ Optimistic: $100M valuation (40x growth)
 
 🏁 IMMEDIATE NEXT STEPS
 ────────────────────────
-${results.consensus.actionPlan.slice(0, 5).map((a: string) => a).join('\n')}
+${results.consensus.actionPlan
+  .slice(0, 5)
+  .map((a: string) => a)
+  .join('\n')}
 
 ═══════════════════════════════════════════════════════════════════════════════
 💡 CONCLUSION: With HRM-powered AI and perfect execution, $20M is not just 
@@ -811,21 +838,19 @@ ${results.consensus.actionPlan.slice(0, 5).map((a: string) => a).join('\n')}
 /**
  * Execute multi-agent orchestration
  */
-export async function executeMultiAgentAnalysis(
-  hrmProvider: HRMProvider
-): Promise<string> {
+export async function executeMultiAgentAnalysis(hrmProvider: HRMProvider): Promise<string> {
   const orchestrator = new MultiAgentOrchestrator(hrmProvider);
-  
+
   const context = {
     current: '$2.5M platform',
     target: '$20M valuation',
     timeline: '18 months',
-    market: '$1B Australian disaster recovery'
+    market: '$1B Australian disaster recovery',
   };
 
   const results = await orchestrator.orchestrateAnalysis(context);
   const report = await orchestrator.generateFinalReport(results);
-  
+
   console.log(report);
   return report;
 }

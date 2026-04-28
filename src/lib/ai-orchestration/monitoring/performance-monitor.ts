@@ -9,7 +9,7 @@ import {
   AgentPersona,
   SequentialThinkingChain,
   Discussion,
-  RoutingDecision
+  RoutingDecision,
 } from '../core/types';
 import { AIProvider, AITaskType } from '@/types/ai-service';
 import logger from '@/lib/logger';
@@ -21,15 +21,18 @@ export interface PerformanceMetrics {
     successfulExecutions: number;
     failedExecutions: number;
     averageExecutionTime: number;
-    executionsByApproach: Record<string, {
-      count: number;
-      successRate: number;
-      avgTime: number;
-      avgCost: number;
-      avgAccuracy: number;
-    }>;
+    executionsByApproach: Record<
+      string,
+      {
+        count: number;
+        successRate: number;
+        avgTime: number;
+        avgCost: number;
+        avgAccuracy: number;
+      }
+    >;
   };
-  
+
   sequential: {
     totalChains: number;
     avgStepsPerChain: number;
@@ -38,7 +41,7 @@ export interface PerformanceMetrics {
     stepDistribution: Record<number, number>;
     timeoutRate: number;
   };
-  
+
   multiAgent: {
     totalDiscussions: number;
     avgRoundsToConsensus: number;
@@ -47,7 +50,7 @@ export interface PerformanceMetrics {
     deadlockRate: number;
     avgConfidenceLevel: number;
   };
-  
+
   routing: {
     totalDecisions: number;
     routingAccuracy: number;
@@ -55,7 +58,7 @@ export interface PerformanceMetrics {
     routingDistribution: Record<string, number>;
     overrideRate: number;
   };
-  
+
   providers: {
     [key in AIProvider]: {
       requests: number;
@@ -67,7 +70,7 @@ export interface PerformanceMetrics {
       reliabilityScore: number;
     };
   };
-  
+
   caching: {
     totalRequests: number;
     hits: number;
@@ -80,7 +83,7 @@ export interface PerformanceMetrics {
     memoryUsage: number;
     evictions: number;
   };
-  
+
   fallbacks: {
     totalFallbacks: number;
     fallbacksByLevel: Record<number, number>;
@@ -88,7 +91,7 @@ export interface PerformanceMetrics {
     avgFallbackTime: number;
     emergencyResponseCount: number;
   };
-  
+
   business: {
     userSatisfaction: {
       avgRating: number;
@@ -97,13 +100,13 @@ export interface PerformanceMetrics {
     };
     costEfficiency: {
       avgCostPerTask: number;
-      costTrends: Array<{ timestamp: Date; cost: number; }>;
+      costTrends: Array<{ timestamp: Date; cost: number }>;
       budgetUtilization: number;
     };
     throughput: {
       tasksPerHour: number;
       peakHour: number;
-      trends: Array<{ hour: number; count: number; }>;
+      trends: Array<{ hour: number; count: number }>;
     };
   };
 }
@@ -148,7 +151,7 @@ export class PerformanceMonitor extends EventEmitter {
     type: string;
     data: any;
   }> = [];
-  
+
   private aggregationTimers: {
     realTime?: NodeJS.Timeout;
     hourly?: NodeJS.Timeout;
@@ -164,7 +167,7 @@ export class PerformanceMonitor extends EventEmitter {
     logger.info('Performance monitor initialized', {
       retention: config.metricsRetentionDays,
       realTimeMonitoring: config.enableRealTimeMonitoring,
-      predictiveAnalytics: config.enablePredictiveAnalytics
+      predictiveAnalytics: config.enablePredictiveAnalytics,
     });
   }
 
@@ -178,10 +181,10 @@ export class PerformanceMonitor extends EventEmitter {
     cost: number,
     accuracy: number,
     taskType: AITaskType,
-    metadata?: any
+    metadata?: any,
   ): void {
     const timestamp = new Date();
-    
+
     // Update orchestration metrics
     this.metrics.orchestration.totalExecutions++;
     if (success) {
@@ -189,12 +192,13 @@ export class PerformanceMonitor extends EventEmitter {
     } else {
       this.metrics.orchestration.failedExecutions++;
     }
-    
+
     // Update average execution time
-    this.metrics.orchestration.averageExecutionTime = 
-      (this.metrics.orchestration.averageExecutionTime * 
-       (this.metrics.orchestration.totalExecutions - 1) + executionTime) / 
-       this.metrics.orchestration.totalExecutions;
+    this.metrics.orchestration.averageExecutionTime =
+      (this.metrics.orchestration.averageExecutionTime *
+        (this.metrics.orchestration.totalExecutions - 1) +
+        executionTime) /
+      this.metrics.orchestration.totalExecutions;
 
     // Update approach-specific metrics
     if (!this.metrics.orchestration.executionsByApproach[approach]) {
@@ -203,22 +207,24 @@ export class PerformanceMonitor extends EventEmitter {
         successRate: 0,
         avgTime: 0,
         avgCost: 0,
-        avgAccuracy: 0
+        avgAccuracy: 0,
       };
     }
 
     const approachMetrics = this.metrics.orchestration.executionsByApproach[approach];
     approachMetrics.count++;
-    approachMetrics.successRate = success ? 
-      ((approachMetrics.successRate * (approachMetrics.count - 1)) + 1) / approachMetrics.count :
-      (approachMetrics.successRate * (approachMetrics.count - 1)) / approachMetrics.count;
-    
-    approachMetrics.avgTime = 
-      (approachMetrics.avgTime * (approachMetrics.count - 1) + executionTime) / approachMetrics.count;
-    approachMetrics.avgCost = 
+    approachMetrics.successRate = success
+      ? (approachMetrics.successRate * (approachMetrics.count - 1) + 1) / approachMetrics.count
+      : (approachMetrics.successRate * (approachMetrics.count - 1)) / approachMetrics.count;
+
+    approachMetrics.avgTime =
+      (approachMetrics.avgTime * (approachMetrics.count - 1) + executionTime) /
+      approachMetrics.count;
+    approachMetrics.avgCost =
       (approachMetrics.avgCost * (approachMetrics.count - 1) + cost) / approachMetrics.count;
-    approachMetrics.avgAccuracy = 
-      (approachMetrics.avgAccuracy * (approachMetrics.count - 1) + accuracy) / approachMetrics.count;
+    approachMetrics.avgAccuracy =
+      (approachMetrics.avgAccuracy * (approachMetrics.count - 1) + accuracy) /
+      approachMetrics.count;
 
     // Store raw data
     this.rawData.push({
@@ -231,8 +237,8 @@ export class PerformanceMonitor extends EventEmitter {
         cost,
         accuracy,
         taskType,
-        metadata
-      }
+        metadata,
+      },
     });
 
     // Check for alerts
@@ -243,7 +249,7 @@ export class PerformanceMonitor extends EventEmitter {
       success,
       executionTime,
       accuracy,
-      taskType
+      taskType,
     });
   }
 
@@ -252,30 +258,32 @@ export class PerformanceMonitor extends EventEmitter {
    */
   recordSequentialThinking(chain: SequentialThinkingChain): void {
     const timestamp = new Date();
-    const processingTime = chain.endTime ? 
-      chain.endTime.getTime() - chain.startTime.getTime() : 0;
+    const processingTime = chain.endTime ? chain.endTime.getTime() - chain.startTime.getTime() : 0;
 
     this.metrics.sequential.totalChains++;
-    this.metrics.sequential.avgStepsPerChain = 
-      (this.metrics.sequential.avgStepsPerChain * (this.metrics.sequential.totalChains - 1) + 
-       chain.steps.length) / this.metrics.sequential.totalChains;
-    
-    this.metrics.sequential.avgConfidence = 
-      (this.metrics.sequential.avgConfidence * (this.metrics.sequential.totalChains - 1) + 
-       chain.totalConfidence) / this.metrics.sequential.totalChains;
-    
-    this.metrics.sequential.avgProcessingTime = 
-      (this.metrics.sequential.avgProcessingTime * (this.metrics.sequential.totalChains - 1) + 
-       processingTime) / this.metrics.sequential.totalChains;
+    this.metrics.sequential.avgStepsPerChain =
+      (this.metrics.sequential.avgStepsPerChain * (this.metrics.sequential.totalChains - 1) +
+        chain.steps.length) /
+      this.metrics.sequential.totalChains;
+
+    this.metrics.sequential.avgConfidence =
+      (this.metrics.sequential.avgConfidence * (this.metrics.sequential.totalChains - 1) +
+        chain.totalConfidence) /
+      this.metrics.sequential.totalChains;
+
+    this.metrics.sequential.avgProcessingTime =
+      (this.metrics.sequential.avgProcessingTime * (this.metrics.sequential.totalChains - 1) +
+        processingTime) /
+      this.metrics.sequential.totalChains;
 
     // Update step distribution
-    this.metrics.sequential.stepDistribution[chain.steps.length] = 
+    this.metrics.sequential.stepDistribution[chain.steps.length] =
       (this.metrics.sequential.stepDistribution[chain.steps.length] || 0) + 1;
 
     // Check for timeout
     if (chain.status === 'failed' && chain.metadata.riskLevel === 'critical') {
-      this.metrics.sequential.timeoutRate = 
-        (this.metrics.sequential.timeoutRate * (this.metrics.sequential.totalChains - 1) + 1) / 
+      this.metrics.sequential.timeoutRate =
+        (this.metrics.sequential.timeoutRate * (this.metrics.sequential.totalChains - 1) + 1) /
         this.metrics.sequential.totalChains;
     }
 
@@ -288,8 +296,8 @@ export class PerformanceMonitor extends EventEmitter {
         confidence: chain.totalConfidence,
         processingTime,
         status: chain.status,
-        complexity: chain.metadata.complexity
-      }
+        complexity: chain.metadata.complexity,
+      },
     });
   }
 
@@ -298,34 +306,41 @@ export class PerformanceMonitor extends EventEmitter {
    */
   recordMultiAgentDiscussion(discussion: Discussion): void {
     const timestamp = new Date();
-    const processingTime = discussion.endTime ? 
-      discussion.endTime.getTime() - discussion.startTime.getTime() : 0;
+    const processingTime = discussion.endTime
+      ? discussion.endTime.getTime() - discussion.startTime.getTime()
+      : 0;
 
     this.metrics.multiAgent.totalDiscussions++;
-    
+
     if (discussion.status === 'completed') {
-      this.metrics.multiAgent.avgRoundsToConsensus = 
-        (this.metrics.multiAgent.avgRoundsToConsensus * (this.metrics.multiAgent.totalDiscussions - 1) + 
-         discussion.rounds.length) / this.metrics.multiAgent.totalDiscussions;
-      
-      this.metrics.multiAgent.consensusRate = 
-        ((this.metrics.multiAgent.consensusRate * (this.metrics.multiAgent.totalDiscussions - 1)) + 1) / 
+      this.metrics.multiAgent.avgRoundsToConsensus =
+        (this.metrics.multiAgent.avgRoundsToConsensus *
+          (this.metrics.multiAgent.totalDiscussions - 1) +
+          discussion.rounds.length) /
+        this.metrics.multiAgent.totalDiscussions;
+
+      this.metrics.multiAgent.consensusRate =
+        (this.metrics.multiAgent.consensusRate * (this.metrics.multiAgent.totalDiscussions - 1) +
+          1) /
         this.metrics.multiAgent.totalDiscussions;
     }
 
     if (discussion.status === 'deadlocked') {
-      this.metrics.multiAgent.deadlockRate = 
-        ((this.metrics.multiAgent.deadlockRate * (this.metrics.multiAgent.totalDiscussions - 1)) + 1) / 
+      this.metrics.multiAgent.deadlockRate =
+        (this.metrics.multiAgent.deadlockRate * (this.metrics.multiAgent.totalDiscussions - 1) +
+          1) /
         this.metrics.multiAgent.totalDiscussions;
     }
 
-    this.metrics.multiAgent.avgParticipants = 
-      (this.metrics.multiAgent.avgParticipants * (this.metrics.multiAgent.totalDiscussions - 1) + 
-       discussion.participants.length) / this.metrics.multiAgent.totalDiscussions;
-    
-    this.metrics.multiAgent.avgConfidenceLevel = 
-      (this.metrics.multiAgent.avgConfidenceLevel * (this.metrics.multiAgent.totalDiscussions - 1) + 
-       discussion.confidenceLevel) / this.metrics.multiAgent.totalDiscussions;
+    this.metrics.multiAgent.avgParticipants =
+      (this.metrics.multiAgent.avgParticipants * (this.metrics.multiAgent.totalDiscussions - 1) +
+        discussion.participants.length) /
+      this.metrics.multiAgent.totalDiscussions;
+
+    this.metrics.multiAgent.avgConfidenceLevel =
+      (this.metrics.multiAgent.avgConfidenceLevel * (this.metrics.multiAgent.totalDiscussions - 1) +
+        discussion.confidenceLevel) /
+      this.metrics.multiAgent.totalDiscussions;
 
     this.rawData.push({
       timestamp,
@@ -336,8 +351,8 @@ export class PerformanceMonitor extends EventEmitter {
         participants: discussion.participants.length,
         confidence: discussion.confidenceLevel,
         processingTime,
-        status: discussion.status
-      }
+        status: discussion.status,
+      },
     });
   }
 
@@ -347,22 +362,23 @@ export class PerformanceMonitor extends EventEmitter {
   recordRoutingDecision(
     decision: RoutingDecision,
     decisionTime: number,
-    wasOverridden: boolean = false
+    wasOverridden: boolean = false,
   ): void {
     const timestamp = new Date();
-    
+
     this.metrics.routing.totalDecisions++;
-    this.metrics.routing.avgDecisionTime = 
-      (this.metrics.routing.avgDecisionTime * (this.metrics.routing.totalDecisions - 1) + 
-       decisionTime) / this.metrics.routing.totalDecisions;
+    this.metrics.routing.avgDecisionTime =
+      (this.metrics.routing.avgDecisionTime * (this.metrics.routing.totalDecisions - 1) +
+        decisionTime) /
+      this.metrics.routing.totalDecisions;
 
     // Update routing distribution
-    this.metrics.routing.routingDistribution[decision.recommendedApproach] = 
+    this.metrics.routing.routingDistribution[decision.recommendedApproach] =
       (this.metrics.routing.routingDistribution[decision.recommendedApproach] || 0) + 1;
 
     if (wasOverridden) {
-      this.metrics.routing.overrideRate = 
-        ((this.metrics.routing.overrideRate * (this.metrics.routing.totalDecisions - 1)) + 1) / 
+      this.metrics.routing.overrideRate =
+        (this.metrics.routing.overrideRate * (this.metrics.routing.totalDecisions - 1) + 1) /
         this.metrics.routing.totalDecisions;
     }
 
@@ -374,8 +390,8 @@ export class PerformanceMonitor extends EventEmitter {
         confidence: decision.confidenceInRouting,
         decisionTime,
         wasOverridden,
-        complexity: decision.complexity
-      }
+        complexity: decision.complexity,
+      },
     });
   }
 
@@ -387,7 +403,7 @@ export class PerformanceMonitor extends EventEmitter {
     success: boolean,
     responseTime: number,
     cost: number,
-    accuracy?: number
+    accuracy?: number,
   ): void {
     if (!this.metrics.providers[provider]) {
       this.metrics.providers[provider] = {
@@ -397,34 +413,34 @@ export class PerformanceMonitor extends EventEmitter {
         avgResponseTime: 0,
         totalCost: 0,
         avgAccuracy: 0,
-        reliabilityScore: 1.0
+        reliabilityScore: 1.0,
       };
     }
 
     const providerMetrics = this.metrics.providers[provider];
     providerMetrics.requests++;
-    
+
     if (success) {
       providerMetrics.successes++;
     } else {
       providerMetrics.failures++;
     }
 
-    providerMetrics.avgResponseTime = 
-      (providerMetrics.avgResponseTime * (providerMetrics.requests - 1) + responseTime) / 
+    providerMetrics.avgResponseTime =
+      (providerMetrics.avgResponseTime * (providerMetrics.requests - 1) + responseTime) /
       providerMetrics.requests;
-    
+
     providerMetrics.totalCost += cost;
 
     if (accuracy !== undefined) {
-      providerMetrics.avgAccuracy = 
-        (providerMetrics.avgAccuracy * (providerMetrics.requests - 1) + accuracy) / 
+      providerMetrics.avgAccuracy =
+        (providerMetrics.avgAccuracy * (providerMetrics.requests - 1) + accuracy) /
         providerMetrics.requests;
     }
 
     // Calculate reliability score
     const successRate = providerMetrics.successes / providerMetrics.requests;
-    const timeReliability = Math.max(0, 1 - (providerMetrics.avgResponseTime / 10000)); // Penalize slow responses
+    const timeReliability = Math.max(0, 1 - providerMetrics.avgResponseTime / 10000); // Penalize slow responses
     providerMetrics.reliabilityScore = (successRate + timeReliability) / 2;
 
     this.rawData.push({
@@ -435,8 +451,8 @@ export class PerformanceMonitor extends EventEmitter {
         success,
         responseTime,
         cost,
-        accuracy
-      }
+        accuracy,
+      },
     });
   }
 
@@ -447,19 +463,21 @@ export class PerformanceMonitor extends EventEmitter {
     hit: boolean,
     responseTime: number,
     memoryUsage: number,
-    evicted: boolean = false
+    evicted: boolean = false,
   ): void {
     this.metrics.caching.totalRequests++;
-    
+
     if (hit) {
       this.metrics.caching.hits++;
-      this.metrics.caching.avgResponseTime.hit = 
-        (this.metrics.caching.avgResponseTime.hit * (this.metrics.caching.hits - 1) + responseTime) / 
+      this.metrics.caching.avgResponseTime.hit =
+        (this.metrics.caching.avgResponseTime.hit * (this.metrics.caching.hits - 1) +
+          responseTime) /
         this.metrics.caching.hits;
     } else {
       this.metrics.caching.misses++;
-      this.metrics.caching.avgResponseTime.miss = 
-        (this.metrics.caching.avgResponseTime.miss * (this.metrics.caching.misses - 1) + responseTime) / 
+      this.metrics.caching.avgResponseTime.miss =
+        (this.metrics.caching.avgResponseTime.miss * (this.metrics.caching.misses - 1) +
+          responseTime) /
         this.metrics.caching.misses;
     }
 
@@ -473,7 +491,7 @@ export class PerformanceMonitor extends EventEmitter {
     this.rawData.push({
       timestamp: new Date(),
       type: 'cache-performance',
-      data: { hit, responseTime, memoryUsage, evicted }
+      data: { hit, responseTime, memoryUsage, evicted },
     });
   }
 
@@ -484,21 +502,22 @@ export class PerformanceMonitor extends EventEmitter {
     level: number,
     success: boolean,
     fallbackTime: number,
-    isEmergency: boolean = false
+    isEmergency: boolean = false,
   ): void {
     this.metrics.fallbacks.totalFallbacks++;
-    this.metrics.fallbacks.fallbacksByLevel[level] = 
+    this.metrics.fallbacks.fallbacksByLevel[level] =
       (this.metrics.fallbacks.fallbacksByLevel[level] || 0) + 1;
 
     if (success) {
-      this.metrics.fallbacks.recoveryRate = 
-        ((this.metrics.fallbacks.recoveryRate * (this.metrics.fallbacks.totalFallbacks - 1)) + 1) / 
+      this.metrics.fallbacks.recoveryRate =
+        (this.metrics.fallbacks.recoveryRate * (this.metrics.fallbacks.totalFallbacks - 1) + 1) /
         this.metrics.fallbacks.totalFallbacks;
     }
 
-    this.metrics.fallbacks.avgFallbackTime = 
-      (this.metrics.fallbacks.avgFallbackTime * (this.metrics.fallbacks.totalFallbacks - 1) + 
-       fallbackTime) / this.metrics.fallbacks.totalFallbacks;
+    this.metrics.fallbacks.avgFallbackTime =
+      (this.metrics.fallbacks.avgFallbackTime * (this.metrics.fallbacks.totalFallbacks - 1) +
+        fallbackTime) /
+      this.metrics.fallbacks.totalFallbacks;
 
     if (isEmergency) {
       this.metrics.fallbacks.emergencyResponseCount++;
@@ -507,7 +526,7 @@ export class PerformanceMonitor extends EventEmitter {
     this.rawData.push({
       timestamp: new Date(),
       type: 'fallback',
-      data: { level, success, fallbackTime, isEmergency }
+      data: { level, success, fallbackTime, isEmergency },
     });
   }
 
@@ -516,28 +535,29 @@ export class PerformanceMonitor extends EventEmitter {
    */
   recordUserSatisfaction(rating: number): void {
     this.metrics.business.userSatisfaction.totalRatings++;
-    this.metrics.business.userSatisfaction.avgRating = 
-      (this.metrics.business.userSatisfaction.avgRating * 
-       (this.metrics.business.userSatisfaction.totalRatings - 1) + rating) / 
-       this.metrics.business.userSatisfaction.totalRatings;
+    this.metrics.business.userSatisfaction.avgRating =
+      (this.metrics.business.userSatisfaction.avgRating *
+        (this.metrics.business.userSatisfaction.totalRatings - 1) +
+        rating) /
+      this.metrics.business.userSatisfaction.totalRatings;
 
-    this.metrics.business.userSatisfaction.ratingDistribution[rating] = 
+    this.metrics.business.userSatisfaction.ratingDistribution[rating] =
       (this.metrics.business.userSatisfaction.ratingDistribution[rating] || 0) + 1;
   }
 
   recordTaskCost(cost: number): void {
     const totalTasks = this.metrics.orchestration.totalExecutions;
-    this.metrics.business.costEfficiency.avgCostPerTask = 
+    this.metrics.business.costEfficiency.avgCostPerTask =
       (this.metrics.business.costEfficiency.avgCostPerTask * (totalTasks - 1) + cost) / totalTasks;
 
     this.metrics.business.costEfficiency.costTrends.push({
       timestamp: new Date(),
-      cost
+      cost,
     });
 
     // Keep only last 100 cost entries
     if (this.metrics.business.costEfficiency.costTrends.length > 100) {
-      this.metrics.business.costEfficiency.costTrends = 
+      this.metrics.business.costEfficiency.costTrends =
         this.metrics.business.costEfficiency.costTrends.slice(-100);
     }
   }
@@ -549,7 +569,9 @@ export class PerformanceMonitor extends EventEmitter {
     const alerts: PerformanceAlert[] = [];
 
     // Response time alert
-    if (this.metrics.orchestration.averageExecutionTime > this.config.alertThresholds.responseTime) {
+    if (
+      this.metrics.orchestration.averageExecutionTime > this.config.alertThresholds.responseTime
+    ) {
       alerts.push({
         id: `rt_${timestamp.getTime()}`,
         severity: 'medium',
@@ -564,15 +586,17 @@ export class PerformanceMonitor extends EventEmitter {
           'Check provider performance',
           'Review task complexity',
           'Consider caching optimisation',
-          'Scale up resources if needed'
-        ]
+          'Scale up resources if needed',
+        ],
       });
     }
 
     // Error rate alert
-    const errorRate = (this.metrics.orchestration.failedExecutions / 
-      Math.max(1, this.metrics.orchestration.totalExecutions)) * 100;
-    
+    const errorRate =
+      (this.metrics.orchestration.failedExecutions /
+        Math.max(1, this.metrics.orchestration.totalExecutions)) *
+      100;
+
     if (errorRate > this.config.alertThresholds.errorRate) {
       alerts.push({
         id: `er_${timestamp.getTime()}`,
@@ -588,8 +612,8 @@ export class PerformanceMonitor extends EventEmitter {
           'Investigate failure patterns',
           'Check provider availability',
           'Review fallback mechanisms',
-          'Update error handling logic'
-        ]
+          'Update error handling logic',
+        ],
       });
     }
 
@@ -609,13 +633,15 @@ export class PerformanceMonitor extends EventEmitter {
           'Review cache TTL settings',
           'Analyse cache eviction patterns',
           'Consider increasing cache size',
-          'Optimise cache key strategy'
-        ]
+          'Optimise cache key strategy',
+        ],
       });
     }
 
     // Cost per task alert
-    if (this.metrics.business.costEfficiency.avgCostPerTask > this.config.alertThresholds.costPerTask) {
+    if (
+      this.metrics.business.costEfficiency.avgCostPerTask > this.config.alertThresholds.costPerTask
+    ) {
       alerts.push({
         id: `cost_${timestamp.getTime()}`,
         severity: 'medium',
@@ -630,27 +656,27 @@ export class PerformanceMonitor extends EventEmitter {
           'Optimise provider selection',
           'Review task routing efficiency',
           'Consider batch processing',
-          'Evaluate cheaper alternatives'
-        ]
+          'Evaluate cheaper alternatives',
+        ],
       });
     }
 
     // Add new alerts
-    alerts.forEach(alert => {
+    alerts.forEach((alert) => {
       this.alerts.push(alert);
       this.emit('alert', alert);
-      
+
       logger.warn('Performance alert generated', {
         id: alert.id,
         severity: alert.severity,
         category: alert.category,
-        title: alert.title
+        title: alert.title,
       });
     });
 
     // Keep only recent alerts (last 24 hours)
     const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    this.alerts = this.alerts.filter(alert => alert.timestamp > dayAgo);
+    this.alerts = this.alerts.filter((alert) => alert.timestamp > dayAgo);
   }
 
   /**
@@ -664,43 +690,56 @@ export class PerformanceMonitor extends EventEmitter {
   } {
     const summary = {
       totalExecutions: this.metrics.orchestration.totalExecutions,
-      successRate: (this.metrics.orchestration.successfulExecutions / 
-        Math.max(1, this.metrics.orchestration.totalExecutions) * 100).toFixed(1),
+      successRate: (
+        (this.metrics.orchestration.successfulExecutions /
+          Math.max(1, this.metrics.orchestration.totalExecutions)) *
+        100
+      ).toFixed(1),
       avgExecutionTime: Math.round(this.metrics.orchestration.averageExecutionTime),
       avgCostPerTask: this.metrics.business.costEfficiency.avgCostPerTask.toFixed(2),
       cacheHitRate: (this.metrics.caching.hitRate * 100).toFixed(1),
       userSatisfaction: this.metrics.business.userSatisfaction.avgRating.toFixed(1),
-      activeAlerts: this.alerts.filter(a => a.timestamp > new Date(Date.now() - 60 * 60 * 1000)).length
+      activeAlerts: this.alerts.filter((a) => a.timestamp > new Date(Date.now() - 60 * 60 * 1000))
+        .length,
     };
 
     const insights: string[] = [];
     const recommendations: string[] = [];
 
     // Performance insights
-    const bestApproach = Object.entries(this.metrics.orchestration.executionsByApproach)
-      .reduce((best, [approach, metrics]) => 
-        metrics.successRate > best.metrics.successRate ? { approach, metrics } : best, 
-        { approach: '', metrics: { successRate: 0 } });
+    const bestApproach = Object.entries(this.metrics.orchestration.executionsByApproach).reduce(
+      (best, [approach, metrics]) =>
+        metrics.successRate > best.metrics.successRate ? { approach, metrics } : best,
+      { approach: '', metrics: { successRate: 0 } },
+    );
 
     if (bestApproach.approach) {
-      insights.push(`${bestApproach.approach} shows the best success rate at ${(bestApproach.metrics.successRate * 100).toFixed(1)}%`);
+      insights.push(
+        `${bestApproach.approach} shows the best success rate at ${(bestApproach.metrics.successRate * 100).toFixed(1)}%`,
+      );
     }
 
     // Cost insights
     if (this.metrics.business.costEfficiency.avgCostPerTask > 1.0) {
-      insights.push(`Average task cost of $${this.metrics.business.costEfficiency.avgCostPerTask.toFixed(2)} may benefit from optimisation`);
+      insights.push(
+        `Average task cost of $${this.metrics.business.costEfficiency.avgCostPerTask.toFixed(2)} may benefit from optimisation`,
+      );
       recommendations.push('Consider implementing more aggressive caching strategies');
     }
 
     // Cache insights
     if (this.metrics.caching.hitRate < 0.6) {
-      insights.push(`Low cache hit rate of ${(this.metrics.caching.hitRate * 100).toFixed(1)}% indicates optimisation opportunities`);
+      insights.push(
+        `Low cache hit rate of ${(this.metrics.caching.hitRate * 100).toFixed(1)}% indicates optimisation opportunities`,
+      );
       recommendations.push('Review cache key strategies and TTL settings');
     }
 
     // Fallback insights
     if (this.metrics.fallbacks.totalFallbacks > this.metrics.orchestration.totalExecutions * 0.1) {
-      insights.push(`High fallback usage (${((this.metrics.fallbacks.totalFallbacks / this.metrics.orchestration.totalExecutions) * 100).toFixed(1)}%) suggests reliability issues`);
+      insights.push(
+        `High fallback usage (${((this.metrics.fallbacks.totalFallbacks / this.metrics.orchestration.totalExecutions) * 100).toFixed(1)}%) suggests reliability issues`,
+      );
       recommendations.push('Investigate primary orchestration failures');
     }
 
@@ -710,26 +749,28 @@ export class PerformanceMonitor extends EventEmitter {
       .sort((a, b) => b.reliability - a.reliability);
 
     if (providerPerformance.length > 0) {
-      insights.push(`${providerPerformance[0].provider} shows the highest reliability at ${(providerPerformance[0].reliability * 100).toFixed(1)}%`);
+      insights.push(
+        `${providerPerformance[0].provider} shows the highest reliability at ${(providerPerformance[0].reliability * 100).toFixed(1)}%`,
+      );
     }
 
     const trends = {
       executionTrends: this.calculateExecutionTrends(),
       costTrends: this.metrics.business.costEfficiency.costTrends.slice(-24),
-      accuracyTrends: this.calculateAccuracyTrends()
+      accuracyTrends: this.calculateAccuracyTrends(),
     };
 
     return { summary, insights, recommendations, trends };
   }
 
-  private calculateExecutionTrends(): Array<{ hour: number; count: number; }> {
+  private calculateExecutionTrends(): Array<{ hour: number; count: number }> {
     const trends: Record<number, number> = {};
     const now = new Date();
     const startTime = new Date(now.getTime() - 24 * 60 * 60 * 1000);
 
     this.rawData
-      .filter(entry => entry.timestamp > startTime && entry.type === 'orchestration')
-      .forEach(entry => {
+      .filter((entry) => entry.timestamp > startTime && entry.type === 'orchestration')
+      .forEach((entry) => {
         const hour = entry.timestamp.getHours();
         trends[hour] = (trends[hour] || 0) + 1;
       });
@@ -739,13 +780,13 @@ export class PerformanceMonitor extends EventEmitter {
       .sort((a, b) => a.hour - b.hour);
   }
 
-  private calculateAccuracyTrends(): Array<{ timestamp: Date; accuracy: number; }> {
+  private calculateAccuracyTrends(): Array<{ timestamp: Date; accuracy: number }> {
     return this.rawData
-      .filter(entry => entry.type === 'orchestration' && entry.data.accuracy)
+      .filter((entry) => entry.type === 'orchestration' && entry.data.accuracy)
       .slice(-20)
-      .map(entry => ({
+      .map((entry) => ({
         timestamp: entry.timestamp,
-        accuracy: entry.data.accuracy
+        accuracy: entry.data.accuracy,
       }));
   }
 
@@ -761,13 +802,14 @@ export class PerformanceMonitor extends EventEmitter {
       return {
         expectedLoad: 0,
         predictedBottlenecks: [],
-        recommendations: ['Predictive analytics disabled']
+        recommendations: ['Predictive analytics disabled'],
       };
     }
 
     // Simple linear prediction based on recent trends
     const recentHours = this.calculateExecutionTrends();
-    const avgLoad = recentHours.reduce((sum, trend) => sum + trend.count, 0) / Math.max(1, recentHours.length);
+    const avgLoad =
+      recentHours.reduce((sum, trend) => sum + trend.count, 0) / Math.max(1, recentHours.length);
     const expectedLoad = Math.round(avgLoad * hoursAhead);
 
     const predictedBottlenecks: string[] = [];
@@ -824,7 +866,7 @@ export class PerformanceMonitor extends EventEmitter {
       activeExecutions: this.getActiveExecutions(),
       currentThroughput: this.getCurrentThroughput(),
       recentErrors: this.getRecentErrors(),
-      cacheHitRate: this.metrics.caching.hitRate
+      cacheHitRate: this.metrics.caching.hitRate,
     });
   }
 
@@ -834,9 +876,10 @@ export class PerformanceMonitor extends EventEmitter {
       timestamp: new Date(),
       executions: this.metrics.orchestration.totalExecutions,
       avgResponseTime: this.metrics.orchestration.averageExecutionTime,
-      successRate: this.metrics.orchestration.successfulExecutions / 
+      successRate:
+        this.metrics.orchestration.successfulExecutions /
         Math.max(1, this.metrics.orchestration.totalExecutions),
-      avgCost: this.metrics.business.costEfficiency.avgCostPerTask
+      avgCost: this.metrics.business.costEfficiency.avgCostPerTask,
     };
 
     this.emit('hourly-metrics', hourlyData);
@@ -846,27 +889,27 @@ export class PerformanceMonitor extends EventEmitter {
     // Store daily aggregated data and generate summary
     const dailyReport = this.generatePerformanceReport();
     this.emit('daily-report', dailyReport);
-    
+
     logger.info('Daily performance summary', {
       totalExecutions: dailyReport.summary.totalExecutions,
       successRate: dailyReport.summary.successRate,
       avgExecutionTime: dailyReport.summary.avgExecutionTime,
-      activeAlerts: dailyReport.summary.activeAlerts
+      activeAlerts: dailyReport.summary.activeAlerts,
     });
   }
 
   private cleanupOldData(): void {
     const retentionTime = this.config.metricsRetentionDays * 24 * 60 * 60 * 1000;
     const cutoffTime = new Date(Date.now() - retentionTime);
-    
+
     const originalSize = this.rawData.length;
-    this.rawData = this.rawData.filter(entry => entry.timestamp > cutoffTime);
-    
+    this.rawData = this.rawData.filter((entry) => entry.timestamp > cutoffTime);
+
     const removedCount = originalSize - this.rawData.length;
     if (removedCount > 0) {
       logger.info('Cleaned up old performance data', {
         removed: removedCount,
-        remaining: this.rawData.length
+        remaining: this.rawData.length,
       });
     }
   }
@@ -881,17 +924,16 @@ export class PerformanceMonitor extends EventEmitter {
 
   private getCurrentThroughput(): number {
     const lastHour = new Date(Date.now() - 60 * 60 * 1000);
-    return this.rawData.filter(entry => 
-      entry.timestamp > lastHour && entry.type === 'orchestration'
+    return this.rawData.filter(
+      (entry) => entry.timestamp > lastHour && entry.type === 'orchestration',
     ).length;
   }
 
   private getRecentErrors(): number {
     const lastHour = new Date(Date.now() - 60 * 60 * 1000);
-    return this.rawData.filter(entry => 
-      entry.timestamp > lastHour && 
-      entry.type === 'orchestration' && 
-      !entry.data.success
+    return this.rawData.filter(
+      (entry) =>
+        entry.timestamp > lastHour && entry.type === 'orchestration' && !entry.data.success,
     ).length;
   }
 
@@ -902,7 +944,7 @@ export class PerformanceMonitor extends EventEmitter {
         successfulExecutions: 0,
         failedExecutions: 0,
         averageExecutionTime: 0,
-        executionsByApproach: {}
+        executionsByApproach: {},
       },
       sequential: {
         totalChains: 0,
@@ -910,7 +952,7 @@ export class PerformanceMonitor extends EventEmitter {
         avgConfidence: 0,
         avgProcessingTime: 0,
         stepDistribution: {},
-        timeoutRate: 0
+        timeoutRate: 0,
       },
       multiAgent: {
         totalDiscussions: 0,
@@ -918,16 +960,16 @@ export class PerformanceMonitor extends EventEmitter {
         avgParticipants: 0,
         consensusRate: 0,
         deadlockRate: 0,
-        avgConfidenceLevel: 0
+        avgConfidenceLevel: 0,
       },
       routing: {
         totalDecisions: 0,
         routingAccuracy: 0,
         avgDecisionTime: 0,
         routingDistribution: {},
-        overrideRate: 0
+        overrideRate: 0,
       },
-      providers: {} as any,
+      providers: {} as PerformanceMetrics['providers'],
       caching: {
         totalRequests: 0,
         hits: 0,
@@ -935,36 +977,36 @@ export class PerformanceMonitor extends EventEmitter {
         hitRate: 0,
         avgResponseTime: { hit: 0, miss: 0 },
         memoryUsage: 0,
-        evictions: 0
+        evictions: 0,
       },
       fallbacks: {
         totalFallbacks: 0,
         fallbacksByLevel: {},
         recoveryRate: 0,
         avgFallbackTime: 0,
-        emergencyResponseCount: 0
+        emergencyResponseCount: 0,
       },
       business: {
         userSatisfaction: {
           avgRating: 0,
           totalRatings: 0,
-          ratingDistribution: {}
+          ratingDistribution: {},
         },
         costEfficiency: {
           avgCostPerTask: 0,
           costTrends: [],
-          budgetUtilization: 0
+          budgetUtilization: 0,
         },
         throughput: {
           tasksPerHour: 0,
           peakHour: 0,
-          trends: []
-        }
-      }
+          trends: [],
+        },
+      },
     };
 
     // Initialize provider metrics
-    Object.values(AIProvider).forEach(provider => {
+    Object.values(AIProvider).forEach((provider) => {
       this.metrics.providers[provider] = {
         requests: 0,
         successes: 0,
@@ -972,7 +1014,7 @@ export class PerformanceMonitor extends EventEmitter {
         avgResponseTime: 0,
         totalCost: 0,
         avgAccuracy: 0,
-        reliabilityScore: 1.0
+        reliabilityScore: 1.0,
       };
     });
   }
@@ -985,13 +1027,13 @@ export class PerformanceMonitor extends EventEmitter {
   }
 
   getAlerts(severity?: string): PerformanceAlert[] {
-    return this.alerts.filter(alert => !severity || alert.severity === severity);
+    return this.alerts.filter((alert) => !severity || alert.severity === severity);
   }
 
   clearAlerts(olderThan?: Date): number {
     const cutoff = olderThan || new Date();
     const originalCount = this.alerts.length;
-    this.alerts = this.alerts.filter(alert => alert.timestamp > cutoff);
+    this.alerts = this.alerts.filter((alert) => alert.timestamp > cutoff);
     return originalCount - this.alerts.length;
   }
 
@@ -1000,13 +1042,13 @@ export class PerformanceMonitor extends EventEmitter {
       metrics: this.getMetrics(),
       alerts: this.getAlerts(),
       rawDataSample: this.rawData.slice(-100), // Last 100 entries
-      generatedAt: new Date()
+      generatedAt: new Date(),
     };
   }
 
   shutdown(): void {
     // Clear all timers
-    Object.values(this.aggregationTimers).forEach(timer => {
+    Object.values(this.aggregationTimers).forEach((timer) => {
       if (timer) clearInterval(timer);
     });
 

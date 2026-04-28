@@ -1,4 +1,4 @@
-interface Agent {
+export interface Agent {
   name: string;
   capabilities: string[];
   execute: (task: any) => Promise<any>;
@@ -26,16 +26,16 @@ export class AgentRegistry {
 
   public register(name: string, agent: Agent): void {
     this.agents.set(name, agent);
-    
+
     // Initialize metrics
     this.metrics.set(name, {
       tasksProcessed: 0,
       successRate: 100,
       avgResponseTime: 0,
       lastActive: new Date(),
-      errors: 0
+      errors: 0,
     });
-    
+
     // Index capabilities
     if (agent.capabilities) {
       for (const capability of agent.capabilities) {
@@ -48,7 +48,7 @@ export class AgentRegistry {
 
   public unregister(name: string): boolean {
     const agent = this.agents.get(name);
-    
+
     if (agent) {
       // Remove from capabilities index
       if (agent.capabilities) {
@@ -62,12 +62,12 @@ export class AgentRegistry {
           }
         }
       }
-      
+
       this.agents.delete(name);
       this.metrics.delete(name);
       return true;
     }
-    
+
     return false;
   }
 
@@ -78,20 +78,20 @@ export class AgentRegistry {
   public getByCapability(capability: string): Agent[] {
     const agentNames = this.capabilities.get(capability) || [];
     const agents: Agent[] = [];
-    
+
     for (const name of agentNames) {
       const agent = this.agents.get(name);
       if (agent) {
         agents.push(agent);
       }
     }
-    
+
     return agents;
   }
 
   public async restart(name: string): Promise<void> {
     const agent = this.agents.get(name);
-    
+
     if (agent) {
       // Simulate agent restart
       // In production, this would properly restart the agent
@@ -100,7 +100,7 @@ export class AgentRegistry {
         successRate: 100,
         avgResponseTime: 0,
         lastActive: new Date(),
-        errors: 0
+        errors: 0,
       });
     } else {
       throw new Error(`Agent ${name} not found`);
@@ -109,19 +109,19 @@ export class AgentRegistry {
 
   public updateMetrics(name: string, success: boolean, responseTime: number): void {
     const metrics = this.metrics.get(name);
-    
+
     if (metrics) {
       metrics.tasksProcessed++;
       metrics.lastActive = new Date();
-      
+
       if (!success) {
         metrics.errors++;
       }
-      
+
       // Update success rate
       const successCount = metrics.tasksProcessed - metrics.errors;
       metrics.successRate = (successCount / metrics.tasksProcessed) * 100;
-      
+
       // Update average response time
       const prevAvg = metrics.avgResponseTime;
       const prevCount = metrics.tasksProcessed - 1;
@@ -131,15 +131,15 @@ export class AgentRegistry {
 
   public getStatus(): Map<string, boolean> {
     const status = new Map<string, boolean>();
-    
+
     for (const [name, agent] of this.agents) {
       const isReady = agent.isReady ? agent.isReady() : true;
       const metrics = this.metrics.get(name);
       const isHealthy = metrics ? metrics.successRate > 80 : true;
-      
+
       status.set(name, isReady && isHealthy);
     }
-    
+
     return status;
   }
 
@@ -157,30 +157,30 @@ export class AgentRegistry {
 
   public findBestAgent(capability: string): string | null {
     const agents = this.getByCapability(capability);
-    
+
     if (agents.length === 0) {
       return null;
     }
-    
+
     // Find agent with best metrics
     let bestAgent = agents[0];
     let bestScore = 0;
-    
+
     for (const agent of agents) {
       const name = this.getAgentName(agent);
       const metrics = this.metrics.get(name);
-      
+
       if (metrics) {
         // Calculate score based on success rate and response time
-        const score = metrics.successRate - (metrics.avgResponseTime / 1000);
-        
+        const score = metrics.successRate - metrics.avgResponseTime / 1000;
+
         if (score > bestScore) {
           bestScore = score;
           bestAgent = agent;
         }
       }
     }
-    
+
     return this.getAgentName(bestAgent);
   }
 
@@ -199,13 +199,13 @@ export class AgentRegistry {
       healthyAgents: 0,
       degradedAgents: 0,
       failedAgents: 0,
-      agents: [] as any[]
+      agents: [] as Array<{ name: string; status: string; metrics: AgentMetrics }>,
     };
-    
+
     for (const [name, metrics] of this.metrics) {
       const agent = this.agents.get(name);
       const isReady = agent && agent.isReady ? agent.isReady() : true;
-      
+
       let status = 'healthy';
       if (!isReady || metrics.errors > 10) {
         status = 'failed';
@@ -216,14 +216,14 @@ export class AgentRegistry {
       } else {
         report.healthyAgents++;
       }
-      
+
       report.agents.push({
         name,
         status,
-        metrics
+        metrics,
       });
     }
-    
+
     return report;
   }
 }
