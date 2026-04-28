@@ -19,6 +19,7 @@
 import { NextResponse } from 'next/server';
 import { CONSENT_UTTERANCE, CONSENT_UTTERANCE_VERSION } from '@/lib/voice/consent-utterance';
 import { verifyTwilioSignature } from '@/lib/voice/twilio-signature';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -53,28 +54,30 @@ function reconstructUrl(request: Request): string {
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
-  // Parse form-encoded Twilio body once — used for both signature verify and TwiML context.
-  const rawBody = await request.text();
-  const params: Record<string, string> = {};
-  for (const [k, v] of new URLSearchParams(rawBody)) params[k] = v;
+  const log = requestLogger(request, { route: '/api/voice/twilio-consent' });
+  try {
+    // Parse form-encoded Twilio body once — used for both signature verify and TwiML context.
+    const rawBody = await request.text();
+    const params: Record<string, string> = {};
+    for (const [k, v] of new URLSearchParams(rawBody)) params[k] = v;
 
-  const authToken = process.env.TWILIO_AUTH_TOKEN ?? '';
-  const header = request.headers.get('x-twilio-signature');
-  const url = reconstructUrl(request);
+    const authToken = process.env.TWILIO_AUTH_TOKEN ?? '';
+    const header = request.headers.get('x-twilio-signature');
+    const url = reconstructUrl(request);
 
-  if (!verifyTwilioSignature(authToken, url, params, header)) {
-    return new NextResponse('Forbidden', { status: 403 });
-  }
+    if (!verifyTwilioSignature(authToken, url, params, header)) {
+      return new NextResponse('Forbidden', { status: 403 });
+    }
 
-  // Gather the caller's response. Speech "yes/ok/agree" OR pressing any
-  // digit OTHER than 0 = consent. Pressing 0, saying "no/human/person",
-  // or timing out = decline (routes to human, no LLM).
-  // Per canonical APP 8 wording (compliance.md §3): "press 0 at any time
-  // to speak to a person" — opt-out is press-0, not opt-in press-1.
-  const gatherAction = '/api/voice/twilio-consent/handle';
-  const humanTransfer = '/api/voice/twilio-consent/human-transfer';
+    // Gather the caller's response. Speech "yes/ok/agree" OR pressing any
+    // digit OTHER than 0 = consent. Pressing 0, saying "no/human/person",
+    // or timing out = decline (routes to human, no LLM).
+    // Per canonical APP 8 wording (compliance.md §3): "press 0 at any time
+    // to speak to a person" — opt-out is press-0, not opt-in press-1.
+    const gatherAction = '/api/voice/twilio-consent/handle';
+    const humanTransfer = '/api/voice/twilio-consent/human-transfer';
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Gather input="dtmf speech" numDigits="1" timeout="8" speechTimeout="auto" action="${gatherAction}" method="POST" language="en-AU" hints="yes, yeah, ok, okay, correct, continue, agree, no, human, person, operator">
     <Say voice="Polly.Nicole-Neural" language="en-AU">${escapeXml(CONSENT_UTTERANCE)}</Say>
@@ -83,5 +86,18 @@ export async function POST(request: Request): Promise<NextResponse> {
   <Redirect method="POST">${humanTransfer}</Redirect>
 </Response>`;
 
-  return twimlResponse(xml);
+    return twimlResponse(xml);
+  } catch (error) {
+    log.error('handler failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/voice/twilio-consent' },
+      extra: { requestId: log.requestId },
+    });
+    // TwiML fallback — terminate cleanly so the caller is never stuck on silence.
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<Response><Hangup/></Response>`;
+    return new NextResponse(xml, {
+      status: 200,
+      headers: { 'Content-Type': 'text/xml; charset=utf-8' },
+    });
+  }
 }

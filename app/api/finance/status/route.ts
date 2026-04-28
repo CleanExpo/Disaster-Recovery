@@ -23,6 +23,7 @@ import {
   type ReferralStage,
 } from '@/lib/finance/referral-store';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 
@@ -52,78 +53,88 @@ function toStage(stage: string): { stage: ReferralStage; unknown: boolean } {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  if (process.env.NEXT_PUBLIC_EQUIPPED_REFERRAL_ENABLED !== 'true') {
-    return NextResponse.json({ error: 'equipped_referral_disabled' }, { status: 503 });
-  }
-
-  const secret = process.env.EQUIPPED_WEBHOOK_SECRET ?? '';
-  const signatureHeader = req.headers.get('equipped-signature') ?? '';
-  const rawBody = await req.text();
-
-  const verdict = verifyEquippedSignature({ secret, rawBody, signatureHeader });
-  if (!verdict.ok) {
-    return NextResponse.json(
-      { error: 'signature_invalid', reason: verdict.reason },
-      { status: 401 },
-    );
-  }
-
-  let parsed: z.infer<typeof PayloadSchema>;
+  const log = requestLogger(req, { route: '/api/finance/status' });
   try {
-    parsed = PayloadSchema.parse(JSON.parse(rawBody));
-  } catch (err) {
-    return NextResponse.json(
-      { error: 'invalid_payload', message: err instanceof Error ? err.message : 'parse_failed' },
-      { status: 400 },
-    );
-  }
+    if (process.env.NEXT_PUBLIC_EQUIPPED_REFERRAL_ENABLED !== 'true') {
+      return NextResponse.json({ error: 'equipped_referral_disabled' }, { status: 503 });
+    }
 
-  const key = eventKey(parsed.referralId, parsed.timestamp);
-  if (await hasSeen(key)) {
-    return NextResponse.json({ received: true, duplicate: true });
-  }
+    const secret = process.env.EQUIPPED_WEBHOOK_SECRET ?? '';
+    const signatureHeader = req.headers.get('equipped-signature') ?? '';
+    const rawBody = await req.text();
 
-  const { stage, unknown } = toStage(parsed.stage);
+    const verdict = verifyEquippedSignature({ secret, rawBody, signatureHeader });
+    if (!verdict.ok) {
+      return NextResponse.json(
+        { error: 'signature_invalid', reason: verdict.reason },
+        { status: 401 },
+      );
+    }
 
-  await upsertReferral({
-    referralId: parsed.referralId,
-    stage,
-    lastStatus: parsed.status,
-    smsSent: Boolean(parsed.metadata?.sms_sent),
-    consentVersion:
-      typeof parsed.metadata?.consent_version === 'string'
-        ? (parsed.metadata.consent_version as string)
-        : undefined,
-    entityIdentifierHash:
-      typeof parsed.metadata?.entity_identifier_hash === 'string'
-        ? (parsed.metadata.entity_identifier_hash as string)
-        : undefined,
-    metadata: parsed.metadata,
-  });
+    let parsed: z.infer<typeof PayloadSchema>;
+    try {
+      parsed = PayloadSchema.parse(JSON.parse(rawBody));
+    } catch (err) {
+      return NextResponse.json(
+        { error: 'invalid_payload', message: err instanceof Error ? err.message : 'parse_failed' },
+        { status: 400 },
+      );
+    }
 
-  await markSeen(key, {
-    referralId: parsed.referralId,
-    webhookTimestamp: parsed.timestamp,
-    stage,
-    status: parsed.status,
-    unknownStage: unknown,
-    payload: parsed.metadata,
-  });
+    const key = eventKey(parsed.referralId, parsed.timestamp);
+    if (await hasSeen(key)) {
+      return NextResponse.json({ received: true, duplicate: true });
+    }
 
-  await logComplianceEvent({
-    eventType: 'finance_referral_handoff',
-    correlationId: parsed.referralId,
-    correlationType: 'finance_referral',
-    entityType: 'finance_partner',
-    metadata: {
+    const { stage, unknown } = toStage(parsed.stage);
+
+    await upsertReferral({
+      referralId: parsed.referralId,
+      stage,
+      lastStatus: parsed.status,
+      smsSent: Boolean(parsed.metadata?.sms_sent),
+      consentVersion:
+        typeof parsed.metadata?.consent_version === 'string'
+          ? (parsed.metadata.consent_version as string)
+          : undefined,
+      entityIdentifierHash:
+        typeof parsed.metadata?.entity_identifier_hash === 'string'
+          ? (parsed.metadata.entity_identifier_hash as string)
+          : undefined,
+      metadata: parsed.metadata,
+    });
+
+    await markSeen(key, {
+      referralId: parsed.referralId,
+      webhookTimestamp: parsed.timestamp,
       stage,
       status: parsed.status,
-      timestamp: parsed.timestamp,
       unknownStage: unknown,
-      source: 'equipped_webhook',
-      ...(parsed.metadata ?? {}),
-    },
-  });
+      payload: parsed.metadata,
+    });
 
-  return NextResponse.json({ received: true, ...(unknown ? { unknownStage: true } : {}) });
+    await logComplianceEvent({
+      eventType: 'finance_referral_handoff',
+      correlationId: parsed.referralId,
+      correlationType: 'finance_referral',
+      entityType: 'finance_partner',
+      metadata: {
+        stage,
+        status: parsed.status,
+        timestamp: parsed.timestamp,
+        unknownStage: unknown,
+        source: 'equipped_webhook',
+        ...(parsed.metadata ?? {}),
+      },
+    });
+
+    return NextResponse.json({ received: true, ...(unknown ? { unknownStage: true } : {}) });
+  } catch (error) {
+    log.error('handler failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/finance/status' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
 }

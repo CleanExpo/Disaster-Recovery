@@ -12,6 +12,7 @@ import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput } from '@/lib/voice/output-filter';
 import { saveDraft } from '@/lib/voice/draft-store';
 import { logComplianceEvent } from '@/lib/voice/route-helpers';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -26,36 +27,46 @@ const InputSchema = z.object({
 });
 
 export async function POST(request: Request) {
-  const pre = await preflight(request, {
-    toolName: 'create_draft_claim',
-    schema: InputSchema,
-    rateLimitMax: 3,
-  });
-  if (!pre.ok) return pre.response;
+  const log = requestLogger(request, { route: '/api/voice/tools/create-draft-claim' });
+  try {
+    const pre = await preflight(request, {
+      toolName: 'create_draft_claim',
+      schema: InputSchema,
+      rateLimitMax: 3,
+    });
+    if (!pre.ok) return pre.response;
 
-  const draft_id = randomUUID();
-  const input = pre.body!;
-  saveDraft({
-    draft_id,
-    name: input.name,
-    phone: input.phone,
-    email: input.email,
-    postcode: input.postcode,
-    damage_type: input.damage_type,
-    description: input.description,
-    created_at: Date.now(),
-  });
+    const draft_id = randomUUID();
+    const input = pre.body!;
+    saveDraft({
+      draft_id,
+      name: input.name,
+      phone: input.phone,
+      email: input.email,
+      postcode: input.postcode,
+      damage_type: input.damage_type,
+      description: input.description,
+      created_at: Date.now(),
+    });
 
-  const raw = { draft_id, next_step: 'sms_signature' as const };
-  const filtered = filterToolOutput(raw, ['draft_id', 'next_step']);
+    const raw = { draft_id, next_step: 'sms_signature' as const };
+    const filtered = filterToolOutput(raw, ['draft_id', 'next_step']);
 
-  await logComplianceEvent({
-    session_id: pre.sessionId,
-    event_type: 'voice_tool_invoked',
-    tool_name: 'create_draft_claim',
-    outcome: 'ok',
-    metadata: { draft_id, postcode: pre.body.postcode, damage_type: pre.body.damage_type },
-  });
+    await logComplianceEvent({
+      session_id: pre.sessionId,
+      event_type: 'voice_tool_invoked',
+      tool_name: 'create_draft_claim',
+      outcome: 'ok',
+      metadata: { draft_id, postcode: pre.body.postcode, damage_type: pre.body.damage_type },
+    });
 
-  return NextResponse.json(filtered);
+    return NextResponse.json(filtered);
+  } catch (error) {
+    log.error('handler failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/voice/tools/create-draft-claim' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
 }
