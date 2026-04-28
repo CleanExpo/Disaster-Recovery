@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/prisma';
 import { getNexusAgent } from '@/lib/nexus';
-import { requestLogger } from '@/lib/observability';
+import { requestLogger, captureException } from '@/lib/observability';
 
 interface RouteContext {
   params: { id: string };
@@ -22,10 +22,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
   // Validate agent exists
   const agent = getNexusAgent(id);
   if (!agent) {
-    return NextResponse.json(
-      { error: `Unknown agent: ${id}` },
-      { status: 404 }
-    );
+    return NextResponse.json({ error: `Unknown agent: ${id}` }, { status: 404 });
   }
 
   // Log the trigger attempt to AuditLog
@@ -46,7 +43,14 @@ export async function POST(request: NextRequest, context: RouteContext) {
     });
   } catch (err) {
     // Non-fatal — log but do not block the response
-    log.error('failed to write AuditLog entry', { ref: 'NEXUS', error: err instanceof Error ? err.message : String(err) });
+    log.error('failed to write AuditLog entry', {
+      ref: 'NEXUS',
+      error: err instanceof Error ? err.message : String(err),
+    });
+    captureException(err, {
+      tags: { route: '/api/nexus/agents/[id]/trigger' },
+      extra: { requestId: log.requestId, agentId: id },
+    });
   }
 
   return NextResponse.json({

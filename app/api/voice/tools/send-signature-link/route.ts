@@ -12,6 +12,7 @@ import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput, sanitiseSmsBody } from '@/lib/voice/output-filter';
 import { getDraft } from '@/lib/voice/draft-store';
 import { logComplianceEvent } from '@/lib/voice/route-helpers';
+import { captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -45,7 +46,7 @@ export async function POST(request: Request) {
   const shortId = randomUUID().slice(0, 8);
   const url = `https://disasterrecovery.com.au/c/${shortId}`;
   const smsBody = sanitiseSmsBody(
-    `Disaster Recovery: tap to review & sign your claim: ${url}. Expires 24h. Reply STOP to opt out.`
+    `Disaster Recovery: tap to review & sign your claim: ${url}. Expires 24h. Reply STOP to opt out.`,
   );
 
   const hasTwilio =
@@ -85,6 +86,10 @@ export async function POST(request: Request) {
         tool_name: 'send_signature_link',
         outcome: 'error',
         metadata: { reason: 'twilio_exception', draft_id, err: String(err) },
+      });
+      captureException(err, {
+        tags: { route: '/api/voice/tools/send-signature-link', stage: 'twilio_send' },
+        extra: { draftId: draft_id, sessionId: pre.sessionId },
       });
       return NextResponse.json(filterToolOutput({ sent: false }, ['sent']));
     }

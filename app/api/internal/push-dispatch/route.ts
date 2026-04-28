@@ -45,6 +45,7 @@ import { prisma } from '@/lib/prisma';
 import { logComplianceEvent } from '@/lib/compliance/events';
 import { buildPushPayload, PUSH_TEMPLATE_KEYS } from '@/lib/push/build-payload';
 import { getApnsJwt } from '@/lib/push/sign-apns-jwt';
+import { captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -81,36 +82,24 @@ function readApnsEnv(): ApnsEnv | null {
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const env = readApnsEnv();
   if (!env) {
-    return NextResponse.json(
-      { ok: false, error: 'apns_unconfigured' },
-      { status: 503 },
-    );
+    return NextResponse.json({ ok: false, error: 'apns_unconfigured' }, { status: 503 });
   }
 
   const authHeader = request.headers.get('x-internal-auth');
   if (authHeader !== env.sharedSecret) {
-    return NextResponse.json(
-      { ok: false, error: 'unauthorised' },
-      { status: 401 },
-    );
+    return NextResponse.json({ ok: false, error: 'unauthorised' }, { status: 401 });
   }
 
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_json' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 });
   }
 
   const parsed = dispatchSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { ok: false, error: 'invalid_payload' },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: 'invalid_payload' }, { status: 400 });
   }
 
   const { claimId, templateKey, params } = parsed.data;
@@ -124,10 +113,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       templateKey,
       error: err instanceof Error ? err.message : String(err),
     });
-    return NextResponse.json(
-      { ok: false, error: 'payload_build_failed' },
-      { status: 400 },
-    );
+    captureException(err, {
+      tags: { route: '/api/internal/push-dispatch', stage: 'payload_build' },
+      extra: { templateKey, claimId },
+    });
+    return NextResponse.json({ ok: false, error: 'payload_build_failed' }, { status: 400 });
   }
 
   const tokens = await prisma.pushToken.findMany({
@@ -151,10 +141,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     console.error('[push-dispatch] jwt_sign_failed', {
       error: err instanceof Error ? err.message : String(err),
     });
-    return NextResponse.json(
-      { ok: false, error: 'jwt_sign_failed' },
-      { status: 500 },
-    );
+    captureException(err, {
+      tags: { route: '/api/internal/push-dispatch', stage: 'jwt_sign' },
+      extra: { claimId },
+    });
+    return NextResponse.json({ ok: false, error: 'jwt_sign_failed' }, { status: 500 });
   }
 
   const body_json = JSON.stringify(payload);
@@ -207,6 +198,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       console.error('[push-dispatch] network_error', {
         fingerprint: tokenFingerprint(row.token),
         error: err instanceof Error ? err.message : String(err),
+      });
+      captureException(err, {
+        tags: { route: '/api/internal/push-dispatch', stage: 'apns_dispatch' },
+        extra: { claimId, fingerprint: tokenFingerprint(row.token) },
       });
     }
   }
