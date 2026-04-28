@@ -142,7 +142,26 @@ async function createSubscriptionSchedule(
   }
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
-  const schedule = await (stripe.subscriptionSchedules.create as any)(
+  // Stripe's REST API accepts the string 'now' for start_date / end_date but
+  // the typed SDK currently only declares `number`. We use a structural
+  // overload that widens just the date fields to mirror the wire payload —
+  // avoids `as any` and preserves runtime behaviour exactly.
+  type SchedulePhaseInput = {
+    start_date?: number | 'now';
+    end_date?: number | 'now';
+    items: Array<{ price: string }>;
+    coupon?: string;
+    iterations?: number;
+  };
+  const stripeClient = stripe;
+  const createSchedule = stripeClient.subscriptionSchedules.create as unknown as (
+    params: {
+      from_subscription: string;
+      phases: SchedulePhaseInput[];
+    },
+    options?: { idempotencyKey?: string },
+  ) => ReturnType<typeof stripeClient.subscriptionSchedules.create>;
+  const schedule = await createSchedule(
     {
       from_subscription: subscriptionId,
       phases: [

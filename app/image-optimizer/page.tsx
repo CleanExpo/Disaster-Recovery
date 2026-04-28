@@ -1,6 +1,5 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useCallback } from 'react';
@@ -27,34 +26,35 @@ function ImageOptimizerPageOriginal() {
     for (const file of files) {
       try {
         const originalSize = file.size;
-        
+
         const options = {
           maxSizeMB: 2,
           maxWidthOrHeight: maxWidth,
           useWebWorker: true,
           fileType: 'image/webp',
-          quality: quality };
+          quality: quality,
+        };
 
         const compressedFile = await imageCompression(file, options);
         const compressedSize = compressedFile.size;
-        const reduction = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
+        const reduction = (((originalSize - compressedSize) / originalSize) * 100).toFixed(1);
 
         // Create download link
         const url = URL.createObjectURL(compressedFile);
-        
+
         newResults.push({
           name: file.name,
           originalSize: (originalSize / 1024 / 1024).toFixed(2),
           compressedSize: (compressedSize / 1024 / 1024).toFixed(2),
           reduction,
           url,
-          compressedFile
+          compressedFile,
         });
       } catch (error) {
         console.error(`Error processing ${file.name}:`, error);
         newResults.push({
           name: file.name,
-          error: true
+          error: true,
         });
       }
     }
@@ -64,7 +64,7 @@ function ImageOptimizerPageOriginal() {
   };
 
   const downloadAll = () => {
-    results.forEach(result => {
+    results.forEach((result) => {
       if (result.url) {
         const a = document.createElement('a');
         a.href = result.url;
@@ -76,8 +76,15 @@ function ImageOptimizerPageOriginal() {
 
   const downloadZip = async () => {
     // Create a zip file using browser APIs
-    const zip = new (window as any).JSZip();
-    
+    const zip = new (
+      window as unknown as {
+        JSZip: new () => {
+          file: (name: string, data: ArrayBuffer) => void;
+          generateAsync: (options: { type: 'blob' }) => Promise<Blob>;
+        };
+      }
+    ).JSZip();
+
     for (const result of results) {
       if (result.compressedFile) {
         const arrayBuffer = await result.compressedFile.arrayBuffer();
@@ -85,7 +92,7 @@ function ImageOptimizerPageOriginal() {
         zip.file(fileName, arrayBuffer);
       }
     }
-    
+
     const content = await zip.generateAsync({ type: 'blob' });
     const url = URL.createObjectURL(content);
     const a = document.createElement('a');
@@ -98,15 +105,13 @@ function ImageOptimizerPageOriginal() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">Browser Image Optimizer</h1>
-        
+
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Settings</h2>
-          
+
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Quality (0.1 - 1.0)
-              </label>
+              <label className="block text-sm font-medium mb-2">Quality (0.1 - 1.0)</label>
               <input
                 type="number"
                 min="0.1"
@@ -117,11 +122,9 @@ function ImageOptimizerPageOriginal() {
                 className="w-full px-3 py-2 border rounded-md"
               />
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Max Width (px)
-              </label>
+              <label className="block text-sm font-medium mb-2">Max Width (px)</label>
               <input
                 type="number"
                 value={maxWidth}
@@ -132,9 +135,7 @@ function ImageOptimizerPageOriginal() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Select Images
-            </label>
+            <label className="block text-sm font-medium mb-2">Select Images</label>
             <input
               type="file"
               multiple
@@ -146,9 +147,7 @@ function ImageOptimizerPageOriginal() {
 
           {files.length > 0 && (
             <div className="mb-4">
-              <p className="text-sm text-gray-700">
-                Selected: {files.length} images
-              </p>
+              <p className="text-sm text-gray-700">Selected: {files.length} images</p>
             </div>
           )}
 
@@ -217,15 +216,17 @@ function ImageOptimizerPageOriginal() {
             <div className="mt-4 p-4 bg-gray-100 rounded">
               <p className="text-sm font-semibold">Summary:</p>
               <p className="text-sm">
-                Total files processed: {results.filter(r => !r.error).length}
+                Total files processed: {results.filter((r) => !r.error).length}
               </p>
               <p className="text-sm">
-                Average reduction: {
-                  (results
-                    .filter(r => !r.error)
-                    .reduce((acc, r) => acc + parseFloat(r.reduction), 0) / 
-                    results.filter(r => !r.error).length).toFixed(1)
-                }%
+                Average reduction:{' '}
+                {(
+                  results
+                    .filter((r) => !r.error)
+                    .reduce((acc, r) => acc + parseFloat(r.reduction), 0) /
+                  results.filter((r) => !r.error).length
+                ).toFixed(1)}
+                %
               </p>
             </div>
           </div>

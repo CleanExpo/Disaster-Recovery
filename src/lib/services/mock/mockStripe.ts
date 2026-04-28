@@ -47,16 +47,16 @@ class MockStripeService {
       status: 'requires_payment_method',
       metadata: params.metadata || {},
       created: Date.now() / 1000,
-      client_secret: `pi_mock_secret_${Math.random().toString(36).substr(2, 9)}`
+      client_secret: `pi_mock_secret_${Math.random().toString(36).substr(2, 9)}`,
     };
-    
+
     this.mockPaymentIntents.set(paymentIntent.id, paymentIntent);
-    
+
     // Simulate processing delay
     setTimeout(() => {
       paymentIntent.status = 'succeeded';
     }, 2000);
-    
+
     return paymentIntent;
   }
 
@@ -67,9 +67,9 @@ class MockStripeService {
     line_items: Array<{ price_data: any; quantity: number }>;
     customer_email?: string;
     metadata?: Record<string, any>;
-  }): Promise<MockCheckoutSession> {
+  }): Promise<MockCheckoutSession & { url: string }> {
     const totalAmount = params.line_items.reduce((sum, item) => {
-      return sum + (item.price_data.unit_amount * item.quantity);
+      return sum + item.price_data.unit_amount * item.quantity;
     }, 0);
 
     const session: MockCheckoutSession = {
@@ -78,18 +78,18 @@ class MockStripeService {
       amount_total: totalAmount,
       customer: params.customer_email || 'demo@example.com',
       success_url: params.success_url,
-      cancel_url: params.cancel_url
+      cancel_url: params.cancel_url,
     };
-    
+
     this.mockSessions.set(session.id, session);
-    
+
     // Return mock checkout URL
     const mockUrl = `${params.success_url}?session_id=${session.id}&demo=true`;
-    
+
     return {
       ...session,
-      url: mockUrl
-    } as any;
+      url: mockUrl,
+    };
   }
 
   // Simulate retrieving a payment intent
@@ -107,9 +107,9 @@ class MockStripeService {
       id: `cus_mock_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       email: params.email,
       name: params.name,
-      metadata: params.metadata || {}
+      metadata: params.metadata || {},
     };
-    
+
     this.mockCustomers.set(customer.id, customer);
     return customer;
   }
@@ -128,7 +128,7 @@ class MockStripeService {
       destination: params.destination,
       status: 'pending',
       created: Date.now() / 1000,
-      metadata: params.metadata || {}
+      metadata: params.metadata || {},
     };
   }
 
@@ -139,7 +139,7 @@ class MockStripeService {
     reason?: string;
   }): Promise<any> {
     const paymentIntent = this.mockPaymentIntents.get(params.payment_intent);
-    
+
     return {
       id: `re_mock_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       amount: params.amount || paymentIntent?.amount || 0,
@@ -147,7 +147,7 @@ class MockStripeService {
       payment_intent: params.payment_intent,
       reason: params.reason || 'requested_by_customer',
       status: 'succeeded',
-      created: Date.now() / 1000
+      created: Date.now() / 1000,
     };
   }
 
@@ -162,9 +162,9 @@ class MockStripeService {
           id: `pi_mock_${Date.now()}`,
           amount: 275000,
           currency: 'aud',
-          status: 'succeeded'
-        }
-      }
+          status: 'succeeded',
+        },
+      },
     };
   }
 }
@@ -175,24 +175,24 @@ export const mockStripeService = new MockStripeService();
 export const getMockStripe = () => ({
   paymentIntents: {
     create: (params: any) => mockStripeService.createPaymentIntent(params),
-    retrieve: (id: string) => mockStripeService.retrievePaymentIntent(id)
+    retrieve: (id: string) => mockStripeService.retrievePaymentIntent(id),
   },
   checkout: {
     sessions: {
-      create: (params: any) => mockStripeService.createCheckoutSession(params)
-    }
+      create: (params: any) => mockStripeService.createCheckoutSession(params),
+    },
   },
   customers: {
-    create: (params: any) => mockStripeService.createCustomer(params)
+    create: (params: any) => mockStripeService.createCustomer(params),
   },
   transfers: {
-    create: (params: any) => mockStripeService.createTransfer(params)
+    create: (params: any) => mockStripeService.createTransfer(params),
   },
   refunds: {
-    create: (params: any) => mockStripeService.createRefund(params)
+    create: (params: any) => mockStripeService.createRefund(params),
   },
   webhooks: {
-    constructEvent: (payload: any, sig: string, secret: string) => 
-      mockStripeService.constructEvent(payload, sig, secret)
-  }
+    constructEvent: (payload: any, sig: string, secret: string) =>
+      mockStripeService.constructEvent(payload, sig, secret),
+  },
 });
