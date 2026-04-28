@@ -454,6 +454,15 @@ model ContractorApplication {
   contactedAt         DateTime?
   convertedContractor String?
 
+  // DR-815 — wizard payload persistence (Option A: 5 nullable JSONB columns
+  // mirroring the onboarding wizard sections that don't fit the flat shape).
+  // These are append-only from the contractor side; admin reads only.
+  insuranceData    Json?
+  experienceData   Json?
+  equipmentData    Json?
+  healthSafetyData Json?
+  bankingData      Json?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

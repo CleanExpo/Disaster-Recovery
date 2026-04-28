@@ -48,6 +48,13 @@ interface ContractorApplication {
   contacted: boolean;
   contactedAt: string | null;
   convertedContractor: string | null;
+  // DR-815 — wizard sections persisted as JSONB. `unknown` keeps render
+  // defensive against shape drift from frontend wizard updates.
+  insuranceData: Record<string, unknown> | null;
+  experienceData: Record<string, unknown> | null;
+  equipmentData: Record<string, unknown> | null;
+  healthSafetyData: Record<string, unknown> | null;
+  bankingData: Record<string, unknown> | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -319,6 +326,25 @@ export default function AdminApplicationDetailPage() {
               defaultOpen
             />
             <DataSection title="Services & certifications" icon={Shield} data={serviceInfo} />
+            {application.insuranceData && (
+              <DataSection title="Insurance" icon={Shield} data={application.insuranceData} />
+            )}
+            {application.experienceData && (
+              <DataSection title="Experience" icon={Briefcase} data={application.experienceData} />
+            )}
+            {application.equipmentData && (
+              <DataSection title="Equipment" icon={Briefcase} data={application.equipmentData} />
+            )}
+            {application.healthSafetyData && (
+              <DataSection
+                title="Health & safety"
+                icon={AlertTriangle}
+                data={application.healthSafetyData}
+              />
+            )}
+            {application.bankingData && (
+              <DataSection title="Banking" icon={Banknote} data={application.bankingData} />
+            )}
             <DataSection title="Attribution" icon={User} data={attribution} />
             <DataSection title="Review & outreach" icon={Banknote} data={review} />
           </div>
