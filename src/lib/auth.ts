@@ -51,6 +51,11 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        // Bridge: Prisma User column is `userType` (DR-807 schema rewrite to
+        // match live `users` table) but the JWT/session contract still
+        // exposes `role` for downstream RBAC + RBAC components. Mapped here
+        // so call sites reading `session.user.role` keep working without
+        // a sweep. See src/types/next-auth.d.ts for the augmented shape.
         return {
           id: user.id,
           email: user.email,
