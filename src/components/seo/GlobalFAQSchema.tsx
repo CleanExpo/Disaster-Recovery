@@ -14,6 +14,7 @@ const PAGES_WITH_OWN_FAQ = [
   '/for/strata-managers',
   '/for/business-owners',
   '/about',
+  '/about/who-we-are-not',
   '/facts',
   '/guides/water-damage',
   '/guides/fire-damage',
