@@ -9,7 +9,12 @@
  */
 
 import { GoogleGenAI } from '@google/genai';
-import { buildCinematicPrompt, type PromptRequest, type AspectRatio, type Resolution } from './visual-prompts';
+import {
+  buildCinematicPrompt,
+  type PromptRequest,
+  type AspectRatio,
+  type Resolution,
+} from './visual-prompts';
 
 const MODEL_ID = 'gemini-3-pro-image-preview';
 
@@ -31,11 +36,12 @@ interface GenerationResult {
 }
 
 function getClient(): GoogleGenAI {
-  const apiKey = process.env.GOOGLE_GENAI_API_KEY || process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY;
+  const apiKey =
+    process.env.GOOGLE_GENAI_API_KEY || process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error(
       'GOOGLE_GENAI_API_KEY (or GOOGLE_AI_API_KEY) is not set. ' +
-      'Add it to your .env.local or Vercel environment variables.'
+        'Add it to your .env.local or Vercel environment variables.',
     );
   }
   return new GoogleGenAI({ apiKey });
@@ -78,15 +84,17 @@ export async function generateVisual(request: VisualRequest): Promise<Generation
     throw new Error('No response parts received from Nano Banana Pro');
   }
 
-  const imagePart = (parts as any[]).find(
-    (p: Record<string, unknown>) => p.inlineData && typeof (p.inlineData as Record<string, unknown>).mimeType === 'string' &&
-      ((p.inlineData as Record<string, unknown>).mimeType as string).startsWith('image/')
+  const imagePart = (parts as Array<Record<string, unknown>>).find(
+    (p) =>
+      p.inlineData &&
+      typeof (p.inlineData as Record<string, unknown>).mimeType === 'string' &&
+      ((p.inlineData as Record<string, unknown>).mimeType as string).startsWith('image/'),
   );
 
   if (!imagePart?.inlineData) {
     throw new Error(
       'No image data in Nano Banana Pro response. ' +
-      'The model may have returned text only. Check your prompt.'
+        'The model may have returned text only. Check your prompt.',
     );
   }
 

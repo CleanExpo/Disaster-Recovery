@@ -168,7 +168,7 @@ export async function generateMetadata({
 }
 
 function generateCityServiceMetadata(city: string, service: string) {
-  if (!validCities.includes(city) || !validServices.includes(service as any)) {
+  if (!validCities.includes(city) || !(validServices as readonly string[]).includes(service)) {
     return { title: 'Page Not Found', description: 'The requested page could not be found.' };
   }
 
@@ -207,7 +207,7 @@ function generateCityServiceMetadata(city: string, service: string) {
 function generateSuburbServiceMetadata(city: string, suburbSlug: string, service: string) {
   const suburbData = getSuburb(city, suburbSlug);
 
-  if (!suburbData || !validServices.includes(service as any)) {
+  if (!suburbData || !(validServices as readonly string[]).includes(service)) {
     return { title: 'Page Not Found', description: 'The requested page could not be found.' };
   }
 
@@ -263,7 +263,7 @@ export default async function LocationServicePage({
 
   if (slug.length === 1) {
     service = slug[0];
-    if (!validCities.includes(city) || !validServices.includes(service as any)) {
+    if (!validCities.includes(city) || !(validServices as readonly string[]).includes(service)) {
       notFound();
     }
     pageData = LocationServiceGenerator.generateLocationServicePage(city, service);
@@ -271,7 +271,7 @@ export default async function LocationServicePage({
     const [suburbSlug, svc] = slug;
     service = svc;
     const suburbData = getSuburb(city, suburbSlug);
-    if (!suburbData || !validServices.includes(service as any)) {
+    if (!suburbData || !(validServices as readonly string[]).includes(service)) {
       notFound();
     }
     suburbName = suburbData.name;

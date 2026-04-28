@@ -1,16 +1,31 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { 
-  Calendar, Clock, MapPin, User, Mail, 
-  Briefcase, Home, AlertTriangle, Shield, CheckCircle,
-  ChevronLeft, ChevronRight, Loader2, AlertCircle,
-  Building2, FileText, DollarSign, Sparkles, MessageSquare} from 'lucide-react';
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  User,
+  Mail,
+  Briefcase,
+  Home,
+  AlertTriangle,
+  Shield,
+  CheckCircle,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  AlertCircle,
+  Building2,
+  FileText,
+  DollarSign,
+  Sparkles,
+  MessageSquare,
+} from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -28,28 +43,28 @@ interface FormData {
   email: string;
   phone: string;
   company?: string;
-  
+
   // Service Details
   serviceType: string;
   urgency: 'emergency' | 'urgent' | 'routine' | 'planning';
   propertyType: 'residential' | 'commercial' | 'industrial';
-  
+
   // Location
   address: string;
   suburb: string;
   state: string;
   postcode: string;
-  
+
   // Scheduling
   date: string;
   time: string;
-  
+
   // Additional Information
   description: string;
   hasInsurance: boolean;
   insuranceProvider?: string;
   estimatedValue?: string;
-  
+
   // Preferences
   contactPreference: 'phone' | 'email' | 'sms';
   bestTimeToCall?: string;
@@ -61,7 +76,7 @@ const services = [
   { id: 'mould', label: 'Mould Remediation', icon: '🦠' },
   { id: 'storm', label: 'Storm Damage', icon: '⛈️' },
   { id: 'biohazard', label: 'Biohazard Cleanup', icon: '☣️' },
-  { id: 'other', label: 'Other Services', icon: '🏗️' }
+  { id: 'other', label: 'Other Services', icon: '🏗️' },
 ];
 
 const timeSlots: TimeSlot[] = [
@@ -77,7 +92,7 @@ const timeSlots: TimeSlot[] = [
   { time: '16:00', available: true },
   { time: '17:00', available: true },
   { time: '18:00', available: true },
-  { time: 'Emergency', available: true, emergency: true }
+  { time: 'Emergency', available: true, emergency: true },
 ];
 
 function SchedulePageOriginal() {
@@ -87,12 +102,12 @@ function SchedulePageOriginal() {
   const [error, setError] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>(timeSlots);
-  
+
   // Scroll to top when step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentStep]);
-  
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -112,30 +127,30 @@ function SchedulePageOriginal() {
     insuranceProvider: '',
     estimatedValue: '',
     contactPreference: 'phone',
-    bestTimeToCall: ''
+    bestTimeToCall: '',
   });
 
   // Generate calendar dates for next 30 days
   const generateCalendarDates = () => {
     const dates = [];
     const today = new Date();
-    
+
     for (let i = 0; i < 30; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
       dates.push(date);
     }
-    
+
     return dates;
   };
 
   const calendarDates = generateCalendarDates();
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-AU', { 
-      weekday: 'short', 
-      day: 'numeric', 
-      month: 'short' 
+    return date.toLocaleDateString('en-AU', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
     });
   };
 
@@ -149,24 +164,28 @@ function SchedulePageOriginal() {
     const formattedDate = date.toISOString().split('T')[0];
     setSelectedDate(formattedDate);
     setFormData({ ...formData, date: formattedDate });
-    
+
     // Simulate fetching available slots for selected date
     // In production, this would be an API call
     const dayOfWeek = date.getDay();
     if (dayOfWeek === 6) {
       // Saturday - limited slots
-      setAvailableSlots(timeSlots.map((slot, idx) => ({
-        ...slot,
-        available: idx < 6 || Boolean(slot.emergency)
-      })));
+      setAvailableSlots(
+        timeSlots.map((slot, idx) => ({
+          ...slot,
+          available: idx < 6 || Boolean(slot.emergency),
+        })),
+      );
     } else {
       setAvailableSlots(timeSlots);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData({ ...formData, [name]: checked });
@@ -182,8 +201,14 @@ function SchedulePageOriginal() {
       case 2:
         return !!(formData.date && formData.time);
       case 3:
-        return !!(formData.name && formData.email && formData.phone && 
-                 formData.address && formData.suburb && formData.postcode);
+        return !!(
+          formData.name &&
+          formData.email &&
+          formData.phone &&
+          formData.address &&
+          formData.suburb &&
+          formData.postcode
+        );
       case 4:
         return true; // Additional info is optional
       default:
@@ -207,22 +232,22 @@ function SchedulePageOriginal() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateStep(3)) {
       setError('Please fill in all required fields');
       return;
     }
-    
+
     setIsSubmitting(true);
     setError('');
-    
+
     try {
       const response = await fetch('/api/bookings/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         router.push(`/schedule/confirmation?id=${data.bookingId}`);
@@ -237,21 +262,31 @@ function SchedulePageOriginal() {
 
   const getStepIcon = (step: number) => {
     switch (step) {
-      case 1: return <Briefcase className="h-5 w-5" />;
-      case 2: return <Calendar className="h-5 w-5" />;
-      case 3: return <User className="h-5 w-5" />;
-      case 4: return <FileText className="h-5 w-5" />;
-      default: return null;
+      case 1:
+        return <Briefcase className="h-5 w-5" />;
+      case 2:
+        return <Calendar className="h-5 w-5" />;
+      case 3:
+        return <User className="h-5 w-5" />;
+      case 4:
+        return <FileText className="h-5 w-5" />;
+      default:
+        return null;
     }
   };
 
   const getStepTitle = (step: number) => {
     switch (step) {
-      case 1: return 'Service Details';
-      case 2: return 'Schedule Appointment';
-      case 3: return 'Contact Information';
-      case 4: return 'Additional Information';
-      default: return '';
+      case 1:
+        return 'Service Details';
+      case 2:
+        return 'Schedule Appointment';
+      case 3:
+        return 'Contact Information';
+      case 4:
+        return 'Additional Information';
+      default:
+        return '';
     }
   };
 
@@ -271,22 +306,24 @@ function SchedulePageOriginal() {
           <div className="flex items-center justify-between max-w-3xl mx-auto">
             {[1, 2, 3, 4].map((step) => (
               <div key={step} className="flex items-center">
-                <div className={`
+                <div
+                  className={`
                   flex items-center justify-center w-10 h-10 rounded-full
-                  ${currentStep === step ? 'bg-blue-600 text-white' : 
-                    currentStep > step ? 'bg-green-500 text-white' : 
-                    'bg-gray-200 text-gray-700'}
-                `}>
-                  {currentStep > step ? (
-                    <CheckCircle className="h-5 w-5" />
-                  ) : (
-                    getStepIcon(step)
-                  )}
+                  ${
+                    currentStep === step
+                      ? 'bg-blue-600 text-white'
+                      : currentStep > step
+                        ? 'bg-green-500 text-white'
+                        : 'bg-gray-200 text-gray-700'
+                  }
+                `}
+                >
+                  {currentStep > step ? <CheckCircle className="h-5 w-5" /> : getStepIcon(step)}
                 </div>
                 {step < 4 && (
-                  <div className={`w-24 h-1 ${
-                    currentStep > step ? 'bg-green-500' : 'bg-gray-200'
-                  }`} />
+                  <div
+                    className={`w-24 h-1 ${currentStep > step ? 'bg-green-500' : 'bg-gray-200'}`}
+                  />
                 )}
               </div>
             ))}
@@ -326,9 +363,11 @@ function SchedulePageOriginal() {
                           onClick={() => setFormData({ ...formData, serviceType: service.id })}
                           className={`
                             p-4 rounded-lg border-2 transition-all text-center
-                            ${formData.serviceType === service.id
-                              ? 'border-blue-500 bg-blue-50'
-                              : 'border-gray-200 hover:border-gray-300'}
+                            ${
+                              formData.serviceType === service.id
+                                ? 'border-blue-500 bg-blue-50'
+                                : 'border-gray-200 hover:border-gray-300'
+                            }
                           `}
                         >
                           <div className="text-2xl mb-2">{service.icon}</div>
@@ -343,21 +382,40 @@ function SchedulePageOriginal() {
                       Urgency Level *
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[
-                        { value: 'emergency', label: 'Emergency', colour: 'red', icon: <AlertTriangle /> },
-                        { value: 'urgent', label: 'Urgent', colour: 'orange', icon: <Clock /> },
-                        { value: 'routine', label: 'Routine', colour: 'blue', icon: <Calendar /> },
-                        { value: 'planning', label: 'Planning', colour: 'gray', icon: <FileText /> }
-                      ].map((urgency) => (
+                      {(
+                        [
+                          {
+                            value: 'emergency',
+                            label: 'Emergency',
+                            colour: 'red',
+                            icon: <AlertTriangle />,
+                          },
+                          { value: 'urgent', label: 'Urgent', colour: 'orange', icon: <Clock /> },
+                          {
+                            value: 'routine',
+                            label: 'Routine',
+                            colour: 'blue',
+                            icon: <Calendar />,
+                          },
+                          {
+                            value: 'planning',
+                            label: 'Planning',
+                            colour: 'gray',
+                            icon: <FileText />,
+                          },
+                        ] as const
+                      ).map((urgency) => (
                         <button
                           key={urgency.value}
                           type="button"
-                          onClick={() => setFormData({ ...formData, urgency: urgency.value as any })}
+                          onClick={() => setFormData({ ...formData, urgency: urgency.value })}
                           className={`
                             p-4 rounded-lg border-2 transition-all
-                            ${formData.urgency === urgency.value
-                              ? `border-${urgency.colour}-500 bg-${urgency.colour}-50`
-                              : 'border-gray-200 hover:border-gray-300'}
+                            ${
+                              formData.urgency === urgency.value
+                                ? `border-${urgency.colour}-500 bg-${urgency.colour}-50`
+                                : 'border-gray-200 hover:border-gray-300'
+                            }
                           `}
                         >
                           <div className="flex flex-col items-center">
@@ -374,20 +432,24 @@ function SchedulePageOriginal() {
                       Property Type *
                     </label>
                     <div className="grid grid-cols-3 gap-4">
-                      {[
-                        { value: 'residential', label: 'Residential', icon: <Home /> },
-                        { value: 'commercial', label: 'Commercial', icon: <Building2 /> },
-                        { value: 'industrial', label: 'Industrial', icon: <Shield /> }
-                      ].map((property) => (
+                      {(
+                        [
+                          { value: 'residential', label: 'Residential', icon: <Home /> },
+                          { value: 'commercial', label: 'Commercial', icon: <Building2 /> },
+                          { value: 'industrial', label: 'Industrial', icon: <Shield /> },
+                        ] as const
+                      ).map((property) => (
                         <button
                           key={property.value}
                           type="button"
-                          onClick={() => setFormData({ ...formData, propertyType: property.value as any })}
+                          onClick={() => setFormData({ ...formData, propertyType: property.value })}
                           className={`
                             p-4 rounded-lg border-2 transition-all
-                            ${formData.propertyType === property.value
-                              ? 'border-blue-500 bg-blue-50'
-                              : 'border-gray-200 hover:border-gray-300'}
+                            ${
+                              formData.propertyType === property.value
+                                ? 'border-blue-500 bg-blue-50'
+                                : 'border-gray-200 hover:border-gray-300'
+                            }
                           `}
                         >
                           <div className="flex flex-col items-center">
@@ -413,7 +475,7 @@ function SchedulePageOriginal() {
                         const dateStr = date.toISOString().split('T')[0];
                         const available = isDateAvailable(date);
                         const isSelected = dateStr === selectedDate;
-                        
+
                         return (
                           <button
                             key={dateStr}
@@ -422,19 +484,19 @@ function SchedulePageOriginal() {
                             onClick={() => handleDateSelect(date)}
                             className={`
                               p-3 rounded-lg border text-center transition-all
-                              ${isSelected
-                                ? 'border-blue-500 bg-blue-50 text-blue-700'
-                                : available
-                                ? 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                                : 'border-gray-100 bg-gray-50 text-gray-700 cursor-not-allowed'}
+                              ${
+                                isSelected
+                                  ? 'border-blue-500 bg-blue-50 text-blue-700'
+                                  : available
+                                    ? 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                                    : 'border-gray-100 bg-gray-50 text-gray-700 cursor-not-allowed'
+                              }
                             `}
                           >
                             <div className="text-xs font-medium">
                               {date.toLocaleDateString('en-AU', { weekday: 'short' })}
                             </div>
-                            <div className="text-lg font-bold">
-                              {date.getDate()}
-                            </div>
+                            <div className="text-lg font-bold">{date.getDate()}</div>
                             <div className="text-xs">
                               {date.toLocaleDateString('en-AU', { month: 'short' })}
                             </div>
@@ -458,13 +520,15 @@ function SchedulePageOriginal() {
                             onClick={() => setFormData({ ...formData, time: slot.time })}
                             className={`
                               p-3 rounded-lg border transition-all
-                              ${formData.time === slot.time
-                                ? 'border-blue-500 bg-blue-50'
-                                : slot.available
-                                ? slot.emergency
-                                  ? 'border-red-300 hover:border-red-400 bg-red-50'
-                                  : 'border-gray-200 hover:border-gray-300'
-                                : 'border-gray-100 bg-gray-50 text-gray-700 cursor-not-allowed'}
+                              ${
+                                formData.time === slot.time
+                                  ? 'border-blue-500 bg-blue-50'
+                                  : slot.available
+                                    ? slot.emergency
+                                      ? 'border-red-300 hover:border-red-400 bg-red-50'
+                                      : 'border-gray-200 hover:border-gray-300'
+                                    : 'border-gray-100 bg-gray-50 text-gray-700 cursor-not-allowed'
+                              }
                             `}
                           >
                             <div className="flex items-center justify-center gap-2">
@@ -472,9 +536,7 @@ function SchedulePageOriginal() {
                               <span className="text-sm font-medium">{slot.time}</span>
                             </div>
                             {slot.emergency && (
-                              <Badge className="mt-1 bg-red-100 text-red-800 text-xs">
-                                24/7
-                              </Badge>
+                              <Badge className="mt-1 bg-red-100 text-red-800 text-xs">24/7</Badge>
                             )}
                           </button>
                         ))}
@@ -501,7 +563,7 @@ function SchedulePageOriginal() {
                         required
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Company (Optional)
@@ -530,7 +592,7 @@ function SchedulePageOriginal() {
                         required
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Phone Number *
@@ -575,7 +637,7 @@ function SchedulePageOriginal() {
                         required
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         State *
@@ -597,7 +659,7 @@ function SchedulePageOriginal() {
                         <option value="NT">NT</option>
                       </select>
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Postcode *
@@ -688,20 +750,26 @@ function SchedulePageOriginal() {
                       Preferred Contact Method
                     </label>
                     <div className="grid grid-cols-3 gap-3">
-                      {[
-                        { value: 'phone', label: 'Phone', icon: <MessageSquare /> },
-                        { value: 'email', label: 'Email', icon: <Mail /> },
-                        { value: 'sms', label: 'SMS', icon: <Mail /> }
-                      ].map((method) => (
+                      {(
+                        [
+                          { value: 'phone', label: 'Phone', icon: <MessageSquare /> },
+                          { value: 'email', label: 'Email', icon: <Mail /> },
+                          { value: 'sms', label: 'SMS', icon: <Mail /> },
+                        ] as const
+                      ).map((method) => (
                         <button
                           key={method.value}
                           type="button"
-                          onClick={() => setFormData({ ...formData, contactPreference: method.value as any })}
+                          onClick={() =>
+                            setFormData({ ...formData, contactPreference: method.value })
+                          }
                           className={`
                             p-3 rounded-lg border transition-all
-                            ${formData.contactPreference === method.value
-                              ? 'border-blue-500 bg-blue-50'
-                              : 'border-gray-200 hover:border-gray-300'}
+                            ${
+                              formData.contactPreference === method.value
+                                ? 'border-blue-500 bg-blue-50'
+                                : 'border-gray-200 hover:border-gray-300'
+                            }
                           `}
                         >
                           <div className="flex flex-col items-center gap-2">
@@ -723,7 +791,7 @@ function SchedulePageOriginal() {
                       <div className="flex justify-between">
                         <span className="text-gray-700">Service:</span>
                         <span className="font-medium">
-                          {services.find(s => s.id === formData.serviceType)?.label}
+                          {services.find((s) => s.id === formData.serviceType)?.label}
                         </span>
                       </div>
                       <div className="flex justify-between">
@@ -762,14 +830,10 @@ function SchedulePageOriginal() {
                     Previous
                   </Button>
                 )}
-                
+
                 <div className="ml-auto">
                   {currentStep < 4 ? (
-                    <Button
-                      type="button"
-                      onClick={handleNext}
-                      className="flex items-center gap-2"
-                    >
+                    <Button type="button" onClick={handleNext} className="flex items-center gap-2">
                       Next
                       <ChevronRight className="h-4 w-4" />
                     </Button>
@@ -802,8 +866,8 @@ function SchedulePageOriginal() {
             <Alert className="mt-6 border-red-200 bg-red-50">
               <AlertTriangle className="h-4 w-4 text-red-600" />
               <AlertDescription>
-                <strong>Emergency Service:</strong> For immediate emergency assistance, 
-                please use our 24/7 online emergency form
+                <strong>Emergency Service:</strong> For immediate emergency assistance, please use
+                our 24/7 online emergency form
               </AlertDescription>
             </Alert>
           )}
