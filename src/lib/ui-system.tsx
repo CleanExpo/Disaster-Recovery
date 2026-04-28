@@ -11,13 +11,13 @@ export const Z_INDEX = {
   DROPDOWN: 10,
   STICKY: 20,
   FIXED: 30,
-  
+
   // Overlays
   MODAL_BACKDROP: 1000,
   MODAL: 1010,
   NOTIFICATION: 1020,
   TOOLTIP: 1030,
-  
+
   // Critical UI elements (always on top)
   EMERGENCY_BAR: 9998,
   CHAT_WIDGET: 9999,
@@ -141,7 +141,8 @@ export const VALIDATION = {
 // SEO DEFAULTS
 export const SEO = {
   defaultTitle: 'Disaster Recovery - 100% Digital Emergency Response',
-  defaultDescription: 'IICRC-certified disaster recovery platform. Start your claim online — no phone calls needed.',
+  defaultDescription:
+    'IICRC-certified disaster recovery platform. Start your claim online — no phone calls needed.',
   keywords: ['disaster recovery', 'digital', 'online', 'emergency', 'restoration'],
 } as const;
 
@@ -161,7 +162,11 @@ export const getZIndex = (layer: keyof typeof Z_INDEX): number => Z_INDEX[layer]
 export const isFeatureEnabled = (feature: keyof typeof FEATURES): boolean => FEATURES[feature];
 
 export const getContactMethod = (method: keyof typeof CONTACT_METHODS) => {
-  if (method === 'PHONE' as any) {
+  // Defensive runtime guard — `method` is typed as a keyof CONTACT_METHODS
+  // (which excludes PHONE), but JS callers may still pass the string at
+  // runtime. Compare via a string-widened reference to avoid `as any`.
+  const widened: string = method;
+  if (widened === 'PHONE') {
     throw new Error('Phone contact is not available. Use digital methods only.');
   }
   return CONTACT_METHODS[method];

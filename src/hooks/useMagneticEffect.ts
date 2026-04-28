@@ -10,9 +10,11 @@ interface MagneticOptions {
   rotationFactor?: number;
 }
 
-export function useMagneticEffect(options: MagneticOptions = {}) {
+export function useMagneticEffect<T extends HTMLElement = HTMLElement>(
+  options: MagneticOptions = {},
+) {
   const { strength = 0.5, scale = 1.05, duration = 0.4 } = options;
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<T>(null);
 
   useEffect(() => {
     const element = elementRef.current;
@@ -24,18 +26,18 @@ export function useMagneticEffect(options: MagneticOptions = {}) {
       const rect = element.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
+
       const distanceX = e.clientX - centerX;
       const distanceY = e.clientY - centerY;
-      
+
       const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
       const maxDistance = 100;
-      
+
       if (distance < maxDistance) {
-        const translateX = (distanceX * strength * (1 - distance / maxDistance));
-        const translateY = (distanceY * strength * (1 - distance / maxDistance));
+        const translateX = distanceX * strength * (1 - distance / maxDistance);
+        const translateY = distanceY * strength * (1 - distance / maxDistance);
         const currentScale = 1 + (scale - 1) * (1 - distance / maxDistance);
-        
+
         animationFrameId = requestAnimationFrame(() => {
           element.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
           element.style.transition = `transform ${duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
@@ -107,10 +109,10 @@ export function use3DRotateEffect() {
       const rect = element.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
-      
+
       const rotateY = (x - 0.5) * 20;
       const rotateX = (y - 0.5) * -20;
-      
+
       element.style.transform = `
         perspective(1000px)
         rotateX(${rotateX}deg)
@@ -150,7 +152,7 @@ export function useScrollTrigger(threshold: number = 0.1) {
           }
         });
       },
-      { threshold }
+      { threshold },
     );
 
     observer.observe(element);

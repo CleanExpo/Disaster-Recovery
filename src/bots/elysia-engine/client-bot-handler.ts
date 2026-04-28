@@ -8,7 +8,7 @@ import {
   DataVerificationService,
   StepByStepGuideService,
   ResponseAttributionService,
-  COMPLIANCE_CONFIG
+  COMPLIANCE_CONFIG,
 } from '../compliance/data-verification-layer';
 import { MasterOrchestrator } from '../orchestration/agent-hierarchy';
 const verificationService = new DataVerificationService();
@@ -25,117 +25,126 @@ export class ClientBotHandler {
       channel: 'web' | 'sms' | 'whatsapp' | 'email';
       metadata?: any;
     },
-    orchestrator: MasterOrchestrator
+    orchestrator: MasterOrchestrator,
   ): Promise<any> {
     try {
       // 1. Check for emergency keywords
       if (this.isEmergency(body.message)) {
         return await this.handleEmergency(body, orchestrator);
       }
-      
+
       // 2. Check for guide requests
       if (this.isGuideRequest(body.message)) {
         return await this.provideGuide(body.message, 'customer', body.channel);
       }
-      
+
       // 3. Check for prohibited content
       const prohibitedCheck = this.checkProhibitedRequest(body.message);
       if (prohibitedCheck.prohibited) {
-        return this.createComplianceResponse(prohibitedCheck.reason ?? 'Prohibited request', body.channel);
+        return this.createComplianceResponse(
+          prohibitedCheck.reason ?? 'Prohibited request',
+          body.channel,
+        );
       }
-      
+
       // 4. Determine intent and required data
       const intent = await this.determineIntent(body.message);
-      
+
       // 5. Fetch verified data from database
       const verifiedData = await this.fetchVerifiedData(intent);
-      
+
       if (!verifiedData) {
         return {
-          response: "I can help you with our contractor services and procedures. Please ask about available services, contractors in your area, or emergency procedures.",
+          response:
+            'I can help you with our contractor services and procedures. Please ask about available services, contractors in your area, or emergency procedures.',
           disclaimers: [COMPLIANCE_CONFIG.disclaimers.general],
-          sources: []
+          sources: [],
         };
       }
-      
+
       // 6. Generate response using orchestrator with verified data
-      const orchestratorResult = await orchestrator.processClientRequest(
-        body.message,
-        {
-          sessionId: body.sessionId,
-          urgency: intent.urgency || 'normal',
-          conversationHistory: [],
-          metadata: {
-            ...body.metadata,
-            verifiedData,
-            intent,
-            channel: body.channel
-          }
-        }
-      );
-      
+      const orchestratorResult = await orchestrator.processClientRequest(body.message, {
+        sessionId: body.sessionId,
+        urgency: intent.urgency || 'normal',
+        conversationHistory: [],
+        metadata: {
+          ...body.metadata,
+          verifiedData,
+          intent,
+          channel: body.channel,
+        },
+      });
+
       // 7. Verify the generated response
       const verifiedResponse = await verificationService.verifyResponse(
         intent.type,
         orchestratorResult.data?.response || '',
-        verifiedData.sourceId
+        verifiedData.sourceId,
       );
-      
+
       // 8. Add attribution and format for channel
       const finalResponse = ResponseAttributionService.addAttribution(
         verifiedResponse.response,
         verifiedResponse.sources,
-        verifiedResponse.disclaimers
+        verifiedResponse.disclaimers,
       );
-      
+
       const formattedResponse = ResponseAttributionService.formatForChannel(
         finalResponse,
-        body.channel
+        body.channel,
       );
-      
+
       // 9. Log for compliance
       await this.logComplianceAudit(
         body.sessionId,
         body.message,
         formattedResponse,
-        verifiedResponse
+        verifiedResponse,
       );
-      
+
       // 10. Update conversation in database
       await this.updateConversation(body.sessionId, body, formattedResponse);
-      
+
       return {
         response: formattedResponse,
         intent: intent.type,
         sources: verifiedResponse.sources,
         disclaimers: verifiedResponse.disclaimers,
-        confidence: orchestratorResult.confidence || 0.95
+        confidence: orchestratorResult.confidence || 0.95,
       };
-      
     } catch (error) {
       console.error('Client bot processing error:', error);
-      
+
       return {
-        response: "I apologize, but I can only provide information from our verified database. Please contact our contractors directly for specific assistance.",
+        response:
+          'I apologize, but I can only provide information from our verified database. Please contact our contractors directly for specific assistance.',
         disclaimers: [COMPLIANCE_CONFIG.disclaimers.general],
-        error: true
+        error: true,
       };
     }
   }
-  
+
   /**
    * Check if message indicates emergency
    */
   private static isEmergency(message: string): boolean {
     const emergencyKeywords = [
-      'emergency', 'urgent', 'immediate', 'flooding', 'fire',
-      'danger', 'help now', 'asap', 'right now', 'critical'
+      'emergency',
+      'urgent',
+      'immediate',
+      'flooding',
+      'fire',
+      'danger',
+      'help now',
+      'asap',
+      'right now',
+      'critical',
     ];
-    
+
     const lower = message.toLowerCase();
-    return emergencyKeywords.some(keyword => lower.includes(keyword));
+    return emergencyKeywords.some((keyword) => lower.includes(keyword));
   }
-  
+
   /**
    * Handle emergency with verified procedures
    */
@@ -148,134 +157,142 @@ export class ClientBotHandler {
         },
         orderBy: { priority: 'desc' },
       });
-      
+
       if (!emergencyGuide) {
         return {
-          response: "For emergencies, call 000 immediately. Our contractors can assist with disaster recovery once the immediate danger is addressed.",
-          disclaimers: ["For immediate danger, always call 000 first."],
-          sources: []
+          response:
+            'For emergencies, call 000 immediately. Our contractors can assist with disaster recovery once the immediate danger is addressed.',
+          disclaimers: ['For immediate danger, always call 000 first.'],
+          sources: [],
         };
       }
-      
+
       // Build emergency response from verified data
       let response = `🚨 EMERGENCY RESPONSE - ${emergencyGuide.title}\n\n`;
-      response += "IMMEDIATE STEPS:\n";
+      response += 'IMMEDIATE STEPS:\n';
       emergencyGuide.immediateSteps.forEach((step, index) => {
         response += `${index + 1}. ${step}\n`;
       });
-      
-      response += "\n⚠️ SAFETY WARNINGS:\n";
-      emergencyGuide.safetyWarnings.forEach(warning => {
+
+      response += '\n⚠️ SAFETY WARNINGS:\n';
+      emergencyGuide.safetyWarnings.forEach((warning) => {
         response += `• ${warning}\n`;
       });
-      
-      response += "\n❌ DO NOT:\n";
-      emergencyGuide.doNotActions.forEach(action => {
+
+      response += '\n❌ DO NOT:\n';
+      emergencyGuide.doNotActions.forEach((action) => {
         response += `• ${action}\n`;
       });
-      
+
       // Find available contractors
       const availableContractors = await this.findEmergencyContractors(body.metadata?.location);
-      
+
       if (availableContractors.length > 0) {
         response += `\n✅ ${availableContractors.length} emergency contractors available in your area.`;
-        response += "\nEstimated arrival: 30-60 minutes";
+        response += '\nEstimated arrival: 30-60 minutes';
       }
-      
+
       return {
         response,
         disclaimers: [
-          "For immediate danger, call 000.",
-          "These are general emergency procedures from our database.",
-          "Response times are estimates based on contractor availability."
+          'For immediate danger, call 000.',
+          'These are general emergency procedures from our database.',
+          'Response times are estimates based on contractor availability.',
         ],
         sources: [`Emergency Guide: ${emergencyGuide.id}`],
         emergencyId: `EMRG-${Date.now()}`,
-        contractors: availableContractors
+        contractors: availableContractors,
       };
-      
     } catch (error) {
       console.error('Emergency handling error:', error);
       return {
-        response: "For emergencies, call 000 immediately. Our system is experiencing issues. Please call contractors directly.",
-        disclaimers: ["System error - please call 000 for emergencies."],
-        error: true
+        response:
+          'For emergencies, call 000 immediately. Our system is experiencing issues. Please call contractors directly.',
+        disclaimers: ['System error - please call 000 for emergencies.'],
+        error: true,
       };
     }
   }
-  
+
   /**
    * Check if message is requesting a guide
    */
   private static isGuideRequest(message: string): boolean {
     const guideKeywords = [
-      'guide', 'how to', 'steps', 'procedure', 'what should i do',
-      'instructions', 'tutorial', 'help with', 'show me how'
+      'guide',
+      'how to',
+      'steps',
+      'procedure',
+      'what should i do',
+      'instructions',
+      'tutorial',
+      'help with',
+      'show me how',
     ];
-    
+
     const lower = message.toLowerCase();
-    return guideKeywords.some(keyword => lower.includes(keyword));
+    return guideKeywords.some((keyword) => lower.includes(keyword));
   }
-  
+
   /**
    * Provide step-by-step guide from database
    */
   private static async provideGuide(
     message: string,
     userType: 'customer' | 'contractor',
-    channel: string
+    channel: 'web' | 'sms' | 'whatsapp' | 'email',
   ): Promise<any> {
     const guideType = this.determineGuideType(message);
     const guide = await guideService.getGuide(guideType, userType);
-    
+
     if (!guide) {
       // List available guides
       const available = await guideService.getAvailableGuides(userType);
-      
-      let response = "I can provide guides for the following:\n\n";
-      available.guides.forEach(g => {
+
+      let response = 'I can provide guides for the following:\n\n';
+      available.guides.forEach((g) => {
         response += `📘 ${g.title}\n`;
       });
-      response += "\nPlease specify which guide you need.";
-      
+      response += '\nPlease specify which guide you need.';
+
       return {
         response,
         disclaimers: [COMPLIANCE_CONFIG.disclaimers.general],
-        sources: ["Guide Database"]
+        sources: ['Guide Database'],
       };
     }
-    
+
     // Format guide for response
     let response = `📋 ${guide.title}\n\n`;
-    
-    guide.steps.forEach(step => {
+
+    guide.steps.forEach((step) => {
       response += `Step ${step.stepNumber}: ${step.title}\n`;
       response += `${step.description}\n`;
-      
+
       if (step.warningNotes && step.warningNotes.length > 0) {
-        response += "⚠️ Warnings:\n";
-        step.warningNotes.forEach(note => {
+        response += '⚠️ Warnings:\n';
+        step.warningNotes.forEach((note) => {
           response += `  • ${note}\n`;
         });
       }
-      
+
       if (step.estimatedTime) {
         response += `⏱️ Estimated time: ${step.estimatedTime}\n`;
       }
-      
-      response += "\n";
+
+      response += '\n';
     });
-    
-    const formattedResponse = ResponseAttributionService.formatForChannel(response, channel as any);
-    
+
+    const formattedResponse = ResponseAttributionService.formatForChannel(response, channel);
+
     return {
       response: formattedResponse,
       disclaimers: guide.disclaimers,
       sources: [guide.source],
-      guideId: guide.title
+      guideId: guide.title,
     };
   }
-  
+
   /**
    * Check for prohibited content in request
    */
@@ -284,79 +301,90 @@ export class ClientBotHandler {
     reason?: string;
   } {
     const lower = message.toLowerCase();
-    
+
     // Check for medical advice requests
-    if (lower.includes('is it safe') || lower.includes('health risk') || 
-        lower.includes('medical') || lower.includes('doctor')) {
+    if (
+      lower.includes('is it safe') ||
+      lower.includes('health risk') ||
+      lower.includes('medical') ||
+      lower.includes('doctor')
+    ) {
       return {
         prohibited: true,
-        reason: 'medical_advice'
+        reason: 'medical_advice',
       };
     }
-    
+
     // Check for legal advice requests
-    if (lower.includes('can i sue') || lower.includes('legal rights') || 
-        lower.includes('compensation') || lower.includes('liability')) {
+    if (
+      lower.includes('can i sue') ||
+      lower.includes('legal rights') ||
+      lower.includes('compensation') ||
+      lower.includes('liability')
+    ) {
       return {
         prohibited: true,
-        reason: 'legal_advice'
+        reason: 'legal_advice',
       };
     }
-    
+
     return { prohibited: false };
   }
-  
+
   /**
    * Create compliance-safe response
    */
   private static createComplianceResponse(reason: string, channel: string): any {
     const responses: Record<string, string> = {
-      medical_advice: "I cannot provide medical or health advice. For health concerns, please consult qualified healthcare professionals. I can help you find contractors who follow Australian safety standards for remediation work.",
-      legal_advice: "I cannot provide legal advice. Please consult a qualified legal professional for legal matters. I can provide information about our contractor services and standard procedures.",
-      default: "I can only provide information about contractor services and procedures from our verified database."
+      medical_advice:
+        'I cannot provide medical or health advice. For health concerns, please consult qualified healthcare professionals. I can help you find contractors who follow Australian safety standards for remediation work.',
+      legal_advice:
+        'I cannot provide legal advice. Please consult a qualified legal professional for legal matters. I can provide information about our contractor services and standard procedures.',
+      default:
+        'I can only provide information about contractor services and procedures from our verified database.',
     };
-    
+
     return {
       response: responses[reason] || responses.default,
       disclaimers: [
         COMPLIANCE_CONFIG.disclaimers.noHealthAdvice,
         COMPLIANCE_CONFIG.disclaimers.noLegalAdvice,
-        COMPLIANCE_CONFIG.disclaimers.general
+        COMPLIANCE_CONFIG.disclaimers.general,
       ],
-      sources: []
+      sources: [],
     };
   }
-  
+
   /**
    * Determine user intent from message
    */
   private static async determineIntent(message: string): Promise<any> {
     const lower = message.toLowerCase();
-    
+
     // Service inquiry
     if (lower.includes('service') || lower.includes('contractor') || lower.includes('available')) {
       return { type: 'service_inquiry', urgency: 'normal' };
     }
-    
+
     // Cost inquiry
     if (lower.includes('cost') || lower.includes('price') || lower.includes('how much')) {
       return { type: 'cost_estimate', urgency: 'normal' };
     }
-    
+
     // Insurance claim
     if (lower.includes('insurance') || lower.includes('claim')) {
       return { type: 'insurance_claim', urgency: 'normal' };
     }
-    
+
     // Emergency (already handled above, but as fallback)
     if (lower.includes('emergency') || lower.includes('urgent')) {
       return { type: 'emergency_response', urgency: 'high' };
     }
-    
+
     // Default
     return { type: 'general_inquiry', urgency: 'normal' };
   }
-  
+
   /**
    * Fetch verified data based on intent
    */
@@ -414,37 +442,37 @@ export class ClientBotHandler {
       return null;
     }
   }
-  
+
   /**
    * Determine emergency type from message
    */
   private static determineEmergencyType(message: string): string {
     const lower = message.toLowerCase();
-    
+
     if (lower.includes('flood') || lower.includes('water')) return 'flood';
     if (lower.includes('fire')) return 'fire';
     if (lower.includes('storm')) return 'storm';
     if (lower.includes('mould')) return 'mould';
     if (lower.includes('sewage')) return 'sewage';
-    
+
     return 'general';
   }
-  
+
   /**
    * Determine guide type from message
    */
   private static determineGuideType(message: string): string {
     const lower = message.toLowerCase();
-    
+
     if (lower.includes('water') || lower.includes('flood')) return 'water_damage';
     if (lower.includes('fire')) return 'fire_damage';
     if (lower.includes('mould')) return 'mould_remediation';
     if (lower.includes('insurance')) return 'insurance_claim';
     if (lower.includes('emergency')) return 'emergency_response';
-    
+
     return 'general_guide';
   }
-  
+
   /**
    * Find available emergency contractors
    */
@@ -453,27 +481,24 @@ export class ClientBotHandler {
       const contractors = await prisma.contractor.findMany({
         where: {
           status: 'APPROVED',
-          emailVerified: true
+          emailVerified: true,
         },
         take: 3,
-        orderBy: [
-          { createdAt: 'desc' }
-        ]
+        orderBy: [{ createdAt: 'desc' }],
       });
-      
-      return contractors.map(c => ({
+
+      return contractors.map((c) => ({
         id: c.id,
         businessName: c.username,
         phone: c.mobileNumber,
-        responseTime: 30 // Default response time
+        responseTime: 30, // Default response time
       }));
-      
     } catch (error) {
       console.error('Error finding contractors:', error);
       return [];
     }
   }
-  
+
   /**
    * Log compliance audit
    */
@@ -481,7 +506,7 @@ export class ClientBotHandler {
     conversationId: string,
     request: string,
     response: string,
-    verification: any
+    verification: any,
   ): Promise<void> {
     try {
       await prisma.complianceAudit.create({
@@ -502,14 +527,14 @@ export class ClientBotHandler {
       console.error('Compliance audit logging error:', error);
     }
   }
-  
+
   /**
    * Update conversation in database
    */
   private static async updateConversation(
     sessionId: string,
     body: any,
-    response: string
+    response: string,
   ): Promise<void> {
     try {
       const newMessages = [

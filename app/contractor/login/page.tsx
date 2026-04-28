@@ -1,18 +1,17 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { setContractorAuth } from '@/lib/contractor-auth';
-import { 
-  Building2, 
-  Lock, 
-  User, 
-  Eye, 
-  EyeOff, 
+import {
+  Building2,
+  Lock,
+  User,
+  Eye,
+  EyeOff,
   LogIn,
   AlertCircle,
   ArrowLeft,
@@ -21,7 +20,7 @@ import {
   CheckCircle,
   Fingerprint,
   Key,
-  Mail
+  Mail,
 } from 'lucide-react';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 
@@ -32,11 +31,11 @@ function ContractorLoginPageOriginal() {
   const [error, setError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [loginMethod, setLoginMethod] = useState<'credentials' | 'sso'>('credentials');
-  const magneticButtonRef = useMagneticEffect({ strength: 0.3 });
-  
+  const magneticButtonRef = useMagneticEffect<HTMLButtonElement>({ strength: 0.3 });
+
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
   });
 
   // Particle effect for premium feel
@@ -48,7 +47,7 @@ function ContractorLoginPageOriginal() {
       particle.style.animationDuration = Math.random() * 3 + 2 + 's';
       particle.style.opacity = String(Math.random() * 0.5);
       document.getElementById('particle-container')?.appendChild(particle);
-      
+
       setTimeout(() => particle.remove(), 5000);
     };
 
@@ -104,7 +103,7 @@ function ContractorLoginPageOriginal() {
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
-      
+
       {/* Floating particles */}
       <div id="particle-container" className="absolute inset-0 overflow-hidden">
         <style jsx>{`
@@ -116,7 +115,7 @@ function ContractorLoginPageOriginal() {
             border-radius: 50%;
             animation: float-up linear infinite;
           }
-          
+
           @keyframes float-up {
             from {
               transform: translateY(100vh) rotate(0deg);
@@ -130,15 +129,29 @@ function ContractorLoginPageOriginal() {
               opacity: 0;
             }
           }
-          
+
           .shake {
             animation: shake 0.5s;
           }
-          
+
           @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-            20%, 40%, 60%, 80% { transform: translateX(10px); }
+            0%,
+            100% {
+              transform: translateX(0);
+            }
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+              transform: translateX(-10px);
+            }
+            20%,
+            40%,
+            60%,
+            80% {
+              transform: translateX(10px);
+            }
           }
         `}</style>
       </div>
@@ -155,12 +168,8 @@ function ContractorLoginPageOriginal() {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl mb-4 transform hover:scale-110 transition-transform">
               <Building2 className="h-10 w-10 text-white" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">
-              NRPG Contractor Portal
-            </h1>
-            <p className="text-gray-300">
-              National Restoration Professionals Group CRM
-            </p>
+            <h1 className="text-3xl font-bold text-white mb-2">NRPG Contractor Portal</h1>
+            <p className="text-gray-300">National Restoration Professionals Group CRM</p>
           </div>
 
           {/* Login method tabs */}
@@ -195,7 +204,10 @@ function ContractorLoginPageOriginal() {
               <form id="login-form" onSubmit={handleSubmit} className="space-y-6">
                 {/* Username field */}
                 <div className="relative group">
-                  <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="username"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Username or Email
                   </label>
                   <div className="relative">
@@ -216,7 +228,10 @@ function ContractorLoginPageOriginal() {
 
                 {/* Password field */}
                 <div className="relative group">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Password
                   </label>
                   <div className="relative">
@@ -237,11 +252,7 @@ function ContractorLoginPageOriginal() {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-200 hover:text-white transition-colours"
                     >
-                      {showPassword ? (
-                        <EyeOff className="h-5 w-5" />
-                      ) : (
-                        <Eye className="h-5 w-5" />
-                      )}
+                      {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
                   </div>
                 </div>
@@ -277,7 +288,7 @@ function ContractorLoginPageOriginal() {
 
                 {/* Submit button */}
                 <button
-                  ref={magneticButtonRef as any}
+                  ref={magneticButtonRef}
                   type="submit"
                   disabled={isLoading}
                   className="relative w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
@@ -286,8 +297,19 @@ function ContractorLoginPageOriginal() {
                     {isLoading ? (
                       <>
                         <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
                         </svg>
                         Authenticating...
                       </>
@@ -304,7 +326,10 @@ function ContractorLoginPageOriginal() {
                 {/* Apply CTA */}
                 <div className="text-center">
                   <p className="text-xs text-gray-300">
-                    New to NRPG? <Link href="/contractor/apply" className="text-blue-400 hover:underline">Apply to join</Link>
+                    New to NRPG?{' '}
+                    <Link href="/contractor/apply" className="text-blue-400 hover:underline">
+                      Apply to join
+                    </Link>
                   </p>
                 </div>
               </form>
@@ -313,7 +338,7 @@ function ContractorLoginPageOriginal() {
                 <p className="text-gray-300 text-sm text-center mb-6">
                   Sign in with your organisation's identity provider
                 </p>
-                
+
                 {/* SSO provider buttons */}
                 <button
                   onClick={() => handleSSOLogin('Microsoft')}
@@ -323,7 +348,7 @@ function ContractorLoginPageOriginal() {
                   <Shield className="h-5 w-5" />
                   Continue with Microsoft
                 </button>
-                
+
                 <button
                   onClick={() => handleSSOLogin('Google')}
                   disabled={isLoading}
@@ -332,7 +357,7 @@ function ContractorLoginPageOriginal() {
                   <Mail className="h-5 w-5" />
                   Continue with Google Workspace
                 </button>
-                
+
                 <button
                   onClick={() => handleSSOLogin('SAML')}
                   disabled={isLoading}
@@ -351,7 +376,8 @@ function ContractorLoginPageOriginal() {
               href="/contractor/apply"
               className="inline-flex items-center justify-center text-sm text-gray-300 hover:text-white transition-colours"
             >
-              Don't have an account? <span className="text-blue-40 px-1"> Register as a contractor</span>
+              Don't have an account?{' '}
+              <span className="text-blue-40 px-1"> Register as a contractor</span>
             </Link>
             <Link
               href="/"

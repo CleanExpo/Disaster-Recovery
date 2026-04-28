@@ -156,21 +156,26 @@ export async function POST(request: NextRequest) {
         { idempotencyKey: `dr-booking-pi-${bookingId}` },
       );
 
-      // TODO(DR-700 Phase 2 follow-up): `as any` hides a Prisma schema
-      // mismatch — `amount` is not declared on the current `Payment`
-      // model. This route is also @deprecated under Path A (see file
-      // header). Resolve in the deletion PR rather than here.
-      await (prisma.payment.create as any)({
+      // This route is @deprecated under Path A (ADR-011 — see file
+      // header). Field shape aligned with the canonical `Payment`
+      // Prisma model so the route compiles without `as any` until it
+      // is deleted in the Path A cleanup PR (DR-789).
+      await prisma.payment.create({
         data: {
           bookingId,
-          amount: totalAmount / 100,
-          currency: 'AUD',
+          // `clientId` is required by the schema. This route is
+          // deprecated and not wired to the live claim flow, so a
+          // sentinel value is acceptable until the route is removed.
+          clientId: customer.id,
+          amountAUD: totalAmount / 100,
+          platformFeeAUD: serviceFee / 100,
+          gstAUD: 0,
+          netAmountAUD: contractorAmount / 100,
+          paymentMethod: 'card',
+          stripePaymentIntentId: paymentIntent.id,
           status: 'PENDING',
-          stripePaymentId: paymentIntent.id,
-          stripeCustomerId: customer.id,
-          method: 'card',
           description: `Disaster Recovery Service - ${bookingData.serviceType}`,
-          metadata: JSON.stringify({
+          metadata: {
             serviceType: bookingData.serviceType,
             urgencyLevel: bookingData.urgencyLevel,
             propertyType: bookingData.propertyType,
@@ -178,7 +183,8 @@ export async function POST(request: NextRequest) {
             state: bookingData.state,
             serviceFee: serviceFee / 100,
             contractorAmount: contractorAmount / 100,
-          }),
+            stripeCustomerId: customer.id,
+          },
         },
       });
 
