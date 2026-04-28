@@ -68,9 +68,11 @@ _Last updated: 2026-04-24 (Foundation Sprint Day 10)._
 
 - Secret keys live in Vercel env only (never in `.env` committed to
   git).
-- `.env.local` is git-ignored; contains dev-only overrides.
-- Gitleaks CI catches secrets on every push (DR-Day-0). Don't rely
-  on it — don't commit secrets in the first place.
+- `.env`, `.env.local`, `.env.production`, `.env.*.local` are all
+  gitignored — that's the contract. No secret scanner runs in CI;
+  discipline + `.gitignore` is the safety net.
+- If you need a new secret variable, add it to `.env` locally AND
+  mirror the variable name (placeholder value) into `.env.example`.
 - Rotate checklist lives in the repo under the Day-0 triage notes.
 
 ## 7. Git hooks (Husky — DR-Day-6)
@@ -112,7 +114,6 @@ feat(voice): DR-710 HMAC-auth the 5-tool surface
 
 On every PR to `main`:
 
-- Gitleaks (DR-Day-0).
 - Typecheck (DR-Day-4 hard gate).
 - Lint.
 - Prettier check.
