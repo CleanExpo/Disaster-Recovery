@@ -101,25 +101,8 @@ class MockEmailService {
     });
   }
 
-  async sendPaymentReleasedNotification(contractor: any, amount: number): Promise<void> {
-    const html = `
-      <h2>Payment Released</h2>
-      <p>Good news! A payment has been released to your account.</p>
-      <ul>
-        <li>Amount: $${amount.toFixed(2)}</li>
-        <li>Status: Processing</li>
-        <li>Expected Arrival: 2-3 business days</li>
-      </ul>
-      <p>Thank you for your excellent service!</p>
-    `;
-
-    await this.sendEmail({
-      to: contractor.email,
-      subject: '💰 Payment Released - $' + amount.toFixed(2),
-      html,
-      text: html.replace(/<[^>]*>/g, ''),
-    });
-  }
+  // sendPaymentReleasedNotification removed 2026-04-28 (ADR-014 Path A cutover) —
+  // DR does not release payments to contractors. Contractor bills client directly.
 
   getSentEmails(): MockEmail[] {
     return this.sentEmails;

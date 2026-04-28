@@ -17,6 +17,12 @@ DR does not do restoration and does not bill on behalf of anyone.
 
 ## 2. Who bills who (hard)
 
+> **Funds-flow architecture: Path A (confirmed 2026-04-28).** See
+> @docs/adr/ADR-014-funds-flow-path-a.md. The previously-staged Path B
+> Connect + escrow surface (`release-payment` route, `stripeConnectAccountId`
+> field, KPI release engine) was removed in that cutover. Do NOT
+> reintroduce.
+
 | Flow                        | Billing?                               |
 | --------------------------- | -------------------------------------- |
 | Restoration work (claim)    | Contractor → Client directly.          |
