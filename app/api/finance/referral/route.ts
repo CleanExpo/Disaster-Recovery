@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID, createHash } from 'crypto';
 import { prisma } from '@/lib/prisma';
 import { signEquippedHandoffToken } from '@/lib/finance/jwt-handoff';
-import { requestLogger } from '@/lib/observability';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -222,6 +222,10 @@ export async function POST(req: NextRequest) {
     log.error('finance.referral persistence failed', {
       referralId,
       error: err instanceof Error ? err.message : String(err),
+    });
+    captureException(err, {
+      tags: { route: '/api/finance/referral', stage: 'persistence' },
+      extra: { requestId: log.requestId, referralId },
     });
     // continue — stdout audit log below remains the fallback record.
   }
