@@ -25,12 +25,29 @@ import { format } from 'date-fns';
 
 interface ContractorApplication {
   id: string;
-  businessName: string | null;
-  contactName: string | null;
-  email: string | null;
-  phone: string | null;
+  businessName: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  abn: string;
+  yearsInBusiness: number;
+  certifications: string[];
+  serviceAreas: string[];
   status: string;
-  data: Record<string, unknown>;
+  reviewedBy: string | null;
+  reviewedAt: string | null;
+  rejectionReason: string | null;
+  notes: string | null;
+  source: string | null;
+  utmSource: string | null;
+  utmMedium: string | null;
+  utmCampaign: string | null;
+  utmContent: string | null;
+  utmTerm: string | null;
+  emailSent: boolean;
+  contacted: boolean;
+  contactedAt: string | null;
+  convertedContractor: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -138,7 +155,9 @@ export default function AdminApplicationDetailPage() {
         if (!cancelled) setLoading(false);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [id]);
 
   const updateStatus = async (newStatus: string) => {
@@ -173,7 +192,9 @@ export default function AdminApplicationDetailPage() {
     return (
       <div className="mx-auto max-w-2xl rounded-2xl border border-red-200 bg-red-50 p-8 text-center">
         <AlertTriangle className="mx-auto h-12 w-12 text-red-500" />
-        <p className="mt-3 text-lg font-semibold text-red-800">{error || 'Application not found'}</p>
+        <p className="mt-3 text-lg font-semibold text-red-800">
+          {error || 'Application not found'}
+        </p>
         <Link
           href="/admin/applications"
           className="mt-4 inline-flex items-center gap-2 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-red-700"
@@ -185,8 +206,36 @@ export default function AdminApplicationDetailPage() {
     );
   }
 
-  const data = (application.data || {}) as Record<string, unknown>;
-  const businessInfo = (data.businessInfo || {}) as Record<string, unknown>;
+  const businessInfo: Record<string, unknown> = {
+    businessName: application.businessName,
+    contactName: application.contactName,
+    email: application.email,
+    phone: application.phone,
+    abn: application.abn,
+    yearsInBusiness: application.yearsInBusiness,
+  };
+  const serviceInfo: Record<string, unknown> = {
+    certifications: application.certifications,
+    serviceAreas: application.serviceAreas,
+  };
+  const attribution: Record<string, unknown> = {
+    source: application.source,
+    utmSource: application.utmSource,
+    utmMedium: application.utmMedium,
+    utmCampaign: application.utmCampaign,
+    utmContent: application.utmContent,
+    utmTerm: application.utmTerm,
+  };
+  const review: Record<string, unknown> = {
+    reviewedBy: application.reviewedBy,
+    reviewedAt: application.reviewedAt,
+    rejectionReason: application.rejectionReason,
+    notes: application.notes,
+    convertedContractor: application.convertedContractor,
+    emailSent: application.emailSent,
+    contacted: application.contacted,
+    contactedAt: application.contactedAt,
+  };
   const badge = STATUS_BADGE[application.status] ?? {
     label: application.status.replace('_', ' '),
     className: 'bg-gray-100 text-gray-800 border-gray-200',
@@ -223,7 +272,7 @@ export default function AdminApplicationDetailPage() {
                     <p className="mt-0.5 text-sm text-gray-500">
                       {application.contactName && application.businessName
                         ? application.contactName
-                        : application.email ?? '—'}
+                        : (application.email ?? '—')}
                     </p>
                     <span
                       className={`mt-2 inline-flex rounded-full border px-3 py-1 text-xs font-medium ${badge.className}`}
@@ -263,22 +312,15 @@ export default function AdminApplicationDetailPage() {
           {/* Application data sections */}
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-gray-900">Application data</h2>
-            <DataSection title="Business information" icon={Briefcase} data={businessInfo} defaultOpen />
-            {Boolean(data.insurance) && (
-              <DataSection title="Insurance & licensing" icon={Shield} data={data.insurance as Record<string, unknown>} />
-            )}
-            {Boolean(data.experience) && (
-              <DataSection title="Experience & references" icon={User} data={data.experience as Record<string, unknown>} />
-            )}
-            {Boolean(data.equipment) && (
-              <DataSection title="Equipment & resources" icon={Briefcase} data={data.equipment as Record<string, unknown>} />
-            )}
-            {Boolean(data.healthSafety) && (
-              <DataSection title="Health & safety" icon={Shield} data={data.healthSafety as Record<string, unknown>} />
-            )}
-            {Boolean(data.banking) && (
-              <DataSection title="Banking & payment" icon={Banknote} data={data.banking as Record<string, unknown>} />
-            )}
+            <DataSection
+              title="Business information"
+              icon={Briefcase}
+              data={businessInfo}
+              defaultOpen
+            />
+            <DataSection title="Services & certifications" icon={Shield} data={serviceInfo} />
+            <DataSection title="Attribution" icon={User} data={attribution} />
+            <DataSection title="Review & outreach" icon={Banknote} data={review} />
           </div>
         </div>
 

@@ -27,19 +27,56 @@ export async function POST(request: Request) {
     const application = body?.application || {};
 
     const businessInfo = application.businessInfo || {};
-    const email: string = businessInfo.email ?? null;
-    const contactName: string = businessInfo.contactName ?? null;
-    const phone: string = businessInfo.phone ?? businessInfo.mobile ?? null;
+    const services = application.services || {};
+    const marketing = application.marketing || {};
+    const utm = marketing.utm || {};
 
-    // 1. Save the ContractorApplication (existing behaviour)
+    const email: string = businessInfo.email ?? '';
+    const contactName: string = businessInfo.contactName ?? '';
+    const phone: string = businessInfo.phone ?? businessInfo.mobile ?? '';
+    const businessName: string = businessInfo.companyName ?? businessInfo.businessName ?? '';
+    const abn: string = businessInfo.abn ?? application.abn ?? '';
+
+    // yearsInBusiness can arrive as a string (form input) or a number; coerce.
+    const rawYears =
+      businessInfo.yearsInBusiness ??
+      application.yearsInBusiness ??
+      application.experience?.yearsInBusiness ??
+      0;
+    const yearsInBusiness: number = Number.parseInt(String(rawYears), 10) || 0;
+
+    const certifications: string[] = Array.isArray(application.certifications)
+      ? application.certifications.filter((v: unknown): v is string => typeof v === 'string')
+      : [];
+    const serviceAreas: string[] = Array.isArray(services.areas)
+      ? services.areas.filter((v: unknown): v is string => typeof v === 'string')
+      : [];
+
+    // Generate the application id up-front (live `id text NOT NULL` has no default).
+    const applicationId = crypto.randomUUID();
+
+    // 1. Save the ContractorApplication (flat-column shape — matches live table).
+    //    Wizard fields outside this projection (insurance, experience, equipment,
+    //    healthSafety, banking) are NOT persisted on this row; they belong to the
+    //    OnboardingPayment / contractor-profile flow.
     const record = await prisma.contractorApplication.create({
       data: {
-        businessName: businessInfo.companyName ?? businessInfo.businessName ?? null,
-        contactName: contactName ?? null,
-        email: email ?? null,
-        phone: phone ?? null,
-        data: application
-      }
+        id: applicationId,
+        businessName,
+        contactName,
+        email,
+        phone,
+        abn,
+        yearsInBusiness,
+        certifications,
+        serviceAreas,
+        source: typeof marketing.source === 'string' ? marketing.source : null,
+        utmSource: typeof utm.source === 'string' ? utm.source : null,
+        utmMedium: typeof utm.medium === 'string' ? utm.medium : null,
+        utmCampaign: typeof utm.campaign === 'string' ? utm.campaign : null,
+        utmContent: typeof utm.content === 'string' ? utm.content : null,
+        utmTerm: typeof utm.term === 'string' ? utm.term : null,
+      },
     });
 
     // 2. Create or find a Contractor record in PENDING status
@@ -48,7 +85,7 @@ export async function POST(request: Request) {
     if (email) {
       // Check if a contractor already exists for this email
       let contractor = await prisma.contractor.findUnique({
-        where: { email }
+        where: { email },
       });
 
       if (!contractor) {
@@ -60,7 +97,10 @@ export async function POST(request: Request) {
           .digest('hex');
 
         // Derive a unique username from email
-        const baseUsername = email.split('@')[0].replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        const baseUsername = email
+          .split('@')[0]
+          .replace(/[^a-zA-Z0-9]/g, '')
+          .toLowerCase();
         // Ensure uniqueness by appending a short random suffix
         const username = `${baseUsername}_${crypto.randomBytes(3).toString('hex')}`;
 
@@ -72,19 +112,16 @@ export async function POST(request: Request) {
             mobileNumber: phone ?? '',
             status: 'PENDING',
             onboardingStep: 1,
-            // Link to the application we just created
-            applications: {
-              connect: { id: record.id }
-            }
-          }
-        });
-      } else {
-        // Link this application to the existing contractor if not yet linked
-        await prisma.contractorApplication.update({
-          where: { id: record.id },
-          data: { contractorId: contractor.id }
+          },
         });
       }
+
+      // Track the converted contractor on the application via the scalar field
+      // (relation was dropped — live table only has `convertedContractor: text`).
+      await prisma.contractorApplication.update({
+        where: { id: record.id },
+        data: { convertedContractor: contractor.id },
+      });
 
       contractorId = contractor.id;
 
@@ -105,16 +142,21 @@ export async function POST(request: Request) {
         applicationId: record.id,
         contractorId,
         paymentRequired: true,
-        paymentAmount: PAYMENT_AMOUNT_AUD
+        paymentAmount: PAYMENT_AMOUNT_AUD,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
-    log.error('error saving contractor application', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/contractor/onboarding/submit' }, extra: { requestId: log.requestId } });
+    log.error('error saving contractor application', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/contractor/onboarding/submit' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       { success: false, message: 'Failed to save contractor application' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

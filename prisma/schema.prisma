@@ -396,9 +396,6 @@ model Contractor {
   jobOutcomes    JobOutcome[]
   jobOffers      JobOffer[]
 
-  // Applications submitted via /contractor/apply (raw snapshot of the onboarding wizard)
-  applications ContractorApplication[]
-
   // Proof of work and competency
   proofOfWork           ProofOfWork[]
   competencyTestResults CompetencyTestResult[]
@@ -422,24 +419,45 @@ model Contractor {
 }
 
 model ContractorApplication {
-  id String @id @default(cuid())
+  id String @id
 
-  // Optional link to a Contractor once created/approved
-  contractorId String?
-  contractor   Contractor? @relation(fields: [contractorId], references: [id])
+  // Core business identifiers (non-nullable on the live table)
+  businessName    String
+  contactName     String
+  email           String
+  phone           String
+  abn             String
+  yearsInBusiness Int
 
-  // Core summary fields for quick lookup
-  businessName String?
-  contactName  String?
-  email        String?
-  phone        String?
-  status       String  @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, APPROVED, REJECTED
+  // Service offering
+  certifications String[]
+  serviceAreas   String[]
 
-  // Full JSON snapshot of the onboarding wizard data
-  data Json
+  // Lifecycle
+  status          String    @default("PENDING") // PENDING, UNDER_REVIEW, APPROVED, REJECTED
+  reviewedBy      String?
+  reviewedAt      DateTime?
+  rejectionReason String?
+  notes           String?
+
+  // Attribution
+  source      String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  utmTerm     String?
+
+  // Outreach + conversion tracking (scalar — no FK back to Contractor)
+  emailSent           Boolean   @default(false)
+  contacted           Boolean   @default(false)
+  contactedAt         DateTime?
+  convertedContractor String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("contractor_applications")
 }
 
 model ContractorCompany {
