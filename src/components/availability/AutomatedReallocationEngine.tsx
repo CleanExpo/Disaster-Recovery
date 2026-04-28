@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  RefreshCw, 
-  Settings, 
+import {
+  RefreshCw,
+  Settings,
   AlertTriangle,
   CheckCircle,
   XCircle,
@@ -14,9 +14,9 @@ import {
   Shield,
   Bell,
   Activity,
-  Info
+  Info,
 } from 'lucide-react';
-import { 
+import {
   AvailabilityRule,
   RuleCondition,
   RuleAction,
@@ -24,7 +24,7 @@ import {
   LeadReallocation,
   ContractorAvailability,
   ConditionType,
-  ActionType
+  ActionType,
 } from '@/types/availability-management';
 
 interface ReallocationEvent {
@@ -64,7 +64,7 @@ const AutomatedReallocationEngine: React.FC = () => {
     failedReallocations: 0,
     averageReallocationTime: 0,
     activeRules: 0,
-    queuedLeads: 0
+    queuedLeads: 0,
   });
 
   // Rule builder form state
@@ -75,7 +75,7 @@ const AutomatedReallocationEngine: React.FC = () => {
     priority: 1,
     conditions: [],
     actions: [],
-    notifications: []
+    notifications: [],
   });
 
   const conditionTypes: { value: ConditionType; label: string; icon: React.ElementType }[] = [
@@ -84,7 +84,7 @@ const AutomatedReallocationEngine: React.FC = () => {
     { value: 'advance_notice', label: 'Advance Notice', icon: Bell },
     { value: 'compliance_status', label: 'Compliance Status', icon: Shield },
     { value: 'job_count', label: 'Job Count', icon: Users },
-    { value: 'date_range', label: 'Date Range', icon: Clock }
+    { value: 'date_range', label: 'Date Range', icon: Clock },
   ];
 
   const actionTypes: { value: ActionType; label: string; icon: React.ElementType }[] = [
@@ -94,7 +94,7 @@ const AutomatedReallocationEngine: React.FC = () => {
     { value: 'require_approval', label: 'Require Approval', icon: CheckCircle },
     { value: 'auto_approve', label: 'Auto Approve', icon: Zap },
     { value: 'send_reminder', label: 'Send Reminder', icon: Clock },
-    { value: 'escalate', label: 'Escalate', icon: TrendingUp }
+    { value: 'escalate', label: 'Escalate', icon: TrendingUp },
   ];
 
   useEffect(() => {
@@ -118,29 +118,29 @@ const AutomatedReallocationEngine: React.FC = () => {
           {
             type: 'status_change',
             operator: 'equals',
-            value: 'emergency'
-          }
+            value: 'emergency',
+          },
         ],
         actions: [
           {
             type: 'reallocate_leads',
-            parameters: { method: 'immediate', preferredContractors: [] }
+            parameters: { method: 'immediate', preferredContractors: [] },
           },
           {
             type: 'notify_admin',
-            parameters: { urgency: 'high' }
-          }
+            parameters: { urgency: 'high' },
+          },
         ],
         notifications: [
           {
             recipient: 'admin',
             channel: 'email',
             template: 'emergency_reallocation',
-            timing: 'immediate'
-          }
+            timing: 'immediate',
+          },
         ],
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       },
       {
         id: 'AR002',
@@ -152,24 +152,24 @@ const AutomatedReallocationEngine: React.FC = () => {
           {
             type: 'status_change',
             operator: 'equals',
-            value: 'vacation'
+            value: 'vacation',
           },
           {
             type: 'advance_notice',
             operator: 'greater_than',
             value: 48,
-            timeframe: 'hours'
-          }
+            timeframe: 'hours',
+          },
         ],
         actions: [
           {
             type: 'reallocate_leads',
-            parameters: { method: 'scheduled', leadTime: 24 }
+            parameters: { method: 'scheduled', leadTime: 24 },
           },
           {
             type: 'send_reminder',
-            parameters: { to: 'contractor', when: '24_hours_before' }
-          }
+            parameters: { to: 'contractor', when: '24_hours_before' },
+          },
         ],
         notifications: [
           {
@@ -177,11 +177,11 @@ const AutomatedReallocationEngine: React.FC = () => {
             channel: 'sms',
             template: 'vacation_confirmation',
             timing: 'before_change',
-            advanceMinutes: 1440
-          }
+            advanceMinutes: 1440,
+          },
         ],
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       },
       {
         id: 'AR003',
@@ -193,26 +193,26 @@ const AutomatedReallocationEngine: React.FC = () => {
           {
             type: 'job_count',
             operator: 'greater_than',
-            value: 10
-          }
+            value: 10,
+          },
         ],
         actions: [
           {
             type: 'reallocate_leads',
-            parameters: { method: 'overflow', threshold: 80 }
-          }
+            parameters: { method: 'overflow', threshold: 80 },
+          },
         ],
         notifications: [
           {
             recipient: 'contractor',
             channel: 'in_app',
             template: 'capacity_warning',
-            timing: 'immediate'
-          }
+            timing: 'immediate',
+          },
         ],
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      }
+        updatedAt: new Date().toISOString(),
+      },
     ];
 
     // Mock contractor loads
@@ -225,7 +225,7 @@ const AutomatedReallocationEngine: React.FC = () => {
         capacity: 15,
         utilizationRate: 33,
         canAcceptMore: true,
-        estimatedAvailability: 'Now'
+        estimatedAvailability: 'Now',
       },
       {
         contractorId: 'C002',
@@ -235,7 +235,7 @@ const AutomatedReallocationEngine: React.FC = () => {
         capacity: 12,
         utilizationRate: 100,
         canAcceptMore: false,
-        estimatedAvailability: '2 hours'
+        estimatedAvailability: '2 hours',
       },
       {
         contractorId: 'C003',
@@ -245,7 +245,7 @@ const AutomatedReallocationEngine: React.FC = () => {
         capacity: 20,
         utilizationRate: 15,
         canAcceptMore: true,
-        estimatedAvailability: 'Now'
+        estimatedAvailability: 'Now',
       },
       {
         contractorId: 'C004',
@@ -255,8 +255,8 @@ const AutomatedReallocationEngine: React.FC = () => {
         capacity: 10,
         utilizationRate: 0,
         canAcceptMore: false,
-        estimatedAvailability: 'Tomorrow 8 AM'
-      }
+        estimatedAvailability: 'Tomorrow 8 AM',
+      },
     ];
 
     // Mock reallocation events
@@ -270,7 +270,7 @@ const AutomatedReallocationEngine: React.FC = () => {
         reallocatedTo: ['C001', 'C003'],
         successRate: 100,
         averageResponseTime: 45,
-        ruleApplied: 'Emergency Reallocation'
+        ruleApplied: 'Emergency Reallocation',
       },
       {
         id: 'RE002',
@@ -281,8 +281,8 @@ const AutomatedReallocationEngine: React.FC = () => {
         reallocatedTo: ['C001', 'C002', 'C003'],
         successRate: 80,
         averageResponseTime: 120,
-        ruleApplied: 'Vacation Reallocation'
-      }
+        ruleApplied: 'Vacation Reallocation',
+      },
     ];
 
     setRules(mockRules);
@@ -293,15 +293,15 @@ const AutomatedReallocationEngine: React.FC = () => {
       successfulReallocations: 23,
       failedReallocations: 2,
       averageReallocationTime: 85,
-      activeRules: mockRules.filter(r => r.enabled).length,
-      queuedLeads: 3
+      activeRules: mockRules.filter((r) => r.enabled).length,
+      queuedLeads: 3,
     });
   };
 
   const simulateReallocation = () => {
     if (engineStatus !== 'active') return;
 
-    const availableContractors = contractorLoads.filter(c => c.canAcceptMore);
+    const availableContractors = contractorLoads.filter((c) => c.canAcceptMore);
     if (availableContractors.length === 0) return;
 
     // Simulate a random reallocation event
@@ -310,19 +310,20 @@ const AutomatedReallocationEngine: React.FC = () => {
         id: `RE${Date.now()}`,
         timestamp: new Date().toISOString(),
         triggerType: 'status_change',
-        affectedContractor: contractorLoads[Math.floor(Math.random() * contractorLoads.length)].name,
+        affectedContractor:
+          contractorLoads[Math.floor(Math.random() * contractorLoads.length)].name,
         leadCount: Math.floor(Math.random() * 5) + 1,
-        reallocatedTo: availableContractors.slice(0, 2).map(c => c.name),
+        reallocatedTo: availableContractors.slice(0, 2).map((c) => c.name),
         successRate: 90 + Math.floor(Math.random() * 10),
         averageResponseTime: 30 + Math.floor(Math.random() * 60),
-        ruleApplied: rules[Math.floor(Math.random() * rules.length)]?.name
+        ruleApplied: rules[Math.floor(Math.random() * rules.length)]?.name,
       };
 
-      setReallocationEvents(prev => [event, ...prev].slice(0, 20));
-      setStats(prev => ({
+      setReallocationEvents((prev) => [event, ...prev].slice(0, 20));
+      setStats((prev) => ({
         ...prev,
         totalReallocations: prev.totalReallocations + 1,
-        successfulReallocations: prev.successfulReallocations + 1
+        successfulReallocations: prev.successfulReallocations + 1,
       }));
     }
   };
@@ -340,7 +341,7 @@ const AutomatedReallocationEngine: React.FC = () => {
       actions: newRule.actions || [],
       notifications: newRule.notifications || [],
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     setRules([...rules, rule]);
@@ -349,13 +350,13 @@ const AutomatedReallocationEngine: React.FC = () => {
   };
 
   const handleToggleRule = (ruleId: string) => {
-    setRules(rules.map(rule => 
-      rule.id === ruleId ? { ...rule, enabled: !rule.enabled } : rule
-    ));
+    setRules(
+      rules.map((rule) => (rule.id === ruleId ? { ...rule, enabled: !rule.enabled } : rule)),
+    );
   };
 
   const handleDeleteRule = (ruleId: string) => {
-    setRules(rules.filter(rule => rule.id !== ruleId));
+    setRules(rules.filter((rule) => rule.id !== ruleId));
   };
 
   const resetRuleForm = () => {
@@ -366,7 +367,7 @@ const AutomatedReallocationEngine: React.FC = () => {
       priority: 1,
       conditions: [],
       actions: [],
-      notifications: []
+      notifications: [],
     });
     setEditingRule(null);
   };
@@ -375,41 +376,50 @@ const AutomatedReallocationEngine: React.FC = () => {
     const condition: RuleCondition = {
       type: 'status_change',
       operator: 'equals',
-      value: ''
+      value: '',
     };
     setNewRule({
       ...newRule,
-      conditions: [...(newRule.conditions || []), condition]
+      conditions: [...(newRule.conditions || []), condition],
     });
   };
 
   const addAction = () => {
     const action: RuleAction = {
       type: 'reallocate_leads',
-      parameters: {}
+      parameters: {},
     };
     setNewRule({
       ...newRule,
-      actions: [...(newRule.actions || []), action]
+      actions: [...(newRule.actions || []), action],
     });
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'available': return 'bg-green-100 text-green-800';
-      case 'busy': return 'bg-yellow-100 text-yellow-800';
-      case 'offline': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'available':
+        return 'bg-green-100 text-green-800';
+      case 'busy':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'offline':
+        return 'bg-gray-100 text-gray-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getTriggerIcon = (trigger: string) => {
     switch (trigger) {
-      case 'status_change': return Activity;
-      case 'scheduled': return Clock;
-      case 'emergency': return AlertTriangle;
-      case 'manual': return Users;
-      default: return Info;
+      case 'status_change':
+        return Activity;
+      case 'scheduled':
+        return Clock;
+      case 'emergency':
+        return AlertTriangle;
+      case 'manual':
+        return Users;
+      default:
+        return Info;
     }
   };
 
@@ -424,20 +434,30 @@ const AutomatedReallocationEngine: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Automated Reallocation Engine</h2>
-              <p className="text-sm text-gray-500">Seamless lead redistribution when contractors are unavailable</p>
+              <p className="text-sm text-gray-500">
+                Seamless lead redistribution when contractors are unavailable
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <div className={`px-3 py-1 rounded-full flex items-center space-x-2 ${
-              engineStatus === 'active' ? 'bg-green-100 text-green-800' :
-              engineStatus === 'processing' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-gray-100 text-gray-800'
-            }`}>
-              <div className={`w-2 h-2 rounded-full ${
-                engineStatus === 'active' ? 'bg-green-500' :
-                engineStatus === 'processing' ? 'bg-blue-600 animate-pulse' :
-                'bg-gray-700'
-              }`} />
+            <div
+              className={`px-3 py-1 rounded-full flex items-center space-x-2 ${
+                engineStatus === 'active'
+                  ? 'bg-green-100 text-green-800'
+                  : engineStatus === 'processing'
+                    ? 'bg-yellow-100 text-yellow-800'
+                    : 'bg-gray-100 text-gray-800'
+              }`}
+            >
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  engineStatus === 'active'
+                    ? 'bg-green-500'
+                    : engineStatus === 'processing'
+                      ? 'bg-blue-600 animate-pulse'
+                      : 'bg-gray-700'
+                }`}
+              />
               <span className="text-sm font-medium capitalize">{engineStatus}</span>
             </div>
             <button
@@ -492,9 +512,11 @@ const AutomatedReallocationEngine: React.FC = () => {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="font-medium">{contractor.name}</p>
-                  <span className={`inline-block px-2 py-1 text-xs rounded-full mt-1 ${
-                    getStatusColor(contractor.currentStatus)
-                  }`}>
+                  <span
+                    className={`inline-block px-2 py-1 text-xs rounded-full mt-1 ${getStatusColor(
+                      contractor.currentStatus,
+                    )}`}
+                  >
                     {contractor.currentStatus}
                   </span>
                 </div>
@@ -507,15 +529,19 @@ const AutomatedReallocationEngine: React.FC = () => {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Active Leads</span>
-                  <span className="font-medium">{contractor.activeLeads}/{contractor.capacity}</span>
+                  <span className="font-medium">
+                    {contractor.activeLeads}/{contractor.capacity}
+                  </span>
                 </div>
-                
+
                 <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div
                     className={`absolute left-0 top-0 h-full transition-all ${
-                      contractor.utilizationRate > 80 ? 'bg-red-500' :
-                      contractor.utilizationRate > 60 ? 'bg-blue-600' :
-                      'bg-green-500'
+                      contractor.utilizationRate > 80
+                        ? 'bg-red-500'
+                        : contractor.utilizationRate > 60
+                          ? 'bg-blue-600'
+                          : 'bg-green-500'
                     }`}
                     style={{ width: `${contractor.utilizationRate}%` }}
                   />
@@ -523,9 +549,11 @@ const AutomatedReallocationEngine: React.FC = () => {
 
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Can Accept</span>
-                  <span className={`font-medium ${
-                    contractor.canAcceptMore ? 'text-green-600' : 'text-red-600'
-                  }`}>
+                  <span
+                    className={`font-medium ${
+                      contractor.canAcceptMore ? 'text-green-600' : 'text-red-600'
+                    }`}
+                  >
                     {contractor.canAcceptMore ? 'Yes' : 'No'}
                   </span>
                 </div>
@@ -621,14 +649,30 @@ const AutomatedReallocationEngine: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Trigger</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Affected</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Leads</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Reallocated To</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Success</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Response</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rule</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Time
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Trigger
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Affected
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Leads
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Reallocated To
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Success
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Response
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Rule
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -649,13 +693,15 @@ const AutomatedReallocationEngine: React.FC = () => {
                     <td className="px-4 py-2 text-sm font-medium">{event.leadCount}</td>
                     <td className="px-4 py-2 text-sm">{event.reallocatedTo.join(', ')}</td>
                     <td className="px-4 py-2">
-                      <span className={`px-2 py-1 text-xs rounded-full ${
-                        event.successRate === 100 
-                          ? 'bg-green-100 text-green-800' 
-                          : event.successRate >= 80
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-red-100 text-red-800'
-                      }`}>
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full ${
+                          event.successRate === 100
+                            ? 'bg-green-100 text-green-800'
+                            : event.successRate >= 80
+                              ? 'bg-yellow-100 text-yellow-800'
+                              : 'bg-red-100 text-red-800'
+                        }`}
+                      >
                         {event.successRate}%
                       </span>
                     </td>
@@ -674,7 +720,7 @@ const AutomatedReallocationEngine: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full m-4 max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold mb-4">Create Reallocation Rule</h3>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Rule Name</label>
@@ -714,7 +760,9 @@ const AutomatedReallocationEngine: React.FC = () => {
                   <label className="block text-sm font-medium mb-2">Status</label>
                   <select
                     value={newRule.enabled ? 'enabled' : 'disabled'}
-                    onChange={(e) => setNewRule({ ...newRule, enabled: e.target.value === 'enabled' })}
+                    onChange={(e) =>
+                      setNewRule({ ...newRule, enabled: e.target.value === 'enabled' })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   >
                     <option value="enabled">Enabled</option>
@@ -745,15 +793,17 @@ const AutomatedReallocationEngine: React.FC = () => {
                       }}
                       className="px-2 py-1 border border-gray-300 rounded"
                     >
-                      {conditionTypes.map(ct => (
-                        <option key={ct.value} value={ct.value}>{ct.label}</option>
+                      {conditionTypes.map((ct) => (
+                        <option key={ct.value} value={ct.value}>
+                          {ct.label}
+                        </option>
                       ))}
                     </select>
                     <select
                       value={condition.operator}
                       onChange={(e) => {
                         const updated = [...(newRule.conditions || [])];
-                        updated[index].operator = e.target.value as any;
+                        updated[index].operator = e.target.value as RuleCondition['operator'];
                         setNewRule({ ...newRule, conditions: updated });
                       }}
                       className="px-2 py-1 border border-gray-300 rounded"
@@ -809,8 +859,10 @@ const AutomatedReallocationEngine: React.FC = () => {
                       }}
                       className="px-2 py-1 border border-gray-300 rounded"
                     >
-                      {actionTypes.map(at => (
-                        <option key={at.value} value={at.value}>{at.label}</option>
+                      {actionTypes.map((at) => (
+                        <option key={at.value} value={at.value}>
+                          {at.label}
+                        </option>
                       ))}
                     </select>
                     <button

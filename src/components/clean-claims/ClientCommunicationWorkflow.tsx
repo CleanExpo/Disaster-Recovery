@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Mail, 
-  Send, 
+import {
+  Mail,
+  Send,
   Calendar,
   Clock,
   User,
@@ -18,16 +18,16 @@ import {
   Camera,
   Award,
   MessageSquare,
-  Globe
+  Globe,
 } from 'lucide-react';
-import { 
+import {
   ClientCommunication,
   CommunicationType,
   CommunicationStatus,
   TechnicianProfile,
   ServiceDetail,
   Document,
-  CommunicationTracking
+  CommunicationTracking,
 } from '@/types/clean-claims-integration';
 
 interface CommunicationTemplate {
@@ -50,7 +50,9 @@ interface EmailPreview {
 const ClientCommunicationWorkflow: React.FC = () => {
   const [communications, setCommunications] = useState<ClientCommunication[]>([]);
   const [templates, setTemplates] = useState<CommunicationTemplate[]>([]);
-  const [selectedCommunication, setSelectedCommunication] = useState<ClientCommunication | null>(null);
+  const [selectedCommunication, setSelectedCommunication] = useState<ClientCommunication | null>(
+    null,
+  );
   const [selectedTemplate, setSelectedTemplate] = useState<CommunicationTemplate | null>(null);
   const [showPreview, setShowPreview] = useState(false);
   const [emailPreview, setEmailPreview] = useState<EmailPreview | null>(null);
@@ -83,7 +85,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               credentials: ['IICRC WRT', 'IICRC ASD'],
               bio: 'Senior restoration technician with 10+ years experience',
               role: 'Lead Technician',
-              isExpertBackup: false
+              isExpertBackup: false,
             },
             {
               technicianId: 'T002',
@@ -92,7 +94,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               credentials: ['IICRC FSRT'],
               bio: 'Fire damage specialist',
               role: 'Support Technician',
-              isExpertBackup: false
+              isExpertBackup: false,
             },
             {
               technicianId: 'T003',
@@ -101,8 +103,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
               credentials: ['IICRC WRT', 'Biohazard Certified'],
               bio: 'Expert team member available for consultation',
               role: 'Senior Expert',
-              isExpertBackup: true
-            }
+              isExpertBackup: true,
+            },
           ],
           serviceDetails: [
             {
@@ -110,8 +112,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
               description: 'Complete water extraction and structural drying',
               expectedDuration: '3-5 days',
               requirements: ['Clear access to affected areas', 'Power availability'],
-              reminders: ['Please secure pets', 'Move valuable items if possible']
-            }
+              reminders: ['Please secure pets', 'Move valuable items if possible'],
+            },
           ],
           slaDocument: {
             id: 'DOC001',
@@ -119,8 +121,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
             name: 'Service Level Agreement',
             url: '/documents/sla.pdf',
             version: '2.1',
-            customizedFor: 'Water Damage Services'
-          }
+            customizedFor: 'Water Damage Services',
+          },
         },
         attachments: [],
         tracking: {
@@ -128,8 +130,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
           clicks: 0,
           bounces: 0,
           unsubscribes: 0,
-          events: []
-        }
+          events: [],
+        },
       },
       {
         id: 'COMM002',
@@ -148,8 +150,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
             name: 'Service Contract',
             url: '/documents/contract.pdf',
             version: '1.0',
-            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
-          }
+            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          },
         },
         attachments: [
           {
@@ -158,8 +160,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
             mimeType: 'application/pdf',
             size: 245000,
             url: '/documents/privacy-policy.pdf',
-            uploadedAt: new Date().toISOString()
-          }
+            uploadedAt: new Date().toISOString(),
+          },
         ],
         tracking: {
           emailId: 'EM001',
@@ -169,9 +171,9 @@ const ClientCommunicationWorkflow: React.FC = () => {
           unsubscribes: 0,
           events: [
             { type: 'open', timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString() },
-            { type: 'click', timestamp: new Date(Date.now() - 30 * 60 * 1000).toISOString() }
-          ]
-        }
+            { type: 'click', timestamp: new Date(Date.now() - 30 * 60 * 1000).toISOString() },
+          ],
+        },
       },
       {
         id: 'COMM003',
@@ -182,7 +184,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
         sentAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
         content: {
           subject: 'Access Your Restoration Project Portal',
-          body: ''
+          body: '',
         },
         attachments: [],
         tracking: {
@@ -190,9 +192,9 @@ const ClientCommunicationWorkflow: React.FC = () => {
           clicks: 1,
           bounces: 0,
           unsubscribes: 0,
-          events: []
-        }
-      }
+          events: [],
+        },
+      },
     ];
 
     setCommunications(mockCommunications);
@@ -222,7 +224,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
           <p>If you have any questions, please don't hesitate to contact us.</p>
         `,
         attachments: ['sla', 'company-profile'],
-        isDefault: true
+        isDefault: true,
       },
       {
         id: 'TEMP002',
@@ -249,20 +251,18 @@ const ClientCommunicationWorkflow: React.FC = () => {
           <a href="{{portalUrl}}" style="display:inline-block;padding:12px 24px;background:#3B82F6;colour:white;text-decoration:none;border-radius:6px;">Access Portal</a>
         `,
         attachments: ['contract', 'privacy-policy', 'terms'],
-        isDefault: true
-      }
+        isDefault: true,
+      },
     ];
 
     setTemplates(mockTemplates);
   };
 
   const handleSendCommunication = (commId: string) => {
-    setCommunications(comms => 
-      comms.map(comm => 
-        comm.id === commId 
-          ? { ...comm, status: 'sent', sentAt: new Date().toISOString() }
-          : comm
-      )
+    setCommunications((comms) =>
+      comms.map((comm) =>
+        comm.id === commId ? { ...comm, status: 'sent', sentAt: new Date().toISOString() } : comm,
+      ),
     );
   };
 
@@ -293,7 +293,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
     if (communication.content.technicianProfiles) {
       html += '<h2>Your Restoration Team</h2>';
-      communication.content.technicianProfiles.forEach(tech => {
+      communication.content.technicianProfiles.forEach((tech) => {
         html += `
           <div class="team-member">
             <img src="${tech.photo || '/api/placeholder/80/80'}" alt="${tech.name}">
@@ -301,7 +301,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               <h3>${tech.name} - ${tech.role}</h3>
               <p>${tech.bio}</p>
               <div class="credentials">
-                ${tech.credentials.map(c => `<span class="credential">${c}</span>`).join('')}
+                ${tech.credentials.map((c) => `<span class="credential">${c}</span>`).join('')}
               </div>
               ${tech.isExpertBackup ? '<p style="colour: #059669; font-weight: bold;">✓ Senior Expert on Call</p>' : ''}
             </div>
@@ -312,20 +312,28 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
     if (communication.content.serviceDetails) {
       html += '<h2>Service Details</h2>';
-      communication.content.serviceDetails.forEach(service => {
+      communication.content.serviceDetails.forEach((service) => {
         html += `
           <div class="service-box">
             <h3>${service.serviceType}</h3>
             <p>${service.description}</p>
             <p><strong>Expected Duration:</strong> ${service.expectedDuration}</p>
-            ${service.requirements ? `
+            ${
+              service.requirements
+                ? `
               <p><strong>Requirements:</strong></p>
-              <ul>${service.requirements.map(r => `<li>${r}</li>`).join('')}</ul>
-            ` : ''}
-            ${service.reminders ? `
+              <ul>${service.requirements.map((r) => `<li>${r}</li>`).join('')}</ul>
+            `
+                : ''
+            }
+            ${
+              service.reminders
+                ? `
               <p><strong>Important Reminders:</strong></p>
-              <ul>${service.reminders.map(r => `<li>${r}</li>`).join('')}</ul>
-            ` : ''}
+              <ul>${service.reminders.map((r) => `<li>${r}</li>`).join('')}</ul>
+            `
+                : ''
+            }
           </div>
         `;
       });
@@ -355,45 +363,63 @@ const ClientCommunicationWorkflow: React.FC = () => {
       to: 'client@example.com',
       subject: communication.content.subject,
       html,
-      attachments: communication.content.slaDocument ? [communication.content.slaDocument] : []
+      attachments: communication.content.slaDocument ? [communication.content.slaDocument] : [],
     });
     setShowPreview(true);
   };
 
   const getStatusIcon = (status: CommunicationStatus) => {
     switch (status) {
-      case 'sent': return Send;
-      case 'delivered': return CheckCircle;
-      case 'opened': return Eye;
-      case 'scheduled': return Calendar;
-      case 'failed': return AlertCircle;
-      default: return FileText;
+      case 'sent':
+        return Send;
+      case 'delivered':
+        return CheckCircle;
+      case 'opened':
+        return Eye;
+      case 'scheduled':
+        return Calendar;
+      case 'failed':
+        return AlertCircle;
+      default:
+        return FileText;
     }
   };
 
   const getStatusColor = (status: CommunicationStatus) => {
     switch (status) {
-      case 'sent': return 'bg-blue-100 text-blue-800';
-      case 'delivered': return 'bg-green-100 text-green-800';
-      case 'opened': return 'bg-purple-700 text-white';
-      case 'scheduled': return 'bg-yellow-100 text-yellow-800';
-      case 'failed': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'sent':
+        return 'bg-blue-100 text-blue-800';
+      case 'delivered':
+        return 'bg-green-100 text-green-800';
+      case 'opened':
+        return 'bg-purple-700 text-white';
+      case 'scheduled':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'failed':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getTypeIcon = (type: CommunicationType) => {
     switch (type) {
-      case 'pre_visit_introduction': return User;
-      case 'service_description': return FileText;
-      case 'digital_contract': return Shield;
-      case 'portal_invitation': return Globe;
-      case 'progress_update': return MessageSquare;
-      default: return Mail;
+      case 'pre_visit_introduction':
+        return User;
+      case 'service_description':
+        return FileText;
+      case 'digital_contract':
+        return Shield;
+      case 'portal_invitation':
+        return Globe;
+      case 'progress_update':
+        return MessageSquare;
+      default:
+        return Mail;
     }
   };
 
-  const filteredCommunications = communications.filter(comm => {
+  const filteredCommunications = communications.filter((comm) => {
     const matchesType = filterType === 'all' || comm.type === filterType;
     const matchesStatus = filterStatus === 'all' || comm.status === filterStatus;
     return matchesType && matchesStatus;
@@ -451,7 +477,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
             <label className="text-sm font-medium">Type:</label>
             <select
               value={filterType}
-              onChange={(e) => setFilterType(e.target.value as any)}
+              onChange={(e) => setFilterType(e.target.value as CommunicationType | 'all')}
               className="px-3 py-1 border border-gray-300 rounded-lg text-sm"
             >
               <option value="all">All Types</option>
@@ -465,7 +491,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
             <label className="text-sm font-medium">Status:</label>
             <select
               value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value as any)}
+              onChange={(e) => setFilterStatus(e.target.value as CommunicationStatus | 'all')}
               className="px-3 py-1 border border-gray-300 rounded-lg text-sm"
             >
               <option value="all">All Status</option>
@@ -485,7 +511,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
           {filteredCommunications.map((comm) => {
             const TypeIcon = getTypeIcon(comm.type);
             const StatusIcon = getStatusIcon(comm.status);
-            
+
             return (
               <div
                 key={comm.id}
@@ -524,9 +550,11 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
                     {/* Status */}
                     <div className="flex items-center space-x-2">
-                      <span className={`px-2 py-1 text-xs rounded-full flex items-center space-x-1 ${
-                        getStatusColor(comm.status)
-                      }`}>
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full flex items-center space-x-1 ${getStatusColor(
+                          comm.status,
+                        )}`}
+                      >
                         <StatusIcon className="h-3 w-3" />
                         <span>{comm.status}</span>
                       </span>
@@ -583,11 +611,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     {comm.content.technicianProfiles.slice(0, 3).map((tech) => (
                       <div key={tech.technicianId} className="flex items-center space-x-1">
                         {tech.photo ? (
-                          <img
-                            src={tech.photo}
-                            alt={tech.name}
-                            className="w-6 h-6 rounded-full"
-                          />
+                          <img src={tech.photo} alt={tech.name} className="w-6 h-6 rounded-full" />
                         ) : (
                           <div className="w-6 h-6 rounded-full bg-gray-200" />
                         )}
@@ -646,7 +670,10 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     <span className="font-medium w-20">Attachments:</span>
                     <div className="flex items-center space-x-2">
                       {emailPreview.attachments.map((doc) => (
-                        <span key={doc.id} className="px-2 py-1 bg-white rounded border flex items-center space-x-1">
+                        <span
+                          key={doc.id}
+                          className="px-2 py-1 bg-white rounded border flex items-center space-x-1"
+                        >
                           <FileText className="h-3 w-3" />
                           <span>{doc.name}</span>
                         </span>

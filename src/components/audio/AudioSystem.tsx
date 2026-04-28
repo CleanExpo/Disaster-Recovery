@@ -12,10 +12,10 @@ interface AudioSystemProps {
   voiceType?: 'emergency' | 'contractor' | 'client' | 'learning';
 }
 
-export function AudioSystem({ 
-  enabled = true, 
+export function AudioSystem({
+  enabled = true,
   autoPlay = false,
-  voiceType = 'client' 
+  voiceType = 'client',
 }: AudioSystemProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -26,55 +26,58 @@ export function AudioSystem({
   const speechSynthRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   // Text-to-Speech for page content
-  const speakText = useCallback((text: string) => {
-    if (!speechEnabled || !window.speechSynthesis) return;
-    
-    // Cancel any ongoing speech
-    window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 1.0;
-    utterance.volume = volume;
-    
-    // Select voice based on type
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(voice => {
-      if (voiceType === 'emergency') return voice.name.includes('Microsoft David');
-      if (voiceType === 'contractor') return voice.name.includes('Microsoft Mark');
-      if (voiceType === 'learning') return voice.name.includes('Microsoft Zira');
-      return voice.name.includes('Microsoft Hazel'); // Default client voice
-    });
-    
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
-    
-    speechSynthRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
-    setIsPlaying(true);
-    
-    utterance.onend = () => {
-      setIsPlaying(false);
-    };
-  }, [speechEnabled, volume, voiceType]);
+  const speakText = useCallback(
+    (text: string) => {
+      if (!speechEnabled || !window.speechSynthesis) return;
+
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      utterance.pitch = 1.0;
+      utterance.volume = volume;
+
+      // Select voice based on type
+      const voices = window.speechSynthesis.getVoices();
+      const preferredVoice = voices.find((voice) => {
+        if (voiceType === 'emergency') return voice.name.includes('Microsoft David');
+        if (voiceType === 'contractor') return voice.name.includes('Microsoft Mark');
+        if (voiceType === 'learning') return voice.name.includes('Microsoft Zira');
+        return voice.name.includes('Microsoft Hazel'); // Default client voice
+      });
+
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      speechSynthRef.current = utterance;
+      window.speechSynthesis.speak(utterance);
+      setIsPlaying(true);
+
+      utterance.onend = () => {
+        setIsPlaying(false);
+      };
+    },
+    [speechEnabled, volume, voiceType],
+  );
 
   // Read selected text on page
   useEffect(() => {
     const handleTextSelection = () => {
       const selection = window.getSelection();
       const selectedText = selection?.toString().trim();
-      
+
       if (selectedText && selectedText.length > 10 && speechEnabled) {
         speakText(selectedText);
       }
     };
-    
+
     if (enabled) {
       document.addEventListener('mouseup', handleTextSelection);
       document.addEventListener('touchend', handleTextSelection);
     }
-    
+
     return () => {
       document.removeEventListener('mouseup', handleTextSelection);
       document.removeEventListener('touchend', handleTextSelection);
@@ -95,8 +98,10 @@ export function AudioSystem({
   // Audio feedback for button clicks
   const playClickSound = useCallback(() => {
     if (isMuted) return;
-    
-    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBzCH0fPTgjMGHm7A7+OZURE');
+
+    const audio = new Audio(
+      'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBzCH0fPTgjMGHm7A7+OZURE',
+    );
     audio.volume = volume * 0.3;
     audio.play().catch(() => {});
   }, [isMuted, volume]);
@@ -104,12 +109,12 @@ export function AudioSystem({
   // Attach click sound to buttons
   useEffect(() => {
     const buttons = document.querySelectorAll('button, a');
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       button.addEventListener('click', playClickSound);
     });
-    
+
     return () => {
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         button.removeEventListener('click', playClickSound);
       });
     };
@@ -118,7 +123,7 @@ export function AudioSystem({
   // Background ambient sound for focus
   const playAmbientSound = useCallback(() => {
     if (!enabled || isMuted) return;
-    
+
     // Create or get ambient audio element
     let ambient = document.getElementById('ambient-audio') as HTMLAudioElement;
     if (!ambient) {
@@ -129,7 +134,7 @@ export function AudioSystem({
       ambient.src = '/audio/ambient-focus.mp3';
       document.body.appendChild(ambient);
     }
-    
+
     if (isPlaying) {
       ambient.play().catch(() => {});
     } else {
@@ -180,14 +185,14 @@ export function AudioSystem({
           variant="ghost"
           onClick={toggleSpeech}
           className={cn(
-            "rounded-full transition-colors",
-            speechEnabled ? "bg-blue-100 text-blue-600" : ""
+            'rounded-full transition-colors',
+            speechEnabled ? 'bg-blue-100 text-blue-600' : '',
           )}
           aria-label="Toggle speech"
         >
           {speechEnabled ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4" />}
         </Button>
-        
+
         {/* Play/Pause */}
         {isPlaying && (
           <Button
@@ -203,18 +208,18 @@ export function AudioSystem({
             <Pause className="h-4 w-4" />
           </Button>
         )}
-        
+
         {/* Mute/Unmute */}
         <Button
           size="icon"
           variant="ghost"
           onClick={toggleMute}
           className="rounded-full"
-          aria-label={isMuted ? "Unmute" : "Mute"}
+          aria-label={isMuted ? 'Unmute' : 'Mute'}
         >
           {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
         </Button>
-        
+
         {/* Volume Slider */}
         {!isMuted && (
           <div className="w-24 px-2">
@@ -228,27 +233,20 @@ export function AudioSystem({
             />
           </div>
         )}
-        
+
         {/* Loading indicator */}
-        {isLoading && (
-          <Loader2 className="h-4 w-4 animate-spin text-gray-300" />
-        )}
+        {isLoading && <Loader2 className="h-4 w-4 animate-spin text-gray-300" />}
       </div>
-      
+
       {/* Screen reader announcements */}
       <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {speechEnabled && "Audio assistance is enabled"}
-        {isPlaying && "Audio is playing"}
-        {isMuted && "Audio is muted"}
+        {speechEnabled && 'Audio assistance is enabled'}
+        {isPlaying && 'Audio is playing'}
+        {isMuted && 'Audio is muted'}
       </div>
-      
+
       {/* Hidden audio element for preloading */}
-      <audio
-        ref={audioRef}
-        preload="auto"
-        className="hidden"
-        aria-hidden="true"
-      />
+      <audio ref={audioRef} preload="auto" className="hidden" aria-hidden="true" />
     </>
   );
 }
@@ -256,24 +254,25 @@ export function AudioSystem({
 // Audio provider for emergency announcements
 export function AudioEmergencyProvider({ children }: { children: React.ReactNode }) {
   const [emergency, setEmergency] = useState<string | null>(null);
-  
+
   useEffect(() => {
     // Listen for emergency broadcasts
-    const handleEmergency = (event: CustomEvent) => {
-      setEmergency(event.detail.message);
+    const handleEmergency = (event: Event) => {
+      const detail = (event as CustomEvent<{ message: string }>).detail;
+      setEmergency(detail.message);
     };
-    
-    window.addEventListener('emergency-broadcast' as any, handleEmergency);
+
+    window.addEventListener('emergency-broadcast', handleEmergency);
     return () => {
-      window.removeEventListener('emergency-broadcast' as any, handleEmergency);
+      window.removeEventListener('emergency-broadcast', handleEmergency);
     };
   }, []);
-  
+
   return (
     <>
       {children}
       {emergency && (
-        <div 
+        <div
           className="fixed top-0 left-0 right-0 z-[9999] bg-red-600 text-white p-4 text-center"
           data-audio="emergency"
         >
@@ -288,24 +287,27 @@ export function AudioEmergencyProvider({ children }: { children: React.ReactNode
 // Hook for using audio in components
 export function useAudio() {
   const [isSupported, setIsSupported] = useState(false);
-  
+
   useEffect(() => {
     setIsSupported('speechSynthesis' in window);
   }, []);
-  
-  const speak = useCallback((text: string, options?: SpeechSynthesisUtterance) => {
-    if (!isSupported) return;
-    
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    Object.assign(utterance, options);
-    window.speechSynthesis.speak(utterance);
-  }, [isSupported]);
-  
+
+  const speak = useCallback(
+    (text: string, options?: SpeechSynthesisUtterance) => {
+      if (!isSupported) return;
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      Object.assign(utterance, options);
+      window.speechSynthesis.speak(utterance);
+    },
+    [isSupported],
+  );
+
   const stop = useCallback(() => {
     if (!isSupported) return;
     window.speechSynthesis.cancel();
   }, [isSupported]);
-  
+
   return { speak, stop, isSupported };
 }

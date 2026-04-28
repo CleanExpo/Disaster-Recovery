@@ -2,15 +2,32 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  AlertTriangle, Clock, Calendar, FileText, CheckCircle, XCircle,
-  Upload, RefreshCw, Bell, Filter, Download, Mail,
-  ChevronDown, ChevronRight, Users, Building2, Award, Shield, MessageSquare} from 'lucide-react';
-import type { 
-  ExpirationAlert, 
-  ComplianceStatus, 
+  AlertTriangle,
+  Clock,
+  Calendar,
+  FileText,
+  CheckCircle,
+  XCircle,
+  Upload,
+  RefreshCw,
+  Bell,
+  Filter,
+  Download,
+  Mail,
+  ChevronDown,
+  ChevronRight,
+  Users,
+  Building2,
+  Award,
+  Shield,
+  MessageSquare,
+} from 'lucide-react';
+import type {
+  ExpirationAlert,
+  ComplianceStatus,
   ComplianceCategory,
   Document,
-  DocumentCategory 
+  DocumentCategory,
 } from '@/types/document-management';
 import { clientLogger } from '@/lib/observability/client-logger';
 
@@ -23,12 +40,14 @@ interface DocumentExpiryTrackerProps {
 const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
   contractorId,
   userRole,
-  className = ''
+  className = '',
 }) => {
   const [expirationAlerts, setExpirationAlerts] = useState<ExpirationAlert[]>([]);
   const [complianceStatus, setComplianceStatus] = useState<ComplianceStatus | null>(null);
   const [selectedTimeframe, setSelectedTimeframe] = useState<'7d' | '30d' | '90d' | 'all'>('30d');
-  const [selectedPriority, setSelectedPriority] = useState<'all' | 'urgent' | 'high' | 'medium' | 'low'>('all');
+  const [selectedPriority, setSelectedPriority] = useState<
+    'all' | 'urgent' | 'high' | 'medium' | 'low'
+  >('all');
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +68,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
           daysUntilExpiry: 30,
           priority: 'high',
           contractorId: 'contractor_001',
-          notificationsSent: 2
+          notificationsSent: 2,
         },
         {
           documentId: 'doc_002',
@@ -59,7 +78,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
           daysUntilExpiry: 5,
           priority: 'urgent',
           contractorId: 'contractor_001',
-          notificationsSent: 3
+          notificationsSent: 3,
         },
         {
           documentId: 'doc_003',
@@ -69,7 +88,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
           daysUntilExpiry: 75,
           priority: 'medium',
           contractorId: 'contractor_001',
-          notificationsSent: 1
+          notificationsSent: 1,
         },
         {
           documentId: 'doc_004',
@@ -79,8 +98,8 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
           daysUntilExpiry: -10,
           priority: 'urgent',
           contractorId: 'contractor_001',
-          notificationsSent: 5
-        }
+          notificationsSent: 5,
+        },
       ];
 
       const mockCompliance: ComplianceStatus = {
@@ -96,7 +115,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
             approved: 3,
             expired: 1,
             status: 'warning',
-            documents: []
+            documents: [],
           },
           {
             category: 'certification',
@@ -105,7 +124,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
             approved: 4,
             expired: 1,
             status: 'warning',
-            documents: []
+            documents: [],
           },
           {
             category: 'compliance',
@@ -114,7 +133,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
             approved: 3,
             expired: 0,
             status: 'complete',
-            documents: []
+            documents: [],
           },
           {
             category: 'training',
@@ -123,17 +142,21 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
             approved: 2,
             expired: 1,
             status: 'incomplete',
-            documents: []
-          }
+            documents: [],
+          },
         ],
-        upcomingExpirations: mockAlerts.filter(alert => alert.daysUntilExpiry > 0),
-        overdueDocuments: []
+        upcomingExpirations: mockAlerts.filter((alert) => alert.daysUntilExpiry > 0),
+        overdueDocuments: [],
       };
 
       setExpirationAlerts(mockAlerts);
       setComplianceStatus(mockCompliance);
     } catch (error) {
-      clientLogger.error('Error loading expiration data:', { source: 'documents/DocumentExpiryTracker' }, error);
+      clientLogger.error(
+        'Error loading expiration data:',
+        { source: 'documents/DocumentExpiryTracker' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -141,39 +164,54 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return 'text-red-600 bg-red-50 border-red-200';
-      case 'high': return 'text-blue-700 bg-orange-50 border-orange-200';
-      case 'medium': return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-      case 'low': return 'text-blue-600 bg-blue-50 border-blue-200';
-      default: return 'text-gray-700 bg-gray-50 border-gray-200';
+      case 'urgent':
+        return 'text-red-600 bg-red-50 border-red-200';
+      case 'high':
+        return 'text-blue-700 bg-orange-50 border-orange-200';
+      case 'medium':
+        return 'text-yellow-600 bg-yellow-50 border-yellow-200';
+      case 'low':
+        return 'text-blue-600 bg-blue-50 border-blue-200';
+      default:
+        return 'text-gray-700 bg-gray-50 border-gray-200';
     }
   };
 
   const getCategoryIcon = (category: DocumentCategory) => {
     switch (category) {
-      case 'insurance': return <Shield className="w-5 h-5" />;
-      case 'certification': return <Award className="w-5 h-5" />;
-      case 'compliance': return <CheckCircle className="w-5 h-5" />;
-      case 'training': return <Users className="w-5 h-5" />;
-      case 'contract': return <FileText className="w-5 h-5" />;
-      default: return <FileText className="w-5 h-5" />;
+      case 'insurance':
+        return <Shield className="w-5 h-5" />;
+      case 'certification':
+        return <Award className="w-5 h-5" />;
+      case 'compliance':
+        return <CheckCircle className="w-5 h-5" />;
+      case 'training':
+        return <Users className="w-5 h-5" />;
+      case 'contract':
+        return <FileText className="w-5 h-5" />;
+      default:
+        return <FileText className="w-5 h-5" />;
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'compliant':
-      case 'complete': return 'text-green-600 bg-green-50';
-      case 'warning': return 'text-yellow-600 bg-yellow-50';
+      case 'complete':
+        return 'text-green-600 bg-green-50';
+      case 'warning':
+        return 'text-yellow-600 bg-yellow-50';
       case 'non_compliant':
-      case 'incomplete': return 'text-red-600 bg-red-50';
-      default: return 'text-gray-700 bg-gray-50';
+      case 'incomplete':
+        return 'text-red-600 bg-red-50';
+      default:
+        return 'text-gray-700 bg-gray-50';
     }
   };
 
-  const filteredAlerts = expirationAlerts.filter(alert => {
+  const filteredAlerts = expirationAlerts.filter((alert) => {
     const matchesPriority = selectedPriority === 'all' || alert.priority === selectedPriority;
-    
+
     const matchesTimeframe = (() => {
       if (selectedTimeframe === 'all') return true;
       const days = parseInt(selectedTimeframe.replace('d', ''));
@@ -188,7 +226,9 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
       <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-gray-900">Compliance Overview</h3>
-          <div className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(complianceStatus?.overallStatus || '')}`}>
+          <div
+            className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(complianceStatus?.overallStatus || '')}`}
+          >
             {complianceStatus?.overallStatus.replace('_', ' ').toUpperCase()}
           </div>
         </div>
@@ -201,7 +241,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-3">
-            <div 
+            <div
               className="bg-blue-600 h-3 rounded-full transition-all duration-300"
               style={{ width: `${complianceStatus?.completionRate || 0}%` }}
             ></div>
@@ -214,10 +254,10 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
               <button
                 onClick={() => {
                   const categoryId = category.category;
-                  setExpandedCategories(prev => 
-                    prev.includes(categoryId) 
-                      ? prev.filter(id => id !== categoryId)
-                      : [...prev, categoryId]
+                  setExpandedCategories((prev) =>
+                    prev.includes(categoryId)
+                      ? prev.filter((id) => id !== categoryId)
+                      : [...prev, categoryId],
                   );
                 }}
                 className="flex items-center justify-between w-full"
@@ -236,13 +276,16 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(category.status)}`}>
+                  <div
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(category.status)}`}
+                  >
                     {category.status.replace('_', ' ')}
                   </div>
-                  {expandedCategories.includes(category.category) ? 
-                    <ChevronDown className="w-4 h-4" /> : 
+                  {expandedCategories.includes(category.category) ? (
+                    <ChevronDown className="w-4 h-4" />
+                  ) : (
                     <ChevronRight className="w-4 h-4" />
-                  }
+                  )}
                 </div>
               </button>
 
@@ -314,7 +357,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
         <div className="flex items-center space-x-2">
           <select
             value={selectedTimeframe}
-            onChange={(e) => setSelectedTimeframe(e.target.value as any)}
+            onChange={(e) => setSelectedTimeframe(e.target.value as '7d' | '30d' | '90d' | 'all')}
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
           >
             <option value="7d">Next 7 days</option>
@@ -324,7 +367,9 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
           </select>
           <select
             value={selectedPriority}
-            onChange={(e) => setSelectedPriority(e.target.value as any)}
+            onChange={(e) =>
+              setSelectedPriority(e.target.value as 'all' | 'urgent' | 'high' | 'medium' | 'low')
+            }
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
           >
             <option value="all">All priorities</option>
@@ -345,12 +390,12 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
       ) : (
         <div className="space-y-4">
           {filteredAlerts.map((alert) => (
-            <div 
-              key={alert.documentId} 
+            <div
+              key={alert.documentId}
               className={`border-2 rounded-lg p-4 ${
-                alert.daysUntilExpiry < 0 
-                  ? 'border-red-200 bg-red-50' 
-                  : getPriorityColor(alert.priority).includes('red') 
+                alert.daysUntilExpiry < 0
+                  ? 'border-red-200 bg-red-50'
+                  : getPriorityColor(alert.priority).includes('red')
                     ? 'border-red-200 bg-red-50'
                     : getPriorityColor(alert.priority).includes('orange')
                       ? 'border-orange-200 bg-orange-50'
@@ -359,13 +404,16 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
-                  <div className={`p-2 rounded-lg ${
-                    alert.daysUntilExpiry < 0 ? 'bg-red-100' : 'bg-yellow-100'
-                  }`}>
-                    {alert.daysUntilExpiry < 0 ? 
-                      <XCircle className="w-5 h-5 text-red-600" /> :
+                  <div
+                    className={`p-2 rounded-lg ${
+                      alert.daysUntilExpiry < 0 ? 'bg-red-100' : 'bg-yellow-100'
+                    }`}
+                  >
+                    {alert.daysUntilExpiry < 0 ? (
+                      <XCircle className="w-5 h-5 text-red-600" />
+                    ) : (
                       <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                    }
+                    )}
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">{alert.title}</h4>
@@ -374,7 +422,9 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                     </p>
                   </div>
                 </div>
-                <div className={`px-3 py-1 rounded-full text-sm font-medium border ${getPriorityColor(alert.priority)}`}>
+                <div
+                  className={`px-3 py-1 rounded-full text-sm font-medium border ${getPriorityColor(alert.priority)}`}
+                >
                   {alert.priority.toUpperCase()}
                 </div>
               </div>
@@ -385,14 +435,15 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                     <Calendar className="w-4 h-4 mr-1" />
                     Expires: {new Date(alert.expiryDate).toLocaleDateString()}
                   </div>
-                  <div className={`flex items-center font-medium ${
-                    alert.daysUntilExpiry < 0 ? 'text-red-600' : 'text-blue-700'
-                  }`}>
+                  <div
+                    className={`flex items-center font-medium ${
+                      alert.daysUntilExpiry < 0 ? 'text-red-600' : 'text-blue-700'
+                    }`}
+                  >
                     <Clock className="w-4 h-4 mr-1" />
-                    {alert.daysUntilExpiry < 0 
-                      ? `${Math.abs(alert.daysUntilExpiry)} days overdue` 
-                      : `${alert.daysUntilExpiry} days remaining`
-                    }
+                    {alert.daysUntilExpiry < 0
+                      ? `${Math.abs(alert.daysUntilExpiry)} days overdue`
+                      : `${alert.daysUntilExpiry} days remaining`}
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -433,7 +484,9 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Document Expiry Tracking</h1>
-          <p className="text-gray-700 mt-1">Monitor compliance status and upcoming document expirations</p>
+          <p className="text-gray-700 mt-1">
+            Monitor compliance status and upcoming document expirations
+          </p>
         </div>
         <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
           <RefreshCw className="w-4 h-4 mr-2" />

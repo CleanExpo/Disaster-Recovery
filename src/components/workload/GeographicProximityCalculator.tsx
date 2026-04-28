@@ -1,17 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  MapPin, 
-  Navigation, 
-  Clock, 
+import {
+  MapPin,
+  Navigation,
+  Clock,
   Truck,
   Route,
   Target,
   Activity,
   Gauge,
   AlertTriangle,
-  CheckCircle
+  CheckCircle,
 } from 'lucide-react';
 import { Contractor, Lead, Coordinates, EligibleContractor } from '@/types/workload-distribution';
 
@@ -50,13 +50,15 @@ const GeographicProximityCalculator: React.FC = () => {
   const [proximityCalculations, setProximityCalculations] = useState<ProximityCalculation[]>([]);
   const [selectedContractor, setSelectedContractor] = useState<string | null>(null);
   const [routeOptimization, setRouteOptimization] = useState<RouteOptimization | null>(null);
-  const [calculationMode, setCalculationMode] = useState<'straight' | 'driving' | 'traffic'>('driving');
+  const [calculationMode, setCalculationMode] = useState<'straight' | 'driving' | 'traffic'>(
+    'driving',
+  );
   const [maxRadius, setMaxRadius] = useState<number>(50);
   const [priorityFactors, setPriorityFactors] = useState({
     distance: 0.4,
     responseTime: 0.3,
     kpiScore: 0.2,
-    capacity: 0.1
+    capacity: 0.1,
   });
 
   useEffect(() => {
@@ -70,7 +72,7 @@ const GeographicProximityCalculator: React.FC = () => {
       customerInfo: {
         name: 'John Smith',
         phone: '555-0123',
-        preferredContact: 'phone'
+        preferredContact: 'phone',
       },
       jobLocation: {
         address: '123 Main St',
@@ -78,23 +80,23 @@ const GeographicProximityCalculator: React.FC = () => {
         state: 'TX',
         zipCode: '77001',
         coordinates: { lat: 29.7604, lng: -95.3698 },
-        propertyType: 'residential'
+        propertyType: 'residential',
       },
       jobDetails: {
         serviceType: 'water_damage',
         description: 'Basement flooding from pipe burst',
-        urgency: 'emergency'
+        urgency: 'emergency',
       },
       priority: 'critical',
       status: 'pending_assignment',
       timeline: {
         createdAt: new Date().toISOString(),
-        responseDeadline: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString()
+        responseDeadline: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
       },
       requirements: {},
       metadata: {
-        source: 'emergency_hotline'
-      }
+        source: 'emergency_hotline',
+      },
     };
 
     // Mock contractors with varying distances
@@ -110,7 +112,7 @@ const GeographicProximityCalculator: React.FC = () => {
           city: 'Houston',
           state: 'TX',
           zipCode: '77002',
-          coordinates: { lat: 29.7589, lng: -95.3677 }
+          coordinates: { lat: 29.7589, lng: -95.3677 },
         },
         serviceArea: {
           id: 'SA001',
@@ -121,8 +123,8 @@ const GeographicProximityCalculator: React.FC = () => {
           serviceTypes: ['water_damage', 'fire_damage'],
           responseTime: {
             emergency: 30,
-            standard: 120
-          }
+            standard: 120,
+          },
         },
         availability: 'available',
         capacity: {
@@ -134,19 +136,55 @@ const GeographicProximityCalculator: React.FC = () => {
           currentMonthlyJobs: 45,
           utilizationRate: 30,
           teamSize: 8,
-          equipmentCapacity: 90
+          equipmentCapacity: 90,
         },
         kpiScore: {
           overallScore: 92,
-          responseTime: { value: 95, weight: 0.25, benchmark: 30, performance: 'excellent', trend: 'up' },
-          completionTime: { value: 90, weight: 0.2, benchmark: 24, performance: 'good', trend: 'stable' },
-          customerSatisfaction: { value: 93, weight: 0.25, benchmark: 85, performance: 'excellent', trend: 'up' },
-          reportQuality: { value: 88, weight: 0.15, benchmark: 80, performance: 'good', trend: 'up' },
-          communicationScore: { value: 91, weight: 0.1, benchmark: 85, performance: 'excellent', trend: 'stable' },
-          complianceScore: { value: 94, weight: 0.05, benchmark: 90, performance: 'excellent', trend: 'stable' },
+          responseTime: {
+            value: 95,
+            weight: 0.25,
+            benchmark: 30,
+            performance: 'excellent',
+            trend: 'up',
+          },
+          completionTime: {
+            value: 90,
+            weight: 0.2,
+            benchmark: 24,
+            performance: 'good',
+            trend: 'stable',
+          },
+          customerSatisfaction: {
+            value: 93,
+            weight: 0.25,
+            benchmark: 85,
+            performance: 'excellent',
+            trend: 'up',
+          },
+          reportQuality: {
+            value: 88,
+            weight: 0.15,
+            benchmark: 80,
+            performance: 'good',
+            trend: 'up',
+          },
+          communicationScore: {
+            value: 91,
+            weight: 0.1,
+            benchmark: 85,
+            performance: 'excellent',
+            trend: 'stable',
+          },
+          complianceScore: {
+            value: 94,
+            weight: 0.05,
+            benchmark: 90,
+            performance: 'excellent',
+            trend: 'stable',
+          },
           lastUpdated: new Date().toISOString(),
           trend: 'improving',
-          bonusMultiplier: 1.15
+          bonusMultiplier: 1.15,
         },
         leadStatistics: {
           totalLeadsReceived: 150,
@@ -157,7 +195,7 @@ const GeographicProximityCalculator: React.FC = () => {
           conversionRate: 85,
           currentMonthLeads: 12,
           leadSharePercentage: 18,
-          historicalData: []
+          historicalData: [],
         },
         preferences: {
           preferredJobTypes: ['water_damage', 'fire_damage'],
@@ -165,9 +203,9 @@ const GeographicProximityCalculator: React.FC = () => {
           preferredSchedule: {
             daysOfWeek: [1, 2, 3, 4, 5],
             startTime: '08:00',
-            endTime: '18:00'
+            endTime: '18:00',
           },
-          notificationChannels: ['email', 'sms', 'push']
+          notificationChannels: ['email', 'sms', 'push'],
         },
         status: 'active',
         certifications: ['IICRC', 'EPA RRP', 'OSHA 30'],
@@ -177,8 +215,8 @@ const GeographicProximityCalculator: React.FC = () => {
           lastActiveDate: new Date().toISOString(),
           totalJobsCompleted: 450,
           totalRevenue: 1250000,
-          averageJobValue: 2778
-        }
+          averageJobValue: 2778,
+        },
       },
       {
         id: 'C002',
@@ -191,19 +229,19 @@ const GeographicProximityCalculator: React.FC = () => {
           city: 'Houston',
           state: 'TX',
           zipCode: '77008',
-          coordinates: { lat: 29.8028, lng: -95.4100 }
+          coordinates: { lat: 29.8028, lng: -95.41 },
         },
         serviceArea: {
           id: 'SA002',
           contractorId: 'C002',
           primaryRadius: 20,
           maxRadius: 40,
-          centerPoint: { lat: 29.8028, lng: -95.4100 },
+          centerPoint: { lat: 29.8028, lng: -95.41 },
           serviceTypes: ['water_damage', 'mold_remediation'],
           responseTime: {
             emergency: 45,
-            standard: 180
-          }
+            standard: 180,
+          },
         },
         availability: 'available',
         capacity: {
@@ -215,19 +253,55 @@ const GeographicProximityCalculator: React.FC = () => {
           currentMonthlyJobs: 88,
           utilizationRate: 44,
           teamSize: 12,
-          equipmentCapacity: 85
+          equipmentCapacity: 85,
         },
         kpiScore: {
           overallScore: 88,
-          responseTime: { value: 85, weight: 0.25, benchmark: 30, performance: 'good', trend: 'stable' },
-          completionTime: { value: 87, weight: 0.2, benchmark: 24, performance: 'good', trend: 'up' },
-          customerSatisfaction: { value: 90, weight: 0.25, benchmark: 85, performance: 'excellent', trend: 'up' },
-          reportQuality: { value: 86, weight: 0.15, benchmark: 80, performance: 'good', trend: 'stable' },
-          communicationScore: { value: 89, weight: 0.1, benchmark: 85, performance: 'good', trend: 'up' },
-          complianceScore: { value: 91, weight: 0.05, benchmark: 90, performance: 'excellent', trend: 'stable' },
+          responseTime: {
+            value: 85,
+            weight: 0.25,
+            benchmark: 30,
+            performance: 'good',
+            trend: 'stable',
+          },
+          completionTime: {
+            value: 87,
+            weight: 0.2,
+            benchmark: 24,
+            performance: 'good',
+            trend: 'up',
+          },
+          customerSatisfaction: {
+            value: 90,
+            weight: 0.25,
+            benchmark: 85,
+            performance: 'excellent',
+            trend: 'up',
+          },
+          reportQuality: {
+            value: 86,
+            weight: 0.15,
+            benchmark: 80,
+            performance: 'good',
+            trend: 'stable',
+          },
+          communicationScore: {
+            value: 89,
+            weight: 0.1,
+            benchmark: 85,
+            performance: 'good',
+            trend: 'up',
+          },
+          complianceScore: {
+            value: 91,
+            weight: 0.05,
+            benchmark: 90,
+            performance: 'excellent',
+            trend: 'stable',
+          },
           lastUpdated: new Date().toISOString(),
           trend: 'stable',
-          bonusMultiplier: 1.10
+          bonusMultiplier: 1.1,
         },
         leadStatistics: {
           totalLeadsReceived: 180,
@@ -238,7 +312,7 @@ const GeographicProximityCalculator: React.FC = () => {
           conversionRate: 80,
           currentMonthLeads: 22,
           leadSharePercentage: 22,
-          historicalData: []
+          historicalData: [],
         },
         preferences: {
           preferredJobTypes: ['water_damage', 'mold_remediation'],
@@ -246,9 +320,9 @@ const GeographicProximityCalculator: React.FC = () => {
           preferredSchedule: {
             daysOfWeek: [1, 2, 3, 4, 5, 6],
             startTime: '07:00',
-            endTime: '19:00'
+            endTime: '19:00',
           },
-          notificationChannels: ['email', 'phone']
+          notificationChannels: ['email', 'phone'],
         },
         status: 'active',
         certifications: ['IICRC', 'BBB A+'],
@@ -258,9 +332,9 @@ const GeographicProximityCalculator: React.FC = () => {
           lastActiveDate: new Date().toISOString(),
           totalJobsCompleted: 620,
           totalRevenue: 1850000,
-          averageJobValue: 2984
-        }
-      }
+          averageJobValue: 2984,
+        },
+      },
     ];
 
     setLead(mockLead);
@@ -271,20 +345,22 @@ const GeographicProximityCalculator: React.FC = () => {
   const calculateDistance = (point1: Coordinates, point2: Coordinates): number => {
     // Haversine formula for calculating distance between two points
     const R = 3959; // Earth's radius in miles
-    const dLat = (point2.lat - point1.lat) * Math.PI / 180;
-    const dLon = (point2.lng - point1.lng) * Math.PI / 180;
-    const a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(point1.lat * Math.PI / 180) * Math.cos(point2.lat * Math.PI / 180) *
-      Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const dLat = ((point2.lat - point1.lat) * Math.PI) / 180;
+    const dLon = ((point2.lng - point1.lng) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((point1.lat * Math.PI) / 180) *
+        Math.cos((point2.lat * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
 
   const estimateDrivingTime = (distance: number, urgency: string): number => {
     // Estimate driving time based on distance and traffic conditions
     let averageSpeed = 35; // mph in city conditions
-    
+
     if (urgency === 'emergency') {
       averageSpeed = 45; // Emergency response with traffic clearing
     } else if (distance > 20) {
@@ -292,7 +368,7 @@ const GeographicProximityCalculator: React.FC = () => {
     }
 
     const baseTime = (distance / averageSpeed) * 60; // Convert to minutes
-    
+
     // Add traffic factor
     const hour = new Date().getHours();
     let trafficMultiplier = 1;
@@ -309,22 +385,26 @@ const GeographicProximityCalculator: React.FC = () => {
     const calculations: ProximityCalculation[] = contractors.map((contractor, index) => {
       const distance = calculateDistance(
         lead.jobLocation.coordinates,
-        contractor.address.coordinates
+        contractor.address.coordinates,
       );
-      
+
       const drivingTime = estimateDrivingTime(distance, lead.jobDetails.urgency || 'standard');
-      
+
       // Calculate response score based on multiple factors
-      const distanceScore = Math.max(0, 100 - (distance * 2));
+      const distanceScore = Math.max(0, 100 - distance * 2);
       const timeScore = Math.max(0, 100 - drivingTime);
       const kpiBonus = contractor.kpiScore.overallScore * 0.5;
-      
-      const responseScore = (distanceScore * 0.4) + (timeScore * 0.4) + (kpiBonus * 0.2);
+
+      const responseScore = distanceScore * 0.4 + timeScore * 0.4 + kpiBonus * 0.2;
 
       const routeComplexity = distance < 10 ? 'simple' : distance < 25 ? 'moderate' : 'complex';
       const hour = new Date().getHours();
-      const trafficCondition = ((hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19)) ? 'heavy' :
-                               (hour >= 10 && hour <= 16) ? 'moderate' : 'light';
+      const trafficCondition =
+        (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19)
+          ? 'heavy'
+          : hour >= 10 && hour <= 16
+            ? 'moderate'
+            : 'light';
 
       return {
         contractorId: contractor.id,
@@ -337,7 +417,7 @@ const GeographicProximityCalculator: React.FC = () => {
         proximityRank: 0,
         etaMinutes: drivingTime + 10, // Add preparation time
         routeComplexity,
-        trafficCondition
+        trafficCondition,
       };
     });
 
@@ -351,34 +431,34 @@ const GeographicProximityCalculator: React.FC = () => {
   };
 
   const generateRouteOptimization = (contractorId: string) => {
-    const contractor = contractors.find(c => c.id === contractorId);
+    const contractor = contractors.find((c) => c.id === contractorId);
     if (!contractor || !lead) return;
 
     const distance = calculateDistance(
       lead.jobLocation.coordinates,
-      contractor.address.coordinates
+      contractor.address.coordinates,
     );
 
     const optimisation: RouteOptimization = {
       primaryRoute: {
         distance: Math.round(distance * 10) / 10,
         time: estimateDrivingTime(distance, lead.jobDetails.urgency || 'standard'),
-        via: ['I-45 N', 'US-59', 'Local roads']
+        via: ['I-45 N', 'US-59', 'Local roads'],
       },
       alternativeRoutes: [
         {
-          distance: Math.round((distance * 1.1) * 10) / 10,
+          distance: Math.round(distance * 1.1 * 10) / 10,
           time: estimateDrivingTime(distance * 1.1, lead.jobDetails.urgency || 'standard'),
-          via: ['I-610 Loop', 'I-10 W', 'Local roads']
+          via: ['I-610 Loop', 'I-10 W', 'Local roads'],
         },
         {
-          distance: Math.round((distance * 1.15) * 10) / 10,
+          distance: Math.round(distance * 1.15 * 10) / 10,
           time: estimateDrivingTime(distance * 1.15, lead.jobDetails.urgency || 'standard'),
-          via: ['Surface streets only']
-        }
+          via: ['Surface streets only'],
+        },
       ],
       weatherImpact: Math.random() > 0.7 ? 5 : 0, // Random weather delay
-      constructionDelays: Math.random() > 0.8 ? 10 : 0 // Random construction
+      constructionDelays: Math.random() > 0.8 ? 10 : 0, // Random construction
     };
 
     setRouteOptimization(optimisation);
@@ -416,13 +496,17 @@ const GeographicProximityCalculator: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Geographic Proximity Calculator</h2>
-              <p className="text-sm text-gray-700">Distance-based contractor ranking and route optimisation</p>
+              <p className="text-sm text-gray-700">
+                Distance-based contractor ranking and route optimisation
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <select
               value={calculationMode}
-              onChange={(e) => setCalculationMode(e.target.value as any)}
+              onChange={(e) =>
+                setCalculationMode(e.target.value as 'straight' | 'driving' | 'traffic')
+              }
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
             >
               <option value="straight">Straight Line</option>
@@ -446,11 +530,15 @@ const GeographicProximityCalculator: React.FC = () => {
             <div className="grid grid-cols-3 gap-4">
               <div>
                 <p className="text-xs text-gray-700">Job Location</p>
-                <p className="text-sm font-medium">{lead.jobLocation.address}, {lead.jobLocation.city}</p>
+                <p className="text-sm font-medium">
+                  {lead.jobLocation.address}, {lead.jobLocation.city}
+                </p>
               </div>
               <div>
                 <p className="text-xs text-gray-700">Service Type</p>
-                <p className="text-sm font-medium capitalize">{lead.jobDetails.serviceType.replace('_', ' ')}</p>
+                <p className="text-sm font-medium capitalize">
+                  {lead.jobDetails.serviceType.replace('_', ' ')}
+                </p>
               </div>
               <div>
                 <p className="text-xs text-gray-700">Urgency</p>
@@ -472,12 +560,14 @@ const GeographicProximityCalculator: React.FC = () => {
           {proximityCalculations.map((calc) => {
             const badge = getProximityBadge(calc);
             const timeBadge = getResponseTimeBadge(calc.etaMinutes);
-            
+
             return (
               <div
                 key={calc.contractorId}
                 className={`border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colours ${
-                  selectedContractor === calc.contractorId ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                  selectedContractor === calc.contractorId
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-200'
                 }`}
                 onClick={() => generateRouteOptimization(calc.contractorId)}
               >
@@ -504,7 +594,7 @@ const GeographicProximityCalculator: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <div className="text-right">
                       <p className="text-sm text-gray-700">Response Score</p>
@@ -514,7 +604,9 @@ const GeographicProximityCalculator: React.FC = () => {
                       <span className={`px-2 py-1 text-xs rounded-full ${badge.colour}`}>
                         {badge.text}
                       </span>
-                      <span className={`px-2 py-1 text-xs rounded-full flex items-center ${timeBadge.colour}`}>
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full flex items-center ${timeBadge.colour}`}
+                      >
                         <timeBadge.icon className="h-3 w-3 mr-1" />
                         {timeBadge.text}
                       </span>
@@ -527,7 +619,8 @@ const GeographicProximityCalculator: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <Activity className="h-4 w-4 text-gray-700" />
                     <span className="text-sm text-gray-700">
-                      Traffic: <span className="font-medium capitalize">{calc.trafficCondition}</span>
+                      Traffic:{' '}
+                      <span className="font-medium capitalize">{calc.trafficCondition}</span>
                     </span>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -539,7 +632,14 @@ const GeographicProximityCalculator: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <Gauge className="h-4 w-4 text-gray-700" />
                     <span className="text-sm text-gray-700">
-                      Zone: <span className="font-medium">{calc.isWithinPrimaryRadius ? 'Primary' : calc.isWithinMaxRadius ? 'Secondary' : 'Extended'}</span>
+                      Zone:{' '}
+                      <span className="font-medium">
+                        {calc.isWithinPrimaryRadius
+                          ? 'Primary'
+                          : calc.isWithinMaxRadius
+                            ? 'Secondary'
+                            : 'Extended'}
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -564,11 +664,15 @@ const GeographicProximityCalculator: React.FC = () => {
               <div className="mt-2 grid grid-cols-3 gap-4">
                 <div>
                   <p className="text-xs text-gray-700">Distance</p>
-                  <p className="text-sm font-medium">{routeOptimization.primaryRoute.distance} miles</p>
+                  <p className="text-sm font-medium">
+                    {routeOptimization.primaryRoute.distance} miles
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-700">Estimated Time</p>
-                  <p className="text-sm font-medium">{routeOptimization.primaryRoute.time} minutes</p>
+                  <p className="text-sm font-medium">
+                    {routeOptimization.primaryRoute.time} minutes
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-700">Via</p>
@@ -636,10 +740,12 @@ const GeographicProximityCalculator: React.FC = () => {
                 min="0"
                 max="100"
                 value={weight * 100}
-                onChange={(e) => setPriorityFactors({
-                  ...priorityFactors,
-                  [factor]: parseInt(e.target.value) / 100
-                })}
+                onChange={(e) =>
+                  setPriorityFactors({
+                    ...priorityFactors,
+                    [factor]: parseInt(e.target.value) / 100,
+                  })
+                }
                 className="w-full"
               />
               <p className="text-center text-sm text-gray-700">{Math.round(weight * 100)}%</p>

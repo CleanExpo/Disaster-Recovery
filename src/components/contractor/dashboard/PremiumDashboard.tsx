@@ -2,18 +2,72 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { 
-  Building2, Shield, TrendingUp, DollarSign, Clock, Star,
-  AlertTriangle, CheckCircle, Activity, Users, Award, FileText,
-  Droplets, Flame, Wind, Home, Briefcase, MessageSquare,
-  User, Camera, Navigation, ChevronRight, Bell, Phone,
-  Settings, LogOut, Zap, ArrowUp, ArrowDown, Plus,
-  Calendar, MapPin, BarChart3, PieChart, Target, Rocket,
-  Sparkles, Cpu, Brain, Wifi, WifiOff, Download, Upload,
-  Eye, Timer, ThumbsUp, AlertCircle, CreditCard, Package,
-  Wrench, FileCheck, GraduationCap, HelpCircle, Search,
-  Filter, Grid, List, Maximize2, RefreshCw, MoreVertical,
-  TrendingDown, Percent, Hash, DollarSignIcon, UserCheck
+import {
+  Building2,
+  Shield,
+  TrendingUp,
+  DollarSign,
+  Clock,
+  Star,
+  AlertTriangle,
+  CheckCircle,
+  Activity,
+  Users,
+  Award,
+  FileText,
+  Droplets,
+  Flame,
+  Wind,
+  Home,
+  Briefcase,
+  MessageSquare,
+  User,
+  Camera,
+  Navigation,
+  ChevronRight,
+  Bell,
+  Phone,
+  Settings,
+  LogOut,
+  Zap,
+  ArrowUp,
+  ArrowDown,
+  Plus,
+  Calendar,
+  MapPin,
+  BarChart3,
+  PieChart,
+  Target,
+  Rocket,
+  Sparkles,
+  Cpu,
+  Brain,
+  Wifi,
+  WifiOff,
+  Download,
+  Upload,
+  Eye,
+  Timer,
+  ThumbsUp,
+  AlertCircle,
+  CreditCard,
+  Package,
+  Wrench,
+  FileCheck,
+  GraduationCap,
+  HelpCircle,
+  Search,
+  Filter,
+  Grid,
+  List,
+  Maximize2,
+  RefreshCw,
+  MoreVertical,
+  TrendingDown,
+  Percent,
+  Hash,
+  DollarSignIcon,
+  UserCheck,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useMagneticEffect, use3DRotateEffect } from '@/hooks/useMagneticEffect';
@@ -25,13 +79,13 @@ const colours = {
   warning: 'from-blue-600 to-blue-700',
   danger: 'from-red-500 to-pink-600',
   info: 'from-cyan-500 to-blue-600',
-  dark: 'from-gray-800 to-gray-900'
+  dark: 'from-gray-800 to-gray-900',
 };
 
 // Animated Counter Component
 function AnimatedCounter({ value, duration = 2000, prefix = '', suffix = '' }: any) {
   const [count, setCount] = useState(0);
-  
+
   useEffect(() => {
     let start = 0;
     const end = parseInt(value);
@@ -47,16 +101,22 @@ function AnimatedCounter({ value, duration = 2000, prefix = '', suffix = '' }: a
     }, 16);
     return () => clearInterval(timer);
   }, [value, duration]);
-  
-  return <span>{prefix}{count.toLocaleString()}{suffix}</span>;
+
+  return (
+    <span>
+      {prefix}
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
 }
 
-// 3D Tilt Card Component  
+// 3D Tilt Card Component
 function TiltCard({ children, className = '' }: any) {
   const cardRef = use3DRotateEffect();
   return (
     <motion.div
-      ref={cardRef as any}
+      ref={cardRef as React.RefObject<HTMLDivElement>}
       className={`relative ${className}`}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
@@ -69,12 +129,40 @@ function TiltCard({ children, className = '' }: any) {
 // Live Activity Feed Component
 function LiveActivityFeed() {
   const activities = [
-    { id: 1, type: 'job', text: 'New water damage job assigned', time: '2m ago', icon: Droplets, colour: 'text-blue-500' },
-    { id: 2, type: 'payment', text: 'Payment received: $3,450', time: '15m ago', icon: DollarSign, colour: 'text-green-500' },
-    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, colour: 'text-yellow-400' },
-    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, colour: 'text-amber-400' }
+    {
+      id: 1,
+      type: 'job',
+      text: 'New water damage job assigned',
+      time: '2m ago',
+      icon: Droplets,
+      colour: 'text-blue-500',
+    },
+    {
+      id: 2,
+      type: 'payment',
+      text: 'Payment received: $3,450',
+      time: '15m ago',
+      icon: DollarSign,
+      colour: 'text-green-500',
+    },
+    {
+      id: 3,
+      type: 'rating',
+      text: '5-star review received',
+      time: '1h ago',
+      icon: Star,
+      colour: 'text-yellow-400',
+    },
+    {
+      id: 4,
+      type: 'alert',
+      text: 'Weather alert: Heavy rain expected',
+      time: '2h ago',
+      icon: AlertTriangle,
+      colour: 'text-amber-400',
+    },
   ];
-  
+
   return (
     <div className="space-y-3">
       <AnimatePresence>
@@ -110,11 +198,11 @@ function PerformanceChart() {
     { day: 'Thu', jobs: 15, revenue: 22100 },
     { day: 'Fri', jobs: 18, revenue: 28400 },
     { day: 'Sat', jobs: 14, revenue: 21000 },
-    { day: 'Sun', jobs: 6, revenue: 8500 }
+    { day: 'Sun', jobs: 6, revenue: 8500 },
   ];
-  
-  const maxJobs = Math.max(...data.map(d => d.jobs));
-  
+
+  const maxJobs = Math.max(...data.map((d) => d.jobs));
+
   return (
     <div className="h-48">
       <div className="flex items-end justify-between h-full gap-2">
@@ -156,9 +244,9 @@ function AIInsights() {
     { icon: TrendingUp, text: 'Revenue up 23% this month', colour: 'text-emerald-400' },
     { icon: Clock, text: 'Response time improved by 15%', colour: 'text-blue-400' },
     { icon: Target, text: '3 jobs near completion', colour: 'text-purple-400' },
-    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-amber-400' }
+    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-amber-400' },
   ];
-  
+
   return (
     <div className="space-y-3">
       {insights.map((insight, index) => (
@@ -184,18 +272,18 @@ function JobCard({ job }: any) {
     urgent: 'from-red-500 to-pink-600',
     active: 'from-blue-500 to-cyan-600',
     pending: 'from-blue-600 to-blue-700',
-    completed: 'from-green-500 to-emerald-600'
+    completed: 'from-green-500 to-emerald-600',
   };
-  
+
   const typeIcons: any = {
     water: Droplets,
     fire: Flame,
     mould: Wind,
-    structural: Building2
+    structural: Building2,
   };
-  
+
   const Icon = typeIcons[job.type] || Building2;
-  
+
   return (
     <motion.div
       whileHover={{ scale: 1.02, y: -5 }}
@@ -205,17 +293,21 @@ function JobCard({ job }: any) {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <h4 className="font-semibold text-white">{job.id}</h4>
-            <div className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${statusColors[job.status]} text-white`}>
+            <div
+              className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${statusColors[job.status]} text-white`}
+            >
               {job.status}
             </div>
           </div>
           <p className="text-sm text-gray-300">{job.client}</p>
         </div>
-        <div className={`p-2 rounded-lg bg-gradient-to-br ${statusColors[job.status]} opacity-20 group-hover:opacity-30 transition-opacity`}>
+        <div
+          className={`p-2 rounded-lg bg-gradient-to-br ${statusColors[job.status]} opacity-20 group-hover:opacity-30 transition-opacity`}
+        >
           <Icon className="h-5 w-5 text-white" />
         </div>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-xs text-gray-300">
           <MapPin className="h-3 w-3" />
@@ -230,7 +322,7 @@ function JobCard({ job }: any) {
           <span>${job.value.toLocaleString()}</span>
         </div>
       </div>
-      
+
       <motion.div
         className="mt-3 pt-3 border-t border-gray-700 flex items-center justify-between"
         initial={{ opacity: 0 }}
@@ -247,12 +339,12 @@ export default function PremiumDashboard() {
   const [isOnline, setIsOnline] = useState(true);
   const [activeView, setActiveView] = useState('grid');
   const [showNotifications, setShowNotifications] = useState(false);
-  
+
   // Scroll animations
   const { scrollY } = useScroll();
   const headerY = useTransform(scrollY, [0, 100], [0, -50]);
   const headerOpacity = useTransform(scrollY, [0, 100], [1, 0.8]);
-  
+
   // Demo data
   const stats = {
     activeJobs: 12,
@@ -260,28 +352,52 @@ export default function PremiumDashboard() {
     revenue: 28400,
     rating: 4.9,
     responseTime: 42,
-    completionRate: 96
+    completionRate: 96,
   };
-  
+
   const jobs = [
-    { id: 'JOB-1248', type: 'water', client: 'Smith Residence', address: '123 Main St, Sydney', time: 'Today 2:00 PM', value: 3450, status: 'urgent' },
-    { id: 'JOB-1249', type: 'fire', client: 'Johnson Office', address: '456 Park Ave', time: 'Today 4:00 PM', value: 8900, status: 'active' },
-    { id: 'JOB-1250', type: 'mould', client: 'Davis Property', address: '789 Queen St', time: 'Tomorrow 9:00 AM', value: 2100, status: 'pending' }
+    {
+      id: 'JOB-1248',
+      type: 'water',
+      client: 'Smith Residence',
+      address: '123 Main St, Sydney',
+      time: 'Today 2:00 PM',
+      value: 3450,
+      status: 'urgent',
+    },
+    {
+      id: 'JOB-1249',
+      type: 'fire',
+      client: 'Johnson Office',
+      address: '456 Park Ave',
+      time: 'Today 4:00 PM',
+      value: 8900,
+      status: 'active',
+    },
+    {
+      id: 'JOB-1250',
+      type: 'mould',
+      client: 'Davis Property',
+      address: '789 Queen St',
+      time: 'Tomorrow 9:00 AM',
+      value: 2100,
+      status: 'pending',
+    },
   ];
-  
+
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
-    
+
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-    
+
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
   }, []);
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
       {/* Animated Background */}
@@ -293,20 +409,23 @@ export default function PremiumDashboard() {
             className="absolute w-1 h-1 bg-blue-400 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%` }}
+              top: `${Math.random() * 100}%`,
+            }}
             animate={{
               y: [-20, -60, -20],
-              opacity: [0, 1, 0] }}
+              opacity: [0, 1, 0],
+            }}
             transition={{
               duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 2 }}
+              delay: Math.random() * 2,
+            }}
           />
         ))}
       </div>
-      
+
       {/* Header */}
-      <motion.header 
+      <motion.header
         className="sticky top-0 z-40 backdrop-blur-xl bg-slate-900/80 border-b border-white/10"
         style={{ y: headerY, opacity: headerOpacity }}
       >
@@ -321,16 +440,18 @@ export default function PremiumDashboard() {
                 <p className="text-xs text-gray-300">Premium Dashboard</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
               {/* Connection Status */}
-              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
-                isOnline ? 'bg-green-500/20 text-emerald-400' : 'bg-blue-500/20 text-blue-400'
-              }`}>
+              <div
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
+                  isOnline ? 'bg-green-500/20 text-emerald-400' : 'bg-blue-500/20 text-blue-400'
+                }`}
+              >
                 {isOnline ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
                 {isOnline ? 'Online' : 'Offline'}
               </div>
-              
+
               {/* Notifications */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -341,7 +462,7 @@ export default function PremiumDashboard() {
                 <Bell className="h-5 w-5 text-white" />
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full animate-pulse" />
               </motion.button>
-              
+
               {/* Settings */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -350,7 +471,7 @@ export default function PremiumDashboard() {
               >
                 <Settings className="h-5 w-5 text-white" />
               </motion.button>
-              
+
               {/* Profile */}
               <div className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-white/10">
                 <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
@@ -365,7 +486,7 @@ export default function PremiumDashboard() {
           </div>
         </div>
       </motion.header>
-      
+
       <main className="container mx-auto px-4 py-8 relative z-10">
         {/* Alert Banner */}
         <motion.div
@@ -380,7 +501,9 @@ export default function PremiumDashboard() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-orange-400">Emergency Job Available</p>
-                <p className="text-xs text-gray-300">Water damage at 42 Emergency St - High priority</p>
+                <p className="text-xs text-gray-300">
+                  Water damage at 42 Emergency St - High priority
+                </p>
               </div>
             </div>
             <motion.button
@@ -392,16 +515,46 @@ export default function PremiumDashboard() {
             </motion.button>
           </div>
         </motion.div>
-        
+
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-8">
           {[
-            { icon: Briefcase, label: 'Active Jobs', value: stats.activeJobs, colour: colours.primary, trend: '+2' },
-            { icon: CheckCircle, label: 'Completed Today', value: stats.completedToday, colour: colours.success, trend: '+1' },
-            { icon: DollarSign, label: 'Revenue Today', value: `$${stats.revenue.toLocaleString()}`, colour: colours.warning, trend: '+15%' },
+            {
+              icon: Briefcase,
+              label: 'Active Jobs',
+              value: stats.activeJobs,
+              colour: colours.primary,
+              trend: '+2',
+            },
+            {
+              icon: CheckCircle,
+              label: 'Completed Today',
+              value: stats.completedToday,
+              colour: colours.success,
+              trend: '+1',
+            },
+            {
+              icon: DollarSign,
+              label: 'Revenue Today',
+              value: `$${stats.revenue.toLocaleString()}`,
+              colour: colours.warning,
+              trend: '+15%',
+            },
             { icon: Star, label: 'Rating', value: stats.rating, colour: colours.info, trend: '↑' },
-            { icon: Clock, label: 'Response Time', value: `${stats.responseTime}m`, colour: colours.danger, trend: '-5m' },
-            { icon: Percent, label: 'Completion Rate', value: `${stats.completionRate}%`, colour: colours.dark, trend: '+2%' }
+            {
+              icon: Clock,
+              label: 'Response Time',
+              value: `${stats.responseTime}m`,
+              colour: colours.danger,
+              trend: '-5m',
+            },
+            {
+              icon: Percent,
+              label: 'Completion Rate',
+              value: `${stats.completionRate}%`,
+              colour: colours.dark,
+              trend: '+2%',
+            },
           ].map((stat, index) => (
             <TiltCard key={index} className="glass-card rounded-xl p-4">
               <motion.div
@@ -417,13 +570,17 @@ export default function PremiumDashboard() {
                 </div>
                 <p className="text-xs text-gray-300 mb-1">{stat.label}</p>
                 <p className="text-lg font-bold text-white">
-                  {typeof stat.value === 'number' ? <AnimatedCounter value={stat.value} /> : stat.value}
+                  {typeof stat.value === 'number' ? (
+                    <AnimatedCounter value={stat.value} />
+                  ) : (
+                    stat.value
+                  )}
                 </p>
               </motion.div>
             </TiltCard>
           ))}
         </div>
-        
+
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Jobs Section */}
@@ -461,9 +618,11 @@ export default function PremiumDashboard() {
                   </motion.button>
                 </div>
               </div>
-              
+
               {/* Jobs Grid */}
-              <div className={`grid ${activeView === 'grid' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'} gap-4`}>
+              <div
+                className={`grid ${activeView === 'grid' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'} gap-4`}
+              >
                 {jobs.map((job, index) => (
                   <motion.div
                     key={job.id}
@@ -476,7 +635,7 @@ export default function PremiumDashboard() {
                 ))}
               </div>
             </div>
-            
+
             {/* Performance Chart */}
             <div className="glass-card rounded-xl p-4">
               <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
@@ -486,7 +645,7 @@ export default function PremiumDashboard() {
               <PerformanceChart />
             </div>
           </div>
-          
+
           {/* Sidebar */}
           <div className="space-y-6">
             {/* AI Insights */}
@@ -500,7 +659,7 @@ export default function PremiumDashboard() {
               </h3>
               <AIInsights />
             </div>
-            
+
             {/* Live Activity */}
             <div className="glass-card rounded-xl p-4">
               <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
@@ -510,7 +669,7 @@ export default function PremiumDashboard() {
               </h3>
               <LiveActivityFeed />
             </div>
-            
+
             {/* Quick Actions */}
             <div className="glass-card rounded-xl p-4">
               <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
@@ -519,7 +678,7 @@ export default function PremiumDashboard() {
                   { icon: Camera, label: 'Upload Photo', colour: colours.primary },
                   { icon: FileText, label: 'Create Report', colour: colours.success },
                   { icon: Phone, label: 'Call Support', colour: colours.warning },
-                  { icon: Navigation, label: 'Get Directions', colour: colours.danger }
+                  { icon: Navigation, label: 'Get Directions', colour: colours.danger },
                 ].map((action, index) => (
                   <motion.button
                     key={index}
@@ -538,7 +697,7 @@ export default function PremiumDashboard() {
           </div>
         </div>
       </main>
-      
+
       {/* Floating Action Button */}
       <motion.button
         className="fixed bottom-6 right-6 p-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-2xl"

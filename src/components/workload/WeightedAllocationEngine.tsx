@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Calculator, 
-  Shuffle, 
+import {
+  Calculator,
+  Shuffle,
   TrendingUp,
   BarChart3,
   Target,
@@ -13,9 +13,15 @@ import {
   Settings,
   RefreshCw,
   Award,
-  Scale
+  Scale,
 } from 'lucide-react';
-import { Contractor, Lead, EligibleContractor, AllocationScore, AllocationDecision } from '@/types/workload-distribution';
+import {
+  Contractor,
+  Lead,
+  EligibleContractor,
+  AllocationScore,
+  AllocationDecision,
+} from '@/types/workload-distribution';
 
 interface AllocationWeight {
   factor: string;
@@ -58,15 +64,47 @@ const WeightedAllocationEngine: React.FC = () => {
   const [currentLead, setCurrentLead] = useState<Lead | null>(null);
   const [eligibleContractors, setEligibleContractors] = useState<EligibleContractor[]>([]);
   const [allocationWeights, setAllocationWeights] = useState<AllocationWeight[]>([
-    { factor: 'KPI Score', description: 'Overall performance rating', weight: 0.30, impact: 'high', adjustable: true },
-    { factor: 'Proximity', description: 'Distance to job location', weight: 0.25, impact: 'high', adjustable: true },
-    { factor: 'Capacity', description: 'Available job slots', weight: 0.20, impact: 'medium', adjustable: true },
-    { factor: 'Lead Share', description: 'Fair distribution balance', weight: 0.15, impact: 'medium', adjustable: true },
-    { factor: 'Specialisation', description: 'Service type expertise', weight: 0.10, impact: 'low', adjustable: true }
+    {
+      factor: 'KPI Score',
+      description: 'Overall performance rating',
+      weight: 0.3,
+      impact: 'high',
+      adjustable: true,
+    },
+    {
+      factor: 'Proximity',
+      description: 'Distance to job location',
+      weight: 0.25,
+      impact: 'high',
+      adjustable: true,
+    },
+    {
+      factor: 'Capacity',
+      description: 'Available job slots',
+      weight: 0.2,
+      impact: 'medium',
+      adjustable: true,
+    },
+    {
+      factor: 'Lead Share',
+      description: 'Fair distribution balance',
+      weight: 0.15,
+      impact: 'medium',
+      adjustable: true,
+    },
+    {
+      factor: 'Specialisation',
+      description: 'Service type expertise',
+      weight: 0.1,
+      impact: 'low',
+      adjustable: true,
+    },
   ]);
   const [transparencyReport, setTransparencyReport] = useState<TransparencyReport | null>(null);
   const [simulationResults, setSimulationResults] = useState<SimulationResult[]>([]);
-  const [allocationMode, setAllocationMode] = useState<'weighted' | 'fair' | 'performance'>('weighted');
+  const [allocationMode, setAllocationMode] = useState<'weighted' | 'fair' | 'performance'>(
+    'weighted',
+  );
   const [showSimulation, setShowSimulation] = useState(false);
 
   useEffect(() => {
@@ -87,13 +125,13 @@ const WeightedAllocationEngine: React.FC = () => {
         companyName: 'Elite Restoration Co',
         contactName: 'John Smith',
         email: 'john@eliterestore.com',
-        
+
         address: {
           street: '123 Main St',
           city: 'Houston',
           state: 'TX',
           zipCode: '77001',
-          coordinates: { lat: 29.7604, lng: -95.3698 }
+          coordinates: { lat: 29.7604, lng: -95.3698 },
         },
         serviceArea: {
           id: 'SA001',
@@ -102,7 +140,7 @@ const WeightedAllocationEngine: React.FC = () => {
           maxRadius: 40,
           centerPoint: { lat: 29.7604, lng: -95.3698 },
           serviceTypes: ['water_damage', 'fire_damage', 'mold_remediation'],
-          responseTime: { emergency: 30, standard: 120 }
+          responseTime: { emergency: 30, standard: 120 },
         },
         availability: 'available',
         capacity: {
@@ -114,19 +152,55 @@ const WeightedAllocationEngine: React.FC = () => {
           currentMonthlyJobs: 60,
           utilizationRate: 30,
           teamSize: 10,
-          equipmentCapacity: 95
+          equipmentCapacity: 95,
         },
         kpiScore: {
           overallScore: 94,
-          responseTime: { value: 96, weight: 0.25, benchmark: 30, performance: 'excellent', trend: 'up' },
-          completionTime: { value: 92, weight: 0.20, benchmark: 24, performance: 'excellent', trend: 'stable' },
-          customerSatisfaction: { value: 95, weight: 0.25, benchmark: 85, performance: 'excellent', trend: 'up' },
-          reportQuality: { value: 91, weight: 0.15, benchmark: 80, performance: 'excellent', trend: 'up' },
-          communicationScore: { value: 93, weight: 0.10, benchmark: 85, performance: 'excellent', trend: 'stable' },
-          complianceScore: { value: 96, weight: 0.05, benchmark: 90, performance: 'excellent', trend: 'stable' },
+          responseTime: {
+            value: 96,
+            weight: 0.25,
+            benchmark: 30,
+            performance: 'excellent',
+            trend: 'up',
+          },
+          completionTime: {
+            value: 92,
+            weight: 0.2,
+            benchmark: 24,
+            performance: 'excellent',
+            trend: 'stable',
+          },
+          customerSatisfaction: {
+            value: 95,
+            weight: 0.25,
+            benchmark: 85,
+            performance: 'excellent',
+            trend: 'up',
+          },
+          reportQuality: {
+            value: 91,
+            weight: 0.15,
+            benchmark: 80,
+            performance: 'excellent',
+            trend: 'up',
+          },
+          communicationScore: {
+            value: 93,
+            weight: 0.1,
+            benchmark: 85,
+            performance: 'excellent',
+            trend: 'stable',
+          },
+          complianceScore: {
+            value: 96,
+            weight: 0.05,
+            benchmark: 90,
+            performance: 'excellent',
+            trend: 'stable',
+          },
           lastUpdated: new Date().toISOString(),
           trend: 'improving',
-          bonusMultiplier: 1.20
+          bonusMultiplier: 1.2,
         },
         leadStatistics: {
           totalLeadsReceived: 180,
@@ -137,13 +211,13 @@ const WeightedAllocationEngine: React.FC = () => {
           conversionRate: 88,
           currentMonthLeads: 15,
           leadSharePercentage: 22,
-          historicalData: []
+          historicalData: [],
         },
         preferences: {
           preferredJobTypes: ['water_damage', 'fire_damage'],
           autoAcceptLeads: true,
-          preferredSchedule: { daysOfWeek: [1,2,3,4,5], startTime: '08:00', endTime: '18:00' },
-          notificationChannels: ['email', 'sms', 'push']
+          preferredSchedule: { daysOfWeek: [1, 2, 3, 4, 5], startTime: '08:00', endTime: '18:00' },
+          notificationChannels: ['email', 'sms', 'push'],
         },
         status: 'active',
         certifications: ['IICRC', 'EPA RRP', 'OSHA 30'],
@@ -153,21 +227,21 @@ const WeightedAllocationEngine: React.FC = () => {
           lastActiveDate: new Date().toISOString(),
           totalJobsCompleted: 520,
           totalRevenue: 1560000,
-          averageJobValue: 3000
-        }
+          averageJobValue: 3000,
+        },
       },
       {
         id: 'C002',
         companyName: 'Rapid Response Restoration',
         contactName: 'Jane Doe',
         email: 'jane@rapidresponse.com',
-        
+
         address: {
           street: '456 Oak Ave',
           city: 'Houston',
           state: 'TX',
           zipCode: '77002',
-          coordinates: { lat: 29.7589, lng: -95.3677 }
+          coordinates: { lat: 29.7589, lng: -95.3677 },
         },
         serviceArea: {
           id: 'SA002',
@@ -176,7 +250,7 @@ const WeightedAllocationEngine: React.FC = () => {
           maxRadius: 30,
           centerPoint: { lat: 29.7589, lng: -95.3677 },
           serviceTypes: ['water_damage', 'storm_damage'],
-          responseTime: { emergency: 25, standard: 90 }
+          responseTime: { emergency: 25, standard: 90 },
         },
         availability: 'available',
         capacity: {
@@ -188,19 +262,55 @@ const WeightedAllocationEngine: React.FC = () => {
           currentMonthlyJobs: 105,
           utilizationRate: 70,
           teamSize: 8,
-          equipmentCapacity: 80
+          equipmentCapacity: 80,
         },
         kpiScore: {
           overallScore: 86,
-          responseTime: { value: 88, weight: 0.25, benchmark: 30, performance: 'good', trend: 'stable' },
-          completionTime: { value: 85, weight: 0.20, benchmark: 24, performance: 'good', trend: 'up' },
-          customerSatisfaction: { value: 87, weight: 0.25, benchmark: 85, performance: 'good', trend: 'stable' },
-          reportQuality: { value: 84, weight: 0.15, benchmark: 80, performance: 'good', trend: 'stable' },
-          communicationScore: { value: 86, weight: 0.10, benchmark: 85, performance: 'good', trend: 'up' },
-          complianceScore: { value: 88, weight: 0.05, benchmark: 90, performance: 'average', trend: 'stable' },
+          responseTime: {
+            value: 88,
+            weight: 0.25,
+            benchmark: 30,
+            performance: 'good',
+            trend: 'stable',
+          },
+          completionTime: {
+            value: 85,
+            weight: 0.2,
+            benchmark: 24,
+            performance: 'good',
+            trend: 'up',
+          },
+          customerSatisfaction: {
+            value: 87,
+            weight: 0.25,
+            benchmark: 85,
+            performance: 'good',
+            trend: 'stable',
+          },
+          reportQuality: {
+            value: 84,
+            weight: 0.15,
+            benchmark: 80,
+            performance: 'good',
+            trend: 'stable',
+          },
+          communicationScore: {
+            value: 86,
+            weight: 0.1,
+            benchmark: 85,
+            performance: 'good',
+            trend: 'up',
+          },
+          complianceScore: {
+            value: 88,
+            weight: 0.05,
+            benchmark: 90,
+            performance: 'average',
+            trend: 'stable',
+          },
           lastUpdated: new Date().toISOString(),
           trend: 'stable',
-          bonusMultiplier: 1.08
+          bonusMultiplier: 1.08,
         },
         leadStatistics: {
           totalLeadsReceived: 200,
@@ -211,13 +321,17 @@ const WeightedAllocationEngine: React.FC = () => {
           conversionRate: 82,
           currentMonthLeads: 28,
           leadSharePercentage: 35,
-          historicalData: []
+          historicalData: [],
         },
         preferences: {
           preferredJobTypes: ['water_damage', 'storm_damage'],
           autoAcceptLeads: false,
-          preferredSchedule: { daysOfWeek: [1,2,3,4,5,6], startTime: '07:00', endTime: '19:00' },
-          notificationChannels: ['email', 'email']
+          preferredSchedule: {
+            daysOfWeek: [1, 2, 3, 4, 5, 6],
+            startTime: '07:00',
+            endTime: '19:00',
+          },
+          notificationChannels: ['email', 'email'],
         },
         status: 'active',
         certifications: ['IICRC', 'BBB A+'],
@@ -227,9 +341,9 @@ const WeightedAllocationEngine: React.FC = () => {
           lastActiveDate: new Date().toISOString(),
           totalJobsCompleted: 380,
           totalRevenue: 950000,
-          averageJobValue: 2500
-        }
-      }
+          averageJobValue: 2500,
+        },
+      },
     ];
 
     // Mock lead
@@ -237,36 +351,36 @@ const WeightedAllocationEngine: React.FC = () => {
       id: 'L001',
       customerInfo: {
         name: 'Robert Johnson',
-        
-        preferredContact: 'email'
+
+        preferredContact: 'email',
       },
       jobLocation: {
         address: '789 Elm St',
         city: 'Houston',
         state: 'TX',
         zipCode: '77003',
-        coordinates: { lat: 29.7490, lng: -95.3585 },
-        propertyType: 'residential'
+        coordinates: { lat: 29.749, lng: -95.3585 },
+        propertyType: 'residential',
       },
       jobDetails: {
         serviceType: 'water_damage',
         description: 'Kitchen flooding from dishwasher leak',
-        urgency: 'urgent'
+        urgency: 'urgent',
       },
       priority: 'high',
       estimatedValue: 3500,
       status: 'pending_assignment',
       timeline: {
         createdAt: new Date().toISOString(),
-        responseDeadline: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString()
+        responseDeadline: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString(),
       },
       requirements: {
         certifications: ['IICRC'],
-        equipment: ['Water extraction', 'Dehumidifiers']
+        equipment: ['Water extraction', 'Dehumidifiers'],
       },
       metadata: {
-        source: 'insurance_partner'
-      }
+        source: 'insurance_partner',
+      },
     };
 
     setContractors(mockContractors);
@@ -275,13 +389,15 @@ const WeightedAllocationEngine: React.FC = () => {
 
   const calculateDistance = (point1: any, point2: any): number => {
     const R = 3959; // Earth's radius in miles
-    const dLat = (point2.lat - point1.lat) * Math.PI / 180;
-    const dLon = (point2.lng - point1.lng) * Math.PI / 180;
-    const a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(point1.lat * Math.PI / 180) * Math.cos(point2.lat * Math.PI / 180) *
-      Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const dLat = ((point2.lat - point1.lat) * Math.PI) / 180;
+    const dLon = ((point2.lng - point1.lng) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((point1.lat * Math.PI) / 180) *
+        Math.cos((point2.lat * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
 
@@ -289,28 +405,32 @@ const WeightedAllocationEngine: React.FC = () => {
     if (!currentLead) return;
 
     const eligible: EligibleContractor[] = contractors
-      .filter(c => c.availability === 'available')
-      .map(contractor => {
+      .filter((c) => c.availability === 'available')
+      .map((contractor) => {
         const distance = calculateDistance(
           currentLead.jobLocation.coordinates,
-          contractor.address.coordinates
+          contractor.address.coordinates,
         );
 
         const drivingTime = Math.round((distance / 35) * 60); // Assume 35 mph average
 
         // Calculate weighted score
         const kpiScore = contractor.kpiScore.overallScore;
-        const proximityScore = Math.max(0, 100 - (distance * 2));
+        const proximityScore = Math.max(0, 100 - distance * 2);
         const capacityScore = 100 - contractor.capacity.utilizationRate;
-        const fairnessScore = 100 - (contractor.leadStatistics.leadSharePercentage * 2);
-        const specializationScore = contractor.specializations.includes(currentLead.jobDetails.serviceType) ? 100 : 50;
+        const fairnessScore = 100 - contractor.leadStatistics.leadSharePercentage * 2;
+        const specializationScore = contractor.specializations.includes(
+          currentLead.jobDetails.serviceType,
+        )
+          ? 100
+          : 50;
 
-        const weightedScore = 
-          (kpiScore * allocationWeights[0].weight) +
-          (proximityScore * allocationWeights[1].weight) +
-          (capacityScore * allocationWeights[2].weight) +
-          (fairnessScore * allocationWeights[3].weight) +
-          (specializationScore * allocationWeights[4].weight);
+        const weightedScore =
+          kpiScore * allocationWeights[0].weight +
+          proximityScore * allocationWeights[1].weight +
+          capacityScore * allocationWeights[2].weight +
+          fairnessScore * allocationWeights[3].weight +
+          specializationScore * allocationWeights[4].weight;
 
         const allocationScore: AllocationScore = {
           contractorId: contractor.id,
@@ -319,7 +439,7 @@ const WeightedAllocationEngine: React.FC = () => {
           proximityBonus: proximityScore * 0.1,
           loadBalancingAdjustment: fairnessScore * 0.05,
           finalScore: Math.round(weightedScore),
-          rank: 0
+          rank: 0,
         };
 
         return {
@@ -331,7 +451,7 @@ const WeightedAllocationEngine: React.FC = () => {
           capacity: contractor.capacity.utilizationRate,
           leadSharePercentage: contractor.leadStatistics.leadSharePercentage,
           score: allocationScore,
-          eligibilityReason: 'Meets all criteria'
+          eligibilityReason: 'Meets all criteria',
         };
       });
 
@@ -353,34 +473,43 @@ const WeightedAllocationEngine: React.FC = () => {
     // Create transparency report
     const factorsAnalyzed: FactorAnalysis[] = allocationWeights.map((weight, index) => {
       const factors = ['kpiScore', 'distance', 'capacity', 'leadSharePercentage', 'specialisation'];
-      const winnerValue = index === 0 ? winner.kpiScore :
-                          index === 1 ? (100 - winner.distance * 2) :
-                          index === 2 ? (100 - winner.capacity) :
-                          index === 3 ? (100 - winner.leadSharePercentage * 2) :
-                          100;
-      
-      const runnerUpValue = runnerUp ? (
-        index === 0 ? runnerUp.kpiScore :
-        index === 1 ? (100 - runnerUp.distance * 2) :
-        index === 2 ? (100 - runnerUp.capacity) :
-        index === 3 ? (100 - runnerUp.leadSharePercentage * 2) :
-        50
-      ) : 0;
+      const winnerValue =
+        index === 0
+          ? winner.kpiScore
+          : index === 1
+            ? 100 - winner.distance * 2
+            : index === 2
+              ? 100 - winner.capacity
+              : index === 3
+                ? 100 - winner.leadSharePercentage * 2
+                : 100;
+
+      const runnerUpValue = runnerUp
+        ? index === 0
+          ? runnerUp.kpiScore
+          : index === 1
+            ? 100 - runnerUp.distance * 2
+            : index === 2
+              ? 100 - runnerUp.capacity
+              : index === 3
+                ? 100 - runnerUp.leadSharePercentage * 2
+                : 50
+        : 0;
 
       return {
         factor: weight.factor,
         winner: {
           contractor: winner.companyName,
           value: Math.round(winnerValue),
-          score: Math.round(winnerValue * weight.weight)
+          score: Math.round(winnerValue * weight.weight),
         },
         runnerUp: {
           contractor: runnerUp?.companyName || 'N/A',
           value: Math.round(runnerUpValue),
-          score: Math.round(runnerUpValue * weight.weight)
+          score: Math.round(runnerUpValue * weight.weight),
         },
         weight: weight.weight,
-        contribution: Math.round(winnerValue * weight.weight)
+        contribution: Math.round(winnerValue * weight.weight),
       };
     });
 
@@ -393,18 +522,19 @@ const WeightedAllocationEngine: React.FC = () => {
       marginOfVictory: winner.score.finalScore - (runnerUp?.score.finalScore || 0),
       factorsAnalyzed,
       fairnessScore: calculateFairnessScore(),
-      confidence: winner.score.finalScore / 100
+      confidence: winner.score.finalScore / 100,
     };
 
     setTransparencyReport(report);
   };
 
   const calculateFairnessScore = (): number => {
-    const shares = contractors.map(c => c.leadStatistics.leadSharePercentage);
+    const shares = contractors.map((c) => c.leadStatistics.leadSharePercentage);
     const avgShare = shares.reduce((a, b) => a + b, 0) / shares.length;
-    const variance = shares.reduce((sum, share) => sum + Math.pow(share - avgShare, 2), 0) / shares.length;
+    const variance =
+      shares.reduce((sum, share) => sum + Math.pow(share - avgShare, 2), 0) / shares.length;
     const stdDev = Math.sqrt(variance);
-    return Math.max(0, 100 - (stdDev * 2));
+    return Math.max(0, 100 - stdDev * 2);
   };
 
   const runSimulation = () => {
@@ -412,61 +542,61 @@ const WeightedAllocationEngine: React.FC = () => {
     const results: { [key: string]: SimulationResult } = {};
 
     // Initialize results
-    eligibleContractors.forEach(ec => {
+    eligibleContractors.forEach((ec) => {
       results[ec.contractorId] = {
         contractor: ec.companyName,
         probability: 0,
         averageScore: 0,
         wins: 0,
-        scenarios: simulations
+        scenarios: simulations,
       };
     });
 
     // Run simulations with random weight variations
     for (let i = 0; i < simulations; i++) {
-      const simulatedWeights = allocationWeights.map(w => ({
+      const simulatedWeights = allocationWeights.map((w) => ({
         ...w,
-        weight: w.weight + (Math.random() - 0.5) * 0.1
+        weight: w.weight + (Math.random() - 0.5) * 0.1,
       }));
 
       // Normalize weights
       const totalWeight = simulatedWeights.reduce((sum, w) => sum + w.weight, 0);
-      simulatedWeights.forEach(w => w.weight = w.weight / totalWeight);
+      simulatedWeights.forEach((w) => (w.weight = w.weight / totalWeight));
 
       // Calculate scores with simulated weights
-      const scores = eligibleContractors.map(ec => {
+      const scores = eligibleContractors.map((ec) => {
         const kpiScore = ec.kpiScore;
-        const proximityScore = Math.max(0, 100 - (ec.distance * 2));
+        const proximityScore = Math.max(0, 100 - ec.distance * 2);
         const capacityScore = 100 - ec.capacity;
-        const fairnessScore = 100 - (ec.leadSharePercentage * 2);
+        const fairnessScore = 100 - ec.leadSharePercentage * 2;
         const specializationScore = 100;
 
-        const score = 
-          (kpiScore * simulatedWeights[0].weight) +
-          (proximityScore * simulatedWeights[1].weight) +
-          (capacityScore * simulatedWeights[2].weight) +
-          (fairnessScore * simulatedWeights[3].weight) +
-          (specializationScore * simulatedWeights[4].weight);
+        const score =
+          kpiScore * simulatedWeights[0].weight +
+          proximityScore * simulatedWeights[1].weight +
+          capacityScore * simulatedWeights[2].weight +
+          fairnessScore * simulatedWeights[3].weight +
+          specializationScore * simulatedWeights[4].weight;
 
         return { contractorId: ec.contractorId, score };
       });
 
       // Find winner
-      const winner = scores.reduce((prev, current) => 
-        current.score > prev.score ? current : prev
+      const winner = scores.reduce((prev, current) =>
+        current.score > prev.score ? current : prev,
       );
 
       results[winner.contractorId].wins++;
-      scores.forEach(s => {
+      scores.forEach((s) => {
         results[s.contractorId].averageScore += s.score;
       });
     }
 
     // Calculate final probabilities
-    const finalResults = Object.values(results).map(r => ({
+    const finalResults = Object.values(results).map((r) => ({
       ...r,
       probability: (r.wins / simulations) * 100,
-      averageScore: r.averageScore / simulations
+      averageScore: r.averageScore / simulations,
     }));
 
     setSimulationResults(finalResults.sort((a, b) => b.probability - a.probability));
@@ -479,17 +609,21 @@ const WeightedAllocationEngine: React.FC = () => {
 
     // Normalize weights to sum to 1
     const total = updated.reduce((sum, w) => sum + w.weight, 0);
-    updated.forEach(w => w.weight = w.weight / total);
+    updated.forEach((w) => (w.weight = w.weight / total));
 
     setAllocationWeights(updated);
   };
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case 'high': return 'text-red-600 bg-red-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'low': return 'text-green-600 bg-green-100';
-      default: return 'text-gray-700 bg-gray-100';
+      case 'high':
+        return 'text-red-600 bg-red-100';
+      case 'medium':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'low':
+        return 'text-green-600 bg-green-100';
+      default:
+        return 'text-gray-700 bg-gray-100';
     }
   };
 
@@ -504,13 +638,17 @@ const WeightedAllocationEngine: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Weighted Allocation Engine</h2>
-              <p className="text-sm text-gray-700">Transparent, fair lead distribution with configurable weights</p>
+              <p className="text-sm text-gray-700">
+                Transparent, fair lead distribution with configurable weights
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <select
               value={allocationMode}
-              onChange={(e) => setAllocationMode(e.target.value as any)}
+              onChange={(e) =>
+                setAllocationMode(e.target.value as 'weighted' | 'fair' | 'performance')
+              }
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
             >
               <option value="weighted">Weighted Score</option>
@@ -543,7 +681,9 @@ const WeightedAllocationEngine: React.FC = () => {
             </div>
             <div>
               <p className="text-xs text-gray-700">Service Type</p>
-              <p className="text-sm font-medium capitalize">{currentLead.jobDetails.serviceType.replace('_', ' ')}</p>
+              <p className="text-sm font-medium capitalize">
+                {currentLead.jobDetails.serviceType.replace('_', ' ')}
+              </p>
             </div>
             <div>
               <p className="text-xs text-gray-700">Priority</p>
@@ -551,7 +691,9 @@ const WeightedAllocationEngine: React.FC = () => {
             </div>
             <div>
               <p className="text-xs text-gray-700">Est. Value</p>
-              <p className="text-sm font-medium">${currentLead.estimatedValue?.toLocaleString() || 'N/A'}</p>
+              <p className="text-sm font-medium">
+                ${currentLead.estimatedValue?.toLocaleString() || 'N/A'}
+              </p>
             </div>
           </div>
         )}
@@ -570,7 +712,9 @@ const WeightedAllocationEngine: React.FC = () => {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-3">
                   <h4 className="font-medium">{weight.factor}</h4>
-                  <span className={`px-2 py-1 text-xs rounded-full ${getImpactColor(weight.impact)}`}>
+                  <span
+                    className={`px-2 py-1 text-xs rounded-full ${getImpactColor(weight.impact)}`}
+                  >
                     {weight.impact} impact
                   </span>
                 </div>
@@ -629,9 +773,11 @@ const WeightedAllocationEngine: React.FC = () => {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                    index === 0 ? 'bg-green-500 text-white' : 'bg-gray-100'
-                  }`}>
+                  <div
+                    className={`flex items-center justify-center w-10 h-10 rounded-full ${
+                      index === 0 ? 'bg-green-500 text-white' : 'bg-gray-100'
+                    }`}
+                  >
                     {index === 0 ? <Award className="h-5 w-5" /> : `#${ec.score.rank}`}
                   </div>
                   <div>
@@ -657,11 +803,15 @@ const WeightedAllocationEngine: React.FC = () => {
                     <p className="text-xs text-gray-700">{weight.factor}</p>
                     <p className="text-sm font-medium">
                       {Math.round(
-                        weight.factor === 'KPI Score' ? ec.kpiScore * weight.weight :
-                        weight.factor === 'Proximity' ? Math.max(0, 100 - ec.distance * 2) * weight.weight :
-                        weight.factor === 'Capacity' ? (100 - ec.capacity) * weight.weight :
-                        weight.factor === 'Lead Share' ? (100 - ec.leadSharePercentage * 2) * weight.weight :
-                        100 * weight.weight
+                        weight.factor === 'KPI Score'
+                          ? ec.kpiScore * weight.weight
+                          : weight.factor === 'Proximity'
+                            ? Math.max(0, 100 - ec.distance * 2) * weight.weight
+                            : weight.factor === 'Capacity'
+                              ? (100 - ec.capacity) * weight.weight
+                              : weight.factor === 'Lead Share'
+                                ? (100 - ec.leadSharePercentage * 2) * weight.weight
+                                : 100 * weight.weight,
                       )}
                     </p>
                   </div>
@@ -702,7 +852,9 @@ const WeightedAllocationEngine: React.FC = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Confidence:</span>
-                  <span className="font-medium">{Math.round(transparencyReport.confidence * 100)}%</span>
+                  <span className="font-medium">
+                    {Math.round(transparencyReport.confidence * 100)}%
+                  </span>
                 </div>
               </div>
             </div>
@@ -712,7 +864,9 @@ const WeightedAllocationEngine: React.FC = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-700">Fairness Score:</span>
-                  <span className="font-medium">{Math.round(transparencyReport.fairnessScore)}%</span>
+                  <span className="font-medium">
+                    {Math.round(transparencyReport.fairnessScore)}%
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-700">Timestamp:</span>
@@ -731,21 +885,37 @@ const WeightedAllocationEngine: React.FC = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Factor</th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Weight</th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Winner Score</th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Runner-up Score</th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">Contribution</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                      Factor
+                    </th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                      Weight
+                    </th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                      Winner Score
+                    </th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                      Runner-up Score
+                    </th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                      Contribution
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {transparencyReport.factorsAnalyzed.map((factor) => (
                     <tr key={factor.factor}>
-                      <td className="px-4 py-2 text-sm font-medium text-gray-900">{factor.factor}</td>
-                      <td className="px-4 py-2 text-sm text-gray-700">{Math.round(factor.weight * 100)}%</td>
+                      <td className="px-4 py-2 text-sm font-medium text-gray-900">
+                        {factor.factor}
+                      </td>
+                      <td className="px-4 py-2 text-sm text-gray-700">
+                        {Math.round(factor.weight * 100)}%
+                      </td>
                       <td className="px-4 py-2 text-sm text-gray-900">{factor.winner.score}</td>
                       <td className="px-4 py-2 text-sm text-gray-700">{factor.runnerUp.score}</td>
-                      <td className="px-4 py-2 text-sm font-medium text-purple-600">+{factor.contribution}</td>
+                      <td className="px-4 py-2 text-sm font-medium text-purple-600">
+                        +{factor.contribution}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -798,10 +968,13 @@ const WeightedAllocationEngine: React.FC = () => {
               <div>
                 <p className="text-sm text-blue-900 font-medium">Simulation Analysis</p>
                 <p className="text-sm text-blue-700 mt-1">
-                  Based on 1000 simulations with ±10% weight variations, the allocation shows 
-                  {simulationResults[0].probability > 70 ? ' strong consistency' : 
-                   simulationResults[0].probability > 50 ? ' moderate consistency' : 
-                   ' high variability'} in outcomes.
+                  Based on 1000 simulations with ±10% weight variations, the allocation shows
+                  {simulationResults[0].probability > 70
+                    ? ' strong consistency'
+                    : simulationResults[0].probability > 50
+                      ? ' moderate consistency'
+                      : ' high variability'}{' '}
+                  in outcomes.
                 </p>
               </div>
             </div>

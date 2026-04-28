@@ -2,18 +2,37 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  Shield, AlertTriangle, CheckCircle, XCircle, Clock, TrendingUp,
-  TrendingDown, Calendar, Bell, FileText, Award, Users, BarChart3,
-  Activity, AlertOctagon, Info, ChevronRight, Filter, Download,
-  RefreshCw, Settings, ArrowUp, ArrowDown
+  Shield,
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Clock,
+  TrendingUp,
+  TrendingDown,
+  Calendar,
+  Bell,
+  FileText,
+  Award,
+  Users,
+  BarChart3,
+  Activity,
+  AlertOctagon,
+  Info,
+  ChevronRight,
+  Filter,
+  Download,
+  RefreshCw,
+  Settings,
+  ArrowUp,
+  ArrowDown,
 } from 'lucide-react';
-import type { 
+import type {
   ComplianceDashboard,
   ComplianceIndicator,
   ComplianceStatus,
   ComplianceAlert,
   Priority,
-  TrendData
+  TrendData,
 } from '@/types/audit-compliance';
 import { clientLogger } from '@/lib/observability/client-logger';
 
@@ -26,7 +45,7 @@ interface ComplianceMonitoringDashboardProps {
 const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps> = ({
   contractorId,
   userRole,
-  className = ''
+  className = '',
 }) => {
   const [dashboard, setDashboard] = useState<ComplianceDashboard | null>(null);
   const [selectedTimeframe, setSelectedTimeframe] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
@@ -47,7 +66,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
         period: {
           start: '2024-01-01T00:00:00Z',
           end: '2024-12-31T23:59:59Z',
-          frequency: 'monthly'
+          frequency: 'monthly',
         },
         overallScore: 87.5,
         status: 'compliant',
@@ -66,7 +85,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             description: 'General liability insurance coverage verification',
             requiresEvidence: true,
             evidenceDocuments: ['doc_001'],
-            automatedCheck: true
+            automatedCheck: true,
           },
           {
             id: 'ind_002',
@@ -82,7 +101,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             description: 'IICRC Water Damage Restoration certification',
             requiresEvidence: true,
             evidenceDocuments: ['doc_002'],
-            automatedCheck: true
+            automatedCheck: true,
           },
           {
             id: 'ind_003',
@@ -95,7 +114,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             threshold: {
               critical: 70,
               warning: 80,
-              good: 85
+              good: 85,
             },
             lastChecked: '2024-04-15T12:00:00Z',
             nextCheckDue: '2024-04-30T12:00:00Z',
@@ -104,7 +123,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             description: 'Average customer satisfaction rating',
             requiresEvidence: false,
             evidenceDocuments: [],
-            automatedCheck: true
+            automatedCheck: true,
           },
           {
             id: 'ind_004',
@@ -117,7 +136,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             threshold: {
               critical: 60,
               warning: 80,
-              good: 95
+              good: 95,
             },
             lastChecked: '2024-04-10T14:00:00Z',
             nextCheckDue: '2024-04-17T14:00:00Z',
@@ -126,7 +145,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             description: 'Percentage of employees with current safety training',
             requiresEvidence: true,
             evidenceDocuments: [],
-            automatedCheck: false
+            automatedCheck: false,
           },
           {
             id: 'ind_005',
@@ -142,17 +161,45 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             description: 'All employees have passed background checks',
             requiresEvidence: true,
             evidenceDocuments: ['doc_003', 'doc_004'],
-            automatedCheck: false
-          }
+            automatedCheck: false,
+          },
         ],
         upcomingAudits: [],
         recentFindings: [],
         openRemediations: [],
         trends: [
-          { date: '2024-01-01', complianceScore: 85, auditsPassed: 2, auditsFailed: 0, findingsOpened: 3, findingsClosed: 2 },
-          { date: '2024-02-01', complianceScore: 86, auditsPassed: 1, auditsFailed: 0, findingsOpened: 2, findingsClosed: 3 },
-          { date: '2024-03-01', complianceScore: 88, auditsPassed: 2, auditsFailed: 0, findingsOpened: 1, findingsClosed: 2 },
-          { date: '2024-04-01', complianceScore: 87.5, auditsPassed: 1, auditsFailed: 0, findingsOpened: 2, findingsClosed: 1 }
+          {
+            date: '2024-01-01',
+            complianceScore: 85,
+            auditsPassed: 2,
+            auditsFailed: 0,
+            findingsOpened: 3,
+            findingsClosed: 2,
+          },
+          {
+            date: '2024-02-01',
+            complianceScore: 86,
+            auditsPassed: 1,
+            auditsFailed: 0,
+            findingsOpened: 2,
+            findingsClosed: 3,
+          },
+          {
+            date: '2024-03-01',
+            complianceScore: 88,
+            auditsPassed: 2,
+            auditsFailed: 0,
+            findingsOpened: 1,
+            findingsClosed: 2,
+          },
+          {
+            date: '2024-04-01',
+            complianceScore: 87.5,
+            auditsPassed: 1,
+            auditsFailed: 0,
+            findingsOpened: 2,
+            findingsClosed: 1,
+          },
         ],
         riskScore: 32,
         alerts: [
@@ -165,31 +212,36 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             relatedEntity: {
               type: 'compliance_indicator',
               id: 'ind_002',
-              name: 'Water Damage Certification'
+              name: 'Water Damage Certification',
             },
             createdAt: '2024-04-15T08:00:00Z',
-            acknowledged: false
+            acknowledged: false,
           },
           {
             id: 'alert_002',
             type: 'non_compliance',
             severity: 'medium',
             title: 'Safety Training Below Threshold',
-            description: 'Safety training compliance has fallen below the warning threshold (78% vs 80% required)',
+            description:
+              'Safety training compliance has fallen below the warning threshold (78% vs 80% required)',
             relatedEntity: {
               type: 'compliance_indicator',
               id: 'ind_004',
-              name: 'Safety Training Compliance'
+              name: 'Safety Training Compliance',
             },
             createdAt: '2024-04-10T14:30:00Z',
-            acknowledged: false
-          }
-        ]
+            acknowledged: false,
+          },
+        ],
       };
 
       setDashboard(mockDashboard);
     } catch (error) {
-      clientLogger.error('Error loading compliance dashboard:', { source: 'audit/ComplianceMonitoringDashboard' }, error);
+      clientLogger.error(
+        'Error loading compliance dashboard:',
+        { source: 'audit/ComplianceMonitoringDashboard' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -197,33 +249,50 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
 
   const getStatusColor = (status: ComplianceStatus) => {
     switch (status) {
-      case 'compliant': return 'text-green-600 bg-green-50';
-      case 'non_compliant': return 'text-red-600 bg-red-50';
-      case 'warning': return 'text-yellow-600 bg-yellow-50';
-      case 'pending_review': return 'text-blue-600 bg-blue-50';
-      case 'expired': return 'text-red-600 bg-red-50';
-      default: return 'text-gray-700 bg-gray-50';
+      case 'compliant':
+        return 'text-green-600 bg-green-50';
+      case 'non_compliant':
+        return 'text-red-600 bg-red-50';
+      case 'warning':
+        return 'text-yellow-600 bg-yellow-50';
+      case 'pending_review':
+        return 'text-blue-600 bg-blue-50';
+      case 'expired':
+        return 'text-red-600 bg-red-50';
+      default:
+        return 'text-gray-700 bg-gray-50';
     }
   };
 
   const getStatusIcon = (status: ComplianceStatus) => {
     switch (status) {
-      case 'compliant': return <CheckCircle className="w-5 h-5" />;
-      case 'non_compliant': return <XCircle className="w-5 h-5" />;
-      case 'warning': return <AlertTriangle className="w-5 h-5" />;
-      case 'pending_review': return <Clock className="w-5 h-5" />;
-      case 'expired': return <XCircle className="w-5 h-5" />;
-      default: return <Info className="w-5 h-5" />;
+      case 'compliant':
+        return <CheckCircle className="w-5 h-5" />;
+      case 'non_compliant':
+        return <XCircle className="w-5 h-5" />;
+      case 'warning':
+        return <AlertTriangle className="w-5 h-5" />;
+      case 'pending_review':
+        return <Clock className="w-5 h-5" />;
+      case 'expired':
+        return <XCircle className="w-5 h-5" />;
+      default:
+        return <Info className="w-5 h-5" />;
     }
   };
 
   const getPriorityColor = (priority: Priority) => {
     switch (priority) {
-      case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-blue-700 bg-orange-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'low': return 'text-blue-600 bg-blue-100';
-      default: return 'text-gray-700 bg-gray-100';
+      case 'critical':
+        return 'text-red-600 bg-red-100';
+      case 'high':
+        return 'text-blue-700 bg-orange-100';
+      case 'medium':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'low':
+        return 'text-blue-600 bg-blue-100';
+      default:
+        return 'text-gray-700 bg-gray-100';
     }
   };
 
@@ -242,20 +311,23 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
 
   const ComplianceScoreCard = () => {
     if (!dashboard) return null;
-    
-    const trend = dashboard.trends.length > 1 
-      ? dashboard.overallScore - dashboard.trends[dashboard.trends.length - 2].complianceScore
-      : 0;
+
+    const trend =
+      dashboard.trends.length > 1
+        ? dashboard.overallScore - dashboard.trends[dashboard.trends.length - 2].complianceScore
+        : 0;
 
     return (
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Overall Compliance Score</h3>
-          <div className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(dashboard.status)}`}>
+          <div
+            className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(dashboard.status)}`}
+          >
             {dashboard.status.replace('_', ' ').toUpperCase()}
           </div>
         </div>
-        
+
         <div className="flex items-center justify-center mb-6">
           <div className="relative">
             <svg className="w-32 h-32">
@@ -313,7 +385,9 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             <div className="text-center">
               <p className="text-2xl font-bold text-gray-900">{dashboard.riskScore}</p>
               <p className="text-sm text-gray-700">Risk Score</p>
-              <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mt-1 ${getRiskLevelLabel(dashboard.riskScore).colour}`}>
+              <div
+                className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mt-1 ${getRiskLevelLabel(dashboard.riskScore).colour}`}
+              >
                 {getRiskLevelLabel(dashboard.riskScore).label}
               </div>
             </div>
@@ -333,10 +407,11 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
   const ComplianceIndicators = () => {
     if (!dashboard) return null;
 
-    const categories = Array.from(new Set(dashboard.indicators.map(i => i.category)));
-    const filteredIndicators = selectedCategory === 'all' 
-      ? dashboard.indicators 
-      : dashboard.indicators.filter(i => i.category === selectedCategory);
+    const categories = Array.from(new Set(dashboard.indicators.map((i) => i.category)));
+    const filteredIndicators =
+      selectedCategory === 'all'
+        ? dashboard.indicators
+        : dashboard.indicators.filter((i) => i.category === selectedCategory);
 
     return (
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -349,8 +424,10 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="all">All Categories</option>
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat.replace('_', ' ')}</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat.replace('_', ' ')}
+                </option>
               ))}
             </select>
             <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -377,13 +454,15 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                     <div>
                       <p className="text-xs text-gray-700">Category</p>
-                      <p className="text-sm font-medium capitalize">{indicator.category.replace('_', ' ')}</p>
+                      <p className="text-sm font-medium capitalize">
+                        {indicator.category.replace('_', ' ')}
+                      </p>
                     </div>
                     <div>
                       <p className="text-xs text-gray-700">Current Value</p>
                       <p className="text-sm font-medium">
-                        {indicator.type === 'percentage' 
-                          ? `${indicator.currentValue}%` 
+                        {indicator.type === 'percentage'
+                          ? `${indicator.currentValue}%`
                           : String(indicator.currentValue)}
                       </p>
                     </div>
@@ -395,7 +474,9 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
                     </div>
                     <div>
                       <p className="text-xs text-gray-700">Priority</p>
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(indicator.priority)}`}>
+                      <span
+                        className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(indicator.priority)}`}
+                      >
                         {indicator.priority}
                       </span>
                     </div>
@@ -410,13 +491,13 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
                         </span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div 
+                        <div
                           className={`h-2 rounded-full ${
-                            Number(indicator.currentValue) >= indicator.threshold.good 
+                            Number(indicator.currentValue) >= indicator.threshold.good
                               ? 'bg-green-600'
                               : Number(indicator.currentValue) >= indicator.threshold.warning
-                              ? 'bg-yellow-600'
-                              : 'bg-red-600'
+                                ? 'bg-yellow-600'
+                                : 'bg-red-600'
                           }`}
                           style={{ width: `${Math.min(Number(indicator.currentValue), 100)}%` }}
                         ></div>
@@ -467,29 +548,42 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
         ) : (
           <div className="space-y-3">
             {dashboard.alerts.map((alert) => (
-              <div 
-                key={alert.id} 
+              <div
+                key={alert.id}
                 className={`border-l-4 p-4 rounded-lg ${
-                  alert.severity === 'critical' ? 'border-red-600 bg-red-50' :
-                  alert.severity === 'high' ? 'border-blue-600 bg-orange-50' :
-                  alert.severity === 'medium' ? 'border-blue-600 bg-yellow-50' :
-                  'border-blue-500 bg-blue-50'
+                  alert.severity === 'critical'
+                    ? 'border-red-600 bg-red-50'
+                    : alert.severity === 'high'
+                      ? 'border-blue-600 bg-orange-50'
+                      : alert.severity === 'medium'
+                        ? 'border-blue-600 bg-yellow-50'
+                        : 'border-blue-500 bg-blue-50'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-3">
-                    <div className={`p-1 rounded ${
-                      alert.severity === 'critical' ? 'bg-red-100' :
-                      alert.severity === 'high' ? 'bg-orange-100' :
-                      alert.severity === 'medium' ? 'bg-yellow-100' :
-                      'bg-blue-100'
-                    }`}>
-                      <AlertOctagon className={`w-4 h-4 ${
-                        alert.severity === 'critical' ? 'text-red-600' :
-                        alert.severity === 'high' ? 'text-blue-700' :
-                        alert.severity === 'medium' ? 'text-yellow-600' :
-                        'text-blue-600'
-                      }`} />
+                    <div
+                      className={`p-1 rounded ${
+                        alert.severity === 'critical'
+                          ? 'bg-red-100'
+                          : alert.severity === 'high'
+                            ? 'bg-orange-100'
+                            : alert.severity === 'medium'
+                              ? 'bg-yellow-100'
+                              : 'bg-blue-100'
+                      }`}
+                    >
+                      <AlertOctagon
+                        className={`w-4 h-4 ${
+                          alert.severity === 'critical'
+                            ? 'text-red-600'
+                            : alert.severity === 'high'
+                              ? 'text-blue-700'
+                              : alert.severity === 'medium'
+                                ? 'text-yellow-600'
+                                : 'text-blue-600'
+                        }`}
+                      />
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-900">{alert.title}</h4>
@@ -528,7 +622,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
           <div className="flex items-center space-x-2">
             <select
               value={selectedTimeframe}
-              onChange={(e) => setSelectedTimeframe(e.target.value as any)}
+              onChange={(e) => setSelectedTimeframe(e.target.value as '7d' | '30d' | '90d' | '1y')}
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
             >
               <option value="7d">Last 7 days</option>
@@ -548,11 +642,11 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             <div className="relative h-48 flex items-end justify-between">
               {dashboard.trends.map((trend, index) => (
                 <div key={index} className="flex flex-col items-center flex-1">
-                  <div 
+                  <div
                     className="w-full bg-blue-500 rounded-t mx-1"
-                    style={{ 
+                    style={{
                       height: `${(trend.complianceScore / 100) * 100}%`,
-                      minHeight: '4px'
+                      minHeight: '4px',
                     }}
                   ></div>
                   <p className="text-xs text-gray-700 mt-2 rotate-45 origin-left">
@@ -628,7 +722,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
             <Settings className="w-4 h-4 mr-2" />
             Settings
           </button>
-          <button 
+          <button
             onClick={() => loadDashboardData()}
             className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >

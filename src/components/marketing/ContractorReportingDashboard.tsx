@@ -2,16 +2,33 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  TrendingUp, TrendingDown, DollarSign, Users, Target, Calendar,
-  BarChart3, PieChart, MapPin, Clock, Star, ArrowUp, ArrowDown,
-  Download, Filter, RefreshCw, Bell, Lightbulb, Zap, Award
+  TrendingUp,
+  TrendingDown,
+  DollarSign,
+  Users,
+  Target,
+  Calendar,
+  BarChart3,
+  PieChart,
+  MapPin,
+  Clock,
+  Star,
+  ArrowUp,
+  ArrowDown,
+  Download,
+  Filter,
+  RefreshCw,
+  Bell,
+  Lightbulb,
+  Zap,
+  Award,
 } from 'lucide-react';
-import type { 
-  ContractorReportingData, 
-  LeadPerformanceMetrics, 
+import type {
+  ContractorReportingData,
+  LeadPerformanceMetrics,
   CampaignROI,
   MarketingOpportunity,
-  TerritoryPerformance 
+  TerritoryPerformance,
 } from '@/types/marketing-analytics';
 import { clientLogger } from '@/lib/observability/client-logger';
 
@@ -20,9 +37,35 @@ interface ContractorReportingDashboardProps {
   className?: string;
 }
 
+interface SourceBreakdownRow {
+  source: string;
+  leads: number;
+  cost: number;
+  revenue: number;
+  roi: number;
+  [key: string]: unknown;
+}
+
+interface CoFundedCampaignRow {
+  campaignId: string;
+  name: string;
+  status: string;
+  yourContribution: number;
+  yourShare: number;
+  leadsGenerated: number;
+  revenue: number;
+  roi: number;
+}
+
+interface CompetitorAnalysisRow {
+  contractor: string;
+  marketShare: number;
+  trend: 'up' | 'down' | 'stable';
+}
+
 const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> = ({
   contractorId,
-  className = ''
+  className = '',
 }) => {
   const [reportingData, setReportingData] = useState<ContractorReportingData | null>(null);
   const [selectedTimeframe, setSelectedTimeframe] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
@@ -48,7 +91,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
           roi: 308.5,
           avgCostPerLead: 18.21,
           conversionRate: 26.9,
-          territoryRank: 3
+          territoryRank: 3,
         },
         leadPerformance: {
           totalLeads: 156,
@@ -60,14 +103,14 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             { source: 'Facebook Ads', leads: 34, cost: 890, revenue: 18900, roi: 212.4 },
             { source: 'Local SEO', leads: 28, cost: 420, revenue: 15200, roi: 361.9 },
             { source: 'Direct Mail', leads: 18, cost: 240, revenue: 7800, roi: 325.0 },
-            { source: 'Referrals', leads: 9, cost: 70, revenue: 3100, roi: 442.9 }
+            { source: 'Referrals', leads: 9, cost: 70, revenue: 3100, roi: 442.9 },
           ],
           monthlyTrend: [
             { month: 'Jan', leads: 42, conversions: 11, revenue: 23100 },
             { month: 'Feb', leads: 38, conversions: 12, revenue: 25800 },
             { month: 'Mar', leads: 52, conversions: 14, revenue: 31200 },
-            { month: 'Apr', leads: 24, conversions: 5, revenue: 7400 }
-          ]
+            { month: 'Apr', leads: 24, conversions: 5, revenue: 7400 },
+          ],
         },
         campaignROI: {
           totalSpent: 2840,
@@ -84,7 +127,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               leadsGenerated: 23,
               revenue: 18900,
               roi: 420.0,
-              status: 'active'
+              status: 'active',
             },
             {
               campaignId: 'camp_002',
@@ -95,14 +138,14 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               leadsGenerated: 31,
               revenue: 24600,
               roi: 361.8,
-              status: 'completed'
-            }
+              status: 'completed',
+            },
           ],
           topPerformingCampaigns: [
             { name: 'Local Storm Response', roi: 487.2, revenue: 31200 },
             { name: 'Mould Remediation Ads', roi: 398.4, revenue: 24800 },
-            { name: 'Fire Damage Recovery', roi: 342.1, revenue: 19500 }
-          ]
+            { name: 'Fire Damage Recovery', roi: 342.1, revenue: 19500 },
+          ],
         },
         territoryInsights: {
           yourTerritory: 'Metro North',
@@ -113,7 +156,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             { contractor: 'Elite Restoration', marketShare: 31.2, trend: 'up' },
             { contractor: 'Rapid Response Co', marketShare: 28.4, trend: 'stable' },
             { contractor: 'Your Company', marketShare: 24.8, trend: 'up' },
-            { contractor: 'Precision Contractors', marketShare: 15.6, trend: 'down' }
+            { contractor: 'Precision Contractors', marketShare: 15.6, trend: 'down' },
           ],
           opportunities: [
             {
@@ -122,7 +165,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               description: 'Low contractor density with high demand for restoration services',
               potentialRevenue: 45000,
               recommendedBudget: 1200,
-              confidence: 'high'
+              confidence: 'high',
             },
             {
               type: 'seasonal_campaign',
@@ -130,9 +173,9 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               description: 'Co-funded campaign opportunity with 8 other contractors',
               potentialRevenue: 62000,
               recommendedBudget: 2400,
-              confidence: 'high'
-            }
-          ]
+              confidence: 'high',
+            },
+          ],
         },
         marketingOpportunities: [
           {
@@ -149,8 +192,8 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             benefits: [
               'Shared cost reduces individual risk',
               'Broader geographic coverage',
-              'Enhanced credibility through partnership'
-            ]
+              'Enhanced credibility through partnership',
+            ],
           },
           {
             id: 'opp_002',
@@ -166,15 +209,19 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             benefits: [
               'Capture more high-intent searches',
               'Outbid competitors on key terms',
-              'Scale successful campaigns'
-            ]
-          }
-        ]
+              'Scale successful campaigns',
+            ],
+          },
+        ],
       };
 
       setReportingData(mockData);
     } catch (error) {
-      clientLogger.error('Error loading reporting data:', { source: 'marketing/ContractorReportingDashboard' }, error);
+      clientLogger.error(
+        'Error loading reporting data:',
+        { source: 'marketing/ContractorReportingDashboard' },
+        error,
+      );
     } finally {
       setLoading(false);
     }
@@ -184,7 +231,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
-      minimumFractionDigits: 0
+      minimumFractionDigits: 0,
     }).format(amount);
   };
 
@@ -194,18 +241,25 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
 
   const getChangeIcon = (trend: 'up' | 'down' | 'stable') => {
     switch (trend) {
-      case 'up': return <ArrowUp className="w-4 h-4 text-green-600" />;
-      case 'down': return <ArrowDown className="w-4 h-4 text-red-600" />;
-      default: return <div className="w-4 h-4" />;
+      case 'up':
+        return <ArrowUp className="w-4 h-4 text-green-600" />;
+      case 'down':
+        return <ArrowDown className="w-4 h-4 text-red-600" />;
+      default:
+        return <div className="w-4 h-4" />;
     }
   };
 
   const getConfidenceColor = (confidence: string) => {
     switch (confidence) {
-      case 'high': return 'text-green-600 bg-green-50';
-      case 'medium': return 'text-yellow-600 bg-yellow-50';
-      case 'low': return 'text-red-600 bg-red-50';
-      default: return 'text-gray-700 bg-gray-50';
+      case 'high':
+        return 'text-green-600 bg-green-50';
+      case 'medium':
+        return 'text-yellow-600 bg-yellow-50';
+      case 'low':
+        return 'text-red-600 bg-red-50';
+      default:
+        return 'text-gray-700 bg-gray-50';
     }
   };
 
@@ -267,7 +321,9 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-700">Territory Rank</p>
-            <p className="text-3xl font-bold text-gray-900">#{reportingData?.summary?.territoryRank}</p>
+            <p className="text-3xl font-bold text-gray-900">
+              #{reportingData?.summary?.territoryRank}
+            </p>
             <p className="text-sm text-green-600 mt-2">
               <Star className="w-4 h-4 inline mr-1" />
               Top 25% performer
@@ -288,7 +344,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <div className="flex space-x-2">
           <select
             value={selectedTimeframe}
-            onChange={(e) => setSelectedTimeframe(e.target.value as any)}
+            onChange={(e) => setSelectedTimeframe(e.target.value as '7d' | '30d' | '90d' | '1y')}
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
           >
             <option value="7d">Last 7 days</option>
@@ -314,18 +370,29 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             </tr>
           </thead>
           <tbody>
-            {(reportingData?.leadPerformance?.sourceBreakdown as any[] | undefined)?.map((source: any, index: number) => (
+            {(Array.isArray(reportingData?.leadPerformance?.sourceBreakdown)
+              ? (reportingData?.leadPerformance?.sourceBreakdown as SourceBreakdownRow[])
+              : undefined
+            )?.map((source, index: number) => (
               <tr key={index} className="border-b border-gray-100">
                 <td className="py-3 px-4 font-medium text-gray-900">{source.source}</td>
                 <td className="py-3 px-4 text-right text-gray-900">{source.leads}</td>
-                <td className="py-3 px-4 text-right text-gray-900">{formatCurrency(source.cost)}</td>
-                <td className="py-3 px-4 text-right text-gray-900">{formatCurrency(source.revenue)}</td>
+                <td className="py-3 px-4 text-right text-gray-900">
+                  {formatCurrency(source.cost)}
+                </td>
+                <td className="py-3 px-4 text-right text-gray-900">
+                  {formatCurrency(source.revenue)}
+                </td>
                 <td className="py-3 px-4 text-right">
-                  <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
-                    source.roi > 300 ? 'bg-green-100 text-green-800' :
-                    source.roi > 200 ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-red-100 text-red-800'
-                  }`}>
+                  <span
+                    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                      source.roi > 300
+                        ? 'bg-green-100 text-green-800'
+                        : source.roi > 200
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                    }`}
+                  >
                     {formatPercentage(source.roi)}
                   </span>
                 </td>
@@ -340,19 +407,25 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
   const CoFundedCampaigns = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Co-Funded Campaign Performance</h3>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {((reportingData?.campaignROI as any)?.coFundedCampaigns as any[] | undefined)?.map((campaign: any) => (
+        {(
+          reportingData?.campaignROI as { coFundedCampaigns?: CoFundedCampaignRow[] } | undefined
+        )?.coFundedCampaigns?.map((campaign) => (
           <div key={campaign.campaignId} className="border border-gray-200 rounded-lg p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="font-medium text-gray-900">{campaign.name}</h4>
-              <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
-                campaign.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-              }`}>
+              <span
+                className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                  campaign.status === 'active'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-gray-100 text-gray-800'
+                }`}
+              >
                 {campaign.status}
               </span>
             </div>
-            
+
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-700">Your Contribution:</span>
@@ -384,22 +457,37 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
   const TerritoryInsights = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Territory Performance</h3>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
           <h4 className="font-medium text-gray-900 mb-4">Market Position</h4>
           <div className="space-y-3">
-            {reportingData?.territoryInsights?.competitorAnalysis?.map((competitor: any, index: number) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            {(
+              reportingData?.territoryInsights?.competitorAnalysis as
+                | CompetitorAnalysisRow[]
+                | undefined
+            )?.map((competitor, index: number) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+              >
                 <div className="flex items-center space-x-3">
                   <span className="font-medium text-gray-900">#{index + 1}</span>
-                  <span className={competitor.contractor === 'Your Company' ? 'font-semibold text-blue-600' : 'text-gray-700'}>
+                  <span
+                    className={
+                      competitor.contractor === 'Your Company'
+                        ? 'font-semibold text-blue-600'
+                        : 'text-gray-700'
+                    }
+                  >
                     {competitor.contractor}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm font-medium">{formatPercentage(competitor.marketShare)}</span>
-                  {getChangeIcon(competitor.trend as any)}
+                  <span className="text-sm font-medium">
+                    {formatPercentage(competitor.marketShare)}
+                  </span>
+                  {getChangeIcon(competitor.trend)}
                 </div>
               </div>
             ))}
@@ -411,15 +499,22 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
           <div className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <span className="text-gray-700">Your Territory:</span>
-              <span className="font-medium text-gray-900">{reportingData?.territoryInsights?.yourTerritory}</span>
+              <span className="font-medium text-gray-900">
+                {reportingData?.territoryInsights?.yourTerritory}
+              </span>
             </div>
             <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
               <span className="text-gray-700">Current Rank:</span>
-              <span className="font-medium text-gray-900">#{reportingData?.territoryInsights?.rank} of {reportingData?.territoryInsights?.totalContractors}</span>
+              <span className="font-medium text-gray-900">
+                #{reportingData?.territoryInsights?.rank} of{' '}
+                {reportingData?.territoryInsights?.totalContractors}
+              </span>
             </div>
             <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
               <span className="text-gray-700">Market Share:</span>
-              <span className="font-medium text-gray-900">{formatPercentage(reportingData?.territoryInsights?.marketShare || 0)}</span>
+              <span className="font-medium text-gray-900">
+                {formatPercentage(reportingData?.territoryInsights?.marketShare || 0)}
+              </span>
             </div>
           </div>
         </div>
@@ -433,24 +528,27 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <Lightbulb className="w-5 h-5 text-blue-600" />
         <h3 className="text-lg font-semibold text-gray-900">Marketing Opportunities</h3>
       </div>
-      
+
       <div className="space-y-6">
         {reportingData?.marketingOpportunities?.map((opportunity) => (
           <div key={opportunity.id} className="border border-gray-200 rounded-lg p-6">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-blue-50 rounded-lg">
-                  {opportunity.type === 'co_funded_campaign' ? 
-                    <Users className="w-5 h-5 text-blue-600" /> : 
+                  {opportunity.type === 'co_funded_campaign' ? (
+                    <Users className="w-5 h-5 text-blue-600" />
+                  ) : (
                     <Zap className="w-5 h-5 text-blue-600" />
-                  }
+                  )}
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">{opportunity.title}</h4>
                   <p className="text-sm text-gray-700 mt-1">{opportunity.description}</p>
                 </div>
               </div>
-              <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getConfidenceColor(String(opportunity.confidence ?? ''))}`}>
+              <span
+                className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getConfidenceColor(String(opportunity.confidence ?? ''))}`}
+              >
                 {opportunity.confidence} confidence
               </span>
             </div>
@@ -458,15 +556,21 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div className="text-center p-3 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-700">Estimated Cost</p>
-                <p className="text-lg font-semibold text-gray-900">{formatCurrency(opportunity.estimatedCost ?? 0)}</p>
+                <p className="text-lg font-semibold text-gray-900">
+                  {formatCurrency(opportunity.estimatedCost ?? 0)}
+                </p>
               </div>
               <div className="text-center p-3 bg-green-50 rounded-lg">
                 <p className="text-sm text-gray-700">Potential Revenue</p>
-                <p className="text-lg font-semibold text-green-600">{formatCurrency(opportunity.potentialRevenue ?? 0)}</p>
+                <p className="text-lg font-semibold text-green-600">
+                  {formatCurrency(opportunity.potentialRevenue ?? 0)}
+                </p>
               </div>
               <div className="text-center p-3 bg-purple-50 rounded-lg">
                 <p className="text-sm text-gray-700">Estimated ROI</p>
-                <p className="text-lg font-semibold text-purple-600">{formatPercentage(opportunity.estimatedROI ?? 0)}</p>
+                <p className="text-lg font-semibold text-purple-600">
+                  {formatPercentage(opportunity.estimatedROI ?? 0)}
+                </p>
               </div>
             </div>
 
@@ -486,7 +590,10 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               <div className="flex items-center space-x-4 text-sm text-gray-700">
                 <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-1" />
-                  Deadline: {opportunity.deadline ? new Date(opportunity.deadline).toLocaleDateString() : 'TBD'}
+                  Deadline:{' '}
+                  {opportunity.deadline
+                    ? new Date(opportunity.deadline).toLocaleDateString()
+                    : 'TBD'}
                 </div>
               </div>
               <div className="flex space-x-2">
@@ -525,7 +632,9 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Marketing Performance Dashboard</h1>
-          <p className="text-gray-700 mt-1">Track your leads, campaigns, and growth opportunities</p>
+          <p className="text-gray-700 mt-1">
+            Track your leads, campaigns, and growth opportunities
+          </p>
         </div>
         <div className="flex space-x-2">
           <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
