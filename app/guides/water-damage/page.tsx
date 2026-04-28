@@ -227,7 +227,7 @@ function WaterDamageGuidePageOriginal() {
               <m.div
                 key={key}
                 whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedCategory(key as any)}
+                onClick={() => setSelectedCategory(key as 'clean' | 'grey' | 'black')}
                 className={`cursor-pointer rounded-xl shadow-lg overflow-hidden border-2 transition-all ${
                   selectedCategory === key ? 'border-blue-500 shadow-xl' : 'border-transparent'
                 }`}
