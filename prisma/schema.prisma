@@ -1077,6 +1077,10 @@ model Job {
   @@index([status, urgency])
   @@index([contractorId, status])
   @@index([suburb, state])
+  // DR-816 Path Y — Prisma `Job` is the field-service work-order; live
+  // `jobs` is the property-based work-order (different concept). Maps to
+  // a dedicated live table.
+  @@map("field_service_jobs")
 }
 
 // ============================================
