@@ -17,6 +17,7 @@ import {
   resetCircuitBreaker,
   tripCircuitBreaker,
 } from '@/lib/voice/kill-switch';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -46,9 +47,14 @@ async function logComplianceEvent(
     // String-indirected import so a missing compliance module does not break
     // TypeScript compilation or runtime. Expected path: src/lib/compliance/events.
     const modulePath = '@/lib/compliance/events';
-    const mod: unknown = await (new Function('p', 'return import(p)') as (p: string) => Promise<unknown>)(modulePath)
-      .catch(() => null);
-    const writer = (mod as { writeComplianceEvent?: (t: string, m: Record<string, unknown>) => Promise<void> } | null)?.writeComplianceEvent;
+    const mod: unknown = await (
+      new Function('p', 'return import(p)') as (p: string) => Promise<unknown>
+    )(modulePath).catch(() => null);
+    const writer = (
+      mod as {
+        writeComplianceEvent?: (t: string, m: Record<string, unknown>) => Promise<void>;
+      } | null
+    )?.writeComplianceEvent;
     if (typeof writer === 'function') {
       await writer(eventType, metadata);
     }
@@ -58,46 +64,66 @@ async function logComplianceEvent(
 }
 
 export async function GET(req: NextRequest) {
-  if (!isAuthorised(req)) {
-    return NextResponse.json({ error: 'unauthorised' }, { status: 401 });
+  const log = requestLogger(req, { route: '/api/admin/voice/kill-switch' });
+  try {
+    if (!isAuthorised(req)) {
+      return NextResponse.json({ error: 'unauthorised' }, { status: 401 });
+    }
+    return NextResponse.json(circuitBreakerState());
+  } catch (error) {
+    log.error('handler failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/admin/voice/kill-switch' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
-  return NextResponse.json(circuitBreakerState());
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAuthorised(req)) {
-    return NextResponse.json({ error: 'unauthorised' }, { status: 401 });
-  }
-
-  let body: { action?: string; reason?: string } = {};
+  const log = requestLogger(req, { route: '/api/admin/voice/kill-switch' });
   try {
-    body = (await req.json()) as { action?: string; reason?: string };
-  } catch {
-    return NextResponse.json({ error: 'invalid_json' }, { status: 400 });
-  }
-
-  const action = body.action;
-
-  if (action === 'trip') {
-    const reason = (body.reason ?? '').trim() || 'no_reason_provided';
-    tripCircuitBreaker(reason);
-    await logComplianceEvent('voice_kill_switch_admin_trip', {
-      reason,
-      at: new Date().toISOString(),
-    });
-    return NextResponse.json(circuitBreakerState());
-  }
-
-  if (action === 'reset') {
-    if (!hasResetSecret(req)) {
-      return NextResponse.json({ error: 'reset_secret_required' }, { status: 403 });
+    if (!isAuthorised(req)) {
+      return NextResponse.json({ error: 'unauthorised' }, { status: 401 });
     }
-    resetCircuitBreaker();
-    await logComplianceEvent('voice_kill_switch_admin_reset', {
-      at: new Date().toISOString(),
-    });
-    return NextResponse.json(circuitBreakerState());
-  }
 
-  return NextResponse.json({ error: 'invalid_action' }, { status: 400 });
+    let body: { action?: string; reason?: string } = {};
+    try {
+      body = (await req.json()) as { action?: string; reason?: string };
+    } catch {
+      return NextResponse.json({ error: 'invalid_json' }, { status: 400 });
+    }
+
+    const action = body.action;
+
+    if (action === 'trip') {
+      const reason = (body.reason ?? '').trim() || 'no_reason_provided';
+      tripCircuitBreaker(reason);
+      await logComplianceEvent('voice_kill_switch_admin_trip', {
+        reason,
+        at: new Date().toISOString(),
+      });
+      return NextResponse.json(circuitBreakerState());
+    }
+
+    if (action === 'reset') {
+      if (!hasResetSecret(req)) {
+        return NextResponse.json({ error: 'reset_secret_required' }, { status: 403 });
+      }
+      resetCircuitBreaker();
+      await logComplianceEvent('voice_kill_switch_admin_reset', {
+        at: new Date().toISOString(),
+      });
+      return NextResponse.json(circuitBreakerState());
+    }
+
+    return NextResponse.json({ error: 'invalid_action' }, { status: 400 });
+  } catch (error) {
+    log.error('handler failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/admin/voice/kill-switch' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
 }

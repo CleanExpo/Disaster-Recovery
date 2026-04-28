@@ -16,6 +16,7 @@ import { NextResponse } from 'next/server';
 import { CONSENT_UTTERANCE_VERSION } from '@/lib/voice/consent-utterance';
 import { verifyTwilioSignature } from '@/lib/voice/twilio-signature';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { requestLogger, captureException } from '@/lib/observability';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -49,47 +50,61 @@ function reconstructUrl(request: Request): string {
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
-  const rawBody = await request.text();
-  const params: Record<string, string> = {};
-  for (const [k, v] of new URLSearchParams(rawBody)) params[k] = v;
+  const log = requestLogger(request, { route: '/api/voice/twilio-consent/human-transfer' });
+  try {
+    const rawBody = await request.text();
+    const params: Record<string, string> = {};
+    for (const [k, v] of new URLSearchParams(rawBody)) params[k] = v;
 
-  const authToken = process.env.TWILIO_AUTH_TOKEN ?? '';
-  const header = request.headers.get('x-twilio-signature');
-  const url = reconstructUrl(request);
+    const authToken = process.env.TWILIO_AUTH_TOKEN ?? '';
+    const header = request.headers.get('x-twilio-signature');
+    const url = reconstructUrl(request);
 
-  if (!verifyTwilioSignature(authToken, url, params, header)) {
-    return new NextResponse('Forbidden', { status: 403 });
-  }
+    if (!verifyTwilioSignature(authToken, url, params, header)) {
+      return new NextResponse('Forbidden', { status: 403 });
+    }
 
-  const callSid = params.CallSid ?? 'unknown';
-  const queue = process.env.TWILIO_HUMAN_QUEUE_NUMBER ?? '';
+    const callSid = params.CallSid ?? 'unknown';
+    const queue = process.env.TWILIO_HUMAN_QUEUE_NUMBER ?? '';
 
-  void logComplianceEvent({
-    eventType: 'claim_intake_created',
-    correlationId: callSid,
-    correlationType: 'claim',
-    entityType: 'customer',
-    consentMethod: 'voice_human',
-    metadata: {
-      call_sid: callSid,
-      outcome: 'human_transfer',
-      queue_configured: Boolean(queue),
-    },
-  });
+    void logComplianceEvent({
+      eventType: 'claim_intake_created',
+      correlationId: callSid,
+      correlationType: 'claim',
+      entityType: 'customer',
+      consentMethod: 'voice_human',
+      metadata: {
+        call_sid: callSid,
+        outcome: 'human_transfer',
+        queue_configured: Boolean(queue),
+      },
+    });
 
-  if (!queue) {
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+    if (!queue) {
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="Polly.Nicole-Neural" language="en-AU">We're sorry, our operators are unavailable right now. Please call back shortly or lodge a claim online at disasterrecovery.com.au.</Say>
   <Hangup />
 </Response>`;
-    return twimlResponse(xml);
-  }
+      return twimlResponse(xml);
+    }
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="Polly.Nicole-Neural" language="en-AU">Transferring you now.</Say>
   <Dial timeout="25" answerOnBridge="true">${escapeXml(queue)}</Dial>
 </Response>`;
-  return twimlResponse(xml);
+    return twimlResponse(xml);
+  } catch (error) {
+    log.error('handler failed', { error: error instanceof Error ? error.message : String(error) });
+    captureException(error, {
+      tags: { route: '/api/voice/twilio-consent/human-transfer' },
+      extra: { requestId: log.requestId },
+    });
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<Response><Hangup/></Response>`;
+    return new NextResponse(xml, {
+      status: 200,
+      headers: { 'Content-Type': 'text/xml; charset=utf-8' },
+    });
+  }
 }
