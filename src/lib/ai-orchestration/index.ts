@@ -20,7 +20,7 @@ import {
   EmergencyOrchestrationRequest,
   EmergencyOrchestrationResponse,
   AgentPersona,
-  OrchestrationError
+  OrchestrationError,
 } from './core/types';
 
 import { AIProvider, AITaskContext, AITaskType } from '@/types/ai-service';
@@ -114,7 +114,7 @@ export class AIOrchestrationService {
     logger.info('AI Orchestration Service initializing...', {
       cacheEnabled: config.cache.enablePersistence,
       fallbackEnabled: config.fallback.enableCircuitBreaker,
-      monitoringEnabled: config.monitoring.enableRealTimeMonitoring
+      monitoringEnabled: config.monitoring.enableRealTimeMonitoring,
     });
   }
 
@@ -141,33 +141,29 @@ export class AIOrchestrationService {
       this.fallbackManager = new FallbackManager(this.aiService, this.config.fallback);
 
       // Initialize specialised orchestrators
-      this.disasterRecoveryOrchestrator = new DisasterRecoveryOrchestrator(
-        this.aiService,
-        {
-          sequential: this.sequentialEngine,
-          discussion: this.discussionEngine,
-          router: this.router,
-          fallback: this.fallbackManager,
-          context: this.contextManager,
-          realTime: this.realTimeManager
-        }
-      );
+      this.disasterRecoveryOrchestrator = new DisasterRecoveryOrchestrator(this.aiService, {
+        sequential: this.sequentialEngine,
+        discussion: this.discussionEngine,
+        router: this.router,
+        fallback: this.fallbackManager,
+        context: this.contextManager,
+        realTime: this.realTimeManager,
+      });
 
       // Setup event handlers for performance monitoring
       this.setupEventHandlers();
 
       this.isInitialized = true;
       logger.info('AI Orchestration Service initialized successfully');
-
     } catch (error) {
       logger.error('Failed to initialize AI Orchestration Service', {
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
       throw new OrchestrationError(
         'Initialization failed',
         'INIT_FAILED',
         { originalError: error },
-        false
+        false,
       );
     }
   }
@@ -186,7 +182,7 @@ export class AIOrchestrationService {
       maxCost?: number;
       sessionId?: string;
       userId?: string;
-    }
+    },
   ): Promise<OrchestrationResult> {
     this.ensureInitialized();
     const startTime = Date.now();
@@ -200,8 +196,8 @@ export class AIOrchestrationService {
         {
           userId: options?.userId,
           sessionId: options?.sessionId,
-          tags: [context.type, context.priority]
-        }
+          tags: [context.type, context.priority],
+        },
       );
 
       // Check cache first
@@ -214,7 +210,7 @@ export class AIOrchestrationService {
           0.01, // Minimal cache cost
           cacheResult.confidence,
           context.type,
-          { cached: true }
+          { cached: true },
         );
 
         return {
@@ -227,27 +223,20 @@ export class AIOrchestrationService {
             cost: 0.01,
             contextId,
             fallbackLevel: 0,
-            cacheHit: true
-          }
+            cacheHit: true,
+          },
         };
       }
 
       // Route to optimal approach
-      const routingDecision = await this.router.makeRoutingDecision(
-        task,
-        context,
-        {
-          forceApproach: options?.forceApproach,
-          preferredPrimaryAgent: options?.preferredAgent,
-          maxTime: options?.maxTime,
-          maxCost: options?.maxCost
-        }
-      );
+      const routingDecision = await this.router.makeRoutingDecision(task, context, {
+        forceApproach: options?.forceApproach,
+        preferredPrimaryAgent: options?.preferredAgent,
+        maxTime: options?.maxTime,
+        maxCost: options?.maxCost,
+      });
 
-      this.performanceMonitor.recordRoutingDecision(
-        routingDecision,
-        Date.now() - startTime
-      );
+      this.performanceMonitor.recordRoutingDecision(routingDecision, Date.now() - startTime);
 
       // Execute with fallback protection
       const fallbackResult = await this.fallbackManager.executeWithFallback(
@@ -261,9 +250,9 @@ export class AIOrchestrationService {
             ...options,
             contextId,
             estimatedTime: routingDecision.estimatedTime,
-            estimatedCost: routingDecision.estimatedCost
-          }
-        }
+            estimatedCost: routingDecision.estimatedCost,
+          },
+        },
       );
 
       if (!fallbackResult.success) {
@@ -271,7 +260,7 @@ export class AIOrchestrationService {
           'Orchestration failed after all fallbacks',
           'ORCHESTRATION_FAILED',
           { fallbackResult },
-          false
+          false,
         );
       }
 
@@ -285,12 +274,15 @@ export class AIOrchestrationService {
         approach: fallbackResult.approach,
         processingTime: fallbackResult.processingTime,
         cost: this.estimateCost(fallbackResult),
-        metadata: { routingDecision, fallbackLevel: fallbackResult.fallbackLevel }
+        metadata: { routingDecision, fallbackLevel: fallbackResult.fallbackLevel },
       });
 
       // Record performance metrics
       this.performanceMonitor.recordOrchestrationExecution(
-        fallbackResult.approach as any,
+        fallbackResult.approach as
+          | 'single-agent'
+          | 'sequential-thinking'
+          | 'multi-agent-discussion',
         true,
         fallbackResult.processingTime,
         this.estimateCost(fallbackResult),
@@ -298,8 +290,8 @@ export class AIOrchestrationService {
         context.type,
         {
           fallbackLevel: fallbackResult.fallbackLevel,
-          routingConfidence: routingDecision.confidenceInRouting
-        }
+          routingConfidence: routingDecision.confidenceInRouting,
+        },
       );
 
       logger.info('Orchestration completed successfully', {
@@ -307,7 +299,7 @@ export class AIOrchestrationService {
         processingTime: fallbackResult.processingTime,
         confidence: this.extractConfidence(fallbackResult.result),
         fallbackLevel: fallbackResult.fallbackLevel,
-        contextId
+        contextId,
       });
 
       return {
@@ -320,10 +312,9 @@ export class AIOrchestrationService {
           cost: this.estimateCost(fallbackResult),
           contextId,
           fallbackLevel: fallbackResult.fallbackLevel,
-          cacheHit: false
-        }
+          cacheHit: false,
+        },
       };
-
     } catch (error) {
       const processingTime = Date.now() - startTime;
 
@@ -334,13 +325,13 @@ export class AIOrchestrationService {
         0,
         0,
         context.type,
-        { error: error instanceof Error ? error.message : 'Unknown error' }
+        { error: error instanceof Error ? error.message : 'Unknown error' },
       );
 
       logger.error('Orchestration failed', {
         task: task.substring(0, 100),
         error: error instanceof Error ? error.message : 'Unknown error',
-        processingTime
+        processingTime,
       });
 
       return {
@@ -352,9 +343,9 @@ export class AIOrchestrationService {
           confidence: 0,
           cost: 0,
           contextId: 'unknown',
-          fallbackLevel: -1
+          fallbackLevel: -1,
         },
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       };
     }
   }
@@ -369,7 +360,7 @@ export class AIOrchestrationService {
       userId?: string;
       forceApproach?: 'single-agent' | 'sequential-thinking' | 'multi-agent-discussion';
       enableRealTime?: boolean;
-    }
+    },
   ): Promise<EmergencyOrchestrationResponse> {
     this.ensureInitialized();
 
@@ -377,28 +368,27 @@ export class AIOrchestrationService {
       disasterType: request.scenario.type,
       severity: request.scenario.severity,
       urgency: request.urgency,
-      location: request.scenario.location.address
+      location: request.scenario.location.address,
     });
 
     try {
       const response = await this.disasterRecoveryOrchestrator.orchestrateEmergencyResponse(
         request,
-        options
+        options,
       );
 
       // Update specialised metrics
       this.disasterRecoveryOrchestrator.updateMetrics(
         request.scenario,
         response,
-        Date.now() - new Date(request.scenario.timeOfIncident).getTime()
+        Date.now() - new Date(request.scenario.timeOfIncident).getTime(),
       );
 
       return response;
-
     } catch (error) {
       logger.error('Emergency orchestration failed', {
         disasterType: request.scenario.type,
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
 
       // Return emergency fallback response
@@ -411,15 +401,15 @@ export class AIOrchestrationService {
             {
               name: 'Emergency Response',
               expectedTime: new Date(Date.now() + 60 * 60 * 1000),
-              dependencies: []
-            }
-          ]
+              dependencies: [],
+            },
+          ],
         },
         safety: {
           immediateHazards: ['Seek professional assessment'],
           requiredPPE: ['Basic safety equipment'],
           evacuationRecommended: request.scenario.severity >= 4,
-          emergencyServices: request.urgency === 'immediate'
+          emergencyServices: request.urgency === 'immediate',
         },
         damage: {
           categories: {
@@ -427,15 +417,15 @@ export class AIOrchestrationService {
             water: 1,
             fire: 1,
             mould: 1,
-            contamination: 1
+            contamination: 1,
           },
           totalScore: request.scenario.severity,
-          description: 'Professional assessment required'
+          description: 'Professional assessment required',
         },
         resources: {
           contractors: [],
           equipment: [],
-          materials: []
+          materials: [],
         },
         cost: {
           emergency: { min: 1000, max: 5000 },
@@ -443,19 +433,19 @@ export class AIOrchestrationService {
           temporary: { min: 500, max: 2000 },
           total: { min: 11500, max: 57000 },
           currency: 'AUD',
-          confidence: 0.5
+          confidence: 0.5,
         },
         recommendations: {
           immediate: ['Contact emergency services if immediate danger', 'Ensure personal safety'],
           shortTerm: ['Professional damage assessment', 'Contact insurance'],
-          longTerm: ['Complete restoration', 'Prevent future damage']
+          longTerm: ['Complete restoration', 'Prevent future damage'],
         },
         confidence: 0.3,
         reasoning: {
           keyFactors: ['Emergency fallback response'],
           assumptions: ['Professional assessment needed'],
-          uncertainties: ['All aspects require professional evaluation']
-        }
+          uncertainties: ['All aspects require professional evaluation'],
+        },
       };
     }
   }
@@ -471,7 +461,7 @@ export class AIOrchestrationService {
       timeoutPerStep?: number;
       primaryAgent?: AgentPersona;
       requirePeerReview?: boolean;
-    }
+    },
   ): Promise<{
     chain: any;
     confidence: number;
@@ -486,7 +476,7 @@ export class AIOrchestrationService {
       const chain = await this.sequentialEngine.startThinkingChain(
         problemStatement,
         context,
-        options
+        options,
       );
 
       this.performanceMonitor.recordSequentialThinking(chain);
@@ -495,12 +485,11 @@ export class AIOrchestrationService {
         chain,
         confidence: chain.totalConfidence,
         processingTime: Date.now() - startTime,
-        cost: this.estimateSequentialThinkingCost(chain)
+        cost: this.estimateSequentialThinkingCost(chain),
       };
-
     } catch (error) {
       logger.error('Sequential thinking failed', {
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
       throw error;
     }
@@ -518,7 +507,7 @@ export class AIOrchestrationService {
       maxRounds?: number;
       consensusThreshold?: number;
       enableDebate?: boolean;
-    }
+    },
   ): Promise<{
     discussion: any;
     confidence: number;
@@ -530,11 +519,7 @@ export class AIOrchestrationService {
     const startTime = Date.now();
 
     try {
-      const discussion = await this.discussionEngine.startDiscussion(
-        topic,
-        context,
-        options
-      );
+      const discussion = await this.discussionEngine.startDiscussion(topic, context, options);
 
       this.performanceMonitor.recordMultiAgentDiscussion(discussion);
 
@@ -542,12 +527,11 @@ export class AIOrchestrationService {
         discussion,
         confidence: discussion.confidenceLevel,
         processingTime: Date.now() - startTime,
-        cost: this.estimateDiscussionCost(discussion)
+        cost: this.estimateDiscussionCost(discussion),
       };
-
     } catch (error) {
       logger.error('Multi-agent discussion failed', {
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
       throw error;
     }
@@ -564,7 +548,7 @@ export class AIOrchestrationService {
       return {
         result: sequentialResult,
         approach: 'sequential-thinking',
-        confidence: sequentialResult.totalConfidence
+        confidence: sequentialResult.totalConfidence,
       };
     }
 
@@ -575,7 +559,7 @@ export class AIOrchestrationService {
       return {
         result: routingResult,
         approach: 'routing',
-        confidence: routingResult.confidenceInRouting
+        confidence: routingResult.confidenceInRouting,
       };
     }
 
@@ -635,20 +619,21 @@ export class AIOrchestrationService {
 
   private estimateCost(result: any): number {
     // Simple cost estimation based on approach and complexity
-    const baseCost = 0.10;
+    const baseCost = 0.1;
     const fallbackPenalty = result.fallbackLevel * 0.05;
-    const approachMultiplier = {
-      'single-agent': 1,
-      'sequential-thinking': 2.5,
-      'multi-agent-discussion': 3,
-      'emergency-template': 0.01
-    }[result.approach] || 1;
+    const approachMultiplier =
+      {
+        'single-agent': 1,
+        'sequential-thinking': 2.5,
+        'multi-agent-discussion': 3,
+        'emergency-template': 0.01,
+      }[result.approach] || 1;
 
     return baseCost * approachMultiplier + fallbackPenalty;
   }
 
   private estimateSequentialThinkingCost(chain: any): number {
-    return 0.10 * chain.steps.length;
+    return 0.1 * chain.steps.length;
   }
 
   private estimateDiscussionCost(discussion: any): number {
@@ -661,7 +646,7 @@ export class AIOrchestrationService {
         'Orchestration service not initialized',
         'NOT_INITIALIZED',
         {},
-        false
+        false,
       );
     }
   }
@@ -669,7 +654,7 @@ export class AIOrchestrationService {
   /**
    * Public API methods
    */
-  
+
   /**
    * Get comprehensive service status
    */
@@ -699,22 +684,25 @@ export class AIOrchestrationService {
           cache: false,
           fallback: false,
           realTime: false,
-          monitoring: false
+          monitoring: false,
         },
         metrics: {},
-        alerts: 0
+        alerts: 0,
       };
     }
 
     const metrics = this.performanceMonitor.getMetrics();
-    const alerts = this.performanceMonitor.getAlerts('high').length + 
-                   this.performanceMonitor.getAlerts('critical').length;
-    
-    const successRate = metrics.orchestration.totalExecutions > 0 ? 
-      metrics.orchestration.successfulExecutions / metrics.orchestration.totalExecutions : 1;
+    const alerts =
+      this.performanceMonitor.getAlerts('high').length +
+      this.performanceMonitor.getAlerts('critical').length;
 
-    const health = alerts > 5 ? 'unhealthy' : 
-                   alerts > 2 || successRate < 0.9 ? 'degraded' : 'healthy';
+    const successRate =
+      metrics.orchestration.totalExecutions > 0
+        ? metrics.orchestration.successfulExecutions / metrics.orchestration.totalExecutions
+        : 1;
+
+    const health =
+      alerts > 5 ? 'unhealthy' : alerts > 2 || successRate < 0.9 ? 'degraded' : 'healthy';
 
     return {
       initialized: this.isInitialized,
@@ -726,15 +714,15 @@ export class AIOrchestrationService {
         cache: !!this.cache,
         fallback: !!this.fallbackManager,
         realTime: !!this.realTimeManager,
-        monitoring: !!this.performanceMonitor
+        monitoring: !!this.performanceMonitor,
       },
       metrics: {
         totalExecutions: metrics.orchestration.totalExecutions,
         successRate: successRate.toFixed(3),
         avgResponseTime: Math.round(metrics.orchestration.averageExecutionTime),
-        cacheHitRate: (metrics.caching.hitRate * 100).toFixed(1)
+        cacheHitRate: (metrics.caching.hitRate * 100).toFixed(1),
       },
-      alerts
+      alerts,
     };
   }
 
@@ -807,7 +795,7 @@ export class AIOrchestrationService {
 // Factory function for easy initialization
 export async function createOrchestrationService(
   aiService: AIService,
-  config?: Partial<OrchestrationServiceConfig>
+  config?: Partial<OrchestrationServiceConfig>,
 ): Promise<AIOrchestrationService> {
   const defaultConfig: OrchestrationServiceConfig = {
     orchestration: {
@@ -817,30 +805,30 @@ export async function createOrchestrationService(
         complexityThreshold: 7,
         urgencyThreshold: 8,
         accuracyThreshold: 8,
-        consensusThreshold: 0.8
+        consensusThreshold: 0.8,
       },
       sequentialThinking: {
         maxSteps: 10,
         confidenceThreshold: 0.8,
         timeoutPerStep: 30000,
-        enablePeerReview: true
+        enablePeerReview: true,
       },
       multiAgentDiscussion: {
         maxRounds: 5,
         convergenceThreshold: 0.8,
         enableDebate: true,
-        requireUnanimous: false
+        requireUnanimous: false,
       },
       caching: {
         cacheSequentialChains: true,
         cacheDiscussions: true,
-        ttl: 3600
+        ttl: 3600,
       },
       monitoring: {
         trackPerformance: true,
         logDecisions: true,
-        alertOnDisagreements: true
-      }
+        alertOnDisagreements: true,
+      },
     },
     cache: {
       maxMemorySize: 100 * 1024 * 1024, // 100MB
@@ -848,7 +836,7 @@ export async function createOrchestrationService(
       defaultTTL: 3600,
       enableCompression: false,
       enablePersistence: false,
-      cleanupInterval: 300
+      cleanupInterval: 300,
     },
     fallback: {
       maxRetries: 3,
@@ -859,14 +847,14 @@ export async function createOrchestrationService(
       gracefulDegradation: true,
       emergencyBypass: true,
       fallbackProviderOrder: [AIProvider.ANTHROPIC_CLAUDE, AIProvider.OPENROUTER_GPT_OSS_120B],
-      fallbackApproachOrder: ['single-agent', 'sequential-thinking', 'multi-agent-discussion']
+      fallbackApproachOrder: ['single-agent', 'sequential-thinking', 'multi-agent-discussion'],
     },
     context: {
       enablePersistence: false,
       maxContextAge: 24 * 60 * 60 * 1000, // 24 hours
       maxContextSize: 1000,
       persistToDisk: false,
-      encryptSensitiveData: true
+      encryptSensitiveData: true,
     },
     monitoring: {
       metricsRetentionDays: 7,
@@ -875,16 +863,16 @@ export async function createOrchestrationService(
         errorRate: 10, // 10%
         accuracy: 0.7, // 70%
         costPerTask: 5.0, // $5 AUD
-        cacheHitRate: 50 // 50%
+        cacheHitRate: 50, // 50%
       },
       enableRealTimeMonitoring: true,
       enablePredictiveAnalytics: true,
       aggregationIntervals: {
         realTime: 30, // 30 seconds
         hourly: 3600, // 1 hour
-        daily: 86400 // 24 hours
-      }
-    }
+        daily: 86400, // 24 hours
+      },
+    },
   };
 
   const mergedConfig = {
@@ -894,7 +882,7 @@ export async function createOrchestrationService(
     cache: { ...defaultConfig.cache, ...config?.cache },
     fallback: { ...defaultConfig.fallback, ...config?.fallback },
     context: { ...defaultConfig.context, ...config?.context },
-    monitoring: { ...defaultConfig.monitoring, ...config?.monitoring }
+    monitoring: { ...defaultConfig.monitoring, ...config?.monitoring },
   };
 
   const service = new AIOrchestrationService(aiService, mergedConfig);
