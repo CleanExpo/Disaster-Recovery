@@ -129,7 +129,7 @@ If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those
 | Voice         | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)                                                                                                                    |
 | Deploy        | Vercel (authoritative — Vercel wins over local builds)                                                                                                                          |
 | Observability | Vercel-native (`@vercel/otel` + Web Analytics + Speed Insights + Log Drains per ADR-005) — `captureException` lives in `src/lib/observability/vercel.ts`. We do NOT use Sentry. |
-| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck + gitleaks                                                                                                              |
+| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck                                                                                                                         |
 
 ## 3. Commands
 
@@ -232,7 +232,7 @@ npm run check:scripts   # verify all scripts resolve
 - Do NOT send PII into AI prompts without the minimise-PII layer (see ADR-001).
 - Do NOT write US English ANYWHERE. See `.claude/rules/australian-english.md`.
 - Do NOT write the phrases "insurance approved", "bill your insurer", "guaranteed approval", "every insurer", "fastest response". See `.claude/rules/compliance.md` for the full banned-phrases list.
-- Do NOT commit secrets. Gitleaks CI will catch it; don't rely on that.
+- Do NOT commit secrets. `.env*` are gitignored; that's the contract — be disciplined.
 - Do NOT push to `main` on any repo. PRs only.
 - Do NOT skip git hooks (`--no-verify`) without explicit user instruction.
 - Do NOT `git amend`; always create NEW commits.
