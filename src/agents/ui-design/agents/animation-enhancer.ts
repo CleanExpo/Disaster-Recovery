@@ -22,6 +22,7 @@ import {
   ImpactLevel,
   EffortLevel,
 } from '../types/interfaces';
+import { componentToUIElement } from './component-to-element';
 
 export class AnimationEnhancerAgent implements UIAgent {
   id = 'animation-enhancer';
@@ -295,14 +296,7 @@ export class AnimationEnhancerAgent implements UIAgent {
   }
 
   private async analyzeCurrentAnimations(context: UIContext): Promise<AnalysisResult> {
-    return this.analyse({
-      type: context.component.type,
-      props: context.component.props,
-      styles: context.component.styles.base as any,
-      children: (context.component.children || []) as any,
-      accessibility: (context.component.accessibility || { focusable: false }) as any,
-      metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } },
-    });
+    return this.analyse(componentToUIElement(context.component));
   }
 
   private analyzeElementAnimations(element: UIElement) {

@@ -1,6 +1,6 @@
 /**
  * Dark Mode Specialist Agent
- * 
+ *
  * Specializes in implementing dark mode themes with electric blue (#131cff) accents.
  * Creates sophisticated dark backgrounds, proper contrast ratios, and seamless
  * theme switching following R6 Digital's dark mode patterns.
@@ -19,13 +19,15 @@ import {
   ImprovementType,
   ImpactLevel,
   EffortLevel,
-  ContrastCheck
-} from '../types/interfaces'
+  ContrastCheck,
+} from '../types/interfaces';
+import { componentToUIElement } from './component-to-element';
 
 export class DarkModeSpecialistAgent implements UIAgent {
-  id = 'dark-mode-specialist'
-  name = 'Dark Mode Specialist'
-  description = 'Implements sophisticated dark mode themes with electric blue accents and optimal contrast'
+  id = 'dark-mode-specialist';
+  name = 'Dark Mode Specialist';
+  description =
+    'Implements sophisticated dark mode themes with electric blue accents and optimal contrast';
   capabilities = [
     'Dark theme implementation',
     'Electric blue accent integration',
@@ -33,10 +35,10 @@ export class DarkModeSpecialistAgent implements UIAgent {
     'Theme switching mechanisms',
     'Dark mode component variants',
     'Colour scheme preference detection',
-    'Accessibility-compliant dark themes'
-  ]
-  priority = 5
-  isActive = true
+    'Accessibility-compliant dark themes',
+  ];
+  priority = 5;
+  isActive = true;
 
   private r6DarkTheme = {
     // R6 Digital Dark Mode Colour Palette
@@ -48,75 +50,75 @@ export class DarkModeSpecialistAgent implements UIAgent {
         200: '#d4d9ff',
         300: '#b8c0ff',
         400: '#9ca8ff',
-        500: '#131cff',    // Main electric blue
-        600: '#0f17cc',    // Hover state
-        700: '#0d14b3',    // Active state
+        500: '#131cff', // Main electric blue
+        600: '#0f17cc', // Hover state
+        700: '#0d14b3', // Active state
         800: '#0a0f80',
-        900: '#070b4d'
+        900: '#070b4d',
       },
-      
+
       // Dark mode backgrounds
       backgrounds: {
-        primary: '#0a0a0a',      // Deep black for main background
-        secondary: '#1a1a1a',    // Lighter black for cards/containers
-        tertiary: '#2a2a2a',     // Even lighter for elevated elements
+        primary: '#0a0a0a', // Deep black for main background
+        secondary: '#1a1a1a', // Lighter black for cards/containers
+        tertiary: '#2a2a2a', // Even lighter for elevated elements
         overlay: 'rgba(0, 0, 0, 0.9)', // Dark overlay
         glass: 'rgba(26, 26, 26, 0.8)', // Glass effect background
-        gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)'
+        gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
       },
-      
+
       // Dark mode text colours
       text: {
-        primary: '#ffffff',      // Pure white for primary text
-        secondary: '#b3b3b3',    // Light gray for secondary text
-        muted: '#808080',        // Medium gray for muted text
-        disabled: '#4d4d4d',     // Dark gray for disabled text
-        accent: '#131cff',       // Electric blue for accents
-        success: '#22c55e',      // Green for success states
-        warning: '#f59e0b',      // Amber for warnings
-        error: '#ef4444',        // Red for errors
-        info: '#3b82f6'          // Blue for info
+        primary: '#ffffff', // Pure white for primary text
+        secondary: '#b3b3b3', // Light gray for secondary text
+        muted: '#808080', // Medium gray for muted text
+        disabled: '#4d4d4d', // Dark gray for disabled text
+        accent: '#131cff', // Electric blue for accents
+        success: '#22c55e', // Green for success states
+        warning: '#f59e0b', // Amber for warnings
+        error: '#ef4444', // Red for errors
+        info: '#3b82f6', // Blue for info
       },
-      
+
       // Dark mode borders and surfaces
       surfaces: {
-        border: '#333333',       // Default border colour
-        borderHover: '#4d4d4d',  // Border hover state
-        borderFocus: '#131cff',  // Focus border (electric blue)
-        divider: '#262626',      // Subtle dividers
-        input: '#1a1a1a',        // Input backgrounds
-        inputFocus: '#2a2a2a',   // Input focus background
-        card: '#1a1a1a',         // Card backgrounds
-        cardHover: '#2a2a2a',    // Card hover backgrounds
-        modal: '#1a1a1a',        // Modal backgrounds
-        tooltip: '#333333'       // Tooltip backgrounds
+        border: '#333333', // Default border colour
+        borderHover: '#4d4d4d', // Border hover state
+        borderFocus: '#131cff', // Focus border (electric blue)
+        divider: '#262626', // Subtle dividers
+        input: '#1a1a1a', // Input backgrounds
+        inputFocus: '#2a2a2a', // Input focus background
+        card: '#1a1a1a', // Card backgrounds
+        cardHover: '#2a2a2a', // Card hover backgrounds
+        modal: '#1a1a1a', // Modal backgrounds
+        tooltip: '#333333', // Tooltip backgrounds
       },
-      
+
       // Semantic colours for dark mode
       semantic: {
         success: {
           bg: 'rgba(34, 197, 94, 0.1)',
           border: 'rgba(34, 197, 94, 0.3)',
-          text: '#22c55e'
+          text: '#22c55e',
         },
         warning: {
           bg: 'rgba(245, 158, 11, 0.1)',
           border: 'rgba(245, 158, 11, 0.3)',
-          text: '#f59e0b'
+          text: '#f59e0b',
         },
         error: {
           bg: 'rgba(239, 68, 68, 0.1)',
           border: 'rgba(239, 68, 68, 0.3)',
-          text: '#ef4444'
+          text: '#ef4444',
         },
         info: {
           bg: 'rgba(19, 28, 255, 0.1)',
           border: 'rgba(19, 28, 255, 0.3)',
-          text: '#131cff'
-        }
-      }
+          text: '#131cff',
+        },
+      },
     },
-    
+
     // Dark mode specific shadows with electric blue glows
     shadows: {
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.8)',
@@ -129,65 +131,68 @@ export class DarkModeSpecialistAgent implements UIAgent {
       electricSm: '0 0 10px rgba(19, 28, 255, 0.3)',
       electricMd: '0 0 20px rgba(19, 28, 255, 0.4)',
       electricLg: '0 0 30px rgba(19, 28, 255, 0.5)',
-      electricXl: '0 0 40px rgba(19, 28, 255, 0.6)'
+      electricXl: '0 0 40px rgba(19, 28, 255, 0.6)',
     },
-    
+
     // Dark mode gradients
     gradients: {
       background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)',
       card: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
       button: 'linear-gradient(135deg, #131cff 0%, #0f17cc 100%)',
       accent: 'linear-gradient(45deg, transparent, rgba(19, 28, 255, 0.1), transparent)',
-      glow: 'radial-gradient(circle at centre, rgba(19, 28, 255, 0.2) 0%, transparent 70%)'
-    }
-  }
+      glow: 'radial-gradient(circle at centre, rgba(19, 28, 255, 0.2) 0%, transparent 70%)',
+    },
+  };
 
   // Contrast ratios for WCAG compliance
   private contrastRatios = {
-    AA: 4.5,      // WCAG AA standard
-    AAA: 7,       // WCAG AAA standard
-    AALarge: 3,   // WCAG AA for large text
-    AAALarge: 4.5 // WCAG AAA for large text
-  }
+    AA: 4.5, // WCAG AA standard
+    AAA: 7, // WCAG AAA standard
+    AALarge: 3, // WCAG AA for large text
+    AAALarge: 4.5, // WCAG AAA for large text
+  };
 
   async execute(context: UIContext): Promise<AgentResult> {
-    const startTime = Date.now()
-    const improvements: UIImprovement[] = []
-    const warnings: string[] = []
-    const errors: string[] = []
-    const recommendations: Recommendation[] = []
+    const startTime = Date.now();
+    const improvements: UIImprovement[] = [];
+    const warnings: string[] = [];
+    const errors: string[] = [];
+    const recommendations: Recommendation[] = [];
 
     try {
       // Analyse current dark mode implementation
-      const darkModeAnalysis = await this.analyzeDarkModeSupportContext(context)
-      
+      const darkModeAnalysis = await this.analyzeDarkModeSupportContext(context);
+
       // Generate dark theme implementation
-      improvements.push(...await this.generateDarkThemeImplementation(context))
-      
+      improvements.push(...(await this.generateDarkThemeImplementation(context)));
+
       // Create electric blue accent enhancements
-      improvements.push(...await this.generateElectricBlueAccents(context))
-      
+      improvements.push(...(await this.generateElectricBlueAccents(context)));
+
       // Implement theme switching functionality
-      improvements.push(...await this.generateThemeSwitching(context))
-      
+      improvements.push(...(await this.generateThemeSwitching(context)));
+
       // Optimise contrast ratios
-      improvements.push(...await this.optimizeContrastRatios(context))
-      
+      improvements.push(...(await this.optimizeContrastRatios(context)));
+
       // Generate dark mode recommendations
-      recommendations.push(...this.generateDarkModeRecommendations(context))
+      recommendations.push(...this.generateDarkModeRecommendations(context));
 
       // Check for contrast issues
-      const contrastIssues = darkModeAnalysis.issues.filter(issue => 
-        issue.description.includes('contrast') || issue.wcagViolation)
-      
+      const contrastIssues = darkModeAnalysis.issues.filter(
+        (issue) => issue.description.includes('contrast') || issue.wcagViolation,
+      );
+
       if (contrastIssues.length > 0) {
-        warnings.push(`Found ${contrastIssues.length} contrast issues that may affect accessibility in dark mode`)
+        warnings.push(
+          `Found ${contrastIssues.length} contrast issues that may affect accessibility in dark mode`,
+        );
       }
 
       // Check for user preference support
-      const prefersColorScheme = context.theme.mode === 'auto'
+      const prefersColorScheme = context.theme.mode === 'auto';
       if (!prefersColorScheme) {
-        warnings.push('Consider implementing prefers-colour-scheme media query support')
+        warnings.push('Consider implementing prefers-colour-scheme media query support');
       }
 
       return {
@@ -198,10 +203,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
         errors,
         metrics: context.performance,
         recommendations,
-        timeElapsed: Date.now() - startTime
-      }
+        timeElapsed: Date.now() - startTime,
+      };
     } catch (error) {
-      errors.push(`Dark mode implementation failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      errors.push(
+        `Dark mode implementation failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
       return {
         agentId: this.id,
         success: false,
@@ -210,35 +217,35 @@ export class DarkModeSpecialistAgent implements UIAgent {
         errors,
         metrics: context.performance,
         recommendations,
-        timeElapsed: Date.now() - startTime
-      }
+        timeElapsed: Date.now() - startTime,
+      };
     }
   }
 
   async analyse(element: UIElement): Promise<AnalysisResult> {
-    const issues = []
-    const strengths = []
-    const recommendations = []
+    const issues = [];
+    const strengths = [];
+    const recommendations = [];
 
     // Analyse dark mode support
-    const darkModeSupport = await this.analyzeDarkModeSupport(element as any)
-    issues.push(...darkModeSupport.issues)
-    strengths.push(...darkModeSupport.strengths)
+    const darkModeSupport = await this.analyzeDarkModeSupport(element);
+    issues.push(...darkModeSupport.issues);
+    strengths.push(...darkModeSupport.strengths);
 
     // Check contrast ratios
-    const contrastAnalysis = await this.analyzeContrast(element as any)
-    issues.push(...contrastAnalysis.issues)
-    strengths.push(...contrastAnalysis.strengths)
+    const contrastAnalysis = await this.analyzeContrast(element);
+    issues.push(...contrastAnalysis.issues);
+    strengths.push(...contrastAnalysis.strengths);
 
     // Analyse electric blue usage
-    const electricBlueAnalysis = await this.analyzeElectricBlueUsage(element as any)
-    issues.push(...electricBlueAnalysis.issues)
-    strengths.push(...electricBlueAnalysis.strengths)
+    const electricBlueAnalysis = await this.analyzeElectricBlueUsage(element);
+    issues.push(...electricBlueAnalysis.issues);
+    strengths.push(...electricBlueAnalysis.strengths);
 
     // Generate specific recommendations
-    recommendations.push(...this.generateElementDarkModeRecommendations(element))
+    recommendations.push(...this.generateElementDarkModeRecommendations(element));
 
-    const score = this.calculateDarkModeScore(issues, strengths)
+    const score = this.calculateDarkModeScore(issues, strengths);
 
     return {
       score,
@@ -248,42 +255,43 @@ export class DarkModeSpecialistAgent implements UIAgent {
       compliance: {
         wcag: { level: 'AA', score: this.calculateWCAGScore(issues), violations: [] },
         designSystem: { adherence: score / 10, violations: [] },
-        performance: { score: 0, issues: [] }
+        performance: { score: 0, issues: [] },
       },
       performance: {
         score: 0,
-        metrics: { renderTime: 0, bundleSize: 0, cacheHits: 0, memoryUsage: 0, frameRate: 0, coreWebVitals: { lcp: 0, fid: 0, cls: 0 } },
+        metrics: {
+          renderTime: 0,
+          bundleSize: 0,
+          cacheHits: 0,
+          memoryUsage: 0,
+          frameRate: 0,
+          coreWebVitals: { lcp: 0, fid: 0, cls: 0 },
+        },
         bottlenecks: [],
-        optimizations: []
-      }
-    }
+        optimizations: [],
+      },
+    };
   }
 
   private async analyzeDarkModeSupportContext(context: UIContext): Promise<AnalysisResult> {
-    return this.analyse({
-      type: context.component.type,
-      props: context.component.props,
-      styles: context.component.styles.base as any,
-      children: (context.component.children || []) as any,
-      accessibility: (context.component.accessibility || { focusable: false }) as any,
-      metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
-    })
+    return this.analyse(componentToUIElement(context.component));
   }
 
   private async analyzeDarkModeSupport(element: UIElement): Promise<AnalysisResult> {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
-    const styles = element.styles
-    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles
+    const styles = element.styles;
+    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles;
 
     // Check for dark mode CSS custom properties
-    const usesDarkModeVars = styleString.includes('--dark-') || 
-                            styleString.includes('[data-theme="dark"]') ||
-                            styleString.includes('@media (prefers-colour-scheme: dark)')
+    const usesDarkModeVars =
+      styleString.includes('--dark-') ||
+      styleString.includes('[data-theme="dark"]') ||
+      styleString.includes('@media (prefers-colour-scheme: dark)');
 
     if (usesDarkModeVars) {
-      strengths.push('Implements dark mode CSS variables or media queries')
+      strengths.push('Implements dark mode CSS variables or media queries');
     } else {
       issues.push({
         id: 'no-dark-mode-support',
@@ -292,14 +300,14 @@ export class DarkModeSpecialistAgent implements UIAgent {
         description: 'Component lacks dark mode implementation',
         location: element.type,
         fix: 'Add dark mode CSS variables and theme switching logic',
-        automated: false
-      })
+        automated: false,
+      });
     }
 
     // Check for hardcoded light colours that won't work in dark mode
-    const hasHardcodedWhite = styleString.includes('#ffffff') || styleString.includes('white')
-    const hasHardcodedBlack = styleString.includes('#000000') || styleString.includes('black')
-    
+    const hasHardcodedWhite = styleString.includes('#ffffff') || styleString.includes('white');
+    const hasHardcodedBlack = styleString.includes('#000000') || styleString.includes('black');
+
     if (hasHardcodedWhite || hasHardcodedBlack) {
       issues.push({
         id: 'hardcoded-colours',
@@ -308,50 +316,50 @@ export class DarkModeSpecialistAgent implements UIAgent {
         description: 'Component uses hardcoded colours that may not work in dark mode',
         location: element.type,
         fix: 'Replace hardcoded colours with CSS custom properties',
-        automated: true
-      })
+        automated: true,
+      });
     }
 
-    return { 
-      issues, 
-      strengths, 
-      score: 0, 
+    return {
+      issues,
+      strengths,
+      score: 0,
       recommendations: [],
-      compliance: { 
+      compliance: {
         wcag: { level: 'AA', score: 100, violations: [] },
         designSystem: { adherence: 100, violations: [] },
-        performance: { score: 100, issues: [] }
+        performance: { score: 100, issues: [] },
       },
-      performance: { 
+      performance: {
         score: 100,
-        metrics: { 
-          renderTime: 0, 
-          bundleSize: 0, 
-          cacheHits: 0, 
-          memoryUsage: 0, 
+        metrics: {
+          renderTime: 0,
+          bundleSize: 0,
+          cacheHits: 0,
+          memoryUsage: 0,
           frameRate: 60,
           coreWebVitals: {
             lcp: 0,
             fid: 0,
-            cls: 0
-          }
+            cls: 0,
+          },
         },
         bottlenecks: [],
-        optimizations: []
-      }
-    }
+        optimizations: [],
+      },
+    };
   }
 
   private async analyzeContrast(element: UIElement): Promise<AnalysisResult> {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     // Simplified contrast analysis
     // In a real implementation, this would calculate actual contrast ratios
-    const hasGoodContrast = this.checkContrastRatio(element)
-    
+    const hasGoodContrast = this.checkContrastRatio(element);
+
     if (hasGoodContrast) {
-      strengths.push('Meets WCAG contrast ratio requirements')
+      strengths.push('Meets WCAG contrast ratio requirements');
     } else {
       issues.push({
         id: 'poor-contrast',
@@ -361,53 +369,53 @@ export class DarkModeSpecialistAgent implements UIAgent {
         location: element.type,
         fix: 'Improve colour contrast to meet WCAG AA standards (4.5:1 ratio)',
         automated: false,
-        wcagViolation: 'WCAG 1.4.3 Contrast (Minimum) - Level AA'
-      })
+        wcagViolation: 'WCAG 1.4.3 Contrast (Minimum) - Level AA',
+      });
     }
 
-    return { 
-      issues, 
-      strengths, 
-      score: 0, 
+    return {
+      issues,
+      strengths,
+      score: 0,
       recommendations: [],
-      compliance: { 
+      compliance: {
         wcag: { level: 'AA', score: 100, violations: [] },
         designSystem: { adherence: 100, violations: [] },
-        performance: { score: 100, issues: [] }
+        performance: { score: 100, issues: [] },
       },
-      performance: { 
+      performance: {
         score: 100,
-        metrics: { 
-          renderTime: 0, 
-          bundleSize: 0, 
-          cacheHits: 0, 
-          memoryUsage: 0, 
+        metrics: {
+          renderTime: 0,
+          bundleSize: 0,
+          cacheHits: 0,
+          memoryUsage: 0,
           frameRate: 60,
           coreWebVitals: {
             lcp: 0,
             fid: 0,
-            cls: 0
-          }
+            cls: 0,
+          },
         },
         bottlenecks: [],
-        optimizations: []
-      }
-    }
+        optimizations: [],
+      },
+    };
   }
 
   private async analyzeElectricBlueUsage(element: UIElement): Promise<AnalysisResult> {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
-    const styles = element.styles
-    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles
+    const styles = element.styles;
+    const styleString = typeof styles === 'object' ? JSON.stringify(styles) : styles;
 
     // Check for electric blue (#131cff) usage
-    const usesElectricBlue = styleString.includes('#131cff') || 
-                            styleString.includes('131, 28, 255')
+    const usesElectricBlue =
+      styleString.includes('#131cff') || styleString.includes('131, 28, 255');
 
     if (usesElectricBlue) {
-      strengths.push('Uses R6 Digital electric blue accent colour')
+      strengths.push('Uses R6 Digital electric blue accent colour');
     } else if (element.type === 'button' || element.type === 'link') {
       issues.push({
         id: 'missing-electric-blue',
@@ -416,42 +424,42 @@ export class DarkModeSpecialistAgent implements UIAgent {
         description: 'Interactive element could benefit from electric blue accents',
         location: element.type,
         fix: 'Add electric blue (#131cff) for primary interactions',
-        automated: true
-      })
+        automated: true,
+      });
     }
 
-    return { 
-      issues, 
-      strengths, 
-      score: 0, 
+    return {
+      issues,
+      strengths,
+      score: 0,
       recommendations: [],
-      compliance: { 
+      compliance: {
         wcag: { level: 'AA', score: 100, violations: [] },
         designSystem: { adherence: 100, violations: [] },
-        performance: { score: 100, issues: [] }
+        performance: { score: 100, issues: [] },
       },
-      performance: { 
+      performance: {
         score: 100,
-        metrics: { 
-          renderTime: 0, 
-          bundleSize: 0, 
-          cacheHits: 0, 
-          memoryUsage: 0, 
+        metrics: {
+          renderTime: 0,
+          bundleSize: 0,
+          cacheHits: 0,
+          memoryUsage: 0,
           frameRate: 60,
           coreWebVitals: {
             lcp: 0,
             fid: 0,
-            cls: 0
-          }
+            cls: 0,
+          },
         },
         bottlenecks: [],
-        optimizations: []
-      }
-    }
+        optimizations: [],
+      },
+    };
   }
 
   private async generateDarkThemeImplementation(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     // Dark theme CSS custom properties
     improvements.push({
@@ -467,14 +475,14 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Add dark theme CSS custom properties to root',
           'Implement theme switching data attributes',
           'Update component styles to use theme variables',
-          'Test contrast ratios in both themes'
-        ]
+          'Test contrast ratios in both themes',
+        ],
       },
       metrics: {
         userExperienceScore: 9,
-        accessibilityScore: 8
-      }
-    })
+        accessibilityScore: 8,
+      },
+    });
 
     // Component-specific dark mode variants
     improvements.push({
@@ -490,19 +498,19 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Apply dark mode variants to components',
           'Ensure electric blue accents are prominent',
           'Test interactive states in dark theme',
-          'Validate accessibility compliance'
-        ]
+          'Validate accessibility compliance',
+        ],
       },
       metrics: {
-        userExperienceScore: 8
-      }
-    })
+        userExperienceScore: 8,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private async generateElectricBlueAccents(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     improvements.push({
       id: 'electric-blue-accents',
@@ -517,19 +525,19 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Apply electric blue accents to interactive elements',
           'Add glow effects for enhanced visual appeal',
           'Test accent visibility in dark backgrounds',
-          'Ensure accents maintain brand consistency'
-        ]
+          'Ensure accents maintain brand consistency',
+        ],
       },
       metrics: {
-        userExperienceScore: 8
-      }
-    })
+        userExperienceScore: 8,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private async generateThemeSwitching(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     improvements.push({
       id: 'theme-switching-system',
@@ -545,20 +553,20 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Implement theme switcher component',
           'Add system preference detection',
           'Store user theme preference',
-          'Animate theme transitions smoothly'
-        ]
+          'Animate theme transitions smoothly',
+        ],
       },
       metrics: {
         userExperienceScore: 9,
-        accessibilityScore: 7
-      }
-    })
+        accessibilityScore: 7,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private async optimizeContrastRatios(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     improvements.push({
       id: 'contrast-optimisation',
@@ -573,20 +581,20 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Apply WCAG compliant colour combinations',
           'Test contrast ratios with automated tools',
           'Verify readability in different lighting conditions',
-          'Ensure electric blue accents maintain accessibility'
-        ]
+          'Ensure electric blue accents maintain accessibility',
+        ],
       },
       metrics: {
         accessibilityScore: 10,
-        userExperienceScore: 7
-      }
-    })
+        userExperienceScore: 7,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private generateDarkModeRecommendations(context: UIContext): Recommendation[] {
-    const recommendations = []
+    const recommendations = [];
 
     // System preference detection
     recommendations.push({
@@ -595,7 +603,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       priority: 'high',
       category: 'user-experience',
       title: 'Implement System Theme Preference Detection',
-      description: 'Automatically detect and respect user\'s system colour scheme preference',
+      description: "Automatically detect and respect user's system colour scheme preference",
       implementation: {
         complexity: 'moderate',
         estimatedTime: '2-3 hours',
@@ -603,7 +611,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Add prefers-colour-scheme media query support',
           'Implement JavaScript theme detection',
           'Create seamless theme switching',
-          'Add user preference storage'
+          'Add user preference storage',
         ],
         code: `
           // System theme preference detection
@@ -633,15 +641,15 @@ export class DarkModeSpecialistAgent implements UIAgent {
               setTheme(e.matches ? 'dark' : 'light');
             }
           });
-        `
+        `,
       },
       impact: {
         userExperience: 9,
         performance: 3,
         accessibility: 8,
-        maintainability: 7
-      }
-    })
+        maintainability: 7,
+      },
+    });
 
     // Electric blue glow effects
     recommendations.push({
@@ -650,7 +658,8 @@ export class DarkModeSpecialistAgent implements UIAgent {
       priority: 'medium',
       category: 'visual-enhancement',
       title: 'Implement Electric Blue Glow Effects',
-      description: 'Add sophisticated glow effects using electric blue for premium dark mode experience',
+      description:
+        'Add sophisticated glow effects using electric blue for premium dark mode experience',
       implementation: {
         complexity: 'simple',
         estimatedTime: '1-2 hours',
@@ -658,7 +667,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
           'Create glow effect utilities',
           'Apply to interactive elements',
           'Test performance impact',
-          'Ensure accessibility compliance'
+          'Ensure accessibility compliance',
         ],
         styles: `
           .electric-glow {
@@ -687,21 +696,21 @@ export class DarkModeSpecialistAgent implements UIAgent {
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
           }
-        `
+        `,
       },
       impact: {
         userExperience: 8,
         performance: 4,
         accessibility: 5,
-        maintainability: 6
-      }
-    })
+        maintainability: 6,
+      },
+    });
 
-    return recommendations
+    return recommendations;
   }
 
   private generateElementDarkModeRecommendations(element: UIElement): Recommendation[] {
-    const recommendations = []
+    const recommendations = [];
 
     if (['button', 'card', 'input'].includes(element.type)) {
       recommendations.push({
@@ -714,18 +723,22 @@ export class DarkModeSpecialistAgent implements UIAgent {
         implementation: {
           complexity: 'simple',
           estimatedTime: '30 minutes',
-          requirements: ['Apply dark theme styles', 'Add electric blue accents', 'Test contrast ratios']
+          requirements: [
+            'Apply dark theme styles',
+            'Add electric blue accents',
+            'Test contrast ratios',
+          ],
         },
         impact: {
           userExperience: 7,
           performance: 2,
           accessibility: 6,
-          maintainability: 5
-        }
-      })
+          maintainability: 5,
+        },
+      });
     }
 
-    return recommendations
+    return recommendations;
   }
 
   // CSS Generation Methods
@@ -801,21 +814,21 @@ export class DarkModeSpecialistAgent implements UIAgent {
           --colour-text-secondary: ${this.r6DarkTheme.colours.text.secondary};
         }
       }
-    `
+    `;
   }
 
   private generateComponentDarkVariants(component: any): string {
-    const componentType = component.type
+    const componentType = component.type;
 
     switch (componentType) {
       case 'button':
-        return this.generateDarkButtonVariants()
+        return this.generateDarkButtonVariants();
       case 'card':
-        return this.generateDarkCardVariants()
+        return this.generateDarkCardVariants();
       case 'input':
-        return this.generateDarkInputVariants()
+        return this.generateDarkInputVariants();
       default:
-        return this.generateGenericDarkVariants()
+        return this.generateGenericDarkVariants();
     }
   }
 
@@ -858,7 +871,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         colour: ${this.r6DarkTheme.colours.text.primary};
         border-colour: ${this.r6DarkTheme.colours.surfaces.borderHover};
       }
-    `
+    `;
   }
 
   private generateDarkCardVariants(): string {
@@ -896,7 +909,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       [data-theme="dark"] .r6-card-gradient:hover {
         box-shadow: ${this.r6DarkTheme.shadows.electricLg};
       }
-    `
+    `;
   }
 
   private generateDarkInputVariants(): string {
@@ -931,7 +944,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         border-colour: ${this.r6DarkTheme.colours.semantic.success.border};
         background: ${this.r6DarkTheme.colours.semantic.success.bg};
       }
-    `
+    `;
   }
 
   private generateGenericDarkVariants(): string {
@@ -963,7 +976,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         colour: ${this.r6DarkTheme.colours.primary[600]};
         text-shadow: 0 0 8px rgba(19, 28, 255, 0.5);
       }
-    `
+    `;
   }
 
   private generateElectricBlueAccentSystem(): string {
@@ -1026,7 +1039,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       .electric-shimmer:hover::before {
         left: 100%;
       }
-    `
+    `;
   }
 
   private generateThemeSwitchingCode(): string {
@@ -1115,7 +1128,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       
       // Export for global use
       window.R6Theme = r6Theme;
-    `
+    `;
   }
 
   private generateThemeSwitchingStyles(): string {
@@ -1196,7 +1209,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         opacity: 1;
         colour: ${this.r6DarkTheme.colours.primary[500]};
       }
-    `
+    `;
   }
 
   private generateContrastOptimizedColors(): string {
@@ -1240,7 +1253,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
           --colour-primary-500: #5566ff; /* Higher contrast blue */
         }
       }
-    `
+    `;
   }
 
   // Helper methods
@@ -1248,33 +1261,39 @@ export class DarkModeSpecialistAgent implements UIAgent {
     // Simplified contrast checking
     // In a real implementation, this would calculate actual contrast ratios
     // using colour parsing and luminance calculations
-    return true
+    return true;
   }
 
   private calculateWCAGScore(issues: any[]): number {
-    let score = 100
-    issues.forEach(issue => {
+    let score = 100;
+    issues.forEach((issue) => {
       if (issue.wcagViolation) {
-        score -= issue.severity === 'high' ? 30 : 15
+        score -= issue.severity === 'high' ? 30 : 15;
       }
-    })
-    return Math.max(0, score)
+    });
+    return Math.max(0, score);
   }
 
   private calculateDarkModeScore(issues: any[], strengths: string[]): number {
-    let score = 6 // Start with moderate dark mode score
-    
-    issues.forEach(issue => {
+    let score = 6; // Start with moderate dark mode score
+
+    issues.forEach((issue) => {
       switch (issue.severity) {
-        case 'high': score -= 2; break
-        case 'medium': score -= 1; break
-        case 'low': score -= 0.5; break
+        case 'high':
+          score -= 2;
+          break;
+        case 'medium':
+          score -= 1;
+          break;
+        case 'low':
+          score -= 0.5;
+          break;
       }
-    })
-    
+    });
+
     // Bonus for dark mode strengths
-    score += Math.min(strengths.length * 0.6, 4)
-    
-    return Math.max(1, Math.min(10, score))
+    score += Math.min(strengths.length * 0.6, 4);
+
+    return Math.max(1, Math.min(10, score));
   }
 }

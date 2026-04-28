@@ -1,6 +1,6 @@
 /**
  * Accessibility Guardian Agent
- * 
+ *
  * Specializes in ensuring WCAG compliance and comprehensive accessibility.
  * Implements keyboard navigation, screen reader support, focus management,
  * and inclusive design patterns following WCAG 2.1 AA/AAA guidelines.
@@ -22,13 +22,15 @@ import {
   HeadingStructure,
   ImprovementType,
   ImpactLevel,
-  EffortLevel
-} from '../types/interfaces'
+  EffortLevel,
+} from '../types/interfaces';
+import { componentToUIElement } from './component-to-element';
 
 export class AccessibilityGuardianAgent implements UIAgent {
-  id = 'accessibility-guardian'
-  name = 'Accessibility Guardian'
-  description = 'Ensures WCAG compliance and comprehensive accessibility for inclusive user experience'
+  id = 'accessibility-guardian';
+  name = 'Accessibility Guardian';
+  description =
+    'Ensures WCAG compliance and comprehensive accessibility for inclusive user experience';
   capabilities = [
     'WCAG 2.1 AA/AAA compliance auditing',
     'Keyboard navigation optimisation',
@@ -37,10 +39,10 @@ export class AccessibilityGuardianAgent implements UIAgent {
     'Colour contrast validation',
     'Alternative text generation',
     'Semantic HTML structure',
-    'ARIA attributes implementation'
-  ]
-  priority = 6
-  isActive = true
+    'ARIA attributes implementation',
+  ];
+  priority = 6;
+  isActive = true;
 
   private wcagGuidelines = {
     // WCAG 2.1 Success Criteria
@@ -63,7 +65,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       '1.4.10': 'Reflow (AA)',
       '1.4.11': 'Non-text Contrast (AA)',
       '1.4.12': 'Text Spacing (AA)',
-      '1.4.13': 'Content on Hover or Focus (AA)'
+      '1.4.13': 'Content on Hover or Focus (AA)',
     },
     operable: {
       '2.1.1': 'Keyboard (A)',
@@ -84,7 +86,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       '2.5.2': 'Pointer Cancellation (A)',
       '2.5.3': 'Label in Name (A)',
       '2.5.4': 'Motion Actuation (A)',
-      '2.5.5': 'Target Size (AAA)'
+      '2.5.5': 'Target Size (AAA)',
     },
     understandable: {
       '3.1.1': 'Language of Page (A)',
@@ -96,28 +98,28 @@ export class AccessibilityGuardianAgent implements UIAgent {
       '3.3.1': 'Error Identification (A)',
       '3.3.2': 'Labels or Instructions (A)',
       '3.3.3': 'Error Suggestion (AA)',
-      '3.3.4': 'Error Prevention (AA)'
+      '3.3.4': 'Error Prevention (AA)',
     },
     robust: {
       '4.1.1': 'Parsing (A)',
       '4.1.2': 'Name, Role, Value (A)',
-      '4.1.3': 'Status Messages (AA)'
-    }
-  }
+      '4.1.3': 'Status Messages (AA)',
+    },
+  };
 
   // Contrast ratio requirements
   private contrastRatios = {
     AA: {
       normal: 4.5,
       large: 3.0,
-      nonText: 3.0
+      nonText: 3.0,
     },
     AAA: {
       normal: 7.0,
       large: 4.5,
-      nonText: 4.5
-    }
-  }
+      nonText: 4.5,
+    },
+  };
 
   // Accessibility patterns and best practices
   private a11yPatterns = {
@@ -125,60 +127,65 @@ export class AccessibilityGuardianAgent implements UIAgent {
       skipLinks: true,
       focusIndicators: true,
       focusTrap: true,
-      roving: true
+      roving: true,
     },
     semanticStructure: {
       landmarks: ['banner', 'navigation', 'main', 'complementary', 'contentinfo'],
       headingHierarchy: true,
       listStructure: true,
-      tableStructure: true
+      tableStructure: true,
     },
     ariaPatterns: {
       buttons: ['aria-pressed', 'aria-expanded', 'aria-describedby'],
       forms: ['aria-required', 'aria-invalid', 'aria-describedby'],
       navigation: ['aria-current', 'aria-label'],
       disclosure: ['aria-expanded', 'aria-controls'],
-      combobox: ['aria-expanded', 'aria-autocomplete', 'aria-owns']
-    }
-  }
+      combobox: ['aria-expanded', 'aria-autocomplete', 'aria-owns'],
+    },
+  };
 
   async execute(context: UIContext): Promise<AgentResult> {
-    const startTime = Date.now()
-    const improvements: UIImprovement[] = []
-    const warnings: string[] = []
-    const errors: string[] = []
-    const recommendations: Recommendation[] = []
+    const startTime = Date.now();
+    const improvements: UIImprovement[] = [];
+    const warnings: string[] = [];
+    const errors: string[] = [];
+    const recommendations: Recommendation[] = [];
 
     try {
       // Comprehensive accessibility audit
-      const a11yAudit = await this.performAccessibilityAudit(context)
-      
+      const a11yAudit = await this.performAccessibilityAudit(context);
+
       // Generate WCAG compliance improvements
-      improvements.push(...await this.generateWCAGComplianceImprovements(context))
-      
+      improvements.push(...(await this.generateWCAGComplianceImprovements(context)));
+
       // Implement keyboard navigation enhancements
-      improvements.push(...await this.generateKeyboardNavigationImprovements(context))
-      
+      improvements.push(...(await this.generateKeyboardNavigationImprovements(context)));
+
       // Add screen reader optimizations
-      improvements.push(...await this.generateScreenReaderOptimizations(context))
-      
+      improvements.push(...(await this.generateScreenReaderOptimizations(context)));
+
       // Implement focus management
-      improvements.push(...await this.generateFocusManagementImprovements(context))
-      
+      improvements.push(...(await this.generateFocusManagementImprovements(context)));
+
       // Generate accessibility recommendations
-      recommendations.push(...this.generateAccessibilityRecommendations(context))
+      recommendations.push(...this.generateAccessibilityRecommendations(context));
 
       // Report critical accessibility issues
-      const criticalA11yIssues = a11yAudit.issues.filter(issue => 
-        issue.severity === 'critical' || issue.wcagViolation)
-      
+      const criticalA11yIssues = a11yAudit.issues.filter(
+        (issue) => issue.severity === 'critical' || issue.wcagViolation,
+      );
+
       if (criticalA11yIssues.length > 0) {
-        warnings.push(`Found ${criticalA11yIssues.length} critical accessibility issues that must be addressed`)
+        warnings.push(
+          `Found ${criticalA11yIssues.length} critical accessibility issues that must be addressed`,
+        );
       }
 
       // Check for reduced motion compliance
       if (!context.userPreferences.reducedMotion) {
-        warnings.push('Consider implementing reduced motion support for users with vestibular disorders')
+        warnings.push(
+          'Consider implementing reduced motion support for users with vestibular disorders',
+        );
       }
 
       return {
@@ -189,10 +196,12 @@ export class AccessibilityGuardianAgent implements UIAgent {
         errors,
         metrics: context.performance,
         recommendations,
-        timeElapsed: Date.now() - startTime
-      }
+        timeElapsed: Date.now() - startTime,
+      };
     } catch (error) {
-      errors.push(`Accessibility enhancement failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      errors.push(
+        `Accessibility enhancement failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
       return {
         agentId: this.id,
         success: false,
@@ -201,46 +210,46 @@ export class AccessibilityGuardianAgent implements UIAgent {
         errors,
         metrics: context.performance,
         recommendations,
-        timeElapsed: Date.now() - startTime
-      }
+        timeElapsed: Date.now() - startTime,
+      };
     }
   }
 
   async analyse(element: UIElement): Promise<AnalysisResult> {
-    const issues = []
-    const strengths = []
-    const recommendations = []
+    const issues = [];
+    const strengths = [];
+    const recommendations = [];
 
     // Analyse semantic structure
-    const semanticAnalysis = this.analyzeSemanticStructure(element)
-    issues.push(...semanticAnalysis.issues)
-    strengths.push(...semanticAnalysis.strengths)
+    const semanticAnalysis = this.analyzeSemanticStructure(element);
+    issues.push(...semanticAnalysis.issues);
+    strengths.push(...semanticAnalysis.strengths);
 
     // Check keyboard accessibility
-    const keyboardAnalysis = this.analyzeKeyboardAccessibility(element)
-    issues.push(...keyboardAnalysis.issues)
-    strengths.push(...keyboardAnalysis.strengths)
+    const keyboardAnalysis = this.analyzeKeyboardAccessibility(element);
+    issues.push(...keyboardAnalysis.issues);
+    strengths.push(...keyboardAnalysis.strengths);
 
     // Analyse ARIA implementation
-    const ariaAnalysis = this.analyzeARIAImplementation(element)
-    issues.push(...ariaAnalysis.issues)
-    strengths.push(...ariaAnalysis.strengths)
+    const ariaAnalysis = this.analyzeARIAImplementation(element);
+    issues.push(...ariaAnalysis.issues);
+    strengths.push(...ariaAnalysis.strengths);
 
     // Check colour contrast
-    const contrastAnalysis = this.analyzeColorContrast(element)
-    issues.push(...contrastAnalysis.issues)
-    strengths.push(...contrastAnalysis.strengths)
+    const contrastAnalysis = this.analyzeColorContrast(element);
+    issues.push(...contrastAnalysis.issues);
+    strengths.push(...contrastAnalysis.strengths);
 
     // Screen reader compatibility
-    const screenReaderAnalysis = this.analyzeScreenReaderCompatibility(element)
-    issues.push(...screenReaderAnalysis.issues)
-    strengths.push(...screenReaderAnalysis.strengths)
+    const screenReaderAnalysis = this.analyzeScreenReaderCompatibility(element);
+    issues.push(...screenReaderAnalysis.issues);
+    strengths.push(...screenReaderAnalysis.strengths);
 
     // Generate specific recommendations
-    recommendations.push(...this.generateElementAccessibilityRecommendations(element))
+    recommendations.push(...this.generateElementAccessibilityRecommendations(element));
 
-    const score = this.calculateAccessibilityScore(issues, strengths)
-    const wcagViolations = this.identifyWCAGViolations(issues)
+    const score = this.calculateAccessibilityScore(issues, strengths);
+    const wcagViolations = this.identifyWCAGViolations(issues);
 
     return {
       score,
@@ -248,44 +257,58 @@ export class AccessibilityGuardianAgent implements UIAgent {
       strengths,
       recommendations,
       compliance: {
-        wcag: { 
-          level: 'AA', 
-          score: this.calculateWCAGComplianceScore(wcagViolations), 
-          violations: wcagViolations 
+        wcag: {
+          level: 'AA',
+          score: this.calculateWCAGComplianceScore(wcagViolations),
+          violations: wcagViolations,
         },
         designSystem: { adherence: score / 10, violations: [] },
-        performance: { score: 0, issues: [] }
+        performance: { score: 0, issues: [] },
       },
       performance: {
         score: 0,
-        metrics: { renderTime: 0, bundleSize: 0, cacheHits: 0, memoryUsage: 0, frameRate: 0, coreWebVitals: { lcp: 0, fid: 0, cls: 0 } },
+        metrics: {
+          renderTime: 0,
+          bundleSize: 0,
+          cacheHits: 0,
+          memoryUsage: 0,
+          frameRate: 0,
+          coreWebVitals: { lcp: 0, fid: 0, cls: 0 },
+        },
         bottlenecks: [],
-        optimizations: []
-      }
-    }
+        optimizations: [],
+      },
+    };
   }
 
   private async performAccessibilityAudit(context: UIContext): Promise<AnalysisResult> {
-    return this.analyse({
-      type: context.component.type,
-      props: context.component.props,
-      styles: context.component.styles.base as any,
-      children: (context.component.children || []) as any,
-      accessibility: (context.component.accessibility || { focusable: false }) as any,
-      metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
-    })
+    return this.analyse(componentToUIElement(context.component));
   }
 
   private analyzeSemanticStructure(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     // Check for semantic HTML usage
-    const semanticTags = ['header', 'nav', 'main', 'section', 'article', 'aside', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-    const isSemanticElement = semanticTags.includes(element.type)
+    const semanticTags = [
+      'header',
+      'nav',
+      'main',
+      'section',
+      'article',
+      'aside',
+      'footer',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+    ];
+    const isSemanticElement = semanticTags.includes(element.type);
 
     if (isSemanticElement) {
-      strengths.push('Uses semantic HTML elements')
+      strengths.push('Uses semantic HTML elements');
     } else if (element.type === 'div' && !element.accessibility?.role) {
       issues.push({
         id: 'non-semantic-element',
@@ -295,36 +318,38 @@ export class AccessibilityGuardianAgent implements UIAgent {
         location: element.type,
         fix: 'Use semantic HTML elements or add appropriate ARIA role',
         automated: false,
-        wcagViolation: '1.3.1 Info and Relationships (A)'
-      })
+        wcagViolation: '1.3.1 Info and Relationships (A)',
+      });
     }
 
     // Check heading hierarchy
     if (element.type.startsWith('h')) {
-      const headingLevel = parseInt(element.type.substring(1))
+      const headingLevel = parseInt(element.type.substring(1));
       if (headingLevel > 1) {
         // In a real implementation, this would check if previous heading levels exist
-        strengths.push('Proper heading structure maintains hierarchy')
+        strengths.push('Proper heading structure maintains hierarchy');
       }
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private analyzeKeyboardAccessibility(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     // Check if interactive elements are focusable
-    const isInteractive = ['button', 'link', 'input', 'select', 'textarea'].includes(element.type) ||
-                          element.props?.onClick || element.props?.onKeyDown
+    const isInteractive =
+      ['button', 'link', 'input', 'select', 'textarea'].includes(element.type) ||
+      element.props?.onClick ||
+      element.props?.onKeyDown;
 
     if (isInteractive) {
-      const isFocusable = element.accessibility?.focusable !== false && 
-                         element.accessibility?.tabIndex !== -1
+      const isFocusable =
+        element.accessibility?.focusable !== false && element.accessibility?.tabIndex !== -1;
 
       if (isFocusable) {
-        strengths.push('Interactive element is keyboard focusable')
+        strengths.push('Interactive element is keyboard focusable');
       } else {
         issues.push({
           id: 'not-keyboard-accessible',
@@ -334,12 +359,12 @@ export class AccessibilityGuardianAgent implements UIAgent {
           location: element.type,
           fix: 'Ensure interactive elements are focusable and have proper keyboard event handlers',
           automated: true,
-          wcagViolation: '2.1.1 Keyboard (A)'
-        })
+          wcagViolation: '2.1.1 Keyboard (A)',
+        });
       }
 
       // Check for keyboard event handlers
-      const hasKeyboardHandlers = element.props?.onKeyDown || element.props?.onKeyPress
+      const hasKeyboardHandlers = element.props?.onKeyDown || element.props?.onKeyPress;
       if (!hasKeyboardHandlers) {
         issues.push({
           id: 'missing-keyboard-handlers',
@@ -348,27 +373,28 @@ export class AccessibilityGuardianAgent implements UIAgent {
           description: 'Interactive element lacks keyboard event handlers',
           location: element.type,
           fix: 'Add onKeyDown handler to support Enter and Space key activation',
-          automated: true
-        })
+          automated: true,
+        });
       }
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private analyzeARIAImplementation(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
-    const accessibility = element.accessibility || {}
+    const accessibility = element.accessibility || {};
 
     // Check for proper ARIA labels
-    const needsLabel = ['button', 'link', 'input'].includes(element.type)
-    const hasLabel = accessibility['aria-label'] || accessibility['aria-labelledby'] || element.props?.title
+    const needsLabel = ['button', 'link', 'input'].includes(element.type);
+    const hasLabel =
+      accessibility['aria-label'] || accessibility['aria-labelledby'] || element.props?.title;
 
     if (needsLabel) {
       if (hasLabel) {
-        strengths.push('Element has proper ARIA labelling')
+        strengths.push('Element has proper ARIA labelling');
       } else {
         issues.push({
           id: 'missing-aria-label',
@@ -378,13 +404,13 @@ export class AccessibilityGuardianAgent implements UIAgent {
           location: element.type,
           fix: 'Add aria-label, aria-labelledby, or visible text content',
           automated: true,
-          wcagViolation: '4.1.2 Name, Role, Value (A)'
-        })
+          wcagViolation: '4.1.2 Name, Role, Value (A)',
+        });
       }
     }
 
     // Check for proper roles
-    if (element.type === 'div' && element.props?.onClick && !(accessibility as any)?.role) {
+    if (element.type === 'div' && element.props?.onClick && !accessibility?.role) {
       issues.push({
         id: 'missing-button-role',
         severity: 'high' as const,
@@ -393,14 +419,14 @@ export class AccessibilityGuardianAgent implements UIAgent {
         location: element.type,
         fix: 'Add role="button" and proper keyboard support',
         automated: true,
-        wcagViolation: '4.1.2 Name, Role, Value (A)'
-      })
+        wcagViolation: '4.1.2 Name, Role, Value (A)',
+      });
     }
 
     // Check for state communication
     if (element.type === 'button' && element.props?.expanded !== undefined) {
       if (accessibility['aria-expanded'] !== undefined) {
-        strengths.push('Button properly communicates expanded state')
+        strengths.push('Button properly communicates expanded state');
       } else {
         issues.push({
           id: 'missing-aria-expanded',
@@ -409,24 +435,24 @@ export class AccessibilityGuardianAgent implements UIAgent {
           description: 'Expandable button lacks aria-expanded attribute',
           location: element.type,
           fix: 'Add aria-expanded attribute to communicate state',
-          automated: true
-        })
+          automated: true,
+        });
       }
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private analyzeColorContrast(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     // Simplified contrast analysis
     // In a real implementation, this would extract colours and calculate contrast ratios
-    const hasGoodContrast = this.checkColorContrast(element)
+    const hasGoodContrast = this.checkColorContrast(element);
 
     if (hasGoodContrast) {
-      strengths.push('Meets WCAG colour contrast requirements')
+      strengths.push('Meets WCAG colour contrast requirements');
     } else {
       issues.push({
         id: 'insufficient-contrast',
@@ -436,24 +462,26 @@ export class AccessibilityGuardianAgent implements UIAgent {
         location: element.type,
         fix: 'Increase colour contrast to at least 4.5:1 for normal text, 3:1 for large text',
         automated: false,
-        wcagViolation: '1.4.3 Contrast (Minimum) (AA)'
-      })
+        wcagViolation: '1.4.3 Contrast (Minimum) (AA)',
+      });
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private analyzeScreenReaderCompatibility(element: UIElement) {
-    const issues = []
-    const strengths = []
+    const issues = [];
+    const strengths = [];
 
     // Check for screen reader friendly content
-    const hasTextContent = element.children?.some(child => typeof child === 'string') ||
-                          element.props?.alt || element.accessibility?.['aria-label']
+    const hasTextContent =
+      element.children?.some((child) => typeof child === 'string') ||
+      element.props?.alt ||
+      element.accessibility?.['aria-label'];
 
     if (element.type === 'img') {
       if (element.props?.alt) {
-        strengths.push('Image has descriptive alt text')
+        strengths.push('Image has descriptive alt text');
       } else {
         issues.push({
           id: 'missing-alt-text',
@@ -463,8 +491,8 @@ export class AccessibilityGuardianAgent implements UIAgent {
           location: element.type,
           fix: 'Add descriptive alt attribute or aria-label',
           automated: true,
-          wcagViolation: '1.1.1 Non-text Content (A)'
-        })
+          wcagViolation: '1.1.1 Non-text Content (A)',
+        });
       }
     }
 
@@ -477,15 +505,15 @@ export class AccessibilityGuardianAgent implements UIAgent {
         description: 'Important content is hidden from screen readers',
         location: element.type,
         fix: 'Remove aria-hidden or provide alternative text for screen readers',
-        automated: false
-      })
+        automated: false,
+      });
     }
 
-    return { issues, strengths }
+    return { issues, strengths };
   }
 
   private async generateWCAGComplianceImprovements(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     // WCAG Level AA Compliance Framework
     improvements.push({
@@ -505,20 +533,22 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Validate colour contrast ratios',
           'Test with screen readers',
           'Implement focus management',
-          'Add skip links and landmarks'
-        ]
+          'Add skip links and landmarks',
+        ],
       },
       metrics: {
         accessibilityScore: 10,
-        userExperienceScore: 9
-      }
-    })
+        userExperienceScore: 9,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
-  private async generateKeyboardNavigationImprovements(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+  private async generateKeyboardNavigationImprovements(
+    context: UIContext,
+  ): Promise<UIImprovement[]> {
+    const improvements: UIImprovement[] = [];
 
     improvements.push({
       id: 'keyboard-navigation-system',
@@ -535,20 +565,20 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Add keyboard shortcuts for common actions',
           'Ensure proper focus indicators',
           'Test tab order and focus management',
-          'Add skip links for main content areas'
-        ]
+          'Add skip links for main content areas',
+        ],
       },
       metrics: {
         accessibilityScore: 9,
-        userExperienceScore: 7
-      }
-    })
+        userExperienceScore: 7,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private async generateScreenReaderOptimizations(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     improvements.push({
       id: 'screen-reader-optimizations',
@@ -564,20 +594,20 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Implement live regions for dynamic content',
           'Structure content with proper headings and landmarks',
           'Provide alternative text for non-text content',
-          'Test with multiple screen readers (NVDA, JAWS, VoiceOver)'
-        ]
+          'Test with multiple screen readers (NVDA, JAWS, VoiceOver)',
+        ],
       },
       metrics: {
         accessibilityScore: 10,
-        userExperienceScore: 8
-      }
-    })
+        userExperienceScore: 8,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private async generateFocusManagementImprovements(context: UIContext): Promise<UIImprovement[]> {
-    const improvements: UIImprovement[] = []
+    const improvements: UIImprovement[] = [];
 
     improvements.push({
       id: 'focus-management-system',
@@ -594,20 +624,20 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Manage focus return after modal closure',
           'Add visible focus indicators',
           'Implement logical tab order',
-          'Handle dynamic content focus management'
-        ]
+          'Handle dynamic content focus management',
+        ],
       },
       metrics: {
         accessibilityScore: 9,
-        userExperienceScore: 8
-      }
-    })
+        userExperienceScore: 8,
+      },
+    });
 
-    return improvements
+    return improvements;
   }
 
   private generateAccessibilityRecommendations(context: UIContext): Recommendation[] {
-    const recommendations = []
+    const recommendations = [];
 
     // Automated accessibility testing
     recommendations.push({
@@ -624,7 +654,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Install accessibility testing tools (axe-core, pa11y)',
           'Configure testing in build pipeline',
           'Set up automated reporting',
-          'Train team on accessibility best practices'
+          'Train team on accessibility best practices',
         ],
         code: `
           // Automated accessibility testing setup
@@ -655,15 +685,15 @@ export class AccessibilityGuardianAgent implements UIAgent {
             console.error('Accessibility violations found:', pa11yResults.issues);
             process.exit(1);
           }
-        `
+        `,
       },
       impact: {
         userExperience: 6,
         performance: 2,
         accessibility: 10,
-        maintainability: 8
-      }
-    })
+        maintainability: 8,
+      },
+    });
 
     // Accessibility audit and monitoring
     recommendations.push({
@@ -680,22 +710,22 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Set up accessibility monitoring tools',
           'Create accessibility dashboard',
           'Implement user feedback collection',
-          'Schedule regular accessibility audits'
-        ]
+          'Schedule regular accessibility audits',
+        ],
       },
       impact: {
         userExperience: 7,
         performance: 1,
         accessibility: 9,
-        maintainability: 7
-      }
-    })
+        maintainability: 7,
+      },
+    });
 
-    return recommendations
+    return recommendations;
   }
 
   private generateElementAccessibilityRecommendations(element: UIElement): Recommendation[] {
-    const recommendations = []
+    const recommendations = [];
 
     if (element.type === 'button') {
       recommendations.push({
@@ -708,15 +738,19 @@ export class AccessibilityGuardianAgent implements UIAgent {
         implementation: {
           complexity: 'simple',
           estimatedTime: '30 minutes',
-          requirements: ['Add ARIA attributes', 'Implement keyboard support', 'Test with screen readers']
+          requirements: [
+            'Add ARIA attributes',
+            'Implement keyboard support',
+            'Test with screen readers',
+          ],
         },
         impact: {
           userExperience: 7,
           performance: 1,
           accessibility: 9,
-          maintainability: 5
-        }
-      })
+          maintainability: 5,
+        },
+      });
     }
 
     if (element.type === 'form' || element.type === 'input') {
@@ -730,18 +764,22 @@ export class AccessibilityGuardianAgent implements UIAgent {
         implementation: {
           complexity: 'moderate',
           estimatedTime: '1-2 hours',
-          requirements: ['Add form validation', 'Implement error announcements', 'Add field descriptions']
+          requirements: [
+            'Add form validation',
+            'Implement error announcements',
+            'Add field descriptions',
+          ],
         },
         impact: {
           userExperience: 8,
           performance: 1,
           accessibility: 10,
-          maintainability: 6
-        }
-      })
+          maintainability: 6,
+        },
+      });
     }
 
-    return recommendations
+    return recommendations;
   }
 
   // Code Generation Methods
@@ -849,7 +887,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
         border-radius: inherit;
         pointer-events: none;
       }
-    `
+    `;
   }
 
   private generateWCAGComplianceJS(): string {
@@ -1019,7 +1057,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       // Initialize accessibility manager
       const a11yManager = new AccessibilityManager();
       window.A11yManager = a11yManager;
-    `
+    `;
   }
 
   private generateKeyboardNavigationCode(): string {
@@ -1106,7 +1144,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       }
       
       new KeyboardNavigationManager();
-    `
+    `;
   }
 
   private generateKeyboardNavigationStyles(): string {
@@ -1163,7 +1201,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       .mouse-user :focus {
         outline: none;
       }
-    `
+    `;
   }
 
   private generateScreenReaderOptimizationCode(): string {
@@ -1300,7 +1338,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       // Initialize screen reader optimizer
       const srOptimizer = new ScreenReaderOptimizer();
       window.SROptimizer = srOptimizer;
-    `
+    `;
   }
 
   private generateFocusManagementCode(): string {
@@ -1449,7 +1487,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       // Initialize focus manager
       const focusManager = new FocusManager();
       window.FocusManager = focusManager;
-    `
+    `;
   }
 
   private generateFocusManagementStyles(): string {
@@ -1501,54 +1539,65 @@ export class AccessibilityGuardianAgent implements UIAgent {
       .dynamic-content[tabindex="-1"]:focus {
         background: rgba(19, 28, 255, 0.1);
       }
-    `
+    `;
   }
 
   // Helper methods
   private checkColorContrast(element: UIElement): boolean {
     // Simplified contrast checking
     // In a real implementation, this would extract colours and calculate contrast ratios
-    return true
+    return true;
   }
 
   private identifyWCAGViolations(issues: any[]): WCAGViolation[] {
     return issues
-      .filter(issue => issue.wcagViolation)
-      .map(issue => ({
+      .filter((issue) => issue.wcagViolation)
+      .map((issue) => ({
         guideline: issue.wcagViolation,
-        level: issue.wcagViolation.includes('AAA') ? 'AAA' : 
-               issue.wcagViolation.includes('AA') ? 'AA' : 'A',
+        level: issue.wcagViolation.includes('AAA')
+          ? 'AAA'
+          : issue.wcagViolation.includes('AA')
+            ? 'AA'
+            : 'A',
         description: issue.description,
         element: issue.location,
         fix: issue.fix,
-        automated: issue.automated
-      }))
+        automated: issue.automated,
+      }));
   }
 
   private calculateWCAGComplianceScore(violations: WCAGViolation[]): number {
-    let score = 100
-    violations.forEach(violation => {
-      const deduction = violation.level === 'A' ? 20 : violation.level === 'AA' ? 15 : 10
-      score -= deduction
-    })
-    return Math.max(0, score)
+    let score = 100;
+    violations.forEach((violation) => {
+      const deduction = violation.level === 'A' ? 20 : violation.level === 'AA' ? 15 : 10;
+      score -= deduction;
+    });
+    return Math.max(0, score);
   }
 
   private calculateAccessibilityScore(issues: any[], strengths: string[]): number {
-    let score = 5 // Start with moderate accessibility score
-    
-    issues.forEach(issue => {
+    let score = 5; // Start with moderate accessibility score
+
+    issues.forEach((issue) => {
       switch (issue.severity) {
-        case 'critical': score -= 3; break
-        case 'high': score -= 2; break
-        case 'medium': score -= 1; break
-        case 'low': score -= 0.5; break
+        case 'critical':
+          score -= 3;
+          break;
+        case 'high':
+          score -= 2;
+          break;
+        case 'medium':
+          score -= 1;
+          break;
+        case 'low':
+          score -= 0.5;
+          break;
       }
-    })
-    
+    });
+
     // Bonus for accessibility strengths
-    score += Math.min(strengths.length * 0.7, 5)
-    
-    return Math.max(1, Math.min(10, score))
+    score += Math.min(strengths.length * 0.7, 5);
+
+    return Math.max(1, Math.min(10, score));
   }
 }
