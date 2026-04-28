@@ -197,6 +197,10 @@ model Notification {
 }
 
 // Lead Management Models
+// DR-820 Path Y — Prisma Lead is the rich funnel entity (40 fields,
+// lead-scoring, Partner FK, full assignment lifecycle). Live `lead_captures`
+// is the simpler contact-form intake table — different domain entity. Path Y
+// preserves the rich Lead under a dedicated live `leads` table.
 model Lead {
   id String @id @default(cuid())
 
@@ -260,6 +264,8 @@ model Lead {
   billing  PartnerBilling[]
   tracking LeadTracking[]
   notes    LeadNote[]
+
+  @@map("leads")
 }
 
 model Partner {
@@ -322,6 +328,8 @@ model PartnerBilling {
   updatedAt DateTime @updatedAt
 }
 
+// DR-820 Path Y — paired with Lead. Per-event audit trail for the rich
+// Prisma Lead funnel. Maps to a dedicated live table.
 model LeadTracking {
   id     String @id @default(cuid())
   leadId String
@@ -331,8 +339,12 @@ model LeadTracking {
   metadata String? // JSON string with event details
 
   createdAt DateTime @default(now())
+
+  @@map("lead_tracking")
 }
 
+// DR-820 Path Y — paired with Lead. Operator/partner/customer notes for the
+// rich Prisma Lead funnel. Maps to a dedicated live table.
 model LeadNote {
   id     String @id @default(cuid())
   leadId String
@@ -343,6 +355,8 @@ model LeadNote {
   author String
 
   createdAt DateTime @default(now())
+
+  @@map("lead_notes")
 }
 
 // ============================================
