@@ -3,6 +3,135 @@
 Living sprint + project log. Newest entry at the top. Keep under
 200 lines; archive older entries into `planning/memory-archive/`.
 
+## 2026-04-27 — Full-day sprint: P0 fix, schema audit, email DKIM, both DR domains linked
+
+**Outcome:** 23 PRs merged, 1 production migration deployed, 0 incidents.
+Headline wins:
+
+- P0 silent-payment-loss bug closed (PR #232 + migration deploy)
+- Email deliverability shipped via `disasterrecovery.au` at GoDaddy
+  (DKIM/SPF/DMARC live, Resend verification pending)
+- Both DR domains linked: `.com.au` canonical website (unchanged),
+  `.au` redirects 307 → `.com.au` + serves as Resend sender
+- Phase 1 schema-drift audit (PR #231) → 5 follow-up PRs
+- **MAJOR finding** from introspection refresh (PR #239): **53 Prisma
+  models without backing tables** in production. DR-804 opened for the
+  1-2 day 3-bucket audit.
+
+### What landed (PR list)
+
+Morning wave (DR-700 sprint close-out):
+
+- **PR #222** — DR-542 distressed-user UX protocol (voice + claim)
+- **PR #223** — continuation roadmap
+- **PR #224** — DR-688 finance-referral persistence state doc
+- **PR #225** — DR-458 Google Places API audit script
+- **PR #226** — DR-700 D1-D5 strategy memo
+- **PR #227** — TS Phase 2 cluster analysis (171 casts catalogued)
+- **PR #228** — TS Phase 2 Cluster B (auth, 1 cast)
+- **PR #229** — Phill action checklist + counsel email drafts
+- **PR #230** — TS Phase 2 Cluster A partial (payments mock boundary, 2 casts)
+- **PR #231** — Phase 1 schema-drift audit (4 reports + summary)
+- **PR #233** — deleted unauthenticated `/api/reddit/migrate` route
+- **PR #234** — ADR-012 (RLS service-role-only) + ADR-013 (compliance_events append-only)
+- **PR #235** — pre-existing typecheck blockers cleared (3 TS errors)
+- **PR #232** — **P0 PAYMENT REFUND FIX** + migration `20260427000000_payment_refund_fields`
+
+Afternoon wave (autonomous follow-up):
+
+- **PR #236** — DR-803 Resend `from` → `noreply@disasterrecovery.au`
+- **PR #237** — `.context/domain-models.md` drift entries refreshed
+- **PR #238** — TS Phase 2 Cluster C (API handlers, 4 casts)
+- **PR #239** — Supabase introspection refresh (2026-02-22 → 2026-04-27)
+
+### P0 detail (the most-important fix)
+
+`app/api/payments/refund/route.ts` had three coordinated bugs:
+
+1. Stripe refund at line 55 fired BEFORE the DB write
+2. DB write at line 72 always failed (Payment model missing
+   `refundAmountAUD`, `refundReason`, `refundedAt`, plus wrong field
+   name `stripePaymentId` vs canonical `stripePaymentIntentId`)
+3. Catch block at line 81 silently swallowed the error
+
+Net effect under any real refund: money refunds, DB never records it.
+Fix: schema migration adds 5 fields, route uses canonical names + drops
+`as any` cast, catch becomes loud (log + captureException with
+severity:critical + compliance event of new type
+`payment_refund_db_failure`). Customer still gets 200 (refund DID
+succeed); reconciliation alert is internal.
+
+### DKIM email pipeline (DR-524 closed)
+
+- Original Cloudflare account holding `disasterrecovery.com.au` zone
+  is owned by an unrecoverable email — DKIM was never possible there.
+- Pivoted to `disasterrecovery.au` (owned at GoDaddy with full DNS
+  access). Added DKIM TXT (`resend._domainkey`), SPF MX + TXT
+  (`send`), DMARC TXT (`_dmarc`). Records visible in
+  `prisma/migrations/20260427000000_payment_refund_fields/` companion
+  notes — also linked from DR-524 close-out comment.
+- Vercel project: added `disasterrecovery.au` as redirect alias →
+  `.com.au` (307). A record at GoDaddy: `216.150.1.1`. Verified live
+  via curl — `https://disasterrecovery.au` 307 → `https://disasterrecovery.com.au`.
+- Code change: `RESEND_FROM_EMAIL` default now `noreply@disasterrecovery.au`
+  (PR #236). Set this in Vercel Production env to override.
+
+### CRITICAL: 53 phantom Prisma models (DR-804 follow-up)
+
+Live `prisma db pull` revealed 109 production tables vs 79 Prisma
+models. **53 Prisma models in `schema.prisma` have NO backing live
+table** — including core domain (`User`, `Lead`, `Job`, `Client`,
+`Notification`, `Invoice`, `ContractorApplication`, etc.).
+
+Most are likely dead code paths (the original 15-model audit only
+found zero-reference cases). 1-2 day audit needed to bucket each
+into:
+
+1. Active route, no live table → CRITICAL bug
+2. Active route, lowercase co-tenant table exists → add `@@map`
+3. Dead in code → drop the Prisma model
+
+Next agent picking this up: read DR-804 + `prisma/supabase-tables-introspection.md`.
+
+### Strategic decisions made today
+
+- **Counsel emails DEFERRED** (funds-constrained). Drafts saved at
+  `docs/counsel/2026-04-27-emails-to-send.md`. ADR-011 Path A and
+  APP 8 wording proceed on engineering authority.
+- **Resend free plan kept** (1 verified domain). Old failed
+  `disasterrecovery.com.au` Resend record deleted; replaced with
+  `.au` variant. If `.com.au` Cloudflare ever recovered, Pro plan
+  ($20/mo) needed for second domain.
+
+### Stripe legacy archive (Phill in dashboard, not via CLI)
+
+7 `prod_HL*` LearnDash legacy products identified for archive.
+Stripe CLI's OAuth-issued restricted key (`rk_live_*`) doesn't have
+`products.update` permission. Phill archives via Stripe Dashboard.
+Current DR products (`prod_UP3q*`, 12 of them) untouched.
+
+### Phase 2 still deferred to next sprint
+
+- DR-804 — phantom Prisma models 3-bucket audit (1-2 days, P1)
+- ADR-012 implementation PR (RLS migration cleanup)
+- ADR-013 implementation PR (compliance_events Postgres-level append-only)
+- TS Phase 2 Cluster A remaining (3 of 5 — Prisma `Payment` schema gap)
+  and Clusters D/E/F/G (per `docs/plans/2026-04-27-typescript-phase-2-cluster-analysis.md`)
+- Lighthouse CWV (TTI 0.81 → 0.9) — D5 in `docs/plans/2026-04-27-d1-d5-recommendation.md`
+- Smoke test: 2 known failing (`/admin`, `/log-error`) — fix or document skip
+- DR-803 deployment — Vercel `RESEND_FROM_EMAIL` env var update
+
+### Phill action queue (mostly closed today)
+
+- ✅ MCP browser perms (PowerShell one-liner ran)
+- ✅ GoDaddy DNS — 4 DKIM/SPF/DMARC records + A record for `.au`
+- ✅ Vercel domain — `disasterrecovery.au` added as redirect alias
+- ✅ Stripe CLI OAuth re-auth against DR account
+- ⏳ Stripe legacy product archive (7 × `prod_HL*` via dashboard)
+- ⏳ Vercel Stripe test-mode keys for Preview env (DR-509)
+- ⏳ Optional: rotate the `sk_test_*` for Unite-Group account (briefly leaked into agent context this session)
+- DEFERRED: counsel emails (funds-constrained)
+
 ## 2026-04-26 — Voice agent web-widget production surface
 
 **Outcome:** voice agents (Sarah/Tannika + Olivia) now ship to production
