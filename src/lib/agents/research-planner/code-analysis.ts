@@ -24,25 +24,14 @@ export class CodeAnalysisAgent extends EventEmitter {
 
   private loadAnalysisPatterns() {
     this.analysisPatterns.set('react-patterns', {
-      hooks: [
-        /use[A-Z]\w+/g,
-        /useState\(/g,
-        /useEffect\(/g,
-        /useMemo\(/g,
-        /useCallback\(/g
-      ],
+      hooks: [/use[A-Z]\w+/g, /useState\(/g, /useEffect\(/g, /useMemo\(/g, /useCallback\(/g],
       components: [
         /export\s+(default\s+)?function\s+[A-Z]\w+/g,
         /export\s+const\s+[A-Z]\w+\s*=/g,
         /React\.FC/g,
-        /React\.Component/g
+        /React\.Component/g,
       ],
-      performance: [
-        /React\.memo\(/g,
-        /useMemo\(/g,
-        /useCallback\(/g,
-        /lazy\(/g
-      ]
+      performance: [/React\.memo\(/g, /useMemo\(/g, /useCallback\(/g, /lazy\(/g],
     });
 
     this.analysisPatterns.set('nextjs-patterns', {
@@ -50,49 +39,21 @@ export class CodeAnalysisAgent extends EventEmitter {
         /app\/.*\/page\.(tsx?|jsx?)/,
         /app\/.*\/layout\.(tsx?|jsx?)/,
         /app\/.*\/route\.(tsx?|jsx?)/,
-        /pages\/.*\.(tsx?|jsx?)/
+        /pages\/.*\.(tsx?|jsx?)/,
       ],
-      dataFetching: [
-        /getServerSideProps/g,
-        /getStaticProps/g,
-        /generateStaticParams/g,
-        /fetch\(/g
-      ],
-      optimization: [
-        /next\/image/g,
-        /next\/dynamic/g,
-        /next\/font/g
-      ]
+      dataFetching: [/getServerSideProps/g, /getStaticProps/g, /generateStaticParams/g, /fetch\(/g],
+      optimization: [/next\/image/g, /next\/dynamic/g, /next\/font/g],
     });
 
     this.analysisPatterns.set('typescript-patterns', {
-      types: [
-        /interface\s+\w+/g,
-        /type\s+\w+\s*=/g,
-        /enum\s+\w+/g
-      ],
-      generics: [
-        /<[A-Z]\w*>/g,
-        /extends\s+\w+/g
-      ],
-      decorators: [
-        /@\w+/g
-      ]
+      types: [/interface\s+\w+/g, /type\s+\w+\s*=/g, /enum\s+\w+/g],
+      generics: [/<[A-Z]\w*>/g, /extends\s+\w+/g],
+      decorators: [/@\w+/g],
     });
 
     this.analysisPatterns.set('security-patterns', {
-      vulnerabilities: [
-        /eval\(/g,
-        /innerHTML/g,
-        /dangerouslySetInnerHTML/g,
-        /process\.env/g
-      ],
-      authentication: [
-        /jwt/gi,
-        /token/gi,
-        /auth/gi,
-        /session/gi
-      ]
+      vulnerabilities: [/eval\(/g, /innerHTML/g, /dangerouslySetInnerHTML/g, /process\.env/g],
+      authentication: [/jwt/gi, /token/gi, /auth/gi, /session/gi],
     });
   }
 
@@ -100,37 +61,37 @@ export class CodeAnalysisAgent extends EventEmitter {
     this.fileTypeHandlers.set('.ts', {
       language: 'typescript',
       parser: 'typescript',
-      analyzer: this.analyzeTypeScript.bind(this)
+      analyzer: this.analyzeTypeScript.bind(this),
     });
 
     this.fileTypeHandlers.set('.tsx', {
       language: 'typescriptreact',
       parser: 'typescript',
-      analyzer: this.analyzeTypeScript.bind(this)
+      analyzer: this.analyzeTypeScript.bind(this),
     });
 
     this.fileTypeHandlers.set('.js', {
       language: 'javascript',
       parser: 'babel',
-      analyzer: this.analyzeJavaScript.bind(this)
+      analyzer: this.analyzeJavaScript.bind(this),
     });
 
     this.fileTypeHandlers.set('.jsx', {
       language: 'javascriptreact',
       parser: 'babel',
-      analyzer: this.analyzeJavaScript.bind(this)
+      analyzer: this.analyzeJavaScript.bind(this),
     });
 
     this.fileTypeHandlers.set('.css', {
       language: 'css',
       parser: 'css',
-      analyzer: this.analyzeCSS.bind(this)
+      analyzer: this.analyzeCSS.bind(this),
     });
 
     this.fileTypeHandlers.set('.json', {
       language: 'json',
       parser: 'json',
-      analyzer: this.analyzeJSON.bind(this)
+      analyzer: this.analyzeJSON.bind(this),
     });
   }
 
@@ -139,21 +100,21 @@ export class CodeAnalysisAgent extends EventEmitter {
       low: { score: 1, maxLines: 50, maxDepth: 3 },
       medium: { score: 2, maxLines: 100, maxDepth: 5 },
       high: { score: 3, maxLines: 200, maxDepth: 7 },
-      veryHigh: { score: 4, maxLines: Infinity, maxDepth: Infinity }
+      veryHigh: { score: 4, maxLines: Infinity, maxDepth: Infinity },
     });
 
     this.qualityMetrics.set('maintainability', {
       excellent: { minScore: 90, color: 'green' },
       good: { minScore: 70, color: 'yellow' },
       fair: { minScore: 50, color: 'orange' },
-      poor: { minScore: 0, color: 'red' }
+      poor: { minScore: 0, color: 'red' },
     });
 
     this.qualityMetrics.set('testCoverage', {
       excellent: { minPercent: 90 },
       good: { minPercent: 70 },
       fair: { minPercent: 50 },
-      poor: { minPercent: 0 }
+      poor: { minPercent: 0 },
     });
   }
 
@@ -165,35 +126,35 @@ export class CodeAnalysisAgent extends EventEmitter {
       patterns: [],
       dependencies: {},
       suggestions: [],
-      issues: []
+      issues: [],
     };
 
     try {
       // Analyze codebase structure
       const codebaseInfo = await this.analyzeCodebase(task);
       result.files = codebaseInfo.files;
-      
+
       // Identify patterns
       result.patterns = this.identifyPatterns(codebaseInfo);
-      
+
       // Analyze dependencies
       result.dependencies = await this.analyzeDependencies();
-      
+
       // Generate suggestions
       result.suggestions = this.generateSuggestions(task, codebaseInfo);
-      
+
       // Identify issues
       result.issues = this.identifyIssues(codebaseInfo);
-      
+
       // Add summary
       const summary = this.createAnalysisSummary(result);
 
       this.emit('progress', { stage: 'completed', result });
-      
+
       return {
         ...result,
         summary,
-        confidence: 0.91
+        confidence: 0.91,
       };
     } catch (error) {
       this.emit('error', error);
@@ -203,25 +164,25 @@ export class CodeAnalysisAgent extends EventEmitter {
 
   private async analyzeCodebase(task: ResearchTask): Promise<any> {
     const codebaseInfo = {
-      files: [] as any[],
-      structure: {} as any,
-      metrics: {} as any
+      files: [] as Record<string, unknown>[],
+      structure: {} as Record<string, unknown>,
+      metrics: {} as Record<string, unknown>,
     };
 
     // Analyze project structure
     const projectRoot = process.cwd();
-    
+
     // Read package.json for dependencies
     try {
       const packageJsonPath = path.join(projectRoot, 'package.json');
       const packageJson = await this.readJSON(packageJsonPath);
-      
+
       codebaseInfo.structure = {
         name: packageJson.name,
         version: packageJson.version,
         scripts: Object.keys(packageJson.scripts || {}),
         dependencies: Object.keys(packageJson.dependencies || {}),
-        devDependencies: Object.keys(packageJson.devDependencies || {})
+        devDependencies: Object.keys(packageJson.devDependencies || {}),
       };
     } catch (error) {
       // Package.json not found or invalid
@@ -229,7 +190,7 @@ export class CodeAnalysisAgent extends EventEmitter {
 
     // Analyze common directories
     const directories = ['src', 'app', 'pages', 'components', 'lib', 'utils'];
-    
+
     for (const dir of directories) {
       const dirPath = path.join(projectRoot, dir);
       try {
@@ -248,13 +209,13 @@ export class CodeAnalysisAgent extends EventEmitter {
 
   private async analyzeDirectory(dirPath: string): Promise<any[]> {
     const files: any[] = [];
-    
+
     try {
       const entries = await fs.readdir(dirPath, { withFileTypes: true });
-      
+
       for (const entry of entries) {
         const fullPath = path.join(dirPath, entry.name);
-        
+
         if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'node_modules') {
           // Recursively analyze subdirectories
           const subFiles = await this.analyzeDirectory(fullPath);
@@ -262,14 +223,14 @@ export class CodeAnalysisAgent extends EventEmitter {
         } else if (entry.isFile()) {
           const ext = path.extname(entry.name);
           const handler = this.fileTypeHandlers.get(ext);
-          
+
           if (handler) {
             const stats = await fs.stat(fullPath);
             files.push({
               path: fullPath.replace(process.cwd(), ''),
               type: handler.language,
               size: stats.size,
-              complexity: await this.calculateFileComplexity(fullPath)
+              complexity: await this.calculateFileComplexity(fullPath),
             });
           }
         }
@@ -277,7 +238,7 @@ export class CodeAnalysisAgent extends EventEmitter {
     } catch (error) {
       // Directory read error
     }
-    
+
     return files;
   }
 
@@ -286,14 +247,20 @@ export class CodeAnalysisAgent extends EventEmitter {
       const content = await fs.readFile(filePath, 'utf-8');
       const lines = content.split('\n').length;
       const depth = this.calculateNestingDepth(content);
-      
+
       const complexityMetrics = this.qualityMetrics.get('complexity');
-      
+
       if (lines <= complexityMetrics.low.maxLines && depth <= complexityMetrics.low.maxDepth) {
         return complexityMetrics.low.score;
-      } else if (lines <= complexityMetrics.medium.maxLines && depth <= complexityMetrics.medium.maxDepth) {
+      } else if (
+        lines <= complexityMetrics.medium.maxLines &&
+        depth <= complexityMetrics.medium.maxDepth
+      ) {
         return complexityMetrics.medium.score;
-      } else if (lines <= complexityMetrics.high.maxLines && depth <= complexityMetrics.high.maxDepth) {
+      } else if (
+        lines <= complexityMetrics.high.maxLines &&
+        depth <= complexityMetrics.high.maxDepth
+      ) {
         return complexityMetrics.high.score;
       } else {
         return complexityMetrics.veryHigh.score;
@@ -306,7 +273,7 @@ export class CodeAnalysisAgent extends EventEmitter {
   private calculateNestingDepth(content: string): number {
     let maxDepth = 0;
     let currentDepth = 0;
-    
+
     for (const char of content) {
       if (char === '{' || char === '[' || char === '(') {
         currentDepth++;
@@ -315,7 +282,7 @@ export class CodeAnalysisAgent extends EventEmitter {
         currentDepth = Math.max(0, currentDepth - 1);
       }
     }
-    
+
     return maxDepth;
   }
 
@@ -339,13 +306,19 @@ export class CodeAnalysisAgent extends EventEmitter {
     }
 
     // Check for TypeScript
-    if (codebaseInfo.files.some((f: any) => f.type === 'typescript' || f.type === 'typescriptreact')) {
+    if (
+      codebaseInfo.files.some((f: any) => f.type === 'typescript' || f.type === 'typescriptreact')
+    ) {
       patterns.add('TypeScript for type safety');
     }
 
     // Check for testing
-    if (codebaseInfo.structure?.devDependencies?.some((dep: string) => 
-      dep.includes('jest') || dep.includes('vitest') || dep.includes('playwright'))) {
+    if (
+      codebaseInfo.structure?.devDependencies?.some(
+        (dep: string) =>
+          dep.includes('jest') || dep.includes('vitest') || dep.includes('playwright'),
+      )
+    ) {
       patterns.add('Testing infrastructure present');
     }
 
@@ -368,7 +341,7 @@ export class CodeAnalysisAgent extends EventEmitter {
     try {
       const packageJsonPath = path.join(process.cwd(), 'package.json');
       const packageJson = await this.readJSON(packageJsonPath);
-      
+
       // Combine dependencies and devDependencies
       Object.assign(dependencies, packageJson.dependencies || {});
       Object.assign(dependencies, packageJson.devDependencies || {});
@@ -389,13 +362,18 @@ export class CodeAnalysisAgent extends EventEmitter {
     }
 
     // TypeScript suggestions
-    if (!codebaseInfo.files.some((f: any) => f.type === 'typescript' || f.type === 'typescriptreact')) {
+    if (
+      !codebaseInfo.files.some((f: any) => f.type === 'typescript' || f.type === 'typescriptreact')
+    ) {
       suggestions.push('Consider migrating to TypeScript for better type safety');
     }
 
     // Testing suggestions
-    if (!codebaseInfo.structure?.devDependencies?.some((dep: string) => 
-      dep.includes('jest') || dep.includes('vitest'))) {
+    if (
+      !codebaseInfo.structure?.devDependencies?.some(
+        (dep: string) => dep.includes('jest') || dep.includes('vitest'),
+      )
+    ) {
       suggestions.push('Add unit testing framework for better code reliability');
     }
 
@@ -427,12 +405,13 @@ export class CodeAnalysisAgent extends EventEmitter {
 
     // Check for large files
     codebaseInfo.files.forEach((file: any) => {
-      if (file.size > 50000) { // > 50KB
+      if (file.size > 50000) {
+        // > 50KB
         issues.push({
           severity: 'medium',
           type: 'performance',
           message: `Large file detected: ${file.path}`,
-          file: file.path
+          file: file.path,
         });
       }
 
@@ -441,17 +420,19 @@ export class CodeAnalysisAgent extends EventEmitter {
           severity: 'high',
           type: 'maintainability',
           message: `High complexity in: ${file.path}`,
-          file: file.path
+          file: file.path,
         });
       }
     });
 
     // Check for missing TypeScript
-    if (codebaseInfo.files.some((f: any) => f.type === 'javascript' || f.type === 'javascriptreact')) {
+    if (
+      codebaseInfo.files.some((f: any) => f.type === 'javascript' || f.type === 'javascriptreact')
+    ) {
       issues.push({
         severity: 'low',
         type: 'type-safety',
-        message: 'JavaScript files detected - consider TypeScript migration'
+        message: 'JavaScript files detected - consider TypeScript migration',
       });
     }
 
@@ -465,7 +446,7 @@ export class CodeAnalysisAgent extends EventEmitter {
     const avgComplexity = this.calculateAverageComplexity(files);
 
     const typeDistribution: Record<string, number> = {};
-    files.forEach(file => {
+    files.forEach((file) => {
       typeDistribution[file.type] = (typeDistribution[file.type] || 0) + 1;
     });
 
@@ -474,7 +455,7 @@ export class CodeAnalysisAgent extends EventEmitter {
       totalSize,
       avgSize,
       avgComplexity,
-      typeDistribution
+      typeDistribution,
     };
   }
 
@@ -488,42 +469,44 @@ export class CodeAnalysisAgent extends EventEmitter {
     const fileCount = result.files.length;
     const patternCount = result.patterns.length;
     const issueCount = result.issues?.length || 0;
-    const highSeverityIssues = result.issues?.filter(i => i.severity === 'high').length || 0;
-    
-    return `Analyzed ${fileCount} files and identified ${patternCount} architectural patterns. ` +
-           `Found ${issueCount} issues (${highSeverityIssues} high severity). ` +
-           `Generated ${result.suggestions.length} improvement suggestions.`;
+    const highSeverityIssues = result.issues?.filter((i) => i.severity === 'high').length || 0;
+
+    return (
+      `Analyzed ${fileCount} files and identified ${patternCount} architectural patterns. ` +
+      `Found ${issueCount} issues (${highSeverityIssues} high severity). ` +
+      `Generated ${result.suggestions.length} improvement suggestions.`
+    );
   }
 
   // File type specific analyzers
   private async analyzeTypeScript(filePath: string): Promise<any> {
     const content = await fs.readFile(filePath, 'utf-8');
     const patterns = this.analysisPatterns.get('typescript-patterns');
-    
+
     return {
       interfaces: (content.match(patterns.types[0]) || []).length,
       types: (content.match(patterns.types[1]) || []).length,
-      generics: (content.match(patterns.generics[0]) || []).length
+      generics: (content.match(patterns.generics[0]) || []).length,
     };
   }
 
   private async analyzeJavaScript(filePath: string): Promise<any> {
     const content = await fs.readFile(filePath, 'utf-8');
     const patterns = this.analysisPatterns.get('react-patterns');
-    
+
     return {
       components: (content.match(patterns.components[0]) || []).length,
-      hooks: (content.match(patterns.hooks[0]) || []).length
+      hooks: (content.match(patterns.hooks[0]) || []).length,
     };
   }
 
   private async analyzeCSS(filePath: string): Promise<any> {
     const content = await fs.readFile(filePath, 'utf-8');
     const lines = content.split('\n').length;
-    
+
     return {
       lines,
-      selectors: (content.match(/[.#][\w-]+/g) || []).length
+      selectors: (content.match(/[.#][\w-]+/g) || []).length,
     };
   }
 
@@ -533,12 +516,12 @@ export class CodeAnalysisAgent extends EventEmitter {
       const json = JSON.parse(content);
       return {
         keys: Object.keys(json).length,
-        valid: true
+        valid: true,
       };
     } catch (error) {
       return {
         valid: false,
-        error: 'Invalid JSON'
+        error: 'Invalid JSON',
       };
     }
   }

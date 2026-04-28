@@ -45,15 +45,15 @@ export class UIDesignerAgent extends EventEmitter {
           'Include clear call-to-action buttons',
           'Keep message concise and impactful',
           'Ensure mobile responsiveness',
-          'Add subtle animations for engagement'
+          'Add subtle animations for engagement',
         ],
         antiPatterns: [
           'Avoid text walls in hero sections',
-          'Don\'t use low-contrast text',
+          "Don't use low-contrast text",
           'Avoid auto-playing videos with sound',
-          'Don\'t make it too tall on mobile'
+          "Don't make it too tall on mobile",
         ],
-        examples: ['landing-page-hero', 'product-showcase-hero', 'app-hero']
+        examples: ['landing-page-hero', 'product-showcase-hero', 'app-hero'],
       },
       {
         name: 'Card Grid',
@@ -74,14 +74,14 @@ export class UIDesignerAgent extends EventEmitter {
           'Use responsive grid columns',
           'Add hover effects for interactivity',
           'Ensure adequate spacing between cards',
-          'Implement skeleton loading states'
+          'Implement skeleton loading states',
         ],
         antiPatterns: [
           'Avoid inconsistent card sizes',
-          'Don\'t overcrowd the grid',
-          'Avoid too many columns on mobile'
+          "Don't overcrowd the grid",
+          'Avoid too many columns on mobile',
         ],
-        examples: ['product-grid', 'blog-grid', 'team-grid']
+        examples: ['product-grid', 'blog-grid', 'team-grid'],
       },
       {
         name: 'Sidebar Navigation',
@@ -109,14 +109,14 @@ export class UIDesignerAgent extends EventEmitter {
           'Highlight active navigation item',
           'Group related items together',
           'Make it collapsible on mobile',
-          'Add keyboard navigation support'
+          'Add keyboard navigation support',
         ],
         antiPatterns: [
           'Avoid too many navigation levels',
-          'Don\'t hide important actions',
-          'Avoid fixed width on mobile'
+          "Don't hide important actions",
+          'Avoid fixed width on mobile',
         ],
-        examples: ['dashboard-sidebar', 'docs-sidebar', 'app-sidebar']
+        examples: ['dashboard-sidebar', 'docs-sidebar', 'app-sidebar'],
       },
       {
         name: 'Modal Form',
@@ -145,14 +145,14 @@ export class UIDesignerAgent extends EventEmitter {
           'Provide clear labels and instructions',
           'Include validation feedback',
           'Add loading states for submission',
-          'Ensure keyboard accessibility'
+          'Ensure keyboard accessibility',
         ],
         antiPatterns: [
           'Avoid long forms in modals',
-          'Don\'t auto-close without confirmation',
-          'Avoid nested modals'
+          "Don't auto-close without confirmation",
+          'Avoid nested modals',
         ],
-        examples: ['login-modal', 'contact-form-modal', 'settings-modal']
+        examples: ['login-modal', 'contact-form-modal', 'settings-modal'],
       },
       {
         name: 'Data Table',
@@ -189,14 +189,14 @@ export class UIDesignerAgent extends EventEmitter {
           'Add pagination for large datasets',
           'Provide search/filter options',
           'Use zebra striping for readability',
-          'Make it responsive with horizontal scroll'
+          'Make it responsive with horizontal scroll',
         ],
         antiPatterns: [
           'Avoid too many columns',
-          'Don\'t hide important data',
-          'Avoid inline editing without clear UI'
+          "Don't hide important data",
+          'Avoid inline editing without clear UI',
         ],
-        examples: ['user-table', 'transaction-table', 'inventory-table']
+        examples: ['user-table', 'transaction-table', 'inventory-table'],
       },
       {
         name: 'Toast Notification',
@@ -215,45 +215,45 @@ export class UIDesignerAgent extends EventEmitter {
           'Auto-dismiss after appropriate time',
           'Use appropriate variant for message type',
           'Include undo actions when applicable',
-          'Stack multiple toasts vertically'
+          'Stack multiple toasts vertically',
         ],
         antiPatterns: [
           'Avoid blocking important UI',
-          'Don\'t use for critical errors',
-          'Avoid too many simultaneous toasts'
+          "Don't use for critical errors",
+          'Avoid too many simultaneous toasts',
         ],
-        examples: ['success-toast', 'error-toast', 'info-toast']
-      }
+        examples: ['success-toast', 'error-toast', 'info-toast'],
+      },
     ];
 
-    patterns.forEach(pattern => {
+    patterns.forEach((pattern) => {
       this.designPatterns.set(pattern.name.toLowerCase(), pattern);
     });
   }
 
   private loadColorSchemes() {
     this.colorSchemes.set('modern-professional', {
-      primary: '#0F172A',      // Slate-900
-      secondary: '#3B82F6',    // Blue-500
-      accent: '#10B981',       // Emerald-500
+      primary: '#0F172A', // Slate-900
+      secondary: '#3B82F6', // Blue-500
+      accent: '#10B981', // Emerald-500
       background: '#FFFFFF',
       foreground: '#0F172A',
-      muted: '#F1F5F9',        // Slate-100
-      destructive: '#EF4444',  // Red-500
-      warning: '#F59E0B',      // Amber-500
-      success: '#10B981'       // Emerald-500
+      muted: '#F1F5F9', // Slate-100
+      destructive: '#EF4444', // Red-500
+      warning: '#F59E0B', // Amber-500
+      success: '#10B981', // Emerald-500
     });
 
     this.colorSchemes.set('disaster-recovery', {
-      primary: '#DC2626',      // Red-600 - urgency
-      secondary: '#0284C7',    // Sky-600 - trust
-      accent: '#16A34A',       // Green-600 - recovery
+      primary: '#DC2626', // Red-600 - urgency
+      secondary: '#0284C7', // Sky-600 - trust
+      accent: '#16A34A', // Green-600 - recovery
       background: '#FAFAFA',
       foreground: '#18181B',
       muted: '#F4F4F5',
       destructive: '#B91C1C',
       warning: '#EA580C',
-      success: '#15803D'
+      success: '#15803D',
     });
 
     this.colorSchemes.set('dark-mode', {
@@ -265,7 +265,7 @@ export class UIDesignerAgent extends EventEmitter {
       muted: '#27272A',
       destructive: '#F87171',
       warning: '#FCD34D',
-      success: '#34D399'
+      success: '#34D399',
     });
   }
 
@@ -281,8 +281,8 @@ export class UIDesignerAgent extends EventEmitter {
         quarter: 'col-span-12 md:col-span-6 lg:col-span-3',
         twoThirds: 'col-span-12 md:col-span-8',
         sidebar: 'col-span-12 lg:col-span-3',
-        main: 'col-span-12 lg:col-span-9'
-      }
+        main: 'col-span-12 lg:col-span-9',
+      },
     });
 
     this.layoutSystems.set('spacing-system', {
@@ -290,7 +290,7 @@ export class UIDesignerAgent extends EventEmitter {
       container: 'py-8 md:py-12',
       card: 'p-6 md:p-8',
       compact: 'p-4',
-      none: 'p-0'
+      none: 'p-0',
     });
 
     this.layoutSystems.set('typography-scale', {
@@ -301,7 +301,7 @@ export class UIDesignerAgent extends EventEmitter {
       h4: 'text-lg md:text-xl lg:text-2xl font-medium',
       body: 'text-base',
       small: 'text-sm',
-      tiny: 'text-xs'
+      tiny: 'text-xs',
     });
   }
 
@@ -318,32 +318,44 @@ export class UIDesignerAgent extends EventEmitter {
 
     const result = {
       summary: '',
-      designs: [] as any[],
-      colorScheme: {} as any,
-      layout: {} as any,
+      designs: [] as UIDesignPattern[],
+      colorScheme: {} as { primary?: string; [key: string]: unknown },
+      layout: {} as {
+        grid?: unknown;
+        spacing?: unknown;
+        typography?: unknown;
+        breakpoints?: Record<string, string>;
+        structure: {
+          type?: string;
+          sidebar?: boolean;
+          header?: boolean;
+          footer?: boolean;
+          mainContent?: string;
+        };
+      },
       recommendations: [] as string[],
-      mockup: {} as any,
-      confidence: 0.88
+      mockup: {} as Record<string, unknown>,
+      confidence: 0.88,
     };
 
     // Analyze task for design requirements
     const designRequirements = this.analyzeDesignRequirements(task);
-    
+
     // Select appropriate design patterns
     result.designs = this.selectDesignPatterns(designRequirements);
-    
+
     // Choose color scheme
     result.colorScheme = this.selectColorScheme(task);
-    
+
     // Define layout system
     result.layout = this.defineLayoutSystem(designRequirements);
-    
+
     // Generate mockup structure
     result.mockup = this.generateMockup(result.designs, result.layout);
-    
+
     // Provide design recommendations
     result.recommendations = this.generateDesignRecommendations(task, result.designs);
-    
+
     // Create summary
     result.summary = this.createDesignSummary(result);
 
@@ -359,7 +371,7 @@ export class UIDesignerAgent extends EventEmitter {
       accessibility: true,
       animations: false,
       darkMode: false,
-      components: [] as string[]
+      components: [] as string[],
     };
 
     const description = task.description.toLowerCase();
@@ -368,7 +380,8 @@ export class UIDesignerAgent extends EventEmitter {
     if (description.includes('dashboard')) requirements.type = 'dashboard';
     else if (description.includes('landing')) requirements.type = 'landing';
     else if (description.includes('form')) requirements.type = 'form';
-    else if (description.includes('table') || description.includes('data')) requirements.type = 'data';
+    else if (description.includes('table') || description.includes('data'))
+      requirements.type = 'data';
 
     // Check for specific requirements
     if (description.includes('complex') || description.includes('advanced')) {
@@ -387,9 +400,7 @@ export class UIDesignerAgent extends EventEmitter {
 
     // Identify components needed
     const componentKeywords = ['hero', 'card', 'form', 'table', 'navigation', 'sidebar', 'modal'];
-    requirements.components = componentKeywords.filter(keyword => 
-      description.includes(keyword)
-    );
+    requirements.components = componentKeywords.filter((keyword) => description.includes(keyword));
 
     return requirements;
   }
@@ -422,7 +433,7 @@ export class UIDesignerAgent extends EventEmitter {
     }
 
     // Filter out null values
-    return patterns.filter(p => p != null);
+    return patterns.filter((p) => p != null);
   }
 
   private selectColorScheme(task: ResearchTask): any {
@@ -443,7 +454,13 @@ export class UIDesignerAgent extends EventEmitter {
       spacing: this.layoutSystems.get('spacing-system'),
       typography: this.layoutSystems.get('typography-scale'),
       breakpoints: Object.fromEntries(this.responsiveBreakpoints),
-      structure: {} as any
+      structure: {} as {
+        type?: string;
+        sidebar?: boolean;
+        header?: boolean;
+        footer?: boolean;
+        mainContent?: string;
+      },
     };
 
     // Define structure based on complexity
@@ -453,7 +470,7 @@ export class UIDesignerAgent extends EventEmitter {
         sidebar: true,
         header: true,
         footer: true,
-        mainContent: 'flexible'
+        mainContent: 'flexible',
       };
     } else if (requirements.complexity === 'low') {
       layout.structure = {
@@ -461,7 +478,7 @@ export class UIDesignerAgent extends EventEmitter {
         sidebar: false,
         header: true,
         footer: false,
-        mainContent: 'centered'
+        mainContent: 'centered',
       };
     } else {
       layout.structure = {
@@ -469,7 +486,7 @@ export class UIDesignerAgent extends EventEmitter {
         sidebar: requirements.type === 'dashboard',
         header: true,
         footer: true,
-        mainContent: 'contained'
+        mainContent: 'contained',
       };
     }
 
@@ -477,10 +494,14 @@ export class UIDesignerAgent extends EventEmitter {
   }
 
   private generateMockup(designs: UIDesignPattern[], layout: any): any {
-    const mockup = {
-      structure: [] as any[],
-      components: [] as any[],
-      interactions: [] as any[]
+    const mockup: {
+      structure: Array<{ type: string; className: string; content: string }>;
+      components: Array<{ name: string; implementation: string; location: string }>;
+      interactions: string[];
+    } = {
+      structure: [],
+      components: [],
+      interactions: [],
     };
 
     // Build page structure
@@ -488,7 +509,7 @@ export class UIDesignerAgent extends EventEmitter {
       mockup.structure.push({
         type: 'header',
         className: 'sticky top-0 z-50 bg-background border-b',
-        content: 'Navigation bar with logo and menu items'
+        content: 'Navigation bar with logo and menu items',
       });
     }
 
@@ -496,14 +517,14 @@ export class UIDesignerAgent extends EventEmitter {
       mockup.structure.push({
         type: 'sidebar',
         className: 'fixed left-0 w-64 h-full bg-background border-r',
-        content: 'Vertical navigation menu'
+        content: 'Vertical navigation menu',
       });
     }
 
     mockup.structure.push({
       type: 'main',
       className: layout.structure.sidebar ? 'ml-64 p-8' : 'container mx-auto p-8',
-      content: 'Main content area'
+      content: 'Main content area',
     });
 
     // Add components from design patterns
@@ -511,7 +532,7 @@ export class UIDesignerAgent extends EventEmitter {
       mockup.components.push({
         name: design.name,
         implementation: design.implementation,
-        location: design.type === 'navigation' ? 'sidebar/header' : 'main'
+        location: design.type === 'navigation' ? 'sidebar/header' : 'main',
       });
     }
 
@@ -520,7 +541,7 @@ export class UIDesignerAgent extends EventEmitter {
       'Hover effects on interactive elements',
       'Smooth transitions between states',
       'Loading states for async operations',
-      'Error handling with user feedback'
+      'Error handling with user feedback',
     ];
 
     return mockup;
@@ -560,7 +581,7 @@ export class UIDesignerAgent extends EventEmitter {
   private createDesignSummary(result: any): string {
     const patternNames = result.designs.map((d: UIDesignPattern) => d.name).join(', ');
     const colorSchemeName = result.colorScheme.primary ? 'custom scheme' : 'default scheme';
-    
+
     return `Designed UI with ${result.designs.length} patterns (${patternNames}) using ${colorSchemeName} and ${result.layout.structure.type} layout. Generated mockup structure with ${result.recommendations.length} design recommendations.`;
   }
 
