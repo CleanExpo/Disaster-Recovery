@@ -17,6 +17,11 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import type {
+  Formatter,
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 import type { ApplicationsTrendPoint, StatusBreakdownItem } from './AdminDashboardCharts';
 
@@ -71,7 +76,9 @@ export default function AdminDashboardChartsInner({
                   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                 }}
                 labelStyle={{ fontWeight: 600 }}
-                formatter={((value: number) => [value, 'Applications']) as any}
+                formatter={
+                  ((value) => [value, 'Applications']) satisfies Formatter<ValueType, NameType>
+                }
                 labelFormatter={(label) => label}
               />
               <Area
@@ -121,7 +128,9 @@ export default function AdminDashboardChartsInner({
                     border: '1px solid #e5e7eb',
                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                   }}
-                  formatter={((value: number, name: string) => [value, name]) as any}
+                  formatter={
+                    ((value, name) => [value, name]) satisfies Formatter<ValueType, NameType>
+                  }
                 />
               </PieChart>
             </ResponsiveContainer>

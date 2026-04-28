@@ -15,6 +15,11 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import type {
+  Formatter,
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 const STATUS_COLOURS: Record<string, string> = {
   PENDING: '#eab308',
@@ -62,7 +67,7 @@ export function VerificationStatusChart({ data }: { data: StatusDatum[] }) {
             border: '1px solid #e5e7eb',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
           }}
-          formatter={((value: number, name: string) => [value, name]) as any}
+          formatter={((value, name) => [value, name]) satisfies Formatter<ValueType, NameType>}
         />
       </PieChart>
     </ResponsiveContainer>
