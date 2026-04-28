@@ -5,6 +5,7 @@ import { AntigravityFooter } from '@/components/antigravity';
 import { VoiceWidget } from '@/components/voice/VoiceWidget';
 export const dynamic = 'force-dynamic';
 
+import type { ComponentProps } from 'react';
 import { useState, useEffect, Suspense, Fragment } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
@@ -96,7 +97,7 @@ const ONBOARDING_STEPS = [
 /** Build residential restoration sample preset (used for quick-fill). Step components use mixed shapes so we use a loose type. */
 function getResidentialPresetData(): Record<string, unknown> {
   const raw = DEMO_DATA.contractor as Record<string, unknown>;
-  const c = raw as any;
+  const c = raw;
   const ins = c.insurance as Record<string, unknown>;
   const pl = ins?.publicLiability as Record<string, unknown> | undefined;
   const pi = ins?.professionalIndemnity as Record<string, unknown> | undefined;
@@ -182,7 +183,7 @@ function getResidentialPresetData(): Record<string, unknown> {
   return {
     ...c,
     businessInfo: {
-      ...c.businessInfo,
+      ...biz,
       // Ensure Step 1 has a Business Phone when using quick fill
       phone: businessPhone,
     },
@@ -274,7 +275,7 @@ function getResidentialPresetData(): Record<string, unknown> {
         company: (r.company as string) ?? '',
         position: basePosition,
         relationship: (r.relationship as string) ?? 'Client',
-        phone: ((r as any).phone as string) ?? '1300 000 000',
+        phone: (r.phone as string) ?? '1300 000 000',
         email: (r.email as string) ?? 'contact@example.com',
         projectReference: (r.projectReference as string) ?? '',
       };
@@ -320,11 +321,11 @@ function getResidentialPresetData(): Record<string, unknown> {
     measurementTools: ['Moisture meters (pin type)', 'Thermo-hygrometers', 'Infrared cameras'],
     totalEmployees:
       equipment?.team && typeof equipment.team === 'object'
-        ? String((equipment.team as any).technicians ?? 20)
+        ? String((equipment.team as { technicians?: number }).technicians ?? 20)
         : '25',
     certifiedTechnicians:
       equipment?.team && typeof equipment.team === 'object'
-        ? String((equipment.team as any).technicians ?? 20)
+        ? String((equipment.team as { technicians?: number }).technicians ?? 20)
         : '20',
     employees: [
       {
@@ -653,7 +654,8 @@ function ContractorApplicationContent() {
   const validateStep = (step: number): boolean => {
     // Step 1: Business Information must be complete and ABN valid before proceeding
     if (step === 1) {
-      const biz = (onboardingData.businessInfo || {}) as any;
+      const biz: Partial<ContractorOnboardingData['businessInfo']> =
+        onboardingData.businessInfo ?? {};
       const missing: string[] = [];
 
       if (!biz.companyName?.trim()) missing.push('Company Name');
@@ -787,7 +789,9 @@ function ContractorApplicationContent() {
       }
 
       // Step 2: Create Stripe checkout session
-      const businessInfo = (onboardingData as any)?.businessInfo ?? {};
+      const businessInfo: Partial<ContractorOnboardingData['businessInfo']> & {
+        contactName?: string;
+      } = onboardingData.businessInfo ?? {};
       const email: string = businessInfo.email ?? '';
       const name: string = businessInfo.contactName ?? businessInfo.companyName ?? 'Contractor';
 
@@ -852,7 +856,11 @@ function ContractorApplicationContent() {
       case 2:
         return (
           <Step2InsuranceLicensing
-            data={(onboardingData || {}) as any}
+            data={
+              (onboardingData ?? {}) as unknown as ComponentProps<
+                typeof Step2InsuranceLicensing
+              >['data']
+            }
             onNext={(data) => {
               updateStepData(data);
               void handleNext();
@@ -863,7 +871,11 @@ function ContractorApplicationContent() {
       case 3:
         return (
           <Step3ExperienceReferences
-            data={(onboardingData || {}) as any}
+            data={
+              (onboardingData ?? {}) as unknown as ComponentProps<
+                typeof Step3ExperienceReferences
+              >['data']
+            }
             onNext={(data) => {
               updateStepData(data);
               void handleNext();
@@ -874,7 +886,11 @@ function ContractorApplicationContent() {
       case 4:
         return (
           <Step4EquipmentResources
-            data={(onboardingData || {}) as any}
+            data={
+              (onboardingData ?? {}) as unknown as ComponentProps<
+                typeof Step4EquipmentResources
+              >['data']
+            }
             onNext={(data) => {
               updateStepData(data);
               void handleNext();
@@ -890,13 +906,21 @@ function ContractorApplicationContent() {
               void handleNext();
             }}
             onPrevious={handlePrevious}
-            defaultValues={(onboardingData || {}) as any}
+            defaultValues={
+              (onboardingData ?? {}) as unknown as ComponentProps<
+                typeof Step5HealthSafety
+              >['defaultValues']
+            }
           />
         );
       case 6:
         return (
           <Step6BankingPayment
-            data={(onboardingData || {}) as any}
+            data={
+              (onboardingData ?? {}) as unknown as ComponentProps<
+                typeof Step6BankingPayment
+              >['data']
+            }
             onNext={(data) => {
               updateStepData(data);
               void handleNext();
@@ -912,7 +936,11 @@ function ContractorApplicationContent() {
               void handleSubmit();
             }}
             onPrevious={handlePrevious}
-            defaultValues={(onboardingData || {}) as any}
+            defaultValues={
+              (onboardingData ?? {}) as unknown as ComponentProps<
+                typeof Step7ReviewSubmit
+              >['defaultValues']
+            }
             applicationData={onboardingData}
           />
         );

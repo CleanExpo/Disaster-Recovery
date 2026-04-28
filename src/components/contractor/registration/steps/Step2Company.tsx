@@ -4,23 +4,29 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Building2, 
-  MapPin, 
-  Users, 
-  Shield, 
-  Upload, 
-  Plus, 
-  Trash2, 
-  CheckCircle, 
+import {
+  Building2,
+  MapPin,
+  Users,
+  Shield,
+  Upload,
+  Plus,
+  Trash2,
+  CheckCircle,
   AlertCircle,
   FileText,
   Image as ImageIcon,
   Map,
-  Info
+  Info,
 } from 'lucide-react';
 import type { ContractorOnboardingData } from '@/types/contractor';
 import { clientLogger } from '@/lib/observability/client-logger';
@@ -55,11 +61,11 @@ interface TerritorySettings {
 
 export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   const [directors, setDirectors] = useState<Director[]>(
-    data.company?.directors?.map(d => ({
+    data.company?.directors?.map((d) => ({
       name: `${d.firstName} ${d.lastName}`,
       phone: d.phone ?? '',
-      email: d.email
-    })) || [{ name: '', phone: '', email: '' }]
+      email: d.email,
+    })) || [{ name: '', phone: '', email: '' }],
   );
 
   const [insurance, setInsurance] = useState<InsuranceDetails>({
@@ -68,12 +74,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
     piPolicyNumber: '',
     plPolicyNumber: '',
     piExpiryDate: '',
-    plExpiryDate: ''
+    plExpiryDate: '',
   });
 
   const [territory, setTerritory] = useState<TerritorySettings>({
     centerAddress: '',
-    radiusKm: 25
+    radiusKm: 25,
   });
 
   const [certificateFiles, setCertificateFiles] = useState<File[]>([]);
@@ -92,7 +98,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
           centerAddress: data.company.registeredAddress?.street || '',
           centerLat: t.centerPoint?.lat,
           centerLng: t.centerPoint?.lng,
-          radiusKm: t.radiusKm || 25
+          radiusKm: t.radiusKm || 25,
         });
       }
     }
@@ -111,15 +117,15 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   const validateABN = (abn: string): boolean => {
     const weights = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
     const abnDigits = abn.replace(/\D/g, '');
-    
+
     if (abnDigits.length !== 11) return false;
-    
+
     let sum = 0;
     for (let i = 0; i < 11; i++) {
       const digit = parseInt(abnDigits[i]);
       sum += digit * weights[i];
     }
-    
+
     return sum % 89 === 0;
   };
 
@@ -135,7 +141,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
     try {
       const response = await fetch(`/api/contractor/verify-abn?abn=${abn}`);
       const result = await response.json();
-      
+
       if (result.valid) {
         setAbnVerified(true);
         // Auto-fill company name if returned
@@ -161,17 +167,19 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
     }
 
     const fullAddress = `${address.street}, ${address.city}, ${address.state} ${address.postcode}`;
-    
+
     try {
-      const response = await fetch(`/api/contractor/geocode?address=${encodeURIComponent(fullAddress)}`);
+      const response = await fetch(
+        `/api/contractor/geocode?address=${encodeURIComponent(fullAddress)}`,
+      );
       const result = await response.json();
-      
+
       if (result.success) {
-        setTerritory(prev => ({
+        setTerritory((prev) => ({
           ...prev,
           centerAddress: fullAddress,
           centerLat: result.lat,
-          centerLng: result.lng
+          centerLng: result.lng,
         }));
         setAddressVerified(true);
       }
@@ -185,25 +193,27 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
     const newDirectors = [...directors];
     newDirectors[index][field] = value;
     setDirectors(newDirectors);
-    
+
     // Update main data
-    const formattedDirectors = newDirectors.filter(d => d.name).map(d => {
-      const [firstName, ...lastNameParts] = d.name.split(' ');
-      return {
-        firstName: firstName || '',
-        lastName: lastNameParts.join(' ') || '',
-        position: 'Director',
-        email: d.email,
-        phone: d.phone,
-        directorId: ''
-      };
-    });
-    
+    const formattedDirectors = newDirectors
+      .filter((d) => d.name)
+      .map((d) => {
+        const [firstName, ...lastNameParts] = d.name.split(' ');
+        return {
+          firstName: firstName || '',
+          lastName: lastNameParts.join(' ') || '',
+          position: 'Director',
+          email: d.email,
+          phone: d.phone,
+          directorId: '',
+        };
+      });
+
     updateData({
       company: {
         ...data.company,
-        directors: formattedDirectors
-      } as any
+        directors: formattedDirectors,
+      } as ContractorOnboardingData['company'],
     });
   };
 
@@ -222,10 +232,10 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   const handleCertificateUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
-      const validFiles = Array.from(files).filter(file => 
-        file.type === 'application/pdf' || file.type.startsWith('image/')
+      const validFiles = Array.from(files).filter(
+        (file) => file.type === 'application/pdf' || file.type.startsWith('image/'),
       );
-      setCertificateFiles(prev => [...prev, ...validFiles]);
+      setCertificateFiles((prev) => [...prev, ...validFiles]);
     }
   };
 
@@ -237,21 +247,21 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   };
 
   const removeCertificate = (index: number) => {
-    setCertificateFiles(prev => prev.filter((_, i) => i !== index));
+    setCertificateFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   // Update main data when local state changes
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: unknown) => {
     if (field.startsWith('company.')) {
       const companyField = field.replace('company.', '');
       updateData({
         company: {
           ...data.company,
-          [companyField]: value
-        } as any
+          [companyField]: value,
+        } as ContractorOnboardingData['company'],
       });
     } else {
-      updateData({ [field]: value });
+      updateData({ [field]: value } as Partial<ContractorOnboardingData>);
     }
   };
 
@@ -260,8 +270,8 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       <Alert className="bg-blue-50 border-blue-200">
         <Building2 className="h-4 w-4 text-blue-600" />
         <AlertDescription className="text-blue-800">
-          <strong>Company Verification:</strong> Provide your business details for verification. 
-          All information will be validated against official Australian business registers.
+          <strong>Company Verification:</strong> Provide your business details for verification. All
+          information will be validated against official Australian business registers.
         </AlertDescription>
       </Alert>
 
@@ -284,7 +294,9 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="XX XXX XXX XXX"
                 value={formatABN(data.company?.abn || '')}
-                onChange={(e) => handleInputChange('company.abn', e.target.value.replace(/\D/g, ''))}
+                onChange={(e) =>
+                  handleInputChange('company.abn', e.target.value.replace(/\D/g, ''))
+                }
                 className={errors['company.abn'] ? 'border-red-600' : ''}
               />
               <Button
@@ -301,8 +313,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 </div>
               )}
             </div>
-            <p className="text-xs text-gray-700">Australian business/company registration verification</p>
-            {errors['company.abn'] && <p className="text-sm text-red-500">{errors['company.abn']}</p>}
+            <p className="text-xs text-gray-700">
+              Australian business/company registration verification
+            </p>
+            {errors['company.abn'] && (
+              <p className="text-sm text-red-500">{errors['company.abn']}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -350,14 +366,16 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="123 Business Street"
                 value={data.company?.registeredAddress?.street || ''}
-                onChange={(e) => handleInputChange('company.registeredAddress', {
-                  ...data.company?.registeredAddress,
-                  street: e.target.value
-                })}
+                onChange={(e) =>
+                  handleInputChange('company.registeredAddress', {
+                    ...data.company?.registeredAddress,
+                    street: e.target.value,
+                  })
+                }
                 className={errors['company.registeredAddress.street'] ? 'border-red-600' : ''}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="city">
                 City/Suburb <span className="text-red-500">*</span>
@@ -367,26 +385,32 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="Sydney"
                 value={data.company?.registeredAddress?.city || ''}
-                onChange={(e) => handleInputChange('company.registeredAddress', {
-                  ...data.company?.registeredAddress,
-                  city: e.target.value
-                })}
+                onChange={(e) =>
+                  handleInputChange('company.registeredAddress', {
+                    ...data.company?.registeredAddress,
+                    city: e.target.value,
+                  })
+                }
                 className={errors['company.registeredAddress.city'] ? 'border-red-600' : ''}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="state">
                 State <span className="text-red-500">*</span>
               </Label>
               <Select
                 value={data.company?.registeredAddress?.state || ''}
-                onValueChange={(value) => handleInputChange('company.registeredAddress', {
-                  ...data.company?.registeredAddress,
-                  state: value
-                })}
+                onValueChange={(value) =>
+                  handleInputChange('company.registeredAddress', {
+                    ...data.company?.registeredAddress,
+                    state: value,
+                  })
+                }
               >
-                <SelectTrigger className={errors['company.registeredAddress.state'] ? 'border-red-600' : ''}>
+                <SelectTrigger
+                  className={errors['company.registeredAddress.state'] ? 'border-red-600' : ''}
+                >
                   <SelectValue placeholder="Select state" />
                 </SelectTrigger>
                 <SelectContent>
@@ -401,7 +425,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="postcode">
                 Postcode <span className="text-red-500">*</span>
@@ -412,10 +436,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 placeholder="2000"
                 maxLength={4}
                 value={data.company?.registeredAddress?.postcode || ''}
-                onChange={(e) => handleInputChange('company.registeredAddress', {
-                  ...data.company?.registeredAddress,
-                  postcode: e.target.value.replace(/\D/g, '')
-                })}
+                onChange={(e) =>
+                  handleInputChange('company.registeredAddress', {
+                    ...data.company?.registeredAddress,
+                    postcode: e.target.value.replace(/\D/g, ''),
+                  })
+                }
                 className={errors['company.registeredAddress.postcode'] ? 'border-red-600' : ''}
               />
             </div>
@@ -470,7 +496,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   </Button>
                 )}
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
                   <Label>
@@ -483,7 +509,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                     onChange={(e) => updateDirector(index, 'name', e.target.value)}
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>
                     Contact Phone <span className="text-red-500">*</span>
@@ -495,7 +521,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                     onChange={(e) => updateDirector(index, 'phone', e.target.value)}
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Contact Email</Label>
                   <Input
@@ -508,17 +534,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               </div>
             </div>
           ))}
-          
-          <Button
-            type="button"
-            variant="outline"
-            onClick={addDirector}
-            className="w-full"
-          >
+
+          <Button type="button" variant="outline" onClick={addDirector} className="w-full">
             <Plus className="h-4 w-4 mr-2" />
             Add Another Director
           </Button>
-          
+
           <p className="text-xs text-gray-700">Responsible persons for business operations</p>
         </CardContent>
       </Card>
@@ -541,10 +562,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="Insurance Company Name"
                 value={insurance.professionalIndemnityInsurer}
-                onChange={(e) => setInsurance({...insurance, professionalIndemnityInsurer: e.target.value})}
+                onChange={(e) =>
+                  setInsurance({ ...insurance, professionalIndemnityInsurer: e.target.value })
+                }
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label>
                 PI Policy Number <span className="text-red-500">*</span>
@@ -553,10 +576,10 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="POL-123456"
                 value={insurance.piPolicyNumber}
-                onChange={(e) => setInsurance({...insurance, piPolicyNumber: e.target.value})}
+                onChange={(e) => setInsurance({ ...insurance, piPolicyNumber: e.target.value })}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label>
                 Public Liability Insurer <span className="text-red-500">*</span>
@@ -565,10 +588,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="Insurance Company Name"
                 value={insurance.publicLiabilityInsurer}
-                onChange={(e) => setInsurance({...insurance, publicLiabilityInsurer: e.target.value})}
+                onChange={(e) =>
+                  setInsurance({ ...insurance, publicLiabilityInsurer: e.target.value })
+                }
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label>
                 PL Policy Number <span className="text-red-500">*</span>
@@ -577,10 +602,10 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 type="text"
                 placeholder="POL-654321"
                 value={insurance.plPolicyNumber}
-                onChange={(e) => setInsurance({...insurance, plPolicyNumber: e.target.value})}
+                onChange={(e) => setInsurance({ ...insurance, plPolicyNumber: e.target.value })}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label>
                 PI Expiry Date <span className="text-red-500">*</span>
@@ -588,11 +613,11 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               <Input
                 type="date"
                 value={insurance.piExpiryDate}
-                onChange={(e) => setInsurance({...insurance, piExpiryDate: e.target.value})}
+                onChange={(e) => setInsurance({ ...insurance, piExpiryDate: e.target.value })}
                 min={new Date().toISOString().split('T')[0]}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label>
                 PL Expiry Date <span className="text-red-500">*</span>
@@ -600,12 +625,12 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               <Input
                 type="date"
                 value={insurance.plExpiryDate}
-                onChange={(e) => setInsurance({...insurance, plExpiryDate: e.target.value})}
+                onChange={(e) => setInsurance({ ...insurance, plExpiryDate: e.target.value })}
                 min={new Date().toISOString().split('T')[0]}
               />
             </div>
           </div>
-          
+
           {/* Certificates of Currency Upload */}
           <div className="space-y-2">
             <Label>
@@ -620,21 +645,19 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 onChange={handleCertificateUpload}
                 className="hidden"
               />
-              <label
-                htmlFor="certificates"
-                className="flex flex-col items-center cursor-pointer"
-              >
+              <label htmlFor="certificates" className="flex flex-col items-center cursor-pointer">
                 <Upload className="h-8 w-8 text-gray-700 mb-2" />
-                <span className="text-sm text-gray-700">
-                  Click to upload PDF or image files
-                </span>
+                <span className="text-sm text-gray-700">Click to upload PDF or image files</span>
               </label>
             </div>
-            
+
             {certificateFiles.length > 0 && (
               <div className="space-y-2 mt-2">
                 {certificateFiles.map((file, index) => (
-                  <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-2 bg-gray-50 rounded"
+                  >
                     <span className="text-sm">{file.name}</span>
                     <Button
                       type="button"
@@ -648,7 +671,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 ))}
               </div>
             )}
-            
+
             <p className="text-xs text-gray-700">Proof of valid business insurance</p>
           </div>
         </CardContent>
@@ -675,21 +698,21 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   max="200"
                   step="25"
                   value={territory.radiusKm}
-                  onChange={(e) => setTerritory({...territory, radiusKm: parseInt(e.target.value)})}
+                  onChange={(e) =>
+                    setTerritory({ ...territory, radiusKm: parseInt(e.target.value) })
+                  }
                   className="flex-1"
                 />
-                <div className="w-20 text-center font-semibold">
-                  {territory.radiusKm} km
-                </div>
+                <div className="w-20 text-center font-semibold">{territory.radiusKm} km</div>
               </div>
               <div className="grid grid-cols-5 gap-2">
-                {[25, 50, 75, 100, 200].map(radius => (
+                {[25, 50, 75, 100, 200].map((radius) => (
                   <Button
                     key={radius}
                     type="button"
-                    variant={territory.radiusKm === radius ? "default" : "outline"}
+                    variant={territory.radiusKm === radius ? 'default' : 'outline'}
                     size="sm"
-                    onClick={() => setTerritory({...territory, radiusKm: radius})}
+                    onClick={() => setTerritory({ ...territory, radiusKm: radius })}
                   >
                     {radius}km
                   </Button>
@@ -700,7 +723,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               Service area selection for leads and compliance (minimum 25km)
             </p>
           </div>
-          
+
           {addressVerified && (
             <Alert className="bg-green-50 border-green-200">
               <MapPin className="h-4 w-4 text-green-600" />
@@ -732,10 +755,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 onChange={handleLogoUpload}
                 className="hidden"
               />
-              <label
-                htmlFor="logo"
-                className="flex flex-col items-center cursor-pointer"
-              >
+              <label htmlFor="logo" className="flex flex-col items-center cursor-pointer">
                 {logoFile ? (
                   <>
                     <CheckCircle className="h-8 w-8 text-green-600 mb-2" />
@@ -757,25 +777,40 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       </Card>
 
       {/* Validation Summary */}
-      <Alert className={abnVerified && addressVerified && certificateFiles.length > 0 
-        ? "bg-green-50 border-green-300"
-        : "bg-yellow-50 border-yellow-300"}>
-        <Info className={abnVerified && addressVerified && certificateFiles.length > 0 
-          ? "h-4 w-4 text-green-600"
-          : "h-4 w-4 text-yellow-600"} />
-        <AlertDescription className={abnVerified && addressVerified && certificateFiles.length > 0 
-          ? "text-green-800"
-          : "text-yellow-800"}>
+      <Alert
+        className={
+          abnVerified && addressVerified && certificateFiles.length > 0
+            ? 'bg-green-50 border-green-300'
+            : 'bg-yellow-50 border-yellow-300'
+        }
+      >
+        <Info
+          className={
+            abnVerified && addressVerified && certificateFiles.length > 0
+              ? 'h-4 w-4 text-green-600'
+              : 'h-4 w-4 text-yellow-600'
+          }
+        />
+        <AlertDescription
+          className={
+            abnVerified && addressVerified && certificateFiles.length > 0
+              ? 'text-green-800'
+              : 'text-yellow-800'
+          }
+        >
           <strong>Verification Status:</strong>
           <ul className="mt-2 ml-4 list-disc text-sm">
-            <li className={abnVerified ? "text-green-700" : ""}>
-              ABN Verification: {abnVerified ? "✓ Verified" : "Pending"}
+            <li className={abnVerified ? 'text-green-700' : ''}>
+              ABN Verification: {abnVerified ? '✓ Verified' : 'Pending'}
             </li>
-            <li className={addressVerified ? "text-green-700" : ""}>
-              Address Validation: {addressVerified ? "✓ Verified" : "Pending"}
+            <li className={addressVerified ? 'text-green-700' : ''}>
+              Address Validation: {addressVerified ? '✓ Verified' : 'Pending'}
             </li>
-            <li className={certificateFiles.length > 0 ? "text-green-700" : ""}>
-              Insurance Certificates: {certificateFiles.length > 0 ? `✓ ${certificateFiles.length} file(s) uploaded` : "Required"}
+            <li className={certificateFiles.length > 0 ? 'text-green-700' : ''}>
+              Insurance Certificates:{' '}
+              {certificateFiles.length > 0
+                ? `✓ ${certificateFiles.length} file(s) uploaded`
+                : 'Required'}
             </li>
           </ul>
         </AlertDescription>
