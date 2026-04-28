@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { runDailyOrchestrator } from '@/lib/reddit/orchestrator';
 import type { PostCategory } from '@/lib/reddit/reddit-types';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export const maxDuration = 120;
 
@@ -38,6 +39,22 @@ export async function POST(request: NextRequest) {
       dryRun,
       subreddit,
       category,
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/reddit/orchestrator',
+        request_id: log.requestId,
+        command,
+        dry_run: dryRun,
+        subreddit: subreddit ?? null,
+        category: category ?? null,
+        status: result.status,
+      },
     });
 
     return NextResponse.json({
