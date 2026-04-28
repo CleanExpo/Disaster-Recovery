@@ -2,9 +2,23 @@
 
 import Script from 'next/script';
 
+type GtagFn = (...args: unknown[]) => void;
+type FbqFn = (...args: unknown[]) => void;
+type DataLayer = Array<Record<string, unknown>>;
+
+interface AnalyticsWindow extends Window {
+  gtag?: GtagFn;
+  fbq?: FbqFn;
+  dataLayer?: DataLayer;
+}
+
+function getAnalyticsWindow(): AnalyticsWindow | undefined {
+  return typeof window !== 'undefined' ? (window as AnalyticsWindow) : undefined;
+}
+
 export function GoogleAnalytics() {
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX';
-  
+
   if (!GA_ID || GA_ID === 'G-XXXXXXXXXX') {
     return null;
   }
@@ -33,7 +47,7 @@ export function GoogleAnalytics() {
 
 export function GoogleTagManager() {
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-XXXXXXX';
-  
+
   if (!GTM_ID || GTM_ID === 'GTM-XXXXXXX') {
     return null;
   }
@@ -63,7 +77,7 @@ export function GoogleTagManager() {
 
 export function MicrosoftClarity() {
   const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || '';
-  
+
   if (!CLARITY_ID) {
     return null;
   }
@@ -83,7 +97,7 @@ export function MicrosoftClarity() {
 
 export function FacebookPixel() {
   const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || '';
-  
+
   if (!PIXEL_ID) {
     return null;
   }
@@ -107,25 +121,26 @@ export function FacebookPixel() {
 }
 
 // Track custom events
-export function trackEvent(eventName: string, parameters?: Record<string, any>) {
-  if (typeof window !== 'undefined') {
-    // Google Analytics
-    if ((window as any).gtag) {
-      (window as any).gtag('event', eventName, parameters);
-    }
-    
-    // Facebook Pixel
-    if ((window as any).fbq) {
-      (window as any).fbq('track', eventName, parameters);
-    }
-    
-    // Google Tag Manager
-    if ((window as any).dataLayer) {
-      (window as any).dataLayer.push({
-        event: eventName,
-        ...parameters
-      });
-    }
+export function trackEvent(eventName: string, parameters?: Record<string, unknown>) {
+  const w = getAnalyticsWindow();
+  if (!w) return;
+
+  // Google Analytics
+  if (w.gtag) {
+    w.gtag('event', eventName, parameters);
+  }
+
+  // Facebook Pixel
+  if (w.fbq) {
+    w.fbq('track', eventName, parameters);
+  }
+
+  // Google Tag Manager
+  if (w.dataLayer) {
+    w.dataLayer.push({
+      event: eventName,
+      ...parameters,
+    });
   }
 }
 
@@ -135,17 +150,18 @@ export function trackLead(leadData: {
   currency?: string;
   content_name?: string;
   content_category?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   trackEvent('generate_lead', {
     value: leadData.value || 550,
     currency: leadData.currency || 'AUD',
-    ...leadData
+    ...leadData,
   });
-  
+
   // Facebook specific lead event
-  if (typeof window !== 'undefined' && (window as any).fbq) {
-    (window as any).fbq('track', 'Lead', leadData);
+  const w = getAnalyticsWindow();
+  if (w?.fbq) {
+    w.fbq('track', 'Lead', leadData);
   }
 }
 
@@ -154,17 +170,19 @@ export function trackConversion(conversionData: {
   value: number;
   currency?: string;
   transaction_id?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   trackEvent('conversion', {
     currency: 'AUD',
-    ...conversionData
+    ...conversionData,
   });
-  
+
   // Facebook Purchase event
-  if (typeof window !== 'undefined' && (window as any).fbq) {
-    (window as any).fbq('track', 'Purchase', {
+  const w = getAnalyticsWindow();
+  if (w?.fbq) {
+    w.fbq('track', 'Purchase', {
       value: conversionData.value,
-      currency: conversionData.currency || 'AUD' });
+      currency: conversionData.currency || 'AUD',
+    });
   }
 }
