@@ -15,6 +15,35 @@ enum UserType {
   SUPER_ADMIN
 }
 
+/// ClaimStatus — canonical lifecycle states for an InsuranceClaimAU.
+///
+/// B9 (DR-700 audit refresh 2026-04-28): previously `status` was a free-form
+/// `String`. Encoding it as an enum closes the door on typo-driven drift and
+/// gives Prisma a typed surface to reason about. Legal transitions are
+/// enforced at the application layer by `src/lib/claims/state-machine.ts` —
+/// Postgres enforces the value-set, the helper enforces the graph.
+///
+/// Aligned with the lifecycle in `.context/domain-models.md`:
+///   submitted -> triaged -> assigned -> in_progress -> make_safe_complete
+///     -> awaiting_kpi_review -> kpi_passed | kpi_failed -> closed
+///   plus terminal off-happy-path: cancelled, disputed, withdrawn, ineligible
+enum ClaimStatus {
+  draft
+  submitted
+  triaged
+  assigned
+  in_progress
+  make_safe_complete
+  awaiting_kpi_review
+  kpi_passed
+  kpi_failed
+  closed
+  cancelled
+  disputed
+  withdrawn
+  ineligible
+}
+
 enum AustralianState {
   NSW
   VIC
@@ -1422,7 +1451,11 @@ model InsuranceClaimAU {
   totalClaimAmountAUD Float
   approvedAmountAUD   Float?
   paymentAmountAUD    Float?
-  status              String    @default("DRAFT")
+  /// B9 — Prisma-enforced state. Application-layer transitions live in
+  /// `src/lib/claims/state-machine.ts`. Default is `submitted` (the canonical
+  /// "claim has been filed via /claim" state). `draft` exists for voice-agent
+  /// drafts and any future Booking/draft surface.
+  status              ClaimStatus @default(submitted)
   damageDescription   String    @db.Text
   damagePhotos        String[]
   invoiceUrl          String?
@@ -1924,4 +1957,40 @@ model CallTranscript {
 
   @@index([voiceCallId])
   @@index([retentionExpiresAt])
+}
+
+/// WebhookDelivery — idempotency ledger for inbound webhooks.
+///
+/// A8 (DR-700 audit refresh 2026-04-28): Stripe (and any future webhook
+/// provider) MAY redeliver an event multiple times — by spec — under
+/// network failure, retry, or operator replay. The handler MUST treat each
+/// `eventId` exactly once. We do this by inserting one row per event_id
+/// BEFORE business-logic dispatch; a P2002 unique-constraint violation
+/// short-circuits the handler with `{ received: true, idempotent: true }`.
+///
+/// On business-logic failure AFTER the insert, the row is deleted so
+/// Stripe's next retry can succeed (insert-first + delete-on-failure).
+///
+/// Data class: INTERNAL. No raw PII; `payloadHash` is a SHA-256 of the
+/// raw body for forensic correlation only.
+model WebhookDelivery {
+  id           String   @id @default(cuid())
+  /// Provider event id. Stripe: `event.id` (`evt_*`). Unique across the table.
+  eventId      String   @unique
+  /// Provider event type (e.g. `checkout.session.completed`). Indexed for
+  /// ops queries ("how many of X in the last hour").
+  eventType    String
+  /// Origin of the webhook — `stripe`, future: `twilio`, `elevenlabs`, etc.
+  /// Lets the same table dedupe events from multiple providers.
+  provider     String   @default("stripe")
+  /// Stripe `event.livemode`. Test-mode and live-mode events share the
+  /// same `evt_*` namespace, so we keep this for ops triage.
+  livemode     Boolean?
+  /// SHA-256 hex of the raw request body — forensic only, not used for
+  /// dedupe. Optional because a future provider may not pass a payload.
+  payloadHash  String?
+  processedAt  DateTime @default(now())
+
+  @@index([eventType, processedAt])
+  @@index([provider, processedAt])
 }
