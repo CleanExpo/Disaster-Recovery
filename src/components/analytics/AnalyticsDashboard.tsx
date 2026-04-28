@@ -15,7 +15,7 @@ import {
   Settings,
   Download,
   Calendar,
-  BarChart3
+  BarChart3,
 } from 'lucide-react';
 
 // Import all analytics components
@@ -28,8 +28,9 @@ import { ProtectedComponent } from '@/components/auth/ProtectedRoute';
 export function AnalyticsDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const { user } = usePermissions();
-  
-  const canViewFinancials = useHasPermission('company.billing.view') || useHasPermission('portal.billing.manage');
+
+  const canViewFinancials =
+    useHasPermission('company.billing.view') || useHasPermission('portal.billing.manage');
   const canViewAudit = useHasPermission('portal.audit.full') || useHasPermission('audit.logs.view');
   const canBuildReports = useHasPermission('portal.analytics.view');
 
@@ -38,7 +39,7 @@ export function AnalyticsDashboard() {
     kpi: { score: 92, trend: 'up', change: 5 },
     compliance: { score: 95, expiring: 2 },
     financial: { revenue: 125000, expenses: 45000, profit: 80000 },
-    leads: { total: 342, converted: 127, rate: 37.1 }
+    leads: { total: 342, converted: 127, rate: 37.1 },
   };
 
   return (
@@ -88,7 +89,7 @@ export function AnalyticsDashboard() {
         <TabsContent value="overview">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* KPI Summary Card */}
-            <Card 
+            <Card
               className="cursor-pointer hover:shadow-lg transition-shadow"
               onClick={() => setActiveTab('kpi')}
             >
@@ -111,7 +112,7 @@ export function AnalyticsDashboard() {
             </Card>
 
             {/* Compliance Summary Card */}
-            <Card 
+            <Card
               className="cursor-pointer hover:shadow-lg transition-shadow"
               onClick={() => setActiveTab('compliance')}
             >
@@ -136,7 +137,7 @@ export function AnalyticsDashboard() {
 
             {/* Financial Summary Card */}
             <ProtectedComponent permission="company.billing.view">
-              <Card 
+              <Card
                 className="cursor-pointer hover:shadow-lg transition-shadow"
                 onClick={() => setActiveTab('financial')}
               >
@@ -158,7 +159,7 @@ export function AnalyticsDashboard() {
             </ProtectedComponent>
 
             {/* Leads Summary Card */}
-            <Card 
+            <Card
               className="cursor-pointer hover:shadow-lg transition-shadow"
               onClick={() => setActiveTab('leads')}
             >
@@ -190,7 +191,7 @@ export function AnalyticsDashboard() {
                     <Badge className="bg-green-100 text-green-800">1.8h avg</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm">Customer Satisfaction</span>
+                    <span className="text-sm">Client Satisfaction</span>
                     <Badge className="bg-green-100 text-green-800">4.7/5</Badge>
                   </div>
                   <div className="flex justify-between items-center">
@@ -245,7 +246,7 @@ export function AnalyticsDashboard() {
 
         {/* Financial Tab */}
         <TabsContent value="financial">
-          <ProtectedComponent 
+          <ProtectedComponent
             permission="company.billing.view"
             message="You need billing permissions to view financial reports"
           >
@@ -260,7 +261,7 @@ export function AnalyticsDashboard() {
 
         {/* Audit Log Tab */}
         <TabsContent value="audit">
-          <ProtectedComponent 
+          <ProtectedComponent
             permission="audit.logs.view"
             message="You need audit permissions to view audit logs"
           >
@@ -270,7 +271,7 @@ export function AnalyticsDashboard() {
 
         {/* Custom Report Builder Tab */}
         <TabsContent value="custom">
-          <ProtectedComponent 
+          <ProtectedComponent
             permission="portal.analytics.view"
             message="You need admin permissions to build custom reports"
           >
