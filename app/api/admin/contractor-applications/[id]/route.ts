@@ -1,20 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
+import { captureException } from '@/lib/observability/vercel';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(
-  _request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const sessionOrError = await requireAdmin();
   if (sessionOrError instanceof NextResponse) return sessionOrError;
 
   const { id } = await params;
-  const application = await prisma.contractorApplication.findUnique({
-    where: { id },
-  });
+  let application;
+  try {
+    application = await prisma.contractorApplication.findUnique({
+      where: { id },
+    });
+  } catch (e) {
+    captureException(e, {
+      tags: {
+        route: '/api/admin/contractor-applications/[id]',
+        model: 'contractorApplication',
+        op: 'findUnique',
+      },
+    });
+    throw e;
+  }
 
   if (!application) {
     return NextResponse.json({ error: 'Application not found' }, { status: 404 });
@@ -23,10 +33,7 @@ export async function GET(
   return NextResponse.json(application);
 }
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const sessionOrError = await requireAdmin();
   if (sessionOrError instanceof NextResponse) return sessionOrError;
 
@@ -43,13 +50,25 @@ export async function PATCH(
   if (status && !allowedStatuses.includes(status)) {
     return NextResponse.json(
       { error: `status must be one of: ${allowedStatuses.join(', ')}` },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
-  const application = await prisma.contractorApplication.findUnique({
-    where: { id },
-  });
+  let application;
+  try {
+    application = await prisma.contractorApplication.findUnique({
+      where: { id },
+    });
+  } catch (e) {
+    captureException(e, {
+      tags: {
+        route: '/api/admin/contractor-applications/[id]',
+        model: 'contractorApplication',
+        op: 'findUnique',
+      },
+    });
+    throw e;
+  }
 
   if (!application) {
     return NextResponse.json({ error: 'Application not found' }, { status: 404 });
@@ -58,10 +77,22 @@ export async function PATCH(
   const updateData: { status?: string } = {};
   if (status) updateData.status = status;
 
-  const updated = await prisma.contractorApplication.update({
-    where: { id },
-    data: updateData,
-  });
+  let updated;
+  try {
+    updated = await prisma.contractorApplication.update({
+      where: { id },
+      data: updateData,
+    });
+  } catch (e) {
+    captureException(e, {
+      tags: {
+        route: '/api/admin/contractor-applications/[id]',
+        model: 'contractorApplication',
+        op: 'update',
+      },
+    });
+    throw e;
+  }
 
   return NextResponse.json(updated);
 }

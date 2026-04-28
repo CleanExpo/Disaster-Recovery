@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
+import { captureException } from '@/lib/observability/vercel';
 import { format, subDays } from 'date-fns';
 
 export const dynamic = 'force-dynamic';
@@ -12,20 +13,33 @@ export async function GET() {
   const now = new Date();
   const sevenDaysAgo = subDays(now, 6);
 
-  const [byStatus, lastSevenDaysRaw] = await Promise.all([
-    prisma.contractorApplication.groupBy({
-      by: ['status'],
-      _count: { id: true },
-    }),
-    prisma.contractorApplication.findMany({
-      where: { createdAt: { gte: sevenDaysAgo } },
-      select: { createdAt: true },
-    }),
-  ]);
+  let byStatus, lastSevenDaysRaw;
+  try {
+    [byStatus, lastSevenDaysRaw] = await Promise.all([
+      prisma.contractorApplication.groupBy({
+        by: ['status'],
+        _count: { id: true },
+      }),
+      prisma.contractorApplication.findMany({
+        where: { createdAt: { gte: sevenDaysAgo } },
+        select: { createdAt: true },
+      }),
+    ]);
+  } catch (e) {
+    captureException(e, {
+      tags: {
+        route: '/api/admin/contractor-applications/stats',
+        model: 'contractorApplication',
+        op: 'groupBy+findMany',
+      },
+    });
+    throw e;
+  }
 
-  const statusCounts = Object.fromEntries(
-    byStatus.map((r) => [r.status, r._count.id])
-  ) as Record<string, number>;
+  const statusCounts = Object.fromEntries(byStatus.map((r) => [r.status, r._count.id])) as Record<
+    string,
+    number
+  >;
 
   const submitted = statusCounts.SUBMITTED ?? 0;
   const underReview = statusCounts.UNDER_REVIEW ?? 0;
