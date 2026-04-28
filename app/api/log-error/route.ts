@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession, type Session } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 
@@ -9,10 +10,7 @@ export async function POST(req: NextRequest) {
   try {
     body = (await req.json()) as Record<string, unknown>;
   } catch {
-    return NextResponse.json(
-      { error: 'Invalid JSON body' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
   const message = body.message;
@@ -22,17 +20,14 @@ export async function POST(req: NextRequest) {
   const metadata = body.metadata;
 
   if (!message || typeof message !== 'string') {
-    return NextResponse.json(
-      { error: 'Missing required field: message' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Missing required field: message' }, { status: 400 });
   }
 
   try {
     // Session is optional — attach user if we have one, don't fail the log if we don't.
     let session: Session | null = null;
     try {
-      session = await getServerSession();
+      session = await getServerSession(authOptions);
     } catch {
       session = null;
     }
@@ -41,9 +36,7 @@ export async function POST(req: NextRequest) {
     const sanitisedLevel = validLevels.includes(level) ? level : 'error';
 
     const ipAddress =
-      req.headers.get('x-forwarded-for') ||
-      req.headers.get('x-real-ip') ||
-      'unknown';
+      req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
     const userAgent = req.headers.get('user-agent') || 'unknown';
 
     // ── Persist (best-effort) ───────────────────────────────────────────────
@@ -86,8 +79,7 @@ export async function POST(req: NextRequest) {
         errorId: errorLog.id,
       });
     } catch (dbError: unknown) {
-      const errMessage =
-        dbError instanceof Error ? dbError.message : 'Unknown error';
+      const errMessage = dbError instanceof Error ? dbError.message : 'Unknown error';
       console.error('log-error: DB persistence failed, accepting without store:', errMessage);
       // 200 with persisted:false — callers that care can inspect the body.
       // We intentionally do NOT 500 here because error logging is best-effort
@@ -95,17 +87,19 @@ export async function POST(req: NextRequest) {
       // error for the client.
       return NextResponse.json(
         { success: true, persisted: false, reason: 'telemetry_unavailable' },
-        { status: 200 }
+        { status: 200 },
       );
     }
   } catch (error: unknown) {
-    const errMessage =
-      error instanceof Error ? error.message : 'Unknown error';
+    const errMessage = error instanceof Error ? error.message : 'Unknown error';
     log.error('error logging application error', { error: errMessage });
-    captureException(error, { tags: { route: '/api/log-error' }, extra: { requestId: log.requestId } });
+    captureException(error, {
+      tags: { route: '/api/log-error' },
+      extra: { requestId: log.requestId },
+    });
     return NextResponse.json(
       { error: 'Internal server error while logging error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -113,13 +107,10 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/log-error' });
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-      return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
     const { searchParams } = new URL(req.url);
@@ -148,13 +139,12 @@ export async function GET(req: NextRequest) {
       hasMore: offset + limit < totalCount,
     });
   } catch (error: unknown) {
-    const errMessage =
-      error instanceof Error ? error.message : 'Unknown error';
+    const errMessage = error instanceof Error ? error.message : 'Unknown error';
     log.error('error fetching error logs', { error: errMessage });
-    captureException(error, { tags: { route: '/api/log-error' }, extra: { requestId: log.requestId } });
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    captureException(error, {
+      tags: { route: '/api/log-error' },
+      extra: { requestId: log.requestId },
+    });
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
