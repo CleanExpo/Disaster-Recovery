@@ -9,47 +9,52 @@ interface MousePosition {
 
 export function useThrottledMouse(
   containerRef?: React.RefObject<HTMLElement>,
-  throttleMs: number = 16 // ~60fps
+  throttleMs: number = 16, // ~60fps
 ): MousePosition {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const lastUpdateTime = useRef(0);
   const rafId = useRef<number>();
 
-  const updateMousePosition = useCallback((e: MouseEvent) => {
-    const now = Date.now();
-    
-    // Throttle updates
-    if (now - lastUpdateTime.current < throttleMs) {
-      return;
-    }
+  const updateMousePosition = useCallback(
+    (e: MouseEvent) => {
+      const now = Date.now();
 
-    if (rafId.current) {
-      cancelAnimationFrame(rafId.current);
-    }
-
-    rafId.current = requestAnimationFrame(() => {
-      if (containerRef?.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: (e.clientX - rect.left) / rect.width,
-          y: (e.clientY - rect.top) / rect.height });
-      } else {
-        setMousePosition({
-          x: e.clientX / window.innerWidth,
-          y: e.clientY / window.innerHeight });
+      // Throttle updates
+      if (now - lastUpdateTime.current < throttleMs) {
+        return;
       }
-      lastUpdateTime.current = now;
-    });
-  }, [containerRef, throttleMs]);
+
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+
+      rafId.current = requestAnimationFrame(() => {
+        if (containerRef?.current) {
+          const rect = containerRef.current.getBoundingClientRect();
+          setMousePosition({
+            x: (e.clientX - rect.left) / rect.width,
+            y: (e.clientY - rect.top) / rect.height,
+          });
+        } else {
+          setMousePosition({
+            x: e.clientX / window.innerWidth,
+            y: e.clientY / window.innerHeight,
+          });
+        }
+        lastUpdateTime.current = now;
+      });
+    },
+    [containerRef, throttleMs],
+  );
 
   useEffect(() => {
-    const target = containerRef?.current || window;
-    const eventTarget = target instanceof Window ? window : target;
+    const eventTarget: Window | HTMLElement = containerRef?.current ?? window;
+    const handler = updateMousePosition as EventListener;
 
-    eventTarget.addEventListener('mousemove', updateMousePosition as any);
+    eventTarget.addEventListener('mousemove', handler);
 
     return () => {
-      eventTarget.removeEventListener('mousemove', updateMousePosition as any);
+      eventTarget.removeEventListener('mousemove', handler);
       if (rafId.current) {
         cancelAnimationFrame(rafId.current);
       }
