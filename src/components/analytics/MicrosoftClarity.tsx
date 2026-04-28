@@ -13,7 +13,10 @@ export function MicrosoftClarity() {
     <Script
       id="microsoft-clarity"
       type="text/partytown"
-      strategy="afterInteractive"
+      // C5 perf (DR-700, 2026-04-29): lazyOnload (was afterInteractive).
+      // Clarity is a session-recording / heatmap tool with no first-paint
+      // dependency. Defers ~120-250ms of script eval off the TTI critical path.
+      strategy="lazyOnload"
       dangerouslySetInnerHTML={{
         __html: `
           (function(c,l,a,r,i,t,y){
