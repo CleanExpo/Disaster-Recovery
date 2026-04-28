@@ -5,9 +5,6 @@ const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'tr
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   async redirects() {
     return [
       { source: '/for/:path*', destination: '/for-business/:path*', permanent: true },
