@@ -15,6 +15,11 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import type {
+  Formatter,
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 export type PieDatum = { name: string; value: number; fill: string };
 export type CategoryStat = { name: string; count: number };
@@ -45,7 +50,9 @@ export function CategoryPieChart({ data }: { data: PieDatum[] }) {
             border: '1px solid #e5e7eb',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
           }}
-          formatter={((value: number, name: string) => [value, `${name} items`]) as any}
+          formatter={
+            ((value, name) => [value, `${name} items`]) satisfies Formatter<ValueType, NameType>
+          }
         />
       </PieChart>
     </ResponsiveContainer>
@@ -71,7 +78,7 @@ export function CategoryBarChart({ data }: { data: CategoryStat[] }) {
             border: '1px solid #e5e7eb',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
           }}
-          formatter={((value: number) => [value, 'Items']) as any}
+          formatter={((value) => [value, 'Items']) satisfies Formatter<ValueType, NameType>}
         />
         <Bar dataKey="count" name="Items" fill="#10b981" radius={[4, 4, 0, 0]} />
       </BarChart>
