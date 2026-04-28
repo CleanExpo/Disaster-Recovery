@@ -266,6 +266,19 @@ const ClientCommunicationWorkflow: React.FC = () => {
     );
   };
 
+  // A7 (audit P2): all interpolations into the email-preview HTML pass through
+  // this escape helper to prevent XSS from user-controlled fields (tech.name,
+  // tech.bio, service.description, service.requirements, etc.). The output
+  // still feeds `dangerouslySetInnerHTML` because we control the structural
+  // markup ourselves; only the data values are escaped.
+  const escapeHtml = (value: unknown): string =>
+    String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
   const generateEmailPreview = (communication: ClientCommunication) => {
     // Generate HTML preview
     let html = `
@@ -286,7 +299,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
       </head>
       <body>
         <div class="header">
-          <h1>${communication.content.subject}</h1>
+          <h1>${escapeHtml(communication.content.subject)}</h1>
         </div>
         <div class="content">
     `;
@@ -296,12 +309,12 @@ const ClientCommunicationWorkflow: React.FC = () => {
       communication.content.technicianProfiles.forEach((tech) => {
         html += `
           <div class="team-member">
-            <img src="${tech.photo || '/api/placeholder/80/80'}" alt="${tech.name}">
+            <img src="${escapeHtml(tech.photo || '/api/placeholder/80/80')}" alt="${escapeHtml(tech.name)}">
             <div>
-              <h3>${tech.name} - ${tech.role}</h3>
-              <p>${tech.bio}</p>
+              <h3>${escapeHtml(tech.name)} - ${escapeHtml(tech.role)}</h3>
+              <p>${escapeHtml(tech.bio)}</p>
               <div class="credentials">
-                ${tech.credentials.map((c) => `<span class="credential">${c}</span>`).join('')}
+                ${tech.credentials.map((c) => `<span class="credential">${escapeHtml(c)}</span>`).join('')}
               </div>
               ${tech.isExpertBackup ? '<p style="colour: #059669; font-weight: bold;">✓ Senior Expert on Call</p>' : ''}
             </div>
@@ -315,14 +328,14 @@ const ClientCommunicationWorkflow: React.FC = () => {
       communication.content.serviceDetails.forEach((service) => {
         html += `
           <div class="service-box">
-            <h3>${service.serviceType}</h3>
-            <p>${service.description}</p>
-            <p><strong>Expected Duration:</strong> ${service.expectedDuration}</p>
+            <h3>${escapeHtml(service.serviceType)}</h3>
+            <p>${escapeHtml(service.description)}</p>
+            <p><strong>Expected Duration:</strong> ${escapeHtml(service.expectedDuration)}</p>
             ${
               service.requirements
                 ? `
               <p><strong>Requirements:</strong></p>
-              <ul>${service.requirements.map((r) => `<li>${r}</li>`).join('')}</ul>
+              <ul>${service.requirements.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>
             `
                 : ''
             }
@@ -330,7 +343,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               service.reminders
                 ? `
               <p><strong>Important Reminders:</strong></p>
-              <ul>${service.reminders.map((r) => `<li>${r}</li>`).join('')}</ul>
+              <ul>${service.reminders.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>
             `
                 : ''
             }
