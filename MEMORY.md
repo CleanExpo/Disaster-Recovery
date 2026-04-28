@@ -3,6 +3,44 @@
 Living sprint + project log. Newest entry at the top. Keep under
 200 lines; archive older entries into `planning/memory-archive/`.
 
+## 2026-04-28 — ADR-014 Path A cutover (remove escrow + Connect surface)
+
+Path A confirmed as the funds-flow architecture (DR is NOT party to
+client → contractor restoration payments; DR collects only
+subscription + platform fee FROM the contractor). The drifted Path B
+surface was removed in a single PR.
+
+Removed:
+
+- `app/api/contractors/release-payment/route.ts` (475-line KPI release
+  engine — held / partial-released / fully-released / refunded
+  states, Stripe transfer issuance).
+- `ContractorProfile.stripeConnectAccountId` Prisma field; migration
+  `20260428007000_drop_stripe_connect_account_id` drops the live
+  column (`IF EXISTS`, applied via Supabase SQL Editor by Phill).
+- `MockEmailService.sendPaymentReleasedNotification` (only caller was
+  the deleted route).
+
+Kept (still Path A):
+
+- `PRICING_CONSTANTS.CALLOUT_FEE` etc. — INDICATIVE pricing only, used
+  for "from $X" marketing ranges. Comment block at the constant says
+  so explicitly. Do not reintroduce client-side Stripe Checkout
+  settling to DR.
+- `PRICING_CONSTANTS.SUBSCRIPTION_TIERS`, `APPLICATION_FEE`,
+  `JOINING_FEE` — contractor-side payments, on DR's side of the funds
+  flow.
+
+Flagged for follow-up (NOT modified):
+
+- `app/api/voice/tools/send-payment-link/route.ts` — still issues a
+  Stripe Checkout session for the callout fee against DR's account.
+  Already `VOICE_AGENT_ENABLED=false` gated and never fires in
+  prod. Either remove or redirect to contractor-side surface once
+  one exists. Behaviour change → requires Phill confirmation.
+
+See @docs/adr/ADR-014-funds-flow-path-a.md.
+
 ## 2026-04-27 — Full-day sprint: P0 fix, schema audit, email DKIM, both DR domains linked
 
 **Outcome:** 23 PRs merged, 1 production migration deployed, 0 incidents.
