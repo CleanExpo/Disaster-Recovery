@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export async function GET(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/contractor/leads' });
@@ -207,6 +208,21 @@ export async function POST(request: NextRequest) {
           actionedAt: new Date().toISOString(),
           message: message || null,
         }),
+      },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/contractor/leads',
+        method: 'POST',
+        request_id: log.requestId,
+        lead_id: leadId,
+        action,
+        contractor_id: user.id,
       },
     });
 

@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 // Force dynamic + Node runtime — prevents Vercel from serving a cached
 // 500.html for this route. (Bug surfaced 2026-04-28: live response had
@@ -39,6 +40,19 @@ export async function POST(req: Request) {
         email,
         password: hashedPassword,
         userType: 'ADMIN',
+      },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/auth/signup',
+        request_id: log.requestId,
+        user_id: user.id,
+        email_hash: email ? hashIdentifier(email) : null,
       },
     });
 

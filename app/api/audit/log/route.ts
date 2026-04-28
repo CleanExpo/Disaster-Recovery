@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const CreateAuditLogSchema = z.object({
   action: z.string().min(1),
@@ -41,6 +42,20 @@ export async function POST(req: NextRequest) {
           req.headers.get('x-real-ip') ??
           null,
         userAgent: req.headers.get('user-agent') ?? null,
+      },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/audit/log',
+        request_id: log.requestId,
+        audit_log_id: auditLog.id,
+        action,
+        resource,
       },
     });
 

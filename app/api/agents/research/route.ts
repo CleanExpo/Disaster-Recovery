@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ResearchPlannerAgent } from '@/lib/agents/research-planner';
 import type { ResearchTask } from '@/lib/agents/research-planner/types';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 // Initialize the research planner agent
 const researchPlanner = new ResearchPlannerAgent();
@@ -34,6 +35,19 @@ export async function POST(request: NextRequest) {
 
     // Execute research
     const result = await researchPlanner.planResearch(researchTask);
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/agents/research',
+        request_id: log.requestId,
+        task_id: researchTask.id,
+        task_type: researchTask.type,
+      },
+    });
 
     return NextResponse.json({
       success: true,

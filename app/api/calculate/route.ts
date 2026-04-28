@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const MINIMUM_EX_GST = 2750;
 const GST_RATE = 0.1;
@@ -267,6 +268,18 @@ export async function POST(request: NextRequest) {
     };
 
     const calculationResult = calculators[job_type](inputs);
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/calculate',
+        request_id: log.requestId,
+        job_type,
+        total_inc_gst: calculationResult.total_inc_gst,
+      },
+    });
     return NextResponse.json(calculationResult);
   } catch (err) {
     log.error('calculation failed', {

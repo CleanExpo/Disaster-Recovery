@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { calculateLeadValue, assignLeadToPartner } from '@/lib/lead-management';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/leads/capture' });
@@ -135,6 +136,21 @@ export async function POST(request: NextRequest) {
       }
     });
     
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/leads/capture',
+        request_id: log.requestId,
+        lead_id: lead.id,
+        lead_score: leadScore,
+        email_hash: data.email ? hashIdentifier(data.email) : null,
+        assigned_partner: partner?.id ?? null,
+      },
+    });
+
     return NextResponse.json({
       success: true,
       leadId: lead.id,

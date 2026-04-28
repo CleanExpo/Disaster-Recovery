@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
 import { captureException } from '@/lib/observability/vercel';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export const dynamic = 'force-dynamic';
 
@@ -93,6 +94,19 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     });
     throw e;
   }
+
+  await logComplianceEvent({
+    eventType: 'api_route_invocation',
+    correlationId: '00000000-0000-0000-0000-000000000000',
+    correlationType: 'system',
+    entityType: 'system',
+    metadata: {
+      route: '/api/admin/contractor-applications/[id]',
+      method: 'PATCH',
+      application_id: id,
+      new_status: status ?? null,
+    },
+  });
 
   return NextResponse.json(updated);
 }
