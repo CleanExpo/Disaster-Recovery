@@ -95,7 +95,11 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
 // GAP-044 / DR-547: Crawl-critical paths that must always be publicly accessible.
 // These are excluded from the matcher below, but this guard handles edge-runtime
 // scenarios where the middleware fires unexpectedly (e.g. CDN cache miss fallback).
-const ALWAYS_PUBLIC = ['/robots.txt', '/sitemap.xml', '/sitemap-index.xml'];
+//
+// `/api/log-error` is included so client-side error telemetry never has middleware
+// interference (CORS / cache-control mutation on POST) cascading into a 500 — the
+// route owns its own validation and is best-effort by design.
+const ALWAYS_PUBLIC = ['/robots.txt', '/sitemap.xml', '/sitemap-index.xml', '/api/log-error'];
 
 // Known search-engine crawler user-agent fragments (GAP-044).
 const CRAWLER_UA_RE = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot/i;
@@ -145,8 +149,15 @@ export async function middleware(request: NextRequest) {
     );
   }
 
-  // ── RBAC: protect /admin and /contractor routes ──────────────────────────
-  const isProtected = path.startsWith('/admin') || path.startsWith('/contractor');
+  // ── RBAC: protect /admin, /api/admin, /api/analytics, /contractor routes ─
+  // API surfaces (/api/admin, /api/analytics) get a JSON 401/403 instead of a
+  // login redirect — browsers + fetch clients both handle that cleanly, and the
+  // smoke suite asserts the gate runs before the route handler.
+  const isAdminPage = path.startsWith('/admin');
+  const isAdminApi = path.startsWith('/api/admin');
+  const isAnalyticsApi = path.startsWith('/api/analytics');
+  const isContractorPage = path.startsWith('/contractor') && !path.startsWith('/api/');
+  const isProtected = isAdminPage || isAdminApi || isAnalyticsApi || isContractorPage;
 
   if (isProtected) {
     // Safely resolve the JWT — if NEXTAUTH_SECRET is absent or token is malformed,
@@ -161,19 +172,27 @@ export async function middleware(request: NextRequest) {
       token = null;
     }
 
+    const isApi = isAdminApi || isAnalyticsApi;
+
     if (!token) {
-      // Not authenticated — redirect to login
+      if (isApi) {
+        return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+      }
+      // Not authenticated — redirect browser users to login
       const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('callbackUrl', path);
       return NextResponse.redirect(loginUrl);
     }
 
-    // /admin routes additionally require an admin role
+    // /admin + /api/admin additionally require an admin role
     const tokenRole =
       typeof token === 'object'
         ? ((token as Record<string, unknown>).role as string | undefined)
         : undefined;
-    if (path.startsWith('/admin') && !isAdminRole(tokenRole)) {
+    if ((isAdminPage || isAdminApi) && !isAdminRole(tokenRole)) {
+      if (isApi) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+      }
       const homeUrl = new URL('/', request.url);
       homeUrl.searchParams.set('error', 'AccessDenied');
       return NextResponse.redirect(homeUrl);

@@ -1,16 +1,18 @@
 'use client';
 
-import React, { 
-  lazy, 
-  Suspense, 
-  useMemo, 
-  useCallback, 
-  useRef, 
-  useEffect, 
-  useState 
-} from 'react';
+import React, { lazy, Suspense, useMemo, useCallback, useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+
+// Chrome-only `performance.memory` extension — not in lib.dom.
+interface PerformanceMemory {
+  readonly usedJSHeapSize: number;
+  readonly totalJSHeapSize: number;
+  readonly jsHeapSizeLimit: number;
+}
+interface PerformanceWithMemory extends Performance {
+  readonly memory?: PerformanceMemory;
+}
 
 // Performance monitoring hook
 export function usePerformanceMonitor() {
@@ -18,7 +20,7 @@ export function usePerformanceMonitor() {
     fps: 0,
     frameTime: 0,
     memoryUsage: 0,
-    renderCount: 0
+    renderCount: 0,
   });
 
   const frameCountRef = useRef(0);
@@ -27,29 +29,30 @@ export function usePerformanceMonitor() {
 
   useEffect(() => {
     let animationId: number;
-    
+
     const measurePerformance = () => {
       const now = performance.now();
       const deltaTime = now - lastTimeRef.current;
-      
+
       frameCountRef.current++;
       renderCountRef.current++;
-      
+
       // Update FPS every second
       if (deltaTime >= 1000) {
         const fps = Math.round((frameCountRef.current * 1000) / deltaTime);
         const frameTime = deltaTime / frameCountRef.current;
-        
+
         // Get memory usage if available
-        const memoryUsage = (performance as any).memory 
-          ? Math.round((performance as any).memory.usedJSHeapSize / 1048576)
+        const perfWithMemory = performance as PerformanceWithMemory;
+        const memoryUsage = perfWithMemory.memory
+          ? Math.round(perfWithMemory.memory.usedJSHeapSize / 1048576)
           : 0;
 
         setMetrics({
           fps,
           frameTime: Math.round(frameTime * 100) / 100,
           memoryUsage,
-          renderCount: renderCountRef.current
+          renderCount: renderCountRef.current,
         });
 
         frameCountRef.current = 0;
@@ -79,23 +82,19 @@ interface LazyComponentProps {
   rootMargin?: string;
 }
 
-export function LazyLoadComponent({ 
-  children, 
-  fallback = <div className="animate-pulse bg-gray-200 rounded-lg h-32" />, 
+export function LazyLoadComponent({
+  children,
+  fallback = <div className="animate-pulse bg-gray-200 rounded-lg h-32" />,
   threshold = 0.1,
-  rootMargin = '100px'
+  rootMargin = '100px',
 }: LazyComponentProps) {
   const [ref, inView] = useInView({
     threshold,
     rootMargin,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
-  return (
-    <div ref={ref}>
-      {inView ? children : fallback}
-    </div>
-  );
+  return <div ref={ref}>{inView ? children : fallback}</div>;
 }
 
 // GPU-accelerated animation wrapper
@@ -105,16 +104,15 @@ interface GPUAcceleratedProps {
   className?: string;
 }
 
-export function GPUAccelerated({ 
-  children, 
-  enabled = true, 
-  className = '' 
-}: GPUAcceleratedProps) {
-  const style = enabled ? {
-    transform: 'translateZ(0)',
-    willChange: 'transform, opacity',
-    backfaceVisibility: 'hidden' as const,
-    perspective: 1000 } : {};
+export function GPUAccelerated({ children, enabled = true, className = '' }: GPUAcceleratedProps) {
+  const style = enabled
+    ? {
+        transform: 'translateZ(0)',
+        willChange: 'transform, opacity',
+        backfaceVisibility: 'hidden' as const,
+        perspective: 1000,
+      }
+    : {};
 
   return (
     <div className={className} style={style}>
@@ -139,7 +137,7 @@ export function OptimizedAnimation({
   initial,
   transition,
   className = '',
-  respectReducedMotion = true
+  respectReducedMotion = true,
 }: OptimizedAnimationProps) {
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -161,8 +159,8 @@ export function OptimizedAnimation({
   // Simplified animation for reduced motion preference
   const optimizedAnimate = reducedMotion ? { opacity: 1 } : animate;
   const optimizedInitial = reducedMotion ? { opacity: 0 } : initial;
-  const optimizedTransition = reducedMotion 
-    ? { duration: 0.2, ease: 'linear' } 
+  const optimizedTransition = reducedMotion
+    ? { duration: 0.2, ease: 'linear' }
     : { ...transition, ease: 'easeOut' };
 
   return (
@@ -214,7 +212,7 @@ export function useOptimizedScroll(callback: (scrollY: number) => void, delay = 
 export function MemoizedComponent<T extends Record<string, any>>({
   component: Component,
   props,
-  deps = []
+  deps = [],
 }: {
   component: React.ComponentType<T>;
   props: T;
@@ -237,7 +235,7 @@ export function VirtualList<T>({
   itemHeight,
   containerHeight,
   renderItem,
-  className = ''
+  className = '',
 }: VirtualListProps<T>) {
   const [scrollTop, setScrollTop] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -245,7 +243,7 @@ export function VirtualList<T>({
   const visibleStart = Math.floor(scrollTop / itemHeight);
   const visibleEnd = Math.min(
     visibleStart + Math.ceil(containerHeight / itemHeight) + 1,
-    items.length
+    items.length,
   );
 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
@@ -269,13 +267,11 @@ export function VirtualList<T>({
             position: 'absolute',
             top: 0,
             left: 0,
-            right: 0 }}
+            right: 0,
+          }}
         >
           {items.slice(visibleStart, visibleEnd).map((item, index) => (
-            <div
-              key={visibleStart + index}
-              style={{ height: itemHeight }}
-            >
+            <div key={visibleStart + index} style={{ height: itemHeight }}>
               {renderItem(item, visibleStart + index)}
             </div>
           ))}
@@ -303,12 +299,12 @@ export function OptimizedImage({
   height,
   className = '',
   priority = false,
-  quality = 75
+  quality = 75,
 }: OptimizedImageProps) {
   const [ref, inView] = useInView({
     threshold: 0.1,
     rootMargin: '50px',
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   const [loaded, setLoaded] = useState(false);
@@ -328,9 +324,7 @@ export function OptimizedImage({
             alt={alt}
             width={width}
             height={height}
-            className={`transition-opacity duration-300 ${
-              loaded ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={() => setLoaded(true)}
             onError={() => setError(true)}
             loading={priority ? 'eager' : 'lazy'}
@@ -340,14 +334,14 @@ export function OptimizedImage({
           />
         </picture>
       )}
-      
+
       {/* Placeholder while loading */}
       {!loaded && !error && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
           <div className="text-gray-600 text-sm">Loading...</div>
         </div>
       )}
-      
+
       {/* Error fallback */}
       {error && (
         <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
@@ -367,11 +361,11 @@ export function useResourcePreloader(resources: string[]) {
       const link = document.createElement('link');
       link.rel = 'prefetch';
       link.href = url;
-      
+
       link.onload = () => {
-        setLoadedResources(prev => new Set([...prev, url]));
+        setLoadedResources((prev) => new Set([...prev, url]));
       };
-      
+
       document.head.appendChild(link);
     };
 
@@ -379,7 +373,7 @@ export function useResourcePreloader(resources: string[]) {
 
     return () => {
       // Cleanup prefetch links
-      resources.forEach(url => {
+      resources.forEach((url) => {
         const existingLink = document.querySelector(`link[href="${url}"]`);
         if (existingLink) {
           existingLink.remove();
@@ -390,7 +384,7 @@ export function useResourcePreloader(resources: string[]) {
 
   return {
     loadedResources,
-    allLoaded: loadedResources.size === resources.length
+    allLoaded: loadedResources.size === resources.length,
   };
 }
 
@@ -410,7 +404,12 @@ export function PerformanceDashboard({ enabled = false }: { enabled?: boolean })
       transition={{ duration: 0.3 }}
     >
       <div className="space-y-1">
-        <div>FPS: <span className={metrics.fps < 50 ? 'text-red-600' : 'text-emerald-600'}>{metrics.fps}</span></div>
+        <div>
+          FPS:{' '}
+          <span className={metrics.fps < 50 ? 'text-red-600' : 'text-emerald-600'}>
+            {metrics.fps}
+          </span>
+        </div>
         <div>Frame Time: {metrics.frameTime}ms</div>
         <div>Memory: {metrics.memoryUsage}MB</div>
         <div>Renders: {metrics.renderCount}</div>
@@ -431,27 +430,24 @@ export default function PerformanceOptimizer({
   children,
   enableGPUAcceleration = true,
   enableLazyLoading = true,
-  showDashboard = false
+  showDashboard = false,
 }: PerformanceProviderProps) {
   // Global performance optimizations
   useEffect(() => {
     // Enable CSS containment where supported
     document.documentElement.style.contain = 'layout style paint';
-    
+
     // Optimise font loading
     if ('fonts' in document) {
-      (document as any).fonts.ready.then(() => {
+      document.fonts.ready.then(() => {
         document.documentElement.classList.add('fonts-loaded');
       });
     }
 
     // Preconnect to external domains
-    const preconnectDomains = [
-      'https://fonts.googleapis.com',
-      'https://fonts.gstatic.com'
-    ];
+    const preconnectDomains = ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'];
 
-    preconnectDomains.forEach(domain => {
+    preconnectDomains.forEach((domain) => {
       const link = document.createElement('link');
       link.rel = 'preconnect';
       link.href = domain;
@@ -467,14 +463,8 @@ export default function PerformanceOptimizer({
 
   return (
     <>
-      {enableGPUAcceleration ? (
-        <GPUAccelerated>
-          {children}
-        </GPUAccelerated>
-      ) : (
-        children
-      )}
-      
+      {enableGPUAcceleration ? <GPUAccelerated>{children}</GPUAccelerated> : children}
+
       <PerformanceDashboard enabled={showDashboard} />
     </>
   );
