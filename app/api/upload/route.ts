@@ -4,6 +4,7 @@ import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { existsSync } from 'fs';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 // Note: In Next.js 13+ App Router, body parsing is handled automatically
 // No need for the deprecated config export
@@ -56,6 +57,22 @@ export async function POST(request: NextRequest) {
     const filePath = path.join(uploadDir, filename);
     await writeFile(filePath, optimizedBuffer);
 
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/upload',
+        method: 'POST',
+        request_id: log.requestId,
+        filename,
+        original_size: stats.originalSize,
+        optimized_size: stats.optimizedSize,
+        format,
+      },
+    });
+
     // Return success response with stats
     return NextResponse.json({
       success: true,
@@ -91,6 +108,19 @@ export async function PUT(request: NextRequest) {
 
     const results = await ImageOptimizer.batchOptimize(directory, options);
     
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/upload',
+        method: 'PUT',
+        request_id: log.requestId,
+        optimized_count: results.length,
+      },
+    });
+
     return NextResponse.json({
       success: true,
       optimized: results.length,

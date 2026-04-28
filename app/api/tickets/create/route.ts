@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/tickets/create' });
@@ -46,6 +47,22 @@ export async function POST(request: NextRequest) {
         status: 'PENDING',
         leadScore,
         tenantId: null,
+      },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: serviceRequest.id,
+      correlationType: 'system',
+      entityType: 'customer',
+      metadata: {
+        route: '/api/tickets/create',
+        request_id: log.requestId,
+        ticket_id: serviceRequest.id,
+        urgency: body.urgencyLevel,
+        urgent_response: isUrgent,
+        lead_score: leadScore,
+        email_hash: body.email ? hashIdentifier(String(body.email)) : null,
       },
     });
 

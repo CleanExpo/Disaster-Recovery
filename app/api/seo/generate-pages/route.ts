@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateLocationCombinations, calculatePagePriority, getEstimatedSearchVolume } from '@/lib/seo/locations';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 function buildPageList(combinations: ReturnType<typeof generateLocationCombinations>) {
   return combinations.map((combo, index) => {
@@ -45,6 +46,20 @@ export async function POST(req: NextRequest) {
     const fullList = buildPageList(combinations);
     const filtered = fullList.filter((p) => p.priorityScore >= priority);
     const generated = filtered.slice(0, limit);
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/seo/generate-pages',
+        request_id: log.requestId,
+        generated_count: generated.length,
+        limit,
+        priority,
+      },
+    });
 
     return NextResponse.json({
       success: true,

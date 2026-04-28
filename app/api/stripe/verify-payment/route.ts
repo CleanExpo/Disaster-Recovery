@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { stripe, isStripeConfigured } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -94,6 +95,22 @@ export async function POST(req: NextRequest) {
         });
       }
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'contractor',
+      metadata: {
+        route: '/api/stripe/verify-payment',
+        request_id: log.requestId,
+        stripe_session_id: sessionId,
+        contractor_id: contractorId,
+        payment_status: session.payment_status,
+        amount_total: session.amount_total,
+        currency: session.currency,
+      },
+    });
 
     return NextResponse.json({
       success: true,

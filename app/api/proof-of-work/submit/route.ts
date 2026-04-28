@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 import type { ProofOfWorkInput } from '@/lib/validation/schemas';
 
@@ -138,6 +139,22 @@ export async function POST(req: NextRequest) {
         }
       });
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'contractor',
+      metadata: {
+        route: '/api/proof-of-work/submit',
+        request_id: log.requestId,
+        contractor_id: contractorId,
+        claims_count: createdClaims.length,
+        submitted_proof_count: submittedProofCount,
+        required_work_types_count: requiredWorkTypesCount,
+        contractor_status: submittedProofCount >= requiredWorkTypesCount ? 'UNDER_REVIEW' : 'IN_PROGRESS',
+      },
+    });
 
     return NextResponse.json({
       success: true,

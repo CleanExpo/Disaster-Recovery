@@ -14,6 +14,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const RegisterSchema = z.object({
   claimId: z.string().min(1).max(100),
@@ -54,6 +55,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       });
     }
 
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: claimId,
+      correlationType: 'claim',
+      entityType: 'system',
+      metadata: {
+        route: '/api/notifications/register',
+        method: 'POST',
+        request_id: log.requestId,
+        platform,
+        was_existing: Boolean(existing),
+      },
+    });
+
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
     log.error('token registration error', { ref: 'DR-389', error: err instanceof Error ? err.message : String(err) });
@@ -80,8 +95,21 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
 
     const { claimId, token } = parsed.data;
 
-    await prisma.pushToken.deleteMany({
+    const removed = await prisma.pushToken.deleteMany({
       where: { claimId, token },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: claimId,
+      correlationType: 'claim',
+      entityType: 'system',
+      metadata: {
+        route: '/api/notifications/register',
+        method: 'DELETE',
+        request_id: log.requestId,
+        removed_count: removed.count,
+      },
     });
 
     return NextResponse.json({ success: true }, { status: 200 });

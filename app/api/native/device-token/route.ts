@@ -26,6 +26,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { deviceTokenRegistrationSchema } from '@/lib/validation/schemas';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -83,6 +84,22 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       fingerprint: tokenFingerprint(token),
     });
 
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: claimId ?? '00000000-0000-0000-0000-000000000000',
+      correlationType: claimId ? 'claim' : 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/native/device-token',
+        method: 'POST',
+        request_id: log.requestId,
+        push_token_id: stored.id,
+        platform,
+        has_claim: Boolean(claimId),
+        has_device_id: Boolean(deviceId),
+      },
+    });
+
     return NextResponse.json({ ok: true, id: stored.id }, { status: 201 });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -112,6 +129,18 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
 
   try {
     const result = await prisma.pushToken.deleteMany({ where: { token } });
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/native/device-token',
+        method: 'DELETE',
+        request_id: log.requestId,
+        removed_count: result.count,
+      },
+    });
     return NextResponse.json({ ok: true, removed: result.count });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
