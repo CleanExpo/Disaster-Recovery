@@ -1,5 +1,12 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  // Vercel Lambda runs on Amazon Linux (rhel-openssl-3.0.x). Without this
+  // target, the bundled Prisma client only ships the debian binary and
+  // EVERY query throws "Query Engine for runtime rhel-openssl-3.0.x not
+  // found" at runtime. This caused silent prod data-loss for an unknown
+  // duration: claim submissions fell back to local- IDs, WebhookDelivery
+  // never populated, etc. Discovered 2026-04-29 via Vercel logs.
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
