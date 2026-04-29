@@ -267,7 +267,9 @@ export async function POST(request: NextRequest) {
           claimNumber: body.insuranceClaimNumber || null,
           totalClaimAmountAUD: totalClaimAmount,
           paymentAmountAUD: paymentAmount,
-          status: 'SUBMITTED',
+          // B9 — typed via the Prisma `ClaimStatus` enum. Matches the canonical
+          // entry-point state on `/claim` form submit (see domain-models.md).
+          status: 'submitted',
           damageDescription: body.damageDescription,
           damagePhotos: Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
           additionalDocuments: Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],

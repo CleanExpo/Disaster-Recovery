@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'node:crypto';
 import { stripe } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import Stripe from 'stripe';
 import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
 import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
@@ -83,6 +85,50 @@ async function handleWebhook(req: NextRequest) {
         code: 'WEBHOOK_INVALID_SIGNATURE'
       },
       { status: 400 }
+    );
+  }
+
+  // A8 — Idempotency: insert one WebhookDelivery row per Stripe event.id
+  // BEFORE any business-logic dispatch. Stripe MAY redeliver any event;
+  // a P2002 unique-constraint violation means we have already processed
+  // this event and we short-circuit with 200 (so Stripe stops retrying).
+  // On business-logic failure AFTER the insert, we delete the row so the
+  // next Stripe retry can succeed — see the catch block below.
+  const payloadHash = createHash('sha256').update(body).digest('hex');
+  try {
+    await prisma.webhookDelivery.create({
+      data: {
+        eventId: event.id,
+        eventType: event.type,
+        provider: 'stripe',
+        livemode: event.livemode,
+        payloadHash,
+      },
+    });
+  } catch (err) {
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === 'P2002'
+    ) {
+      log.info('duplicate stripe webhook ignored', {
+        eventId: event.id,
+        eventType: event.type,
+      });
+      return NextResponse.json({ received: true, idempotent: true });
+    }
+    // Insert failed for an unexpected reason (DB down, etc.). Surface a
+    // 500 so Stripe retries — preferable to silently double-processing.
+    log.error('webhookDelivery insert failed', {
+      error: err instanceof Error ? err.message : String(err),
+      eventId: event.id,
+    });
+    captureException(err, {
+      tags: { route: '/api/stripe/webhook', stage: 'idempotency_insert' },
+      extra: { eventId: event.id, eventType: event.type },
+    });
+    return NextResponse.json(
+      { success: false, error: 'Idempotency tracking unavailable', code: 'WEBHOOK_IDEMPOTENCY_ERROR' },
+      { status: 500 },
     );
   }
 
@@ -447,6 +493,20 @@ async function handleWebhook(req: NextRequest) {
   } catch (error) {
     log.error('stripe webhook processing failed', { error: error instanceof Error ? error.message : String(error), eventType: event?.type });
     captureException(error, { tags: { route: '/api/stripe/webhook', eventType: event?.type ?? 'unknown' }, extra: { requestId: log.requestId } });
+
+    // A8 — business logic failed AFTER the WebhookDelivery insert. Roll the
+    // row back so Stripe's next redelivery can re-process this event_id.
+    // If the delete itself fails (e.g. DB unavailable), Stripe will see a
+    // 500 here and retry; the duplicate insert path will short-circuit
+    // gracefully if the row turns out to still be there.
+    try {
+      await prisma.webhookDelivery.delete({ where: { eventId: event.id } });
+    } catch (rollbackErr) {
+      log.error('webhookDelivery rollback failed', {
+        eventId: event.id,
+        error: rollbackErr instanceof Error ? rollbackErr.message : String(rollbackErr),
+      });
+    }
 
     PaymentAuditLogger.logSuspiciousActivity({
       ipAddress: clientIP,
