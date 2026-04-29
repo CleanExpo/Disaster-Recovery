@@ -267,9 +267,11 @@ export async function POST(request: NextRequest) {
           claimNumber: body.insuranceClaimNumber || null,
           totalClaimAmountAUD: totalClaimAmount,
           paymentAmountAUD: paymentAmount,
-          // B9 — typed via the Prisma `ClaimStatus` enum. Matches the canonical
-          // entry-point state on `/claim` form submit (see domain-models.md).
-          status: 'submitted',
+          // HOTFIX 2026-04-29 — prod uses `InsuranceClaimStatus` enum
+          // (insurer-adjudication stages, uppercase). The `ClaimStatus`
+          // restoration-lifecycle enum from B9 represents a separate phase;
+          // domain-modelling split tracked in DR-XXX.
+          status: 'SUBMITTED',
           damageDescription: body.damageDescription,
           damagePhotos: Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
           additionalDocuments: Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],
