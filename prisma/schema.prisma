@@ -44,6 +44,24 @@ enum ClaimStatus {
   ineligible
 }
 
+/// HOTFIX 2026-04-29 — actual prod enum on `InsuranceClaimAU.status`.
+/// These are insurer-adjudication stages (DRAFT → SUBMITTED → UNDER_REVIEW
+/// → APPROVED/PARTIALLY_APPROVED/DENIED → PAYMENT_PROCESSED → CLOSED) and
+/// pre-date the restoration-lifecycle redesign captured in `ClaimStatus`
+/// above. Domain-modelling decision (insurer-stage vs contractor-stage
+/// split) tracked separately in DR-XXX. Until that lands, this enum is
+/// the source of truth for `InsuranceClaimAU.status`.
+enum InsuranceClaimStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  PARTIALLY_APPROVED
+  DENIED
+  PAYMENT_PROCESSED
+  CLOSED
+}
+
 enum AustralianState {
   NSW
   VIC
@@ -1451,11 +1469,14 @@ model InsuranceClaimAU {
   totalClaimAmountAUD Float
   approvedAmountAUD   Float?
   paymentAmountAUD    Float?
-  /// B9 — Prisma-enforced state. Application-layer transitions live in
-  /// `src/lib/claims/state-machine.ts`. Default is `submitted` (the canonical
-  /// "claim has been filed via /claim" state). `draft` exists for voice-agent
-  /// drafts and any future Booking/draft surface.
-  status              ClaimStatus @default(submitted)
+  /// HOTFIX 2026-04-29 — prod has an existing `InsuranceClaimStatus` enum
+  /// (insurer-adjudication stages) that pre-dates the lifecycle described
+  /// in `.context/domain-models.md`. The `ClaimStatus` enum at the top of
+  /// this schema represents the planned restoration-lifecycle redesign —
+  /// kept as scaffolding for future work (`src/lib/claims/state-machine.ts`)
+  /// but NOT used here yet; that requires a domain-modelling decision on
+  /// insurer-stage vs contractor-stage split. Tracked in DR-XXX.
+  status              InsuranceClaimStatus @default(SUBMITTED)
   damageDescription   String    @db.Text
   damagePhotos        String[]
   invoiceUrl          String?
