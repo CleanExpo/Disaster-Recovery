@@ -1,14 +1,23 @@
 'use client'
 
+/**
+ * LayoutChrome — wraps page content with optional global navigation indicator.
+ *
+ * DR-LCP-FIX (2026-04-29): Removed dead imports of UltraModernHeader,
+ * UltraModernFooter, MobileNav, MobileFAB, MobileEmergencyCTA, Breadcrumb.
+ * They were wrapped by AntigravityLayoutGuard, which returns null — so the
+ * components never rendered, but their JS (framer-motion, lucide-react,
+ * SearchBar) still shipped to every page in the route bundle. Removing
+ * them drops ~1,400 lines of client JS from the critical path on every
+ * route, which was the dominant cause of the prod LCP > 2.5s gate
+ * failure (3064ms → target < 2500ms).
+ *
+ * Each Antigravity page renders its own AntigravityNavbar + AntigravityFooter
+ * inline (see AntigravityHomePage.tsx and per-page composition).
+ */
+
 import { usePathname } from 'next/navigation'
-import UltraModernHeader from '@/components/UltraModernHeader'
-import UltraModernFooter from '@/components/UltraModernFooter'
-import MobileNav from '@/components/mobile/MobileNav'
-import MobileFAB from '@/components/mobile/MobileFAB'
-import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
-import Breadcrumb from '@/components/Breadcrumb'
 import NavigationIndicator from '@/components/NavigationIndicator'
-import { AntigravityLayoutGuard } from '@/components/AntigravityLayoutGuard'
 
 /** Paths that should render without header/footer (e.g. login, admin). */
 const BARE_PATHS = ['/login']
@@ -24,22 +33,8 @@ export function LayoutChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <AntigravityLayoutGuard>
-        <div className="hidden lg:block">
-          <UltraModernHeader />
-        </div>
-        <MobileNav />
-        <Breadcrumb />
-      </AntigravityLayoutGuard>
       <NavigationIndicator />
       {children}
-      <AntigravityLayoutGuard>
-        <div className="pb-16 lg:pb-0">
-          <UltraModernFooter />
-        </div>
-        <MobileFAB />
-        <MobileEmergencyCTA />
-      </AntigravityLayoutGuard>
     </>
   )
 }
