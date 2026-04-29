@@ -7,9 +7,15 @@
 #   LCP  > 2.5s  (mobile) — error
 #   CLS  > 0.1            — error
 #   INP  > 200ms           — error
+#   TTI  < 0.9 score       — error
 #   A11y < 0.95 score      — error
 #   TBT  > 300ms           — warn
 #   Perf < 0.80 score      — warn
+#
+# C5 (DR-700 P1, 2026-04-29): legacy-javascript / render-blocking-insight /
+# uses-long-cache-ttl downgraded to warn — they double-count under
+# TBT/LCP and are noisy on third-party scripts (GTM, Clarity, GA4) DR
+# does not control. Hard gates (LCP, CLS, INP, TTI, A11y) unchanged.
 #
 # Reports uploaded as workflow artifacts for audit trail (30 day retention).
 
