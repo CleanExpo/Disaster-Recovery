@@ -34,13 +34,33 @@
  * the helper remains pure + cheap to test.
  */
 
-import type { ClaimStatus } from '@prisma/client';
+/**
+ * `ClaimStatusValue` was originally typed via `@prisma/client`'s generated
+ * `ClaimStatus` enum. Decoupled 2026-04-29 (#303 follow-up) because the
+ * Prisma enum is currently unused by any model — Prisma doesn't export
+ * unused enums, which broke the build.
+ *
+ * The string-union below is the canonical source for this state machine
+ * until the restoration-lifecycle redesign (DR-XXX) lands and re-attaches
+ * the enum to a Prisma model.
+ */
+export type ClaimStatusValue =
+  | 'draft'
+  | 'submitted'
+  | 'triaged'
+  | 'assigned'
+  | 'in_progress'
+  | 'make_safe_complete'
+  | 'awaiting_kpi_review'
+  | 'kpi_passed'
+  | 'kpi_failed'
+  | 'closed'
+  | 'cancelled'
+  | 'disputed'
+  | 'withdrawn'
+  | 'ineligible';
 
-export type ClaimStatusValue = ClaimStatus;
-
-export type TransitionResult =
-  | { ok: true }
-  | { ok: false; reason: string };
+export type TransitionResult = { ok: true } | { ok: false; reason: string };
 
 /**
  * Adjacency map of legal `from -> to` transitions. Empty array = terminal.
@@ -77,10 +97,7 @@ const TRANSITIONS: Record<ClaimStatusValue, readonly ClaimStatusValue[]> = {
  * Self-transitions (`from === to`) are rejected — write your update path
  * to noop instead.
  */
-export function transitionClaim(
-  from: ClaimStatusValue,
-  to: ClaimStatusValue,
-): TransitionResult {
+export function transitionClaim(from: ClaimStatusValue, to: ClaimStatusValue): TransitionResult {
   if (from === to) {
     return {
       ok: false,
