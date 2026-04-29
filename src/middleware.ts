@@ -222,7 +222,25 @@ export async function middleware(request: NextRequest) {
   else if (path.match(/\.(css|js)$/)) {
     response.headers.set('Cache-Control', 'public, max-age=2592000, immutable');
   }
-  // HTML and API — short-lived with revalidation
+  // API routes — never set a default cache header from middleware. Each route
+  // owns its own cache policy via NextResponse headers (e.g. next-auth's
+  // /api/auth/* returns `private, no-cache, no-store`). Stomping that with
+  // `public, max-age=3600` from middleware caused two production failures:
+  //   (1) `/api/auth/providers`, `/api/auth/_log`, and any auth path without
+  //       its own Cache-Control got CDN-cached for an hour. If a single
+  //       request hit a cold function and Vercel returned an HTML error
+  //       page, that HTML was served back as JSON for up to 25 hours
+  //       (stale-while-revalidate=86400), surfacing as
+  //       `[next-auth][error][CLIENT_FETCH_ERROR] Unexpected token '<'`
+  //       on every page load and tripping lighthouse `errors-in-console`.
+  //   (2) Personalised JSON (e.g. `/api/auth/providers` carrying any
+  //       configuration that varies per environment) leaking across users
+  //       via the shared edge cache.
+  // Route handlers that genuinely want CDN caching must opt in explicitly.
+  else if (path.startsWith('/api/')) {
+    // No-op: do not override the route's own Cache-Control.
+  }
+  // HTML — short-lived with revalidation
   else {
     response.headers.set(
       'Cache-Control',
