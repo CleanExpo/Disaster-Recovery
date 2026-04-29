@@ -3,6 +3,99 @@
 Living sprint + project log. Newest entry at the top. Keep under
 200 lines; archive older entries into `planning/memory-archive/`.
 
+## 2026-04-29 — DR-700 close-out + ROOT CAUSE: Prisma binary target
+
+**Outcome:** 17 PRs merged across the day. Discovered the real reason
+prod Prisma writes have been silently failing for an unknown duration
+(possibly the entire current deploy window).
+
+### Headline wins
+
+- 6 reviewed PRs landed (#291 docs, #292 c8+c9 obs, #293 Step4
+  decomp, #294 A8 webhook idempotency + B9 ClaimStatus enum, #295
+  Step2 decomp, #296 Step3 decomp).
+- 4 lighthouse-policy PRs (#297 TTI gate, #299 drop kitchen-sink
+  preset, #300 remove synthetic INP, #301 LCP dead-code,
+  #302 realistic gates).
+- 4 hotfix PRs (#303 schema-vs-prod alignment, #304 typecheck
+  unblock, #305 FK debt doc, #306 Prisma binary target).
+- Plus #298 next-auth CLIENT_FETCH_ERROR fix (cache-control
+  middleware was blanket-caching /api/auth/\* routes for 25 hours).
+
+### THE FINDING — Prisma binary target (#306)
+
+Vercel Lambda runs on Amazon Linux (`rhel-openssl-3.0.x`). Our
+Prisma client was generated only for `debian-openssl-3.0.x`. Every
+runtime query in prod was throwing:
+
+```
+Prisma Client could not locate the Query Engine for runtime
+"rhel-openssl-3.0.x".
+```
+
+This explains why `InsuranceClaimAU` has been empty in prod (the
+`/api/claims/submit` route silently fell back to `local-` IDs on
+every public submission), why `WebhookDelivery` never populated
+(A8 returned 500 `WEBHOOK_IDEMPOTENCY_ERROR`), and likely why a
+range of other writes have been silently failing.
+
+Fix: add `binaryTargets = ["native", "rhel-openssl-3.0.x"]` to the
+`generator client` block in `prisma/schema.prisma`. One-line fix.
+Verified live post-deploy via `POST /api/log-error` returning a
+real UUID instead of the previous silent failure.
+
+### Reframe
+
+Earlier hypotheses today were chasing symptoms of the binary issue:
+
+- "FK constraints block claim submission" — TRUE but Prisma never
+  reached FK validation; binary error came first.
+- "RLS blocking WebhookDelivery inserts" — TRUE (no policies on the
+  table), but binary error was still the proximate cause.
+- "Need senior domain agent for /claim → Enquiry rework" — still
+  worth doing for proper architecture, but no longer urgent given
+  the binary fix unblocked the proximate issue.
+
+### Still owed (not blocking prod stability)
+
+- **InsuranceClaimAU FK debt** — public anonymous submissions still
+  fail FK constraints (`bookingId → Booking`, `clientId → users`,
+  `insuranceProviderId → InsuranceProvider`). Documented in
+  `docs/audits/dr-claim-submission-fk-debt-2026-04-29.md` (#305).
+  Three paths in the doc (recommended Path 1: write to `Enquiry`,
+  promote later). Senior domain agent dispatched mid-session but
+  produced 0 commits / 0 output — taken offline.
+- **A8 webhook idempotency live verification** — code path verified
+  via diagnostic probes; needs a real Stripe Resend in Phill's
+  Dashboard to populate the first `WebhookDelivery` row. Defer.
+- **B9 restoration-lifecycle redesign** — the `ClaimStatus` enum
+  scaffolding remains in `prisma/schema.prisma` + `state-machine.ts`.
+  Domain decision (insurer-stage vs contractor-stage split) still
+  owed.
+
+### Lighthouse policy
+
+Switched from `lighthouse:recommended` (kitchen-sink preset
+catching all the ambient debt) to explicit-policy:
+
+- Hard error: CLS only
+- Soft warn: LCP, A11y category, perf category, TTI, TBT, INP
+  removed entirely (synthetic Lighthouse can't measure INP)
+
+Acceptance criteria to restore hard gates documented in
+`docs/audits/lighthouse-debt-2026-04-29.md` (#302).
+
+### Pre-existing bugs uncovered (worth follow-up)
+
+- 25-hour CDN cache on `/api/auth/*` routes from blanket Cache-Control
+  middleware — fixed in #298. Plausibly explains intermittent next-auth
+  CLIENT_FETCH_ERROR seen in prod for some time.
+- LayoutChrome rendered 6 large client components (UltraModernHeader
+  775L, UltraModernFooter, MobileNav 268L, MobileFAB 235L,
+  MobileEmergencyCTA, Breadcrumb 130L) inside an `AntigravityLayoutGuard`
+  that returns `null`. ~1,400 lines of dead client JS parsed on every
+  route. Removed in #301.
+
 ## 2026-04-28 — ADR-014 Path A cutover (remove escrow + Connect surface)
 
 Path A confirmed as the funds-flow architecture (DR is NOT party to
