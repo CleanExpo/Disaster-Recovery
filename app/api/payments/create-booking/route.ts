@@ -23,6 +23,7 @@ import { getMockStripe } from '@/lib/services/mock/mockStripe';
 import { isProductionMode } from '@/lib/services/mock';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 // Initialize Stripe with your secret key or use mock in demo mode.
 // `as unknown as Stripe` is the boundary cast for the partial mock
@@ -188,6 +189,23 @@ export async function POST(request: NextRequest) {
         },
       });
 
+      await logComplianceEvent({
+        eventType: 'api_route_invocation',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'customer',
+        metadata: {
+          route: '/api/payments/create-booking',
+          method: 'POST',
+          request_id: log.requestId,
+          booking_id: bookingId,
+          payment_intent_id: paymentIntent.id,
+          amount_aud: totalAmount / 100,
+          email_hash: bookingData.email ? hashIdentifier(bookingData.email) : null,
+          deprecated_path_b: true,
+        },
+      });
+
       return NextResponse.json({
         success: true,
         data: {
@@ -292,6 +310,20 @@ export async function PUT(request: NextRequest) {
 
     default:
   }
+
+  await logComplianceEvent({
+    eventType: 'api_route_invocation',
+    correlationId: '00000000-0000-0000-0000-000000000000',
+    correlationType: 'system',
+    entityType: 'system',
+    metadata: {
+      route: '/api/payments/create-booking',
+      method: 'PUT',
+      request_id: log.requestId,
+      stripe_event_type: event.type,
+      stripe_event_id: event.id,
+    },
+  });
 
   return NextResponse.json({ success: true, received: true });
 }

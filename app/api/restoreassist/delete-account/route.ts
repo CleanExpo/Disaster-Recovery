@@ -4,6 +4,7 @@ import { sendEmail } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
 import { env } from '@/lib/env';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 const deleteAccountSchema = z.object({
   full_name: z.string().min(2, 'Full name is required'),
@@ -94,6 +95,22 @@ export async function POST(request: NextRequest) {
         <a href="https://disasterrecovery.com.au/contact">disasterrecovery.com.au/contact</a>.</p>
         <p>Unite-Group NEXUS Pty Ltd<br />ABN 95 691 477 844</p>
       `,
+    });
+
+    await logComplianceEvent({
+      eventType: 'data_deletion_request',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'customer',
+      entityIdentifier: email,
+      metadata: {
+        route: '/api/restoreassist/delete-account',
+        request_id: log.requestId,
+        product: 'restoreassist',
+        email_hash: hashIdentifier(email),
+        abn_hash: hashIdentifier(abn),
+        has_reason: Boolean(reason),
+      },
     });
 
     if (contentType.includes('application/x-www-form-urlencoded')) {

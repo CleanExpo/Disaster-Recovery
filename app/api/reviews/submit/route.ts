@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 /**
  * DR-388: POST /api/reviews/submit
@@ -124,6 +125,21 @@ export async function POST(request: NextRequest) {
         title: nameValue || null,
         isPublished: false, // pending moderation
         isVerified: false,
+      },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: trimmedClaimId,
+      correlationType: 'claim',
+      entityType: 'system',
+      metadata: {
+        route: '/api/reviews/submit',
+        request_id: log.requestId,
+        review_id: created.id,
+        contractor_id: trimmedContractorId,
+        rating: rating as number,
+        has_comment: Boolean(reviewText),
       },
     });
 

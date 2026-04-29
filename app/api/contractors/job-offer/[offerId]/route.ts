@@ -23,6 +23,7 @@ import { prisma } from '@/lib/prisma';
 import { findNextContractor, OFFER_TIMEOUT_MINUTES } from '@/lib/contractor-matching';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 interface OfferActionBody {
   action: 'accept' | 'decline';
@@ -148,6 +149,21 @@ export async function PATCH(
         sendEmail(ctEmail, emailTemplates.jobOfferAccepted(ctName, offerId, offer.job.serviceType, suburb)).catch(() => {});
       }
 
+      await logComplianceEvent({
+        eventType: 'contractor_accepted',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'contractor_dispatch',
+        entityType: 'contractor',
+        metadata: {
+          route: '/api/contractors/job-offer/[offerId]',
+          request_id: log.requestId,
+          offer_id: offerId,
+          job_id: offer.jobId,
+          contractor_id: offer.contractorId,
+          liability_acknowledged: Boolean(offer.requiresLiabilityAck && liabilityAcknowledged),
+        },
+      });
+
       return NextResponse.json({
         success: true,
         message: 'Job accepted successfully',
@@ -160,6 +176,21 @@ export async function PATCH(
     await prisma.jobOffer.update({
       where: { id: offerId },
       data: { status: 'declined' },
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'contractor_dispatch',
+      entityType: 'contractor',
+      metadata: {
+        route: '/api/contractors/job-offer/[offerId]',
+        request_id: log.requestId,
+        offer_id: offerId,
+        job_id: offer.jobId,
+        contractor_id: offer.contractorId,
+        action: 'decline',
+      },
     });
 
     // Notify contractor of declination

@@ -12,6 +12,7 @@ import { prisma } from '@/lib/prisma';
 import { findNextContractor, OFFER_TIMEOUT_MINUTES } from '@/lib/contractor-matching';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 interface DistributeJobBody {
   jobId: string;
@@ -100,6 +101,21 @@ export async function POST(request: NextRequest) {
         )
       ).catch(() => {});
     }
+
+    await logComplianceEvent({
+      eventType: 'contractor_dispatched',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'contractor_dispatch',
+      entityType: 'contractor',
+      metadata: {
+        route: '/api/contractors/distribute-job',
+        request_id: log.requestId,
+        job_id: jobId,
+        offer_id: offer.id,
+        contractor_id: match.contractorId,
+        pool: match.pool,
+      },
+    });
 
     return NextResponse.json({
       success: true,

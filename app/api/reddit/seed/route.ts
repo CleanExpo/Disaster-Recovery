@@ -4,6 +4,7 @@ import { formatRedditPost, validateGEOCompliance } from '@/lib/reddit/content/ge
 import { submitTextPost, verifyAuth, delay } from '@/lib/reddit/reddit-client';
 import type { PostCategory, RedditPostResult } from '@/lib/reddit/reddit-types';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/reddit/seed' });
@@ -76,6 +77,21 @@ export async function POST(request: NextRequest) {
     }
 
     const successCount = results.filter((r) => r.success).length;
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/reddit/seed',
+        request_id: log.requestId,
+        dry_run: dryRun,
+        category: category ?? null,
+        total_posts: posts.length,
+        success_count: successCount,
+      },
+    });
 
     return NextResponse.json({
       success: true,

@@ -6,6 +6,7 @@ import { requireAdmin } from '@/lib/admin-auth';
 import { prisma } from '@/lib/prisma';
 import { getNexusAgent } from '@/lib/nexus';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 interface RouteContext {
   params: { id: string };
@@ -52,6 +53,19 @@ export async function POST(request: NextRequest, context: RouteContext) {
       extra: { requestId: log.requestId, agentId: id },
     });
   }
+
+  await logComplianceEvent({
+    eventType: 'api_route_invocation',
+    correlationId: '00000000-0000-0000-0000-000000000000',
+    correlationType: 'system',
+    entityType: 'system',
+    metadata: {
+      route: '/api/nexus/agents/[id]/trigger',
+      request_id: log.requestId,
+      agent_id: id,
+      triggered_by_user_id: sessionOrError.user.id,
+    },
+  });
 
   return NextResponse.json({
     queued: true,

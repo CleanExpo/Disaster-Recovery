@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 export interface DisputeRequest {
   bookingId: string;
@@ -142,6 +143,24 @@ export async function POST(request: NextRequest) {
       nextSteps
     };
 
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'customer',
+      entityIdentifier: disputeData.customerEmail,
+      metadata: {
+        route: '/api/disputes',
+        method: 'POST',
+        request_id: log.requestId,
+        dispute_id: disputeId,
+        booking_id: disputeData.bookingId,
+        dispute_type: disputeData.disputeType,
+        priority,
+        email_hash: hashIdentifier(disputeData.customerEmail),
+      },
+    });
+
     return NextResponse.json({
       success: true,
       ...response,
@@ -207,6 +226,20 @@ export async function PUT(request: NextRequest) {
       lastUpdated: new Date().toISOString(),
       updatedBy: 'Resolution Team'
     };
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/disputes',
+        method: 'PUT',
+        request_id: log.requestId,
+        dispute_id: disputeId,
+        new_status: status,
+      },
+    });
 
     return NextResponse.json({
       success: true,

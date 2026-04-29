@@ -20,6 +20,7 @@ import { NextResponse } from 'next/server';
 import { CONSENT_UTTERANCE, CONSENT_UTTERANCE_VERSION } from '@/lib/voice/consent-utterance';
 import { verifyTwilioSignature } from '@/lib/voice/twilio-signature';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -85,6 +86,20 @@ export async function POST(request: Request): Promise<NextResponse> {
   <Say voice="Polly.Nicole-Neural" language="en-AU">We didn't catch that. Transferring you to a human operator now.</Say>
   <Redirect method="POST">${humanTransfer}</Redirect>
 </Response>`;
+
+    await logComplianceEvent({
+      eventType: 'privacy_notice_shown',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/voice/twilio-consent',
+        request_id: log.requestId,
+        surface: 'voice',
+        consent_version: CONSENT_UTTERANCE_VERSION,
+        call_sid: params.CallSid ?? null,
+      },
+    });
 
     return twimlResponse(xml);
   } catch (error) {

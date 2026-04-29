@@ -9,6 +9,7 @@ import {
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const profileUpdateSchema = z.object({
   companyName: z.string().optional(),
@@ -260,6 +261,20 @@ export async function PATCH(request: NextRequest) {
         },
       });
 
+      await logComplianceEvent({
+        eventType: 'api_route_invocation',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'contractor',
+        metadata: {
+          route: '/api/contractor/profile',
+          method: 'PATCH',
+          request_id: log.requestId,
+          user_id: user.id,
+          action: 'create',
+        },
+      });
+
       return successResponse({
         message: 'Profile created successfully',
         profile: {
@@ -305,6 +320,20 @@ export async function PATCH(request: NextRequest) {
         data: { companyName: validatedData.companyName },
       });
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'contractor',
+      metadata: {
+        route: '/api/contractor/profile',
+        method: 'PATCH',
+        request_id: log.requestId,
+        user_id: user.id,
+        fields: Object.keys(updateData),
+      },
+    });
 
     return successResponse({
       message: 'Profile updated successfully',

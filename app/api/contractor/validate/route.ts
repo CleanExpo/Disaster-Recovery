@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requestLogger, captureException } from '@/lib/observability'
+import { logComplianceEvent } from '@/lib/compliance/events'
 
 /**
  * Contractor Validation Endpoint
@@ -51,6 +52,20 @@ export async function POST(request: NextRequest) {
     // Mock validation logic (replace with actual database check)
     const isValid = true // This would check against database
     
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/contractor/validate',
+        request_id: log.requestId,
+        has_contractor_id: Boolean(contractorId),
+        has_abn: Boolean(abn),
+        has_email: Boolean(email),
+      },
+    })
+
     if (isValid) {
       return NextResponse.json({
         status: 'success',

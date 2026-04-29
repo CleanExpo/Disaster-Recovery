@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 import crypto from 'crypto';
 
 const PAYMENT_AMOUNT_AUD = 2475;
@@ -152,6 +153,21 @@ export async function POST(request: Request) {
         });
       }
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'contractor',
+      entityIdentifier: email || undefined,
+      metadata: {
+        route: '/api/contractor/onboarding/submit',
+        request_id: log.requestId,
+        application_id: record.id,
+        contractor_id: contractorId,
+        email_hash: email ? hashIdentifier(email) : null,
+      },
+    });
 
     return NextResponse.json(
       {

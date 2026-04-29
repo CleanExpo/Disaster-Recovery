@@ -3,6 +3,7 @@ import { getServerSession, type Session } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export async function POST(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/log-error' });
@@ -73,6 +74,20 @@ export async function POST(req: NextRequest) {
           },
         });
       }
+
+      await logComplianceEvent({
+        eventType: 'api_route_invocation',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: {
+          route: '/api/log-error',
+          request_id: log.requestId,
+          error_id: errorLog.id,
+          level: sanitisedLevel,
+          source,
+        },
+      });
 
       return NextResponse.json({
         success: true,

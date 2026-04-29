@@ -19,6 +19,7 @@ import { extractClaimIntake, extractSupportInteraction } from '@/lib/voice/extra
 import { agentById, agentRole } from '@/lib/voice/agents-registry';
 import type { ElevenLabsTranscriptionWebhook } from '@/lib/voice/types';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 import { upsertVoiceCall, appendTranscript } from '@/lib/voice/persistence';
 import { redactTranscript } from '@/lib/voice/redaction';
 
@@ -169,6 +170,21 @@ export async function POST(request: Request): Promise<NextResponse> {
     } else {
       log.info('received; no extractor configured', { type: parsed.type });
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/voice/elevenlabs/webhook',
+        request_id: log.requestId,
+        webhook_type: parsed.type,
+        agent_id: agentId ?? null,
+        agent_role: agentId ? agentRole(agentId) : null,
+        flag_on: process.env.VOICE_AGENT_ENABLED === 'true',
+      },
+    });
 
     return jsonResponse(200, { received: true });
   } catch (err) {

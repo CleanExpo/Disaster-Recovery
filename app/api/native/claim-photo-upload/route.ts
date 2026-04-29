@@ -37,6 +37,7 @@ import { prisma } from '@/lib/prisma';
 import { createServiceClient } from '@/lib/supabase';
 import { claimPhotoUploadSchema } from '@/lib/validation/schemas';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -178,6 +179,21 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       appVersion,
       hasGeo: Boolean(geo),
     });
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/native/claim-photo-upload',
+        request_id: log.requestId,
+        outcome: 'stored_unassigned',
+        size_bytes: bytes.length,
+        mime: sniffed.mime,
+        platform,
+        has_geo: Boolean(geo),
+      },
+    });
     return NextResponse.json({ ok: true, id: objectKey }, { status: 201 });
   }
 
@@ -206,6 +222,23 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       platform,
       appVersion,
       hasGeo: Boolean(geo),
+    });
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: claimId,
+      correlationType: 'claim',
+      entityType: 'system',
+      metadata: {
+        route: '/api/native/claim-photo-upload',
+        request_id: log.requestId,
+        outcome: 'stored',
+        attachment_id: stored.id,
+        size_bytes: bytes.length,
+        mime: sniffed.mime,
+        platform,
+        has_geo: Boolean(geo),
+      },
     });
 
     return NextResponse.json({ ok: true, id: stored.id }, { status: 201 });

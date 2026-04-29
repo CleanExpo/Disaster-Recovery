@@ -14,6 +14,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const MarkReadSchema = z.union([
   z.object({ ids: z.array(z.string()).min(1).max(100) }),
@@ -98,17 +99,34 @@ export async function POST(
 
     const body = parsed.data;
 
+    let updatedCount = 0;
     if ('all' in body && body.all) {
-      await prisma.claimNotification.updateMany({
+      const res = await prisma.claimNotification.updateMany({
         where: { claimId, read: false },
         data: { read: true },
       });
+      updatedCount = res.count;
     } else if ('ids' in body) {
-      await prisma.claimNotification.updateMany({
+      const res = await prisma.claimNotification.updateMany({
         where: { claimId, id: { in: body.ids } },
         data: { read: true },
       });
+      updatedCount = res.count;
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: claimId,
+      correlationType: 'claim',
+      entityType: 'system',
+      metadata: {
+        route: '/api/notifications/[claimId]',
+        method: 'POST',
+        request_id: log.requestId,
+        scope: 'all' in body && body.all ? 'all' : 'ids',
+        updated_count: updatedCount,
+      },
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {

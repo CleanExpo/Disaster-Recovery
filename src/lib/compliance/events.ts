@@ -49,7 +49,11 @@ export type ComplianceEventType =
   | 'payment_refund_db_failure'
   // Payments: contractor self-service subscription cancellation.
   // See app/api/contractor/subscription/cancel/route.ts (audit B8).
-  | 'payment_subscription_cancel';
+  | 'payment_subscription_cancel'
+  // Generic mutation-route success marker. Use when no domain-specific
+  // event type fits but the audit trail still needs the row (DR-700 C8/C9).
+  // The route field in metadata is the discriminator.
+  | 'api_route_invocation';
 
 export type ComplianceCorrelationType =
   | 'claim'

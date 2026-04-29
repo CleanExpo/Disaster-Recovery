@@ -3,6 +3,7 @@ import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 const jobFilterSchema = z.object({
   status: z.enum(['pending', 'assigned', 'in_progress', 'completed']).optional(),
@@ -281,6 +282,21 @@ export async function POST(request: NextRequest) {
         log.error('jobOutcome log failed', { ref: 'DR-322', error: err instanceof Error ? err.message : String(err) });
       });
     }
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/contractor/jobs',
+        method: 'POST',
+        request_id: log.requestId,
+        job_id: jobId,
+        action,
+        contractor_id: user.id,
+      },
+    });
 
     return NextResponse.json({
       success: true,

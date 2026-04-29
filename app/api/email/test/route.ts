@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
 import { verifyAuth, hasRole, UserRole } from '@/lib/jwt-auth';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/email/test' });
@@ -75,6 +76,19 @@ export async function POST(request: NextRequest) {
     const sent = await sendEmail(recipientEmail, testEmail);
 
     if (sent) {
+      await logComplianceEvent({
+        eventType: 'api_route_invocation',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: {
+          route: '/api/email/test',
+          request_id: log.requestId,
+          recipient_hash: hashIdentifier(recipientEmail),
+          actor_id: user.id,
+        },
+      });
+
       return NextResponse.json(
         {
           success: true,

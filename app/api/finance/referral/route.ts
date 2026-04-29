@@ -3,6 +3,7 @@ import { randomUUID, createHash } from 'crypto';
 import { prisma } from '@/lib/prisma';
 import { signEquippedHandoffToken } from '@/lib/finance/jwt-handoff';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -233,6 +234,24 @@ export async function POST(req: NextRequest) {
   // Surface-treatment (RA-1109): structured stdout fallback. Mirrors the
   // Prisma row above; preserved as belt-and-braces for ops visibility.
   log.info('finance.referral audit', auditEntry);
+
+  await logComplianceEvent({
+    eventType: 'finance_referral_handoff',
+    correlationId: referralId,
+    correlationType: 'finance_referral',
+    entityType: 'customer',
+    entityIdentifier: email!,
+    metadata: {
+      route: '/api/finance/referral',
+      request_id: log.requestId,
+      email_hash: hashIdentifier(email!),
+      funding_band,
+      disaster_category,
+      customer_type,
+      source: equippedPayload.source,
+      payload_hash: payloadHash,
+    },
+  });
 
   return NextResponse.json({
     ok: true,

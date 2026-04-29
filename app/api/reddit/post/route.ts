@@ -3,6 +3,7 @@ import { getPostById } from '@/lib/reddit/content/post-templates';
 import { formatRedditPost, validateGEOCompliance } from '@/lib/reddit/content/geo-formatter';
 import { submitTextPost, verifyAuth } from '@/lib/reddit/reddit-client';
 import { requestLogger, captureException } from '@/lib/observability';
+import { logComplianceEvent } from '@/lib/compliance/events';
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/reddit/post' });
@@ -51,6 +52,20 @@ export async function POST(request: NextRequest) {
 
     // Submit to Reddit
     const result = await submitTextPost(config.title, markdown);
+
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationType: 'system',
+      entityType: 'system',
+      metadata: {
+        route: '/api/reddit/post',
+        request_id: log.requestId,
+        post_id: config.id,
+        category: config.category,
+        reddit_id: result.id,
+      },
+    });
 
     return NextResponse.json({
       success: true,
