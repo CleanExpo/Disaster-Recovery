@@ -629,7 +629,7 @@ function MouldRemediationGuidePageOriginal() {
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div className="bg-white rounded-xl shadow-lg p-6 border border-amber-100">
                 <div className="mb-4 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/images/generated/disaster-recovery/efflorescence-vs-mould.webp"
                     alt="Side-by-side comparison of white crystalline efflorescence deposits on brick versus fuzzy organic mould growth"
                     className="w-full h-48 object-cover"
