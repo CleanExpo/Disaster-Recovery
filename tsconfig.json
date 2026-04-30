@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true, // Fully enabled — Foundation Sprint POLISH PR 1
@@ -24,21 +20,11 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/components/*": [
-        "./src/components/*"
-      ],
-      "@/lib/*": [
-        "./src/lib/*"
-      ],
-      "@/hooks/*": [
-        "./src/hooks/*"
-      ],
-      "@/types/*": [
-        "./src/types/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/types/*": ["./src/types/*"]
     },
     // Strict mode flags - all enabled (kept explicit for documentation)
     "noImplicitAny": true,
@@ -49,26 +35,21 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "useUnknownInCatchVariables": true,
-    
+
     // Additional type checking flags
-    "noUnusedLocals": false, // Phase 4: Enable after main strict flags
+    "noUnusedLocals": false, // Phase 4: Enable after main strict flags. C14 enablement attempted 2026-04-30 — surfaces 1,564 errors (mostly unused imports). Tracked as separate cleanup epic; do NOT enable in piecemeal commits.
     "noUnusedParameters": false, // Phase 4: Enable after main strict flags
     "noImplicitReturns": true, // ENABLED: Functions must return values
     "noFallthroughCasesInSwitch": true, // ENABLED: Switch case safety
     "allowUnreachableCode": false, // Phase 1: ENABLED - Errors on unreachable code
     "allowUnusedLabels": false, // Phase 1: ENABLED - Errors on unused labels
-    
+
     // New helpful flags for gradual migration
     "noUncheckedIndexedAccess": false, // Phase 3: Adds undefined to index signatures
     "exactOptionalPropertyTypes": false, // Phase 4: Stricter optional property handling
     "noPropertyAccessFromIndexSignature": false // Phase 4: Requires bracket notation for index signatures
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": [
     "node_modules",
     ".next",
