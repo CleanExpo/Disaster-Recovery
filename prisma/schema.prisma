@@ -1199,7 +1199,7 @@ model Booking {
 }
 
 model InsuranceClaimAU {
-  id                  String    @id @default(cuid())
+  id                  String               @id @default(cuid())
   bookingId           String
   clientId            String
   insuranceProviderId String
@@ -1216,7 +1216,7 @@ model InsuranceClaimAU {
   /// but NOT used here yet; that requires a domain-modelling decision on
   /// insurer-stage vs contractor-stage split. Tracked in DR-XXX.
   status              InsuranceClaimStatus @default(SUBMITTED)
-  damageDescription   String    @db.Text
+  damageDescription   String               @db.Text
   damagePhotos        String[]
   invoiceUrl          String?
   estimateUrl         String?
@@ -1224,15 +1224,15 @@ model InsuranceClaimAU {
   // DR-390: Encrypted at rest using AES-256-GCM (or AWS KMS when provisioned).
   // Value is a prefixed base64 blob produced by src/lib/encryption.ts encrypt().
   // Only decrypt for contractors assigned to this claim and admin roles.
-  accessInstructions  String?   @db.Text
+  accessInstructions  String?              @db.Text
   submittedAt         DateTime?
   reviewedAt          DateTime?
   approvedAt          DateTime?
   paidAt              DateTime?
-  denialReason        String?   @db.Text
+  denialReason        String?              @db.Text
   deniedAt            DateTime?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
   tenantId            String?
 }
 
@@ -1734,22 +1734,22 @@ model CallTranscript {
 /// Data class: INTERNAL. No raw PII; `payloadHash` is a SHA-256 of the
 /// raw body for forensic correlation only.
 model WebhookDelivery {
-  id           String   @id @default(cuid())
+  id          String   @id @default(cuid())
   /// Provider event id. Stripe: `event.id` (`evt_*`). Unique across the table.
-  eventId      String   @unique
+  eventId     String   @unique
   /// Provider event type (e.g. `checkout.session.completed`). Indexed for
   /// ops queries ("how many of X in the last hour").
-  eventType    String
+  eventType   String
   /// Origin of the webhook — `stripe`, future: `twilio`, `elevenlabs`, etc.
   /// Lets the same table dedupe events from multiple providers.
-  provider     String   @default("stripe")
+  provider    String   @default("stripe")
   /// Stripe `event.livemode`. Test-mode and live-mode events share the
   /// same `evt_*` namespace, so we keep this for ops triage.
-  livemode     Boolean?
+  livemode    Boolean?
   /// SHA-256 hex of the raw request body — forensic only, not used for
   /// dedupe. Optional because a future provider may not pass a payload.
-  payloadHash  String?
-  processedAt  DateTime @default(now())
+  payloadHash String?
+  processedAt DateTime @default(now())
 
   @@index([eventType, processedAt])
   @@index([provider, processedAt])
