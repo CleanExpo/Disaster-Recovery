@@ -44,6 +44,10 @@
     {
       "path": "/api/cron/expire-job-offers",
       "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/kpi-rollup",
+      "schedule": "0 18 * * *"
     }
   ],
   "rewrites": [
