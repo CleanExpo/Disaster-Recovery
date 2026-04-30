@@ -1,14 +1,16 @@
 import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 import path from 'node:path';
 
 export default defineConfig({
+  plugins: [react()],
   test: {
     environment: 'happy-dom',
     globals: true,
     include: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
     exclude: [
       'node_modules/**',
-      'tests/**',          // Playwright e2e lives here
+      'tests/**', // Playwright e2e lives here
       '.next/**',
       'dist/**',
       'build/**',
@@ -32,7 +34,7 @@ export default defineConfig({
         '**/*.d.ts',
         '.next/**',
         'tests/**',
-        'app/**',          // covered via Playwright smoke + future integration
+        'app/**', // covered via Playwright smoke + future integration
       ],
     },
   },
