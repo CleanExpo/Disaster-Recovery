@@ -33,6 +33,7 @@ const ALLOWED_PATHS_REGEX = [
   /^docs\/plans\/2026-02-25-/,
   /^docs\/prd\/loops\/2026-05-01-dr-rename\//, // the rebrand loop itself documents the old phrase
   /^docs\/prd\/loops\/2026-05-01-residual-cleanup\//, // residual-cleanup loop documents the rebrand context
+  /^docs\/audits\/b11-ubiquitous-language-resolutions-/, // B11 audit doc explicitly discusses the historical brand-naming ambiguity
   /^scripts\/check-brand-name\.ts$/, // this script defines the banned phrase as a constant
 ];
 
