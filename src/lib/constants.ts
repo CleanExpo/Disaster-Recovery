@@ -11,7 +11,7 @@ export const SERVICE_RADIUS_OPTIONS = [
   { value: 20, label: '20km - Local Priority' },
   { value: 25, label: '25km - Extended Local' },
   { value: 50, label: '50km - Regional' },
-  { value: 100, label: '100km - Wide Area' }
+  { value: 100, label: '100km - Wide Area' },
 ];
 
 // Contractor Requirements
@@ -20,7 +20,7 @@ export const CONTRACTOR_REQUIREMENTS = {
   standards: 'Disaster Recovery Standards Compliant',
   membership: 'Current Disaster Recovery Network Member',
   insurance: 'Minimum $20M Public Liability',
-  response: '24/7 Online Emergency Response Capability'
+  response: '24/7 Online Emergency Response Capability',
 };
 export const WEBSITE = 'https://disasterrecovery.com.au';
 export const ABN = '85 151 794 142';
@@ -28,7 +28,26 @@ export const WEBSITE_DESIGNER = 'Zenith';
 export const DESIGNER_URL = 'https://zenith.engineer';
 export const PARENT_AGENCY = 'Unite-Group Agency';
 
-// Centralised NAP (Name, Address, Phone) + social links for schema consistency
+// Centralised NAP (Name, Address, Phone) + social links for schema consistency.
+//
+// B11 — two brand-name faces (locked 2026-05-01, see
+// UBIQUITOUS_LANGUAGE.md "B11 resolutions §1" + the
+// docs/prd/loops/2026-05-01-dr-rename/ ASIC trading-name lock):
+//
+//   `name`           = consumer brand AND GBP listing AND
+//                      Schema.org Organization name. Plain
+//                      "Disaster Recovery" — no "Australia"
+//                      suffix. This is the ASIC-registered
+//                      trading name; the brand-name guard in
+//                      scripts/check-brand-name.ts blocks the
+//                      old long-form variant in operational
+//                      paths.
+//   `legalName`      = contractual counterparty. Used in
+//                      membership agreement, contractor-facing
+//                      legal docs, contractor-side invoices.
+//                      NRPG is the entity that signs paper.
+//   `alternateName`  = legal-entity short form for schema markup
+//                      (Schema.org Organization.alternateName).
 export const NAP = {
   name: 'Disaster Recovery',
   legalName: 'National Restoration Professionals Group Pty Ltd',
@@ -63,73 +82,159 @@ export const STATES = [
   { code: 'SA', name: 'South Australia', capital: 'Adelaide' },
   { code: 'TAS', name: 'Tasmania', capital: 'Hobart' },
   { code: 'ACT', name: 'Australian Capital Territory', capital: 'Canberra' },
-  { code: 'NT', name: 'Northern Territory', capital: 'Darwin' }
+  { code: 'NT', name: 'Northern Territory', capital: 'Darwin' },
 ];
 
 // Major Cities by State
 export const CITIES_BY_STATE = {
   NSW: [
-    'Sydney', 'Newcastle', 'Central Coast', 'Wollongong', 'Maitland',
-    'Wagga Wagga', 'Albury', 'Port Macquarie', 'Tamworth', 'Orange',
-    'Dubbo', 'Bathurst', 'Coffs Harbour', 'Lismore', 'Broken Hill'
+    'Sydney',
+    'Newcastle',
+    'Central Coast',
+    'Wollongong',
+    'Maitland',
+    'Wagga Wagga',
+    'Albury',
+    'Port Macquarie',
+    'Tamworth',
+    'Orange',
+    'Dubbo',
+    'Bathurst',
+    'Coffs Harbour',
+    'Lismore',
+    'Broken Hill',
   ],
   VIC: [
-    'Melbourne', 'Geelong', 'Ballarat', 'Bendigo', 'Shepparton',
-    'Mildura', 'Warrnambool', 'Traralgon', 'Wangaratta', 'Horsham',
-    'Bairnsdale', 'Sale', 'Moe', 'Morwell', 'Portland'
+    'Melbourne',
+    'Geelong',
+    'Ballarat',
+    'Bendigo',
+    'Shepparton',
+    'Mildura',
+    'Warrnambool',
+    'Traralgon',
+    'Wangaratta',
+    'Horsham',
+    'Bairnsdale',
+    'Sale',
+    'Moe',
+    'Morwell',
+    'Portland',
   ],
   QLD: [
-    'Brisbane', 'Gold Coast', 'Sunshine Coast', 'Townsville', 'Cairns',
-    'Toowoomba', 'Rockhampton', 'Mackay', 'Bundaberg', 'Hervey Bay',
-    'Gladstone', 'Maryborough', 'Mount Isa', 'Gympie', 'Caboolture'
+    'Brisbane',
+    'Gold Coast',
+    'Sunshine Coast',
+    'Townsville',
+    'Cairns',
+    'Toowoomba',
+    'Rockhampton',
+    'Mackay',
+    'Bundaberg',
+    'Hervey Bay',
+    'Gladstone',
+    'Maryborough',
+    'Mount Isa',
+    'Gympie',
+    'Caboolture',
   ],
   WA: [
-    'Perth', 'Bunbury', 'Kalgoorlie', 'Mandurah', 'Geraldton',
-    'Albany', 'Karratha', 'Broome', 'Busselton', 'Port Hedland',
-    'Esperance', 'Carnarvon', 'Newman', 'Northam', 'Merredin'
+    'Perth',
+    'Bunbury',
+    'Kalgoorlie',
+    'Mandurah',
+    'Geraldton',
+    'Albany',
+    'Karratha',
+    'Broome',
+    'Busselton',
+    'Port Hedland',
+    'Esperance',
+    'Carnarvon',
+    'Newman',
+    'Northam',
+    'Merredin',
   ],
   SA: [
-    'Adelaide', 'Mount Gambier', 'Whyalla', 'Murray Bridge', 'Port Lincoln',
-    'Port Pirie', 'Port Augusta', 'Victor Harbor', 'Gawler', 'Mount Barker',
-    'Crafers-Bridgewater', 'Renmark', 'Millicent', 'Kadina', 'Tanunda'
+    'Adelaide',
+    'Mount Gambier',
+    'Whyalla',
+    'Murray Bridge',
+    'Port Lincoln',
+    'Port Pirie',
+    'Port Augusta',
+    'Victor Harbor',
+    'Gawler',
+    'Mount Barker',
+    'Crafers-Bridgewater',
+    'Renmark',
+    'Millicent',
+    'Kadina',
+    'Tanunda',
   ],
   TAS: [
-    'Hobart', 'Launceston', 'Devonport', 'Burnie', 'Ulverstone',
-    'Kingston', 'Bridgewater', 'Glenorchy', 'Clarence', 'New Norfolk',
-    'Wynyard', 'George Town', 'Sorell', 'Smithton', 'Queenstown'
+    'Hobart',
+    'Launceston',
+    'Devonport',
+    'Burnie',
+    'Ulverstone',
+    'Kingston',
+    'Bridgewater',
+    'Glenorchy',
+    'Clarence',
+    'New Norfolk',
+    'Wynyard',
+    'George Town',
+    'Sorell',
+    'Smithton',
+    'Queenstown',
   ],
   ACT: [
-    'Canberra', 'Belconnen', 'Tuggeranong', 'Woden Valley', 'Gungahlin',
-    'Weston Creek', 'Molonglo Valley', 'Jerrabomberra'
+    'Canberra',
+    'Belconnen',
+    'Tuggeranong',
+    'Woden Valley',
+    'Gungahlin',
+    'Weston Creek',
+    'Molonglo Valley',
+    'Jerrabomberra',
   ],
   NT: [
-    'Darwin', 'Alice Springs', 'Palmerston', 'Katherine', 'Tennant Creek',
-    'Nhulunbuy', 'Wadeye', 'Jabiru', 'Yulara', 'Alyangula'
-  ]
+    'Darwin',
+    'Alice Springs',
+    'Palmerston',
+    'Katherine',
+    'Tennant Creek',
+    'Nhulunbuy',
+    'Wadeye',
+    'Jabiru',
+    'Yulara',
+    'Alyangula',
+  ],
 };
 
 // Disaster Types by Region
 export const REGIONAL_DISASTERS = {
   tropical: {
     regions: ['Far North QLD', 'NT', 'North WA'],
-    disasters: ['Cyclones', 'Flooding', 'Storm Surge', 'Monsoon Damage']
+    disasters: ['Cyclones', 'Flooding', 'Storm Surge', 'Monsoon Damage'],
   },
   bushfire: {
     regions: ['NSW', 'VIC', 'SA', 'TAS', 'WA'],
-    disasters: ['Bushfires', 'Smoke Damage', 'Ember Attack', 'Fire Storms']
+    disasters: ['Bushfires', 'Smoke Damage', 'Ember Attack', 'Fire Storms'],
   },
   flood: {
     regions: ['QLD', 'NSW', 'VIC'],
-    disasters: ['River Flooding', 'Flash Flooding', 'Storm Water', 'Dam Release']
+    disasters: ['River Flooding', 'Flash Flooding', 'Storm Water', 'Dam Release'],
   },
   drought: {
     regions: ['Inland NSW', 'QLD', 'SA', 'WA'],
-    disasters: ['Dust Storms', 'Water Damage from Broken Pipes', 'Foundation Issues']
+    disasters: ['Dust Storms', 'Water Damage from Broken Pipes', 'Foundation Issues'],
   },
   coastal: {
     regions: ['All Coastal Areas'],
-    disasters: ['Storm Surge', 'Coastal Erosion', 'King Tides', 'Tsunami Risk']
-  }
+    disasters: ['Storm Surge', 'Coastal Erosion', 'King Tides', 'Tsunami Risk'],
+  },
 };
 
 // Industries for Specific Pages
@@ -145,7 +250,7 @@ export const INDUSTRIES = [
   'Transport & Logistics',
   'Marine & Ports',
   'Aviation & Airports',
-  'Energy & Utilities'
+  'Energy & Utilities',
 ];
 
 // Insurance Companies for Partnership Pages
@@ -164,25 +269,25 @@ export const INSURANCE_PARTNERS = [
   'RACT',
   'Youi',
   'Woolworths Insurance',
-  'Coles Insurance'
+  'Coles Insurance',
 ];
 
 // Seasonal Disaster Patterns
 export const SEASONAL_DISASTERS = {
   summer: {
     months: ['December', 'January', 'February'],
-    disasters: ['Bushfires', 'Heatwave Damage', 'Thunderstorms', 'Cyclones']
+    disasters: ['Bushfires', 'Heatwave Damage', 'Thunderstorms', 'Cyclones'],
   },
   autumn: {
     months: ['March', 'April', 'May'],
-    disasters: ['Storm Damage', 'Flooding', 'Late Cyclones']
+    disasters: ['Storm Damage', 'Flooding', 'Late Cyclones'],
   },
   winter: {
     months: ['June', 'July', 'August'],
-    disasters: ['Flooding', 'Wind Damage', 'Snow Damage (Alpine)', 'Pipe Bursts']
+    disasters: ['Flooding', 'Wind Damage', 'Snow Damage (Alpine)', 'Pipe Bursts'],
   },
   spring: {
     months: ['September', 'October', 'November'],
-    disasters: ['Storm Season', 'Hail Damage', 'Early Bushfires', 'Flash Flooding']
-  }
+    disasters: ['Storm Season', 'Hail Damage', 'Early Bushfires', 'Flash Flooding'],
+  },
 };

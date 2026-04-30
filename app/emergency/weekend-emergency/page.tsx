@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getEmergencySections } from '@/lib/content-sections';
@@ -6,8 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Weekend Emergency Response | Saturday & Sunday',
-  description: 'Immediate weekend disaster recovery when you need it most. 30 minutes response time. Available Saturday & Sunday. IICRC-certified.',
-  keywords: ["weekend emergency","saturday disaster recovery","sunday emergency service"],
+  description:
+    'Immediate weekend disaster recovery when you need it most. 30 minutes response time. Available Saturday & Sunday. IICRC-certified.',
+  keywords: ['weekend emergency', 'saturday disaster recovery', 'sunday emergency service'],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/weekend' },
 };
 
@@ -26,7 +27,10 @@ export default function WeekendEmergencyResponsePage() {
         { label: 'Emergency', href: '/emergency' },
         { label: 'Weekend Emergency Response' },
       ]}
-      sections={getEmergencySections({ emergencyType: 'Weekend', context: 'throughout the entire weekend' })}
+      sections={getEmergencySections({
+        emergencyType: 'Weekend',
+        context: 'throughout the entire weekend',
+      })}
       relatedPages={getRelatedPages('emergency')}
     />
   );

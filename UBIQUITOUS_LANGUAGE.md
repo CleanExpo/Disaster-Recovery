@@ -80,19 +80,69 @@ raise an ADR under `docs/adr/` if a term's meaning changes.
 > are **Contractors**. If you see 'partner contractor' anywhere in copy,
 > that's a bug — flag it."
 
-## Flagged ambiguities (resolve in next `ubiquitous-language` session)
+## B11 resolutions (locked 2026-05-01)
 
-- **"Brand" vs "tradename" vs "operating name"** — DR trades as _Disaster
-  Recovery Australia_; the entity is _National Restoration Professionals
-  Group Pty Ltd (NRPG)_. Pick one term for each of: the consumer-facing
-  brand, the contractual counterparty, and the GBP listing.
-- **"Platform fee" vs "service fee" vs "booking fee"** — all three appear
-  across Stripe Checkout, footer copy, and the membership agreement. Pick
-  one for the Stripe Checkout surface before DR-586 (payment gateway) ships.
-- **"Emergency" vs "urgent" vs "immediate"** — the voice agent currently
-  uses a 3-way urgency split on intake. Confirm with Ops which is the
-  canonical term and whether the other two are aliases or genuine distinct
-  urgency levels with different SLAs.
+Source-of-truth docs:
+`docs/audits/b11-ubiquitous-language-resolutions-2026-04-30.md`
+(B11 audit) + `docs/prd/loops/2026-05-01-dr-rename/` (the ASIC
+trading-name lock, which overrode the audit's Option A on
+ambiguity #1).
+
+### 1. Brand naming — two names only (per ASIC trading-name lock)
+
+The B11 audit originally proposed Option A (three names with
+distinct roles). The 2026-05-01 ASIC rebrand loop overrode that:
+the trading name registered with ASIC is plain **"Disaster
+Recovery"** (no "Australia" suffix). B11 lands on **Option B**
+from the audit — two names only.
+
+| Term                                                            | Refers to                      | Used in                                                                                                |
+| --------------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| **"Disaster Recovery"**                                         | Consumer brand AND GBP listing | Public copy, page titles, voice agent, client emails, Schema.org Organization, Google Business Profile |
+| **"NRPG" / "National Restoration Professionals Group Pty Ltd"** | Legal entity                   | Membership agreement, contractor-facing legal docs, contractor-side invoices                           |
+
+`src/lib/constants.ts` `NAP` constant carries these. The
+brand-name guard hook in `scripts/check-brand-name.ts` actively
+blocks the previous "Disaster Recovery + Australia" form in
+operational paths; historical references stay allowlisted via
+`ALLOWED_PATHS_REGEX`.
+
+### 2. Platform fee — canonical term for the contractor → DR fee
+
+**"Platform fee"** is canonical across:
+
+| Surface                              | Wording                                              |
+| ------------------------------------ | ---------------------------------------------------- |
+| Stripe Checkout statement descriptor | `NRPG ONBOARDING` (already deployed; see PR #260)    |
+| Membership agreement                 | "Platform Fee" (defined term, capitalised)           |
+| Footer / public copy                 | "platform fee" (lowercase, unless paragraph-leading) |
+| Contractor invoices                  | "Platform Fee — [period]"                            |
+
+**NOT to be confused with** the consumer-facing **minimum service
+fee** ($2,200) that the contractor charges the client — that's a
+separate concept handled by the contractor under the customer
+contract. "Platform fee" is the contractor → DR side; "service fee"
+(or "minimum callout") is the contractor → client side.
+
+`PLATFORM_FEE` constant in `app/api/claims/submit/route.ts` carries
+this convention.
+
+### 3. Urgency tiers — two-way split
+
+**"Emergency"** and **"Urgent"** only. Drop "immediate" — the
+network can't reliably commit to sub-hour response, and "immediate"
+is puffery-adjacent per `.claude/rules/compliance.md` §1.
+
+| Term            | Replaces                 | SLA                               |
+| --------------- | ------------------------ | --------------------------------- |
+| **emergency**   | "emergency", "immediate" | Within 24h where possible         |
+| **urgent**      | unchanged                | 2–3 business days                 |
+| (no third tier) | —                        | Routine = scheduled by contractor |
+
+The Zod `claimSubmitSchema.urgencyLevel` enum already excludes
+"immediate" (`['emergency', 'urgent', 'standard']`). Public-copy
+puffery cleanup (`description: '...immediate response nationwide'`
+patterns in `app/emergency/*/page.tsx`) tracked in the same B11 PR.
 
 ---
 

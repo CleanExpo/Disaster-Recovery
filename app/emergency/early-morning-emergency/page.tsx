@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getEmergencySections } from '@/lib/content-sections';
@@ -6,8 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Early Morning Emergency | 4AM - 7AM',
-  description: 'Dawn disaster recovery before the day begins. 30 minutes response time. Available 4AM - 7AM. IICRC-certified.',
-  keywords: ["early morning emergency","dawn disaster","5am emergency service"],
+  description:
+    'Dawn disaster recovery before the day begins. 30 minutes response time. Available 4AM - 7AM. IICRC-certified.',
+  keywords: ['early morning emergency', 'dawn disaster', '5am emergency service'],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/early-morning' },
 };
 
@@ -26,7 +27,10 @@ export default function EarlyMorningEmergencyPage() {
         { label: 'Emergency', href: '/emergency' },
         { label: 'Early Morning Emergency' },
       ]}
-      sections={getEmergencySections({ emergencyType: 'Early Morning', context: 'before business hours' })}
+      sections={getEmergencySections({
+        emergencyType: 'Early Morning',
+        context: 'before business hours',
+      })}
       relatedPages={getRelatedPages('emergency')}
     />
   );
