@@ -61,6 +61,7 @@
     "audio-system.backup/**",
     "bots/**",
     "bots.backup/**",
+    "src/bots/**",
     "cli/**",
     "CRM_Reference/**",
     "docker/**",

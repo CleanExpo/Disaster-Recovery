@@ -238,18 +238,6 @@ model Enquiry {
   client   Client? @relation(fields: [clientId], references: [id])
 }
 
-model Notification {
-  id        String   @id @default(cuid())
-  type      String
-  title     String
-  message   String
-  read      Boolean  @default(false)
-  metadata  String?
-  createdAt DateTime @default(now())
-
-  userId String
-}
-
 // Lead Management Models
 // DR-820 Path Y — Prisma Lead is the rich funnel entity (40 fields,
 // lead-scoring, Partner FK, full assignment lifecycle). Live `lead_captures`
@@ -996,112 +984,6 @@ model AuditLog {
 }
 
 // ============================================
-// BOT SYSTEM MODELS
-// ============================================
-
-model VerifiedContent {
-  id         String    @id @default(cuid())
-  type       String // service_procedure, emergency_guide, etc.
-  title      String
-  content    String    @db.Text
-  metadata   Json?
-  active     Boolean   @default(true)
-  approved   Boolean   @default(false)
-  approvedBy String?
-  approvedAt DateTime?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-
-  @@index([type, active])
-}
-
-// ============================================
-// STEP-BY-STEP GUIDES
-// ============================================
-
-model StepByStepGuide {
-  id                String   @id @default(cuid())
-  type              String // water_damage, fire_damage, etc.
-  userType          String // customer, contractor
-  title             String
-  description       String
-  estimatedReadTime String?
-  priority          Int      @default(0)
-  active            Boolean  @default(true)
-  lastUpdated       DateTime @default(now())
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-
-  @@index([type, userType, active])
-}
-
-// ============================================
-// SERVICE PROCEDURES
-// ============================================
-
-model ServiceProcedure {
-  id               String   @id @default(cuid())
-  serviceType      String // water_extraction, mould_remediation, etc.
-  title            String
-  description      String   @db.Text
-  safetyNotes      String[]
-  requiredPPE      String[]
-  estimatedTime    String
-  difficultyLevel  String // basic, intermediate, advanced
-  certificationReq String[]
-  active           Boolean  @default(true)
-  version          String   @default("1.0.0")
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-
-  @@index([serviceType, active])
-}
-
-// ============================================
-// EMERGENCY GUIDES
-// ============================================
-
-model EmergencyGuide {
-  id             String   @id @default(cuid())
-  emergencyType  String // flood, fire, storm, etc.
-  title          String
-  immediateSteps String[] // Array of immediate actions
-  safetyWarnings String[]
-  doNotActions   String[] // Things NOT to do
-  contactNumbers Json // Emergency contact numbers
-  active         Boolean  @default(true)
-  priority       Int // Higher priority shown first
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  @@index([emergencyType, active, priority])
-}
-
-// ============================================
-// INSURANCE PROCESSES
-// ============================================
-
-model InsuranceProcess {
-  id           String   @id @default(cuid())
-  insurerName  String
-  processType  String // claim_submission, documentation, etc.
-  requirements String[]
-  timeline     String
-  contactInfo  Json
-  specialNotes String?
-  active       Boolean  @default(true)
-  lastVerified DateTime @default(now())
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@index([insurerName, processType, active])
-}
-
-// ============================================
-// CONTRACTOR AVAILABILITY
-// ============================================
-
-// ============================================
 // JOBS & LEADS
 // ============================================
 
@@ -1263,36 +1145,6 @@ model BotConversation {
   @@index([sessionId])
   @@index([status, userType])
 }
-
-// ============================================
-// COMPLIANCE AUDIT LOG
-// ============================================
-
-model ComplianceAudit {
-  id              String  @id @default(cuid())
-  conversationId  String?
-  requestType     String
-  requestContent  String  @db.Text
-  responseContent String  @db.Text
-
-  // Compliance Check Results
-  verified         Boolean
-  prohibited       Boolean  @default(false)
-  disclaimersAdded String[]
-  dataSources      String[]
-
-  // Metadata
-  timestamp DateTime @default(now())
-  channel   String
-  userType  String
-
-  @@index([conversationId])
-  @@index([timestamp])
-}
-
-// ============================================
-// BOT METRICS
-// ============================================
 
 // ============================================
 // Supabase Platform Models (Priority Tables)
