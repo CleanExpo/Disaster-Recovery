@@ -9,6 +9,7 @@ import { getCallerIdentity } from '@/lib/auth/require-session';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 import { claimSubmitSchema } from '@/lib/validation/schemas';
+import { writeEnquiryFromClaimBody } from '@/lib/claims/enquiry-fallback';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -303,35 +304,76 @@ export async function POST(request: NextRequest) {
         newStatus: 'SUBMITTED',
       });
     } catch (dbError) {
-      const fallbackId = `local-${Date.now().toString(36)}`;
-      trackClaim = buildTrackClaimFromInput(fallbackId, body, createdAtIso, paymentConfirmed);
-      try {
-        await writeFallbackClaim(trackClaim);
-      } catch (fsError) {
-        // Vercel serverless filesystem is read-only — log but don't propagate
-        log.error('fallback file write failed', {
-          error: fsError instanceof Error ? fsError.message : String(fsError),
-        });
-      }
-      log.error('claim DB write failed; continuing with fallback id', {
-        fallbackId,
+      // D4 Path 1 — anonymous public submissions can't satisfy the
+      // FK constraints on InsuranceClaimAU (Booking + users +
+      // InsuranceProvider). Per
+      // docs/audits/dr-claim-submission-fk-debt-2026-04-29.md, write
+      // to the canonical pre-claim funnel table (Enquiry) instead.
+      // Ops promotes Enquiry -> InsuranceClaimAU later, once the
+      // submitter is verified + a Booking is created.
+      log.warn('claim DB write failed; routing to Enquiry funnel', {
         error: dbError instanceof Error ? dbError.message : String(dbError),
       });
-      captureException(dbError, {
-        tags: { route: '/api/claims/submit', stage: 'db_write' },
-        extra: { requestId: log.requestId, fallbackId },
-      });
-      await logComplianceEvent({
-        eventType: 'claim_intake_created',
-        correlationId: '00000000-0000-0000-0000-000000000000',
-        correlationType: 'system',
-        entityType: 'system',
-        metadata: {
-          outcome: 'db_write_failed',
-          request_id: log.requestId,
-          fallback_id: fallbackId,
-        },
-      });
+      try {
+        const fallback = await writeEnquiryFromClaimBody(prisma, body, {
+          ipAddress: ip,
+          userAgent: request.headers.get('user-agent') ?? undefined,
+        });
+        trackClaim = buildTrackClaimFromInput(
+          fallback.enquiryId,
+          body,
+          fallback.writtenAt,
+          paymentConfirmed,
+        );
+        await logComplianceEvent({
+          eventType: 'claim_intake_created',
+          correlationId: fallback.enquiryId,
+          correlationType: 'claim',
+          entityType: 'customer',
+          entityIdentifier: body.email,
+          metadata: {
+            outcome: 'enquiry_funnel',
+            request_id: log.requestId,
+            enquiry_id: fallback.enquiryId,
+            damage_types: body.damageTypes,
+            urgency: body.urgencyLevel,
+            payment_confirmed: paymentConfirmed,
+          },
+        });
+        captureException(dbError, {
+          tags: { route: '/api/claims/submit', stage: 'db_write', recovery: 'enquiry_funnel' },
+          extra: { requestId: log.requestId, enquiryId: fallback.enquiryId },
+        });
+      } catch (enquiryError) {
+        // BOTH writes failed. Last-resort: keep the legacy local-id
+        // path so users see a tracking id, log loud for Ops triage.
+        const fallbackId = `local-${Date.now().toString(36)}`;
+        trackClaim = buildTrackClaimFromInput(fallbackId, body, createdAtIso, paymentConfirmed);
+        log.error('both claim DB and enquiry funnel writes failed', {
+          fallbackId,
+          claimError: dbError instanceof Error ? dbError.message : String(dbError),
+          enquiryError: enquiryError instanceof Error ? enquiryError.message : String(enquiryError),
+        });
+        captureException(enquiryError, {
+          tags: {
+            route: '/api/claims/submit',
+            stage: 'enquiry_fallback',
+            severity: 'critical',
+          },
+          extra: { requestId: log.requestId, fallbackId },
+        });
+        await logComplianceEvent({
+          eventType: 'claim_intake_created',
+          correlationId: '00000000-0000-0000-0000-000000000000',
+          correlationType: 'system',
+          entityType: 'system',
+          metadata: {
+            outcome: 'both_writes_failed',
+            request_id: log.requestId,
+            fallback_id: fallbackId,
+          },
+        });
+      }
     }
 
     // Send Claim Support Pack email (non-blocking — failures don't block the claim)
