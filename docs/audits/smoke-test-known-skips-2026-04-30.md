@@ -47,7 +47,16 @@ Either:
 Tracking: this stays open until contractor portal auth lands
 (D4 / DR-804 follow-up sprint).
 
-## Skip 2 — `Tier 5: API Liveness > log-error endpoint accepts POST and returns 200 or 400`
+## Skip 2 — `Tier 5: API Liveness > log-error endpoint accepts POST and returns 200 or 400` — **CLOSED 2026-05-01**
+
+**Resolution:** DR-804 Step 2 (PR #332) created the `ErrorLog` and
+`ContractorNotification` tables in production. The smoke fixme was
+re-enabled in a follow-up PR; the test now passes against the route's
+clean 200 path.
+
+The original analysis below is preserved for context.
+
+---
 
 ### Symptom
 

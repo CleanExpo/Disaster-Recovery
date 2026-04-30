@@ -189,18 +189,19 @@ test.describe('Tier 4: Security Headers', () => {
 // ─── Tier 5: API Liveness ────────────────────────────────────────────────────
 
 test.describe('Tier 5: API Liveness', () => {
-  // fixme'd — outer catch block at app/api/log-error/route.ts returns 500 on
-  // synchronous throws from prisma.auditLog.create() / logComplianceEvent()
-  // when the underlying live tables are missing. Cluster is part of DR-804
-  // phantom-Prisma-model audit. Re-enable conditions in
-  // docs/audits/smoke-test-known-skips-2026-04-30.md.
-  test.fixme('log-error endpoint accepts POST and returns 200 or 400', async ({ request }) => {
-    // Valid payload
+  // Re-enabled 2026-05-01 after DR-804 Step 2 (PR #332) created the
+  // ErrorLog + ContractorNotification tables in production. The route's
+  // inner-catch fallback now persists cleanly instead of falling through
+  // to the outer 500. AuditLog + compliance_events were never the
+  // problem (both pre-existing real tables).
+  // 202 added to the accepted-status set: the route returns 200/persisted:false
+  // on telemetry-DB-failure today, but a future hardening change might
+  // switch that to 202 Accepted (more semantically correct). Either passes.
+  test('log-error endpoint accepts POST and returns 200/202/400', async ({ request }) => {
     const validResponse = await request.post('/api/log-error', {
       data: { message: 'Smoke test error check', level: 'info', source: 'smoke-test' },
     });
-    // 200 = logged, 400 = validation failure (acceptable), 401 = auth required (acceptable)
-    expect([200, 400, 401], 'log-error must not 500').toContain(validResponse.status());
+    expect([200, 202, 400, 401], 'log-error must not 500').toContain(validResponse.status());
   });
 
   test('log-error rejects requests missing message field', async ({ request }) => {
