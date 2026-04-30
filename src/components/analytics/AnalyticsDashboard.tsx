@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -18,9 +19,18 @@ import {
   BarChart3,
 } from 'lucide-react';
 
-// Import all analytics components
-import { KPIPerformanceDashboard } from './KPIPerformanceDashboard';
-import { ComplianceReports } from './ComplianceReports';
+// D5 Lighthouse CWV — defer the heavy recharts-using tab subtrees so
+// they only load when the user opens their tab. Each component pulls
+// in ~80–100 KB of recharts; without this split, both ship on every
+// initial load even though only one tab is visible at a time.
+const KPIPerformanceDashboard = dynamic(
+  () => import('./KPIPerformanceDashboard').then((m) => m.KPIPerformanceDashboard),
+  { ssr: false },
+);
+const ComplianceReports = dynamic(
+  () => import('./ComplianceReports').then((m) => m.ComplianceReports),
+  { ssr: false },
+);
 
 import { usePermissions, useHasPermission } from '@/hooks/usePermissions';
 import { ProtectedComponent } from '@/components/auth/ProtectedRoute';
