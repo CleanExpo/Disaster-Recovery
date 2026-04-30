@@ -48,6 +48,10 @@
     {
       "path": "/api/cron/kpi-rollup",
       "schedule": "0 18 * * *"
+    },
+    {
+      "path": "/api/cron/bond-forfeit",
+      "schedule": "0 19 * * *"
     }
   ],
   "rewrites": [
