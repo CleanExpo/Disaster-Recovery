@@ -25,11 +25,15 @@ export function GoogleAnalytics() {
 
   return (
     <div>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
+      {/*
+        D5 Lighthouse CWV: analytics scripts deferred to `lazyOnload`
+        (browser-idle time after page-load) so they're off the
+        Time-To-Interactive critical path. GA does not need to fire
+        before the user can interact — page-view events still capture
+        once the script lands a few hundred ms later.
+      */}
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
+      <Script id="google-analytics" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -54,7 +58,8 @@ export function GoogleTagManager() {
 
   return (
     <div>
-      <Script id="google-tag-manager" strategy="afterInteractive">
+      {/* D5 Lighthouse CWV: deferred to lazyOnload (see GA comment above). */}
+      <Script id="google-tag-manager" strategy="lazyOnload">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -83,7 +88,8 @@ export function MicrosoftClarity() {
   }
 
   return (
-    <Script id="microsoft-clarity" strategy="afterInteractive">
+    // D5 Lighthouse CWV: deferred to lazyOnload (see GA comment above).
+    <Script id="microsoft-clarity" strategy="lazyOnload">
       {`
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -103,7 +109,8 @@ export function FacebookPixel() {
   }
 
   return (
-    <Script id="facebook-pixel" strategy="afterInteractive">
+    // D5 Lighthouse CWV: deferred to lazyOnload (see GA comment above).
+    <Script id="facebook-pixel" strategy="lazyOnload">
       {`
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
