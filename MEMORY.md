@@ -3,6 +3,57 @@
 Living sprint + project log. Newest entry at the top. Keep under
 200 lines; archive older entries into `planning/memory-archive/`.
 
+## 2026-05-01 — DR-804 closeout + Bucket-1 final wave
+
+**Outcome:** 7 PRs merged across the day. DR-804 phantom-Prisma-model
+remediation epic is effectively closed (pending Supabase read-auth
+reconciliation).
+
+### Headline
+
+- **PR #330–336 merged.** Bucket 3 (12 dead-model deletions),
+  Bucket 1 P2 (`ErrorLog` + `ContractorNotification`),
+  Bucket 1 P3 (`ContractorTerritory` + `ContractorAuditLog`),
+  Reddit orchestrator (6 tables — Phill confirmed live), and the
+  paired `ContractorPayment`.
+- **`/api/log-error` smoke fixme re-enabled** (PR #333) after the
+  ErrorLog table landed in prod.
+- **KPI + payment-loss audit doc** (PR #336) confirms the
+  missed-KPI → bond-forfeit surface is intact at schema level —
+  the JobOutcome ledger (`job_outcome_logs`, live since 2026-04-08)
+  - bond columns on `ContractorSubscription` + `ContractorPayment`
+    rows. The forfeit orchestration cron is forward feature, not
+    phantom-model debt.
+
+### Major mid-session discovery
+
+The 2026-04-30 audit doc was working from stale Supabase
+introspection. A 2026-04-28 backfill batch (12 migrations) had
+already restored most of Bucket-1 P0 — `ProofOfWork`, `OnboardingPayment`,
+`Enquiry`, `Partner`, `ContractorSubscription`, `JobOffer`,
+`ClaimNotification`, `PartnerBilling`, `field_service_jobs`, `leads`,
+`error_log`, `contractor_notifications`. Combined with DR-807's
+pre-DR-804 User + ContractorApplication rewrites, the actual
+remaining work was 5–10 phantoms, not 53.
+
+Closeout doc: `docs/audits/dr-804-closeout-2026-05-01.md`.
+
+### Acceptance criteria
+
+- ✅ Phantom-model count effectively zero in `schema.prisma`
+- ⏳ `prisma db pull` reconciliation (pending Supabase read auth)
+- ✅ Smoke `/api/log-error` re-enabled
+- ⏳ 24h `P2021/P2022` watch window starts now
+- ✅ MEMORY entry written (this entry)
+
+### Forward features still owed (NOT DR-804 debt)
+
+- KPI aggregator cron (`JobOutcome` → `ContractorKPI`)
+- Bond-forfeit orchestration (KPI-breach → `bondStatus =
+'FORFEIT_PENDING'` + `ContractorPayment` BOND row +
+  `ContractorNotification`)
+- `/admin` smoke fixme (environmental, needs `NEXTAUTH_*` in Preview)
+
 ## 2026-04-29 — DR-700 close-out + ROOT CAUSE: Prisma binary target
 
 **Outcome:** 17 PRs merged across the day. Discovered the real reason
