@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getEmergencySections } from '@/lib/content-sections';
@@ -6,8 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'New Year Emergency | Dec 31-Jan 1 Pricing',
-  description: 'New Year disaster response when others are celebrating. priority response. Available December 31st - January 1st. IICRC-certified.',
-  keywords: ["new year emergency","nye disaster recovery","january 1 emergency"],
+  description:
+    'New Year disaster response when others are celebrating. priority response. Available December 31st - January 1st. IICRC-certified.',
+  keywords: ['new year emergency', 'nye disaster recovery', 'january 1 emergency'],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/new-year' },
 };
 
@@ -26,7 +27,10 @@ export default function NewYearEmergencyServicePage() {
         { label: 'Emergency', href: '/emergency' },
         { label: 'New Year Emergency Service' },
       ]}
-      sections={getEmergencySections({ emergencyType: 'New Year', context: 'on New Year\'s Eve and New Year\'s Day' })}
+      sections={getEmergencySections({
+        emergencyType: 'New Year',
+        context: "on New Year's Eve and New Year's Day",
+      })}
       relatedPages={getRelatedPages('emergency')}
     />
   );

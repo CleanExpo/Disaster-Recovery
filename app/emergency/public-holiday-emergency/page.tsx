@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getEmergencySections } from '@/lib/content-sections';
@@ -6,8 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Public Holiday Emergency | All Public Holidays',
-  description: 'Holiday disaster response when other services are closed. 45 minutes response time. Available All Public Holidays. IICRC-certified.',
-  keywords: ["public holiday emergency","christmas emergency","easter disaster recovery"],
+  description:
+    'Holiday disaster response when other services are closed. 45 minutes response time. Available All Public Holidays. IICRC-certified.',
+  keywords: ['public holiday emergency', 'christmas emergency', 'easter disaster recovery'],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/public-holiday' },
 };
 
@@ -26,7 +27,10 @@ export default function PublicHolidayEmergencyPage() {
         { label: 'Emergency', href: '/emergency' },
         { label: 'Public Holiday Emergency' },
       ]}
-      sections={getEmergencySections({ emergencyType: 'Public Holiday', context: 'on any public holiday' })}
+      sections={getEmergencySections({
+        emergencyType: 'Public Holiday',
+        context: 'on any public holiday',
+      })}
       relatedPages={getRelatedPages('emergency')}
     />
   );

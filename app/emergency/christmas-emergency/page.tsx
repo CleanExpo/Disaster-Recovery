@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getEmergencySections } from '@/lib/content-sections';
@@ -6,8 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Christmas Day Emergency | December 25th',
-  description: 'Christmas Day disaster recovery - we never close. priority response. Available December 25th. IICRC-certified.',
-  keywords: ["christmas emergency","december 25 disaster","xmas day recovery"],
+  description:
+    'Christmas Day disaster recovery - we never close. priority response. Available December 25th. IICRC-certified.',
+  keywords: ['christmas emergency', 'december 25 disaster', 'xmas day recovery'],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/christmas' },
 };
 
@@ -26,7 +27,10 @@ export default function ChristmasDayEmergencyPage() {
         { label: 'Emergency', href: '/emergency' },
         { label: 'Christmas Day Emergency' },
       ]}
-      sections={getEmergencySections({ emergencyType: 'Christmas', context: 'on Christmas Day and Boxing Day' })}
+      sections={getEmergencySections({
+        emergencyType: 'Christmas',
+        context: 'on Christmas Day and Boxing Day',
+      })}
       relatedPages={getRelatedPages('emergency')}
     />
   );
