@@ -11,7 +11,18 @@ let CI flake or `--no-verify` past them, both are now wrapped in
 `test.fixme` (not `test.skip`) so Playwright reports them in the run
 summary — they stay visible.
 
-## Skip 1 — `Tier 3: Auth Safety > /admin redirects unauthenticated users`
+## Skip 1 — `Tier 3: Auth Safety > /admin redirects unauthenticated users` — **CLOSED 2026-05-01**
+
+**Resolution:** Live inspection of Vercel project settings on
+2026-05-01 confirmed `NEXTAUTH_URL` (Preview, added Apr 10) +
+`NEXTAUTH_SECRET` (All Environments, Mar 17) are populated. The
+original "env vars missing" diagnosis was stale — the vars landed
+before this fixme was identified as resolvable. The fixme was
+removed in a follow-up PR.
+
+The original analysis below is preserved for context.
+
+---
 
 ### Symptom
 
