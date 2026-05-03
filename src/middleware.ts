@@ -25,7 +25,7 @@ const RATE_LIMIT_RULES: Readonly<Record<string, RateLimitRule>> = {
   '/api/contractor/register': { windowMs: 3_600_000, maxRequests: 5 },
   '/api/contractor/onboarding/submit': { windowMs: 3_600_000, maxRequests: 5 },
   '/api/contractors/apply/start': { windowMs: 3_600_000, maxRequests: 10 },
-  '/api/voice/tools/send-payment-link': { windowMs: 60_000, maxRequests: 20 },
+  '/api/voice/widget-consent': { windowMs: 60_000, maxRequests: 20 },
   '/api/finance/referral': { windowMs: 60_000, maxRequests: 10 },
 };
 
