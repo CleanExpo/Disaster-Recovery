@@ -3,6 +3,40 @@
 Living sprint + project log. Newest entry at the top. Keep under
 200 lines; archive older entries into `planning/memory-archive/`.
 
+## 2026-05-03 — 1-week health check (post 2026-04-26 audit wave)
+
+**Outcome:** All 3 flagged Stripe idempotency sites already resolved prior
+to this session. No code changes required. Status table recorded below for
+audit trail.
+
+### Health-check results
+
+| Check | Status | Notes |
+|---|---|---|
+| `git pull` | Clean | Already up to date with `main` |
+| Open PRs | 1 open | PR #347 (DR-799 content bundle — awaiting copy + legal review). 2026-04-26 wave fully drained. |
+| `npm install` | OK | Expected peer conflict (`@langchain/community` vs `openai@5.x`) — `--legacy-peer-deps` required |
+| `npm run lint` | Warnings only | 3 `<img>` LCP warnings + 5 anonymous-default-export warnings. Zero errors. Baseline unchanged. |
+| `npx tsc --noEmit` | 0 errors | Baseline clean. No regression vs main. |
+
+### Stripe idempotency — all 3 sites confirmed resolved
+
+| Route | File | Status |
+|---|---|---|
+| `stripe.customers.create` | `app/api/payments/create-booking/route.ts:119` | Key `dr-booking-customer-${bookingId}` present |
+| `stripe.paymentIntents.create` | `app/api/payments/create-booking/route.ts:157` | Key `dr-booking-pi-${bookingId}` present |
+| `stripe.refunds.create` | `app/api/payments/refund/route.ts:71` | Key `dr-refund-${paymentIntentId}-${refundAmount}` present |
+| `stripe.transfers.create` | `app/api/contractors/release-payment/route.ts` | **File deleted** — ADR-014 Path A cutover (2026-04-28). No action. |
+
+### Phill's manual items — status
+
+| Item | Status |
+|---|---|
+| Callout fee ADR (`ADR-010`) | Mislabelled in plan — the ADR is at `docs/adr/ADR-011-callout-fee-funds-flow.md`. **Path A accepted** (Phill, 2026-04-26). ADR-014 cutover shipped 2026-04-28. |
+| APP 8 consent wording | **No drift.** `src/lib/voice/consent-utterance.ts` `CONSENT_UTTERANCE` matches canonical wording in `.claude/rules/compliance.md §3` exactly (v2.0-2026-04-26). |
+| DR-509 Stripe test-mode keys | **Partially documented.** `.env.example` line 126 has a comment referencing `sk_test_*/pk_test_*` for Preview but no placeholder env vars defined. Recommend adding `STRIPE_SECRET_KEY_TEST=` and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_TEST=` placeholders to `.env.example`. |
+| 7 LearnDash legacy Stripe products | **Cannot verify from code.** Phill to archive `prod_HL*` products via Stripe Dashboard (carried forward from 2026-04-27 action queue). |
+
 ## 2026-05-01 — DR-804 closeout + Bucket-1 final wave
 
 **Outcome:** 7 PRs merged across the day. DR-804 phantom-Prisma-model
