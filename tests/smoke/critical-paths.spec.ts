@@ -138,14 +138,14 @@ test.describe('Tier 3: Auth Safety', () => {
     '/api/admin/users',
   ];
 
+  // Re-enabled 2026-05-01 — NEXTAUTH_URL (Preview, added Apr 10) +
+  // NEXTAUTH_SECRET (All Environments, Mar 17) are populated in
+  // Vercel, so getServerSession() resolves cleanly and the layout's
+  // redirect() fires as expected. The original env-config-missing
+  // diagnosis was stale (the vars landed before this fixme was
+  // recognised as resolvable).
   for (const route of protectedRoutes) {
-    // /admin specifically is fixme'd — Vercel preview deploys don't have
-    // NEXTAUTH_* env vars, so getServerSession() throws before the
-    // redirect() can fire and the layout 500s. Re-enable conditions in
-    // docs/audits/smoke-test-known-skips-2026-04-30.md.
-    const isAdminRoot = route === '/admin';
-    const runner = isAdminRoot ? test.fixme : test;
-    runner(`${route} redirects unauthenticated users`, async ({ request }) => {
+    test(`${route} redirects unauthenticated users`, async ({ request }) => {
       const response = await request.get(route, { maxRedirects: 0 });
       const status = response.status();
       // Must be 302 redirect to login, or 401/403 — never 200
