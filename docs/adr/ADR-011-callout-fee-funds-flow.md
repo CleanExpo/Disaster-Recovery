@@ -212,6 +212,13 @@ Independent of which path is taken:
   Path B** — Path A reuses existing `payment_*` events on the
   contractor side only.
 
+## Implementation log
+
+| Date | PR | Action |
+|---|---|---|
+| 2026-04-28 | ADR-014 cutover | `app/api/contractors/release-payment/route.ts` (KPI release engine, 475 lines) removed; `ContractorProfile.stripeConnectAccountId` field and migration dropped. `app/api/voice/tools/send-payment-link/route.ts` flagged but NOT removed pending Phill confirmation. |
+| 2026-05-03 | chore/path-a-remove-deprecated-routes | Grace window confirmed — no production callers surfaced. `app/api/payments/create-booking/route.ts` (267 lines) removed. `send-payment-link` confirmed already absent from tree (removed between ADR-014 and this PR). Orphan rate-limit rule in `src/middleware.ts` replaced with the correct `widget-consent` entry. DR-789 implementation epilogue closed. |
+
 ## References
 
 - `.claude/rules/business-rules.md` §2 (who bills who) and §10

@@ -11,9 +11,8 @@
  *   - which version of the consent text they saw (CONSENT_UTTERANCE_VERSION)
  *   - timestamp + an ip-fingerprint for correlation (no raw IP stored)
  *
- * Rate-limited via the global middleware (see src/middleware.ts —
- * `/api/voice/tools/send-payment-link` rule covers similar voice
- * surfaces; we add this route to the rule registry in a follow-up).
+ * Rate-limited via the global middleware (src/middleware.ts,
+ * `/api/voice/widget-consent` rule, 20 req/min).
  *
  * Returns 200 even when COMPLIANCE_EVENTS_ENABLED is off — caller is
  * a UX-blocking modal, must not fail the consent flow on logging
