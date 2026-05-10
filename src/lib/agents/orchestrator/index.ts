@@ -88,6 +88,9 @@ export class MasterOrchestrator extends EventEmitter {
 
   private async registerCoreAgents() {
     // Register main agents
+    // TODO(ts-phase-3): Type E — ResearchPlannerAgent, MDCreatorAgent, and MockDataFactory extend
+    // EventEmitter and do not implement the Agent interface directly (missing name/capabilities/execute
+    // as class-level properties). Fix: add interface implementation or extract an adapter factory.
     this.agentRegistry.register('research-planner', new ResearchPlannerAgent() as unknown as Agent);
     this.agentRegistry.register('md-creator', new MDCreatorAgent() as unknown as Agent);
     this.agentRegistry.register('mock-data-factory', new MockDataFactory() as unknown as Agent);

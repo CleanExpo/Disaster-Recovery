@@ -103,7 +103,7 @@ export async function verifyEquippedHandoffToken(opts: VerifyOptions): Promise<V
   }
 
   try {
-    const { payload, protectedHeader } = await jwtVerify(
+    const { payload: claims, protectedHeader } = await jwtVerify<EquippedHandoffClaims>(
       opts.token,
       new TextEncoder().encode(opts.secret),
       {
@@ -113,17 +113,12 @@ export async function verifyEquippedHandoffToken(opts: VerifyOptions): Promise<V
       },
     );
 
-    // Narrow payload to the claim shape we expect. jose has already
-    // validated `exp`, `iss`, `aud`. We only assert the custom claims.
-    const claims = payload as unknown as EquippedHandoffClaims & {
-      exp: number;
-      iat: number;
-    };
-
     return {
       ok: true,
       claims: {
         ...claims,
+        exp: claims.exp as number,
+        iat: claims.iat as number,
         kid: typeof protectedHeader.kid === 'string' ? protectedHeader.kid : undefined,
       },
     };

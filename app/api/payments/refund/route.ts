@@ -11,6 +11,9 @@ import { logComplianceEvent } from '@/lib/compliance/events';
 // Initialize Stripe or use mock. The mock is a partial implementation
 // of the Stripe SDK surface used by this route — `as unknown as Stripe`
 // is the boundary cast (see TS Phase 2 cluster guidance §"Cast-replacement").
+// TODO(ts-phase-3): Type E — getMockStripe() returns a Partial<Stripe>-shaped object.
+// Fix: type getMockStripe() as returning a dedicated interface (e.g. MockStripe extends Pick<Stripe, ...>)
+// and use a union `stripe: Stripe | MockStripe` to remove the cast.
 const stripe: Stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-06-20' as const,

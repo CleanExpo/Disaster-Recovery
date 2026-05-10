@@ -146,6 +146,7 @@ async function createSubscriptionSchedule(
   // the typed SDK currently only declares `number`. We use a structural
   // overload that widens just the date fields to mirror the wire payload —
   // avoids `as any` and preserves runtime behaviour exactly.
+  // TODO(ts-phase-3): Type C — remove once Stripe SDK adds 'now' to SubscriptionScheduleCreateParams.
   type SchedulePhaseInput = {
     start_date?: number | 'now';
     end_date?: number | 'now';

@@ -21,6 +21,15 @@ const FLAG_ENABLED =
   typeof process !== 'undefined' &&
   process.env.NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED === 'true';
 
+declare global {
+  interface Window {
+    Capacitor?: {
+      isNativePlatform?: () => boolean;
+      getPlatform?: () => string;
+    };
+  }
+}
+
 /**
  * Returns true only when BOTH the feature flag is on AND we're running
  * inside a Capacitor shell. The flag-off branch must stay zero-impact
@@ -29,14 +38,12 @@ const FLAG_ENABLED =
 export function isNative(): boolean {
   if (!FLAG_ENABLED) return false;
   if (typeof window === 'undefined') return false;
-  const w = window as unknown as { Capacitor?: { isNativePlatform?: () => boolean } };
-  return Boolean(w.Capacitor?.isNativePlatform?.());
+  return Boolean(window.Capacitor?.isNativePlatform?.());
 }
 
 export function getPlatform(): 'ios' | 'android' | 'web' {
   if (!isNative()) return 'web';
-  const w = window as unknown as { Capacitor?: { getPlatform?: () => string } };
-  const p = w.Capacitor?.getPlatform?.();
+  const p = window.Capacitor?.getPlatform?.();
   return p === 'ios' || p === 'android' ? p : 'web';
 }
 
@@ -183,8 +190,9 @@ export async function registerPushNotifications(): Promise<string | null> {
     await PushNotifications.register();
     return new Promise<string | null>((resolve) => {
       const off = PushNotifications.addListener('registration', (token) => {
-        // addListener returns a Promise<PluginListenerHandle> on newer
-        // Capacitor; cast is defensive.
+        // TODO(ts-phase-3): Type C — @capacitor/push-notifications types addListener as returning
+        // PluginListenerHandle directly, but newer runtime versions return Promise<PluginListenerHandle>.
+        // Fix requires a module augmentation or version-pinned type upgrade.
         void (off as unknown as Promise<{ remove: () => void }>).then((h) =>
           h.remove()
         );

@@ -306,6 +306,12 @@ export default function LeadAttributionSystem() {
   const formatPercentage = (num: number) => `${num.toFixed(1)}%`;
 
   const getAttributionValue = (source: LeadSource, model: AttributionModel) => {
+    // TODO(ts-phase-3): HIDDEN BUG — AttributionModel uses underscore keys ('first_click',
+    // 'last_click', 'time_decay', 'position_based') but LeadAttributionData uses camelCase
+    // ('firstClick', 'lastClick', 'timeDecay', 'positionBased'). This lookup always returns
+    // undefined at runtime; values displayed are always 0. Fix: add a key-map Record<AttributionModel,
+    // keyof Pick<LeadAttributionData, 'firstClick'|'lastClick'|'linear'|'timeDecay'|'positionBased'>>
+    // and remove this cast. Tracked as a runtime bug.
     const modelData = (mockAttributionData as unknown as Record<string, any>)[model];
     const sourceKey = source.campaign ? 
       `${source.source}/${source.medium}/${source.campaign}` : 
@@ -371,6 +377,7 @@ export default function LeadAttributionSystem() {
           <div>
             <p className="text-sm font-medium text-gray-700">Total Revenue</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
+              {/* TODO(ts-phase-3): HIDDEN BUG — same underscore/camelCase key-map issue as getAttributionValue; always renders $0. */}
               {formatCurrency((mockAttributionData as unknown as Record<string, any>)[selectedModel]?.totalValue ?? 0)}
             </p>
           </div>

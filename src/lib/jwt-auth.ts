@@ -95,8 +95,8 @@ export async function generateRefreshToken(userId: string): Promise<string> {
  */
 export async function verifyToken(token: string): Promise<TokenPayload> {
   try {
-    const { payload } = await jwtVerify(token, getJwtSecretKey());
-    return payload as unknown as TokenPayload;
+    const { payload } = await jwtVerify<TokenPayload>(token, getJwtSecretKey());
+    return payload;
   } catch (error) {
     throw new Error('Invalid or expired token');
   }

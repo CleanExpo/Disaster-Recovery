@@ -75,7 +75,10 @@ function ImageOptimizerPageOriginal() {
   };
 
   const downloadZip = async () => {
-    // Create a zip file using browser APIs
+    // TODO(ts-phase-3): Type C — JSZip is not imported via npm; it is expected on window from a
+    // script tag that is not present in this file. This will throw at runtime. Fix: either
+    // `import JSZip from 'jszip'` (add the npm package) or load via dynamic script + proper
+    // declare global { interface Window { JSZip: typeof JSZip } }.
     const zip = new (
       window as unknown as {
         JSZip: new () => {

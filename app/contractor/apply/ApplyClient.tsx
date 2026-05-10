@@ -857,6 +857,9 @@ function ContractorApplicationContent() {
         return (
           <Step2InsuranceLicensing
             data={
+              // TODO(ts-phase-3): Type E — onboardingData is Partial<ContractorOnboardingData>;
+              // each step prop needs a typed initialiser derived from that partial. Requires
+              // a per-step data-adapter function to eliminate this cast.
               (onboardingData ?? {}) as unknown as ComponentProps<
                 typeof Step2InsuranceLicensing
               >['data']
@@ -872,6 +875,7 @@ function ContractorApplicationContent() {
         return (
           <Step3ExperienceReferences
             data={
+              // TODO(ts-phase-3): Type E — same per-step adapter pattern as case 2.
               (onboardingData ?? {}) as unknown as ComponentProps<
                 typeof Step3ExperienceReferences
               >['data']
@@ -887,6 +891,7 @@ function ContractorApplicationContent() {
         return (
           <Step4EquipmentResources
             data={
+              // TODO(ts-phase-3): Type E — same per-step adapter pattern as case 2.
               (onboardingData ?? {}) as unknown as ComponentProps<
                 typeof Step4EquipmentResources
               >['data']
@@ -907,6 +912,7 @@ function ContractorApplicationContent() {
             }}
             onPrevious={handlePrevious}
             defaultValues={
+              // TODO(ts-phase-3): Type E — same per-step adapter pattern as case 2.
               (onboardingData ?? {}) as unknown as ComponentProps<
                 typeof Step5HealthSafety
               >['defaultValues']
@@ -917,6 +923,7 @@ function ContractorApplicationContent() {
         return (
           <Step6BankingPayment
             data={
+              // TODO(ts-phase-3): Type E — same per-step adapter pattern as case 2.
               (onboardingData ?? {}) as unknown as ComponentProps<
                 typeof Step6BankingPayment
               >['data']
@@ -937,6 +944,7 @@ function ContractorApplicationContent() {
             }}
             onPrevious={handlePrevious}
             defaultValues={
+              // TODO(ts-phase-3): Type E — same per-step adapter pattern as case 2.
               (onboardingData ?? {}) as unknown as ComponentProps<
                 typeof Step7ReviewSubmit
               >['defaultValues']

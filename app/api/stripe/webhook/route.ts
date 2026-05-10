@@ -473,6 +473,9 @@ async function handleWebhook(req: NextRequest) {
     }
 
     // SECURITY: Log successful webhook processing
+    // TODO(ts-phase-3): Type C — Stripe.Event.Data['object'] is a union of ~50 Stripe objects;
+    // narrowing it cleanly requires a discriminated switch on event.type (done above). Extract
+    // the metadata access into a typed helper once the event-type switch is unified.
     const eventObj = event.data.object as unknown as Record<string, unknown>;
     const metadata = eventObj.metadata as Record<string, string> | undefined;
     PaymentAuditLogger.logPaymentAttempt({
