@@ -38,12 +38,23 @@ jobs:
         SKIP_ENV_VALIDATION: 'true'
         NEXT_TELEMETRY_DISABLED: '1'
 
-  # ── Gate 2: Database migration (separate from build) ──
+  # ── Gate 2: Database migration (only enforced when actually needed) ──
+  #
+  # The gate was previously blocking every push regardless of whether any
+  # migration files had changed. Result: a credential rotation in May 2026
+  # silently froze production for 20 days while no schema change was
+  # actually pending. Now we only fail the deploy when there is a real new
+  # migration file relative to main's parent commit. If schema is unchanged
+  # AND `prisma migrate deploy` fails (eg. stale creds), the job emits a
+  # loud warning annotation but does not block the deploy — there is
+  # nothing to apply, so blocking is pure noise.
   migrate:
     needs: validate
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2  # need parent commit for the diff below
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -51,14 +62,46 @@ jobs:
         node-version: '20'
         cache: 'npm'
 
+    - name: Detect new migration files
+      id: detect
+      run: |
+        # Migration files added or modified in this push (vs. parent commit).
+        # On the first push to a fresh branch there may be no parent — fall
+        # back to "no new migrations" rather than erroring, since the
+        # validate gate already covers correctness for that case.
+        if git rev-parse HEAD^ >/dev/null 2>&1; then
+          NEW=$(git diff --name-only HEAD^..HEAD -- prisma/migrations/ | grep -cE '\.sql$' || true)
+        else
+          NEW=0
+        fi
+        echo "new_migrations=$NEW" >> "$GITHUB_OUTPUT"
+        if [ "$NEW" -gt 0 ]; then
+          echo "::notice::$NEW new migration file(s) detected — migrate gate will enforce."
+        else
+          echo "::notice::No new migration files in this push — migrate gate is informational only."
+        fi
+
     - name: Install dependencies
       run: npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps
 
-    - name: Run database migrations
+    - name: Run database migrations (enforced when new migrations present)
+      id: run_migrate
+      continue-on-error: true
       run: npx prisma migrate deploy
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         DIRECT_URL: ${{ secrets.DIRECT_URL }}
+
+    - name: Enforce gate only when new migrations exist
+      if: steps.detect.outputs.new_migrations != '0' && steps.run_migrate.outcome == 'failure'
+      run: |
+        echo "::error::prisma migrate deploy FAILED and this push includes ${{ steps.detect.outputs.new_migrations }} new migration file(s). Refusing to promote a Vercel build whose schema would diverge from production."
+        exit 1
+
+    - name: Warn (non-blocking) when no-op migrate fails
+      if: steps.detect.outputs.new_migrations == '0' && steps.run_migrate.outcome == 'failure'
+      run: |
+        echo "::warning::prisma migrate deploy failed but no new migration files are in this push — proceeding with deploy. Most likely cause: stale DATABASE_URL / DIRECT_URL secrets. Rotate them in repo Settings → Secrets when convenient."
 
   # ── Gate 3: Deploy to Vercel production ──
   deploy:
