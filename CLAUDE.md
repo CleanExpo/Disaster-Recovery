@@ -1,91 +1,29 @@
-# CLAUDE.md â€” Disaster Recovery
+@../Unite-Hub/.portfolio/PORTFOLIO.yaml
 
-Behavioural guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+## Identity (SSOT)
+**Canonical name:** Disaster-Recovery
+**Aliases:** "DR", "Disaster Recovery"
+**Canonical local path:** `D:$canon`
+**GitHub:** `CleanExpo/Disaster-Recovery`
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+> Registry: see `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth)
 
-## Table of contents
+---# CLAUDE.md â€” Disaster Recovery
 
-- `.context/domain-models.md` â€” domain concepts, Prisma mappings, state
-  machines, known drift.
-- `UBIQUITOUS_LANGUAGE.md` â€” 29 canonical terms (DR-724).
-- `CONTRIBUTING.md` â€” repo layout, branch + commit conventions, PR
+Behavioural ]ZY[[™\ÈÈ™YXÙHÛÛ[[ÛˆHÛÙ[™ÈZ\İZÙ\ËˆY\™ÙHÚ]›Ú™Xİ\ÜXÚYšXÈ[œİXİ[ÛœÈ\È™YYY‚‚ŠŠ•˜Y[Ù™ŠŠˆ\ÙHİZY[[™\ÈšX\ÈİØ\™Ø]][Ûˆİ™\ˆÜYYˆ›Üˆš]šX[\ÚÜË\ÙHYÛY[‚‚ˆÈÈX›HÙˆÛÛ[Â‚‹H˜ÛÛ^ÙÛXZ[‹[[Ù[Ë›Y8 %ÛXZ[ˆÛÛ˜Ù\Ëš\ÛXHX\[—2Â7FFP¢Ö6†–æW2Â¶æ÷vâG&–P¸(´U	%EU%Q=UM}19U¹µ‘€ƒŠP€Èä…¹½¹¥…°Ñ•ÉµÌ€¡H´ÜÈĞ¤¸(´=9QI%	UQ%9¹µ‘€ƒŠPÉ•Á¼±…å½ÕĞ°‰É…¹ €¬½µµ¥Ğ½¹Ù•¹Ñ¥½³, PR
   workflow, escape-hatch policy.
-- `MEMORY.md` â€” living sprint + project log.
-- `docs/adr/` â€” architectural decision records:
-  - ADR-001 â€” Gemma 4 multilingual translation.
-  - ADR-005 â€” Vercel-native observability.
-  - ADR-006 â€” Foundation Sprint outcomes.
-  - ADR-007 â€” Pre-commit + CI discipline.
-  - ADR-008 â€” Pocock five-skills framework adoption.
-  - ADR-009 â€” God-component decomposition pattern.
-- `docs/how-to/` â€” practical playbooks:
-  - `add-a-new-api-route.md`
-  - `add-a-new-feature-flag.md`
-  - `run-the-foundation-sprint-checklist.md`
-- `.claude/rules/` â€” crisp agent-facing directives (short form of the
+- `MEMORY.md` â€” living sprim
+È›Ú™XİÙË‚‹HØÜËØY‹Ø8 %\˜Ú]Xİ\˜[XÚ\Ú[Ûˆ™XÛÜ™Î‚ˆHQ‹LH8 %Ù[[XH][[[™İX[˜[6ÆF–öâà¢ÒE"ÓR(	BfW&6VÂÖæF—fRö'6W'f&–Æ—G’à¢ÒE"Ób(	Bf÷VæFF–öâ7&–çB÷WF6öÖW2à¢ÒE"Ór(	B&RÖ6öÖÖ—B²4’F—66—Æ–æRà¢ÒE"Ó‚(	Bö6ö6²f—fR×6¶–ÆÇ2g&ÖWv÷&²F÷F–öâà¢ÒE"Ó’(	BvöBÖ6ö×öæVĞ‘•½µÁ½Í¥Ñ¥½¸Á…ÑÑ•É¸¸(´‘½Ì½¡½ÜµÑ¼½€ƒŠPÁÉ…Ñ¥…°Á±…å‰½½­Ìè(€€´…‘µ„µ¹•Üµ…Á¤µÉ½ÕÑ”¹µ‘€(€€´…‘µ„µ¹•Üµ™•…ÑÕÉ”µ™±…œ¹µ‘€(€€´ÉÕ¸µÑ¡”µ™½Õ¹‘…Ñ¥½¸µÍÁÉ¥¹Ğµ¡•­±¥ÍĞ¹µ‘€(´€¹±…Õ‘”½ÉÕ±•Ì½€ƒŠPÉ¥ÍÀ…•¹Ğµ™…¥¹œ‘¥É•Ñ¥Ù•Ì€¡Í¡½Ä form of the
   ADRs above).
 
 ## 1. Think Before Coding
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
-
-Before implementing:
-
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
-
-## 2. Simplicity First
-
-**Minimum code that solves the problem. Nothing speculative.**
-
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
+**Don't assume. DonYHÛÛ™\Ú[Û‹ˆİ\™˜XÙH˜Y[Ù™2â¢  ¤&Vf÷&R–×ÆVÖVÑ¥¹œè((´MÑ…Ñ”å½ÕÈ…ÍÍÕµÁÑ¥½³ explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - donXÚÈÚ[[K‚‹HYˆHÚ[\\ˆ\›ØXÚ^\İËØ^HÛËˆ\Ú˜XÚÈÚ[ˆØ\œ˜[Y‚‹HYˆÛÛY][™È\È[˜ÛX\‹İÜˆ˜[YHÚ]26öægW6–ærâ6²à ¢22"â6–×Æ–6—G’f—'7@ ¢¢¤Ö–æ–×VÒ6öFRF†B6öÇfW2F†R&ö&ÆVÒâæ÷F†–äÍÁ•Õ±…Ñ¥Ù”¸¨¨((´9¼™•…ÑÕÉ•Ì‰•å½¹İ¡…Ğİ…Ì…Í­•¸(´9¼…ƒtractiolÈ›ÜˆÚ[™ÛK]\ÙHÛÙK‚‹H›È™›^Xš[]HˆÜˆ˜ÛÛ™šYİ\˜Xš[]Hˆ]Ø\Û‰İ™\]Y\İY‚‹H›È\&÷"†æFÆ–ærf÷"–×÷76–&ÆR66Væ&–÷2à¢Ò–b–÷Rw&—FR#Æ–æW2æB—B6÷VÆB&RSÂ&Ww&—FR—Bà ¤6²–÷W•±˜è€‰]½Õ±„Í•¹¥½È•¹¥¹••ÈÍ…äÑ¡¥Ì¥Ì½Ù•É½µÁ±¥…Ñ•üˆ%˜å•Ì°Í¥µÁ±¥™ä¸((ŒŒ€Ì¸MÕÉ¥…°¡…¹•Ì((¨©Q½Õ ½¹±äİ¡…Ğå½ÔµÕÍĞ¸±•…¸ÕÀ½¹±äå½ÕÈ½İ¸µ•ÍÌ¸¨¨()]¡•¸•‘¥Ñ¥¹ existinHÛÙN‚‚‹HÛ‰İš[\›İ™HˆY˜XÙ[ÛÙKÛÛ[Y[ËÜˆ›Ü›X][™Ë‚‹HÛ‡B&Vf7F÷"F†–æw2F†B&VâwB	½­•¸¸(´5…Ñ •á¥ÍÑ¥¹ style, even if you'd do it differently.
 - If you notice unrelated dead code, mention it - don't delete it.
 
-When your changes create orphans:
-
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-
-- "Add validation" â†’ "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" â†’ "Write a test that reproduces it, then make it pass"
-- "Refactor X" â†’ "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-
-```
-1. [Step] â†’ verify: [check]
-2. [Step] â†’ verify: [check]
-3. [Step] â†’ verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+When your changes create op[œÎ‚‚‹H™[[İ™H[\ÜËİ˜\šXX›\ËÙVæ7F–öç2F†B”õU"6†ævW2ÖFRVçW6VBà¢ÒFöâwB&VÖ÷fR&RÖW†—7F–ærFVB6öFRVæÆW726¶VBà ¥F†RFW7C¢WfW'’6†ævVBÆ–æR6†÷VÆBG&6RF—&V7FÇ’FòF†RW6W"w2&WVW7Bà ¢22BâvöÂÔG&—fVâW†V7WF–öà ¢¢¤FVf–æR7V66W727&—FW&–âÆö÷VÑ¥°Ù•É¥™¥•¸¨¨()QÉ…³form tasks into verifiable [Ø[Î‚‚‹HY˜[Y][Ûˆˆ8¡¤ˆ•Üš]H\İÈ›Üˆ[fÆ–B–çWG2ÂF†VâÖ¶RF†VÒ72 ¢Ò$f—‚F†R'Vr"(i"%w&—FRFW7BF†B&W&öGV6W2—BÂF†VâÖ¶R—B72 ¢Ò%&Vf7F÷"‚"(i"$Vç7W&RFW7G272&Vf÷&RæBQ•Èˆ()½ÈµÕ±Ñ¤µÍÑ•ÀÑ…Í­Ì°ÍÑ…Ñ”„‰É¥•˜Á±…¸è()€(Ä¸mMÑ•ÁtƒŠHÙ•É¥™: [check]
+2. [Step] â†’ verifNˆØÚXÚ×BŒËˆÔİ\H8¡¤ˆ™\šY“¢¶6†V6µĞ¦ ¥7G&öær7V66W727&—FW&–ÆWB–÷RÆö÷–æFWVæFVÑ±ä¸]•…¬É¥Ñ•É¥„€ ‰µ…­”¥Ğİ½É¬ˆ¤É•ÅÕ¥É”½¹ÍÑ…´ clarification.
 
 ---
 
@@ -93,187 +31,93 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 | Topic                             | File                                                 |
 | --------------------------------- | ---------------------------------------------------- |
-| Domain vocabulary                 | @UBIQUITOUS_LANGUAGE.md + @.context/domain-models.md |
-| Business rules (billing, quoting) | @.claude/rules/business-rules.md                     |
-| Compliance (ACL, APP, AML/CTF)    | @.claude/rules/compliance.md                         |
-| Australian English (spelling)     | @.claude/rules/australian-english.md                 |
-| Privacy + data classes            | @.claude/rules/privacy.md                            |
-| Dev environment quirks            | @.claude/rules/dev-environment.md                    |
-| Architectural decisions (ADRs)    | @docs/adr/                                           |
-| Project memory (drifts, debt)     | @MEMORY.md                                           |
-| History + brand notes             | @docs/history/brand-and-history.md                   |
+| Domain vocaa[\HP’TURUÕT×ÓS‘ÕPQÑK›Y
+È˜ÛÛ^ÙÛXZ[‹[[Ù[Ë›YŸ\Ú[™\ÜÈ[\È
+š[[’ÂV÷F–ä¤ğ¹±…Õ‘”½ÉÕ±•Ì½‰ÕÍ¥¹•ÍÌµÉÕ±•Ì¹µ€€€€€€€€€€€€€€€€€€€€ğ)ğ½µÁ±¥…¹”€¡0°A@°50½Q¤€€€ğ¹±…Õ‘”½ÉÕ±•Ì½½µÁ±¥…¹”¹µ€€€€€€€€€€€€€€€€€€€€€€€€ğ)ğÕÍÑÉ…±¥…¸¹lish (spelling)     | @.claude/rules/australian-en[\Ú›YŸš]˜XŞH
+È]HÛ\ÜÙ\È˜Û]YKÜ[\ËÜš]˜XŞK›YŸ]ˆ[f—&öæÖVçBV—&·2Âæ6ÆVFR÷'VÆW2öFWbÖVÙ¥É½¹µ•¹Ğ¹µ€€€€€€€€€€€€€€€€€€€ğ)ğÉ¡¥Ñ•ÑÕÉ…°‘•¥Í¥½¹Ì€¡IÌ¤€€€ğ‘½Ì½…‘È¼€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ğ)ğAÉ½©•Ğµ•µ½Éä€¡‘É¥™ÑÌ°‘•„)     | @MEMORY.md                                           |
+| HistorH
+Èœ˜[™›İ\ÈØÜËÚ\İÜ’ö	…¹µ…¹µ¡¥ÍÑ½É.md                   |
 
 If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those files â€” nothing was deleted.
 
 ---
 
-## 1. Project identity
-
-- **Legal entity:** National Restoration Professionals Group Pty Ltd (NRPG)
-- **Consumer brand:** Disaster Recovery
-- **Model:** Network-orchestrator â€” DR does NOT do restoration work; IICRC-certified contractors do, and they bill the client directly.
-- **Geography:** Australia + New Zealand
-- **Language:** Australian English, always â€” see @.claude/rules/australian-english.md
-
-## 2. Tech stack
-
-| Layer         | Choice                                                                                                                                                                          |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Framework     | Next.js 15 (App Router)                                                                                                                                                         |
-| Language      | TypeScript (strict, `useUnknownInCatchVariables` on â€” DR-Day-4)                                                                                                                 |
-| DB            | PostgreSQL (Supabase) via Prisma ORM                                                                                                                                            |
-| Validation    | Zod (shared registry at `src/lib/validation.ts` â€” single API source)                                                                                                            |
-| Auth          | Supabase Auth + custom contractor-auth adapter                                                                                                                                  |
-| Styling       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)                                                                                                                   |
-| Payments      | Stripe Checkout (DR-586/712 flag-gated)                                                                                                                                         |
-| Voice         | Twilio + custom Sarah agent (DR-706/709/710/724, flag-gated)                                                                                                                    |
+## 1. Project idem]B‚‹H
+Š“YØ[[F—G“¢¢¢æF–öæÂ&W7F÷&F–öâ&öfW76–öæÇ2w&÷WG’ÇFB„å%r¢Ò¢¤6öç7VÖW"	…¹è¨¨¥Í…ÍÑ•ÈI•½Ù•É
+- **Model:** Network-orchestrator â€” DR does NOT do restoration work; IICRC-certified contractopÈË[™^Hš[HÛY[\™XİK‚‹H
+Š‘Ù[ÙÜ˜\NŠŠˆ]\İ˜[XH
+È™]È™X[[™‹H
+Š“[™İXYÙNŠŠˆ]\İ˜[X[ˆ[™Û\Ú[Ø^\È8 %ÙYH˜Û]YKÜ[\ËØ]\İ˜[X[‹Y[™Û\Ú›Y‚ˆÈÈ‹ˆXÚİXÚÂ‚ÂÆ–W"Â6†ö–6RÀ§ÂÒÒÒÒÒÒÒÒÒÒÒÒÒÂÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÀ§Âg&ÖWv÷&²ÂæW‡Bæ§2R„&÷WFW"’À°1…¹Õ…”€€€€€ğQåÁ•MÉ¥ÁĞ€¡ÍÑÉ¥Ğ°ÕÍ•U¹­¹½İ¹%¹…Ñ¡Y…É¥…‰±•Í€½¸ƒŠPHµ…ä´Ğ¤€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ğ, DB            | Post\™TÔS
+İ\X˜\ÙJHšXHš\ÛXHÔ“HŸ˜[Y][Ûˆ›Ù
+Ú\™Y™YÚ\İH]Ü˜ËÛX‹İ˜[Y][Û‹G6(	B6–ævÆR’6÷W&6R’À§ÂWF‚Â7W&6RWF‚²7W7FöÒ6öÑÉ…Ñ½Èµ…ÕÑ …‘…ÁÑ•È€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ğ)ğMÑå±¥¹       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)                                                                                                                   |^[Y[Èİš\HÚXÚÛİ]
+‹MN‹ÍÌLˆ›RÖvFVB’À§Âfö–6RÂGv–Æ–ò²7W7FöÒ6&‚vVĞ€¡H´ÜÀØ¼ÜÀä¼ÜÄÀ¼ÜÈĞ°™±…œµated)                                                                                                                    |
 | Deploy        | Vercel (authoritative â€” Vercel wins over local builds)                                                                                                                          |
-| Observability | Vercel-native (`@vercel/otel` + Web Analytics + Speed Insights + Log Drains per ADR-005) â€” `captureException` lives in `src/lib/observability/vercel.ts`. We do NOT use Sentry. |
-| CI gates      | Husky + Prettier + commitlint + lint-staged + typecheck                                                                                                                         |
-
-## 3. Commands
-
-```bash
-# Install (peer conflict workaround â€” see dev-environment.md)
-npm install --legacy-peer-deps
+| O`Ù\f&–Æ—G’ÂfW&6VÂÖæF—fR†fW&6VÂö÷FVÆ²vV"æÇ—F–72²7VVB–ç6–v‡G2²ÆörG&–ç2W"E"ÓR’(	B6GW&TW†6WF–öæÆ—fW2–â7&2öÆ–"öö'6W'f&–Æ—G’÷fW&6VÂÑÍ€¸]”‘¼9=PÕÍ”M•¹ÑÉ. |
+| CI X]\È\ÚŞH
+È™]Y\ˆ
+ÈÛÛ[Z][B²Æ–çB×7FvVB²G—V6†V6²À ¢222â6öÖÖæG0 ¦&6€¢2–ç7FÆÂ‡VW"6öæfÆ–7Bv÷&¶&÷VæB(	B6VRFWbÖVÙ¥É½¹µ•¹Ğ¹µ¤)°m install --legacy-peer-deps
 
 # Dev
-npm run dev             # Next.js dev server
-
-# Build / prod
-npm run build
-npm run start
-
-# Database
-npm run prisma:generate
-npm run prisma:migrate
-npm run db:studio
-
-# Tests
-npm run test:e2e        # Playwright
-npm run test:e2e:ui
-npm run lint            # Next lint + typecheck gate
-npm run check:scripts   # verify all scripts resolve
-```
-
-## 4. File map (where to look)
-
-```
-/app                        Next.js App Router pages + API routes
+npm q[ˆ]ˆÈ™^š2FWb6W•È((Œ	Õ¥±€¼ÁÉ½)°m run build
+npm q[ˆİ\‚ˆÈ]X˜\ÙB›œH[ˆš\ÛXN™Ù[™\˜]B›œH[ˆš\ÛXN›ZYÜ˜]B›Ò'VâF#§7GVF–ğ ¢2FW7G0¦Á´ÉÕ¸Ñ•ÍĞé”É”€€€€€€€€ŒA±…åİÉ¥¡Ğ)¹Á´ÉÕ¸Ñ•ÍĞé”É”éÕ¤)°m run lint            # Next lim
+È\XÚXÚÈØ]B›œHVâ6†V6³É¥ÁÑÌ€€€ŒÙ•É¥™ä…±°ÍÉ¥ÁÑÌÉ•Í½±Ù”)€((ŒŒ€Ğ¸¥±”µ…À€¡İ¡•É”Ñ¼±½½¬¤()€(½…ÁÀ€€€€€€€€€€€€€€€€€€€€€€€9•áĞ¹£ App Router pages + API routes
   /api                      API handlers (each MUST log compliance_events)
-  /contractor               Contractor portal (login/apply/dashboard/portal)
-  /client-portal            Client-side claim + docs portal
-  /claim                    Public claim-intake flow (canonical entry)
-  /locations/[city]/â€¦       1,152+ generated location pages
-  /services/â€¦               ~129 service pages (hero + CTA imagery)
-  /guides                   49 long-form SEO guides
+  /contractor               Com˜XİÜˆÜ[
+ÙÚ[‹Ø\KÙ\Ú›Ø\™ÜÜ[
+BˆØÛY[B×÷'FÂ6Æ–VçB×6–FR6Æ–Ò²Fö72÷…°(€€½±…¥´€€€€€€€€€€€€€€€€€€€AÕ‰±¥Œ±…¥´µ¥¹Ñ…­”™±½Ü€¡…¹½¹¥…°•¹ÑÉ)
+  /locations/[city]/â€¦       1,152+ Y[™\˜]YØØ][ÛˆVW0¢÷6W'f–6W2ş(
+bã#’6W'f–6RvW2††W&ò²5D–ÖvW$¤(€€½Õ¥‘•Ì€€€€€€€€€€€€€€€€€€€Ğä±½¹-form SEO guides
 /src
   /components               Shared UI (React)
-    /antigravity            Design-system components
-    /seo                    Schema, breadcrumb, video-embed helpers
-  /lib
-    validation.ts           Zod schemas â€” API-layer source of truth
-    constants.ts            NAP, GBP_PLACE_ID, tokens
-    /compliance             compliance_events logger + redaction
+    /anti\˜]š]H\ÚYÛ‹\Ş\İ[HÛÛ\Û™[G0¢÷6Vò66†VÖÂ'&VF7'VÖ"Âf–FVòÖVÖ&VB†VÇW(€€½±¥ˆ(€€€Ù…±¥‘…Ñ¥½¸´s           Zod schemas â€” API-layer source of tq]ˆÛÛœİ[G2ÑÌ€€€€€€€€€€€9@°	A}A1}%°Ñ½­•¹Ì(€€€€½½µÁ±¥…¹”€€€€€€€€€€€€½µÁ±¥…¹•}•Ù•¹ÑÌ±½ger + redaction
     /ai                     Sarah prompt, topic classifier, 5-tool surface
-  /styles                   antigravity-design-system.css etc.
-/prisma
-  schema.prisma             DB source of truth
-  /migrations
-/data
-  /locations                Per-city JSON (Melbourne, Perth, Adelaide, Brisbaneâ€¦)
-  /suburbs                  Gitignored â€” use `git add -f` when adding
-  /seo/video-config.ts      16 planned videos
-/docs
-  /adr                      Architectural Decision Records
-  /history                  Brand + history archive
-/.context
-  domain-models.md          Extended domain descriptions
-/.claude
-  /rules                    compliance, au-english, privacy, biz, dev-env
+  /styles                   amYÜ˜]š]KY\ÚYÛ‹\Ş\İ[K˜ÜÜÈ]Ë‚‹Üš\ÛXBˆØÚ[XKœš\ÛXHˆÛİ\˜ÙHÙˆWF€¢öÖ–w&F–öç0¢öFF¢öÆö6F–öç2W"Ö6—G’¥4ôâ„ÖVÆ&÷W&æRÂW °‘•±…¥‘”°isbaneâ€¦)
+  /sua\˜2v—F–væ÷&VB(	BW6Rv—BFBÖfv†VâFF–ä(€€½Í•¼½Ù¥‘•¼µ½¹™¥œ¹ÑÌ€€€€€€ÄØÁ±…¹¹•Ù¥‘•½Ì(½‘½Ì(€€½…‘È€€€€€€€€€€€€€€€€€€€€€É¡¥Ñ•ÑÕÉ…°•¥Í¥½¸I•½É‘Ì(€€½¡¥ÍÑ½É                  Brand + historH\˜Ú]™B‹Ë˜ÛÛFW‡@¢FöÖ–âÖÖöFVÇ2æÖBW‡FVæFVBFöÖ–âFW67&—F–öÌ(¼¹±…Õ‘”(€€½Åles                    compliance, au-english, privacy, biz, dev-env
   /skills                   Matt Pocock skills (DR-724)
   /config /scripts          hook + harness config
 ```
 
 ## 5. Architectural rules (the hard ones)
 
-### 5.1 Claim shape â€” single source of truth
-
-- **DB truth:** `prisma/schema.prisma` (`Claim`, `Enquiry`, `Lead`, `Job`, `Contractor` models).
+### 5.1 Claim shape â€” single source of tq]‚‹H
+Š‘ˆ]ŠŠˆš\ÛXKÜØÚ[XK&—6Ö†6Æ–ÖÂVÅÕ¥Éå€°1•…‘€°)½‰€°½´ractor` models).
 - **API truth:** `src/lib/validation.ts` (Zod). Every API route MUST validate input/output via this registry.
-- 3 legacy TS interfaces still duplicate claim shape. They have TODO markers; dedup is a separate follow-up. See @docs/adr/ADR-002-claim-shape-single-source-of-truth.md.
-- NEVER invent a fourth shape. Add to `src/lib/validation.ts` or extend Prisma â€” don't ship a new type-file.
-
-### 5.2 Voice agent â€” closed-world + consent-gated
-
-- Sarah voice agent is a CLOSED-WORLD system: specific prompt + 5-tool surface + HMAC auth + output filter + 5-layer kill switch.
-- First caller utterance after pickup MUST be the APP 8 consent prompt (see `compliance.md`).
-- All voice flows are flag-gated (`VOICE_AGENT_ENABLED`, server-only â€” voice runs entirely server-side via Twilio + ElevenLabs webhooks, no client-side bundle reads it); off by default in prod.
-- See @docs/adr/ADR-003-voice-agent-consent-and-data-boundary-model.md.
-
-### 5.3 Feature flags â€” convention
-
-- **Client-readable flags:** `NEXT_PUBLIC_<FEATURE>_ENABLED` â€” reads as `'true'` only. Use this when the client-side bundle conditionally renders UI.
-- **Server-only flags:** `<FEATURE>_ENABLED` (no `NEXT_PUBLIC_` prefix). Use this for flags that ONLY gate server-side behaviour (API routes, webhooks, cron). Examples: `VOICE_AGENT_ENABLED`, `COMPLIANCE_EVENTS_ENABLED` â€” both server-only.
-- Default: OFF. Flag-gated code MUST be zero-impact when the flag is off.
-- Kill switches are SEPARATE from feature flags (see `privacy.md` for the voice 5-layer kill switch).
-- Rollback = flip the env var in Vercel. No redeploy needed.
-- See @docs/adr/ADR-004-feature-flag-strategy.md.
-
-### 5.4 Observability + compliance events
-
-- Every API route that mutates state logs to `compliance_events` (structured, redacted, retention-tagged).
-- PII MUST pass through `src/lib/compliance/*` redactor before hitting logs.
-- Vercel observability is in place (per ADR-005, NOT Sentry); call `captureException` from `src/lib/observability/vercel.ts` and fill OTel span attributes / log-drain payloads â€” never raw PII.
-
-### 5.5 Prohibitions (non-negotiable)
+- 3 legacy TS im\™˜XÙ\Èİ[\XØ]HÛZ[HÚ\Kˆ^H]™HÑÈX\šÙ\œÎÈY\\ÈHÙ\\˜]H›ÛİË]\ˆÙYHØÜËØY‹ĞQ‹L‹XÛZ[K\Ú\K\Ú[–ÆR×6÷W&6RÖöb×G'WF‚æÖBà¢ÒäUdU"–çfVçBf÷W'F‚6†RâFBFò7&2öÆ–"÷fÆ–FF–öâçG6÷"W‡FVæB&—6Ö(	BFöâwB6†—æWrG—RÖf–ÆRà ¢222Rã"fö–6RvVçB(	B6Æ÷6VB×v÷&ÆB²6öç6VçBÕ…Ñ•((´M…É… Ù½¥”…•¹Ğ¥Ì„1=Mµ]=I1ÍåÍÑ•´èÍÁ•¥™¥ŒÁÉ½µÁĞ€¬€ÔµÑ½½°ÍÕÉ™…”€¬!5…ÕÑ €¬½ÕÑÁÕĞ™¥±Ñ•È€¬€Ôµ±…å•È­¥±°Íİ¥Ñ ¸(´¥ÉÍĞ…±±•ÈÕÑÑ•É…¹”…”er pickup MUST be the APP 8 consent prompt (see `compliance.md`).
+- All voice flows are flag-X]Y
+“ÒPÑWĞQÑS•ÑSP“QÙ\™\‹[Û›H8 %›ÚXÙHVç2VÑ¥É•±äÍ•ÉÙ•ÈµÍ¥‘”Ù¥„Qİ¥±¥¼€¬±•Ù•¹1…‰Ìİ•‰¡½½­Ì°¹¼±¥•¹ĞµÍ¥‘”…ndle reads it); off by default in prod.
+- See @docs/adr/ADR-003-voice-agemXÛÛœÙ[X[™Y]KX›İ[™\K[[Ù[›Y‚‚ˆÈÈÈKŒÈ™X]\™H›W2(	B6öçfVçF–öà ¢Ò¢¤6Æ–VçB×&VF&ÆRfÆÌè¨¨9aQ}AU	1%|ñQUIù}9	1€ƒŠPÉ•…‘Ì…Ì€ÑÉÕ”` only. Use this when the cliem\ÚYH[™HÛÛ™][Û˜[H™[™\œÈRK‚‹H
+Š”Ù\™\‹[Û›H›YÜÎŠŠˆ‘PUT‘O—ÑSP“Q
+›È‘VÔP“P×Ø™Yš^
+Kˆ\ÙH\È›Üˆ›YÜÈ]Ó“HFR6W•ÈµÍ¥‘”‰•¡…Ù¥½ÕÈ€¡A$É½ÕÑ•Ì°İ•‰¡½½­Ì°É½¸¤¸á…µÁ±•ÌèY=%}9Q}9	1€°=5A1%9}Y9QM}9	1€ƒŠP‰½Ñ Í•ÉÙ•Èµ½¹±ä¸(´•™…Õ±Ğè=¸±…-gated code MUST be zero-impact when the flaH\ÈÙ™‹‚‹HÚ[İÚ]Ú\È\™HÑTTUHœ›ÛH™X]\™H›YÜÈ
+ÙYHš]˜XŞK›Y›ÜˆH›ÚXÙHK[^Y\ˆÚ[İÚ]Ú
+K‚‹H›Û˜XÚÈH›\H[ˆ˜\ˆ[ˆ™\˜Ù[ˆ›È™Y\ŞH™YYY‚‹HÙYHØÜËØY‹ĞQ‹LY™X]\™KY›YË\İ˜]W’æÖBà ¢222RãBö'6W'f&–Æ—G’²6ö×Æ–æ6RWfVÑÌ((´Ù•ÉäA$É½ÕÑ”Ñ¡…ĞµÕÑ…Ñ•ÌÍÑ…Ñ”±½s to `compliance_events` (structured, redacted, retention-tagged).
+- PII MUST pass through `src/lib/compliance/*` redactor before hitting lo\Ë‚‹H™\˜Ù[ØœÙ\˜Xš[]H\È[ˆXÙH
+\ˆQ‹LK“ÕÙ[’“²6ÆÂ6GW&TW†6WF–öæg&öÒ7&2öÆ–"öö'6W'f&–Æ—G’÷fW&6VÂÑÍ€…¹™¥±°=Q•°ÍÁ…¸…ÑÑÉ¥‰ÕÑ•Ì€¼±½œµ‘É…¥¸Á…å±½…‘ÌƒŠP¹•Ù•ÈÉ…ÜA%$¸((ŒŒŒ€Ô¸ÔAÉ½¡¥‰¥Ñ¥½¹Ì€¡¹½¸µ¹•otiable)
 
 - Do NOT create a fourth claim shape.
 - Do NOT send PII into AI prompts without the minimise-PII layer (see ADR-001).
-- Do NOT write US English ANYWHERE. See `.claude/rules/australian-english.md`.
-- Do NOT write the phrases "insurance approved", "bill your insurer", "guaranteed approval", "every insurer", "fastest response". See `.claude/rules/compliance.md` for the full banned-phrases list.
-- Do NOT commit secrets. `.env*` are gitignored; that's the contract â€” be disciplined.
-- Do NOT push to `main` on any repo. PRs only.
-- Do NOT skip git hooks (`--no-verify`) without explicit user instruction.
-- Do NOT `git amend`; always create NEW commits.
+- Do NOT write US English ANYWHERE. See `.claude/q[\ËØ]\İ˜[X[‹Y[™Û\Ú›Y‚‹HÈ“ÕÜš]HH˜\Ù\Èš[œİ\˜[˜ÙH\›İ™Y‹˜š[[İ\ˆ[œİ\™\ˆ‹—V&çFVVB&÷fÂ"Â&WfW'’–ç7W&W""Â&f7FW7B&W7öç6R"â6VRæ6ÆVFR÷'VÆW2ö6ö×Æ–æ6RæÖFf÷"F†RgVÆÂ&ææVB×‡&6W2Æ—7Bà¢ÒFòäõB6öÖÖ—B6V7&WG2âæVçb¦&Rv—F•¹½É•ìÑ¡…Ğs the contract â€” be disciplined.
+- Do NOT push to `main` on anH™\ËˆœÈÛ›K‚‹HÈ“ÕÚÚ\Ú]ÛÚÜÈ
+K[›Ë]™\šY–’v—F†÷WBW‡Æ–6—BW6W"–ç7G'V7F–öâà¢ÒFòäõB¥Ğ…µ•¹‘€ì…±İ…åÌÉ•…Ñ”9\½µµ¥ÑÌ¸((ŒŒ€Ø¸!½ÜÑ¼¹…Ù¥ate this codebase
 
-## 6. How to navigate this codebase
-
-1. **New feature?** Start in @.claude/rules/business-rules.md (is it legal?), then @UBIQUITOUS_LANGUAGE.md (name it right), then `src/lib/validation.ts` (shape it right).
-2. **Bug fix?** Check @MEMORY.md for known drifts first â€” might already be documented.
-3. **New page?** Read @.claude/rules/australian-english.md + @.claude/rules/compliance.md before writing copy.
-4. **API route?** Must: Zod-validate, log to compliance_events, use the shared request logger, return stable error shape.
-5. **Touching the claim flow?** Read @docs/adr/ADR-002 first.
-6. **Touching voice (Sarah)?** Read @docs/adr/ADR-003 first. No exceptions.
-7. **Location pages?** See @MEMORY.md for the Next.js redirect negative-lookahead trap.
-
-## 7. Default stance for agents
-
-- Simplest viable option first. AUS/NZ examples only (never US).
-- `grep`/`glob` before `read`. Line-range reads only on large files.
-- Prefer editing existing files over creating new ones.
-- Never proactively create docs (`.md`, READMEs) unless asked.
-- Never use emojis in code or docs unless explicitly requested.
-- When a rule here conflicts with older scattered docs, THIS FILE wins â€” raise an ADR if the rule itself should change.
+1. **New feature?** Staq[ˆ˜Û]YKÜVÆW2öÍ¥¹•ÍÌµÅles.md (is it legal?), then @UBIQUITOUS_LANGUAGE.md (name it riZ
+K[ˆÜ˜ËÛX‹İ˜[Y][Û‹Ø
+Ú\H]šYÚ
+K‚Œ‹ˆ
+ŠT™¥àü¨¨¡•¬55=Id¹µ™½È­¹½İ¸‘É¥™ÑÌ™¥ÉÍĞƒŠPµ¥¡Ğ…±É•…‘ä‰”‘½Õµ•´ed.
+3. **New paYOÊŠˆ™XY˜Û]YKÜ[\ËØ]\İ˜[X[‹Y[–Æ—6‚æÖB²æ6ÆVFR÷'VÆW2ö6ö×Æ–æ6RæÖB&Vf÷&Rw&—F–ær6÷’à£Bâ¢¤’&÷WFSò¢¢×W7C¢¦öB×fÆ–FFRÂÆörFò6ö×Æ–æ6UöWfVçG2ÂW6RF†R6†&VB&WVW7BÆõ•È°É•ÑÕÉ¸ÍÑ…‰±”•ÉÉ½ÈÍ¡…Á”¸(Ô¸€¨©Q½Õ¡¥¹ the claim flow?** Read @docs/adr/ADR-002 first.
+6. **Touching voice (Sarah)?** Read @docs/adr/ADR-003 fipİˆ›È^Ù\[ÛœË‚Ëˆ
+Š“ØØ][ÛˆYÙ\ÏÊŠˆÙYHQSSÔ–K›Y›ÜˆH™^šœÈ™Y\™Xİ™YØ]]™K[ÛÚØZXY˜\‚‚ˆÈÈËˆY˜][İ[˜ÙH›ÜˆYÙ[Â‚‹HÚ[\\İšXX›HÜ[Ûˆš\œİˆUTËÓ–ˆ^[\\ÈÛ›H
+™]™\ˆTÊK‚‹HÜ™\ØÛØ˜™Y›Ü™H™XYˆ[™K\˜[™ÙH™XYÈÛ›HÛˆ\–Rf–ÆW2à¢Ò&VfW"VF—F–ærW†—7F–ærf–ÆW2÷fW"7&VF–ä¹•Ü½¹•Ì¸(´9•Ù•ÈÁÉ½…Ñ¥Ù•±äÉ•…Ñ”‘½Ì€¡€¹µ‘€°I5Ì¤Õ¹±•ÍÌ…Í­•¸(´9•Ù•ÈÕÍ”•µ½©¥Ì¥¸½‘”½È‘½ÌÕ¹±•ÍÌ•áÁ±¥¥Ñ±äÉ•ÅÕ•ÍÑ•¸(´]¡•¸„Åle here conflicts with older scattered docs, THIS FILE wins â€” raise an ADR if the rule itself should change.
 
 ## 8. Session discipline
 
-- `/compact` at milestones, `/clear` between unrelated tasks.
-- Subagents for anything research-heavy touching >2 files.
-- Every commit: Prettier + lint-staged + typecheck + commitlint (all enforced via Husky â€” DR-Day-6).
+- `/compact` at milestones, `/clear` between ul™[]Y\ÚÜË‚‹HİX˜YÙ[G2f÷"åÑ¡¥¹œÉ•Í•…É µ¡•…ÙäÑ½Õ¡¥¹œ€øÈ™¥±•Ì¸(´Ù•Éä½µµ¥ĞèAÉ•ÑÑ¥•È€¬±¥¹ĞµÍÑ…ed + typecheck + commitlint (all enforced via Husky â€” DR-Day-6).
 - PR title format: `<type>(<scope>): <subject>` (commitlint-enforced).
 
 ## 9. Relationships
 
 - **Disaster-Recovery** (this repo) â€” the production monolith.
-- **DR-Sandbox-starter** â€” proposals + research scratchpad; safe to experiment.
-- **NRPG-Onboarding-Framework** â€” contractor training content (markdown-only until DR-682 stands up the Next.js app). See its own `CLAUDE.md`.
-
-## 10. When in doubt
-
-Re-read this file. If the answer still isn't here, check @MEMORY.md, then the relevant ADR, then ask. Don't guess on compliance, privacy, billing, or voice.
-
----
-
-_Last rewritten: 2026-04-24 (Foundation Sprint Day 10 â€” context engineering).
-Prior version (65-line generic scaffold) archived in git history at parent commit._
+- **DR-Sandbox-staq\ŠŠˆ8 %›ÜÜØ[È
+È™\ÙX\˜ÚØÜ˜]ÚYÈØY™HÈ^\š[Y[Bà¢Ò¢¤å%rÔöæ&ö&F–ærÔI…µ•İ½É¬¨¨ƒŠP½´ractor training content (markdown-only um[‹Mˆİ[™È\H™^šœÈ\
+KˆÙYH]ÈİÛˆÓUQK›Y‚‚ˆÈÈLˆÚ[ˆ[ˆİX@ ¥&R×&VBF†—2f–ÆRâ–bF†Rç7vW"7F–ÆÂ—6âwB†W&RÂ6†V6²ÔTÔõ%’æÖBÂF†VâF†R&VÆWfçBE"ÂF†Vâ6²âFöâwBwVW72öâ6ö×Æ–æ6RÂ&—f7’Â&–ÆÆ–ærÂ÷"fö–6Rà ¢ÒÒĞ ¥ôÆ7B&Ww&—GFVã¢##bÓBÓ#B„f÷VæFF–öâ7&–çBF’(	B6öçFW‡BVæv–æVW&–ær’à¥&–÷"fW¥½¸€ ØÔµ±¥¹”•¹•É¥ŒÍ…™™½±¤…É¡¥Ù•¥¸¥Ğ¡¥ÍÑ½É at parent commit._
