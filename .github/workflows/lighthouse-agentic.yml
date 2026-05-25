@@ -59,38 +59,65 @@ jobs:
 
       - name: Determine target URL
         id: target
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set +e  # never let a single curl failure abort the job
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            # On PRs, target the Vercel preview alias by branch name.
-            # Vercel auto-creates: disaster-recovery-git-{branch}-unite-group.vercel.app
-            SLUG=$(echo "${{ github.head_ref }}" | sed 's|/|-|g')
-            URL="https://disaster-recovery-git-${SLUG}-unite-group.vercel.app"
+            # Vercel truncates branch slugs longer than 43 chars and appends
+            # a 6-char hash, so we can't reliably predict the preview URL.
+            # Query the GitHub deployments API instead — Vercel posts a
+            # deployment with the real web_url for every push.
+            URL=""
+            for i in {1..15}; do
+              URL=$(gh api "repos/${{ github.repository }}/deployments?ref=${{ github.head_ref }}&per_page=5" \
+                --jq '.[0].payload.web_url // empty' 2>/dev/null || true)
+              if [ -n "$URL" ]; then
+                echo "Found Vercel deployment URL: $URL"
+                break
+              fi
+              echo "Attempt $i/15: no deployment URL yet — waiting 20s"
+              sleep 20
+            done
+            if [ -z "$URL" ]; then
+              echo "::warning::Could not resolve Vercel preview URL — skipping audit (informational)"
+              echo "url=" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
           else
             URL="https://disasterrecovery.com.au"
           fi
-          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "Auditing: $URL"
 
       - name: Wait for preview to be reachable
-        if: github.event_name == 'pull_request'
+        if: steps.target.outputs.url != ''
+        continue-on-error: true
         run: |
-          for i in {1..30}; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.target.outputs.url }}")
+          set +e
+          for i in {1..15}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.target.outputs.url }}" 2>/dev/null || echo "000")
             if [ "$STATUS" = "200" ] || [ "$STATUS" = "401" ]; then
               echo "Preview reachable (HTTP $STATUS)"
               exit 0
             fi
-            echo "Attempt $i/30: HTTP $STATUS — waiting"
+            echo "Attempt $i/15: HTTP $STATUS — waiting"
             sleep 20
           done
-          echo "::warning::Preview did not become reachable in 10min — proceeding anyway"
+          echo "::warning::Preview did not become reachable in 5min — proceeding anyway"
 
       - name: Lighthouse CI
+        if: steps.target.outputs.url != ''
+        continue-on-error: true
         # Pinned to a version with the "agentic-browsing" category enabled
         # in the underlying Chrome canary. Falls back gracefully if the
         # category isn't present in this Lighthouse build (the assertion
         # below uses `warn` rather than `error` for that category until
         # the agentic-browsing audits are stable in Lighthouse stable.)
+        # continue-on-error keeps the workflow informational until we
+        # tune thresholds per-site and confirm the Vercel SSO/protection
+        # state isn't blocking the audit.
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
@@ -101,6 +128,7 @@ jobs:
           configPath: ./.lighthouseagenticrc.json
 
       - name: Probe llms.txt + WebMCP presence (independent of Lighthouse category)
+        if: steps.target.outputs.url != ''
         run: |
           URL="${{ steps.target.outputs.url }}"
           echo "## Agentic Browsing pre-checks" >> $GITHUB_STEP_SUMMARY
