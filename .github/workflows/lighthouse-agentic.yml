@@ -1,0 +1,174 @@
+name: Lighthouse Agentic Browsing
+
+# Audits the production deploy against the GEO-optimization standard
+# (Pi-CEO skills/geo-optimization/SKILL.md §6). Tracks the four signals
+# AI agents rely on when interacting with a website:
+#
+#   1. Accessibility tree well-formedness — agents use the a11y tree as
+#      their data model. Failures here break agent navigation.
+#   2. WebMCP integration — declarative form annotations + imperative
+#      JS tools detected. (Chrome Lighthouse 13.3+ category)
+#   3. llms.txt presence — valid /llms.txt at root, H1 + sufficient
+#      length. (Chrome Lighthouse 13.3+ audit)
+#   4. Layout stability (CLS) — agents click faster than humans;
+#      mid-load shifts break their flows.
+#
+# Reports on every PR. Production runs on every push to main, posting
+# the score to the Actions summary so regressions are visible.
+#
+# This is the first repo in the portfolio to run the agentic audit;
+# pattern will be propagated to the other 9 sites in Phase 2 of the
+# GEO rollout once tuned here.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'src/**'
+      - 'public/llms.txt'
+      - 'next.config.mjs'
+      - '.github/workflows/lighthouse-agentic.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# `Vercel — disaster-recovery` deploys a preview for every PR. We wait
+# for that to land, then point Lighthouse at the resulting URL.
+concurrency:
+  group: lighthouse-agentic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  agentic-audit:
+    name: Agentic Browsing audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Reads the Vercel deployment URL from the PR's deployment_status
+    # event. For workflow_dispatch / push, falls back to the production
+    # alias.
+    permissions:
+      contents: read
+      pull-requests: write
+      deployments: read
+      statuses: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine target URL
+        id: target
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e  # never let a single curl failure abort the job
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Vercel truncates branch slugs longer than 43 chars and appends
+            # a 6-char hash, so we can't reliably predict the preview URL.
+            # Query the GitHub deployments API instead — Vercel posts a
+            # deployment with the real web_url for every push.
+            URL=""
+            for i in {1..15}; do
+              URL=$(gh api "repos/${{ github.repository }}/deployments?ref=${{ github.head_ref }}&per_page=5" \
+                --jq '.[0].payload.web_url // empty' 2>/dev/null || true)
+              if [ -n "$URL" ]; then
+                echo "Found Vercel deployment URL: $URL"
+                break
+              fi
+              echo "Attempt $i/15: no deployment URL yet — waiting 20s"
+              sleep 20
+            done
+            if [ -z "$URL" ]; then
+              echo "::warning::Could not resolve Vercel preview URL — skipping audit (informational)"
+              echo "url=" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          else
+            URL="https://disasterrecovery.com.au"
+          fi
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Auditing: $URL"
+
+      - name: Wait for preview to be reachable
+        if: steps.target.outputs.url != ''
+        continue-on-error: true
+        run: |
+          set +e
+          for i in {1..15}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.target.outputs.url }}" 2>/dev/null || echo "000")
+            if [ "$STATUS" = "200" ] || [ "$STATUS" = "401" ]; then
+              echo "Preview reachable (HTTP $STATUS)"
+              exit 0
+            fi
+            echo "Attempt $i/15: HTTP $STATUS — waiting"
+            sleep 20
+          done
+          echo "::warning::Preview did not become reachable in 5min — proceeding anyway"
+
+      - name: Lighthouse CI
+        if: steps.target.outputs.url != ''
+        continue-on-error: true
+        # Pinned to a version with the "agentic-browsing" category enabled
+        # in the underlying Chrome canary. Falls back gracefully if the
+        # category isn't present in this Lighthouse build (the assertion
+        # below uses `warn` rather than `error` for that category until
+        # the agentic-browsing audits are stable in Lighthouse stable.)
+        # continue-on-error keeps the workflow informational until we
+        # tune thresholds per-site and confirm the Vercel SSO/protection
+        # state isn't blocking the audit.
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            ${{ steps.target.outputs.url }}/
+            ${{ steps.target.outputs.url }}/contact
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: ./.lighthouseagenticrc.json
+
+      - name: Probe llms.txt + WebMCP presence (independent of Lighthouse category)
+        if: steps.target.outputs.url != ''
+        run: |
+          URL="${{ steps.target.outputs.url }}"
+          echo "## Agentic Browsing pre-checks" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # 1. llms.txt root presence
+          LLMS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL/llms.txt")
+          LLMS_SIZE=$(curl -sI "$URL/llms.txt" | awk '/[Cc]ontent-[Ll]ength:/ {print $2}' | tr -d '\r')
+          if [ "$LLMS_STATUS" = "200" ] && [ "${LLMS_SIZE:-0}" -gt 1000 ]; then
+            echo "- ✅ \`llms.txt\` present, ${LLMS_SIZE} bytes" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ \`llms.txt\` HTTP $LLMS_STATUS, size=${LLMS_SIZE:-0} — fails GEO §4" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # 2. WebMCP form annotation on /contact
+          CONTACT_HTML=$(curl -s "$URL/contact")
+          if echo "$CONTACT_HTML" | grep -q 'toolname='; then
+            COUNT=$(echo "$CONTACT_HTML" | grep -oE 'toolparamdescription=' | wc -l | tr -d ' ')
+            echo "- ✅ WebMCP annotations on /contact (form + $COUNT input descriptors)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ No WebMCP \`toolname\` on /contact — fails GEO §5" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # 3. JSON-LD presence on root
+          ROOT_HTML=$(curl -s "$URL/")
+          JSONLD_COUNT=$(echo "$ROOT_HTML" | grep -c 'application/ld+json')
+          if [ "$JSONLD_COUNT" -gt 0 ]; then
+            echo "- ✅ JSON-LD blocks on / : $JSONLD_COUNT" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ No JSON-LD on / — fails GEO §3" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Comment scores on PR (best-effort)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        continue-on-error: true
+        with:
+          script: |
+            // Lighthouse posts its own comment via treosh/lighthouse-ci-action.
+            // The pre-check summary above goes into GITHUB_STEP_SUMMARY and
+            // is visible in the Actions tab. Adding a second comment here
+            // would be noise — defer to Lighthouse's own.
+            console.log('Pre-check summary written to step summary');
