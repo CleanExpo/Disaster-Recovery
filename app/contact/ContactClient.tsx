@@ -269,7 +269,19 @@ function ModernContactPageOriginal() {
                     Alert system ready for form validation feedback
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* WebMCP annotations expose this form to in-browser AI agents
+                      per the GEO-optimization standard (see Pi-CEO skills/geo-optimization/SKILL.md §5).
+                      `toolname` + `tooldescription` make the form a discoverable
+                      action; `toolparamdescription` on each input documents
+                      expected values so agents can fill the form correctly on
+                      a user's behalf. */}
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                    // @ts-expect-error WebMCP attributes are W3C-draft and not yet in React's type defs
+                    toolname="submit_contact_enquiry"
+                    tooldescription="Submit a non-emergency contact enquiry to Disaster Recovery. Routes to the IICRC-certified contractor network for follow-up within business hours. For active emergencies use the find_contractor_by_postcode or request_emergency_callback tools instead."
+                  >
                     <div className="grid md:grid-cols-2 gap-6">
                       {/* Name Field */}
                       <m.div whileTap={{ scale: 0.995 }} className="relative">
@@ -278,6 +290,7 @@ function ModernContactPageOriginal() {
                         </label>
                         <input
                           type="text"
+                          name="name"
                           required
                           value={formData.name}
                           onChange={(e) => handleChange('name', e.target.value)}
@@ -285,6 +298,8 @@ function ModernContactPageOriginal() {
                           onBlur={() => setActiveField(null)}
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
                           placeholder="John Smith"
+                          // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                          toolparamdescription="Full name of the enquirer (first and last name preferred)"
                         />
                         {activeField === 'name' && (
                           <m.div
@@ -304,6 +319,7 @@ function ModernContactPageOriginal() {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           required
                           value={formData.email}
                           onChange={(e) => handleChange('email', e.target.value)}
@@ -311,6 +327,8 @@ function ModernContactPageOriginal() {
                           onBlur={() => setActiveField(null)}
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
                           placeholder="john@example.com"
+                          // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                          toolparamdescription="Valid email address where the contractor follow-up should be sent"
                         />
                       </m.div>
 
@@ -320,10 +338,13 @@ function ModernContactPageOriginal() {
                           Service Required *
                         </label>
                         <select
+                          name="service"
                           required
                           value={formData.service}
                           onChange={(e) => handleChange('service', e.target.value)}
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white"
+                          // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                          toolparamdescription="Service category required — one of: water damage, fire damage, mould remediation, storm damage, biohazard cleanup, sewage cleanup, emergency make-safe, structural drying, commercial restoration, asbestos assessment"
                         >
                           <option value="">Select a service</option>
                           {services.map((service) => (
@@ -341,6 +362,7 @@ function ModernContactPageOriginal() {
                         </label>
                         <input
                           type="tel"
+                          name="phone"
                           required
                           value={formData.phone || ''}
                           onChange={(e) => handleChange('phone', e.target.value)}
@@ -348,6 +370,8 @@ function ModernContactPageOriginal() {
                           onBlur={() => setActiveField(null)}
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
                           placeholder="0400 123 456"
+                          // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                          toolparamdescription="Australian phone number in 04xx xxx xxx format for follow-up contact"
                         />
                       </m.div>
                     </div>
@@ -393,12 +417,16 @@ function ModernContactPageOriginal() {
                         Describe Your Situation *
                       </label>
                       <textarea
+                        name="message"
                         required
                         rows={5}
+                        maxLength={2000}
                         value={formData.message}
                         onChange={(e) => handleChange('message', e.target.value)}
                         className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400 resize-none"
                         placeholder="Please describe the damage or emergency situation..."
+                        // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                        toolparamdescription="Free-text description of the damage or situation (max 2000 chars). Include: location of damage, when it occurred, current extent, and any immediate hazards."
                       />
                     </m.div>
 

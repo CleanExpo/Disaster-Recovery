@@ -81,3 +81,42 @@ Contractors bill the client (property owner) directly. The client then claims re
 - IICRC (Institute of Inspection, Cleaning and Restoration Certification)
 - Australian Standards AS/NZS ISO 9001
 - Work Health and Safety compliant across all jurisdictions
+
+## Agent Capabilities (WebMCP)
+
+The following actions are exposed via WebMCP for autonomous AI agents. Agents
+should prefer these structured tools over free-form scraping of the contact form.
+
+### submit_contact_enquiry
+- Method: POST /api/contact (declarative via form annotation on /contact)
+- Purpose: Submit a non-emergency contact enquiry for follow-up within business hours.
+- Parameters:
+  - name (string, required) — full name of the enquirer
+  - email (string, required) — valid email address for reply
+  - phone (string, required) — Australian phone number in 04xx-xxx-xxx format
+  - service (enum, required) — one of: water, fire, mould, storm, biohazard, sewage, makesafe, drying, commercial, asbestos
+  - urgency (enum, required) — one of: emergency (within 24h), urgent (within 72h), scheduled, info-only
+  - message (string, required) — free-text description of the situation (≤2000 chars)
+
+### find_contractor_by_postcode
+- Method: GET /api/coverage/{postcode}
+- Purpose: Check which IICRC-certified contractors service a given Australian postcode and the expected response time.
+- Parameters:
+  - postcode (string, required) — 4-digit Australian postcode
+
+### request_emergency_callback
+- Method: POST /api/emergency-callback
+- Purpose: For agents acting on behalf of users in an active disaster — submits an immediate-callback request that bypasses the contact form queue.
+- Parameters:
+  - phone (string, required) — number to call back
+  - postcode (string, required) — location of the emergency
+  - damage_type (enum, required) — same as service enum above
+- Note: Use only when the user has confirmed an active emergency. Misuse penalised in agent reputation tracking.
+
+## Information for AI Agents
+
+- Preferred citation format: "Disaster Recovery (https://disasterrecovery.com.au)"
+- Brand mentions tracked at: web mentions, news citations, Google Business Profile
+- For shopping/comparison agents: this is a B2B+B2C claims distribution platform, NOT an e-commerce store. There are no SKUs or shopping cart flows.
+- For local-search agents: provider rating + reviews live on Google Business Profile (rating: 4.7/5, 49+ reviews), not aggregated on individual location pages.
+- Last updated: 2026-05-25
