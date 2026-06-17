@@ -10,6 +10,12 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { withAuth, type AuthenticatedRequest } from '@/lib/auth-middleware';
+import {
+  ONBOARDING_MODULE_COUNT,
+  onboardingModuleName,
+  parseOnboardingModuleNumber,
+} from '@/lib/onboarding/program-constants';
+import { logComplianceEvent } from '@/lib/compliance/events';
 import { z } from 'zod';
 
 // ── GET: fetch current progress ─────────────────────────────────────────────
@@ -28,13 +34,17 @@ async function handleGet(req: AuthenticatedRequest) {
     }),
   ]);
 
+  const sortedModules = [...modules].sort(
+    (a, b) => parseOnboardingModuleNumber(a.moduleName) - parseOnboardingModuleNumber(b.moduleName),
+  );
+
   return NextResponse.json({
     currentStep: progress?.currentStep ?? 0,
-    totalSteps: progress?.totalSteps ?? 14,
+    totalSteps: progress?.totalSteps ?? ONBOARDING_MODULE_COUNT,
     completed: progress?.completed ?? false,
     startedAt: progress?.startedAt ?? null,
     completedAt: progress?.completedAt ?? null,
-    modules: modules.map((m) => ({
+    modules: sortedModules.map((m) => ({
       moduleName: m.moduleName,
       completed: m.completed,
       score: m.score,
@@ -50,7 +60,7 @@ export const GET = withAuth(handleGet);
 // ── PATCH: start or complete a day ──────────────────────────────────────────
 
 const patchSchema = z.object({
-  day: z.number().int().min(1).max(14),
+  day: z.number().int().min(1).max(ONBOARDING_MODULE_COUNT),
   action: z.enum(['start', 'complete']),
   score: z.number().min(0).max(100).optional(),
 });
@@ -77,7 +87,7 @@ async function handlePatch(req: AuthenticatedRequest) {
   }
 
   const { day, action, score } = parsed.data;
-  const moduleName = `Day ${day} Module`;
+  const moduleName = onboardingModuleName(day);
 
   if (action === 'start') {
     // Mark module as started (set startedAt if not already set)
@@ -100,43 +110,76 @@ async function handlePatch(req: AuthenticatedRequest) {
   }
 
   // action === 'complete'
-  await prisma.moduleProgress.upsert({
-    where: { contractorId_moduleName: { contractorId, moduleName } },
-    create: {
-      contractorId,
-      moduleName,
-      completed: true,
-      score: score ?? null,
-      attempts: 1,
-      startedAt: new Date(),
-      completedAt: new Date(),
-    },
-    update: {
-      completed: true,
-      score: score ?? undefined,
-      completedAt: new Date(),
-    },
-  });
-
-  // Advance onboarding progress to next day
+  // Advance onboarding progress to next module
   const nextStep = day + 1;
-  const isFullyComplete = day >= 14;
+  const isFullyComplete = day >= ONBOARDING_MODULE_COUNT;
+  const now = new Date();
 
-  await prisma.onboardingProgress.upsert({
-    where: { contractorId },
-    create: {
-      contractorId,
-      currentStep: isFullyComplete ? 14 : nextStep,
-      totalSteps: 14,
-      completed: isFullyComplete,
-      completedAt: isFullyComplete ? new Date() : undefined,
-    },
-    update: {
-      currentStep: isFullyComplete ? 14 : nextStep,
-      completed: isFullyComplete,
-      completedAt: isFullyComplete ? new Date() : undefined,
-    },
+  await prisma.$transaction(async (tx) => {
+    await tx.moduleProgress.upsert({
+      where: { contractorId_moduleName: { contractorId, moduleName } },
+      create: {
+        contractorId,
+        moduleName,
+        completed: true,
+        score: score ?? null,
+        attempts: 1,
+        startedAt: now,
+        completedAt: now,
+      },
+      update: {
+        completed: true,
+        score: score ?? undefined,
+        completedAt: now,
+      },
+    });
+
+    await tx.onboardingProgress.upsert({
+      where: { contractorId },
+      create: {
+        contractorId,
+        currentStep: isFullyComplete ? ONBOARDING_MODULE_COUNT : nextStep,
+        totalSteps: ONBOARDING_MODULE_COUNT,
+        completed: isFullyComplete,
+        completedAt: isFullyComplete ? now : undefined,
+      },
+      update: {
+        currentStep: isFullyComplete ? ONBOARDING_MODULE_COUNT : nextStep,
+        totalSteps: ONBOARDING_MODULE_COUNT,
+        completed: isFullyComplete,
+        completedAt: isFullyComplete ? now : undefined,
+      },
+    });
+
+    await tx.contractor.update({
+      where: { id: contractorId },
+      data: isFullyComplete
+        ? {
+            onboardingStep: ONBOARDING_MODULE_COUNT,
+            onboardingCompleted: true,
+            status: 'APPROVED',
+            approvedAt: now,
+          }
+        : {
+            onboardingStep: nextStep,
+          },
+    });
   });
+
+  if (isFullyComplete) {
+    await logComplianceEvent({
+      eventType: 'api_route_invocation',
+      correlationId: contractorId,
+      correlationType: 'contractor_membership',
+      entityType: 'contractor',
+      entityIdentifier: contractorId,
+      metadata: {
+        route: '/api/contractor/onboarding/progress',
+        completed_modules: ONBOARDING_MODULE_COUNT,
+        auto_approved_for_dispatch: true,
+      },
+    });
+  }
 
   return NextResponse.json({
     success: true,

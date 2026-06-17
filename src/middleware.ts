@@ -100,6 +100,15 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
 // interference (CORS / cache-control mutation on POST) cascading into a 500 — the
 // route owns its own validation and is best-effort by design.
 const ALWAYS_PUBLIC = ['/robots.txt', '/sitemap.xml', '/sitemap-index.xml', '/api/log-error'];
+const PUBLIC_CONTRACTOR_PATHS = new Set([
+  '/contractor',
+  '/contractor/apply',
+  '/contractor/login',
+  '/contractor/forgot-password',
+  '/contractor/application-success',
+  '/contractor/activate',
+  '/contractor/onboarding/payment-success',
+]);
 
 // Known search-engine crawler user-agent fragments (GAP-044).
 const CRAWLER_UA_RE = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot/i;
@@ -156,7 +165,10 @@ export async function middleware(request: NextRequest) {
   const isAdminPage = path.startsWith('/admin');
   const isAdminApi = path.startsWith('/api/admin');
   const isAnalyticsApi = path.startsWith('/api/analytics');
-  const isContractorPage = path.startsWith('/contractor') && !path.startsWith('/api/');
+  const isPublicContractorPage =
+    PUBLIC_CONTRACTOR_PATHS.has(path) || path.startsWith('/contractor/activate/');
+  const isContractorPage =
+    path.startsWith('/contractor') && !path.startsWith('/api/') && !isPublicContractorPage;
   const isProtected = isAdminPage || isAdminApi || isAnalyticsApi || isContractorPage;
 
   if (isProtected) {

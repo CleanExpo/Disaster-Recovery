@@ -156,7 +156,7 @@ const FAQ_SECTIONS = [
       },
       {
         q: 'What is the NRPG contractor network?',
-        a: "NRPG (National Restoration Professionals Group) is Australia's professional network for IICRC-certified disaster restoration contractors. Contractors join through a rigorous onboarding process including 14-day training, documentation review, and certification verification. The network connects qualified contractors with policyholders who need certified restoration services — ensuring quality, accountability, and insurer-accepted documentation on every job.",
+        a: "NRPG (National Restoration Professionals Group) is Australia's professional network for IICRC-certified disaster restoration contractors. Contractors join through a rigorous onboarding process including 22-module training, documentation review, and certification verification. The network connects qualified contractors with policyholders who need certified restoration services — ensuring quality, accountability, and insurer-accepted documentation on every job.",
       },
       {
         q: 'Can I request a specific contractor or geographic region?',

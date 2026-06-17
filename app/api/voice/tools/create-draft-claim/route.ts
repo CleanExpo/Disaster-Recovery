@@ -11,6 +11,7 @@ import { randomUUID } from 'crypto';
 import { preflight, z } from '@/lib/voice/route-helpers';
 import { filterToolOutput } from '@/lib/voice/output-filter';
 import { saveDraft } from '@/lib/voice/draft-store';
+import { dispatchVoiceLead } from '@/lib/voice/dispatch';
 import { logComplianceEvent } from '@/lib/voice/route-helpers';
 import { requestLogger, captureException } from '@/lib/observability';
 
@@ -49,15 +50,36 @@ export async function POST(request: Request) {
       created_at: Date.now(),
     });
 
-    const raw = { draft_id, next_step: 'sms_signature' as const };
-    const filtered = filterToolOutput(raw, ['draft_id', 'next_step']);
+    const dispatch = await dispatchVoiceLead({
+      sessionId: pre.sessionId ?? draft_id,
+      name: input.name,
+      phone: input.phone,
+      email: input.email,
+      postcode: input.postcode,
+      damageType: input.damage_type,
+      description: input.description,
+    });
+
+    const raw = {
+      draft_id,
+      next_step: 'sms_signature' as const,
+      dispatch_status: dispatch.dispatchStatus,
+      job_id: dispatch.jobId,
+    };
+    const filtered = filterToolOutput(raw, ['draft_id', 'next_step', 'dispatch_status', 'job_id']);
 
     await logComplianceEvent({
       session_id: pre.sessionId,
       event_type: 'voice_tool_invoked',
       tool_name: 'create_draft_claim',
       outcome: 'ok',
-      metadata: { draft_id, postcode: pre.body.postcode, damage_type: pre.body.damage_type },
+      metadata: {
+        draft_id,
+        postcode: pre.body.postcode,
+        damage_type: pre.body.damage_type,
+        job_id: dispatch.jobId,
+        dispatch_status: dispatch.dispatchStatus,
+      },
     });
 
     return NextResponse.json(filtered);

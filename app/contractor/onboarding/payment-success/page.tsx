@@ -1,6 +1,5 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useEffect, useState, Suspense } from 'react';
@@ -26,7 +25,8 @@ function PaymentSuccessPageContent() {
       const response = await fetch('/api/stripe/verify-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId }) });
+        body: JSON.stringify({ sessionId }),
+      });
 
       if (response.ok) {
         setPaymentVerified(true);
@@ -57,18 +57,14 @@ function PaymentSuccessPageContent() {
           <div className="inline-flex items-center justify-center w-24 h-24 bg-green-100 rounded-full mb-6">
             <CheckCircle className="w-16 h-16 text-green-600" />
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Payment Successful!
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-700">
-            Welcome to National Recovery Partners
-          </p>
+          <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">Payment Successful!</h1>
+          <p className="text-lg sm:text-xl text-gray-700">Welcome to National Recovery Partners</p>
         </div>
 
         {/* Payment Confirmation */}
         <div className="bg-white rounded-xl shadow-lg p-5 sm:p-8 mb-8">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Payment Confirmation</h2>
-          
+
           <div className="space-y-4">
             <div className="flex justify-between py-3 border-b">
               <span className="text-gray-700">Application Fee</span>
@@ -86,8 +82,8 @@ function PaymentSuccessPageContent() {
 
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
             <p className="text-sm text-blue-800">
-              A receipt has been sent to your registered email address. 
-              You can also download it from your account dashboard.
+              A receipt has been sent to your registered email address. You can also download it
+              from your account dashboard.
             </p>
           </div>
         </div>
@@ -95,16 +91,17 @@ function PaymentSuccessPageContent() {
         {/* What's Next */}
         <div className="bg-white rounded-xl shadow-lg p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">What Happens Next?</h2>
-          
+
           <div className="space-y-6">
             <div className="flex items-start space-x-4">
               <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-blue-600 font-bold">1</span>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Begin Your 14-Day Onboarding</h3>
+                <h3 className="font-semibold text-gray-900">Activate Your Contractor Account</h3>
                 <p className="text-gray-700 mt-1">
-                  Access your personalised training dashboard to start the comprehensive onboarding program.
+                  Use the activation link sent to your email to set your password and access the
+                  contractor portal.
                 </p>
               </div>
             </div>
@@ -114,9 +111,10 @@ function PaymentSuccessPageContent() {
                 <span className="text-blue-600 font-bold">2</span>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Complete Daily Modules</h3>
+                <h3 className="font-semibold text-gray-900">Begin Your 22-Module Onboarding</h3>
                 <p className="text-gray-700 mt-1">
-                  Each day unlocks new training content including videos, readings, and assessments.
+                  Complete the required modules covering compliance, documentation, dispatch and
+                  launch readiness.
                 </p>
               </div>
             </div>
@@ -138,9 +136,12 @@ function PaymentSuccessPageContent() {
                 <span className="text-blue-600 font-bold">4</span>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Get Certified & Start Receiving Leads</h3>
+                <h3 className="font-semibold text-gray-900">
+                  Get Certified & Start Receiving Leads
+                </h3>
                 <p className="text-gray-700 mt-1">
-                  Upon successful completion, you'll be certified and ready to receive high-value insurance claims.
+                  Upon successful completion, you'll be certified and ready to receive high-value
+                  insurance claims.
                 </p>
               </div>
             </div>
@@ -150,7 +151,7 @@ function PaymentSuccessPageContent() {
         {/* Subscription Information */}
         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-5 sm:p-8 mb-8">
           <h3 className="text-xl font-bold text-gray-900 mb-4">Your Subscription Benefits</h3>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-green-600">Month 1</div>
@@ -170,7 +171,7 @@ function PaymentSuccessPageContent() {
               <div className="text-sm text-gray-700 mt-2">50% discount applied</div>
             </div>
           </div>
-          
+
           <p className="text-sm text-gray-700 mt-4 text-center">
             Regular subscription rate of $495/month applies from month 4 onwards
           </p>
@@ -179,7 +180,7 @@ function PaymentSuccessPageContent() {
         {/* Quick Actions */}
         <div className="bg-white rounded-xl shadow-lg p-8">
           <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h3>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <button
               onClick={() => router.push('/contractor/onboarding')}
@@ -233,7 +234,8 @@ function PaymentSuccessPageContent() {
 
         {/* Support Information */}
         <div className="mt-8 text-center text-gray-700">
-          <p>Need help?{' '}
+          <p>
+            Need help?{' '}
             <a href="/contact" className="text-blue-600 hover:underline">
               Contact our support team
             </a>
@@ -246,14 +248,16 @@ function PaymentSuccessPageContent() {
 
 function PaymentSuccessPageOriginal() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-gray-700">Verifying payment...</p>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+            <p className="mt-4 text-gray-700">Verifying payment...</p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <PaymentSuccessPageContent />
     </Suspense>
   );

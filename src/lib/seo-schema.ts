@@ -113,7 +113,7 @@ export const generateFAQSchema = () => ({
       name: 'Are your contractors certified?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'All contractors in the NRPG network are IICRC certified and complete a comprehensive 14-day training program. They maintain current insurance, undergo background checks, and follow strict quality standards.',
+        text: 'All contractors in the NRPG network are IICRC certified and complete a comprehensive 22-module training programme. They maintain current insurance, undergo background checks, and follow strict quality standards.',
       },
     },
     {

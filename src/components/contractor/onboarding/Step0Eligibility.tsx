@@ -165,7 +165,7 @@ export default function Step0Eligibility({ onConfirmed }: Step0EligibilityProps)
             <Award className="h-5 w-5 text-amber-400" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">Eligibility Requirements</h2>
+            <h1 className="text-xl font-bold text-white">Eligibility Requirements</h1>
             <p className="text-slate-400 text-sm">
               All 7 requirements below must be confirmed before the application opens.
             </p>

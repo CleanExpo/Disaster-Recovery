@@ -13,6 +13,10 @@ import { stripe, isStripeConfigured } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { PaymentValidator } from '@/lib/payment-security';
+import { ONBOARDING_MODULE_COUNT, onboardingModuleName } from '@/lib/onboarding/program-constants';
+import { buildContractorActivationUrl } from '@/lib/contractor-activation';
+import { sendEmail, emailTemplates } from '@/lib/email';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -21,6 +25,67 @@ const schema = z.object({
     .min(1, 'Session ID is required')
     .refine((v) => v.startsWith('cs_'), { message: 'Invalid Stripe session ID' }),
 });
+
+async function initialiseOnboardingAfterPayment(contractorId: string, sessionId: string) {
+  return prisma.$transaction(async (tx) => {
+    const payment = await tx.onboardingPayment.findFirst({
+      where: { stripeSessionId: sessionId },
+      select: { id: true, status: true },
+    });
+
+    if (payment && payment.status !== 'completed') {
+      await tx.onboardingPayment.update({
+        where: { id: payment.id },
+        data: { status: 'completed' },
+      });
+    }
+
+    const contractor = await tx.contractor.update({
+      where: { id: contractorId },
+      data: {
+        status: 'UNDER_REVIEW',
+        onboardingStep: 1,
+      },
+      select: { id: true, email: true, username: true, emailVerified: true },
+    });
+
+    await tx.onboardingProgress.upsert({
+      where: { contractorId },
+      create: {
+        contractorId,
+        currentStep: 1,
+        totalSteps: ONBOARDING_MODULE_COUNT,
+        completed: false,
+      },
+      update: {
+        currentStep: 1,
+        totalSteps: ONBOARDING_MODULE_COUNT,
+        completed: false,
+      },
+    });
+
+    for (let moduleNumber = 1; moduleNumber <= ONBOARDING_MODULE_COUNT; moduleNumber++) {
+      const moduleName = onboardingModuleName(moduleNumber);
+      await tx.moduleProgress.upsert({
+        where: {
+          contractorId_moduleName: {
+            contractorId,
+            moduleName,
+          },
+        },
+        create: {
+          contractorId,
+          moduleName,
+          completed: false,
+          attempts: 0,
+        },
+        update: {},
+      });
+    }
+
+    return contractor;
+  });
+}
 
 export async function POST(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/stripe/verify-payment' });
@@ -36,7 +101,7 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json(
       { success: false, error: parsed.error.errors[0]?.message ?? 'Invalid request' },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -60,7 +125,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { success: false, error: 'Payment system not configured', code: 'STRIPE_NOT_CONFIGURED' },
-      { status: 503 }
+      { status: 503 },
     );
   }
 
@@ -72,6 +137,7 @@ export async function POST(req: NextRequest) {
 
     const isPaymentPaid = session.payment_status === 'paid';
     const contractorId = session.metadata?.contractorId ?? null;
+    const isOnboardingSession = session.metadata?.type === 'onboarding';
 
     if (!isPaymentPaid) {
       return NextResponse.json({
@@ -82,18 +148,50 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Sync DB record to completed (idempotent — webhook may have already done this)
-    if (contractorId) {
-      const payment = await prisma.onboardingPayment.findFirst({
-        where: { stripeSessionId: sessionId },
-      });
+    if (!isOnboardingSession || !contractorId) {
+      return NextResponse.json(
+        {
+          success: false,
+          verified: false,
+          error: 'Payment session is not a contractor onboarding session',
+          code: 'SESSION_NOT_ONBOARDING',
+        },
+        { status: 400 },
+      );
+    }
 
-      if (payment && payment.status !== 'completed') {
-        await prisma.onboardingPayment.update({
-          where: { id: payment.id },
-          data: { status: 'completed' },
-        });
-      }
+    const expectedPayment = PaymentValidator.calculateOnboardingAmount();
+    const actualAmount = session.amount_total ?? 0;
+    if (actualAmount !== expectedPayment.amount) {
+      return NextResponse.json(
+        {
+          success: false,
+          verified: false,
+          error: 'Payment amount validation failed',
+          code: 'AMOUNT_MISMATCH',
+        },
+        { status: 400 },
+      );
+    }
+
+    // Sync DB state idempotently. This mirrors the Stripe webhook path so
+    // returning from Checkout is safe even if the webhook is delayed.
+    const contractor = await initialiseOnboardingAfterPayment(contractorId, sessionId);
+    const activationUrl = contractor.emailVerified
+      ? undefined
+      : buildContractorActivationUrl(contractor.id);
+
+    if (contractor.email) {
+      sendEmail(
+        contractor.email,
+        emailTemplates.contractorPaymentConfirmed(
+          contractor.username ?? 'Contractor',
+          contractor.id,
+          activationUrl,
+        ),
+      ).catch(() => {
+        // Non-fatal — payment + onboarding state are the source of truth.
+      });
     }
 
     await logComplianceEvent({
@@ -121,21 +219,26 @@ export async function POST(req: NextRequest) {
       currency: session.currency,
     });
   } catch (error) {
-    log.error('stripe verify-payment error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/stripe/verify-payment' }, extra: { requestId: log.requestId } });
+    log.error('stripe verify-payment error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/stripe/verify-payment' },
+      extra: { requestId: log.requestId },
+    });
 
     // If session doesn't exist or is expired, Stripe throws a resource_missing error
     const stripeError = error as { type?: string; message?: string };
     if (stripeError?.type === 'StripeInvalidRequestError') {
       return NextResponse.json(
         { success: false, error: 'Invalid or expired payment session', code: 'SESSION_NOT_FOUND' },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
     return NextResponse.json(
       { success: false, error: 'Failed to verify payment', code: 'VERIFICATION_ERROR' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
