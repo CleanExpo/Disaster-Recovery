@@ -72,6 +72,25 @@ const EXCLUDED_PREFIXES = [
   '/events/april-13-convergence-2026',
 ];
 
+const EXCLUDED_EXACT_ROUTES = new Set([
+  '/book-service/error',
+  '/book-service/payment',
+  '/book-service/success',
+  '/contractor/onboarding/payment-success',
+  '/request-submitted',
+  '/search',
+]);
+
+const EXCLUDED_SUFFIXES = ['/error', '/payment', '/payment-success', '/success'];
+
+function isExcludedRoute(route: string): boolean {
+  return (
+    EXCLUDED_EXACT_ROUTES.has(route) ||
+    EXCLUDED_SUFFIXES.some((suffix) => route.endsWith(suffix)) ||
+    EXCLUDED_PREFIXES.some((prefix) => route.startsWith(prefix))
+  );
+}
+
 // Priority mapping by route prefix
 const PRIORITY_MAP: Record<string, number> = {
   '/': 1,
@@ -456,9 +475,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const allRoutes = discoverPages(appDir);
 
   // Filter out excluded routes
-  const publicRoutes = allRoutes.filter(
-    (route) => !EXCLUDED_PREFIXES.some((prefix) => route.startsWith(prefix)),
-  );
+  const publicRoutes = allRoutes.filter((route) => !isExcludedRoute(route));
 
   // Generate sitemap entries for static pages
   const staticEntries: MetadataRoute.Sitemap = publicRoutes.map((route) => ({
