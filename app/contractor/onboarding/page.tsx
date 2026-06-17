@@ -1,18 +1,41 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { contractorFetch, getContractorProfile } from '@/lib/contractor-auth';
-import { ChevronRight, Lock, CheckCircle, Clock, AlertCircle, BookOpen, Video, Headphones, FileText, Award } from 'lucide-react';
+import {
+  ChevronRight,
+  Lock,
+  CheckCircle,
+  Clock,
+  AlertCircle,
+  BookOpen,
+  Video,
+  Headphones,
+  FileText,
+  Award,
+} from 'lucide-react';
 import { ONBOARDING_PROGRAM } from '@/lib/onboarding/14-day-program';
-import { ModuleProgress, calculateModuleCompletion, canProgressToNextDay } from '@/lib/onboarding/14-day-program';
+import {
+  ModuleProgress,
+  calculateModuleCompletion,
+  canProgressToNextDay,
+} from '@/lib/onboarding/14-day-program';
+import {
+  ONBOARDING_MODULE_COUNT,
+  parseOnboardingModuleNumber,
+} from '@/lib/onboarding/program-constants';
 
 interface OnboardingState {
   contractorId: string;
-  applicationStatus: 'pending_payment' | 'payment_received' | 'in_progress' | 'completed' | 'failed';
+  applicationStatus:
+    | 'pending_payment'
+    | 'payment_received'
+    | 'in_progress'
+    | 'completed'
+    | 'failed';
   paymentStatus: {
     applicationFee: boolean;
     joiningFee: boolean;
@@ -44,17 +67,13 @@ function ContractorOnboardingPageOriginal() {
           const data = await res.json();
           const completedDays = (data.modules ?? [])
             .filter((m: any) => m.completed)
-            .map((m: any) => {
-              const match = m.moduleName?.match(/Day (\d+)/);
-              return match ? parseInt(match[1], 10) : 0;
-            })
+            .map((m: any) => parseOnboardingModuleNumber(m.moduleName ?? ''))
             .filter((d: number) => d > 0);
 
           const moduleProgressMap: Record<number, ModuleProgress> = {};
           for (const m of data.modules ?? []) {
-            const match = m.moduleName?.match(/Day (\d+)/);
-            if (match) {
-              const dayNum = parseInt(match[1], 10);
+            const dayNum = parseOnboardingModuleNumber(m.moduleName ?? '');
+            if (dayNum !== Number.MAX_SAFE_INTEGER) {
               moduleProgressMap[dayNum] = {
                 day: dayNum,
                 videosWatched: new Map(m.completed ? [['all', 100]] : []),
@@ -117,19 +136,21 @@ function ContractorOnboardingPageOriginal() {
 
   const getModuleStatus = (day: number): 'locked' | 'available' | 'in_progress' | 'completed' => {
     if (!onboardingState) return 'locked';
-    
+
     if (onboardingState.completedDays.includes(day)) return 'completed';
     if (day === onboardingState.currentDay) return 'available';
     if (day < onboardingState.currentDay) return 'available';
-    
+
     // Check if prerequisite days are completed
     const trainingModule = ONBOARDING_PROGRAM[day - 1];
     if (trainingModule.mustCompleteBy < day) {
-      const prereqCompleted = Array.from({ length: trainingModule.mustCompleteBy }, (_, i) => i + 1)
-        .every(d => onboardingState.completedDays.includes(d));
+      const prereqCompleted = Array.from(
+        { length: trainingModule.mustCompleteBy },
+        (_, i) => i + 1,
+      ).every((d) => onboardingState.completedDays.includes(d));
       if (!prereqCompleted) return 'locked';
     }
-    
+
     return 'locked';
   };
 
@@ -163,7 +184,7 @@ function ContractorOnboardingPageOriginal() {
 
   const handleStartDay = (day: number) => {
     if (!onboardingState) return;
-    
+
     const newState = {
       ...onboardingState,
       currentDay: day,
@@ -176,11 +197,11 @@ function ContractorOnboardingPageOriginal() {
           assignmentsSubmitted: [],
           documentsUploaded: [],
           quizScores: {},
-          status: 'in_progress' as const
-        }
-      }
+          status: 'in_progress' as const,
+        },
+      },
     };
-    
+
     setOnboardingState(newState as OnboardingState);
     localStorage.setItem('contractor_onboarding_state', JSON.stringify(newState));
     router.push(`/contractor/onboarding/day/${day}`);
@@ -188,7 +209,7 @@ function ContractorOnboardingPageOriginal() {
 
   const calculateOverallProgress = () => {
     if (!onboardingState) return 0;
-    return Math.round((onboardingState.completedDays.length / 14) * 100);
+    return Math.round((onboardingState.completedDays.length / ONBOARDING_MODULE_COUNT) * 100);
   };
 
   if (loading) {
@@ -219,35 +240,43 @@ function ContractorOnboardingPageOriginal() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-12">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">Complete Your Application Payment</h1>
-            
+            <h1 className="text-3xl font-bold text-gray-900 mb-8">
+              Complete Your Application Payment
+            </h1>
+
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-blue-900 mb-4">Payment Required to Begin Onboarding</h2>
-                
+                <h2 className="text-xl font-semibold text-blue-900 mb-4">
+                  Payment Required to Begin Onboarding
+                </h2>
+
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-4 bg-white rounded-lg">
                     <div>
                       <p className="font-semibold text-gray-900">Application Fee</p>
-                      <p className="text-sm text-gray-700">Includes competency testing & onboarding materials</p>
+                      <p className="text-sm text-gray-700">
+                        Includes competency testing & onboarding materials
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-gray-900">$275</p>
                       <p className="text-xs text-gray-700">Inc. GST</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between p-4 bg-white rounded-lg">
                     <div>
                       <p className="font-semibold text-gray-900">Joining Fee</p>
-                      <p className="text-sm text-gray-700">Portal setup, training access & territory allocation</p>
+                      <p className="text-sm text-gray-700">
+                        Portal setup, training access & territory allocation
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-gray-900">$2,200</p>
                       <p className="text-xs text-gray-700">Inc. GST</p>
                     </div>
                   </div>
-                  
+
                   <div className="border-t pt-4">
                     <div className="flex items-center justify-between">
                       <p className="text-lg font-semibold text-gray-900">Total Due Now</p>
@@ -255,23 +284,10 @@ function ContractorOnboardingPageOriginal() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="mt-6">
                   <button
-                    onClick={() => {
-                      // Simulate payment completion
-                      const newState = {
-                        ...onboardingState,
-                        applicationStatus: 'in_progress' as const,
-                        paymentStatus: {
-                          applicationFee: true,
-                          joiningFee: true,
-                          firstSubscription: false
-                        }
-                      };
-                      setOnboardingState(newState);
-                      localStorage.setItem('contractor_onboarding_state', JSON.stringify(newState));
-                    }}
+                    onClick={() => router.push('/contractor/apply')}
                     className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition"
                   >
                     Proceed to Secure Payment
@@ -281,9 +297,11 @@ function ContractorOnboardingPageOriginal() {
                   </p>
                 </div>
               </div>
-              
+
               <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                <h3 className="font-semibold text-green-900 mb-2">Subscription Pricing After Onboarding</h3>
+                <h3 className="font-semibold text-green-900 mb-2">
+                  Subscription Pricing After Onboarding
+                </h3>
                 <div className="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4 mt-4">
                   <div className="text-center">
                     <p className="text-sm text-gray-700">Month 1</p>
@@ -301,7 +319,9 @@ function ContractorOnboardingPageOriginal() {
                     <p className="text-xs text-gray-700">50% off</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-700 mt-4">Regular price $495/month from month 4 onwards</p>
+                <p className="text-sm text-gray-700 mt-4">
+                  Regular price $495/month from month 4 onwards
+                </p>
               </div>
             </div>
           </div>
@@ -318,7 +338,7 @@ function ContractorOnboardingPageOriginal() {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold">14-Day Onboarding Program</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold">22-Module Onboarding Programme</h1>
               <p className="mt-2 text-blue-800">Welcome to National Recovery Partners</p>
             </div>
             <div className="sm:text-right">
@@ -326,7 +346,7 @@ function ContractorOnboardingPageOriginal() {
               <p className="font-mono font-bold">{onboardingState.contractorId}</p>
             </div>
           </div>
-          
+
           {/* Progress Bar */}
           <div className="mt-8">
             <div className="flex items-center justify-between mb-2">
@@ -347,7 +367,9 @@ function ContractorOnboardingPageOriginal() {
               />
             </div>
             <div className="mt-2 flex justify-between text-xs text-blue-800">
-              <span>Day {onboardingState.currentDay} of 14</span>
+              <span>
+                Module {onboardingState.currentDay} of {ONBOARDING_MODULE_COUNT}
+              </span>
               <span>{onboardingState.completedDays.length} modules completed</span>
             </div>
           </div>
@@ -361,21 +383,23 @@ function ContractorOnboardingPageOriginal() {
             <div className="bg-white rounded-xl shadow-lg">
               <div className="p-6 border-b">
                 <h2 className="text-xl font-bold text-gray-900">Training Modules</h2>
-                <p className="text-sm text-gray-700 mt-1">Complete each module to progress through the program</p>
+                <p className="text-sm text-gray-700 mt-1">
+                  Complete each module to progress through the program
+                </p>
               </div>
-              
+
               <div className="divide-y">
                 {ONBOARDING_PROGRAM.map((module) => {
                   const status = getModuleStatus(module.day);
                   const isSelected = selectedDay === module.day;
-                  
+
                   return (
                     <button
                       key={module.day}
                       type="button"
                       disabled={status === 'locked'}
                       aria-pressed={isSelected}
-                      aria-label={`Day ${module.day}: ${module.title}${status === 'locked' ? ' (locked)' : ''}`}
+                      aria-label={`Module ${module.day}: ${module.title}${status === 'locked' ? ' (locked)' : ''}`}
                       onClick={() => status !== 'locked' && setSelectedDay(module.day)}
                       className={`w-full text-left p-6 transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
                         isSelected ? 'bg-blue-50' : 'hover:bg-gray-50'
@@ -383,23 +407,27 @@ function ContractorOnboardingPageOriginal() {
                     >
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                            status === 'completed' ? 'bg-green-100' :
-                            status === 'available' || status === 'in_progress' ? 'bg-blue-100' :
-                            'bg-gray-100'
-                          }`}>
+                          <div
+                            className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                              status === 'completed'
+                                ? 'bg-green-100'
+                                : status === 'available' || status === 'in_progress'
+                                  ? 'bg-blue-100'
+                                  : 'bg-gray-100'
+                            }`}
+                          >
                             {getStatusIcon(status)}
                           </div>
                         </div>
-                        
+
                         <div className="flex-1">
                           <div className="flex items-start justify-between">
                             <div>
                               <h3 className="font-semibold text-gray-900">
-                                Day {module.day}: {module.title}
+                                Module {module.day}: {module.title}
                               </h3>
                               <p className="text-sm text-gray-700 mt-1">{module.description}</p>
-                              
+
                               <div className="flex items-center space-x-4 mt-3 text-xs text-gray-700">
                                 <span className="flex items-center space-x-1">
                                   <Clock className="w-3 h-3" />
@@ -418,7 +446,7 @@ function ContractorOnboardingPageOriginal() {
                                   </span>
                                 )}
                               </div>
-                              
+
                               {/* Learning Formats Available */}
                               <div className="flex items-center space-x-2 mt-3">
                                 <span className="text-xs text-gray-700">Available in:</span>
@@ -426,19 +454,28 @@ function ContractorOnboardingPageOriginal() {
                                   <div className="p-1 bg-blue-100 rounded" title="Video Content">
                                     <Video className="w-3 h-3 text-blue-600" />
                                   </div>
-                                  <div className="p-1 bg-green-100 rounded" title="Reading Materials">
+                                  <div
+                                    className="p-1 bg-green-100 rounded"
+                                    title="Reading Materials"
+                                  >
                                     <BookOpen className="w-3 h-3 text-green-600" />
                                   </div>
-                                  <div className="p-1 bg-purple-100 rounded" title="Podcast Episodes">
+                                  <div
+                                    className="p-1 bg-purple-100 rounded"
+                                    title="Podcast Episodes"
+                                  >
                                     <Headphones className="w-3 h-3 text-purple-600" />
                                   </div>
-                                  <div className="p-1 bg-orange-100 rounded" title="Interactive Assignments">
+                                  <div
+                                    className="p-1 bg-orange-100 rounded"
+                                    title="Interactive Assignments"
+                                  >
                                     <FileText className="w-3 h-3 text-blue-700" />
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            
+
                             {status === 'available' && (
                               <button
                                 onClick={(e) => {
@@ -466,10 +503,10 @@ function ContractorOnboardingPageOriginal() {
             <div className="bg-white rounded-xl shadow-lg sticky top-4">
               <div className="p-6 border-b">
                 <h3 className="font-bold text-gray-900">
-                  Day {selectedDay}: {ONBOARDING_PROGRAM[selectedDay - 1]?.title}
+                  Module {selectedDay}: {ONBOARDING_PROGRAM[selectedDay - 1]?.title}
                 </h3>
               </div>
-              
+
               <div className="p-6 space-y-6">
                 {/* Objectives */}
                 <div>
@@ -483,7 +520,7 @@ function ContractorOnboardingPageOriginal() {
                     ))}
                   </ul>
                 </div>
-                
+
                 {/* Content Breakdown */}
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3">Content Breakdown</h4>
@@ -495,11 +532,15 @@ function ContractorOnboardingPageOriginal() {
                           <span>Video Lessons</span>
                         </span>
                         <span className="font-semibold">
-                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.videos?.reduce((acc, v) => acc + v.duration, 0)} min
+                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.videos?.reduce(
+                            (acc, v) => acc + v.duration,
+                            0,
+                          )}{' '}
+                          min
                         </span>
                       </div>
                     )}
-                    
+
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.components.readings && (
                       <div className="flex items-center justify-between text-sm">
                         <span className="flex items-center space-x-2 text-gray-700">
@@ -507,11 +548,15 @@ function ContractorOnboardingPageOriginal() {
                           <span>Reading Materials</span>
                         </span>
                         <span className="font-semibold">
-                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.readings?.reduce((acc, r) => acc + r.estimatedTime, 0)} min
+                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.readings?.reduce(
+                            (acc, r) => acc + r.estimatedTime,
+                            0,
+                          )}{' '}
+                          min
                         </span>
                       </div>
                     )}
-                    
+
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.components.assignments && (
                       <div className="flex items-center justify-between text-sm">
                         <span className="flex items-center space-x-2 text-gray-700">
@@ -519,13 +564,14 @@ function ContractorOnboardingPageOriginal() {
                           <span>Assignments</span>
                         </span>
                         <span className="font-semibold">
-                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.assignments?.length} tasks
+                          {ONBOARDING_PROGRAM[selectedDay - 1]?.components.assignments?.length}{' '}
+                          tasks
                         </span>
                       </div>
                     )}
                   </div>
                 </div>
-                
+
                 {/* Completion Requirements */}
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3">Completion Requirements</h4>
@@ -533,10 +579,15 @@ function ContractorOnboardingPageOriginal() {
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria.minVideoWatchTime && (
                       <li className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                        <span>Watch {ONBOARDING_PROGRAM[selectedDay - 1].completionCriteria.minVideoWatchTime}% of videos</span>
+                        <span>
+                          Watch{' '}
+                          {ONBOARDING_PROGRAM[selectedDay - 1].completionCriteria.minVideoWatchTime}
+                          % of videos
+                        </span>
                       </li>
                     )}
-                    {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria.assignmentsCompleted && (
+                    {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria
+                      .assignmentsCompleted && (
                       <li className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full" />
                         <span>Complete all assignments</span>
@@ -545,12 +596,15 @@ function ContractorOnboardingPageOriginal() {
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria.quizScore && (
                       <li className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                        <span>Score {ONBOARDING_PROGRAM[selectedDay - 1].completionCriteria.quizScore}% on quiz</span>
+                        <span>
+                          Score {ONBOARDING_PROGRAM[selectedDay - 1].completionCriteria.quizScore}%
+                          on quiz
+                        </span>
                       </li>
                     )}
                   </ul>
                 </div>
-                
+
                 {/* Multi-Format Learning Notice */}
                 <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
@@ -558,8 +612,9 @@ function ContractorOnboardingPageOriginal() {
                     <div>
                       <h5 className="font-semibold text-gray-900 text-sm">Learn Your Way</h5>
                       <p className="text-xs text-gray-700 mt-1">
-                        All content available in multiple formats: video tutorials, podcast episodes, 
-                        reading materials, and interactive study guides to suit your learning style.
+                        All content available in multiple formats: video tutorials, podcast
+                        episodes, reading materials, and interactive study guides to suit your
+                        learning style.
                       </p>
                     </div>
                   </div>

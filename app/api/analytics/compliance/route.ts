@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession, type Session } from 'next-auth';
 import { prisma } from '@/lib/prisma';
+import { ONBOARDING_MODULE_COUNT } from '@/lib/onboarding/program-constants';
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic';
@@ -197,6 +198,6 @@ export async function GET(req: NextRequest) {
 }
 
 function calculateContractorComplianceScore(contractor: { onboardingStep: number | null }): number {
-  const score = (contractor.onboardingStep ?? 0) >= 14 ? 1 : 0;
+  const score = (contractor.onboardingStep ?? 0) >= ONBOARDING_MODULE_COUNT ? 1 : 0;
   return Math.round((score / 1) * 100);
 }

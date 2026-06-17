@@ -1,123 +1,218 @@
 @../Unite-Hub/.portfolio/PORTFOLIO.yaml
 
+<!--
+  RECONSTRUCTED 2026-06-15.
+  The previous CLAUDE.md was ~51% destroyed by a Windows generation tool that
+  baked U+FFFD replacement characters into the file (4040 of them) â€” the same
+  systemic UTF-8 corruption fixed in Synthex. The prose under the corrupted
+  sections was overwritten and is unrecoverable.
+
+  This file was rebuilt by: (a) preserving every surviving CLEAN line verbatim,
+  and (b) reconstructing the destroyed sections ONLY from this repo's real
+  conventions â€” `.claude/rules/**`, `package.json`, `.npmrc`, the live
+  `app/`, `src/`, `prisma/`, `docs/adr/` trees, `MEMORY.md`, and the portfolio
+  registry. Where original intent was unrecoverable, accurate repo-reality
+  content was written rather than a guess.
+
+  This repo has NO CONSTITUTION.md. The detailed rule files in
+  `.claude/rules/**` and the ADRs in `docs/adr/` are the source of truth; this
+  file is the index/anchor. If this file conflicts with a rule file or an ADR,
+  the rule file / ADR wins â€” raise an ADR if the rule itself should change.
+-->
+
 ## Identity (SSOT)
 **Canonical name:** Disaster-Recovery
 **Aliases:** "DR", "Disaster Recovery"
-**Canonical local path:** `D:$canon`
+**Canonical local path:** `D:\Disaster-Recovery`
 **GitHub:** `CleanExpo/Disaster-Recovery`
 
 > Registry: see `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth)
 
----# CLAUDE.md â€” Disaster Recovery
+---
 
-Behavioural ]ZY[[™\ÈÈ™YXÙHÛÛ[[ÛˆHÛÙ[™ÈZ\İZÙ\ËˆY\™ÙHÚ]›Ú™Xİ\ÜXÚYšXÈ[œİXİ[ÛœÈ\È™YYY‚‚ŠŠ•˜Y[Ù™ŠŠˆ\ÙHİZY[[™\ÈšX\ÈİØ\™Ø]][Ûˆİ™\ˆÜYYˆ›Üˆš]šX[\ÚÜË\ÙHYÛY[‚‚ˆÈÈX›HÙˆÛÛ[Â‚‹H˜ÛÛ^ÙÛXZ[‹[[Ù[Ë›Y8 %ÛXZ[ˆÛÛ˜Ù\Ëš\ÛXHX\[—2Â7FFP¢Ö6†–æW2Â¶æ÷vâG&–P¸(´U	%EU%Q=UM}19U¹µ‘€ƒŠP€Èä…¹½¹¥…°Ñ•ÉµÌ€¡H´ÜÈĞ¤¸(´=9QI%	UQ%9¹µ‘€ƒŠPÉ•Á¼±…å½ÕĞ°‰É…¹ €¬½µµ¥Ğ½¹Ù•¹Ñ¥½³, PR
-  workflow, escape-hatch policy.
-- `MEMORY.md` â€” living sprim
-È›Ú™XİÙË‚‹HØÜËØY‹Ø8 %\˜Ú]Xİ\˜[XÚ\Ú[Ûˆ™XÛÜ™Î‚ˆHQ‹LH8 %Ù[[XH][[[™İX[˜[6ÆF–öâà¢ÒE"ÓR(	BfW&6VÂÖæF—fRö'6W'f&–Æ—G’à¢ÒE"Ób(	Bf÷VæFF–öâ7&–çB÷WF6öÖW2à¢ÒE"Ór(	B&RÖ6öÖÖ—B²4’F—66—Æ–æRà¢ÒE"Ó‚(	Bö6ö6²f—fR×6¶–ÆÇ2g&ÖWv÷&²F÷F–öâà¢ÒE"Ó’(	BvöBÖ6ö×öæVĞ‘•½µÁ½Í¥Ñ¥½¸Á…ÑÑ•É¸¸(´‘½Ì½¡½ÜµÑ¼½€ƒŠPÁÉ…Ñ¥…°Á±…å‰½½­Ìè(€€´…‘µ„µ¹•Üµ…Á¤µÉ½ÕÑ”¹µ‘€(€€´…‘µ„µ¹•Üµ™•…ÑÕÉ”µ™±…œ¹µ‘€(€€´ÉÕ¸µÑ¡”µ™½Õ¹‘…Ñ¥½¸µÍÁÉ¥¹Ğµ¡•­±¥ÍĞ¹µ‘€(´€¹±…Õ‘”½ÉÕ±•Ì½€ƒŠPÉ¥ÍÀ…•¹Ğµ™…¥¹œ‘¥É•Ñ¥Ù•Ì€¡Í¡½Ä form of the
-  ADRs above).
+# CLAUDE.md â€” Disaster Recovery
 
-## 1. Think Before Coding
+Behavioural anchor for this repo. It does NOT duplicate the detailed rules â€”
+it points you to the right file. The deep rules live in `.claude/rules/**`,
+the decisions live in `docs/adr/`, and the running log lives in `MEMORY.md`.
 
-**Don't assume. DonYHÛÛ™\Ú[Û‹ˆİ\™˜XÙH˜Y[Ù™2â¢  ¤&Vf÷&R–×ÆVÖVÑ¥¹œè((´MÑ…Ñ”å½ÕÈ…ÍÍÕµÁÑ¥½³ explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - donXÚÈÚ[[K‚‹HYˆHÚ[\\ˆ\›ØXÚ^\İËØ^HÛËˆ\Ú˜XÚÈÚ[ˆØ\œ˜[Y‚‹HYˆÛÛY][™È\È[˜ÛX\‹İÜˆ˜[YHÚ]26öægW6–ærâ6²à ¢22"â6–×Æ–6—G’f—'7@ ¢¢¤Ö–æ–×VÒ6öFRF†B6öÇfW2F†R&ö&ÆVÒâæ÷F†–äÍÁ•Õ±…Ñ¥Ù”¸¨¨((´9¼™•…ÑÕÉ•Ì‰•å½¹İ¡…Ğİ…Ì…Í­•¸(´9¼…ƒtractiolÈ›ÜˆÚ[™ÛK]\ÙHÛÙK‚‹H›È™›^Xš[]HˆÜˆ˜ÛÛ™šYİ\˜Xš[]Hˆ]Ø\Û‰İ™\]Y\İY‚‹H›È\&÷"†æFÆ–ærf÷"–×÷76–&ÆR66Væ&–÷2à¢Ò–b–÷Rw&—FR#Æ–æW2æB—B6÷VÆB&RSÂ&Ww&—FR—Bà ¤6²–÷W•±˜è€‰]½Õ±„Í•¹¥½È•¹¥¹••ÈÍ…äÑ¡¥Ì¥Ì½Ù•É½µÁ±¥…Ñ•üˆ%˜å•Ì°Í¥µÁ±¥™ä¸((ŒŒ€Ì¸MÕÉ¥…°¡…¹•Ì((¨©Q½Õ ½¹±äİ¡…Ğå½ÔµÕÍĞ¸±•…¸ÕÀ½¹±äå½ÕÈ½İ¸µ•ÍÌ¸¨¨()]¡•¸•‘¥Ñ¥¹ existinHÛÙN‚‚‹HÛ‰İš[\›İ™HˆY˜XÙ[ÛÙKÛÛ[Y[ËÜˆ›Ü›X][™Ë‚‹HÛ‡B&Vf7F÷"F†–æw2F†B&VâwB	½­•¸¸(´5…Ñ •á¥ÍÑ¥¹ style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create op[œÎ‚‚‹H™[[İ™H[\ÜËİ˜\šXX›\ËÙVæ7F–öç2F†B”õU"6†ævW2ÖFRVçW6VBà¢ÒFöâwB&VÖ÷fR&RÖW†—7F–ærFVB6öFRVæÆW726¶VBà ¥F†RFW7C¢WfW'’6†ævVBÆ–æR6†÷VÆBG&6RF—&V7FÇ’FòF†RW6W"w2&WVW7Bà ¢22BâvöÂÔG&—fVâW†V7WF–öà ¢¢¤FVf–æR7V66W727&—FW&–âÆö÷VÑ¥°Ù•É¥™¥•¸¨¨()QÉ…³form tasks into verifiable [Ø[Î‚‚‹HY˜[Y][Ûˆˆ8¡¤ˆ•Üš]H\İÈ›Üˆ[fÆ–B–çWG2ÂF†VâÖ¶RF†VÒ72 ¢Ò$f—‚F†R'Vr"(i"%w&—FRFW7BF†B&W&öGV6W2—BÂF†VâÖ¶R—B72 ¢Ò%&Vf7F÷"‚"(i"$Vç7W&RFW7G272&Vf÷&RæBQ•Èˆ()½ÈµÕ±Ñ¤µÍÑ•ÀÑ…Í­Ì°ÍÑ…Ñ”„‰É¥•˜Á±…¸è()€(Ä¸mMÑ•ÁtƒŠHÙ•É¥™: [check]
-2. [Step] â†’ verifNˆØÚXÚ×BŒËˆÔİ\H8¡¤ˆ™\šY“¢¶6†V6µĞ¦ ¥7G&öær7V66W727&—FW&–ÆWB–÷RÆö÷–æFWVæFVÑ±ä¸]•…¬É¥Ñ•É¥„€ ‰µ…­”¥Ğİ½É¬ˆ¤É•ÅÕ¥É”½¹ÍÑ…´ clarification.
+- `.claude/rules/**` â€” the hard rules (compliance, Australian English,
+  privacy, business model, dev environment). Non-negotiable.
+- `docs/adr/**` â€” Architecture Decision Records. The "why" behind the
+  structure. Read the relevant ADR before touching the area it governs.
+- `MEMORY.md` â€” living sprint + project log, newest entry at the top.
 
 ---
 
 ## 0. Where things live (read the right file first)
 
-| Topic                             | File                                                 |
-| --------------------------------- | ---------------------------------------------------- |
-| Domain vocaa[\HP’TURUÕT×ÓS‘ÕPQÑK›Y
-È˜ÛÛ^ÙÛXZ[‹[[Ù[Ë›YŸ\Ú[™\ÜÈ[\È
-š[[’ÂV÷F–ä¤ğ¹±…Õ‘”½ÉÕ±•Ì½‰ÕÍ¥¹•ÍÌµÉÕ±•Ì¹µ€€€€€€€€€€€€€€€€€€€€ğ)ğ½µÁ±¥…¹”€¡0°A@°50½Q¤€€€ğ¹±…Õ‘”½ÉÕ±•Ì½½µÁ±¥…¹”¹µ€€€€€€€€€€€€€€€€€€€€€€€€ğ)ğÕÍÑÉ…±¥…¸¹lish (spelling)     | @.claude/rules/australian-en[\Ú›YŸš]˜XŞH
-È]HÛ\ÜÙ\È˜Û]YKÜ[\ËÜš]˜XŞK›YŸ]ˆ[f—&öæÖVçBV—&·2Âæ6ÆVFR÷'VÆW2öFWbÖVÙ¥É½¹µ•¹Ğ¹µ€€€€€€€€€€€€€€€€€€€ğ)ğÉ¡¥Ñ•ÑÕÉ…°‘•¥Í¥½¹Ì€¡IÌ¤€€€ğ‘½Ì½…‘È¼€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ğ)ğAÉ½©•Ğµ•µ½Éä€¡‘É¥™ÑÌ°‘•„)     | @MEMORY.md                                           |
-| HistorH
-Èœ˜[™›İ\ÈØÜËÚ\İÜ’ö	…¹µ…¹µ¡¥ÍÑ½É.md                   |
+| Topic                                | File                                              |
+| ------------------------------------ | ------------------------------------------------- |
+| Compliance / legal (banned phrases)  | @.claude/rules/compliance.md                      |
+| Business model / who-bills-who       | @.claude/rules/business-rules.md                  |
+| Privacy / data classification        | @.claude/rules/privacy.md                         |
+| Australian English (spelling)        | @.claude/rules/australian-english.md              |
+| Dev environment / build quirks       | @.claude/rules/dev-environment.md                 |
+| Architecture decisions               | @docs/adr/ (ADR-001 â€¦ ADR-014)                    |
+| Claim shape (single source of truth) | @docs/adr/ADR-002-claim-shape-single-source-of-truth.md |
+| Voice agent (Sarah) consent model    | @docs/adr/ADR-003-voice-agent-consent-and-data-boundary-model.md |
+| Data models (lifecycles)             | @.context/domain-models.md, `prisma/schema.prisma` |
+| Living sprint log                    | @MEMORY.md                                         |
 
 If a rule used to live in CLAUDE.md and isn't here now, it moved to one of those files â€” nothing was deleted.
 
 ---
 
-## 1. Project idem]B‚‹H
-Š“YØ[[F—G“¢¢¢æF–öæÂ&W7F÷&F–öâ&öfW76–öæÇ2w&÷WG’ÇFB„å%r¢Ò¢¤6öç7VÖW"	…¹è¨¨¥Í…ÍÑ•ÈI•½Ù•É
-- **Model:** Network-orchestrator â€” DR does NOT do restoration work; IICRC-certified contractopÈË[™^Hš[HÛY[\™XİK‚‹H
-Š‘Ù[ÙÜ˜\NŠŠˆ]\İ˜[XH
-È™]È™X[[™‹H
-Š“[™İXYÙNŠŠˆ]\İ˜[X[ˆ[™Û\Ú[Ø^\È8 %ÙYH˜Û]YKÜ[\ËØ]\İ˜[X[‹Y[™Û\Ú›Y‚ˆÈÈ‹ˆXÚİXÚÂ‚ÂÆ–W"Â6†ö–6RÀ§ÂÒÒÒÒÒÒÒÒÒÒÒÒÒÂÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÒÀ§Âg&ÖWv÷&²ÂæW‡Bæ§2R„&÷WFW"’À°1…¹Õ…”€€€€€ğQåÁ•MÉ¥ÁĞ€¡ÍÑÉ¥Ğ°ÕÍ•U¹­¹½İ¹%¹…Ñ¡Y…É¥…‰±•Í€½¸ƒŠPHµ…ä´Ğ¤€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ğ, DB            | Post\™TÔS
-İ\X˜\ÙJHšXHš\ÛXHÔ“HŸ˜[Y][Ûˆ›Ù
-Ú\™Y™YÚ\İH]Ü˜ËÛX‹İ˜[Y][Û‹G6(	B6–ævÆR’6÷W&6R’À§ÂWF‚Â7W&6RWF‚²7W7FöÒ6öÑÉ…Ñ½Èµ…ÕÑ …‘…ÁÑ•È€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ğ)ğMÑå±¥¹       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)                                                                                                                   |^[Y[Èİš\HÚXÚÛİ]
-‹MN‹ÍÌLˆ›RÖvFVB’À§Âfö–6RÂGv–Æ–ò²7W7FöÒ6&‚vVĞ€¡H´ÜÀØ¼ÜÀä¼ÜÄÀ¼ÜÈĞ°™±…œµated)                                                                                                                    |
-| Deploy        | Vercel (authoritative â€” Vercel wins over local builds)                                                                                                                          |
-| O`Ù\f&–Æ—G’ÂfW&6VÂÖæF—fR†fW&6VÂö÷FVÆ²vV"æÇ—F–72²7VVB–ç6–v‡G2²ÆörG&–ç2W"E"ÓR’(	B6GW&TW†6WF–öæÆ—fW2–â7&2öÆ–"öö'6W'f&–Æ—G’÷fW&6VÂÑÍ€¸]”‘¼9=PÕÍ”M•¹ÑÉ. |
-| CI X]\È\ÚŞH
-È™]Y\ˆ
-ÈÛÛ[Z][B²Æ–çB×7FvVB²G—V6†V6²À ¢222â6öÖÖæG0 ¦&6€¢2–ç7FÆÂ‡VW"6öæfÆ–7Bv÷&¶&÷VæB(	B6VRFWbÖVÙ¥É½¹µ•¹Ğ¹µ¤)°m install --legacy-peer-deps
+## 1. Project identity
+
+- **Purpose:** DR consumer product â€” the public-facing claim-intake and
+  contractor-network site (per the portfolio registry).
+- **Model:** Network-orchestrator â€” DR does NOT do restoration work; IICRC-certified
+  contractors do the restoration and bill the client directly. DR provides the
+  platform and routes work; it does not bill on behalf of anyone and does not
+  hold client funds. One-sentence version and the full who-bills-who table
+  live in @.claude/rules/business-rules.md.
+
+| Aspect        | Reality                                                                  |
+| ------------- | ------------------------------------------------------------------------ |
+| Framework     | Next.js 15 (App Router, `app/`) + React 18                               |
+| Language      | TypeScript 5 (strict rollout â€” see @MEMORY.md for the open strict debt)  |
+| Styling       | Tailwind CSS + Antigravity design system (`src/styles/*.css`)            |
+| Data, DB      | Prisma 5 (`@prisma/client`) â†’ Supabase Postgres (RLS â€” see ADR-012)      |
+| Auth          | NextAuth (`next-auth` v4)                                                |
+| Validation    | Zod registry â€” `src/lib/validation.ts` (API-layer source of truth)       |
+| AI / voice    | Sarah voice agent (Twilio + ElevenLabs); providers via `src/lib/ai/*` (ADR-001) |
+| Payments      | Stripe (CONTRACTOR payments only; flag-gated `NEXT_PUBLIC_STRIPE_ENABLED`) |
+| Deploy        | Vercel (authoritative â€” Vercel wins over local builds)                   |
+| CI            | typecheck + lint + prettier + smoke + build; Husky pre-commit (ADR-007)  |
+
+```bash
+# Install (peer conflict is expected â€” see .npmrc / dev-environment.md Â§2)
+npm install --legacy-peer-deps
 
 # Dev
-npm q[ˆ]ˆÈ™^š2FWb6W•È((Œ	Õ¥±€¼ÁÉ½)°m run build
-npm q[ˆİ\‚ˆÈ]X˜\ÙB›œH[ˆš\ÛXN™Ù[™\˜]B›œH[ˆš\ÛXN›ZYÜ˜]B›Ò'VâF#§7GVF–ğ ¢2FW7G0¦Á´ÉÕ¸Ñ•ÍĞé”É”€€€€€€€€ŒA±…åİÉ¥¡Ğ)¹Á´ÉÕ¸Ñ•ÍĞé”É”éÕ¤)°m run lint            # Next lim
-È\XÚXÚÈØ]B›œHVâ6†V6³É¥ÁÑÌ€€€ŒÙ•É¥™ä…±°ÍÉ¥ÁÑÌÉ•Í½±Ù”)€((ŒŒ€Ğ¸¥±”µ…À€¡İ¡•É”Ñ¼±½½¬¤()€(½…ÁÀ€€€€€€€€€€€€€€€€€€€€€€€9•áĞ¹£ App Router pages + API routes
+npm run dev              # Next dev server
+npm run build            # prisma generate + partytown copylib + next build
+npm run lint             # Next lint
+npx tsc --noEmit         # typecheck (hard CI gate)
+npm test                 # vitest run
+npm run test:e2e         # playwright
+```
+
+### Repository layout (the parts that matter)
+
+```
+/app                        Next.js App Router pages + API routes
   /api                      API handlers (each MUST log compliance_events)
-  /contractor               Com˜XİÜˆÜ[
-ÙÚ[‹Ø\KÙ\Ú›Ø\™ÜÜ[
-BˆØÛY[B×÷'FÂ6Æ–VçB×6–FR6Æ–Ò²Fö72÷…°(€€½±…¥´€€€€€€€€€€€€€€€€€€€AÕ‰±¥Œ±…¥´µ¥¹Ñ…­”™±½Ü€¡…¹½¹¥…°•¹ÑÉ)
-  /locations/[city]/â€¦       1,152+ Y[™\˜]YØØ][ÛˆVW0¢÷6W'f–6W2ş(
-bã#’6W'f–6RvW2††W&ò²5D–ÖvW$¤(€€½Õ¥‘•Ì€€€€€€€€€€€€€€€€€€€Ğä±½¹-form SEO guides
+  /claim                    Canonical claim-intake web form
+  /contractor/apply         Contractor application + onboarding surfaces
+  /locations/[city]/â€¦       ~1,152 long-form location SEO guides
 /src
   /components               Shared UI (React)
-    /anti\˜]š]H\ÚYÛ‹\Ş\İ[HÛÛ\Û™[G0¢÷6Vò66†VÖÂ'&VF7'VÖ"Âf–FVòÖVÖ&VB†VÇW(€€½±¥ˆ(€€€Ù…±¥‘…Ñ¥½¸´s           Zod schemas â€” API-layer source of tq]ˆÛÛœİ[G2ÑÌ€€€€€€€€€€€9@°	A}A1}%°Ñ½­•¹Ì(€€€€½½µÁ±¥…¹”€€€€€€€€€€€€½µÁ±¥…¹•}•Ù•¹ÑÌ±½ger + redaction
+  /lib                      Domain logic
+    /validation.ts          Zod registry â€” API-layer source of truth
+    /compliance             compliance_events logger + PII redactor
     /ai                     Sarah prompt, topic classifier, 5-tool surface
-  /styles                   amYÜ˜]š]KY\ÚYÛ‹\Ş\İ[K˜ÜÜÈ]Ë‚‹Üš\ÛXBˆØÚ[XKœš\ÛXHˆÛİ\˜ÙHÙˆWF€¢öÖ–w&F–öç0¢öFF¢öÆö6F–öç2W"Ö6—G’¥4ôâ„ÖVÆ&÷W&æRÂW °‘•±…¥‘”°isbaneâ€¦)
-  /sua\˜2v—F–væ÷&VB(	BW6Rv—BFBÖfv†VâFF–ä(€€½Í•¼½Ù¥‘•¼µ½¹™¥œ¹ÑÌ€€€€€€ÄØÁ±…¹¹•Ù¥‘•½Ì(½‘½Ì(€€½…‘È€€€€€€€€€€€€€€€€€€€€€É¡¥Ñ•ÑÕÉ…°•¥Í¥½¸I•½É‘Ì(€€½¡¥ÍÑ½É                  Brand + historH\˜Ú]™B‹Ë˜ÛÛFW‡@¢FöÖ–âÖÖöFVÇ2æÖBW‡FVæFVBFöÖ–âFW67&—F–öÌ(¼¹±…Õ‘”(€€½Åles                    compliance, au-english, privacy, biz, dev-env
-  /skills                   Matt Pocock skills (DR-724)
+    /constants.ts           canonical labels (certs, counsel@, etc.)
+  /styles                   Tailwind + Antigravity CSS
   /config /scripts          hook + harness config
+/prisma                     schema.prisma â€” source of truth for DB models
+/docs/adr                   Architecture Decision Records (ADR-001 â€¦ ADR-014)
+/.claude/rules              compliance, au-english, privacy, biz, dev-env
+/.claude/skills             Matt Pocock skills (DR-724)
 ```
+
+---
+
+## 2. Think Before Coding
+
+**Don't assume. Don't guess.** State assumptions explicitly. If uncertain, ask.
+
+- If multiple interpretations exist, present them â€” don't silently pick one.
+- Match the existing code style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it â€” don't delete it.
+- Transform tasks into verifiable steps before writing code.
+- Don't claim something is done until it's verified (lint + typecheck + tests
+  + commitlint all green â€” enforced via Husky, see ADR-007 and
+  @.claude/rules/dev-environment.md Â§7). When in doubt, stop and ask for
+  clarification rather than guessing.
+
+---
 
 ## 5. Architectural rules (the hard ones)
 
-### 5.1 Claim shape â€” single source of tq]‚‹H
-Š‘ˆ]ŠŠˆš\ÛXKÜØÚ[XK&—6Ö†6Æ–ÖÂVÅÕ¥Éå€°1•…‘€°)½‰€°½´ractor` models).
+### 5.1 Claim shape â€” single source of truth
+- The canonical claim shape is defined once. Do NOT create a fourth claim
+  shape. See @docs/adr/ADR-002-claim-shape-single-source-of-truth.md.
 - **API truth:** `src/lib/validation.ts` (Zod). Every API route MUST validate input/output via this registry.
-- 3 legacy TS im\™˜XÙ\Èİ[\XØ]HÛZ[HÚ\Kˆ^H]™HÑÈX\šÙ\œÎÈY\\ÈHÙ\\˜]H›ÛİË]\ˆÙYHØÜËØY‹ĞQ‹L‹XÛZ[K\Ú\K\Ú[–ÆR×6÷W&6RÖöb×G'WF‚æÖBà¢ÒäUdU"–çfVçBf÷W'F‚6†RâFBFò7&2öÆ–"÷fÆ–FF–öâçG6÷"W‡FVæB&—6Ö(	BFöâwB6†—æWrG—RÖf–ÆRà ¢222Rã"fö–6RvVçB(	B6Æ÷6VB×v÷&ÆB²6öç6VçBÕ…Ñ•((´M…É… Ù½¥”…•¹Ğ¥Ì„1=Mµ]=I1ÍåÍÑ•´èÍÁ•¥™¥ŒÁÉ½µÁĞ€¬€ÔµÑ½½°ÍÕÉ™…”€¬!5…ÕÑ €¬½ÕÑÁÕĞ™¥±Ñ•È€¬€Ôµ±…å•È­¥±°Íİ¥Ñ ¸(´¥ÉÍĞ…±±•ÈÕÑÑ•É…¹”…”er pickup MUST be the APP 8 consent prompt (see `compliance.md`).
-- All voice flows are flag-X]Y
-“ÒPÑWĞQÑS•ÑSP“QÙ\™\‹[Û›H8 %›ÚXÙHVç2VÑ¥É•±äÍ•ÉÙ•ÈµÍ¥‘”Ù¥„Qİ¥±¥¼€¬±•Ù•¹1…‰Ìİ•‰¡½½­Ì°¹¼±¥•¹ĞµÍ¥‘”…ndle reads it); off by default in prod.
-- See @docs/adr/ADR-003-voice-agemXÛÛœÙ[X[™Y]KX›İ[™\K[[Ù[›Y‚‚ˆÈÈÈKŒÈ™X]\™H›W2(	B6öçfVçF–öà ¢Ò¢¤6Æ–VçB×&VF&ÆRfÆÌè¨¨9aQ}AU	1%|ñQUIù}9	1€ƒŠPÉ•…‘Ì…Ì€ÑÉÕ”` only. Use this when the cliem\ÚYH[™HÛÛ™][Û˜[H™[™\œÈRK‚‹H
-Š”Ù\™\‹[Û›H›YÜÎŠŠˆ‘PUT‘O—ÑSP“Q
-›È‘VÔP“P×Ø™Yš^
-Kˆ\ÙH\È›Üˆ›YÜÈ]Ó“HFR6W•ÈµÍ¥‘”‰•¡…Ù¥½ÕÈ€¡A$É½ÕÑ•Ì°İ•‰¡½½­Ì°É½¸¤¸á…µÁ±•ÌèY=%}9Q}9	1€°=5A1%9}Y9QM}9	1€ƒŠP‰½Ñ Í•ÉÙ•Èµ½¹±ä¸(´•™…Õ±Ğè=¸±…-gated code MUST be zero-impact when the flaH\ÈÙ™‹‚‹HÚ[İÚ]Ú\È\™HÑTTUHœ›ÛH™X]\™H›YÜÈ
-ÙYHš]˜XŞK›Y›ÜˆH›ÚXÙHK[^Y\ˆÚ[İÚ]Ú
-K‚‹H›Û˜XÚÈH›\H[ˆ˜\ˆ[ˆ™\˜Ù[ˆ›È™Y\ŞH™YYY‚‹HÙYHØÜËØY‹ĞQ‹LY™X]\™KY›YË\İ˜]W’æÖBà ¢222RãBö'6W'f&–Æ—G’²6ö×Æ–æ6RWfVÑÌ((´Ù•ÉäA$É½ÕÑ”Ñ¡…ĞµÕÑ…Ñ•ÌÍÑ…Ñ”±½s to `compliance_events` (structured, redacted, retention-tagged).
-- PII MUST pass through `src/lib/compliance/*` redactor before hitting lo\Ë‚‹H™\˜Ù[ØœÙ\˜Xš[]H\È[ˆXÙH
-\ˆQ‹LK“ÕÙ[’“²6ÆÂ6GW&TW†6WF–öæg&öÒ7&2öÆ–"öö'6W'f&–Æ—G’÷fW&6VÂÑÍ€…¹™¥±°=Q•°ÍÁ…¸…ÑÑÉ¥‰ÕÑ•Ì€¼±½œµ‘É…¥¸Á…å±½…‘ÌƒŠP¹•Ù•ÈÉ…ÜA%$¸((ŒŒŒ€Ô¸ÔAÉ½¡¥‰¥Ñ¥½¹Ì€¡¹½¸µ¹•otiable)
 
+### 5.2 Voice agent (Sarah)
+- The first caller utterance after pickup MUST be the APP 8 consent prompt
+  (canonical wording in @.claude/rules/compliance.md Â§3).
+- All voice flows are flag-gated (`VOICE_AGENT_ENABLED` â€” server-only, NO
+  `NEXT_PUBLIC_` prefix; off by default in prod) behind a 5-layer kill switch.
+- Closed-world, 5-tool surface only; Sarah writes, never reads back. See
+  @.claude/rules/privacy.md Â§4 and
+  @docs/adr/ADR-003-voice-agent-consent-and-data-boundary-model.md.
+
+### 5.3 Feature flags
+- Name: `NEXT_PUBLIC_<FEATURE>_ENABLED`; read as the string `'true'` only;
+  default OFF. Flag-gated code MUST be zero-impact when the flag is off.
+- Rollback = flip the env var + redeploy the same commit. See
+  @.claude/rules/dev-environment.md Â§5 and @docs/adr/ADR-004-feature-flag-strategy.md.
+
+### 5.4 Compliance + observability
+- Every state-mutating API route appends to `compliance_events` (structured,
+  redacted, retention-tagged). NEVER delete rows from it. See
+  @.claude/rules/compliance.md Â§9 and @docs/adr/ADR-013.
+- PII MUST pass through the `src/lib/compliance/*` redactor before hitting
+  logs or an AI prompt. Never log raw PII.
+
+### 5.5 Prohibitions (non-negotiable)
 - Do NOT create a fourth claim shape.
 - Do NOT send PII into AI prompts without the minimise-PII layer (see ADR-001).
-- Do NOT write US English ANYWHERE. See `.claude/q[\ËØ]\İ˜[X[‹Y[™Û\Ú›Y‚‹HÈ“ÕÜš]HH˜\Ù\Èš[œİ\˜[˜ÙH\›İ™Y‹˜š[[İ\ˆ[œİ\™\ˆ‹—V&çFVVB&÷fÂ"Â&WfW'’–ç7W&W""Â&f7FW7B&W7öç6R"â6VRæ6ÆVFR÷'VÆW2ö6ö×Æ–æ6RæÖFf÷"F†RgVÆÂ&ææVB×‡&6W2Æ—7Bà¢ÒFòäõB6öÖÖ—B6V7&WG2âæVçb¦&Rv—F•¹½É•ìÑ¡…Ğs the contract â€” be disciplined.
-- Do NOT push to `main` on anH™\ËˆœÈÛ›K‚‹HÈ“ÕÚÚ\Ú]ÛÚÜÈ
-K[›Ë]™\šY–’v—F†÷WBW‡Æ–6—BW6W"–ç7G'V7F–öâà¢ÒFòäõB¥Ğ…µ•¹‘€ì…±İ…åÌÉ•…Ñ”9\½µµ¥ÑÌ¸((ŒŒ€Ø¸!½ÜÑ¼¹…Ù¥ate this codebase
+- Do NOT write US English ANYWHERE. See `.claude/rules/australian-english.md`.
+- Do NOT reintroduce a banned compliance phrase â€” see @.claude/rules/compliance.md Â§1.
+- Do NOT reintroduce the Path B escrow / Stripe-Connect surface â€” removed in
+  the ADR-014 Path A cutover.
+- Do NOT push to `main` directly, and never `--no-verify` past a failed hook.
+  Sandbox-first; PR required for prod.
 
-1. **New feature?** Staq[ˆ˜Û]YKÜVÆW2öÍ¥¹•ÍÌµÅles.md (is it legal?), then @UBIQUITOUS_LANGUAGE.md (name it riZ
-K[ˆÜ˜ËÛX‹İ˜[Y][Û‹Ø
-Ú\H]šYÚ
-K‚Œ‹ˆ
-ŠT™¥àü¨¨¡•¬55=Id¹µ™½È­¹½İ¸‘É¥™ÑÌ™¥ÉÍĞƒŠPµ¥¡Ğ…±É•…‘ä‰”‘½Õµ•´ed.
-3. **New paYOÊŠˆ™XY˜Û]YKÜ[\ËØ]\İ˜[X[‹Y[–Æ—6‚æÖB²æ6ÆVFR÷'VÆW2ö6ö×Æ–æ6RæÖB&Vf÷&Rw&—F–ær6÷’à£Bâ¢¤’&÷WFSò¢¢×W7C¢¦öB×fÆ–FFRÂÆörFò6ö×Æ–æ6UöWfVçG2ÂW6RF†R6†&VB&WVW7BÆõ•È°É•ÑÕÉ¸ÍÑ…‰±”•ÉÉ½ÈÍ¡…Á”¸(Ô¸€¨©Q½Õ¡¥¹ the claim flow?** Read @docs/adr/ADR-002 first.
-6. **Touching voice (Sarah)?** Read @docs/adr/ADR-003 fipİˆ›È^Ù\[ÛœË‚Ëˆ
-Š“ØØ][ÛˆYÙ\ÏÊŠˆÙYHQSSÔ–K›Y›ÜˆH™^šœÈ™Y\™Xİ™YØ]]™K[ÛÚØZXY˜\‚‚ˆÈÈËˆY˜][İ[˜ÙH›ÜˆYÙ[Â‚‹HÚ[\\İšXX›HÜ[Ûˆš\œİˆUTËÓ–ˆ^[\\ÈÛ›H
-™]™\ˆTÊK‚‹HÜ™\ØÛØ˜™Y›Ü™H™XYˆ[™K\˜[™ÙH™XYÈÛ›HÛˆ\–Rf–ÆW2à¢Ò&VfW"VF—F–ærW†—7F–ærf–ÆW2÷fW"7&VF–ä¹•Ü½¹•Ì¸(´9•Ù•ÈÁÉ½…Ñ¥Ù•±äÉ•…Ñ”‘½Ì€¡€¹µ‘€°I5Ì¤Õ¹±•ÍÌ…Í­•¸(´9•Ù•ÈÕÍ”•µ½©¥Ì¥¸½‘”½È‘½ÌÕ¹±•ÍÌ•áÁ±¥¥Ñ±äÉ•ÅÕ•ÍÑ•¸(´]¡•¸„Åle here conflicts with older scattered docs, THIS FILE wins â€” raise an ADR if the rule itself should change.
+---
+
+## 7. How to navigate this codebase
+
+1. **New feature?** Start with @.claude/rules/business-rules.md (is it legal /
+   in-model?), then name it right (ubiquitous language â€” DR-724).
+2. **New API route?** It MUST validate via `src/lib/validation.ts` and log to
+   `compliance_events`. See @docs/how-to/add-a-new-api-route.md.
+3. **New feature flag?** See @docs/how-to/add-a-new-feature-flag.md.
+4. **Touching the claim flow?** Read @docs/adr/ADR-002 first.
+5. **Touching voice (Sarah)?** Read @docs/adr/ADR-003 first.
+
+If a rule here conflicts with older scattered docs, THIS FILE wins â€” and if
+this file conflicts with a `.claude/rules/**` file or an ADR, that file wins.
+Raise an ADR if the rule itself should change.
+
+---
 
 ## 8. Session discipline
 
-- `/compact` at milestones, `/clear` between ul™[]Y\ÚÜË‚‹HİX˜YÙ[G2f÷"åÑ¡¥¹œÉ•Í•…É µ¡•…ÙäÑ½Õ¡¥¹œ€øÈ™¥±•Ì¸(´Ù•Éä½µµ¥ĞèAÉ•ÑÑ¥•È€¬±¥¹ĞµÍÑ…ed + typecheck + commitlint (all enforced via Husky â€” DR-Day-6).
-- PR title format: `<type>(<scope>): <subject>` (commitlint-enforced).
+- `/compact` at milestones, `/clear` between unrelated tasks.
+- Verify before you call it done: lint + typecheck + tests + commitlint
+  (all enforced via Husky â€” see ADR-007 / dev-environment.md Â§7).
+- PR title + commit format: `<type>(<scope>): <subject>` (commitlint-enforced).
+  Types: `feat`, `fix`, `docs`, `refactor`, `test`, `perf`, `chore`,
+  `security`, `style`. See @.claude/rules/dev-environment.md Â§8.
+
+---
 
 ## 9. Relationships
 
-- **Disaster-Recovery** (this repo) â€” the production monolith.
-- **DR-Sandbox-staq\ŠŠˆ8 %›ÜÜØ[È
-È™\ÙX\˜ÚØÜ˜]ÚYÈØY™HÈ^\š[Y[Bà¢Ò¢¤å%rÔöæ&ö&F–ærÔI…µ•İ½É¬¨¨ƒŠP½´ractor training content (markdown-only um[‹Mˆİ[™È\H™^šœÈ\
-KˆÙYH]ÈİÛˆÓUQK›Y‚‚ˆÈÈLˆÚ[ˆ[ˆİX@ ¥&R×&VBF†—2f–ÆRâ–bF†Rç7vW"7F–ÆÂ—6âwB†W&RÂ6†V6²ÔTÔõ%’æÖBÂF†VâF†R&VÆWfçBE"ÂF†Vâ6²âFöâwBwVW72öâ6ö×Æ–æ6RÂ&—f7’Â&–ÆÆ–ærÂ÷"fö–6Rà ¢ÒÒĞ ¥ôÆ7B&Ww&—GFVã¢##bÓBÓ#B„f÷VæFF–öâ7&–çBF’(	B6öçFW‡BVæv–æVW&–ær’à¥&–÷"fW¥½¸€ ØÔµ±¥¹”•¹•É¥ŒÍ…™™½±¤…É¡¥Ù•¥¸¥Ğ¡¥ÍÑ½É at parent commit._
+- **Disaster-Recovery** (this repo) â€” the production consumer product / monolith.
+- **DR-Sandbox** â€” the `sandbox` branch + `disaster-recovery-sandbox` Vercel
+  project for safe pre-prod work (sandbox-first workflow per the registry).
+- **DR-NRPG** (`CleanExpo/DR-NRPG`) â€” the separate NRPG contractor platform.
+
+> Registry of all related repos, Vercel projects, and branches:
+> `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth).

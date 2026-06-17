@@ -1,18 +1,34 @@
 'use client';
 
-
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { contractorFetch } from '@/lib/contractor-auth';
-import { 
-  ArrowLeft, Play, Pause, CheckCircle, Clock, Download, Upload, 
-  BookOpen, Video, Headphones, FileText, ChevronRight, X, 
-  AlertCircle, Award, Volume2
+import {
+  ArrowLeft,
+  Play,
+  Pause,
+  CheckCircle,
+  Clock,
+  Download,
+  Upload,
+  BookOpen,
+  Video,
+  Headphones,
+  FileText,
+  ChevronRight,
+  X,
+  AlertCircle,
+  Award,
+  Volume2,
 } from 'lucide-react';
 import { ONBOARDING_PROGRAM } from '@/lib/onboarding/14-day-program';
-import { COMPETENCY_TEST_QUESTIONS, getTestByCategory, calculateTestScore } from '@/lib/competency-tests/test-questions';
+import {
+  COMPETENCY_TEST_QUESTIONS,
+  getTestByCategory,
+  calculateTestScore,
+} from '@/lib/competency-tests/test-questions';
 import { CompetencyCategory } from '@/types/contractor-competency';
 
 interface LearningProgress {
@@ -31,7 +47,9 @@ function DayTrainingPageOriginal() {
   const day = parseInt(params.day as string);
   const trainingModule = ONBOARDING_PROGRAM[day - 1];
 
-  const [activeTab, setActiveTab] = useState<'video' | 'reading' | 'podcast' | 'assignment'>('video');
+  const [activeTab, setActiveTab] = useState<'video' | 'reading' | 'podcast' | 'assignment'>(
+    'video',
+  );
   const [progress, setProgress] = useState<LearningProgress>({
     videosWatched: {},
     readingsCompleted: [],
@@ -39,25 +57,26 @@ function DayTrainingPageOriginal() {
     documentsUploaded: [],
     quizScores: {},
     podcastsListened: [],
-    studyGuidesCompleted: []
+    studyGuidesCompleted: [],
   });
-  
+
   const [currentVideo, setCurrentVideo] = useState(0);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [currentQuiz, setCurrentQuiz] = useState<any>(null);
   const [quizAnswers, setQuizAnswers] = useState<Map<string, string>>(new Map());
   const [showTranscript, setShowTranscript] = useState(false);
   const [showStudyGuide, setShowStudyGuide] = useState(false);
-  
+
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Load progress from localStorage
-    const savedProgress = localStorage.getItem(`day_${day}_progress`);
+    const savedProgress =
+      localStorage.getItem(`module_${day}_progress`) ?? localStorage.getItem(`day_${day}_progress`);
     if (savedProgress) {
       setProgress(JSON.parse(savedProgress));
     }
-    // Mark day as started in DB (fire-and-forget)
+    // Mark module as started in DB (fire-and-forget)
     contractorFetch('/api/contractor/onboarding/progress', {
       method: 'PATCH',
       body: JSON.stringify({ day, action: 'start' }),
@@ -66,7 +85,7 @@ function DayTrainingPageOriginal() {
 
   const saveProgress = (newProgress: LearningProgress) => {
     setProgress(newProgress);
-    localStorage.setItem(`day_${day}_progress`, JSON.stringify(newProgress));
+    localStorage.setItem(`module_${day}_progress`, JSON.stringify(newProgress));
   };
 
   const handleCompleteDay = useCallback(async () => {
@@ -87,8 +106,8 @@ function DayTrainingPageOriginal() {
       ...progress,
       videosWatched: {
         ...progress.videosWatched,
-        [videoTitle]: Math.max(progress.videosWatched[videoTitle] || 0, percentage)
-      }
+        [videoTitle]: Math.max(progress.videosWatched[videoTitle] || 0, percentage),
+      },
     };
     saveProgress(newProgress);
   };
@@ -97,7 +116,7 @@ function DayTrainingPageOriginal() {
     if (!progress.readingsCompleted.includes(readingTitle)) {
       const newProgress = {
         ...progress,
-        readingsCompleted: [...progress.readingsCompleted, readingTitle]
+        readingsCompleted: [...progress.readingsCompleted, readingTitle],
       };
       saveProgress(newProgress);
     }
@@ -109,11 +128,12 @@ function DayTrainingPageOriginal() {
       ...progress,
       quizScores: {
         ...progress.quizScores,
-        [quizTitle]: score.percentage
+        [quizTitle]: score.percentage,
       },
-      assignmentsSubmitted: score.percentage >= (trainingModule.completionCriteria.quizScore || 75)
-        ? [...progress.assignmentsSubmitted, quizTitle]
-        : progress.assignmentsSubmitted
+      assignmentsSubmitted:
+        score.percentage >= (trainingModule.completionCriteria.quizScore || 75)
+          ? [...progress.assignmentsSubmitted, quizTitle]
+          : progress.assignmentsSubmitted,
     };
     saveProgress(newProgress);
     setCurrentQuiz(null);
@@ -126,7 +146,7 @@ function DayTrainingPageOriginal() {
 
     // Videos
     if (trainingModule.components.videos) {
-      trainingModule.components.videos.forEach(video => {
+      trainingModule.components.videos.forEach((video) => {
         if (video.mandatory) {
           total++;
           const watched = progress.videosWatched[video.title] || 0;
@@ -182,7 +202,9 @@ function DayTrainingPageOriginal() {
                 <ArrowLeft className="w-5 h-5" />
               </button>
               <div>
-                <h1 className="text-2xl font-bold">Day {day}: {trainingModule.title}</h1>
+                <h1 className="text-2xl font-bold">
+                  Module {day}: {trainingModule.title}
+                </h1>
                 <p className="text-blue-800 mt-1">{trainingModule.description}</p>
               </div>
             </div>
@@ -191,7 +213,7 @@ function DayTrainingPageOriginal() {
               <p className="text-2xl font-bold">{calculateModuleProgress()}%</p>
             </div>
           </div>
-          
+
           {/* Progress Bar */}
           <div className="mt-4">
             <div
@@ -218,8 +240,8 @@ function DayTrainingPageOriginal() {
             <button
               onClick={() => setActiveTab('video')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
-                activeTab === 'video' 
-                  ? 'border-blue-600 text-blue-600' 
+                activeTab === 'video'
+                  ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
@@ -233,12 +255,12 @@ function DayTrainingPageOriginal() {
                 )}
               </div>
             </button>
-            
+
             <button
               onClick={() => setActiveTab('reading')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
-                activeTab === 'reading' 
-                  ? 'border-blue-600 text-blue-600' 
+                activeTab === 'reading'
+                  ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
@@ -252,12 +274,12 @@ function DayTrainingPageOriginal() {
                 )}
               </div>
             </button>
-            
+
             <button
               onClick={() => setActiveTab('podcast')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
-                activeTab === 'podcast' 
-                  ? 'border-blue-600 text-blue-600' 
+                activeTab === 'podcast'
+                  ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
@@ -269,12 +291,12 @@ function DayTrainingPageOriginal() {
                 </span>
               </div>
             </button>
-            
+
             <button
               onClick={() => setActiveTab('assignment')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
-                activeTab === 'assignment' 
-                  ? 'border-blue-600 text-blue-600' 
+                activeTab === 'assignment'
+                  ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
@@ -315,7 +337,10 @@ function DayTrainingPageOriginal() {
                           setVideoPlaying(true);
                           // Simulate video watching
                           setTimeout(() => {
-                            handleVideoProgress(trainingModule.components.videos![currentVideo].title, 100);
+                            handleVideoProgress(
+                              trainingModule.components.videos![currentVideo].title,
+                              100,
+                            );
                           }, 2000);
                         }}
                         className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -325,7 +350,7 @@ function DayTrainingPageOriginal() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-semibold text-gray-900">Video Lessons</h3>
@@ -336,7 +361,7 @@ function DayTrainingPageOriginal() {
                       {showTranscript ? 'Hide' : 'Show'} Transcript
                     </button>
                   </div>
-                  
+
                   <div className="space-y-3">
                     {trainingModule.components.videos.map((video, index) => {
                       const watched = progress.videosWatched[video.title] || 0;
@@ -354,9 +379,11 @@ function DayTrainingPageOriginal() {
                         >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
-                              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                                watched >= 95 ? 'bg-green-100' : 'bg-gray-100'
-                              }`}>
+                              <div
+                                className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                                  watched >= 95 ? 'bg-green-100' : 'bg-gray-100'
+                                }`}
+                              >
                                 {watched >= 95 ? (
                                   <CheckCircle className="w-5 h-5 text-green-600" />
                                 ) : (
@@ -420,11 +447,11 @@ function DayTrainingPageOriginal() {
                           <Clock className="w-6 h-6 text-gray-600" />
                         )}
                       </div>
-                      
+
                       <div className="prose prose-sm max-w-none text-gray-600">
                         <p>{reading.content}</p>
                       </div>
-                      
+
                       <div className="mt-6 flex items-center justify-between">
                         <button
                           onClick={() => setShowStudyGuide(true)}
@@ -458,12 +485,13 @@ function DayTrainingPageOriginal() {
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">AI-Generated Podcast Episodes</h3>
                       <p className="text-sm text-gray-600 mt-1">
-                        Listen to conversational discussions of today's topics, generated from the training materials using NotebookLM.
+                        Listen to conversational discussions of this module's topics, generated from
+                        the training materials using NotebookLM.
                       </p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   {trainingModule.components.videos?.map((video, index) => {
                     const listened = progress.podcastsListened.includes(`podcast_${video.title}`);
@@ -483,11 +511,9 @@ function DayTrainingPageOriginal() {
                               </p>
                             </div>
                           </div>
-                          {listened && (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
-                          )}
+                          {listened && <CheckCircle className="w-5 h-5 text-green-500" />}
                         </div>
-                        
+
                         <div className="mt-3 flex items-center space-x-4 text-sm">
                           <button className="text-blue-600 hover:text-blue-700">
                             <Volume2 className="w-4 h-4 inline mr-1" />
@@ -502,11 +528,12 @@ function DayTrainingPageOriginal() {
                     );
                   })}
                 </div>
-                
+
                 <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
                   <p className="text-sm text-amber-800">
-                    <strong>Note:</strong> These podcast episodes are AI-generated conversations based on the training materials,
-                    designed to help you learn through audio format while commuting or during other activities.
+                    <strong>Note:</strong> These podcast episodes are AI-generated conversations
+                    based on the training materials, designed to help you learn through audio format
+                    while commuting or during other activities.
                   </p>
                 </div>
               </div>
@@ -518,7 +545,7 @@ function DayTrainingPageOriginal() {
                 {trainingModule.components.assignments.map((assignment, index) => {
                   const isSubmitted = progress.assignmentsSubmitted.includes(assignment.title);
                   const isQuiz = assignment.type === 'QUIZ';
-                  
+
                   return (
                     <div key={index} className="bg-white rounded-xl shadow-lg p-6">
                       <div className="flex items-start justify-between mb-4">
@@ -537,7 +564,7 @@ function DayTrainingPageOriginal() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="border-t pt-4 mt-4">
                         <h4 className="font-medium text-gray-900 mb-2">Requirements:</h4>
                         <ul className="space-y-1">
@@ -549,13 +576,15 @@ function DayTrainingPageOriginal() {
                           ))}
                         </ul>
                       </div>
-                      
+
                       <div className="mt-6">
                         {isQuiz ? (
                           <button
                             onClick={() => {
                               // Load quiz questions based on category
-                              const questions = getTestByCategory(CompetencyCategory.AUSTRALIAN_CONSUMER_LAW).slice(0, 5);
+                              const questions = getTestByCategory(
+                                CompetencyCategory.AUSTRALIAN_CONSUMER_LAW,
+                              ).slice(0, 5);
                               setCurrentQuiz({ title: assignment.title, questions });
                             }}
                             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -584,7 +613,7 @@ function DayTrainingPageOriginal() {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-              <h3 className="font-bold text-gray-900 mb-4">Today's Objectives</h3>
+              <h3 className="font-bold text-gray-900 mb-4">Module Objectives</h3>
               <div className="space-y-3">
                 {trainingModule.objectives.map((objective, index) => (
                   <div key={index} className="flex items-start space-x-2">
@@ -593,7 +622,7 @@ function DayTrainingPageOriginal() {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-6 pt-6 border-t">
                 <h4 className="font-semibold text-gray-900 mb-3">Completion Status</h4>
                 <div className="space-y-3">
@@ -601,7 +630,8 @@ function DayTrainingPageOriginal() {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Videos</span>
                       <span className="font-semibold">
-                        {Object.values(progress.videosWatched).filter(v => v >= 95).length}/{trainingModule.components.videos.length}
+                        {Object.values(progress.videosWatched).filter((v) => v >= 95).length}/
+                        {trainingModule.components.videos.length}
                       </span>
                     </div>
                   )}
@@ -609,7 +639,8 @@ function DayTrainingPageOriginal() {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Readings</span>
                       <span className="font-semibold">
-                        {progress.readingsCompleted.length}/{trainingModule.components.readings.length}
+                        {progress.readingsCompleted.length}/
+                        {trainingModule.components.readings.length}
                       </span>
                     </div>
                   )}
@@ -617,13 +648,14 @@ function DayTrainingPageOriginal() {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Assignments</span>
                       <span className="font-semibold">
-                        {progress.assignmentsSubmitted.length}/{trainingModule.components.assignments.length}
+                        {progress.assignmentsSubmitted.length}/
+                        {trainingModule.components.assignments.length}
                       </span>
                     </div>
                   )}
                 </div>
               </div>
-              
+
               {isModuleComplete() && (
                 <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <div className="flex items-center space-x-2">
@@ -634,12 +666,12 @@ function DayTrainingPageOriginal() {
                     onClick={handleCompleteDay}
                     className="mt-3 w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition"
                   >
-                    Continue to Next Day
+                    Continue to Next Module
                   </button>
                 </div>
               )}
             </div>
-            
+
             {/* Study Resources */}
             <div className="bg-blue-50 rounded-xl p-6 mt-6">
               <h4 className="font-semibold text-blue-900 mb-3">Study Resources</h4>
@@ -680,7 +712,7 @@ function DayTrainingPageOriginal() {
                 </button>
               </div>
             </div>
-            
+
             <div className="p-6">
               <div className="space-y-6">
                 {currentQuiz.questions.map((question: any, index: number) => (
@@ -691,7 +723,10 @@ function DayTrainingPageOriginal() {
                     {question.options && (
                       <div className="space-y-2">
                         {question.options.map((option: string) => (
-                          <label key={option} className="flex items-center space-x-2 cursor-pointer">
+                          <label
+                            key={option}
+                            className="flex items-center space-x-2 cursor-pointer"
+                          >
                             <input
                               type="radio"
                               name={question.id}
@@ -711,7 +746,7 @@ function DayTrainingPageOriginal() {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-6 flex justify-end">
                 <button
                   onClick={() => handleQuizSubmit(currentQuiz.title)}

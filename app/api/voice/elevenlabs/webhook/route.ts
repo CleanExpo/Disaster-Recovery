@@ -22,6 +22,7 @@ import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
 import { upsertVoiceCall, appendTranscript } from '@/lib/voice/persistence';
 import { redactTranscript } from '@/lib/voice/redaction';
+import { claimIntakeToDispatchInput, dispatchVoiceLead } from '@/lib/voice/dispatch';
 
 // Force dynamic — we read the raw request body, no caching.
 export const dynamic = 'force-dynamic';
@@ -86,15 +87,26 @@ export async function POST(request: Request): Promise<NextResponse> {
       const role = agentRole(agentId);
       const tx = parsed as ElevenLabsTranscriptionWebhook;
       let correlationClaimId: string | null = null;
+      let dispatchResult: {
+        jobId: string;
+        leadId: string | null;
+        offerId: string | null;
+        dispatchStatus: string;
+      } | null = null;
       if (role === 'claims-intake') {
         const intake = extractClaimIntake(tx);
-        correlationClaimId = intake.conversationId;
         log.info('ClaimIntake', {
           conversation: intake.conversationId,
           service: intake.service,
           urgency: intake.urgency,
           postcode: intake.propertyPostcode,
         });
+
+        const dispatchInput = claimIntakeToDispatchInput(intake);
+        if (dispatchInput && intake.callSuccessful !== false) {
+          dispatchResult = await dispatchVoiceLead(dispatchInput);
+          correlationClaimId = dispatchResult.jobId;
+        }
       } else if (role === 'support-chat') {
         const si = extractSupportInteraction(tx);
         log.info('SupportInteraction', {
@@ -140,6 +152,10 @@ export async function POST(request: Request): Promise<NextResponse> {
           metadata: {
             phone_direction: tx.data.metadata?.phone_call?.direction ?? null,
             from_number_present: !!tx.data.metadata?.phone_call?.from_number,
+            voice_dispatch_job_id: dispatchResult?.jobId ?? null,
+            voice_dispatch_lead_id: dispatchResult?.leadId ?? null,
+            voice_dispatch_offer_id: dispatchResult?.offerId ?? null,
+            voice_dispatch_status: dispatchResult?.dispatchStatus ?? null,
           },
         });
 

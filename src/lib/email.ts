@@ -5,17 +5,23 @@ import { clientLogger } from '@/lib/observability/client-logger';
  * Replaces previous nodemailer/SMTP implementation.
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au';
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  'https://disasterrecovery.com.au';
 
 // ── Core send ──────────────────────────────────────────────────────────────
 
 export async function sendEmail(
   to: string | string[],
-  template: { subject: string; html: string; text?: string }
+  template: { subject: string; html: string; text?: string },
 ): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    clientLogger.warn('[email] RESEND_API_KEY not configured — skipping email to', { source: 'lib/email', data: to });
+    clientLogger.warn('[email] RESEND_API_KEY not configured — skipping email to', {
+      source: 'lib/email',
+      data: to,
+    });
     return false;
   }
 
@@ -59,7 +65,7 @@ export async function sendEmail(
 
 export async function queueEmail(
   to: string | string[],
-  template: { subject: string; html: string }
+  template: { subject: string; html: string },
 ): Promise<boolean> {
   return sendEmail(to, template);
 }
@@ -110,7 +116,6 @@ function wrap(body: string): string {
 // ── Templates ──────────────────────────────────────────────────────────────
 
 export const emailTemplates = {
-
   // ── Lead notifications ─────────────────────────────────────────────────
 
   leadNotification: (leadData: Record<string, unknown>) => ({
@@ -205,7 +210,7 @@ export const emailTemplates = {
       <h3>What Happens Next</h3>
       <ol style="line-height:2;color:#475569">
         <li>Complete your onboarding payment ($2,475 total)</li>
-        <li>Begin your 14-day training program</li>
+        <li>Begin your 22-module training programme</li>
         <li>Submit licences, insurance certificates, and IICRC certifications</li>
         <li>Start receiving insurance claim referrals in your service area</li>
       </ol>
@@ -213,7 +218,7 @@ export const emailTemplates = {
     `),
   }),
 
-  contractorPaymentConfirmed: (name: string, applicationId: string) => ({
+  contractorPaymentConfirmed: (name: string, applicationId: string, activationUrl?: string) => ({
     subject: 'Payment Confirmed — Your NRPG Onboarding Has Begun',
     html: wrap(`
       <h2>Payment Confirmed</h2>
@@ -221,13 +226,21 @@ export const emailTemplates = {
       <div class="callout success">
         <strong>Application Reference:</strong> ${applicationId}<br/>
         <strong>Amount Paid:</strong> $2,475.00 AUD<br/>
-        <strong>Onboarding Status:</strong> Active — Day 1 unlocked
+        <strong>Onboarding Status:</strong> Active — Module 1 unlocked
       </div>
-      <a class="btn" href="${SITE_URL}/contractor/onboarding">Start Day 1 Training</a>
+      ${
+        activationUrl
+          ? `<p>Set your contractor portal password first, then continue into the 22-module onboarding programme.</p>
+             <a class="btn" href="${activationUrl}">Activate Contractor Account</a>`
+          : `<a class="btn" href="${SITE_URL}/contractor/onboarding">Start Module 1 Training</a>`
+      }
     `),
   }),
 
-  partnerLeadAssignment: (partnerData: Record<string, unknown>, leadData: Record<string, unknown>) => ({
+  partnerLeadAssignment: (
+    partnerData: Record<string, unknown>,
+    leadData: Record<string, unknown>,
+  ) => ({
     subject: `New $${leadData.leadValue} Lead Assignment — ${leadData.suburb}`,
     html: wrap(`
       <h2>New Lead Assignment</h2>
@@ -265,7 +278,7 @@ export const emailTemplates = {
   jobOfferNew: (
     name: string,
     offerId: string,
-    job: { serviceType: string; suburb: string; expiresAt: Date; requiresLiabilityAck: boolean }
+    job: { serviceType: string; suburb: string; expiresAt: Date; requiresLiabilityAck: boolean },
   ) => {
     const minutesLeft = Math.round((job.expiresAt.getTime() - Date.now()) / 60_000);
     return {
@@ -278,9 +291,11 @@ export const emailTemplates = {
           <strong>Location:</strong> ${job.suburb}<br/>
           <strong>Expires in:</strong> ${minutesLeft} minutes
         </div>
-        ${job.requiresLiabilityAck
-          ? `<div class="callout warn"><strong>Note:</strong> This job is outside your primary service area. You must acknowledge the liability disclaimer before accepting.</div>`
-          : ''}
+        ${
+          job.requiresLiabilityAck
+            ? `<div class="callout warn"><strong>Note:</strong> This job is outside your primary service area. You must acknowledge the liability disclaimer before accepting.</div>`
+            : ''
+        }
         <a class="btn" href="${SITE_URL}/contractor/job-offers/${offerId}">View &amp; Respond</a>
         <p style="margin-top:24px;font-size:12px;color:#94a3b8">
           Offer expires at ${job.expiresAt.toLocaleString('en-AU', { timeZone: 'Australia/Brisbane' })} AEST.

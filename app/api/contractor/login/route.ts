@@ -60,6 +60,32 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
     }
 
+    if (!contractor.emailVerified) {
+      logger.warn('auth', `Login failed - contractor account not activated: ${contractor.id}`, {
+        contractorId: contractor.id,
+        ipAddress,
+        userAgent,
+      });
+      void logComplianceEvent({
+        eventType: 'auth_login_failure',
+        correlationId: contractor.id,
+        correlationType: 'contractor_membership',
+        entityType: 'contractor',
+        entityIdentifier: contractor.id,
+        metadata: {
+          reason: 'account_not_activated',
+          request_id: log.requestId,
+        },
+      });
+      return NextResponse.json(
+        {
+          error: 'Account activation required. Use the activation link from your payment email.',
+          code: 'ACCOUNT_NOT_ACTIVATED',
+        },
+        { status: 403 },
+      );
+    }
+
     // Verify password
     const isValidPassword = await bcrypt.compare(password, contractor.passwordHash);
 

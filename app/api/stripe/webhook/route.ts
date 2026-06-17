@@ -9,6 +9,8 @@ import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
 import { sendEmail, emailTemplates } from '@/lib/email';
 import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 import { requestLogger, captureException } from '@/lib/observability';
+import { ONBOARDING_MODULE_COUNT, onboardingModuleName } from '@/lib/onboarding/program-constants';
+import { buildContractorActivationUrl } from '@/lib/contractor-activation';
 
 async function handleWebhook(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/stripe/webhook' });
@@ -22,16 +24,16 @@ async function handleWebhook(req: NextRequest) {
       ipAddress: clientIP,
       suspiciousFields: ['signature'],
       riskScore: 80,
-      details: 'Webhook received without Stripe signature'
+      details: 'Webhook received without Stripe signature',
     });
 
     return NextResponse.json(
       {
         success: false,
         error: 'No signature provided',
-        code: 'WEBHOOK_NO_SIGNATURE'
+        code: 'WEBHOOK_NO_SIGNATURE',
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -42,9 +44,9 @@ async function handleWebhook(req: NextRequest) {
       {
         success: false,
         error: 'Webhook configuration error',
-        code: 'WEBHOOK_CONFIG_ERROR'
+        code: 'WEBHOOK_CONFIG_ERROR',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -53,9 +55,9 @@ async function handleWebhook(req: NextRequest) {
       {
         success: false,
         error: 'Stripe is not configured',
-        code: 'STRIPE_NOT_CONFIGURED'
+        code: 'STRIPE_NOT_CONFIGURED',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -63,28 +65,26 @@ async function handleWebhook(req: NextRequest) {
 
   try {
     // SECURITY: Strict signature verification with Stripe
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
+    event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET);
   } catch (error) {
-    log.error('webhook signature verification failed', { error: error instanceof Error ? error.message : String(error) });
+    log.error('webhook signature verification failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
 
     PaymentAuditLogger.logSuspiciousActivity({
       ipAddress: clientIP,
       suspiciousFields: ['signature'],
       riskScore: 90,
-      details: `Webhook signature verification failed: ${error instanceof Error ? error.message : 'Unknown error'}`
+      details: `Webhook signature verification failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
     });
 
     return NextResponse.json(
       {
         success: false,
         error: 'Invalid signature',
-        code: 'WEBHOOK_INVALID_SIGNATURE'
+        code: 'WEBHOOK_INVALID_SIGNATURE',
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -106,10 +106,7 @@ async function handleWebhook(req: NextRequest) {
       },
     });
   } catch (err) {
-    if (
-      err instanceof Prisma.PrismaClientKnownRequestError &&
-      err.code === 'P2002'
-    ) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
       log.info('duplicate stripe webhook ignored', {
         eventId: event.id,
         eventType: event.type,
@@ -127,7 +124,11 @@ async function handleWebhook(req: NextRequest) {
       extra: { eventId: event.id, eventType: event.type },
     });
     return NextResponse.json(
-      { success: false, error: 'Idempotency tracking unavailable', code: 'WEBHOOK_IDEMPOTENCY_ERROR' },
+      {
+        success: false,
+        error: 'Idempotency tracking unavailable',
+        code: 'WEBHOOK_IDEMPOTENCY_ERROR',
+      },
       { status: 500 },
     );
   }
@@ -153,7 +154,8 @@ async function handleWebhook(req: NextRequest) {
             amountCurrency: session.currency ?? undefined,
             metadata: {
               stripe_session_id: session.id,
-              payment_intent: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+              payment_intent:
+                typeof session.payment_intent === 'string' ? session.payment_intent : null,
               customer_email_hash: customerEmail ? hashIdentifier(customerEmail) : null,
               source_channel: session.metadata.dr_source_channel ?? null,
             },
@@ -172,11 +174,14 @@ async function handleWebhook(req: NextRequest) {
               ipAddress: clientIP,
               suspiciousFields: ['metadata'],
               riskScore: 70,
-              details: `Invalid payment metadata: ${metadataValidation.reason}`
+              details: `Invalid payment metadata: ${metadataValidation.reason}`,
             });
 
             // Continue processing but flag for review
-            log.warn('webhook metadata validation failed', { contractorId, reason: metadataValidation.reason });
+            log.warn('webhook metadata validation failed', {
+              contractorId,
+              reason: metadataValidation.reason,
+            });
           }
 
           // SECURITY: Validate payment amount matches expected
@@ -189,7 +194,7 @@ async function handleWebhook(req: NextRequest) {
               ipAddress: clientIP,
               suspiciousFields: ['amount'],
               riskScore: 95,
-              details: `Payment amount mismatch: expected ${expectedPayment.amount}, received ${actualAmount}`
+              details: `Payment amount mismatch: expected ${expectedPayment.amount}, received ${actualAmount}`,
             });
 
             // Don't process suspicious payments
@@ -197,9 +202,9 @@ async function handleWebhook(req: NextRequest) {
               {
                 success: false,
                 error: 'Payment amount validation failed',
-                code: 'WEBHOOK_AMOUNT_MISMATCH'
+                code: 'WEBHOOK_AMOUNT_MISMATCH',
               },
-              { status: 400 }
+              { status: 400 },
             );
           }
 
@@ -209,8 +214,8 @@ async function handleWebhook(req: NextRequest) {
             data: {
               status: 'completed',
               stripePaymentId: session.payment_intent as string | null,
-              stripeSessionId: session.id
-            }
+              stripeSessionId: session.id,
+            },
           });
 
           // 2. Update Contractor status to UNDER_REVIEW
@@ -218,8 +223,8 @@ async function handleWebhook(req: NextRequest) {
             where: { id: contractorId },
             data: {
               status: 'UNDER_REVIEW',
-              onboardingStep: 1
-            }
+              onboardingStep: 1,
+            },
           });
 
           // 3. Create OnboardingProgress record
@@ -228,39 +233,45 @@ async function handleWebhook(req: NextRequest) {
             create: {
               contractorId,
               currentStep: 1,
-              totalSteps: 14,
-              completed: false
+              totalSteps: ONBOARDING_MODULE_COUNT,
+              completed: false,
             },
             update: {
               currentStep: 1,
-              completed: false
-            }
+              totalSteps: ONBOARDING_MODULE_COUNT,
+              completed: false,
+            },
           });
 
-          // 4. Initialize ModuleProgress records for 14 days
+          // 4. Initialize ModuleProgress records for the full onboarding programme.
           const modulePromises = [];
-          for (let day = 1; day <= 14; day++) {
+          for (let moduleNumber = 1; moduleNumber <= ONBOARDING_MODULE_COUNT; moduleNumber++) {
+            const moduleName = onboardingModuleName(moduleNumber);
             modulePromises.push(
               prisma.moduleProgress.upsert({
                 where: {
                   contractorId_moduleName: {
                     contractorId,
-                    moduleName: `Day ${day} Module`
-                  }
+                    moduleName,
+                  },
                 },
                 create: {
                   contractorId,
-                  moduleName: `Day ${day} Module`,
+                  moduleName,
                   completed: false,
-                  attempts: 0
+                  attempts: 0,
                 },
-                update: {}
-              })
+                update: {},
+              }),
             );
           }
           await Promise.all(modulePromises);
 
-          log.info('stripe checkout completed', { contractorId, sessionId: session.id, amount: actualAmount });
+          log.info('stripe checkout completed', {
+            contractorId,
+            sessionId: session.id,
+            amount: actualAmount,
+          });
 
           await logComplianceEvent({
             eventType: 'referral_fee_received',
@@ -272,7 +283,8 @@ async function handleWebhook(req: NextRequest) {
             amountCurrency: (session.currency ?? 'aud').toUpperCase(),
             metadata: {
               stripe_session_id: session.id,
-              stripe_payment_intent: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+              stripe_payment_intent:
+                typeof session.payment_intent === 'string' ? session.payment_intent : null,
               request_id: log.requestId,
             },
           });
@@ -280,13 +292,16 @@ async function handleWebhook(req: NextRequest) {
           // 5. Fire-and-forget payment confirmation email
           const contractor = await prisma.contractor.findUnique({
             where: { id: contractorId },
-            select: { email: true, username: true }
+            select: { id: true, email: true, username: true, emailVerified: true },
           });
           if (contractor?.email) {
             const displayName = contractor.username ?? 'Contractor';
+            const activationUrl = contractor.emailVerified
+              ? undefined
+              : buildContractorActivationUrl(contractor.id);
             sendEmail(
               contractor.email,
-              emailTemplates.contractorPaymentConfirmed(displayName, contractorId)
+              emailTemplates.contractorPaymentConfirmed(displayName, contractorId, activationUrl),
             ).catch(() => {
               // Non-fatal — email is informational
             });
@@ -305,8 +320,8 @@ async function handleWebhook(req: NextRequest) {
               where: { contractorId },
               data: {
                 stripePaymentId: paymentIntent.id,
-                status: 'completed'
-              }
+                status: 'completed',
+              },
             });
           }
         }
@@ -389,21 +404,21 @@ async function handleWebhook(req: NextRequest) {
             await prisma.onboardingPayment.updateMany({
               where: { contractorId },
               data: {
-                status: 'failed'
-              }
+                status: 'failed',
+              },
             });
 
             // Notify contractor of failed payment via email
             const contractor = await prisma.contractor.findUnique({
               where: { id: contractorId },
-              select: { email: true, username: true }
+              select: { email: true, username: true },
             });
             if (contractor?.email) {
               const failureReason = paymentIntent.last_payment_error?.message || 'Payment declined';
               const displayName = contractor.username ?? 'Contractor';
               sendEmail(
                 contractor.email,
-                emailTemplates.paymentFailed(displayName, failureReason, contractorId)
+                emailTemplates.paymentFailed(displayName, failureReason, contractorId),
               ).catch(() => {
                 // Non-fatal — email is informational
               });
@@ -424,20 +439,22 @@ async function handleWebhook(req: NextRequest) {
             data: {
               status: 'ACTIVE',
               startDate: new Date(subscription.current_period_start * 1000),
-              nextBillingDate: new Date(subscription.current_period_end * 1000)
-            }
+              nextBillingDate: new Date(subscription.current_period_end * 1000),
+            },
           });
 
           // Update contractor status to approved if not already
-          await prisma.contractor.update({
-            where: { id: contractorId },
-            data: {
-              status: 'APPROVED',
-              approvedAt: new Date()
-            }
-          }).catch(() => {
-            // Non-fatal — contractor may already be approved
-          });
+          await prisma.contractor
+            .update({
+              where: { id: contractorId },
+              data: {
+                status: 'APPROVED',
+                approvedAt: new Date(),
+              },
+            })
+            .catch(() => {
+              // Non-fatal — contractor may already be approved
+            });
         }
         break;
       }
@@ -453,20 +470,22 @@ async function handleWebhook(req: NextRequest) {
             data: {
               status: 'CANCELLED',
               cancelledAt: new Date(),
-              endDate: new Date(subscription.current_period_end * 1000)
-            }
+              endDate: new Date(subscription.current_period_end * 1000),
+            },
           });
 
           // Suspend contractor account as subscription has been cancelled
-          await prisma.contractor.update({
-            where: { id: contractorId },
-            data: {
-              status: 'SUSPENDED',
-              suspendedAt: new Date()
-            }
-          }).catch(() => {
-            // Non-fatal
-          });
+          await prisma.contractor
+            .update({
+              where: { id: contractorId },
+              data: {
+                status: 'SUSPENDED',
+                suspendedAt: new Date(),
+              },
+            })
+            .catch(() => {
+              // Non-fatal
+            });
         }
         break;
       }
@@ -481,18 +500,23 @@ async function handleWebhook(req: NextRequest) {
       paymentType: 'WEBHOOK_PROCESSING',
       ipAddress: clientIP,
       result: 'SUCCESS',
-      reason: `Successfully processed ${event.type} webhook`
+      reason: `Successfully processed ${event.type} webhook`,
     });
 
     return NextResponse.json({
       success: true,
       received: true,
-      eventType: event.type
+      eventType: event.type,
     });
-
   } catch (error) {
-    log.error('stripe webhook processing failed', { error: error instanceof Error ? error.message : String(error), eventType: event?.type });
-    captureException(error, { tags: { route: '/api/stripe/webhook', eventType: event?.type ?? 'unknown' }, extra: { requestId: log.requestId } });
+    log.error('stripe webhook processing failed', {
+      error: error instanceof Error ? error.message : String(error),
+      eventType: event?.type,
+    });
+    captureException(error, {
+      tags: { route: '/api/stripe/webhook', eventType: event?.type ?? 'unknown' },
+      extra: { requestId: log.requestId },
+    });
 
     // A8 — business logic failed AFTER the WebhookDelivery insert. Roll the
     // row back so Stripe's next redelivery can re-process this event_id.
@@ -512,30 +536,27 @@ async function handleWebhook(req: NextRequest) {
       ipAddress: clientIP,
       suspiciousFields: ['webhook_processing'],
       riskScore: 60,
-      details: `Webhook processing error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      details: `Webhook processing error: ${error instanceof Error ? error.message : 'Unknown error'}`,
     });
 
     return NextResponse.json(
       {
         success: false,
         error: 'Webhook processing failed',
-        code: 'WEBHOOK_PROCESSING_ERROR'
+        code: 'WEBHOOK_PROCESSING_ERROR',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 // SECURITY: Apply security middleware to webhook endpoint
-export const POST = withRateLimit(
-  withSecurityHeaders(handleWebhook),
-  {
-    windowMs: 5 * 60 * 1000, // 5 minutes
-    max: 50, // Max 50 webhook calls per 5 minutes per IP (generous for Stripe)
-    keyGenerator: (req: NextRequest) => {
-      // Use IP for rate limiting webhooks
-      const forwarded = req.headers.get('x-forwarded-for');
-      return forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || 'unknown';
-    }
-  }
-);
+export const POST = withRateLimit(withSecurityHeaders(handleWebhook), {
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 50, // Max 50 webhook calls per 5 minutes per IP (generous for Stripe)
+  keyGenerator: (req: NextRequest) => {
+    // Use IP for rate limiting webhooks
+    const forwarded = req.headers.get('x-forwarded-for');
+    return forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || 'unknown';
+  },
+});

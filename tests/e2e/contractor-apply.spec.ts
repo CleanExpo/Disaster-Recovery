@@ -28,7 +28,7 @@ test.describe('contractor apply — desktop', () => {
     const formOrCta =
       (await page.locator('form').count()) > 0
         ? page.locator('form').first()
-        : page.getByRole('button', { name: /apply|start|get started|join/i });
+        : page.getByRole('button', { name: /apply|start|get started|join|continue|application/i });
 
     await expect(formOrCta).toBeVisible();
   });

@@ -787,8 +787,8 @@ model OnboardingPayment {
 }
 
 // Onboarding Progress Model
-// DR-818 Path Y — Prisma OnboardingProgress is the 14-day step-counter
-// training program (used by /api/contractor/onboarding/progress + Stripe
+// DR-818 Path Y — Prisma OnboardingProgress is the 22-module step-counter
+// training programme (used by /api/contractor/onboarding/progress + Stripe
 // post-payment webhook). Live `contractor_onboarding` is a different
 // concept (specialisation-based onboarding with assessmentScore + status
 // enum). Maps to a dedicated live table.
@@ -796,7 +796,7 @@ model OnboardingProgress {
   id           String    @id @default(uuid())
   contractorId String    @unique
   currentStep  Int       @default(1)
-  totalSteps   Int       @default(14)
+  totalSteps   Int       @default(22)
   completed    Boolean   @default(false)
   startedAt    DateTime  @default(now())
   completedAt  DateTime?
@@ -809,7 +809,7 @@ model OnboardingProgress {
 // DR-819 Path Y — paired with OnboardingProgress. Live
 // `contractor_module_progress` is for the specialisation flow (requires
 // onboardingId, has status enum + progress percentage). This is the
-// per-day module record for the 14-day training flow.
+// per-module record for the 22-module training flow.
 model ModuleProgress {
   id           String    @id @default(uuid())
   contractorId String
