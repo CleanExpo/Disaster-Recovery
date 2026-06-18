@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Emergency disaster restoration for strata managers and body corporate committees across Australia. Common property restoration, emergency spending authority, per-lot documentation.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for/strata-managers',
+    canonical: 'https://disasterrecovery.com.au/for-business/strata-managers',
   },
 };
 
@@ -105,7 +105,7 @@ export default function StrataManagersPage() {
         ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'For Business', href: '/for' },
+          { label: 'For Business', href: '/for-business' },
           { label: 'Strata Managers' },
         ]}
         stats={[
@@ -674,7 +674,7 @@ export default function StrataManagersPage() {
         relatedPages={[
           {
             title: 'For Business Hub',
-            href: '/for',
+            href: '/for-business',
             description:
               'All commercial stakeholder pages — property managers, facilities managers, councils, and more.',
           },

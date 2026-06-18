@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Emergency disaster restoration for business owners and commercial tenants across Australia. Get back to trading fast with full business interruption documentation.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for/business-owners',
+    canonical: 'https://disasterrecovery.com.au/for-business/business-owners',
   },
 };
 
@@ -89,7 +89,7 @@ export default function BusinessOwnersPage() {
         ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'For Business', href: '/for' },
+          { label: 'For Business', href: '/for-business' },
           { label: 'Business Owners' },
         ]}
         stats={[
@@ -674,7 +674,7 @@ export default function BusinessOwnersPage() {
           },
           {
             title: 'For Business Hub',
-            href: '/for',
+            href: '/for-business',
             description: 'Resources for property managers, strata managers, facilities managers and councils.',
           },
           {

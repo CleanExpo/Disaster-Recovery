@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     'Emergency disaster restoration for local councils and government facilities across Australia. Community facility restoration, make-safe order support, procurement panel arrangements.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for/councils',
+    canonical: 'https://disasterrecovery.com.au/for-business/councils',
   },
 };
 
@@ -46,7 +46,7 @@ export default function CouncilsPage() {
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
-        { label: 'For Business', href: '/for' },
+        { label: 'For Business', href: '/for-business' },
         { label: 'Local Councils' },
       ]}
       stats={[
@@ -368,7 +368,7 @@ export default function CouncilsPage() {
       relatedPages={[
         {
           title: 'For Business Hub',
-          href: '/for',
+          href: '/for-business',
           description:
             'Restoration solutions for property managers, strata managers, business owners, and councils.',
         },
