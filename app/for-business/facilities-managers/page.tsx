@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     'Emergency disaster restoration for facilities managers across Australia. Approved supplier panel, SLA compliance, IICRC certification, multi-floor coordination.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for/facilities-managers',
+    canonical: 'https://disasterrecovery.com.au/for-business/facilities-managers',
   },
 };
 
@@ -46,7 +46,7 @@ export default function FacilitiesManagersPage() {
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
-        { label: 'For Business', href: '/for' },
+        { label: 'For Business', href: '/for-business' },
         { label: 'Facilities Managers' },
       ]}
       stats={[
@@ -284,7 +284,7 @@ export default function FacilitiesManagersPage() {
       relatedPages={[
         {
           title: 'For Business Hub',
-          href: '/for',
+          href: '/for-business',
           description:
             'All commercial stakeholder pages — property managers, strata managers, business owners, and councils.',
         },

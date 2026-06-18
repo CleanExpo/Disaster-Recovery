@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Property Managers',
   description: 'Emergency disaster restoration for property managers and managing agents across Australia. 24/7 response, full documentation for owners, preferred supplier arrangements.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for/property-managers',
+    canonical: 'https://disasterrecovery.com.au/for-business/property-managers',
   },
 };
 
@@ -71,7 +71,7 @@ export default function PropertyManagersPage() {
         ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'For Business', href: '/for' },
+          { label: 'For Business', href: '/for-business' },
           { label: 'Property Managers' },
         ]}
         stats={[
@@ -537,7 +537,7 @@ export default function PropertyManagersPage() {
           },
           {
             title: 'For Business Hub',
-            href: '/for',
+            href: '/for-business',
             description: 'Restoration solutions for property managers, strata managers, business owners, and councils.',
           },
           {

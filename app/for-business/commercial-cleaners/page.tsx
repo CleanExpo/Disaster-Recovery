@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     'Partner with Disaster Recovery when damage exceeds your cleaning scope. Your client stays your client. Emergency referral program for commercial cleaning companies across Australia.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for/commercial-cleaners',
+    canonical: 'https://disasterrecovery.com.au/for-business/commercial-cleaners',
   },
 };
 
@@ -42,7 +42,7 @@ export default function CommercialCleanersPage() {
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
-        { label: 'For Business', href: '/for' },
+        { label: 'For Business', href: '/for-business' },
         { label: 'Commercial Cleaners' },
       ]}
       stats={[
@@ -381,7 +381,7 @@ export default function CommercialCleanersPage() {
       relatedPages={[
         {
           title: 'For Business Hub',
-          href: '/for',
+          href: '/for-business',
           description:
             'Resources for property managers, strata managers, business owners and other referral partners.',
         },

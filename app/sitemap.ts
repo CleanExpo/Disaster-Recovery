@@ -76,6 +76,7 @@ const EXCLUDED_EXACT_ROUTES = new Set([
   '/book-service/error',
   '/book-service/payment',
   '/book-service/success',
+  '/cyclone-alfred-queensland-2026',
   '/contractor/onboarding/payment-success',
   '/request-submitted',
   '/search',

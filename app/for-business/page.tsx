@@ -10,18 +10,18 @@ const pageSchema = {
   '@type': 'CollectionPage',
   name: 'Commercial Disaster Recovery for Business',
   description: 'Disaster recovery services for property managers, strata managers, business owners, facilities managers, councils, and commercial cleaners across Australia.',
-  url: 'https://disasterrecovery.com.au/for',
+  url: 'https://disasterrecovery.com.au/for-business',
   provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
   mainEntity: {
     '@type': 'ItemList',
     numberOfItems: 6,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Property Managers', url: 'https://disasterrecovery.com.au/for/property-managers' },
-      { '@type': 'ListItem', position: 2, name: 'Strata Managers', url: 'https://disasterrecovery.com.au/for/strata-managers' },
-      { '@type': 'ListItem', position: 3, name: 'Business Owners', url: 'https://disasterrecovery.com.au/for/business-owners' },
-      { '@type': 'ListItem', position: 4, name: 'Facilities Managers', url: 'https://disasterrecovery.com.au/for/facilities-managers' },
-      { '@type': 'ListItem', position: 5, name: 'Local Councils', url: 'https://disasterrecovery.com.au/for/councils' },
-      { '@type': 'ListItem', position: 6, name: 'Commercial Cleaners', url: 'https://disasterrecovery.com.au/for/commercial-cleaners' },
+      { '@type': 'ListItem', position: 1, name: 'Property Managers', url: 'https://disasterrecovery.com.au/for-business/property-managers' },
+      { '@type': 'ListItem', position: 2, name: 'Strata Managers', url: 'https://disasterrecovery.com.au/for-business/strata-managers' },
+      { '@type': 'ListItem', position: 3, name: 'Business Owners', url: 'https://disasterrecovery.com.au/for-business/business-owners' },
+      { '@type': 'ListItem', position: 4, name: 'Facilities Managers', url: 'https://disasterrecovery.com.au/for-business/facilities-managers' },
+      { '@type': 'ListItem', position: 5, name: 'Local Councils', url: 'https://disasterrecovery.com.au/for-business/councils' },
+      { '@type': 'ListItem', position: 6, name: 'Commercial Cleaners', url: 'https://disasterrecovery.com.au/for-business/commercial-cleaners' },
     ],
   },
 };
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   title: 'Commercial Disaster Recovery for Business',
   description: 'Disaster recovery services for property managers, strata managers, business owners, facilities managers, councils, and commercial cleaners across Australia.',
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/for',
+    canonical: 'https://disasterrecovery.com.au/for-business',
   },
 };
 
@@ -96,7 +96,7 @@ export default function ForBusinessPage() {
           body: (
             <div className="prose prose-lg max-w-none">
               <p>Large-scale commercial buildings need a restoration partner that meets your procurement requirements, SLA expectations, and compliance standards.</p>
-              <p><Link href="/for/facilities-managers"><strong>Facilities Manager Information →</strong></Link></p>
+              <p><Link href="/for-business/facilities-managers"><strong>Facilities Manager Information →</strong></Link></p>
             </div>
           ),
           background: 'light',
@@ -106,7 +106,7 @@ export default function ForBusinessPage() {
           body: (
             <div className="prose prose-lg max-w-none">
               <p>Council-owned community facilities, libraries, depots, and public buildings need rapid restoration to return to public service. We also support property owners responding to council-issued make-safe orders.</p>
-              <p><Link href="/for/councils"><strong>Council Partnership Information →</strong></Link></p>
+              <p><Link href="/for-business/councils"><strong>Council Partnership Information →</strong></Link></p>
             </div>
           ),
         },
@@ -115,7 +115,7 @@ export default function ForBusinessPage() {
           body: (
             <div className="prose prose-lg max-w-none">
               <p>Found damage beyond your scope at 5am? We work alongside your existing cleaning contract — your client stays your client.</p>
-              <p><Link href="/for/commercial-cleaners"><strong>Referral Partner Program →</strong></Link></p>
+              <p><Link href="/for-business/commercial-cleaners"><strong>Referral Partner Program →</strong></Link></p>
             </div>
           ),
           background: 'light',
