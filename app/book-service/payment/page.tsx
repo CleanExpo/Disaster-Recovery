@@ -4,8 +4,12 @@ import PaymentPage from './PaymentClient';
 export const metadata: Metadata = {
   title: 'Secure Payment',
   description: 'Complete your restoration service booking with our secure payment system. Stripe-powered checkout with full payment protection.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/book-service/payment',
+    canonical: 'https://disasterrecovery.com.au/book-service',
   },
   openGraph: {
     title: 'Secure Payment',
