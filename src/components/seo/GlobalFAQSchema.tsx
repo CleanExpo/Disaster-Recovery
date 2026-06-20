@@ -5,7 +5,13 @@ import Script from 'next/script';
 
 // Pages that render their own FAQPage schema — skip global FAQ to avoid
 // Google Rich Results "Duplicate field FAQPage" errors.
+// DR-825: the homepage ('/') is included for a different reason — it renders NO
+// visible FAQ at all, so emitting FAQPage markup there asserts Q&A content that
+// is absent from the page (a Google structured-data violation and ACL s18/s29
+// misleading-conduct risk). The visible FAQ lives at /faq, which carries its own
+// FAQPage schema below.
 const PAGES_WITH_OWN_FAQ = [
+  '/',
   '/locations/melbourne',
   '/locations/perth',
   '/locations/adelaide',
