@@ -229,8 +229,9 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
           </div>
         )}
 
-        {/* ESHA Urgency Banner */}
-        {eshaDeadline && (
+        {/* ESHA Urgency Banner — only while the deadline is still in the future.
+            Never render a passed deadline (stale "apply before" = ACL s18/s29 exposure, DR-826). */}
+        {eshaDeadline && new Date(eshaDeadline) >= new Date(new Date().toDateString()) && (
           <div className="bg-red-700 text-white py-3 px-4 text-center">
             <p className="text-sm font-bold">
               ESHA APPLICATION DEADLINE:{' '}
