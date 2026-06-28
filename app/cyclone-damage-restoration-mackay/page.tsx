@@ -46,7 +46,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Mackay' },
   serviceType: 'Cyclone Damage Restoration',
   description: 'Professional cyclone damage restoration in Mackay and the Whitsundays: emergency make-safe, roof tarping, structural drying, water extraction, and insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

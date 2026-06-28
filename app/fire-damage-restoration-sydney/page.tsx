@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Sydney', containedInPlace: { '@type': 'State', name: 'New South Wales' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across Sydney including emergency structural make-safe, soot removal, odour elimination, contents restoration, and full rebuild.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Sunshine Coast' },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across the Sunshine Coast: structural assessment, emergency tarping, wind damage repair, hinterland tree-fall remediation, and full insurance claim documentation including ex-TC Alfred recovery support.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

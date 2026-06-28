@@ -77,13 +77,6 @@ const serviceSchema = {
   serviceType: 'Water Damage Restoration',
   description:
     'Professional water damage restoration in Rockhampton: emergency water extraction, structural drying to IICRC S500:2025, Fitzroy River flood recovery, Category 3 contaminated water treatment, and insurance claim documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

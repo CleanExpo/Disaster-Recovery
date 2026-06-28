@@ -75,13 +75,6 @@ const serviceSchema = {
   serviceType: 'Fire Damage Restoration',
   description:
     'Professional fire and smoke damage restoration across Geelong to IICRC S700:2025 standard. Emergency make-safe, smoke extraction, soot remediation, odour elimination, heritage structure assessment, and industrial fire restoration for Surf Coast BAL zone properties, Corio industrial precinct, and heritage bluestone buildings.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

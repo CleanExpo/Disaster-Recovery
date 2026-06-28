@@ -74,13 +74,6 @@ const professionalServiceSchema = {
     opens: '00:00',
     closes: '23:59',
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
   parentOrganization: { '@id': `${NAP.url}/#organization` },
 };
 
@@ -96,13 +89,6 @@ const serviceSchema = {
   serviceType: 'Cyclone Damage Restoration and Insurance Claim Support',
   description:
     'Professional cyclone damage restoration and claim documentation for Ex-TC Alfred impacts across FNQ, Queensland, and northern NSW: structural drying to IICRC S500:2025, mould remediation, full insurance documentation, and supplementary and disputed claim support.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 // DR-622: Event schema for AI Overview capture and Google Events search

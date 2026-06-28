@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Gold Coast' },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across the Gold Coast: emergency make-safe, roof tarping, structural drying, water extraction, and insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

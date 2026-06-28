@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Canberra', containedInPlace: { '@type': 'State', name: 'Australian Capital Territory' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across Canberra and the ACT. IICRC S700:2025 certified contractors for bush-urban interface properties, ACT Heritage Council-compliant building restoration, emergency make-safe, soot removal, bushfire structural damage, and odour elimination.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

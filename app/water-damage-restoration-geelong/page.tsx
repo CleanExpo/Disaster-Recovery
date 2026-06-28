@@ -75,13 +75,6 @@ const serviceSchema = {
   serviceType: 'Water Damage Restoration',
   description:
     'Professional water damage restoration across Geelong to IICRC S500:2025 standard. Emergency extraction, structural drying, heritage building water damage treatment, Surf Coast holiday home assessment, and full insurance documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

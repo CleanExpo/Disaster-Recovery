@@ -41,7 +41,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Mackay', containedInPlace: { '@type': 'State', name: 'Queensland' } },
   serviceType: 'Flood Damage Restoration',
   description: 'Professional flood damage restoration across Mackay including Pioneer River flood recovery, Category 3 water decontamination per IICRC S500:2025, structural drying, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

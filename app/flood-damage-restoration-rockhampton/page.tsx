@@ -41,7 +41,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Rockhampton', containedInPlace: { '@type': 'State', name: 'Queensland' } },
   serviceType: 'Flood Damage Restoration',
   description: 'Professional flood damage restoration across Rockhampton including Fitzroy River flood recovery, Category 3 water decontamination per IICRC S500:2025, structural drying, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

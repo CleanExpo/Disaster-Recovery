@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Hobart', containedInPlace: { '@type': 'State', name: 'Tasmania' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across Hobart and Tasmania. IICRC S700:2025 certified contractors for heritage sandstone decontamination, emergency make-safe, soot removal, bushfire structural damage, and odour elimination using lime-compatible methods.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

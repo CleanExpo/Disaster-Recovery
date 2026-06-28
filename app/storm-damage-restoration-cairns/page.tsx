@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Cairns', containedInPlace: { '@type': 'State', name: 'Queensland' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration in Cairns and Far North Queensland: emergency make-safe, roof tarping, structural wind damage assessment, water damage remediation, and full insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

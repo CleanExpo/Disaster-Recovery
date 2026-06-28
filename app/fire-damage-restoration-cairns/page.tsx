@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Cairns', containedInPlace: { '@type': 'State', name: 'Queensland' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across Cairns and FNQ including post-cyclone electrical fire make-safe, tropical smoke damage remediation, soot extraction, odour elimination, and structural rebuild after storm-related fire events.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

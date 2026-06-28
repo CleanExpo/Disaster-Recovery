@@ -67,7 +67,6 @@ const serviceSchema = {
   serviceType: 'Water Damage Restoration',
   description:
     'Professional water damage restoration in Adelaide: emergency water extraction, structural drying to IICRC S500:2025, mould prevention, contents protection, and full insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
   lastReviewed: '2026-04-09',
 };
 

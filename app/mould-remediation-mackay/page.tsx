@@ -75,13 +75,6 @@ const serviceSchema = {
   serviceType: 'Mould Remediation',
   description:
     'Professional mould remediation in Mackay following IICRC S520:2023: containment, HEPA air scrubbing, anti-fungal treatment, structural decontamination, and insurance documentation for post-cyclone mould claims.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

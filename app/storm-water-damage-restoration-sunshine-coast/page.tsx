@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Sunshine Coast' },
   serviceType: 'Water Damage Restoration',
   description: 'Professional storm and water damage restoration across the Sunshine Coast: emergency water extraction, structural drying to IICRC S500:2025, mould remediation, and full insurance claim documentation including ex-TC Alfred recovery support.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

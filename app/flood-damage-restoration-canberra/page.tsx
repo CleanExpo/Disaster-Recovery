@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Canberra' },
   serviceType: 'Flood Damage Restoration',
   description: 'Professional flood damage restoration across Canberra and the ACT: emergency water extraction, structural drying to IICRC S500:2025, Murrumbidgee inundation response, creek flooding, and specialist government and heritage building restoration.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

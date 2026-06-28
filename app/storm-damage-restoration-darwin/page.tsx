@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Darwin', containedInPlace: { '@type': 'State', name: 'Northern Territory' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Darwin including emergency make-safe, roof tarping, cyclone structural repairs, highset subfloor and deck restoration, lightning damage assessment, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

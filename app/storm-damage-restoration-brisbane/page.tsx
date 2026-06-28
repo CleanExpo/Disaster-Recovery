@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Brisbane' },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Brisbane including emergency make-safe, roof tarping, hail damage repair, structural restoration, and full insurance documentation. Ex-TC Alfred recovery support.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

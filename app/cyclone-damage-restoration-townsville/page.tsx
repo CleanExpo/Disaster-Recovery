@@ -46,7 +46,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Townsville' },
   serviceType: 'Cyclone Damage Restoration',
   description: 'Professional cyclone damage restoration in Townsville: emergency make-safe, roof tarping, structural drying, water extraction, and insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Adelaide', containedInPlace: { '@type': 'State', name: 'Victoria' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across Adelaide and South Australia including emergency structural make-safe, soot removal, bushfire damage assessment in BAL FZ zones, asbestos-aware restoration in fibro homes, odour elimination, and full rebuild.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

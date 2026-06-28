@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Hobart', containedInPlace: { '@type': 'State', name: 'Tasmania' } },
   serviceType: 'Flood Damage Restoration',
   description: 'Professional flood damage restoration across Hobart. IICRC S500:2025 certified contractors for Derwent River inundation, Hobart Rivulet flash flooding, heritage sandstone slow-drying protocols, emergency extraction, decontamination, and structural drying.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

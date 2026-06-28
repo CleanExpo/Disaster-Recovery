@@ -52,7 +52,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Cairns' },
   serviceType: 'Water Damage Restoration',
   description: 'Professional water damage restoration in Cairns: emergency water extraction, structural drying to IICRC S500:2025, mould remediation, contents protection, and insurance claim documentation for ARPC Cyclone Pool lodgement.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

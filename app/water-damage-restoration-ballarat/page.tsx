@@ -51,7 +51,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Ballarat' },
   serviceType: 'Water Damage Restoration',
   description: 'Professional water damage restoration in Ballarat: emergency water extraction, structural drying to IICRC S500:2025, heritage material treatment, mould prevention, and full insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

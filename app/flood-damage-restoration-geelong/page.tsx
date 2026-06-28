@@ -75,13 +75,6 @@ const serviceSchema = {
   serviceType: 'Flood Damage Restoration',
   description:
     'Professional flood damage restoration across Geelong to IICRC S500:2025 Category 2–3 standard. Emergency extraction, Category 3 contamination treatment, structural drying, subfloor remediation for Barwon River flooding, Corio industrial precinct flash floods, and Barwon Heads tidal flooding events.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

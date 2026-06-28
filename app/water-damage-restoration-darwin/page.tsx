@@ -80,13 +80,6 @@ const serviceSchema = {
   serviceType: 'Water Damage Restoration',
   description:
     'Professional water damage restoration in Darwin: Wet Season flood damage, post-cyclone water ingress, subfloor and highset home restoration, emergency water extraction, structural drying to IICRC S500:2025, antimicrobial treatment, and full ARPC Cyclone Pool insurance documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

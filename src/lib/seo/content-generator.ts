@@ -448,31 +448,6 @@ export function generateSchemaMarkup(
         }
       ]
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "127",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Sarah M."
-        },
-        "datePublished": "2024-01-15",
-        "description": `Excellent ${service.name.toLowerCase()} service in ${locationName}. Professional, fast, and thorough.`,
-        "name": "Outstanding Service",
-        "reviewRating": {
-          "@type": "Rating",
-          "bestRating": "5",
-          "ratingValue": "5",
-          "worstRating": "1"
-        }
-      }
-    ],
     "sameAs": [
       "https://www.facebook.com/NRPGAustralia",
       "https://www.linkedin.com/company/nrp-australia"
