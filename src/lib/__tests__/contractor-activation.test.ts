@@ -22,6 +22,8 @@ describe('contractor activation tokens', () => {
       'contractor_123',
       new Date('2026-06-18T00:00:00Z'),
     );
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-06-20T00:00:00Z'));
     const payload = verifyContractorActivationToken(token);
 
     expect(payload.contractorId).toBe('contractor_123');
