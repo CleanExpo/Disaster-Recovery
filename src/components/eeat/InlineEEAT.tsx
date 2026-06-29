@@ -119,7 +119,7 @@ export function InlineEEAT() {
                 <div className="flex text-yellow-600 text-sm">⭐⭐⭐⭐⭐</div>
                 <span className="text-xs text-green-600">✓ Verified</span>
               </div>
-              <p className="italic mb-4">"After our kitchen fire, they restored not just our home but our peace of mind. Insurance approved everything immediately."</p>
+              <p className="italic mb-4">"After our kitchen fire, they restored not just our home but our peace of mind. They handled the entire insurance claim for us without delay."</p>
               <div className="text-sm">
                 <p className="font-semibold">Michael Chen</p>
                 <p className="text-gray-700">Melbourne, VIC • Fire Damage</p>
