@@ -12,7 +12,6 @@ export function MicrosoftClarity() {
   return (
     <Script
       id="microsoft-clarity"
-      type="text/partytown"
       // C5 perf (DR-700, 2026-04-29): lazyOnload (was afterInteractive).
       // Clarity is a session-recording / heatmap tool with no first-paint
       // dependency. Defers ~120-250ms of script eval off the TTI critical path.

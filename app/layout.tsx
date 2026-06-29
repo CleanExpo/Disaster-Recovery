@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Script from 'next/script';
-import { Partytown } from '@builder.io/partytown/react';
 import '@/styles/globals.css';
 import '@/styles/mobile-responsive.css';
 import '@/styles/performance-optimizations.css';
@@ -502,7 +501,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <GlobalFAQSchema />
         <DynamicBreadcrumbSchema />
-        <Partytown debug={false} forward={['dataLayer.push', 'gtag']} />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Providers>
