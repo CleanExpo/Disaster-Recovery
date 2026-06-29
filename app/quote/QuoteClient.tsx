@@ -9,12 +9,15 @@ import { FileText, ArrowRight, Clock, Shield, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics/track';
 
 function QuotePageOriginal() {
   const router = useRouter();
 
   // Auto-redirect after showing brief info
   useEffect(() => {
+    trackEvent('quote_request', { content_name: 'quote_page' });
+
     const timer = setTimeout(() => {
       router.push('/tools/cost-estimator');
     }, 3000);
