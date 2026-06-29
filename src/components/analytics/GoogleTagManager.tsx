@@ -14,7 +14,6 @@ export function GoogleTagManager() {
       {/* Google Tag Manager */}
       <Script
         id="gtm-script"
-        type="text/partytown"
         strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
