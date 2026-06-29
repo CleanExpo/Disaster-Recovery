@@ -4,6 +4,7 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { trackLead } from '@/lib/analytics/track';
 // D5 perf: lazy-loaded motion runtime (LazyMotion + domAnimation + m).
 import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion';
 import {
@@ -116,6 +117,12 @@ function ModernContactPageOriginal() {
 
       if (data.success) {
         setSubmitted(true);
+        trackLead({
+          content_name: 'contact_form',
+          lead_type: 'contact',
+          service: formData.service,
+          urgency: formData.urgency || 'routine',
+        });
         // Store submission ID for tracking
         if (typeof window !== 'undefined') {
           localStorage.setItem('lastSubmissionId', data.submissionId);

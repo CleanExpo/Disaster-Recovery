@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { MessageCircle, Globe, Mail, Clock, Zap, ArrowRight, CheckCircle } from 'lucide-react';
+import { trackLead } from '@/lib/analytics/track';
 
 // IMPORTANT: NO PHONE NUMBERS - Digital Only Platform
 export function DigitalContactBar() {
@@ -97,6 +98,11 @@ export function QuickResponseForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackLead({
+      content_name: 'quick_response_form',
+      lead_type: 'emergency',
+      urgency: urgency || 'unspecified',
+    });
     window.location.href = '/claim';
   };
 

@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { AlertCircle, CheckCircle2, MapPin, Home, DollarSign, Calendar, Camera, FileText, Shield, MessageSquare} from 'lucide-react';
 import { toast } from 'sonner';
+import { trackLead } from '@/lib/analytics/track';
 
 interface LeadFormData {
   // Contact Information
@@ -147,6 +148,12 @@ export default function LeadCaptureForm() {
       });
       
       if (response.ok) {
+        trackLead({
+          value: 550,
+          content_name: 'lead_capture_form',
+          lead_type: 'emergency',
+          lead_score: score,
+        });
         toast.success('Thank you! A restoration specialist will contact you within 30 minutes.');
         // Redirect to thank you page
         window.location.href = '/thank-you';

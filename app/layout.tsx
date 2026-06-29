@@ -11,6 +11,7 @@ import { Providers } from './providers';
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity';
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
 import { ConsentModeInit } from '@/components/analytics/ConsentModeInit';
+import { PhoneCallTracker } from '@/components/analytics/PhoneCallTracker';
 import { LayoutChrome } from '@/components/LayoutChrome';
 import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema';
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema';
@@ -516,6 +517,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ConsentModeInit />
           <GoogleTagManager />
           <MicrosoftClarity />
+          <PhoneCallTracker />
           <LayoutChrome>
             <main id="main-content" className="min-h-screen">
               {children}
