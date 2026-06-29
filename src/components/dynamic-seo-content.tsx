@@ -164,7 +164,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Need Emergency Help?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Don't wait for the problem to get worse. Get professional help now with insurance-approved service.
+            Don't wait for the problem to get worse. Get professional help now with IICRC-certified service.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 

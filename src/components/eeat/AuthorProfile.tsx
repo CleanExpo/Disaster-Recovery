@@ -172,7 +172,7 @@ export const defaultAuthors = {
       "Six Sigma Black Belt"
     ],
     experience: "12+ years",
-    bio: "Sarah oversees our nationwide network of 115,000+ certified contractors. She has implemented quality control systems that ensure consistent, insurance-approved restoration services across all Australian states and territories.",
+    bio: "Sarah oversees our nationwide network of 115,000+ certified contractors. She has implemented quality control systems that ensure consistent, IICRC-certified restoration services across all Australian states and territories.",
     certifications: [
       "Project Management Professional (PMP)",
       "ISO 9001 Lead Auditor",

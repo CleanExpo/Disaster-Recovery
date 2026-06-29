@@ -278,7 +278,7 @@ export function generateLocationKeywords(suburb: string, city: string, state: st
     `${suburb} emergency mould removal`,
     `${suburb} flood restoration near me`,
     `${suburb} ceiling leak repair`,
-    `water damage ${suburb} insurance approved`,
+    `water damage ${suburb} IICRC certified`,
     
     // Service + location + modifier
     `24 hour water damage ${suburb}`,

@@ -415,7 +415,7 @@ export async function GET(request: NextRequest) {
           'emergency services',
           'mould remediation',
           'storm damage repair',
-          'insurance approved contractors',
+          'IICRC-certified contractors',
         ]
           .filter((s) => s.toLowerCase().includes(params.q!.toLowerCase()))
           .slice(0, 5)

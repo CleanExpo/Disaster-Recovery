@@ -358,7 +358,7 @@ export class WhosFirstGenerator {
       'storm-damage': [
         {
           question: 'Can I tarp my roof myself?',
-          answer: 'DIY repairs can void insurance and create safety risks. Our emergency tarping is insurance-approved, professionally installed, and documented properly for your claim. We\'re on the way - don\'t risk injury or claim denial.',
+          answer: 'DIY repairs can void insurance and create safety risks. Our emergency tarping is performed by IICRC-certified technicians, professionally installed, and documented properly for your claim. We\'re on the way - don\'t risk injury or claim denial.',
         },
       ],
     };

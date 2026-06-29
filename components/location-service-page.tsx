@@ -376,7 +376,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
               Need {data.service.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} in {data.city}?
             </h2>
             <p className="text-xl mb-8 text-blue-800">
-              Available 24/7 for emergency response. Insurance approved contractors.
+              Available 24/7 for emergency response. IICRC-certified contractors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

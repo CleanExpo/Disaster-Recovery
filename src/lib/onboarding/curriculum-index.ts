@@ -273,7 +273,7 @@ export const CERTIFICATION_REQUIREMENTS = {
   certificationBenefits: [
     'NRPG Certified Contractor status',
     'Lead distribution access',
-    'Insurance approved vendor listing',
+    'IICRC-certified vendor listing',
     'Use of NRPG branding',
     'Ongoing training access',
     'Technical support',
@@ -508,7 +508,7 @@ export const SUCCESS_INDICATORS = {
     metrics: [
       'Certification achieved',
       'First job completed',
-      'Insurance approved',
+      'IICRC-certified',
       'Equipment operational',
       'Systems integrated',
     ],
