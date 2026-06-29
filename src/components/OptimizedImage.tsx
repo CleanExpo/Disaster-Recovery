@@ -237,7 +237,7 @@ export default function OptimizedImage({
               '@type': 'Organization',
               name: 'National Recovery Partners',
             },
-            license: 'https://disaster-recovery.vercel.app/terms',
+            license: 'https://disasterrecovery.com.au/terms',
             keywords: `${service.replace(/-/g, ' ')}, ${location}, disaster recovery, emergency services, Australia`,
           }),
         }}

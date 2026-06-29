@@ -65,8 +65,10 @@ next-env.d.ts
 /data/*
 !/data/locations
 *.db
+*.db-journal
 *.sqlite
 *.sqlite3
+prisma/schema.sqlite.prisma
 /dist
 
 # IDE
