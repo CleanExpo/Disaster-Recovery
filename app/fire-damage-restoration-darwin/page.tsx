@@ -75,13 +75,6 @@ const serviceSchema = {
   serviceType: 'Fire Damage Restoration',
   description:
     'Professional fire and smoke damage restoration across Darwin to IICRC S700:2025 standard. Emergency make-safe, smoke extraction, soot remediation, odour elimination, and structural restoration for dry season grassfire interface properties, kitchen and electrical fires, and structural fires in tropical conditions.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

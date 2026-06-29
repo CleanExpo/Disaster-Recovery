@@ -41,7 +41,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Rockhampton' },
   serviceType: 'Cyclone Damage Restoration',
   description: 'Professional cyclone damage restoration in Rockhampton and Central Queensland: emergency make-safe, roof tarping, structural drying, water extraction, and ARPC-compliant insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

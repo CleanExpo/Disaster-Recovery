@@ -89,13 +89,6 @@ const serviceSchema = {
   serviceType: 'Water Damage Restoration',
   description:
     'Professional water damage restoration on the Sunshine Coast: emergency water extraction, structural drying to IICRC S500:2025, mould prevention, canal estate and hinterland seepage treatment, and full insurance claim documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '8341',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

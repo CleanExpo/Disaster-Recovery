@@ -46,7 +46,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Port Douglas' },
   serviceType: 'Cyclone Damage Restoration',
   description: 'Emergency cyclone and storm damage restoration for Port Douglas, Mossman, and the Daintree: structural make-safe, water extraction, roof tarping, and insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

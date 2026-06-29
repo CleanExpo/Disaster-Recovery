@@ -75,13 +75,6 @@ const serviceSchema = {
   serviceType: 'Water Damage Restoration',
   description:
     'Professional water damage restoration across Canberra and the ACT to IICRC S500:2025 standard. Emergency extraction, structural drying, frozen pipe response, storm water ingress repair, heritage and government building specialists, and full insurance documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

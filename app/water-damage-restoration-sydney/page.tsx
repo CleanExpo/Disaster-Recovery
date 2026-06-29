@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Sydney' },
   serviceType: 'Water Damage Restoration',
   description: 'Professional water damage restoration in Sydney including emergency extraction, structural drying, mould prevention, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

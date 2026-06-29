@@ -71,13 +71,6 @@ const serviceSchema = {
   serviceType: 'Flood Damage Restoration',
   description:
     'Professional flood damage restoration on the Sunshine Coast. Services include Category 3 decontamination, structural drying, contents pack-out, mould prevention, canal estate drainage assessment, and insurance claims documentation for Ex-TC Alfred inundation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

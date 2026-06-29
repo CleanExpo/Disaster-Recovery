@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Brisbane' },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration in Brisbane including emergency board-up, soot removal, odour elimination, contents restoration, and structural rebuild.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

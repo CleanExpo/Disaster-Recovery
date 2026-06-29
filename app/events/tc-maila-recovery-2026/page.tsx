@@ -74,13 +74,6 @@ const serviceSchema = {
   serviceType: 'Cyclone Damage Restoration',
   description:
     'Post-TC Maila cyclone damage restoration across Far North Queensland: emergency make-safe, roof tarping, water extraction, structural drying to IICRC S500:2025, mould prevention, and full ARPC Cyclone Pool claim documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqPageSchema = {

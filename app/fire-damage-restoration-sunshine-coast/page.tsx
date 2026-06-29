@@ -71,13 +71,6 @@ const serviceSchema = {
   serviceType: 'Fire Damage Restoration',
   description:
     'Professional fire and smoke damage restoration on the Sunshine Coast. Services include emergency board-up, soot and smoke removal, odour elimination, contents restoration, hinterland bushfire structural rebuild, and post-Alfred electrical fire remediation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

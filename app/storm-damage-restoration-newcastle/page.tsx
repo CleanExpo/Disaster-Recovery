@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Newcastle', containedInPlace: { '@type': 'State', name: 'New South Wales' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Newcastle and the Hunter Valley including emergency make-safe, roof tarping, hail damage repair, east coast low structural damage, flood damage restoration, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

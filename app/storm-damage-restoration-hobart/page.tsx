@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Hobart', containedInPlace: { '@type': 'State', name: 'Tasmania' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Hobart including emergency make-safe, heritage stone building repair compliant with Heritage Tasmania requirements, structural restoration, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

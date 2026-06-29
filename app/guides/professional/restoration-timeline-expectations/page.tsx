@@ -26,13 +26,6 @@ const localBusinessSchema = {
   logo: NAP.logo,
   sameAs: NAP.sameAs,
   areaServed: 'Australia',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
   parentOrganization: { '@id': `${NAP.url}/#organization` },
 };
 

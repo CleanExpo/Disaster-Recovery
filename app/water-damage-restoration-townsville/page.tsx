@@ -52,7 +52,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Townsville' },
   serviceType: 'Water Damage Restoration',
   description: 'Professional water damage restoration in Townsville: emergency water extraction, structural drying to IICRC S500:2025, mould remediation, contents protection, and insurance claim documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

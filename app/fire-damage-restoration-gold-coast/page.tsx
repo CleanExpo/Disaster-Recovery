@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Gold Coast', containedInPlace: { '@type': 'State', name: 'Queensland' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across the Gold Coast including emergency structural make-safe, soot removal, odour elimination, strata coordination, contents restoration, and full rebuild. Covers highrise apartment buildings through to hinterland bushfire interface properties.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '8621', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

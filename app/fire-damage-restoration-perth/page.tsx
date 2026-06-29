@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Perth', containedInPlace: { '@type': 'State', name: 'Western Australia' } },
   serviceType: 'Fire Damage Restoration',
   description: 'Professional fire and smoke damage restoration across Perth and Western Australia including emergency structural make-safe, soot removal, odour elimination, bushfire damage assessment, and full rebuild.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

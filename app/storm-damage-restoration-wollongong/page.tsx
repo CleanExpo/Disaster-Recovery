@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Wollongong', containedInPlace: { '@type': 'State', name: 'New South Wales' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Wollongong and the Illawarra including emergency make-safe, roof tarping, escarpment water ingress damage, east coast low structural damage, coastal wind damage repair, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

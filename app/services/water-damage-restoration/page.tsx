@@ -67,13 +67,6 @@ const structuredData = {
     description: 'Professional water damage restoration with 24/7 emergency response across Australia. Proven in 2022 Brisbane floods - 67,890 insurance claims processed.',
     url: 'https://disasterrecovery.com.au/services/water-damage-restoration'
   }),
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1'
-  }
 };
 
 // FAQPage schema for water damage — trusted static content, safe to stringify

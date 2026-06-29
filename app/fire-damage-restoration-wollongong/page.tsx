@@ -71,13 +71,6 @@ const serviceSchema = {
   serviceType: 'Fire Damage Restoration',
   description:
     'Professional fire and smoke damage restoration in Wollongong and the Illawarra. Services include emergency board-up, soot and smoke removal, odour elimination, Escarpment BAL zone structural assessment, industrial fire remediation, and heritage terrace reinstatement.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

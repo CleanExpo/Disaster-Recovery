@@ -71,13 +71,6 @@ const serviceSchema = {
   serviceType: 'Fire Damage Restoration',
   description:
     'Professional fire and smoke damage restoration in Newcastle. Services include emergency board-up, soot and smoke removal, odour elimination, heritage terrace reinstatement, contents restoration, and industrial fire scene remediation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

@@ -70,13 +70,6 @@ const serviceSchema = {
   serviceType: 'Cyclone Damage Restoration',
   description:
     'Professional cyclone damage restoration in Karratha, Dampier, and the Pilbara: emergency make-safe, roof tarping, structural drying, water extraction, and ARPC-compliant insurance documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 const faqSchema = {

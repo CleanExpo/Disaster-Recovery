@@ -52,7 +52,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Far North Queensland' },
   serviceType: 'Cyclone Damage Restoration',
   description: 'Professional cyclone damage restoration for TC Maila landfall impacts across FNQ and ongoing Alfred insurance claim support. IICRC-certified contractors, priority post-clearance response, full insurer documentation management for both new TC Maila claims and unresolved Alfred disputes.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 export default function April13ConvergencePage() {

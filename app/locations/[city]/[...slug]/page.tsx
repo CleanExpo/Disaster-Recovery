@@ -73,29 +73,6 @@ function buildLocalBusinessSchema(
   };
 }
 
-// Build AggregateRating JSON-LD for location-service pages
-function buildAggregateRatingSchema(cityTitle: string, serviceTitle: string, suburbName?: string) {
-  const locationName = suburbName ? `${suburbName}, ${cityTitle}` : cityTitle;
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: `Emergency ${serviceTitle} ${locationName}`,
-    provider: {
-      '@type': 'Organization',
-      name: NAP.name,
-      '@id': `${BASE_URL}/#organization`,
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '12847',
-      bestRating: '5',
-      worstRating: '1',
-    },
-  };
-}
-
 const validCities = [
   'sydney',
   'melbourne',
@@ -308,9 +285,6 @@ export default async function LocationServicePage({
     suburbName,
   );
 
-  // AggregateRating schema — service-level rating for rich results
-  const aggregateRatingSchema = buildAggregateRatingSchema(cityTitle, serviceTitle, suburbName);
-
   // Video — auto-matched by service category (only renders if status === 'live')
   const serviceVideo = getVideoForService(service);
 
@@ -327,11 +301,6 @@ export default async function LocationServicePage({
         id="location-localbusiness-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      <Script
-        id="location-rating-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
       />
       <LocationServicePageComponent data={pageData} video={serviceVideo || null} />
     </>

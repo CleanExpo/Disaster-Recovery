@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Geelong', containedInPlace: { '@type': 'State', name: 'Victoria' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Geelong including emergency make-safe, industrial and commercial roof restoration in the Corio/Norlane precinct, coastal storm damage on the Bellarine Peninsula and Surf Coast, structural repairs, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

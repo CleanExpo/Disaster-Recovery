@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'Place', name: 'Darwin' },
   serviceType: 'Cyclone Damage Restoration',
   description: 'Professional cyclone and water damage restoration in Darwin and the Northern Territory: emergency make-safe, structural drying, water damage remediation, and full insurance claim documentation following IICRC S500:2025 standards.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

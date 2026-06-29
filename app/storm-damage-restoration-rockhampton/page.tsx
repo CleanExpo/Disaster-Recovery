@@ -42,7 +42,6 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'Rockhampton', containedInPlace: { '@type': 'State', name: 'Queensland' } },
   serviceType: 'Storm Damage Restoration',
   description: 'Professional storm damage restoration across Rockhampton including emergency make-safe, roof tarping, hail damage repair, cyclone-remnant storm response, and full insurance documentation.',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '12847', bestRating: '5', worstRating: '1' },
 };
 
 const faqSchema = {

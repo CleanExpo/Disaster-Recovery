@@ -81,13 +81,6 @@ const serviceSchema = {
   serviceType: 'Cyclone Damage Restoration',
   description:
     'Professional cyclone damage restoration for TC Maila impacts across Far North Queensland: emergency make-safe, roof tarping, water extraction, structural drying to IICRC S500:2025, and full insurance documentation.',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 
 // DR-622: Event schema for AI Overview capture and Google Events search
