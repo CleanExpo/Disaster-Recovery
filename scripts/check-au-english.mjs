@@ -53,7 +53,8 @@ const RULES = [
   { re: /\bfavor(s|ed|ite|able)?\b/i, msg: 'US spelling — use "favour(...)".' },
   { re: /\b1(?:10|15|20)\s?V(?:olts?)?\b/i, allowBefore: /US[\s-]?$/i, msg: 'US mains voltage — AU is 230 V / 50 Hz (label US specs "US-…" if contrasting).' },
   { re: /\bNEMA\b/, msg: 'US plug standard — use AS/NZS 3112 / 10 A GPO.' },
-  { re: /\b(?:15|20)\s?A(?:mp)?\s+circuit\b/i, msg: 'US circuit framing — redo at 230 V (10 A / 16 A / 20 A AU circuits).' },
+  // NB: amperage alone (15 A / 20 A circuit) is NOT a US tell — those circuits
+  // exist in AU. The US signal is the voltage (110/115/120 V) or NEMA plugs.
 ].filter((r) => !r.skip);
 
 function normalize(s) {
