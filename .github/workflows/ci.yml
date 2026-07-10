@@ -25,6 +25,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Australian-English content guard
+        run: npm run check:au-english
+
   typecheck:
     name: ci / typecheck
     runs-on: ubuntu-latest
