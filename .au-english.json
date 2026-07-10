@@ -1,0 +1,4 @@
+{
+  "include": ["data/locations/**/*.json", "content/**/*.md", "content/**/*.mdx"],
+  "exclude": []
+}

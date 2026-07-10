@@ -12,6 +12,7 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
+    "check:au-english": "node scripts/check-au-english.mjs",
     "format": "prettier --write \"src/lib/validation/**/*.{ts,tsx,js,jsx,json}\"",
     "format:check": "prettier --check \"src/lib/validation/**/*.{ts,tsx,js,jsx,json}\"",
     "prisma:generate": "prisma generate",
