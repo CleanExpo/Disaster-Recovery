@@ -1,0 +1,17 @@
+name: Secret Scan (gitleaks)
+# Report-only (continue-on-error) — audit found no secret-scanning gate on this
+# repo. Added 2026-07-12 as part of the fleet hygiene pass. Make it a hard gate
+# once confirmed clean across history.
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
