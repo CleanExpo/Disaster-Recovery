@@ -48,6 +48,16 @@ export async function GET(request: NextRequest) {
   if (sessionOrError instanceof NextResponse) return sessionOrError;
 
   const { searchParams } = new URL(request.url);
+
+  if (searchParams.get('partners') === '1') {
+    const partners = await prisma.partner.findMany({
+      select: { id: true, businessName: true },
+      orderBy: { businessName: 'asc' },
+      take: 200,
+    });
+    return NextResponse.json({ partners });
+  }
+
   const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
   const limit = Math.min(50, Math.max(1, parseInt(searchParams.get('limit') || '20', 10)));
   const status = searchParams.get('status') || undefined;
@@ -157,3 +167,60 @@ export async function GET(request: NextRequest) {
     pagination: { page, limit, total, pages: Math.ceil(total / limit) },
   });
 }
+
+/**
+ * Assign a lead to a Partner (network partner / contractor partner row).
+ * Body: { leadId: string, partnerId: string }
+ */
+export async function PATCH(request: NextRequest) {
+  const sessionOrError = await requireAdmin();
+  if (sessionOrError instanceof NextResponse) return sessionOrError;
+
+  let body: { leadId?: string; partnerId?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
+
+  const leadId = body.leadId?.trim();
+  const partnerId = body.partnerId?.trim();
+  if (!leadId || !partnerId) {
+    return NextResponse.json(
+      { error: 'leadId and partnerId are required' },
+      { status: 400 },
+    );
+  }
+
+  const partner = await prisma.partner.findUnique({ where: { id: partnerId } });
+  if (!partner) {
+    return NextResponse.json({ error: 'Partner not found' }, { status: 404 });
+  }
+
+  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
+  if (!lead) {
+    return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
+  }
+
+  const updated = await prisma.lead.update({
+    where: { id: leadId },
+    data: {
+      partnerId,
+      status: 'ASSIGNED',
+      assignedAt: new Date(),
+    },
+    include: { partner: { select: { id: true, businessName: true } } },
+  });
+
+  return NextResponse.json({
+    success: true,
+    lead: {
+      id: updated.id,
+      status: 'assigned',
+      partnerId: updated.partnerId,
+      partnerName: updated.partner?.businessName,
+      assignedAt: updated.assignedAt?.toISOString(),
+    },
+  });
+}
+
