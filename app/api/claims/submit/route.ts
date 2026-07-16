@@ -404,19 +404,19 @@ export async function POST(request: NextRequest) {
         success: true,
         claimId: trackClaim.id,
         message: paymentConfirmed
-          ? 'Claim submitted successfully. Payment received.'
+          ? 'Claim submitted successfully.'
           : 'Claim submitted successfully.',
         nextSteps: [
           'Your claim is being matched with a certified NRPG contractor',
-          'A recovery coordinator will review your claim and connect you with a verified contractor',
-          'The contractor will schedule an inspection at your convenience',
-          'All further communication will be directly with your assigned contractor',
+          'A verified contractor will review your claim and contact you directly',
+          'They will schedule an inspection at your convenience',
+          'The contractor handles restoration work and bills you directly',
         ],
         importantNotes: [
-          'Disaster Recovery is a lead generation platform',
-          'Your assigned contractor handles all service delivery',
-          'Contractors follow strict NRPG standards and guidelines',
-          'Platform fee covers lead generation and contractor matching only',
+          'Disaster Recovery is a network orchestrator — we connect you with certified contractors',
+          'Your assigned contractor handles service delivery and invoices you directly',
+          'Contractors follow NRPG standards and guidelines',
+          'Disaster Recovery does not hold client funds or invoice for restoration work',
         ],
         trackingUrl: `/track/${trackClaim.id}`,
         supportPackUrl: `/claim/${trackClaim.id}/support`,
