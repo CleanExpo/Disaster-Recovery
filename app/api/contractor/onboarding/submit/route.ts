@@ -4,6 +4,7 @@ import { sendEmail, emailTemplates } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
+import { hashPassword } from '@/lib/jwt-auth';
 import crypto from 'crypto';
 
 const PAYMENT_AMOUNT_AUD = 2475;
@@ -31,6 +32,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const application = body?.application || {};
+    const eligibility = isPlainObject(body?.eligibility) ? body.eligibility : null;
 
     const businessInfo = application.businessInfo || {};
     const services = application.services || {};
@@ -71,6 +73,15 @@ export async function POST(request: Request) {
       : null;
     const bankingData = isPlainObject(application.banking) ? application.banking : null;
 
+    // Persist eligibility gate answers inside experienceData (no dedicated column).
+    const experienceDataWithEligibility =
+      eligibility || experienceData
+        ? {
+            ...(experienceData ?? {}),
+            ...(eligibility ? { eligibility } : {}),
+          }
+        : null;
+
     // 1. Save the ContractorApplication (flat columns + 5 JSONB sections).
     const record = await prisma.contractorApplication.create({
       data: {
@@ -90,7 +101,7 @@ export async function POST(request: Request) {
         utmContent: typeof utm.content === 'string' ? utm.content : null,
         utmTerm: typeof utm.term === 'string' ? utm.term : null,
         insuranceData,
-        experienceData,
+        experienceData: experienceDataWithEligibility,
         equipmentData,
         healthSafetyData,
         bankingData,
@@ -107,12 +118,11 @@ export async function POST(request: Request) {
       });
 
       if (!contractor) {
-        // Generate placeholder credentials — the real password is set when the
-        // contractor completes onboarding and chooses their own credentials.
-        const tempPasswordHash = crypto
-          .createHash('sha256')
-          .update(`temp-${email}-${Date.now()}`)
-          .digest('hex');
+        // Placeholder bcrypt hash — real password is set on activation / first login setup.
+        // Must be bcrypt so /api/contractor/login can compare without false "invalid password".
+        const tempPasswordHash = await hashPassword(
+          `temp-${email}-${crypto.randomBytes(16).toString('hex')}`,
+        );
 
         // Derive a unique username from email
         const baseUsername = email
