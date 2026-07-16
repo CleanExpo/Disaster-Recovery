@@ -4,7 +4,12 @@ import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { AlertCircle, CheckCircle2, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import {
+  AuthPageChrome,
+  authInputClassName,
+  authPrimaryButtonClassName,
+} from '@/components/auth/AuthPageChrome';
+import { AntigravityFooter, AntigravityNavbar } from '@/components/antigravity';
 
 function LoginForm() {
   const router = useRouter();
@@ -57,161 +62,157 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--ag-background-light,#f4f6f8)] px-4">
-      <div className="mx-auto w-full max-w-md space-y-6 rounded-2xl border border-[var(--ag-border-light,#e5e7eb)] bg-white p-8 shadow-sm">
-        {showExpiredBanner && (
-          <div
-            role="alert"
-            className="flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"
-          >
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-            <span className="flex-1">Your session expired — please sign in again.</span>
-            <button
-              type="button"
-              onClick={() => setShowExpiredBanner(false)}
-              aria-label="Dismiss"
-              className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-amber-600"
-            >
-              <X className="h-4 w-4" aria-hidden="true" />
-            </button>
-          </div>
-        )}
-
-        <div className="space-y-2 text-center">
-          <h1 className="text-2xl font-bold text-[var(--ag-primary-blue)]">Welcome back</h1>
-          <p className="text-sm text-[var(--ag-text-grey)]">
-            Sign in to your Disaster Recovery account
-          </p>
-        </div>
-
-        {showRegisteredBanner && (
-          <div
-            role="status"
-            aria-live="polite"
-            className="flex items-start gap-3 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800"
-          >
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-            <span className="flex-1">Account created! Please sign in to continue.</span>
-            <button
-              type="button"
-              onClick={() => setShowRegisteredBanner(false)}
-              aria-label="Dismiss"
-              className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-emerald-600"
-            >
-              <X className="h-4 w-4" aria-hidden="true" />
-            </button>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-[var(--ag-text-dark)]">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-3 text-sm min-h-[44px] text-gray-900"
-              placeholder="you@example.com"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between gap-2">
-              <label
-                htmlFor="password"
-                className="text-sm font-medium text-[var(--ag-text-dark)]"
-              >
-                Password
-              </label>
-              <Link
-                href="/forgot-password"
-                className="text-xs text-[var(--ag-primary-blue)] hover:underline"
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full rounded-md border border-gray-300 bg-white px-3 py-3 text-sm min-h-[44px] text-gray-900"
-              placeholder="••••••••"
-            />
-          </div>
-
-          <label className="flex items-center gap-2 text-sm text-[var(--ag-text-dark)]">
-            <input
-              type="checkbox"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-              className="h-4 w-4 rounded border-gray-300"
-            />
-            Remember me for 30 days
-          </label>
-
-          {error && (
-            <p role="alert" className="text-sm text-red-600">
-              {error}
-            </p>
-          )}
-
-          <Button
-            type="submit"
-            className="w-full min-h-[44px]"
-            disabled={isLoading}
-            style={{ background: 'var(--ag-primary-blue)' }}
-          >
-            {isLoading ? 'Signing in…' : 'Sign in'}
-          </Button>
-        </form>
-
-        <div className="space-y-2 text-center text-sm text-[var(--ag-text-grey)]">
+    <AuthPageChrome
+      title="Welcome back"
+      subtitle="Sign in to your Disaster Recovery account"
+      footer={
+        <>
           <p>
             Don&apos;t have an account?{' '}
-            <Link href="/signup" className="text-[var(--ag-primary-blue)] hover:underline">
+            <Link href="/signup" className="font-semibold text-[var(--ag-primary-blue)] hover:underline">
               Sign up
             </Link>
           </p>
-          <p>
+          <p className="mt-2">
             Contractor?{' '}
             <Link
               href="/contractor/login"
-              className="text-[var(--ag-primary-blue)] hover:underline"
+              className="font-semibold text-[var(--ag-primary-blue)] hover:underline"
             >
               Contractor portal
             </Link>
             {' · '}
             <Link
               href="/contractor/apply"
-              className="text-[var(--ag-primary-blue)] hover:underline"
+              className="font-semibold text-[var(--ag-primary-blue)] hover:underline"
             >
               Apply
             </Link>
           </p>
+        </>
+      }
+    >
+      {showExpiredBanner && (
+        <div
+          role="alert"
+          className="mb-4 flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"
+        >
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <span className="flex-1">Your session expired — please sign in again.</span>
+          <button
+            type="button"
+            onClick={() => setShowExpiredBanner(false)}
+            aria-label="Dismiss"
+            className="min-h-[44px] min-w-[44px] shrink-0 rounded"
+          >
+            <X className="mx-auto h-4 w-4" aria-hidden="true" />
+          </button>
         </div>
-      </div>
-    </div>
+      )}
+
+      {showRegisteredBanner && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="mb-4 flex items-start gap-3 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800"
+        >
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <span className="flex-1">Account created! Please sign in to continue.</span>
+          <button
+            type="button"
+            onClick={() => setShowRegisteredBanner(false)}
+            aria-label="Dismiss"
+            className="min-h-[44px] min-w-[44px] shrink-0 rounded"
+          >
+            <X className="mx-auto h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-sm font-medium text-[var(--ag-text-dark)]">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={authInputClassName}
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-2">
+            <label htmlFor="password" className="text-sm font-medium text-[var(--ag-text-dark)]">
+              Password
+            </label>
+            <Link
+              href="/forgot-password"
+              className="min-h-[44px] inline-flex items-center text-xs font-medium text-[var(--ag-primary-blue)] hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+          <input
+            id="password"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={authInputClassName}
+            placeholder="••••••••"
+          />
+        </div>
+
+        <label className="flex min-h-[44px] items-center gap-2 text-sm text-[var(--ag-text-dark)]">
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+            className="h-4 w-4 rounded border-gray-300"
+          />
+          Remember me for 30 days
+        </label>
+
+        {error && (
+          <p role="alert" className="text-sm text-red-600">
+            {error}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          className={authPrimaryButtonClassName}
+          style={{ background: 'var(--ag-primary-blue)' }}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Signing in…' : 'Sign in'}
+        </button>
+      </form>
+    </AuthPageChrome>
   );
 }
 
 export default function LoginPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-screen items-center justify-center text-[var(--ag-text-grey)]">
-          Loading…
-        </div>
-      }
-    >
-      <LoginForm />
-    </Suspense>
+    <>
+      <AntigravityNavbar />
+      <Suspense
+        fallback={
+          <div className="flex min-h-[50vh] items-center justify-center text-[var(--ag-text-grey)]">
+            Loading…
+          </div>
+        }
+      >
+        <LoginForm />
+      </Suspense>
+      <AntigravityFooter />
+    </>
   );
 }
