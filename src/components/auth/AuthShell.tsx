@@ -35,23 +35,32 @@ export function AuthShell({ role, email, name, children }: AuthShellProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--ag-background-light,#f4f6f8)]">
-      <header className="border-b border-[var(--ag-border-light,#e5e7eb)] bg-white">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-4">
-          <div>
-            <Link href="/" className="text-lg font-bold text-[var(--ag-primary-blue)]">
-              Disaster Recovery
+    <div className="ag-page-elevated min-h-screen">
+      <header
+        className="border-b border-[var(--ag-border-light,#e5e7eb)] bg-white/95 backdrop-blur-sm"
+        style={{ boxShadow: '0 1px 0 color-mix(in srgb, var(--ag-primary-blue) 8%, transparent)' }}
+      >
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-sm font-black text-white"
+              style={{ background: 'var(--ag-primary-blue)' }}
+              aria-label="Disaster Recovery home"
+            >
+              DR
             </Link>
-            <p className="text-xs text-[var(--ag-text-grey)]">
-              {name || email || 'Account'}
-            </p>
+            <div>
+              <p className="text-sm font-bold text-[var(--ag-primary-blue)]">Disaster Recovery</p>
+              <p className="text-xs text-[var(--ag-text-grey)]">{name || email || 'Account'}</p>
+            </div>
           </div>
-          <nav aria-label="Account" className="flex flex-wrap items-center gap-3">
+          <nav aria-label="Account" className="flex flex-wrap items-center gap-1 sm:gap-2">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="min-h-[44px] inline-flex items-center text-sm font-medium text-[var(--ag-text-dark)] hover:text-[var(--ag-primary-blue)]"
+                className="inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-medium text-[var(--ag-text-dark)] hover:bg-[var(--ag-background-light)] hover:text-[var(--ag-primary-blue)]"
               >
                 {l.label}
               </Link>
@@ -59,7 +68,7 @@ export function AuthShell({ role, email, name, children }: AuthShellProps) {
             <button
               type="button"
               onClick={logout}
-              className="min-h-[44px] rounded-md border px-3 text-sm font-medium text-[var(--ag-text-dark)] hover:bg-gray-50"
+              className="inline-flex min-h-[44px] items-center rounded-lg border border-[var(--ag-border-grey)] px-3 text-sm font-medium text-[var(--ag-text-dark)] hover:bg-gray-50"
             >
               Sign out
             </button>
