@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
       });
       return NextResponse.json(
         {
-          error: 'Account activation required. Use the activation link from your payment email.',
+          error: 'Account activation required. Use the activation link from your approval or payment email.',
           code: 'ACCOUNT_NOT_ACTIVATED',
         },
         { status: 403 },
