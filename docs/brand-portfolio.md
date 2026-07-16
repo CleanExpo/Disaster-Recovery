@@ -24,7 +24,7 @@ _Last updated: 2026-05-01._
 
 | Brand               | Domain                       | Vercel project                            | Status                    |
 | ------------------- | ---------------------------- | ----------------------------------------- | ------------------------- |
-| **Unite-Group**     | unite-group.in               | `unite-group` (CleanExpo/Unite-Hub)       | Live                      |
+| **Unite-Group**     | unite-group.in               | `unite-group` (repo TBD — was CleanExpo/Unite-Hub, decommissioned 2026-06-20) | Live |
 | **RestoreAssist**   | restoreassist.app            | `restoreassist` (CleanExpo/RestoreAssist) | Live                      |
 | **Synthex**         | synthex.social               | `synthex` (CleanExpo/Synthex)             | Live                      |
 | **Persona Foundry** | personafoundry.com           | godaddysites trial                        | Pre-launch                |
