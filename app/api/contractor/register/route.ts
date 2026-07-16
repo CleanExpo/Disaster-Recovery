@@ -411,3 +411,20 @@ function getSubscriptionAmount(tier: string, frequency: string): number {
 
   return (baseCents / 100) * (multipliers[frequency] || 1);
 }
+
+/**
+ * Legacy register endpoint — retired in favour of /contractor/apply →
+ * POST /api/contractor/onboarding/submit. Kept as an explicit 410 so callers
+ * do not silently hit a missing POST export.
+ */
+export async function POST() {
+  return NextResponse.json(
+    {
+      success: false,
+      error: 'This registration endpoint is retired. Use the contractor application flow.',
+      redirectTo: '/contractor/apply',
+      code: 'REGISTER_RETIRED',
+    },
+    { status: 410 },
+  );
+}
