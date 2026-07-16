@@ -18,7 +18,7 @@ const EN = {
   heading: 'Privacy — Collection Notice (APP 5)',
   p1: 'National Restoration Professionals Group Pty Ltd (ABN 85 151 794 142), trading as Disaster Recovery, is collecting your personal information on this form to match your claim with a certified IICRC restoration contractor in our network.',
   p2: 'The information you provide — including your name, contact details, property address, damage description, and insurance details — will be disclosed to the assigned contractor so they can contact you, inspect your property, perform restoration work, and liaise with your insurer on your behalf.',
-  p3: 'Your payment card details are processed by Stripe and are not stored or shared by us. Your information may also be disclosed to our cloud infrastructure providers who process data on our behalf, and to regulatory bodies where required by law.',
+  p3: 'Disaster Recovery does not take card payments on this form. Your contact and property details are used to match you with a certified contractor. Information may be disclosed to our cloud infrastructure providers who process data on our behalf, and to regulatory bodies where required by law.',
   p4a: 'You have the right to access and correct the personal information we hold about you. To exercise this right or to make a privacy complaint, contact us via our',
   p4b: 'contact form',
   p4c: '. Our full',
