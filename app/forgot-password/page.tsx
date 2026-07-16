@@ -2,7 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { AntigravityFooter, AntigravityNavbar } from '@/components/antigravity';
+import {
+  AuthPageChrome,
+  authInputClassName,
+  authPrimaryButtonClassName,
+} from '@/components/auth/AuthPageChrome';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -32,9 +37,7 @@ export default function ForgotPasswordPage() {
         data.message ||
           'If an account exists for that email, password reset instructions have been sent.',
       );
-      if (data.resetPath) {
-        setDevHint(data.resetPath as string);
-      }
+      if (data.resetPath) setDevHint(data.resetPath as string);
     } catch {
       setError('Request failed. Please try again.');
     } finally {
@@ -43,17 +46,20 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--ag-background-light,#f4f6f8)] px-4">
-      <div className="w-full max-w-md space-y-6 rounded-2xl border border-[var(--ag-border-light,#e5e7eb)] bg-white p-8 shadow-sm">
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold text-[var(--ag-primary-blue)]">Forgot password</h1>
-          <p className="text-sm text-[var(--ag-text-grey)]">
-            Enter your email and we&apos;ll send reset instructions if an account exists.
-          </p>
-        </div>
+    <>
+      <AntigravityNavbar />
+      <AuthPageChrome
+        title="Forgot password"
+        subtitle="Enter your email and we will send reset instructions if an account exists."
+        footer={
+          <Link href="/login" className="font-semibold text-[var(--ag-primary-blue)] hover:underline">
+            Back to sign in
+          </Link>
+        }
+      >
         <form onSubmit={onSubmit} className="space-y-4">
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium">
+            <label htmlFor="email" className="text-sm font-medium text-[var(--ag-text-dark)]">
               Email
             </label>
             <input
@@ -63,7 +69,7 @@ export default function ForgotPasswordPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full min-h-[44px] rounded-md border border-gray-300 px-3 py-3 text-sm"
+              className={authInputClassName}
             />
           </div>
           {error && (
@@ -77,23 +83,24 @@ export default function ForgotPasswordPage() {
             </p>
           )}
           {devHint && (
-            <p className="text-xs text-[var(--ag-text-grey)] break-all">
+            <p className="break-all text-xs text-[var(--ag-text-grey)]">
               Dev reset link:{' '}
               <Link href={devHint} className="underline text-[var(--ag-primary-blue)]">
                 {devHint}
               </Link>
             </p>
           )}
-          <Button type="submit" className="w-full min-h-[44px]" disabled={loading}>
+          <button
+            type="submit"
+            className={authPrimaryButtonClassName}
+            style={{ background: 'var(--ag-primary-blue)' }}
+            disabled={loading}
+          >
             {loading ? 'Sending…' : 'Send reset link'}
-          </Button>
+          </button>
         </form>
-        <p className="text-center text-sm">
-          <Link href="/login" className="text-[var(--ag-primary-blue)] hover:underline">
-            Back to sign in
-          </Link>
-        </p>
-      </div>
-    </div>
+      </AuthPageChrome>
+      <AntigravityFooter />
+    </>
   );
 }
