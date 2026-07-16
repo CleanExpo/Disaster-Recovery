@@ -3,8 +3,7 @@
 
 ## Registry impact
 - [ ] No registry change required
-- [ ] Updated `.portfolio/PORTFOLIO.yaml` (only Unite-Hub holds the registry)
-- [ ] N/A — this repo is not Unite-Hub (no registry here)
+- [ ] N/A — the Unite-Hub portfolio registry was decommissioned 2026-06-20; no active cross-repo registry currently exists
 
 ## Sandbox testing
 - [ ] Tested on sandbox deployment (URL: ____________)

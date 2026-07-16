@@ -6,7 +6,7 @@
  * Octane-style rendering directives for photorealistic image generation.
  */
 
-export type BrandKey = 'disaster-recovery' | 'synthex' | 'restore-assist' | 'unite-hub';
+export type BrandKey = 'disaster-recovery' | 'synthex' | 'restore-assist';
 export type AssetType = 'hero-image' | 'card-background' | 'logo-render' | 'service-visual';
 export type AspectRatio = '16:9' | '1:1' | '5:4';
 export type Resolution = '1K' | '2K' | '4K';
@@ -45,14 +45,6 @@ export const BRAND_ENVIRONMENTS: Record<BrandKey, BrandEnvironment> = {
     octaneDirectives:
       'ray-traced matte industrial surfaces with clinical white key light, volumetric dust motes, ' +
       '15mm frosted glass pane with refractive index 1.5 distorting macro-detail equipment background',
-  },
-  'unite-hub': {
-    substrate: 'Interlocking geometric nodes and frosted architectural panels',
-    glow: '5000K Corporate Teal / Slate',
-    finish: 'Satin Nickel',
-    octaneDirectives:
-      'ray-traced satin nickel reflections on geometric surfaces, volumetric architectural fog, ' +
-      '15mm frosted glass pane with refractive index 1.5 distorting interlocking node background',
   },
 };
 

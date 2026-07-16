@@ -1,4 +1,4 @@
-@../Unite-Hub/.portfolio/PORTFOLIO.yaml
+<!-- Unite-Hub (CleanExpo/Unite-Hub) held the cross-repo portfolio registry; decommissioned 2026-06-20. No active replacement registry is wired here. -->
 
 <!--
   RECONSTRUCTED 2026-06-15.
@@ -26,7 +26,7 @@
 **Canonical local path:** `D:\Disaster-Recovery`
 **GitHub:** `CleanExpo/Disaster-Recovery`
 
-> Registry: see `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth)
+> Registry: previously `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth); Unite-Hub decommissioned 2026-06-20, no active replacement wired here.
 
 ---
 
@@ -214,5 +214,6 @@ Raise an ADR if the rule itself should change.
   project for safe pre-prod work (sandbox-first workflow per the registry).
 - **DR-NRPG** (`CleanExpo/DR-NRPG`) — the separate NRPG contractor platform.
 
-> Registry of all related repos, Vercel projects, and branches:
-> `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth).
+> Registry of all related repos, Vercel projects, and branches previously lived at
+> `D:\Unite-Hub\.portfolio\PORTFOLIO.yaml` (single source of truth); Unite-Hub
+> decommissioned 2026-06-20, no active replacement wired here.
