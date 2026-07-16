@@ -96,6 +96,8 @@ model User {
   isEmailVerified              Boolean          @default(false)
   emailVerificationToken       String?
   emailVerificationTokenExpiry DateTime?
+  passwordResetToken           String?
+  passwordResetExpiry          DateTime?
   isActive                     Boolean          @default(true)
   isBlocked                    Boolean          @default(false)
   lastLoginAt                  DateTime?
@@ -1099,7 +1101,7 @@ model ContractorProfile {
   bio                    String?   @db.Text
   availability           String    @default("AVAILABLE")
   isVerified             Boolean   @default(false)
-  stripeConnectAccountId String?
+  // ADR-014 Path A cutover: stripeConnectAccountId removed — do not reintroduce.
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
   tenantId               String?
