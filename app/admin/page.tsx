@@ -19,6 +19,7 @@ import {
 import { prisma } from '@/lib/prisma';
 import { EmptyState } from '@/components/ui/empty-state';
 import { AdminDashboardCharts } from '@/components/admin/AdminDashboardCharts';
+import { AdminKpiCard } from '@/components/admin/AdminKpiCard';
 import type { ApplicationsTrendPoint, StatusBreakdownItem } from '@/components/admin/AdminDashboardCharts';
 import { format, subDays } from 'date-fns';
 
@@ -27,7 +28,7 @@ const QUICK_LINKS = [
   { href: '/admin/leads', label: 'Leads', icon: ClipboardCheck, description: 'Manage booking leads and assignments', accent: 'emerald' },
   { href: '/admin/fraud-detection', label: 'Fraud detection', icon: ShieldAlert, description: 'Review document verification logs', accent: 'red' },
   { href: '/admin/seo-pages', label: 'SEO pages', icon: Search, description: 'View and generate location pages', accent: 'blue' },
-  { href: '/admin/proof-of-work', label: 'Proof of work', icon: ClipboardCheck, description: 'Verify contractor submissions', accent: 'violet' },
+  { href: '/admin/proof-of-work', label: 'Proof of work', icon: ClipboardCheck, description: 'Verify contractor submissions', accent: 'slate' },
   { href: '/admin/site-audit', label: 'Site audit', icon: Globe, description: 'Run site health checks', accent: 'cyan' },
   { href: '/admin/semrush-dashboard', label: 'SEMrush dashboard', icon: BarChart3, description: 'SEO and ranking metrics', accent: 'amber' },
 ];
@@ -37,7 +38,7 @@ const ACCENT_STYLES: Record<string, string> = {
   emerald: 'bg-emerald-500/10 text-emerald-600 border-emerald-200',
   red: 'bg-red-500/10 text-red-600 border-red-200',
   blue: 'bg-blue-500/10 text-blue-600 border-blue-200',
-  violet: 'bg-violet-500/10 text-violet-600 border-violet-200',
+  slate: 'bg-slate-500/10 text-slate-600 border-slate-200',
   cyan: 'bg-cyan-500/10 text-cyan-600 border-cyan-200',
   amber: 'bg-amber-500/10 text-amber-600 border-amber-200',
 };
@@ -150,20 +151,23 @@ export default async function AdminDashboardPage() {
       <header className="mb-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg shadow-orange-500/25">
+            <div
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
+              style={{ background: 'var(--ag-primary-blue)' }}
+            >
               <LayoutDashboard className="h-7 w-7 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
+              <h1 className="text-2xl font-bold tracking-tight text-[var(--ag-primary-blue)] sm:text-3xl">
                 Admin dashboard
               </h1>
-              <p className="mt-1 text-sm text-gray-500">
-                Overview and quick access to platform tools · {format(new Date(), 'EEEE, d MMMM yyyy')}
+              <p className="mt-1 text-sm text-[var(--ag-text-grey)]">
+                Overview and quick access · {format(new Date(), 'EEEE, d MMMM yyyy')}
               </p>
             </div>
           </div>
         </div>
-        <p className="mt-4 max-w-2xl text-gray-600">
+        <p className="mt-4 max-w-2xl text-[var(--ag-text-grey)]">
           Manage contractor applications, leads, compliance, and platform tools from one place.
         </p>
       </header>
@@ -172,66 +176,44 @@ export default async function AdminDashboardPage() {
       <section className="mb-8">
         <h2 className="sr-only">Key metrics</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between">
+          <AdminKpiCard
+            label="Pending review"
+            value={pendingCount}
+            tone="warning"
+            icon={<Clock className="h-5 w-5 text-amber-600" />}
+          />
+          <AdminKpiCard
+            label="Approved"
+            value={kpis.approved}
+            tone="success"
+            icon={<CheckCircle2 className="h-5 w-5 text-emerald-600" />}
+          />
+          <AdminKpiCard
+            label="Rejected"
+            value={kpis.rejected}
+            tone="danger"
+            icon={<XCircle className="h-5 w-5 text-red-600" />}
+          />
+          <AdminKpiCard
+            label="Total applications"
+            value={kpis.total}
+            icon={<FileText className="h-5 w-5" style={{ color: 'var(--ag-primary-blue)' }} />}
+          />
+          <div className="rounded-2xl border border-[var(--ag-border-grey)] bg-white p-5 shadow-sm sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-sm font-medium text-gray-500">Pending review</p>
-                <p className="mt-1 text-3xl font-bold tabular-nums text-gray-900">{pendingCount}</p>
-                <p className="mt-1 text-xs text-gray-500">Needs action</p>
-              </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
-                <Clock className="h-6 w-6 text-amber-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Approved</p>
-                <p className="mt-1 text-3xl font-bold tabular-nums text-emerald-600">{kpis.approved}</p>
-                <p className="mt-1 text-xs text-gray-500">All time</p>
-              </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
-                <CheckCircle2 className="h-6 w-6 text-emerald-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Rejected</p>
-                <p className="mt-1 text-3xl font-bold tabular-nums text-red-600">{kpis.rejected}</p>
-                <p className="mt-1 text-xs text-gray-500">All time</p>
-              </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10">
-                <XCircle className="h-6 w-6 text-red-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Total applications</p>
-                <p className="mt-1 text-3xl font-bold tabular-nums text-gray-900">{kpis.total}</p>
-                <p className="mt-1 text-xs text-gray-500">All statuses</p>
-              </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-500/10">
-                <FileText className="h-6 w-6 text-gray-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-6 shadow-sm sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-700">Quick action</p>
-                <p className="mt-1 text-sm font-semibold text-orange-900">Review applications</p>
-                <p className="mt-1 text-xs text-orange-600/80">View all & take action</p>
+                <p className="text-sm font-medium text-[var(--ag-text-grey)]">Quick action</p>
+                <p className="mt-1 text-sm font-semibold text-[var(--ag-primary-blue)]">
+                  Review applications
+                </p>
               </div>
               <Link
                 href="/admin/applications"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-white shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white"
+                style={{ background: 'var(--ag-emergency-red)' }}
+                aria-label="Review applications"
               >
-                <ArrowRight className="h-6 w-6" />
+                <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
           </div>
