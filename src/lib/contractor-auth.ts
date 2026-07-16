@@ -13,10 +13,10 @@ export function getContractorToken(): string | null {
   return null;
 }
 
-/** Check whether a contractor profile cache exists (does not validate server-side). */
+/** @deprecated Prefer /api/auth/me — localStorage is display cache only. */
 export function isContractorAuthenticated(): boolean {
   if (typeof window === 'undefined') return false;
-  return !!localStorage.getItem(AUTH_KEY);
+  return false;
 }
 
 /**
