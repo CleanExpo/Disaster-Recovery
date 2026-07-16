@@ -41,7 +41,7 @@ export function AdminSidebarNav({ groups }: { groups: NavGroup[] }) {
                   <Link
                     href={item.href}
                     aria-current={active ? 'page' : undefined}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[15px] font-medium transition-all duration-150 ${
+                    className={`flex items-center gap-3 px-3 py-3 min-h-[44px] rounded-lg text-[15px] font-medium transition-all duration-150 ${
                       active
                         ? 'bg-[var(--ag-primary-blue)]/40 text-white shadow-sm ring-1 ring-white/10'
                         : 'text-gray-400 hover:bg-gray-800/70 hover:text-gray-200'
