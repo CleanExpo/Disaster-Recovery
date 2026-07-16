@@ -54,8 +54,8 @@ export function AntigravityNavbar() {
                   strokeLinejoin="round"
                 />
                 <circle cx="36" cy="18" r="2.5" fill="var(--ag-emergency-red)" />
-                <text x="40" y="26" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="24" fill="var(--ag-emergency-red)">D</text>
-                <text x="58" y="26" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="24" fill="#a0aab2">R</text>
+                <text x="40" y="26" fontFamily="ui-sans-serif, system-ui, sans-serif" fontWeight="900" fontSize="24" fill="var(--ag-emergency-red)">D</text>
+                <text x="58" y="26" fontFamily="ui-sans-serif, system-ui, sans-serif" fontWeight="900" fontSize="24" fill="#a0aab2">R</text>
               </svg>
             </div>
             <div className="ag-logo-text">
