@@ -71,6 +71,8 @@ interface Lead {
   status: 'new' | 'contacted' | 'assigned' | 'in_progress' | 'completed' | 'cancelled';
   priority: 'high' | 'medium' | 'low';
   notes: string[];
+  source?: 'lead' | 'claim_enquiry';
+  trackUrl?: string;
 }
 
 interface Pagination {
@@ -477,6 +479,11 @@ export default function AdminLeadsPage() {
                           <div>
                             <p className="font-medium text-gray-900">{lead.bookingId}</p>
                             <p className="text-sm text-gray-500">{getTimeSince(lead.createdAt)}</p>
+                            {lead.source === 'claim_enquiry' && (
+                              <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-violet-200 bg-violet-50 px-2 py-0.5 text-xs font-medium text-violet-800">
+                                Claim enquiry
+                              </span>
+                            )}
                             {lead.priority === 'high' && (
                               <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-xs font-medium text-red-800">
                                 <Zap className="h-3 w-3" />
@@ -700,41 +707,66 @@ export default function AdminLeadsPage() {
                   {assignError}
                 </p>
               )}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                <label htmlFor="assign-partner" className="sr-only">
-                  Partner
-                </label>
-                <select
-                  id="assign-partner"
-                  value={assignPartnerId}
-                  onChange={(e) => setAssignPartnerId(e.target.value)}
-                  className="flex-1 rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-sm"
-                >
-                  <option value="">Select partner…</option>
-                  {partners.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.businessName}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  onClick={() => setSelectedLead(null)}
-                  className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAssign}
-                  disabled={assigning || !assignPartnerId}
-                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50"
-                  style={{ backgroundColor: 'var(--ag-primary-blue, #0F2942)' }}
-                >
-                  <Send className="h-4 w-4" />
-                  {assigning ? 'Assigning…' : 'Assign partner'}
-                </button>
-              </div>
+              {selectedLead.source === 'claim_enquiry' ? (
+                <div className="space-y-3">
+                  <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
+                    This is a public claim enquiry, not a Partner lead. Open the track page to
+                    review it, or promote it to a Lead in ops before assigning a partner.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Link
+                      href={selectedLead.trackUrl || `/track/${selectedLead.id}`}
+                      className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white"
+                      style={{ backgroundColor: 'var(--ag-primary-blue, #0F2942)' }}
+                    >
+                      Open track page
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedLead(null)}
+                      className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 min-h-[44px]"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  <label htmlFor="assign-partner" className="sr-only">
+                    Partner
+                  </label>
+                  <select
+                    id="assign-partner"
+                    value={assignPartnerId}
+                    onChange={(e) => setAssignPartnerId(e.target.value)}
+                    className="flex-1 rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-sm min-h-[44px]"
+                  >
+                    <option value="">Select partner…</option>
+                    {partners.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.businessName}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedLead(null)}
+                    className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 min-h-[44px]"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAssign}
+                    disabled={assigning || !assignPartnerId}
+                    className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50 min-h-[44px]"
+                    style={{ backgroundColor: 'var(--ag-primary-blue, #0F2942)' }}
+                  >
+                    <Send className="h-4 w-4" />
+                    {assigning ? 'Assigning…' : 'Assign partner'}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
