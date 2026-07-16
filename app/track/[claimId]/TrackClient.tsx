@@ -32,14 +32,14 @@ import type { ClaimTracking } from '@/lib/validation/schemas';
 type ClaimData = ClaimTracking;
 
 const workflowSteps = [
-  { key: 'paymentProcessed', label: 'Payment Processed', icon: DollarSign },
-  { key: 'contractorAssigned', label: 'Contractor Assigned', icon: User },
-  { key: 'contractorAccepted', label: 'Job Accepted', icon: CheckCircle2 },
-  { key: 'initialContactMade', label: 'Contact Made', icon: Phone },
-  { key: 'jobScheduled', label: 'Job Scheduled', icon: Calendar },
-  { key: 'makeSafeCompleted', label: 'Make-Safe Done', icon: Shield },
+  { key: 'paymentProcessed', label: 'Claim received', icon: FileText },
+  { key: 'contractorAssigned', label: 'Contractor matched', icon: User },
+  { key: 'contractorAccepted', label: 'Job accepted', icon: CheckCircle2 },
+  { key: 'initialContactMade', label: 'Contact made', icon: Phone },
+  { key: 'jobScheduled', label: 'Job scheduled', icon: Calendar },
+  { key: 'makeSafeCompleted', label: 'Make-safe done', icon: Shield },
   { key: 'documentationProvided', label: 'Documentation', icon: FileText },
-  { key: 'claimFinalized', label: 'Claim Complete', icon: Home }
+  { key: 'claimFinalized', label: 'Claim complete', icon: Home },
 ];
 
 function TrackClaimPageOriginal() {
@@ -79,61 +79,20 @@ function TrackClaimPageOriginal() {
 
   const fetchClaimData = async () => {
     try {
-      const response = await fetch(`/api/claims/submit?id=${claimId}`);
+      const response = await fetch(`/api/claims/submit?id=${encodeURIComponent(claimId)}`);
       const result = await response.json();
-      
-      if (result.success) {
+
+      if (result.success && result.claim) {
         setClaimData(result.claim);
       } else {
-        // Mock data for demo
-        setClaimData(createMockClaim(claimId));
+        setClaimData(null);
       }
     } catch {
-      // Use mock data for demo
-      setClaimData(createMockClaim(claimId));
+      setClaimData(null);
     } finally {
       setLoading(false);
     }
   };
-
-  const createMockClaim = (id: string): ClaimData => ({
-    id: id,
-    status: 'CONTRACTOR_ASSIGNED',
-    createdAt: new Date(Date.now() - 15 * 60000).toISOString(), // 15 minutes ago
-    client: {
-      fullName: 'John Smith',
-      phone: '0412 345 678',
-      email: 'john.smith@example.com'
-    },
-    property: {
-      address: '123 Main Street',
-      suburb: 'Brisbane',
-      state: 'QLD',
-      postcode: '4000'
-    },
-    damage: {
-      types: ['Water/Flood Damage', 'Fire/Smoke Damage'],
-      urgencyLevel: 'urgent',
-      description: 'Significant water damage from burst pipe affecting multiple rooms.'
-    },
-    contractor: {
-      companyName: 'Premium Restoration Services Pty Ltd',
-      contactPerson: 'John Anderson',
-      directPhone: '0412 987 654',
-      assignedAt: new Date(Date.now() - 10 * 60000).toISOString(),
-      acceptedAt: new Date(Date.now() - 5 * 60000).toISOString()
-    },
-    workflow: {
-      paymentProcessed: true,
-      contractorAssigned: true,
-      contractorAccepted: true,
-      initialContactMade: false,
-      jobScheduled: false,
-      makeSafeCompleted: false,
-      documentationProvided: false,
-      claimFinalized: false
-    }
-  });
 
   const getProgressPercentage = () => {
     if (!claimData) return 0;
@@ -175,14 +134,22 @@ function TrackClaimPageOriginal() {
 
   if (!claimData) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <Card>
-            <CardContent className="py-12 text-center">
-              <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-              <p className="text-gray-700">Claim not found</p>
-            </CardContent>
-          </Card>
+      <div className="ag-page-elevated min-h-screen py-12 px-4">
+        <div className="mx-auto max-w-lg text-center space-y-4">
+          <AlertCircle className="h-12 w-12 text-[var(--ag-emergency-red)] mx-auto" />
+          <h1 className="text-xl font-bold text-[var(--ag-primary-blue)]">Claim not found</h1>
+          <p className="text-sm text-[var(--ag-text-grey)]">
+            We could not find that claim ID. Check the ID from your confirmation email, or lodge a
+            new claim.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild className="ag-btn-primary-navy">
+              <Link href="/claim">Lodge a claim</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href="tel:1300309361">Call 1300 309 361</a>
+            </Button>
+          </div>
         </div>
       </div>
     );
