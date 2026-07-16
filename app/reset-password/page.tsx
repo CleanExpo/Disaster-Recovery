@@ -3,7 +3,12 @@
 import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Button } from '@/components/ui/button';
+import { AntigravityFooter, AntigravityNavbar } from '@/components/antigravity';
+import {
+  AuthPageChrome,
+  authInputClassName,
+  authPrimaryButtonClassName,
+} from '@/components/auth/AuthPageChrome';
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams();
@@ -44,79 +49,91 @@ function ResetPasswordForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--ag-background-light,#f4f6f8)] px-4">
-      <div className="w-full max-w-md space-y-6 rounded-2xl border bg-white p-8 shadow-sm">
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold text-[var(--ag-primary-blue)]">Reset password</h1>
-          <p className="text-sm text-[var(--ag-text-grey)]">Choose a new password for your account.</p>
+    <AuthPageChrome
+      title="Reset password"
+      subtitle="Choose a new password for your account."
+      footer={
+        <Link href="/login" className="font-semibold text-[var(--ag-primary-blue)] hover:underline">
+          Back to sign in
+        </Link>
+      }
+    >
+      <form onSubmit={onSubmit} className="space-y-4">
+        {!tokenFromUrl && (
+          <div className="space-y-2">
+            <label htmlFor="token" className="text-sm font-medium text-[var(--ag-text-dark)]">
+              Reset token
+            </label>
+            <input
+              id="token"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              required
+              className={authInputClassName}
+            />
+          </div>
+        )}
+        <div className="space-y-2">
+          <label htmlFor="password" className="text-sm font-medium text-[var(--ag-text-dark)]">
+            New password
+          </label>
+          <input
+            id="password"
+            type="password"
+            autoComplete="new-password"
+            required
+            minLength={8}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={authInputClassName}
+          />
         </div>
-        <form onSubmit={onSubmit} className="space-y-4">
-          {!tokenFromUrl && (
-            <div className="space-y-2">
-              <label htmlFor="token" className="text-sm font-medium">
-                Reset token
-              </label>
-              <input
-                id="token"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-                required
-                className="w-full min-h-[44px] rounded-md border px-3 py-3 text-sm"
-              />
-            </div>
-          )}
-          <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium">
-              New password
-            </label>
-            <input
-              id="password"
-              type="password"
-              autoComplete="new-password"
-              required
-              minLength={8}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full min-h-[44px] rounded-md border px-3 py-3 text-sm"
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="confirm" className="text-sm font-medium">
-              Confirm password
-            </label>
-            <input
-              id="confirm"
-              type="password"
-              autoComplete="new-password"
-              required
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              className="w-full min-h-[44px] rounded-md border px-3 py-3 text-sm"
-            />
-          </div>
-          {error && (
-            <p role="alert" className="text-sm text-red-600">
-              {error}
-            </p>
-          )}
-          <Button type="submit" className="w-full min-h-[44px]" disabled={loading}>
-            {loading ? 'Updating…' : 'Update password'}
-          </Button>
-        </form>
-        <p className="text-center text-sm">
-          <Link href="/login" className="text-[var(--ag-primary-blue)] hover:underline">
-            Back to sign in
-          </Link>
-        </p>
-      </div>
-    </div>
+        <div className="space-y-2">
+          <label htmlFor="confirm" className="text-sm font-medium text-[var(--ag-text-dark)]">
+            Confirm password
+          </label>
+          <input
+            id="confirm"
+            type="password"
+            autoComplete="new-password"
+            required
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            className={authInputClassName}
+          />
+        </div>
+        {error && (
+          <p role="alert" className="text-sm text-red-600">
+            {error}
+          </p>
+        )}
+        <button
+          type="submit"
+          className={authPrimaryButtonClassName}
+          style={{ background: 'var(--ag-primary-blue)' }}
+          disabled={loading}
+        >
+          {loading ? 'Updating…' : 'Update password'}
+        </button>
+      </form>
+    </AuthPageChrome>
   );
 }
 
 export default function ResetPasswordPage() {
   return (
-    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading…</div>}>
-      <ResetPasswordForm />
-    </Suspense>
+    <>
+      <AntigravityNavbar />
+      <Suspense
+        fallback={
+          <div className="flex min-h-[50vh] items-center justify-center text-[var(--ag-text-grey)]">
+            Loading…
+          </div>
+        }
+      >
+        <ResetPasswordForm />
+      </Suspense>
+      <AntigravityFooter />
+    </>
   );
 }
