@@ -2,8 +2,6 @@
  * Unit tests for src/lib/admin-constants.ts
  *
  * `isAdminRole` is the gate function used by every admin-portal route.
- * A regression here either locks legitimate admins out (false) or
- * lets non-admins in (false-positive). Pin tightly.
  */
 
 import { describe, it, expect } from 'vitest';
@@ -13,6 +11,7 @@ describe('ADMIN_ROLES', () => {
   it('includes the canonical "admin" + "super_admin" roles', () => {
     expect(ADMIN_ROLES).toContain('admin');
     expect(ADMIN_ROLES).toContain('super_admin');
+    expect(ADMIN_ROLES).toContain('SUPER_ADMIN');
   });
 
   it('retains the legacy uppercase ADMIN + MANAGER values', () => {
@@ -26,8 +25,9 @@ describe('isAdminRole', () => {
     expect(isAdminRole('admin')).toBe(true);
   });
 
-  it('returns true for "super_admin"', () => {
+  it('returns true for "super_admin" and SUPER_ADMIN', () => {
     expect(isAdminRole('super_admin')).toBe(true);
+    expect(isAdminRole('SUPER_ADMIN')).toBe(true);
   });
 
   it('returns true for legacy "ADMIN" + "MANAGER"', () => {
@@ -38,6 +38,7 @@ describe('isAdminRole', () => {
   it('returns false for non-admin roles', () => {
     expect(isAdminRole('user')).toBe(false);
     expect(isAdminRole('contractor')).toBe(false);
+    expect(isAdminRole('CLIENT')).toBe(false);
   });
 
   it('returns false for undefined / null / empty', () => {
@@ -46,8 +47,7 @@ describe('isAdminRole', () => {
     expect(isAdminRole('')).toBe(false);
   });
 
-  it('does NOT do case-insensitive matching (case-sensitive by design)', () => {
-    // "Admin" is neither "admin" nor "ADMIN" — must match exactly.
-    expect(isAdminRole('Admin')).toBe(false);
+  it('normalises mixed-case Admin via normaliseRole', () => {
+    expect(isAdminRole('Admin')).toBe(true);
   });
 });

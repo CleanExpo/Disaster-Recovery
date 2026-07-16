@@ -1,15 +1,11 @@
 /**
- * UI/UX Design Agent System
- * 
- * A comprehensive system of specialised agents that work together to deliver
- * premium 10/10 UI/UX quality using the R6 Digital design system as the foundation.
- * 
- * Features:
- * - Dark backgrounds with electric blue (#131cff) accents
- * - Smooth transitions and micro-interactions
- * - Mobile-first responsive design
- * - WCAG accessibility compliance
- * - Component gap analysis and optimisation
+ * UI/UX Design Agent System (legacy demos)
+ *
+ * NOTE (DR UX Elevation): Product UI must use the Antigravity design system
+ * (`--ag-*` tokens in `src/styles/antigravity-design-system.css`). Do NOT adopt
+ * R6 Digital electric blue (#131cff) as the live product theme.
+ *
+ * This agent folder remains for historical demos only.
  */
 
 export * from './types/interfaces'
