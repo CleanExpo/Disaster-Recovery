@@ -294,6 +294,27 @@ function OnlineClaimPageOriginal() {
     }
   }, []);
 
+  // Demo autofill — development only (mirrors contractor apply ?demo=auto).
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') return;
+    if (!searchParams || searchParams.get('demo') !== 'auto') return;
+    const demo = QUICK_FILL_SCENARIOS.burstPipe;
+    if (!demo) return;
+    setFormData((prev) => ({ ...prev, ...demo }));
+    setReplayToast('Demo autofill applied (development only).');
+    window.setTimeout(() => setReplayToast(null), 5000);
+  }, [searchParams]);
+
+  // Noscript / submit-basic failure redirect
+  useEffect(() => {
+    if (!searchParams) return;
+    if (searchParams.get('error') === 'submit_failed') {
+      setSubmissionError(
+        'We could not submit your claim. Please complete the form again, or call 1300 309 361.',
+      );
+    }
+  }, [searchParams]);
+
   // Online/offline event listeners
   useEffect(() => {
     const handleOnline = async () => {
@@ -383,7 +404,8 @@ function OnlineClaimPageOriginal() {
     formData.postcode?.trim() &&
     formData.propertyType &&
     formData.damageDescription?.trim() &&
-    formData.damageTypes.length > 0,
+    formData.damageTypes.length > 0 &&
+    formData.urgencyLevel,
   );
 
   const handleSubmit = async () => {
@@ -396,7 +418,8 @@ function OnlineClaimPageOriginal() {
       !formData.state ||
       !formData.postcode ||
       !formData.damageDescription ||
-      formData.damageTypes.length === 0
+      formData.damageTypes.length === 0 ||
+      !formData.urgencyLevel
     ) {
       setSubmissionError(
         "We're nearly there — a few contact and damage details are still needed. Taking you back to step 1 so you can finish.",
@@ -447,23 +470,49 @@ function OnlineClaimPageOriginal() {
       const response = await fetch('/api/claims/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
-          ...formData,
+          fullName: formData.fullName,
+          phone: formData.phone,
+          email: formData.email,
+          propertyAddress: formData.propertyAddress,
+          suburb: formData.suburb,
+          state: formData.state,
+          postcode: formData.postcode,
+          damageTypes: formData.damageTypes,
+          damageDescription: formData.damageDescription,
+          urgencyLevel: formData.urgencyLevel || 'standard',
+          policyNumber: formData.policyNumber || undefined,
+          insuranceCompany: formData.insuranceCompany || undefined,
+          insuranceClaimNumber: formData.insuranceClaimNumber || undefined,
+          accessInstructions: formData.accessInstructions || undefined,
           paymentConfirmed: false,
-          paymentAmount: 0,
         }),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
-      if (result.success) {
+      if (response.ok && result.success) {
         setClaimId(result.claimId);
         await clearDraft();
         // Phase 2 PR #6 — Medium haptic on submit success (RA-1633). No-op on web.
         void mediumTap();
         setStep(5); // Success step
+      } else if (response.status === 503 || result.code === 'CLAIM_PERSISTENCE_FAILED') {
+        setSubmissionError(
+          result.error ||
+            'We could not save your claim right now. Please try again shortly, or call 1300 309 361.',
+        );
+      } else if (response.status === 400) {
+        setSubmissionError(
+          result.error ||
+            'Some details look incomplete or invalid. Please check the form and try again.',
+        );
+        setStep(1);
+      } else if (response.status === 429) {
+        setSubmissionError('Too many submissions. Please wait a moment and try again.');
       } else {
-        setSubmissionError(result.message || 'Failed to submit claim');
+        setSubmissionError(result.error || result.message || 'Failed to submit claim');
       }
     } catch {
       setSubmissionError('Error submitting claim. Please try again.');
@@ -506,9 +555,7 @@ function OnlineClaimPageOriginal() {
     { id: 4, label: 'Review' },
   ];
 
-  const showQuickFill =
-    process.env.NODE_ENV === 'development' ||
-    process.env.NEXT_PUBLIC_CLAIM_QUICK_FILL === 'true';
+  const showQuickFill = process.env.NODE_ENV !== 'production';
 
   if (step === 5 && claimId) {
     return (
@@ -1223,7 +1270,7 @@ function OnlineClaimPageOriginal() {
                   {/* Camera / media capture */}
                   <DamageMediaCapture
                     label="Damage Photos & Videos"
-                    description="Capture or upload up to 10 photos or short videos of the damage. On mobile, tap 'Take Photo' to use your rear camera. Images are optimised before upload."
+                    description="Optionally capture photos or short videos for your own records. They stay on this device for now — your matched contractor will collect evidence when they contact you."
                     maxFiles={10}
                     onChange={(files) => {
                       setCapturedPhotos(files);
