@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
 import HomePage from './HomePageClient';
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 import { generateHowToSchema } from '@/lib/seo-schema';
 
 export const metadata: Metadata = {
@@ -33,6 +34,11 @@ export default function HomePageWrapper() {
         dangerouslySetInnerHTML={{ __html: howToSchemaData }}
       />
       <HomePage />
+      {/* APP 3 / APP 5 collection notice (DR-782) — statutory privacy notice at
+          the foot of the homepage. Full variant renders the labelled region. */}
+      <div className="mx-auto max-w-4xl px-4 py-12">
+        <App3CollectionNotice variant="full" />
+      </div>
     </>
   );
 }

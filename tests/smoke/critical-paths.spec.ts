@@ -88,6 +88,12 @@ test.describe('Tier 2: Critical Paths', () => {
     expect(href).not.toBe('#');
   });
 
+  test('Homepage renders the APP 3 privacy collection notice (DR-782)', async ({ page }) => {
+    await page.goto('/');
+    const notice = page.getByRole('region', { name: 'Privacy collection notice' });
+    await expect(notice).toBeVisible({ timeout: 10_000 });
+  });
+
   test('Navigation renders all primary links', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav').first();
