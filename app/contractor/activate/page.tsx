@@ -45,16 +45,20 @@ function ContractorActivateContent() {
       const response = await fetch('/api/contractor/activate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ token, password }),
       });
-      const data = (await response.json().catch(() => ({}))) as { error?: string };
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        redirectTo?: string;
+      };
       if (!response.ok) {
         setError(data.error ?? 'The activation link could not be used.');
         return;
       }
 
       setActivated(true);
-      setTimeout(() => router.push('/contractor/login'), 1200);
+      setTimeout(() => router.push(data.redirectTo || '/contractor/portal'), 1200);
     } catch {
       setError('Activation failed. Please try again.');
     } finally {
