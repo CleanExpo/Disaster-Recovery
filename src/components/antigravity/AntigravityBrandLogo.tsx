@@ -33,7 +33,7 @@ export function AntigravityBrandLogo({
       <text
         x="40"
         y="26"
-        fontFamily="Inter, sans-serif"
+        fontFamily="ui-sans-serif, system-ui, sans-serif"
         fontWeight="900"
         fontSize="24"
         fill="var(--ag-emergency-red, #dc2626)"
@@ -43,7 +43,7 @@ export function AntigravityBrandLogo({
       <text
         x="58"
         y="26"
-        fontFamily="Inter, sans-serif"
+        fontFamily="ui-sans-serif, system-ui, sans-serif"
         fontWeight="900"
         fontSize="24"
         fill="#a0aab2"
