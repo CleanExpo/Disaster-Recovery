@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
+import { sendEmail, emailTemplates } from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -43,6 +44,22 @@ export async function POST(req: Request) {
       },
     });
 
+    const appUrl =
+      process.env.NEXT_PUBLIC_APP_URL ||
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      'https://disasterrecovery.com.au';
+    const verifyUrl = `${appUrl}/verify-email?token=${encodeURIComponent(verifyToken)}`;
+
+    // Non-blocking — account creation is the source of truth
+    sendEmail(
+      normalisedEmail,
+      emailTemplates.clientEmailVerification(name || 'there', verifyUrl),
+    ).catch(() => {
+      log.warn('signup verification email failed (non-critical)', {
+        email_hash: hashIdentifier(normalisedEmail),
+      });
+    });
+
     await logComplianceEvent({
       eventType: 'api_route_invocation',
       correlationId: '00000000-0000-0000-0000-000000000000',
@@ -61,7 +78,7 @@ export async function POST(req: Request) {
       process.env.NODE_ENV !== 'production' || process.env.AUTH_EXPOSE_VERIFY_TOKEN === 'true';
 
     return NextResponse.json({
-      message: 'User created successfully',
+      message: 'User created successfully. Check your email to verify your account.',
       user: {
         id: user.id,
         email: user.email,

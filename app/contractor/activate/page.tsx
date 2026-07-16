@@ -9,6 +9,7 @@ import {
   authInputClassName,
   authPrimaryButtonClassName,
 } from '@/components/auth/AuthPageChrome';
+import { setContractorAuth } from '@/lib/contractor-auth';
 
 function passwordChecks(password: string) {
   return [
@@ -55,10 +56,27 @@ function ContractorActivateContent() {
       const data = (await response.json().catch(() => ({}))) as {
         error?: string;
         redirectTo?: string;
+        profile?: Record<string, unknown>;
+        contractorId?: string;
+        email?: string;
+        username?: string;
+        status?: string;
       };
       if (!response.ok) {
         setError(data.error ?? 'The activation link could not be used.');
         return;
+      }
+
+      if (data.profile) {
+        setContractorAuth(data.profile);
+      } else if (data.contractorId) {
+        setContractorAuth({
+          id: data.contractorId,
+          email: data.email,
+          username: data.username,
+          status: data.status,
+          role: 'CONTRACTOR',
+        });
       }
 
       setActivated(true);

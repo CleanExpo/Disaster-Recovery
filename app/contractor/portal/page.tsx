@@ -9,7 +9,7 @@ import {
 } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { contractorFetch, contractorLogout, getContractorProfile } from '@/lib/contractor-auth';
+import { contractorFetch, contractorLogout, getContractorProfile, setContractorAuth } from '@/lib/contractor-auth';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -72,14 +72,54 @@ function ContractorPortalPageOriginal() {
   }>({ activeJobs: 0, completedThisMonth: 0, earningsThisMonth: 0 });
 
   useEffect(() => {
-    const profile = getContractorProfile();
-    if (!profile) {
-      router.push('/contractor/login');
-      return;
+    let cancelled = false;
+
+    async function bootstrap() {
+      try {
+        const meRes = await fetch('/api/auth/me', { credentials: 'include' });
+        if (!meRes.ok) {
+          router.push('/contractor/login');
+          return;
+        }
+        const me = (await meRes.json()) as {
+          authenticated?: boolean;
+          user?: {
+            id?: string;
+            email?: string;
+            name?: string;
+            role?: string;
+            contractorId?: string;
+          };
+        };
+        if (!me.authenticated || me.user?.role !== 'CONTRACTOR') {
+          router.push('/contractor/login');
+          return;
+        }
+
+        const cached = getContractorProfile();
+        const profile = {
+          id: me.user.contractorId || me.user.id,
+          email: me.user.email,
+          username: me.user.name || cached?.username,
+          name: me.user.name,
+          role: 'CONTRACTOR',
+          ...(cached ?? {}),
+        };
+        setContractorAuth(profile);
+        if (!cancelled) {
+          setContractor(profile);
+          loadJobs();
+          loadDashboard();
+        }
+      } catch {
+        if (!cancelled) router.push('/contractor/login');
+      }
     }
-    setContractor(profile);
-    loadJobs();
-    loadDashboard();
+
+    void bootstrap();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const loadJobs = async () => {

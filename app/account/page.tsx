@@ -7,6 +7,14 @@ import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
+type AccountRow = {
+  key: string;
+  label: string;
+  meta: string;
+  trackId: string;
+  sortAt: number;
+};
+
 export default async function AccountPage() {
   const session = await getSessionFromCookies();
   if (!session) {
@@ -16,7 +24,7 @@ export default async function AccountPage() {
     redirect(dashboardPathForRole(session.role));
   }
 
-  const [claims, leads] = await Promise.all([
+  const [claims, leads, enquiries] = await Promise.all([
     prisma.insuranceClaimAU
       .findMany({
         where: {
@@ -47,22 +55,51 @@ export default async function AccountPage() {
         },
       })
       .catch(() => []),
+    prisma.enquiry
+      .findMany({
+        where: {
+          email: session.email,
+          source: 'public_claim_submit',
+        },
+        orderBy: { createdAt: 'desc' },
+        take: 10,
+        select: {
+          id: true,
+          source: true,
+          responded: true,
+          message: true,
+          createdAt: true,
+        },
+      })
+      .catch(() => []),
   ]);
 
-  const rows = [
+  const rows: AccountRow[] = [
     ...claims.map((c) => ({
       key: `claim-${c.id}`,
       label: c.claimNumber || c.id,
       meta: String(c.status),
-      trackId: c.claimNumber || c.id,
+      trackId: c.id,
+      sortAt: c.createdAt.getTime(),
     })),
     ...leads.map((l) => ({
       key: `lead-${l.id}`,
       label: l.claimNumber || l.id,
       meta: [l.suburb, l.state, l.status].filter(Boolean).join(' · '),
-      trackId: l.claimNumber || l.id,
+      trackId: l.id,
+      sortAt: l.createdAt.getTime(),
     })),
-  ];
+    ...enquiries.map((e) => ({
+      key: `enquiry-${e.id}`,
+      label: e.id,
+      meta: [
+        e.source === 'public_claim_submit' ? 'Claim enquiry' : 'Enquiry',
+        e.responded ? 'In progress' : 'Submitted',
+      ].join(' · '),
+      trackId: e.id,
+      sortAt: e.createdAt.getTime(),
+    })),
+  ].sort((a, b) => b.sortAt - a.sortAt);
 
   return (
     <AuthShellClient role={session.role} email={session.email} name={session.name}>
@@ -112,7 +149,7 @@ export default async function AccountPage() {
                     <p className="text-xs text-[var(--ag-text-grey)]">{c.meta}</p>
                   </div>
                   <Link
-                    href={`/track?id=${encodeURIComponent(c.trackId)}`}
+                    href={`/track/${encodeURIComponent(c.trackId)}`}
                     className="text-sm font-medium text-[var(--ag-primary-blue)] underline"
                   >
                     Track

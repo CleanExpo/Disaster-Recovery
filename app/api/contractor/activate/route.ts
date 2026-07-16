@@ -145,7 +145,16 @@ export async function POST(request: NextRequest) {
       success: true,
       contractorId: contractor.id,
       status: contractor.status,
+      email: contractor.email,
+      username: contractor.username,
       redirectTo: '/contractor/portal',
+      profile: {
+        id: contractor.id,
+        email: contractor.email,
+        username: contractor.username,
+        status: contractor.status,
+        role: 'CONTRACTOR',
+      },
     });
     setAuthCookies(res, tokens, false);
     return res;

@@ -1,21 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { sendEmail } from '@/lib/email';
-import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
-import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
-import { dispatchClaimStatusNotification } from '@/lib/notifications';
-import { rateLimit } from '@/lib/rate-limit';
-import { getCallerIdentity } from '@/lib/auth/require-session';
+import { writeEnquiryFromClaimBody } from '@/lib/claims/enquiry-fallback';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 import { claimSubmitSchema } from '@/lib/validation/schemas';
-import { writeEnquiryFromClaimBody } from '@/lib/claims/enquiry-fallback';
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import { getCallerIdentity } from '@/lib/auth/require-session';
+import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
+import { dispatchClaimStatusNotification } from '@/lib/notifications';
+import { rateLimit } from '@/lib/rate-limit';
+import { sendEmail } from '@/lib/email';
+import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
+import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Fixed platform fee (optional at submission stage)
 const PLATFORM_FEE = 2750.0;
-const FALLBACK_REPORT_PATH = path.join('/tmp', 'claim-fallback-submissions.jsonl');
 
 type TrackClaimPayload = {
   id: string;
@@ -109,7 +106,15 @@ function buildTrackClaimFromInput(
   };
 }
 
-function buildTrackClaimFromDb(claim: any): TrackClaimPayload {
+function buildTrackClaimFromDb(claim: {
+  id: string;
+  status?: string | null;
+  submittedAt?: Date | null;
+  createdAt?: Date;
+  clientId?: string | null;
+  damageDescription?: string | null;
+  paymentAmountAUD?: number | null;
+}): TrackClaimPayload {
   return {
     id: claim.id,
     status: claim.status || 'SUBMITTED',
@@ -141,27 +146,51 @@ function buildTrackClaimFromDb(claim: any): TrackClaimPayload {
   };
 }
 
-async function writeFallbackClaim(claim: TrackClaimPayload) {
-  await fs.mkdir(path.dirname(FALLBACK_REPORT_PATH), { recursive: true });
-  await fs.appendFile(FALLBACK_REPORT_PATH, `${JSON.stringify(claim)}\n`, 'utf8');
-}
-
-async function readFallbackClaim(claimId: string): Promise<TrackClaimPayload | null> {
+function buildTrackClaimFromEnquiry(enquiry: {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  message: string;
+  metadata: string | null;
+  responded: boolean;
+  createdAt: Date;
+}): TrackClaimPayload {
+  let payload: Record<string, unknown> = {};
   try {
-    const content = await fs.readFile(FALLBACK_REPORT_PATH, 'utf8');
-    const lines = content.split('\n').filter(Boolean);
-    for (let i = lines.length - 1; i >= 0; i -= 1) {
-      try {
-        const parsed = JSON.parse(lines[i]) as TrackClaimPayload;
-        if (parsed.id === claimId) return parsed;
-      } catch {
-        // Skip malformed line
-      }
+    const meta = enquiry.metadata ? (JSON.parse(enquiry.metadata) as { payload?: Record<string, unknown> }) : null;
+    if (meta?.payload && typeof meta.payload === 'object') {
+      payload = meta.payload;
     }
-    return null;
   } catch {
-    return null;
+    // metadata may be missing or malformed — fall back to enquiry columns
   }
+
+  const body = {
+    fullName: (payload.fullName as string) || enquiry.name,
+    phone: (payload.phone as string) || enquiry.phone || '',
+    email: (payload.email as string) || enquiry.email,
+    propertyAddress: (payload.propertyAddress as string) || '',
+    suburb: (payload.suburb as string) || '',
+    state: (payload.state as string) || '',
+    postcode: (payload.postcode as string) || '',
+    damageTypes: Array.isArray(payload.damageTypes) ? payload.damageTypes : undefined,
+    urgencyLevel: (payload.urgencyLevel as string) || 'standard',
+    damageDescription:
+      (payload.damageDescription as string) || enquiry.message.replace(/^\[public-claim-submit\]\s*/i, ''),
+  };
+
+  const track = buildTrackClaimFromInput(
+    enquiry.id,
+    body,
+    enquiry.createdAt.toISOString(),
+    false,
+  );
+  if (enquiry.responded) {
+    track.status = 'IN_PROGRESS';
+    track.workflow = deriveWorkflow('IN_PROGRESS', false);
+  }
+  return track;
 }
 
 export async function POST(request: NextRequest) {
@@ -345,12 +374,7 @@ export async function POST(request: NextRequest) {
           extra: { requestId: log.requestId, enquiryId: fallback.enquiryId },
         });
       } catch (enquiryError) {
-        // BOTH writes failed. Last-resort: keep the legacy local-id
-        // path so users see a tracking id, log loud for Ops triage.
-        const fallbackId = `local-${Date.now().toString(36)}`;
-        trackClaim = buildTrackClaimFromInput(fallbackId, body, createdAtIso, paymentConfirmed);
         log.error('both claim DB and enquiry funnel writes failed', {
-          fallbackId,
           claimError: dbError instanceof Error ? dbError.message : String(dbError),
           enquiryError: enquiryError instanceof Error ? enquiryError.message : String(enquiryError),
         });
@@ -360,7 +384,7 @@ export async function POST(request: NextRequest) {
             stage: 'enquiry_fallback',
             severity: 'critical',
           },
-          extra: { requestId: log.requestId, fallbackId },
+          extra: { requestId: log.requestId },
         });
         await logComplianceEvent({
           eventType: 'claim_intake_created',
@@ -370,10 +394,30 @@ export async function POST(request: NextRequest) {
           metadata: {
             outcome: 'both_writes_failed',
             request_id: log.requestId,
-            fallback_id: fallbackId,
           },
         });
+        return NextResponse.json(
+          {
+            success: false,
+            error:
+              'We could not save your claim right now. Please try again shortly, or call us if the problem continues.',
+            code: 'CLAIM_PERSISTENCE_FAILED',
+          },
+          { status: 503 },
+        );
       }
+    }
+
+    if (!trackClaim) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            'We could not save your claim right now. Please try again shortly, or call us if the problem continues.',
+          code: 'CLAIM_PERSISTENCE_FAILED',
+        },
+        { status: 503 },
+      );
     }
 
     // Send Claim Support Pack email (non-blocking — failures don't block the claim)
@@ -475,50 +519,50 @@ export async function GET(request: NextRequest) {
       where: { id: claimId },
     });
 
-    if (!claim) {
-      const fallback = await readFallbackClaim(claimId);
-      if (!fallback) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: 'Claim not found',
-          },
-          { status: 404 },
-        );
+    if (claim) {
+      // DR-390: Decrypt access instructions only for authorised callers
+      let decryptedAccessInstructions: string | null = null;
+      if (canReadAccessInstructions && claim.accessInstructions) {
+        try {
+          decryptedAccessInstructions = await decrypt(claim.accessInstructions);
+        } catch (decryptErr) {
+          log.error('failed to decrypt accessInstructions', {
+            ref: 'DR-390',
+            claimId,
+            callerId,
+            error: decryptErr instanceof Error ? decryptErr.message : String(decryptErr),
+          });
+        }
       }
+
+      const trackClaim = buildTrackClaimFromDb(claim);
       return NextResponse.json({
         success: true,
-        claim: fallback,
+        claim: trackClaim,
+        ...(canReadAccessInstructions && {
+          accessInstructions: decryptedAccessInstructions,
+        }),
       });
     }
 
-    // DR-390: Decrypt access instructions only for authorised callers
-    let decryptedAccessInstructions: string | null = null;
-    if (canReadAccessInstructions && claim.accessInstructions) {
-      try {
-        decryptedAccessInstructions = await decrypt(claim.accessInstructions);
-      } catch (decryptErr) {
-        // Log but do not expose — return null so the caller knows the field exists
-        // but the value cannot be delivered (e.g. key rotation in progress).
-        log.error('failed to decrypt accessInstructions', {
-          ref: 'DR-390',
-          claimId,
-          callerId,
-          error: decryptErr instanceof Error ? decryptErr.message : String(decryptErr),
-        });
-      }
+    // Most public submissions land in Enquiry (FK-safe funnel) — resolve those next.
+    const enquiry = await prisma.enquiry.findUnique({
+      where: { id: claimId },
+    });
+    if (enquiry && enquiry.source === 'public_claim_submit') {
+      return NextResponse.json({
+        success: true,
+        claim: buildTrackClaimFromEnquiry(enquiry),
+      });
     }
 
-    const trackClaim = buildTrackClaimFromDb(claim);
-    return NextResponse.json({
-      success: true,
-      claim: trackClaim,
-      // accessInstructions is a separate top-level field so it is never mixed
-      // into the public claim payload by accident.
-      ...(canReadAccessInstructions && {
-        accessInstructions: decryptedAccessInstructions,
-      }),
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Claim not found',
+      },
+      { status: 404 },
+    );
   } catch (error) {
     log.error('error fetching claim', {
       error: error instanceof Error ? error.message : String(error),
@@ -528,13 +572,6 @@ export async function GET(request: NextRequest) {
       tags: { route: '/api/claims/submit' },
       extra: { requestId: log.requestId },
     });
-    const fallback = await readFallbackClaim(claimId);
-    if (fallback) {
-      return NextResponse.json({
-        success: true,
-        claim: fallback,
-      });
-    }
     return NextResponse.json(
       {
         success: false,

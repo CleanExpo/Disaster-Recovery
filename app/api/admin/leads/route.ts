@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
     ];
   }
 
-  const [rows, total] = await Promise.all([
+  const [rows, totalLeads, claimEnquiries] = await Promise.all([
     prisma.lead.findMany({
       where,
       orderBy: { createdAt: 'desc' },
@@ -101,9 +101,30 @@ export async function GET(request: NextRequest) {
       },
     }),
     prisma.lead.count({ where }),
+    // Public claim submissions land in Enquiry when InsuranceClaimAU FKs can't be satisfied.
+    prisma.enquiry.findMany({
+      where: {
+        source: 'public_claim_submit',
+        ...(search
+          ? {
+              OR: [
+                { name: { contains: search, mode: 'insensitive' } },
+                { email: { contains: search, mode: 'insensitive' } },
+              ],
+            }
+          : {}),
+        ...(status === 'completed' || status === 'cancelled'
+          ? { responded: true }
+          : status && status !== 'all'
+            ? { responded: false }
+            : {}),
+      },
+      orderBy: { createdAt: 'desc' },
+      take: Math.min(limit, 50),
+    }),
   ]);
 
-  const leads = rows.map((lead) => {
+  const leadItems = rows.map((lead) => {
     const billing = lead.billing[0];
     const urgencyNorm = normalizeUrgency(lead.urgencyLevel);
     const damageTypes = parseJsonArray(lead.damageType);
@@ -159,12 +180,73 @@ export async function GET(request: NextRequest) {
       status: mapLeadStatus(lead.status),
       priority: urgencyNorm === 'emergency' || urgencyNorm === 'urgent' ? ('high' as const) : ('medium' as const),
       notes: lead.notes.map((n) => n.note),
+      source: 'lead' as const,
     };
   });
 
+  const enquiryItems = claimEnquiries.map((enquiry) => {
+    let payload: Record<string, unknown> = {};
+    try {
+      const meta = enquiry.metadata
+        ? (JSON.parse(enquiry.metadata) as { payload?: Record<string, unknown> })
+        : null;
+      if (meta?.payload && typeof meta.payload === 'object') payload = meta.payload;
+    } catch {
+      // ignore malformed metadata
+    }
+    const urgencyNorm = normalizeUrgency(String(payload.urgencyLevel ?? 'standard'));
+    const damageTypes = Array.isArray(payload.damageTypes)
+      ? (payload.damageTypes as string[])
+      : [];
+    return {
+      id: enquiry.id,
+      bookingId: `ENQ-${enquiry.id.slice(-6).toUpperCase()}`,
+      createdAt: enquiry.createdAt.toISOString(),
+      customer: {
+        name: enquiry.name,
+        email: enquiry.email,
+        address: String(payload.propertyAddress ?? ''),
+        suburb: String(payload.suburb ?? ''),
+        state: String(payload.state ?? ''),
+        postcode: String(payload.postcode ?? ''),
+      },
+      service: {
+        type: damageTypes[0] || 'Claim enquiry',
+        urgency: urgencyNorm,
+        description: enquiry.message,
+        propertyType: String(payload.propertyType ?? 'residential'),
+        affectedAreas: [] as string[],
+      },
+      insurance: {
+        hasInsurance: Boolean(payload.hasInsurance),
+        company: payload.insuranceCompany ? String(payload.insuranceCompany) : undefined,
+        claimNumber: payload.claimNumber ? String(payload.claimNumber) : undefined,
+      },
+      payment: {
+        status: 'pending' as const,
+        amount: 0,
+        method: 'card' as const,
+      },
+      contractor: {
+        assigned: false,
+      },
+      status: enquiry.responded ? ('in_progress' as const) : ('new' as const),
+      priority: urgencyNorm === 'emergency' || urgencyNorm === 'urgent' ? ('high' as const) : ('medium' as const),
+      notes: ['Source: public claim submit'],
+      source: 'claim_enquiry' as const,
+      trackUrl: `/track/${enquiry.id}`,
+    };
+  });
+
+  // Prefer real leads first; append claim enquiries for the same page so ops never miss intake.
+  const leads = [...leadItems, ...enquiryItems].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+  const total = totalLeads + claimEnquiries.length;
+
   return NextResponse.json({
     leads,
-    pagination: { page, limit, total, pages: Math.ceil(total / limit) },
+    pagination: { page, limit, total, pages: Math.max(1, Math.ceil(totalLeads / limit)) },
   });
 }
 
@@ -199,6 +281,20 @@ export async function PATCH(request: NextRequest) {
 
   const lead = await prisma.lead.findUnique({ where: { id: leadId } });
   if (!lead) {
+    const enquiry = await prisma.enquiry.findUnique({
+      where: { id: leadId },
+      select: { id: true, source: true },
+    });
+    if (enquiry?.source === 'public_claim_submit') {
+      return NextResponse.json(
+        {
+          error:
+            'This item is a claim enquiry. Promote it to a Lead before assigning a partner, or contact the claimant directly from /track.',
+          trackUrl: `/track/${enquiry.id}`,
+        },
+        { status: 409 },
+      );
+    }
     return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
   }
 

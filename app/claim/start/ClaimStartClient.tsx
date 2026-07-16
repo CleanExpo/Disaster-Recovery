@@ -107,7 +107,8 @@ function ClaimStartContent() {
   // ─────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
-    if (searchParams.get('demo') === 'auto') {
+    // Demo autofill is for local/dev walkthroughs only — never in production.
+    if (process.env.NODE_ENV !== 'production' && searchParams.get('demo') === 'auto') {
       runAutoDemo();
     }
   }, []);

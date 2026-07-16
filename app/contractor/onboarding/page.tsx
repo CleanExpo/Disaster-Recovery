@@ -4,7 +4,7 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { contractorFetch, getContractorProfile } from '@/lib/contractor-auth';
+import { contractorFetch, getContractorProfile, setContractorAuth } from '@/lib/contractor-auth';
 import {
   ChevronRight,
   Lock,
@@ -57,8 +57,34 @@ function ContractorOnboardingPageOriginal() {
 
   useEffect(() => {
     const loadOnboardingState = async () => {
-      const profile = getContractorProfile();
-      const contractorId = (profile?.id as string) ?? '';
+      try {
+        const meRes = await fetch('/api/auth/me', { credentials: 'include' });
+        if (!meRes.ok) {
+          router.push('/contractor/login');
+          return;
+        }
+        const me = (await meRes.json()) as {
+          authenticated?: boolean;
+          user?: { id?: string; email?: string; name?: string; role?: string; contractorId?: string };
+        };
+        if (!me.authenticated || me.user?.role !== 'CONTRACTOR') {
+          router.push('/contractor/login');
+          return;
+        }
+        const profile = {
+          id: me.user.contractorId || me.user.id,
+          email: me.user.email,
+          username: me.user.name,
+          role: 'CONTRACTOR',
+        };
+        setContractorAuth(profile);
+      } catch {
+        router.push('/contractor/login');
+        return;
+      }
+
+      const cached = getContractorProfile();
+      const contractorId = (cached?.id as string) ?? '';
 
       // Try loading from DB first
       try {

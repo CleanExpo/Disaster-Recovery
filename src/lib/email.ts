@@ -160,6 +160,29 @@ export const emailTemplates = {
     `),
   }),
 
+  // ── Client auth ────────────────────────────────────────────────────────
+
+  clientEmailVerification: (name: string, verifyUrl: string) => ({
+    subject: 'Verify your Disaster Recovery account',
+    html: wrap(`
+      <h2>Verify your email</h2>
+      <p>Hi ${name || 'there'}, thanks for creating a Disaster Recovery account.</p>
+      <p>Confirm your email address to finish setting up your account.</p>
+      <a class="btn" href="${verifyUrl}">Verify email</a>
+      <p style="font-size:13px;color:#666;margin-top:24px">
+        This link expires in 24 hours. If you did not create an account, you can ignore this email.
+      </p>
+    `),
+    text: [
+      `Hi ${name || 'there'},`,
+      '',
+      'Verify your Disaster Recovery account:',
+      verifyUrl,
+      '',
+      'This link expires in 24 hours.',
+    ].join('\n'),
+  }),
+
   // ── Contractor lifecycle ───────────────────────────────────────────────
 
   /** DR-587: Application received — sent immediately after successful DB write, before payment */
@@ -216,6 +239,36 @@ export const emailTemplates = {
       </ol>
       <a class="btn" href="${SITE_URL}/contractor/onboarding">Continue to Payment &amp; Onboarding</a>
     `),
+  }),
+
+  /** Admin approved application — includes activation link when account is not yet verified */
+  contractorApplicationApproved: (
+    name: string,
+    applicationId: string,
+    activationUrl?: string,
+  ) => ({
+    subject: 'Your NRPG contractor application has been approved',
+    html: wrap(`
+      <h2>Application approved, ${name}.</h2>
+      <p>Your contractor application has been approved by the NRPG compliance team.</p>
+      <div class="callout success">
+        <strong>Application reference:</strong> ${applicationId}
+      </div>
+      ${
+        activationUrl
+          ? `<p>Set your portal password to activate your contractor account and continue onboarding.</p>
+             <a class="btn" href="${activationUrl}">Activate Contractor Account</a>`
+          : `<p>Your account is already active. Continue into the contractor portal to complete onboarding.</p>
+             <a class="btn" href="${SITE_URL}/contractor/portal">Open Contractor Portal</a>`
+      }
+    `),
+    text: [
+      `Application approved, ${name}.`,
+      `Application reference: ${applicationId}`,
+      activationUrl
+        ? `Activate your account: ${activationUrl}`
+        : `Open the contractor portal: ${SITE_URL}/contractor/portal`,
+    ].join('\n'),
   }),
 
   contractorPaymentConfirmed: (name: string, applicationId: string, activationUrl?: string) => ({
