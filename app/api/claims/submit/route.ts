@@ -115,6 +115,8 @@ function buildTrackClaimFromDb(claim: {
   damageDescription?: string | null;
   paymentAmountAUD?: number | null;
 }): TrackClaimPayload {
+  const clientId = claim.clientId || '';
+  const emailLooksValid = clientId.includes('@');
   return {
     id: claim.id,
     status: claim.status || 'SUBMITTED',
@@ -122,7 +124,7 @@ function buildTrackClaimFromDb(claim: {
     client: {
       fullName: 'Claimant',
       phone: '',
-      email: claim.clientId || '',
+      email: emailLooksValid ? clientId : '',
     },
     property: {
       address: '',
@@ -142,7 +144,8 @@ function buildTrackClaimFromDb(claim: {
       assignedAt: null,
       acceptedAt: null,
     },
-    workflow: deriveWorkflow(claim.status || 'SUBMITTED', Number(claim.paymentAmountAUD || 0) > 0),
+    // Path A: public intake does not take a platform fee payment at submit.
+    workflow: deriveWorkflow(claim.status || 'SUBMITTED', false),
   };
 }
 
@@ -158,7 +161,9 @@ function buildTrackClaimFromEnquiry(enquiry: {
 }): TrackClaimPayload {
   let payload: Record<string, unknown> = {};
   try {
-    const meta = enquiry.metadata ? (JSON.parse(enquiry.metadata) as { payload?: Record<string, unknown> }) : null;
+    const meta = enquiry.metadata
+      ? (JSON.parse(enquiry.metadata) as { payload?: Record<string, unknown> })
+      : null;
     if (meta?.payload && typeof meta.payload === 'object') {
       payload = meta.payload;
     }
@@ -177,7 +182,8 @@ function buildTrackClaimFromEnquiry(enquiry: {
     damageTypes: Array.isArray(payload.damageTypes) ? payload.damageTypes : undefined,
     urgencyLevel: (payload.urgencyLevel as string) || 'standard',
     damageDescription:
-      (payload.damageDescription as string) || enquiry.message.replace(/^\[public-claim-submit\]\s*/i, ''),
+      (payload.damageDescription as string) ||
+      enquiry.message.replace(/^\[public-claim-submit\]\s*/i, ''),
   };
 
   const track = buildTrackClaimFromInput(
@@ -191,6 +197,75 @@ function buildTrackClaimFromEnquiry(enquiry: {
     track.workflow = deriveWorkflow('IN_PROGRESS', false);
   }
   return track;
+}
+
+function parseDamageTypes(raw: string | null | undefined): string[] {
+  if (!raw) return ['General Property Damage'];
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed) && parsed.length > 0) return parsed.map(String);
+  } catch {
+    // plain string
+  }
+  return raw.trim() ? [raw.trim()] : ['General Property Damage'];
+}
+
+function buildTrackClaimFromLead(lead: {
+  id: string;
+  fullName: string;
+  phone: string;
+  email: string;
+  propertyAddress: string;
+  suburb: string;
+  state: string;
+  postcode: string;
+  damageType: string;
+  damageDescription: string;
+  urgencyLevel: string;
+  status: string;
+  createdAt: Date;
+  assignedAt: Date | null;
+  acceptedAt: Date | null;
+  partner?: { businessName: string } | null;
+}): TrackClaimPayload {
+  return {
+    id: lead.id,
+    status: lead.status || 'SUBMITTED',
+    createdAt: lead.createdAt.toISOString(),
+    client: {
+      fullName: lead.fullName,
+      phone: lead.phone,
+      email: lead.email,
+    },
+    property: {
+      address: lead.propertyAddress,
+      suburb: lead.suburb,
+      state: lead.state,
+      postcode: lead.postcode,
+    },
+    damage: {
+      types: parseDamageTypes(lead.damageType),
+      urgencyLevel: (lead.urgencyLevel || 'standard').toLowerCase(),
+      description: lead.damageDescription,
+    },
+    contractor: {
+      companyName: lead.partner?.businessName ?? null,
+      contactPerson: null,
+      directPhone: null,
+      assignedAt: lead.assignedAt?.toISOString() ?? null,
+      acceptedAt: lead.acceptedAt?.toISOString() ?? null,
+    },
+    workflow: deriveWorkflow(
+      lead.status === 'COMPLETED'
+        ? 'COMPLETED'
+        : lead.status === 'ACCEPTED'
+          ? 'IN_PROGRESS'
+          : lead.status === 'ASSIGNED'
+            ? 'ASSIGNED'
+            : 'SUBMITTED',
+      false,
+    ),
+  };
 }
 
 export async function POST(request: NextRequest) {
@@ -286,129 +361,133 @@ export async function POST(request: NextRequest) {
       ? await encrypt(body.accessInstructions)
       : null;
 
-    // Create the InsuranceClaimAU record
+    // Attach authenticated CLIENT user id when present (never trust client-supplied alone).
+    const session = await getCallerIdentity();
+    const resolvedClientId =
+      session.role === 'client' && session.userId
+        ? session.userId
+        : body.clientId || body.email;
+
+    // Canonical track store is Enquiry (full payload in metadata). InsuranceClaimAU
+    // is best-effort for ops promotion — anonymous public forms usually fail FK checks.
+    let enquiryId: string | null = null;
+    let enquiryError: unknown = null;
+    let insuranceClaimId: string | null = null;
+
+    try {
+      const fallback = await writeEnquiryFromClaimBody(prisma, body, {
+        ipAddress: ip,
+        userAgent: request.headers.get('user-agent') ?? undefined,
+      });
+      enquiryId = fallback.enquiryId;
+      trackClaim = buildTrackClaimFromInput(
+        fallback.enquiryId,
+        body,
+        fallback.writtenAt,
+        false,
+      );
+    } catch (err) {
+      enquiryError = err;
+      log.warn('enquiry funnel write failed; attempting InsuranceClaimAU', {
+        error: err instanceof Error ? err.message : String(err),
+      });
+    }
+
     try {
       const claim = await prisma.insuranceClaimAU.create({
         data: {
           bookingId: body.bookingId || '',
-          clientId: body.clientId || body.email,
+          clientId: resolvedClientId,
           insuranceProviderId: normalizedProvider,
           policyNumber: normalizedPolicyNumber,
           claimNumber: body.insuranceClaimNumber || null,
           totalClaimAmountAUD: totalClaimAmount,
           paymentAmountAUD: paymentAmount,
-          // HOTFIX 2026-04-29 — prod uses `InsuranceClaimStatus` enum
-          // (insurer-adjudication stages, uppercase). The `ClaimStatus`
-          // restoration-lifecycle enum from B9 represents a separate phase;
-          // domain-modelling split tracked in DR-XXX.
           status: 'SUBMITTED',
           damageDescription: body.damageDescription,
           damagePhotos: Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
-          additionalDocuments: Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],
-          // DR-390: accessInstructions stored as encrypted blob — never log or expose this field
+          additionalDocuments: Array.isArray(body.uploadedDocuments)
+            ? body.uploadedDocuments
+            : [],
           accessInstructions: encryptedAccessInstructions,
           submittedAt: new Date(),
           tenantId: body.tenantId || null,
         },
       });
-      trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, paymentConfirmed);
+      insuranceClaimId = claim.id;
 
-      await logComplianceEvent({
-        eventType: 'claim_intake_created',
-        correlationId: claim.id,
-        correlationType: 'claim',
-        entityType: 'customer',
-        entityIdentifier: body.email,
-        metadata: {
-          damage_types: body.damageTypes,
-          urgency: body.urgencyLevel,
-          payment_confirmed: paymentConfirmed,
-          request_id: log.requestId,
-        },
-      });
+      // Prefer Enquiry id for public tracking so GET can rebuild a rich payload.
+      if (!trackClaim) {
+        trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, false);
+      }
 
-      // DR-389: Dispatch initial SUBMITTED notification (non-blocking)
+      if (enquiryId) {
+        try {
+          const enquiry = await prisma.enquiry.findUnique({ where: { id: enquiryId } });
+          if (enquiry?.metadata) {
+            const meta = JSON.parse(enquiry.metadata) as Record<string, unknown>;
+            meta.insuranceClaimAuId = claim.id;
+            await prisma.enquiry.update({
+              where: { id: enquiryId },
+              data: { metadata: JSON.stringify(meta) },
+            });
+          }
+        } catch {
+          // Non-fatal linkage
+        }
+      }
+
       void dispatchClaimStatusNotification({
         claimId: claim.id,
         newStatus: 'SUBMITTED',
       });
     } catch (dbError) {
-      // D4 Path 1 — anonymous public submissions can't satisfy the
-      // FK constraints on InsuranceClaimAU (Booking + users +
-      // InsuranceProvider). Per
-      // docs/audits/dr-claim-submission-fk-debt-2026-04-29.md, write
-      // to the canonical pre-claim funnel table (Enquiry) instead.
-      // Ops promotes Enquiry -> InsuranceClaimAU later, once the
-      // submitter is verified + a Booking is created.
-      log.warn('claim DB write failed; routing to Enquiry funnel', {
-        error: dbError instanceof Error ? dbError.message : String(dbError),
-      });
-      try {
-        const fallback = await writeEnquiryFromClaimBody(prisma, body, {
-          ipAddress: ip,
-          userAgent: request.headers.get('user-agent') ?? undefined,
+      if (!trackClaim) {
+        log.warn('InsuranceClaimAU write failed and no Enquiry track id yet', {
+          error: dbError instanceof Error ? dbError.message : String(dbError),
         });
-        trackClaim = buildTrackClaimFromInput(
-          fallback.enquiryId,
-          body,
-          fallback.writtenAt,
-          paymentConfirmed,
-        );
-        await logComplianceEvent({
-          eventType: 'claim_intake_created',
-          correlationId: fallback.enquiryId,
-          correlationType: 'claim',
-          entityType: 'customer',
-          entityIdentifier: body.email,
-          metadata: {
-            outcome: 'enquiry_funnel',
-            request_id: log.requestId,
-            enquiry_id: fallback.enquiryId,
-            damage_types: body.damageTypes,
-            urgency: body.urgencyLevel,
-            payment_confirmed: paymentConfirmed,
-          },
+      } else {
+        log.info('InsuranceClaimAU write skipped/failed; Enquiry track id retained', {
+          enquiry_id: enquiryId,
+          error: dbError instanceof Error ? dbError.message : String(dbError),
         });
+      }
+      if (!enquiryId) {
         captureException(dbError, {
-          tags: { route: '/api/claims/submit', stage: 'db_write', recovery: 'enquiry_funnel' },
-          extra: { requestId: log.requestId, enquiryId: fallback.enquiryId },
-        });
-      } catch (enquiryError) {
-        log.error('both claim DB and enquiry funnel writes failed', {
-          claimError: dbError instanceof Error ? dbError.message : String(dbError),
-          enquiryError: enquiryError instanceof Error ? enquiryError.message : String(enquiryError),
-        });
-        captureException(enquiryError, {
-          tags: {
-            route: '/api/claims/submit',
-            stage: 'enquiry_fallback',
-            severity: 'critical',
-          },
+          tags: { route: '/api/claims/submit', stage: 'db_write' },
           extra: { requestId: log.requestId },
         });
-        await logComplianceEvent({
-          eventType: 'claim_intake_created',
-          correlationId: '00000000-0000-0000-0000-000000000000',
-          correlationType: 'system',
-          entityType: 'system',
-          metadata: {
-            outcome: 'both_writes_failed',
-            request_id: log.requestId,
-          },
-        });
-        return NextResponse.json(
-          {
-            success: false,
-            error:
-              'We could not save your claim right now. Please try again shortly, or call us if the problem continues.',
-            code: 'CLAIM_PERSISTENCE_FAILED',
-          },
-          { status: 503 },
-        );
       }
     }
 
     if (!trackClaim) {
+      log.error('both Enquiry and InsuranceClaimAU writes failed', {
+        enquiryError:
+          enquiryError instanceof Error ? enquiryError.message : String(enquiryError ?? ''),
+      });
+      captureException(
+        enquiryError instanceof Error
+          ? enquiryError
+          : new Error('CLAIM_PERSISTENCE_FAILED'),
+        {
+          tags: {
+            route: '/api/claims/submit',
+            stage: 'dual_write',
+            severity: 'critical',
+          },
+          extra: { requestId: log.requestId },
+        },
+      );
+      await logComplianceEvent({
+        eventType: 'claim_intake_created',
+        correlationId: '00000000-0000-0000-0000-000000000000',
+        correlationType: 'system',
+        entityType: 'system',
+        metadata: {
+          outcome: 'both_writes_failed',
+          request_id: log.requestId,
+        },
+      });
       return NextResponse.json(
         {
           success: false,
@@ -419,6 +498,24 @@ export async function POST(request: NextRequest) {
         { status: 503 },
       );
     }
+
+    await logComplianceEvent({
+      eventType: 'claim_intake_created',
+      correlationId: trackClaim.id,
+      correlationType: 'claim',
+      entityType: 'customer',
+      entityIdentifier: body.email,
+      metadata: {
+        outcome: enquiryId ? (insuranceClaimId ? 'dual_write' : 'enquiry_funnel') : 'insurance_claim_only',
+        request_id: log.requestId,
+        enquiry_id: enquiryId,
+        insurance_claim_id: insuranceClaimId,
+        damage_types: body.damageTypes,
+        urgency: body.urgencyLevel,
+        payment_confirmed: false,
+        client_id_bound: Boolean(session.role === 'client' && session.userId),
+      },
+    });
 
     // Send Claim Support Pack email (non-blocking — failures don't block the claim)
     try {
@@ -486,20 +583,13 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Get claim by ID
-// DR-390: Access instructions are only decrypted and returned when the caller
-// is an assigned contractor or an admin.
-//
-// DR-521: Caller identity is now resolved from the NextAuth server session.
-// The JWT is validated server-side — callers cannot forge their role by
-// setting request headers.
+// Get claim by ID — resolves Enquiry (canonical public track), InsuranceClaimAU,
+// or Lead. Access instructions are only decrypted for assigned contractors / admins.
 export async function GET(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/claims/submit' });
   const { searchParams } = new URL(request.url);
   const claimId = searchParams.get('id');
 
-  // DR-521: Resolve caller identity from the validated server session.
-  // Returns role='public' with null userId/email when no session exists.
   const { role: callerRole, userId: callerId } = await getCallerIdentity();
   const canReadAccessInstructions =
     callerRole === 'admin' || callerRole === 'super_admin' || callerRole === 'contractor';
@@ -515,12 +605,46 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    // 1) Canonical public intake — Enquiry with full metadata payload
+    const enquiry = await prisma.enquiry.findUnique({
+      where: { id: claimId },
+    });
+    if (enquiry && enquiry.source === 'public_claim_submit') {
+      return NextResponse.json({
+        success: true,
+        claim: buildTrackClaimFromEnquiry(enquiry),
+        source: 'enquiry',
+      });
+    }
+
+    // 2) InsuranceClaimAU — enrich from linked Enquiry metadata when possible
     const claim = await prisma.insuranceClaimAU.findUnique({
       where: { id: claimId },
     });
 
     if (claim) {
-      // DR-390: Decrypt access instructions only for authorised callers
+      let trackClaim = buildTrackClaimFromDb(claim);
+
+      // Prefer rich Enquiry payload when ops dual-wrote / linked this claim
+      const linked = await prisma.enquiry.findFirst({
+        where: {
+          source: 'public_claim_submit',
+          metadata: { contains: claim.id },
+        },
+        orderBy: { createdAt: 'desc' },
+      });
+      if (linked) {
+        trackClaim = { ...buildTrackClaimFromEnquiry(linked), id: claim.id, status: claim.status };
+      } else if (claim.clientId?.includes('@')) {
+        const byEmail = await prisma.enquiry.findFirst({
+          where: { email: claim.clientId, source: 'public_claim_submit' },
+          orderBy: { createdAt: 'desc' },
+        });
+        if (byEmail) {
+          trackClaim = { ...buildTrackClaimFromEnquiry(byEmail), id: claim.id, status: claim.status };
+        }
+      }
+
       let decryptedAccessInstructions: string | null = null;
       if (canReadAccessInstructions && claim.accessInstructions) {
         try {
@@ -535,24 +659,26 @@ export async function GET(request: NextRequest) {
         }
       }
 
-      const trackClaim = buildTrackClaimFromDb(claim);
       return NextResponse.json({
         success: true,
         claim: trackClaim,
+        source: 'insurance_claim',
         ...(canReadAccessInstructions && {
           accessInstructions: decryptedAccessInstructions,
         }),
       });
     }
 
-    // Most public submissions land in Enquiry (FK-safe funnel) — resolve those next.
-    const enquiry = await prisma.enquiry.findUnique({
+    // 3) Partner Lead funnel (account history may link Lead ids)
+    const lead = await prisma.lead.findUnique({
       where: { id: claimId },
+      include: { partner: { select: { businessName: true } } },
     });
-    if (enquiry && enquiry.source === 'public_claim_submit') {
+    if (lead) {
       return NextResponse.json({
         success: true,
-        claim: buildTrackClaimFromEnquiry(enquiry),
+        claim: buildTrackClaimFromLead(lead),
+        source: 'lead',
       });
     }
 
@@ -577,6 +703,7 @@ export async function GET(request: NextRequest) {
         success: false,
         error: 'Failed to fetch claim',
         message: 'Please contact support',
+        code: 'CLAIM_FETCH_FAILED',
       },
       { status: 500 },
     );
