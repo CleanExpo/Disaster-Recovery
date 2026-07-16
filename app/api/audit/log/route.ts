@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getSessionFromRequest } from '@/lib/auth/session';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
@@ -16,7 +16,7 @@ const CreateAuditLogSchema = z.object({
 export async function POST(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/audit/log' });
   try {
-    const session = await getServerSession();
+    const session = await getSessionFromRequest(req);
     const body = await req.json();
 
     const parsed = CreateAuditLogSchema.safeParse(body);
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
         resourceId: resourceId ?? null,
         details: details !== undefined ? JSON.stringify(details) : null,
         success,
-        userId: session?.user?.email ?? null,
+        userId: session?.email ?? null,
         ipAddress:
           req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
           req.headers.get('x-real-ip') ??
@@ -71,9 +71,9 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getSessionFromRequest(req);
 
-    if (!session?.user) {
+    if (!session) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
