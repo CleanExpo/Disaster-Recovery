@@ -4,6 +4,7 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import {
   TrendingUp,
   TrendingDown,
@@ -68,154 +69,196 @@ interface JobKPI {
 }
 
 function KPITrackingPageOriginal() {
+  const router = useRouter();
   const [timeRange, setTimeRange] = useState('month');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [kpiMetrics, setKpiMetrics] = useState<KPIMetric[]>([]);
   const [recentJobs, setRecentJobs] = useState<JobKPI[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
-  // Mock KPI data
-  const mockKPIMetrics: KPIMetric[] = [
-    {
-      id: 'response-time',
-      name: 'Avg Response Time',
-      value: 18,
-      target: 30,
-      unit: 'min',
-      trend: 'down',
-      trendValue: -15,
-      status: 'excellent',
-      category: 'performance',
-    },
-    {
-      id: 'completion-rate',
-      name: 'Job Completion Rate',
-      value: 96.5,
-      target: 95,
-      unit: '%',
-      trend: 'up',
-      trendValue: 2.3,
-      status: 'excellent',
-      category: 'performance',
-    },
-    {
-      id: 'customer-satisfaction',
-      name: 'Customer Satisfaction',
-      value: 4.8,
-      target: 4.5,
-      unit: '/5',
-      trend: 'up',
-      trendValue: 0.2,
-      status: 'excellent',
-      category: 'customer',
-    },
-    {
-      id: 'first-time-fix',
-      name: 'First Time Fix Rate',
-      value: 88,
-      target: 85,
-      unit: '%',
-      trend: 'stable',
-      trendValue: 0,
-      status: 'good',
-      category: 'efficiency',
-    },
-    {
-      id: 'documentation-quality',
-      name: 'Documentation Quality',
-      value: 92,
-      target: 90,
-      unit: '%',
-      trend: 'up',
-      trendValue: 5,
-      status: 'good',
-      category: 'quality',
-    },
-    {
-      id: 'payment-release',
-      name: 'On-time completion rate',
-      value: 94,
-      target: 90,
-      unit: '%',
-      trend: 'up',
-      trendValue: 3,
-      status: 'excellent',
-      category: 'efficiency',
-    },
-  ];
-
-  // Performance trend data
-  const performanceTrend = [
-    { month: 'Jan', responseTime: 25, completionRate: 92, satisfaction: 4.5 },
-    { month: 'Feb', responseTime: 23, completionRate: 93, satisfaction: 4.6 },
-    { month: 'Mar', responseTime: 22, completionRate: 94, satisfaction: 4.6 },
-    { month: 'Apr', responseTime: 20, completionRate: 95, satisfaction: 4.7 },
-    { month: 'May', responseTime: 19, completionRate: 96, satisfaction: 4.8 },
-    { month: 'Jun', responseTime: 18, completionRate: 96.5, satisfaction: 4.8 },
-  ];
-
-  // Job category distribution
-  const jobDistribution = [
-    { name: 'Water Damage', value: 45, colour: '#3B82F6' },
-    { name: 'Fire Damage', value: 20, colour: '#EF4444' },
-    { name: 'Storm Damage', value: 15, colour: '#8B5CF6' },
-    { name: 'Mould Remediation', value: 12, colour: '#10B981' },
-    { name: 'Other', value: 8, colour: '#6B7280' },
-  ];
-
-  // KPI achievement radar data
-  const radarData = [
-    { metric: 'Response', A: 95, fullMark: 100 },
-    { metric: 'Quality', A: 92, fullMark: 100 },
-    { metric: 'Efficiency', A: 88, fullMark: 100 },
-    { metric: 'Customer', A: 96, fullMark: 100 },
-    { metric: 'Documentation', A: 90, fullMark: 100 },
-  ];
+  // Charts stay empty until historical KPI series exists in the API
+  const performanceTrend: Array<{
+    month: string;
+    responseTime: number;
+    completionRate: number;
+    satisfaction: number;
+  }> = [];
+  const jobDistribution: Array<{ name: string; value: number; colour: string }> = [];
 
   useEffect(() => {
-    // Simulate data loading
-    setTimeout(() => {
-      setKpiMetrics(mockKPIMetrics);
-      setRecentJobs([
-        {
-          jobId: 'JOB-001',
-          bookingId: 'NRPG-2024-ABC123',
-          customerName: 'John Smith',
-          serviceType: 'Water Damage',
-          kpis: {
-            responseTime: 15,
-            arrivalTime: 45,
-            completionTime: 180,
-            customerRating: 5,
-            photosTaken: 25,
-            reportSubmitted: true,
-            insuranceApproved: true,
+    let cancelled = false;
+
+    async function load() {
+      setLoading(true);
+      setLoadError(null);
+      try {
+        const meRes = await fetch('/api/auth/me', { credentials: 'include' });
+        if (!meRes.ok) {
+          router.push('/contractor/login');
+          return;
+        }
+        const me = await meRes.json();
+        if (!me.authenticated || me.user?.role !== 'CONTRACTOR') {
+          router.push('/contractor/login');
+          return;
+        }
+
+        const [dashRes, jobsRes] = await Promise.all([
+          fetch('/api/contractor/dashboard', { credentials: 'include' }),
+          fetch('/api/contractor/jobs', { credentials: 'include' }),
+        ]);
+
+        if (dashRes.status === 401 || jobsRes.status === 401) {
+          router.push('/contractor/login');
+          return;
+        }
+
+        const dash = dashRes.ok ? await dashRes.json() : null;
+        const jobsPayload = jobsRes.ok ? await jobsRes.json() : null;
+        const overview = dash?.overview ?? dash?.data?.overview ?? {};
+        const performance = dash?.performance ?? dash?.data?.performance ?? {};
+
+        const parseMinutes = (raw: unknown): number => {
+          if (typeof raw === 'number') return raw;
+          if (typeof raw === 'string') {
+            const m = raw.match(/(\d+)/);
+            return m ? Number(m[1]) : 0;
+          }
+          return 0;
+        };
+
+        const metrics: KPIMetric[] = [
+          {
+            id: 'response-time',
+            name: 'Avg Response Time',
+            value: parseMinutes(performance.averageResponseTime),
+            target: 30,
+            unit: 'min',
+            trend: 'stable',
+            trendValue: 0,
+            status:
+              parseMinutes(performance.averageResponseTime) <= 30 ? 'excellent' : 'warning',
+            category: 'performance',
           },
-          status: 'completed',
-          completedAt: '2024-06-15',
-          paymentReleased: 2200,
-        },
-        {
-          jobId: 'JOB-002',
-          bookingId: 'NRPG-2024-DEF456',
-          customerName: 'Sarah Johnson',
-          serviceType: 'Fire Damage',
+          {
+            id: 'completion-rate',
+            name: 'Job Completion Rate',
+            value: Number(performance.jobCompletionRate ?? 0),
+            target: 95,
+            unit: '%',
+            trend: 'stable',
+            trendValue: 0,
+            status:
+              Number(performance.jobCompletionRate ?? 0) >= 95
+                ? 'excellent'
+                : Number(performance.jobCompletionRate ?? 0) >= 85
+                  ? 'good'
+                  : 'warning',
+            category: 'performance',
+          },
+          {
+            id: 'customer-satisfaction',
+            name: 'Customer Satisfaction',
+            value: Number(overview.averageRating ?? 0),
+            target: 4.5,
+            unit: '/5',
+            trend: 'stable',
+            trendValue: 0,
+            status:
+              Number(overview.averageRating ?? 0) >= 4.5
+                ? 'excellent'
+                : Number(overview.averageRating ?? 0) >= 4
+                  ? 'good'
+                  : 'warning',
+            category: 'customer',
+          },
+          {
+            id: 'active-jobs',
+            name: 'Active Jobs',
+            value: Number(overview.activeJobs ?? 0),
+            target: 5,
+            unit: '',
+            trend: 'stable',
+            trendValue: 0,
+            status: 'good',
+            category: 'efficiency',
+          },
+          {
+            id: 'completed-month',
+            name: 'Completed This Month',
+            value: Number(overview.completedThisMonth ?? 0),
+            target: 10,
+            unit: '',
+            trend: 'stable',
+            trendValue: 0,
+            status: 'good',
+            category: 'efficiency',
+          },
+          {
+            id: 'revenue-month',
+            name: 'Revenue This Month',
+            value: Number(overview.totalRevenue ?? 0),
+            target: 10000,
+            unit: 'AUD',
+            trend: Number(performance.monthlyGrowth ?? 0) >= 0 ? 'up' : 'down',
+            trendValue: Number(performance.monthlyGrowth ?? 0),
+            status: 'good',
+            category: 'efficiency',
+          },
+        ];
+
+        const apiJobs = (jobsPayload?.jobs ?? jobsPayload?.data ?? []) as Array<Record<string, unknown>>;
+        const mappedJobs: JobKPI[] = apiJobs.slice(0, 20).map((j) => ({
+          jobId: String(j.id ?? j.jobId ?? ''),
+          bookingId: String(j.bookingId ?? j.claimId ?? j.id ?? ''),
+          customerName: String(
+            (j.customer as { name?: string } | undefined)?.name ??
+              (j.client as { name?: string } | undefined)?.name ??
+              'Client',
+          ),
+          serviceType: String(
+            (j.service as { type?: string } | undefined)?.type ?? j.serviceType ?? 'Restoration',
+          ),
           kpis: {
-            responseTime: 20,
-            arrivalTime: 50,
-            completionTime: 240,
-            customerRating: 4.5,
-            photosTaken: 30,
-            reportSubmitted: true,
+            responseTime: 0,
+            arrivalTime: 0,
+            completionTime: 0,
+            customerRating: undefined,
+            photosTaken: 0,
+            reportSubmitted: false,
             insuranceApproved: false,
           },
-          status: 'in_progress',
-          paymentReleased: 1100,
-        },
-      ]);
-      setLoading(false);
-    }, 1000);
-  }, [timeRange]);
+          status:
+            String(j.status).toLowerCase() === 'completed'
+              ? 'completed'
+              : String(j.status).toLowerCase().includes('progress')
+                ? 'in_progress'
+                : 'pending',
+          completedAt: j.completedAt ? String(j.completedAt) : undefined,
+          paymentReleased: Number(j.fee ?? j.amount ?? 0),
+        }));
+
+        if (!cancelled) {
+          setKpiMetrics(metrics);
+          setRecentJobs(mappedJobs);
+        }
+      } catch {
+        if (!cancelled) {
+          setLoadError('Unable to load KPI data. Please try again.');
+          setKpiMetrics([]);
+          setRecentJobs([]);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    void load();
+    return () => {
+      cancelled = true;
+    };
+  }, [timeRange, router]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -247,8 +290,26 @@ function KPITrackingPageOriginal() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-700">Loading KPI metrics...</p>
+          <RefreshCw className="h-8 w-8 animate-spin text-[var(--ag-primary-blue)] mx-auto mb-3" />
+          <p className="text-sm text-gray-600">Loading your KPIs…</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="max-w-md text-center space-y-3">
+          <AlertTriangle className="h-10 w-10 text-amber-500 mx-auto" />
+          <p className="text-sm text-gray-700">{loadError}</p>
+          <button
+            type="button"
+            className="min-h-[44px] rounded-lg bg-[var(--ag-primary-blue)] px-4 text-white text-sm font-medium"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
         </div>
       </div>
     );
