@@ -15,6 +15,7 @@ import { AntigravityServicePillarCard } from './AntigravityServicePillarCard';
 import { AntigravityBrandEquipment } from './AntigravityBrandEquipment';
 import { AntigravityCommercialSection } from './AntigravityCommercialSection';
 import { AntigravityContractorNetworkCTA } from './AntigravityContractorNetworkCTA';
+import { AntigravityAdvocacyStrip } from './AntigravityAdvocacyStrip';
 import { AntigravityFooter } from './AntigravityFooter';
 
 // Deferred — drag/touch JS removed from critical path. SSR still renders placeholder height.
@@ -98,6 +99,7 @@ export function AntigravityHomePage() {
       <AntigravityCommercialSection />
       <AntigravityBrandEquipment />
       <AntigravityContractorNetworkCTA />
+      <AntigravityAdvocacyStrip />
       <AntigravityFooter />
     </>
   );
