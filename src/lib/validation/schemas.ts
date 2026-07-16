@@ -35,7 +35,7 @@ export const claimSubmitSchema = z.object({
     .optional(),
   damageTypes: z.array(z.string().max(100)).min(1).max(20),
   damageDescription: z.string().min(1).max(5000),
-  urgencyLevel: z.enum(['emergency', 'urgent', 'standard']).optional(),
+  urgencyLevel: z.enum(['emergency', 'urgent', 'standard']).default('standard'),
   policyNumber: z.string().max(100).optional(),
   insuranceCompany: z.string().max(200).optional(),
   insuranceClaimNumber: z.string().max(100).optional(),
