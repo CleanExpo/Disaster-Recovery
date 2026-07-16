@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { randomUUID } from 'node:crypto';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { verifyContractorActivationToken } from '@/lib/contractor-activation';
+import { issueSession, setAuthCookies } from '@/lib/auth/session';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
 
@@ -51,7 +53,13 @@ export async function POST(request: NextRequest) {
 
     const contractor = await prisma.contractor.findUnique({
       where: { id: payload.contractorId },
-      select: { id: true, emailVerified: true, status: true },
+      select: {
+        id: true,
+        email: true,
+        username: true,
+        emailVerified: true,
+        status: true,
+      },
     });
 
     if (!contractor) {
@@ -78,6 +86,29 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    let user = await prisma.user.findUnique({ where: { email: contractor.email } });
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          id: randomUUID(),
+          email: contractor.email,
+          name: contractor.username,
+          password: passwordHash,
+          userType: 'CONTRACTOR',
+          isEmailVerified: true,
+        },
+      });
+    } else {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          password: passwordHash,
+          userType: 'CONTRACTOR',
+          isEmailVerified: true,
+        },
+      });
+    }
+
     await prisma.contractorAuditLog.create({
       data: {
         contractorId: contractor.id,
@@ -87,6 +118,14 @@ export async function POST(request: NextRequest) {
         performedBy: contractor.id,
         performedByType: 'CONTRACTOR',
       },
+    });
+
+    const tokens = await issueSession({
+      userId: user.id,
+      email: contractor.email,
+      role: 'CONTRACTOR',
+      name: contractor.username,
+      contractorId: contractor.id,
     });
 
     await logComplianceEvent({
@@ -102,11 +141,14 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({
+    const res = NextResponse.json({
       success: true,
       contractorId: contractor.id,
       status: contractor.status,
+      redirectTo: '/contractor/portal',
     });
+    setAuthCookies(res, tokens, false);
+    return res;
   } catch (error) {
     log.error('contractor activation failed', {
       error: error instanceof Error ? error.message : String(error),
