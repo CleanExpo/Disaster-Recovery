@@ -3,8 +3,12 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { PrivacyCollectionNoticeSection } from './PrivacyCollectionNotice';
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
+import {
+  AntigravityNavbar,
+  AntigravityFooter,
+  AgStepProgress,
+  AgFormShell,
+} from '@/components/antigravity';
 import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 
 // Deferred — these components are below-fold or interaction-gated.
@@ -235,7 +239,7 @@ function OnlineClaimPageOriginal() {
     hasPhotos: false,
     uploadedDocuments: [] as string[],
 
-    // Authorizations
+    // Authorisations
     authorizePropertyAccess: false,
     authorizeInsuranceLiaison: false,
     authorizeWorkCommencement: false,
@@ -496,69 +500,83 @@ function OnlineClaimPageOriginal() {
     'Gas leak',
   ];
 
+  const CLAIM_STEPS = [
+    { id: 1, label: 'Property & damage' },
+    { id: 2, label: 'Insurance' },
+    { id: 3, label: 'Authorisations' },
+    { id: 4, label: 'Review' },
+  ];
+
+  const showQuickFill =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_CLAIM_QUICK_FILL === 'true';
+
   if (step === 5 && claimId) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <Card>
-            <CardHeader className="text-center">
-              <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
-              <CardTitle className="text-2xl">Claim Submitted Successfully</CardTitle>
-              <CardDescription>
-                Your claim ID: <strong className="text-xl">{claimId}</strong>
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <Alert className="bg-green-50 border-green-200">
-                <CheckCircle2 className="h-4 w-4 text-green-600" />
-                <AlertDescription className="text-green-800">
-                  Your claim has been received and is being assigned to a contractor now.
+      <div className="ag-page-elevated">
+        <AntigravityNavbar />
+        <div className="ag-container py-12 max-w-2xl mx-auto px-4">
+          <AgFormShell
+            title="Claim submitted successfully"
+            subtitle={`Your claim ID: ${claimId}`}
+          >
+            <div className="space-y-6">
+              <div className="flex justify-center">
+                <CheckCircle2 className="h-16 w-16 text-emerald-600" aria-hidden="true" />
+              </div>
+              <Alert className="bg-emerald-50 border-emerald-200">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                <AlertDescription className="text-emerald-900">
+                  Your claim has been received and is being matched with an IICRC-certified NRPG
+                  contractor.
                 </AlertDescription>
               </Alert>
 
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="font-semibold mb-3 flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  What Happens Next
+              <div className="rounded-xl border border-[var(--ag-border-grey)] bg-[var(--ag-background-light)] p-6">
+                <h3 className="font-semibold mb-3 flex items-center gap-2 text-[var(--ag-primary-blue)]">
+                  <Clock className="h-5 w-5" aria-hidden="true" />
+                  What happens next
                 </h3>
-                <ol className="space-y-2 text-sm">
-                  <li>1. Your claim is being matched with a certified NRPG contractor</li>
-                  <li>
-                    2. A verified NRPG contractor will review your claim and contact you directly
-                  </li>
-                  <li>3. They will schedule an inspection at your convenience</li>
-                  <li>4. The contractor handles all work and insurance liaison</li>
-                  <li>5. All future communication is directly with your contractor</li>
+                <ol className="space-y-2 text-sm text-[var(--ag-text-dark)]">
+                  <li>1. Your claim is matched with a certified NRPG contractor</li>
+                  <li>2. That contractor reviews your claim and contacts you directly</li>
+                  <li>3. They schedule an inspection at your convenience</li>
+                  <li>4. The contractor handles restoration work and bills you directly</li>
+                  <li>5. Ongoing communication is with your contractor, not Disaster Recovery</li>
                 </ol>
               </div>
 
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Important:</strong> Disaster Recovery is a lead generation platform. Your
-                  assigned contractor will handle all service delivery, communication, and work
-                  completion according to strict NRPG standards.
+                  <strong>Important:</strong> Disaster Recovery is a network orchestrator. We
+                  connect you with certified contractors — we do not perform restoration work or
+                  invoice you for it.
                 </AlertDescription>
               </Alert>
 
-              <div className="text-center pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
                 <Button
                   onClick={() => (window.location.href = `/track/${claimId}`)}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="ag-btn-primary-navy hover:opacity-90"
                 >
-                  Track Your Claim
+                  Track your claim
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href="/">Return home</Link>
                 </Button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </AgFormShell>
         </div>
+        <AntigravityFooter />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <div className="ag-page-elevated py-6 sm:py-10">
+      <div className="ag-container mx-auto px-4 max-w-4xl">
         {/* DR-542 — Life-safety carve-out. ALWAYS first. A user with flood
             entering the home or a roof torn off needs 000 before anything else. */}
         <div role="alert" className="mb-4 rounded-lg border-2 border-red-600 bg-red-50 p-4">
@@ -625,30 +643,40 @@ function OnlineClaimPageOriginal() {
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold mb-2">Submit Online Claim</h1>
+            <h1 className="text-3xl font-bold mb-2 text-[var(--ag-primary-blue)]">
+              Lodge your claim
+            </h1>
+            <p className="text-sm text-[var(--ag-text-grey)]">
+              Matched with an IICRC-certified contractor. They bill you directly for restoration
+              work — Disaster Recovery does not invoice you.
+            </p>
           </div>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-3 md:max-w-sm w-full">
-            <Label className="text-xs font-semibold text-green-900">Quick Fill Scenario</Label>
-            <div className="mt-2 flex gap-2">
-              <Select value={selectedScenario} onValueChange={setSelectedScenario}>
-                <SelectTrigger className="bg-white" aria-label="Quick fill scenario">
-                  <SelectValue placeholder="Select scenario" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="burstPipe">Burst Pipe (Emergency)</SelectItem>
-                  <SelectItem value="stormDamage">Storm Damage (Urgent)</SelectItem>
-                  <SelectItem value="mouldClaim">Mould Claim (Standard)</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button
-                type="button"
-                onClick={applyQuickFill}
-                className="bg-green-700 hover:bg-green-800"
-              >
-                Fill
-              </Button>
+          {showQuickFill && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3 md:max-w-sm w-full">
+              <Label className="text-xs font-semibold text-green-900">
+                Quick fill (dev only)
+              </Label>
+              <div className="mt-2 flex gap-2">
+                <Select value={selectedScenario} onValueChange={setSelectedScenario}>
+                  <SelectTrigger className="bg-white" aria-label="Quick fill scenario">
+                    <SelectValue placeholder="Select scenario" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="burstPipe">Burst Pipe (Emergency)</SelectItem>
+                    <SelectItem value="stormDamage">Storm Damage (Urgent)</SelectItem>
+                    <SelectItem value="mouldClaim">Mould Claim (Standard)</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Button
+                  type="button"
+                  onClick={applyQuickFill}
+                  className="bg-green-700 hover:bg-green-800"
+                >
+                  Fill
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Offline banner */}
@@ -783,45 +811,26 @@ function OnlineClaimPageOriginal() {
           </div>
         )}
 
-        {/* Progress Steps */}
-        <div className="flex justify-center mb-8 overflow-x-auto">
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            {[1, 2, 3, 4].map((s) => (
-              <div key={s} className="flex items-center">
-                <div
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base ${
-                    step >= s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-                  }`}
-                >
-                  {s}
-                </div>
-                {s < 4 && (
-                  <div
-                    className={`w-8 sm:w-20 h-1 ms-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <AgStepProgress steps={CLAIM_STEPS} current={step} className="mb-8" />
 
-        {/* Platform Role Disclaimer */}
-        <Alert className="mb-6 bg-yellow-50 border-yellow-200">
-          <AlertTriangle className="h-4 w-4 text-yellow-600" />
+        {/* Platform Role Disclaimer — Path A */}
+        <Alert className="mb-6 bg-amber-50 border-amber-200">
+          <AlertTriangle className="h-4 w-4 text-amber-600" />
           <AlertDescription>
             <strong>Important:</strong> Disaster Recovery connects you with certified NRPG
-            contractors who handle all work, communication, and service delivery. We bill you
-            directly — work begins immediately without waiting for insurer approval.
+            contractors who handle all work, communication, and service delivery. Your contractor
+            bills you directly — Disaster Recovery does not hold client funds or invoice for
+            restoration.
           </AlertDescription>
         </Alert>
 
-        <Card>
+        <Card className="border-[var(--ag-border-grey)] shadow-sm">
           <CardHeader>
             <CardTitle>
-              {step === 1 && 'Property & Damage Information'}
-              {step === 2 && 'Insurance & Documentation'}
-              {step === 3 && 'Authorizations & Terms'}
-              {step === 4 && 'Final Review & Submit'}
+              {step === 1 && 'Property & damage information'}
+              {step === 2 && 'Insurance & documentation'}
+              {step === 3 && 'Authorisations & terms'}
+              {step === 4 && 'Final review & submit'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1247,7 +1256,7 @@ function OnlineClaimPageOriginal() {
               </div>
             )}
 
-            {/* Step 3: Authorizations & Terms */}
+            {/* Step 3: Authorisations & Terms */}
             {step === 3 && (
               <div className="space-y-6">
                 <Alert className="bg-orange-50 border-orange-200">
@@ -1343,9 +1352,10 @@ function OnlineClaimPageOriginal() {
                         htmlFor="understandPlatformRole"
                         className="font-normal cursor-pointer leading-snug"
                       >
-                        I understand that Disaster Recovery connects me with certified NRPG
-                        contractors. The $2,750 emergency make-safe fee includes a $550 platform fee
-                        and $2,200 held for my contractor.
+                        I understand that Disaster Recovery is a network orchestrator that connects
+                        me with certified NRPG contractors. My matched contractor will quote and
+                        bill me directly for restoration work — Disaster Recovery does not hold
+                        client funds or invoice me for that work.
                       </Label>
                     </div>
                     <div className="flex items-start gap-3 py-1">
@@ -1440,14 +1450,14 @@ function OnlineClaimPageOriginal() {
                   </AlertDescription>
                 </Alert>
 
-                <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
+                <div className="bg-white border-2 border-[var(--ag-border-grey)] rounded-lg p-6">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <CreditCard className="h-5 w-5" />
-                    Submission Summary
+                    Submission summary
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Claim Intake &amp; Contractor Matching</span>
+                      <span>Claim intake &amp; contractor matching</span>
                       <span className="font-semibold">Included</span>
                     </div>
                     {capturedPhotos.length > 0 && (
@@ -1459,45 +1469,37 @@ function OnlineClaimPageOriginal() {
                       </div>
                     )}
                     <div className="flex justify-between">
-                      <span>Platform fee (payable when work begins)</span>
-                      <span className="font-semibold">$550</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Emergency make-safe works (held for contractor)</span>
-                      <span className="font-semibold">$2,200</span>
+                      <span>Indicative emergency make-safe (contractor quote)</span>
+                      <span className="font-semibold">From ~${PLATFORM_FEE.toFixed(0)}</span>
                     </div>
                     <div className="text-xs text-gray-500 ps-1">
-                      No payment is taken when you submit this form. You will be contacted by the
-                      assigned contractor before any charge is applied.
-                    </div>
-                    <div className="border-t pt-2">
-                      <div className="flex flex-wrap justify-between text-base sm:text-lg font-bold gap-1">
-                        <span>Total (billed when restoration begins)</span>
-                        <span>$2,750</span>
-                      </div>
+                      No payment is taken when you submit this form. Your matched contractor will
+                      contact you, provide a firm Scope of Works on-site, and bill you directly.
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">What You're Paying For:</h4>
+                  <h4 className="font-semibold mb-2">What you get</h4>
                   <ul className="text-sm space-y-1">
                     <li>✓ Immediate contractor matching based on location and damage type</li>
                     <li>
                       ✓ Contractor contacts you promptly to schedule emergency make-safe works
                     </li>
-                    <li>✓ $2,200 credited toward your full restoration</li>
                     <li>✓ Full claims documentation for your insurer</li>
-                    <li>✓ Contractor provides formal contract with clear terms</li>
+                    <li>✓ Contractor provides a formal contract with clear terms</li>
+                    <li>✓ Contractor bills you directly — not via Disaster Recovery</li>
                   </ul>
                 </div>
 
                 <Alert>
                   <Info className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>How billing works:</strong> We bill you directly — work begins
-                    immediately without waiting for insurer approval. We provide full documentation
-                    to support your insurance claim for reimbursement.
+                    <strong>How billing works:</strong> Your IICRC-certified contractor bills you
+                    directly for restoration work. Disaster Recovery is a network orchestrator and
+                    does not invoice you or hold client funds. Contractors can usually start
+                    make-safe works without waiting for insurer approval; keep documentation for
+                    reimbursement where your policy covers it.
                   </AlertDescription>
                 </Alert>
 
