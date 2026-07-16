@@ -298,6 +298,29 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
   }
 
+  if (lead.partnerId && lead.partnerId === partnerId && lead.status === 'ASSIGNED') {
+    return NextResponse.json(
+      {
+        error: 'This lead is already assigned to that partner.',
+        leadId: lead.id,
+        partnerId,
+      },
+      { status: 409 },
+    );
+  }
+
+  if (lead.partnerId && lead.partnerId !== partnerId && ['ASSIGNED', 'ACCEPTED'].includes(lead.status)) {
+    return NextResponse.json(
+      {
+        error:
+          'This lead is already assigned to another partner. Reassign only after clearing the current assignment.',
+        leadId: lead.id,
+        currentPartnerId: lead.partnerId,
+      },
+      { status: 409 },
+    );
+  }
+
   const updated = await prisma.lead.update({
     where: { id: leadId },
     data: {
