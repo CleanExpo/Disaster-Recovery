@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
+import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/admin-auth';
 import { captureException } from '@/lib/observability/vercel';
@@ -10,15 +11,20 @@ import { sendEmail, emailTemplates } from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
-async function ensureContractorForApplication(application: {
-  id: string;
-  email: string;
-  phone: string;
-  contactName: string;
-  convertedContractor: string | null;
-}): Promise<{ contractorId: string; created: boolean; emailVerified: boolean }> {
+type Tx = Prisma.TransactionClient;
+
+async function ensureContractorForApplication(
+  tx: Tx,
+  application: {
+    id: string;
+    email: string;
+    phone: string;
+    contactName: string;
+    convertedContractor: string | null;
+  },
+): Promise<{ contractorId: string; created: boolean; emailVerified: boolean }> {
   if (application.convertedContractor) {
-    const existing = await prisma.contractor.findUnique({
+    const existing = await tx.contractor.findUnique({
       where: { id: application.convertedContractor },
       select: { id: true, emailVerified: true },
     });
@@ -31,12 +37,12 @@ async function ensureContractorForApplication(application: {
     }
   }
 
-  const byEmail = await prisma.contractor.findUnique({
+  const byEmail = await tx.contractor.findUnique({
     where: { email: application.email },
     select: { id: true, emailVerified: true },
   });
   if (byEmail) {
-    await prisma.contractorApplication.update({
+    await tx.contractorApplication.update({
       where: { id: application.id },
       data: { convertedContractor: byEmail.id },
     });
@@ -56,7 +62,7 @@ async function ensureContractorForApplication(application: {
     .toLowerCase();
   const username = `${baseUsername}_${crypto.randomBytes(3).toString('hex')}`;
 
-  const contractor = await prisma.contractor.create({
+  const contractor = await tx.contractor.create({
     data: {
       email: application.email,
       username,
@@ -67,7 +73,7 @@ async function ensureContractorForApplication(application: {
     },
   });
 
-  await prisma.contractorApplication.update({
+  await tx.contractorApplication.update({
     where: { id: application.id },
     data: { convertedContractor: contractor.id },
   });
@@ -129,125 +135,168 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     );
   }
 
-  let application;
-  try {
-    application = await prisma.contractorApplication.findUnique({
-      where: { id },
-    });
-  } catch (e) {
-    captureException(e, {
-      tags: {
-        route: '/api/admin/contractor-applications/[id]',
-        model: 'contractorApplication',
-        op: 'findUnique',
-      },
-    });
-    throw e;
-  }
+  const application = await prisma.contractorApplication.findUnique({
+    where: { id },
+  });
 
   if (!application) {
     return NextResponse.json({ error: 'Application not found' }, { status: 404 });
   }
 
-  const updateData: {
-    status?: string;
-    reviewedAt?: Date;
-    reviewedBy?: string;
-    rejectionReason?: string | null;
-    notes?: string | null;
-  } = {};
-  if (status) {
-    updateData.status = status;
-    updateData.reviewedAt = new Date();
-    updateData.reviewedBy = adminUser.email ?? adminUser.id ?? 'admin';
-  }
-  if (typeof body.adminNotes === 'string') {
-    updateData.notes = body.adminNotes;
-  }
-  if (status === 'REJECTED' && typeof body.rejectionReason === 'string') {
-    updateData.rejectionReason = body.rejectionReason;
-  }
-
-  let updated;
-  try {
-    updated = await prisma.contractorApplication.update({
-      where: { id },
-      data: updateData,
-    });
-  } catch (e) {
-    captureException(e, {
-      tags: {
-        route: '/api/admin/contractor-applications/[id]',
-        model: 'contractorApplication',
-        op: 'update',
-      },
-    });
-    throw e;
-  }
+  const reviewedAt = new Date();
+  const reviewedBy = adminUser.email ?? adminUser.id ?? 'admin';
 
   let activationUrl: string | undefined;
-  let contractorId: string | null = updated.convertedContractor;
+  let contractorId: string | null = application.convertedContractor;
+  let updated = application;
+  let activationSent = false;
 
-  if (status === 'APPROVED') {
-    try {
-      const ensured = await ensureContractorForApplication(application);
-      contractorId = ensured.contractorId;
+  try {
+    if (status === 'APPROVED') {
+      const result = await prisma.$transaction(async (tx) => {
+        const ensured = await ensureContractorForApplication(tx, application);
 
-      await prisma.contractor.update({
-        where: { id: ensured.contractorId },
-        data: {
-          status: 'APPROVED',
-          approvedAt: new Date(),
-          rejectionReason: null,
-          rejectedAt: null,
-        },
+        const appRow = await tx.contractorApplication.update({
+          where: { id },
+          data: {
+            status: 'APPROVED',
+            reviewedAt,
+            reviewedBy,
+            convertedContractor: ensured.contractorId,
+            ...(typeof body.adminNotes === 'string' ? { notes: body.adminNotes } : {}),
+            rejectionReason: null,
+          },
+        });
+
+        await tx.contractor.update({
+          where: { id: ensured.contractorId },
+          data: {
+            status: 'APPROVED',
+            approvedAt: reviewedAt,
+            rejectionReason: null,
+            rejectedAt: null,
+          },
+        });
+
+        return { appRow, ensured };
       });
 
-      if (!ensured.emailVerified) {
-        activationUrl = buildContractorActivationUrl(ensured.contractorId);
+      updated = result.appRow;
+      contractorId = result.ensured.contractorId;
+
+      if (!result.ensured.emailVerified) {
+        activationUrl = buildContractorActivationUrl(result.ensured.contractorId);
       }
 
-      sendEmail(
+      const emailed = await sendEmail(
         application.email,
         emailTemplates.contractorApplicationApproved(
           application.contactName,
           application.id,
           activationUrl,
         ),
-      ).catch(() => {
-        // Non-fatal — approval is durable in DB
-      });
-    } catch (e) {
-      captureException(e, {
-        tags: {
-          route: '/api/admin/contractor-applications/[id]',
-          stage: 'approve_activate',
-        },
-      });
-      return NextResponse.json(
-        {
-          error:
-            'Application was marked approved, but contractor activation could not be completed. Retry or contact engineering.',
-          application: updated,
-        },
-        { status: 502 },
-      );
-    }
-  }
+      ).catch(() => false);
 
-  if (status === 'REJECTED' && contractorId) {
-    await prisma.contractor
-      .update({
-        where: { id: contractorId },
-        data: {
-          status: 'REJECTED',
-          rejectedAt: new Date(),
-          rejectionReason: body.rejectionReason ?? 'Application rejected',
-        },
-      })
-      .catch(() => {
-        // Non-fatal if contractor row missing
+      activationSent = Boolean(activationUrl) && Boolean(emailed);
+
+      if (activationUrl && !emailed) {
+        // Durable approval succeeded; surface email failure so admin can resend.
+        await logComplianceEvent({
+          eventType: 'api_route_invocation',
+          correlationId: id,
+          correlationType: 'contractor_membership',
+          entityType: 'contractor',
+          entityIdentifier: application.email,
+          metadata: {
+            route: '/api/admin/contractor-applications/[id]',
+            method: 'PATCH',
+            application_id: id,
+            new_status: 'APPROVED',
+            contractor_id: contractorId,
+            activation_sent: false,
+            email_failed: true,
+            email_hash: hashIdentifier(application.email),
+          },
+        });
+
+        return NextResponse.json(
+          {
+            ...updated,
+            contractorId,
+            activationSent: false,
+            warning:
+              'Application approved and contractor linked, but the activation email could not be sent. Resend from the application detail page or contact the applicant.',
+          },
+          { status: 200 },
+        );
+      }
+    } else if (status === 'REJECTED') {
+      updated = await prisma.$transaction(async (tx) => {
+        const appRow = await tx.contractorApplication.update({
+          where: { id },
+          data: {
+            status: 'REJECTED',
+            reviewedAt,
+            reviewedBy,
+            rejectionReason: body.rejectionReason ?? 'Application rejected',
+            ...(typeof body.adminNotes === 'string' ? { notes: body.adminNotes } : {}),
+          },
+        });
+
+        const linkedId = appRow.convertedContractor ?? application.convertedContractor;
+        if (linkedId) {
+          await tx.contractor
+            .update({
+              where: { id: linkedId },
+              data: {
+                status: 'REJECTED',
+                rejectedAt: reviewedAt,
+                rejectionReason: body.rejectionReason ?? 'Application rejected',
+              },
+            })
+            .catch(() => null);
+        }
+
+        return appRow;
       });
+      contractorId = updated.convertedContractor;
+    } else {
+      const updateData: {
+        status?: string;
+        reviewedAt?: Date;
+        reviewedBy?: string;
+        notes?: string | null;
+      } = {};
+      if (status) {
+        updateData.status = status;
+        updateData.reviewedAt = reviewedAt;
+        updateData.reviewedBy = reviewedBy;
+      }
+      if (typeof body.adminNotes === 'string') {
+        updateData.notes = body.adminNotes;
+      }
+
+      updated = await prisma.contractorApplication.update({
+        where: { id },
+        data: updateData,
+      });
+    }
+  } catch (e) {
+    captureException(e, {
+      tags: {
+        route: '/api/admin/contractor-applications/[id]',
+        stage: status === 'APPROVED' ? 'approve_transaction' : 'status_update',
+      },
+    });
+    return NextResponse.json(
+      {
+        error:
+          status === 'APPROVED'
+            ? 'Approval failed. The application was not marked approved. Please retry.'
+            : 'Failed to update application status. Please retry.',
+      },
+      { status: 500 },
+    );
   }
 
   await logComplianceEvent({
@@ -262,7 +311,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
       application_id: id,
       new_status: status ?? null,
       contractor_id: contractorId,
-      activation_sent: Boolean(activationUrl),
+      activation_sent: activationSent,
       email_hash: hashIdentifier(application.email),
     },
   });
@@ -270,6 +319,6 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
   return NextResponse.json({
     ...updated,
     contractorId,
-    activationSent: Boolean(activationUrl),
+    activationSent,
   });
 }
