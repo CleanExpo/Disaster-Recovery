@@ -4,27 +4,75 @@ import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
 
+export const dynamic = 'force-dynamic';
+
+async function resolvePartnerIdForContractor(user: {
+  id: string;
+  email?: string | null;
+  role?: string;
+}): Promise<string | null> {
+  if (user.role === UserRole.ADMIN || user.role === UserRole.SUPER_ADMIN) {
+    return null; // admin may see all — handled by caller
+  }
+
+  const email = user.email?.toLowerCase();
+  if (!email) return null;
+
+  const partner = await prisma.partner.findFirst({
+    where: { email: { equals: email, mode: 'insensitive' } },
+    select: { id: true },
+  });
+  if (partner) return partner.id;
+
+  // Some deployments use Contractor.id as partnerId on leads
+  const contractor = await prisma.contractor.findFirst({
+    where: { email: { equals: email, mode: 'insensitive' } },
+    select: { id: true },
+  });
+  return contractor?.id ?? null;
+}
+
 export async function GET(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/contractor/leads' });
   try {
-    // Verify authentication
     const user = await verifyAuth(request);
 
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
-      return NextResponse.json({
-        success: false,
-        message: 'Contractor authentication required',
-      }, { status: 401 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Contractor authentication required',
+        },
+        { status: 401 },
+      );
     }
 
-    // Query all leads ordered by most recent first
+    const isAdmin = hasRole(user.role as UserRole, [UserRole.ADMIN, UserRole.SUPER_ADMIN]);
+    const partnerId = isAdmin ? null : await resolvePartnerIdForContractor(user);
+
+    if (!isAdmin && !partnerId) {
+      return NextResponse.json({
+        success: true,
+        data: {
+          leads: [],
+          summary: {
+            totalLeads: 0,
+            newLeads: 0,
+            expiringWithin1Hour: 0,
+            totalPotentialValue: 0,
+            averageLeadScore: 0,
+          },
+        },
+      });
+    }
+
     const leads = await prisma.lead.findMany({
+      where: isAdmin ? undefined : { partnerId: partnerId! },
       orderBy: { createdAt: 'desc' },
+      take: 200,
     });
 
-    // Map database rows to response structure with time-remaining calculations
     const leadsWithTimeRemaining = leads.map((lead) => {
-      // Parse damageType (stored as JSON string array)
       let serviceDisplay = lead.damageType;
       try {
         const parsed = JSON.parse(lead.damageType);
@@ -35,7 +83,6 @@ export async function GET(request: NextRequest) {
         // Use raw string if not valid JSON
       }
 
-      // Calculate time remaining (leads expire 24h after creation if no explicit expiry)
       const expiresAt = new Date(lead.createdAt.getTime() + 24 * 60 * 60 * 1000);
       const now = new Date();
       const timeRemaining = Math.max(0, expiresAt.getTime() - now.getTime());
@@ -55,9 +102,12 @@ export async function GET(request: NextRequest) {
         hasInsurance: lead.hasInsurance,
         estimatedValue: lead.leadValue,
         leadScore: lead.leadScore,
-        priority: lead.qualityStatus === 'HIGH_VALUE' ? 'critical'
-          : lead.qualityStatus === 'QUALIFIED' ? 'high'
-          : 'medium',
+        priority:
+          lead.qualityStatus === 'HIGH_VALUE'
+            ? 'critical'
+            : lead.qualityStatus === 'QUALIFIED'
+              ? 'high'
+              : 'medium',
         createdAt: lead.createdAt.toISOString(),
         expiresAt: expiresAt.toISOString(),
         status: lead.status.toLowerCase(),
@@ -66,15 +116,15 @@ export async function GET(request: NextRequest) {
         claimNumber: lead.claimNumber || null,
         timeRemaining: {
           minutes: minutesRemaining,
-          display: minutesRemaining > 60
-            ? `${Math.floor(minutesRemaining / 60)}h ${minutesRemaining % 60}m`
-            : `${minutesRemaining}m`,
+          display:
+            minutesRemaining > 60
+              ? `${Math.floor(minutesRemaining / 60)}h ${minutesRemaining % 60}m`
+              : `${minutesRemaining}m`,
           urgent: minutesRemaining < 30,
         },
       };
     });
 
-    // Summary statistics
     const summary = {
       totalLeads: leads.length,
       newLeads: leads.filter((l) => l.status === 'NEW').length,
@@ -82,72 +132,103 @@ export async function GET(request: NextRequest) {
         return l.timeRemaining.minutes > 0 && l.timeRemaining.minutes <= 60;
       }).length,
       totalPotentialValue: leads.reduce((sum, l) => sum + l.leadValue, 0),
-      averageLeadScore: leads.length > 0
-        ? Math.round(leads.reduce((sum, l) => sum + l.leadScore, 0) / leads.length)
-        : 0,
+      averageLeadScore:
+        leads.length > 0
+          ? Math.round(leads.reduce((sum, l) => sum + l.leadScore, 0) / leads.length)
+          : 0,
     };
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        leads: leadsWithTimeRemaining,
-        summary,
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          leads: leadsWithTimeRemaining,
+          summary,
+        },
       },
-    }, { status: 200 });
-
+      { status: 200 },
+    );
   } catch (error) {
-    log.error('leads api error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/contractor/leads' }, extra: { requestId: log.requestId } });
+    log.error('leads api error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/contractor/leads' },
+      extra: { requestId: log.requestId },
+    });
 
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to fetch leads',
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to fetch leads',
+      },
+      { status: 500 },
+    );
   }
 }
 
-// Accept or decline a lead
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/contractor/leads' });
   try {
     const user = await verifyAuth(request);
 
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
-      return NextResponse.json({
-        success: false,
-        message: 'Contractor authentication required',
-      }, { status: 401 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Contractor authentication required',
+        },
+        { status: 401 },
+      );
     }
 
     const body = await request.json();
     const { leadId, action, message } = body;
 
-    // Validate required fields
     if (!leadId || !action) {
-      return NextResponse.json({
-        success: false,
-        message: 'leadId and action are required',
-      }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'leadId and action are required',
+        },
+        { status: 400 },
+      );
     }
 
-    // Validate action
     if (!['accept', 'decline', 'request-info'].includes(action)) {
-      return NextResponse.json({
-        success: false,
-        message: 'Invalid action',
-      }, { status: 400 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Invalid action',
+        },
+        { status: 400 },
+      );
     }
 
-    // Verify the lead exists
+    const isAdmin = hasRole(user.role as UserRole, [UserRole.ADMIN, UserRole.SUPER_ADMIN]);
+    const partnerId = isAdmin ? null : await resolvePartnerIdForContractor(user);
+
     const existingLead = await prisma.lead.findUnique({ where: { id: leadId } });
     if (!existingLead) {
-      return NextResponse.json({
-        success: false,
-        message: `Lead ${leadId} not found`,
-      }, { status: 404 });
+      return NextResponse.json(
+        {
+          success: false,
+          message: `Lead ${leadId} not found`,
+        },
+        { status: 404 },
+      );
     }
 
-    // Build update payload and response based on action
+    if (!isAdmin && partnerId && existingLead.partnerId !== partnerId) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'This lead is not assigned to you',
+        },
+        { status: 403 },
+      );
+    }
+
     let updateData: Record<string, unknown> = {};
     let responseMessage = '';
     let leadCost = 0;
@@ -159,7 +240,7 @@ export async function POST(request: NextRequest) {
           acceptedAt: new Date(),
         };
         leadCost = 50;
-        responseMessage = `Lead ${leadId} accepted. $${leadCost} charged to your account.`;
+        responseMessage = `Lead ${leadId} accepted.`;
         break;
 
       case 'decline':
@@ -172,7 +253,6 @@ export async function POST(request: NextRequest) {
         break;
 
       case 'request-info':
-        // Add a note requesting more information; status stays the same
         responseMessage = `Additional information requested for lead ${leadId}`;
         if (message) {
           await prisma.leadNote.create({
@@ -187,7 +267,6 @@ export async function POST(request: NextRequest) {
         break;
     }
 
-    // Perform the database update (skip if request-info with no status change)
     let updatedLead = existingLead;
     if (Object.keys(updateData).length > 0) {
       updatedLead = await prisma.lead.update({
@@ -196,13 +275,11 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Track the action
     await prisma.leadTracking.create({
       data: {
         leadId,
-        event: action === 'accept' ? 'ACCEPTED'
-          : action === 'decline' ? 'REJECTED'
-          : 'VIEWED',
+        event:
+          action === 'accept' ? 'ACCEPTED' : action === 'decline' ? 'REJECTED' : 'VIEWED',
         metadata: JSON.stringify({
           actionedBy: user.email || 'contractor',
           actionedAt: new Date().toISOString(),
@@ -213,9 +290,10 @@ export async function POST(request: NextRequest) {
 
     await logComplianceEvent({
       eventType: 'api_route_invocation',
-      correlationId: '00000000-0000-0000-0000-000000000000',
+      correlationId: leadId,
       correlationType: 'system',
-      entityType: 'system',
+      entityType: 'contractor',
+      entityIdentifier: user.email || user.id,
       metadata: {
         route: '/api/contractor/leads',
         method: 'POST',
@@ -226,24 +304,34 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({
-      success: true,
-      message: responseMessage,
-      lead: {
-        id: updatedLead.id,
-        status: updatedLead.status.toLowerCase(),
-        cost: leadCost,
-        actionedAt: new Date().toISOString(),
+    return NextResponse.json(
+      {
+        success: true,
+        message: responseMessage,
+        lead: {
+          id: updatedLead.id,
+          status: updatedLead.status.toLowerCase(),
+          cost: leadCost,
+          actionedAt: new Date().toISOString(),
+        },
       },
-    }, { status: 200 });
-
+      { status: 200 },
+    );
   } catch (error) {
-    log.error('lead action error', { error: error instanceof Error ? error.message : String(error) });
-    captureException(error, { tags: { route: '/api/contractor/leads' }, extra: { requestId: log.requestId } });
+    log.error('lead action error', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    captureException(error, {
+      tags: { route: '/api/contractor/leads' },
+      extra: { requestId: log.requestId },
+    });
 
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to process lead action',
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to process lead action',
+      },
+      { status: 500 },
+    );
   }
 }
