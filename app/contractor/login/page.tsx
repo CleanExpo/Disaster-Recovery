@@ -108,7 +108,7 @@ function ContractorLoginForm() {
                   required
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                  className="w-full rounded-lg border border-[var(--ag-border-grey)] py-2.5 pl-10 pr-3 text-[var(--ag-text-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--ag-secondary-blue)]"
+                  className="w-full min-h-[44px] rounded-lg border border-[var(--ag-border-grey)] py-2.5 pl-10 pr-3 text-[var(--ag-text-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--ag-secondary-blue)]"
                 />
               </div>
             </div>
@@ -132,7 +132,7 @@ function ContractorLoginForm() {
                   required
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full rounded-lg border border-[var(--ag-border-grey)] py-2.5 pl-10 pr-10 text-[var(--ag-text-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--ag-secondary-blue)]"
+                  className="w-full min-h-[44px] rounded-lg border border-[var(--ag-border-grey)] py-2.5 pl-10 pr-10 text-[var(--ag-text-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--ag-secondary-blue)]"
                 />
                 <button
                   type="button"
