@@ -28,7 +28,7 @@ export function AntigravityNavbar() {
           <div className="ag-top-links">
             <LanguageSelector />
             <Link href="/contractor/login">Contractor Portal</Link>
-            <Link href="/claim">Report a Claim</Link>
+            <Link href="/claim">Lodge a claim</Link>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@ export function AntigravityNavbar() {
         <Link href="/for-business" onClick={() => setMobileOpen(false)}>For Business</Link>
         <Link href="/about" onClick={() => setMobileOpen(false)}>About NRPG</Link>
         <Link href="/contractor/login" onClick={() => setMobileOpen(false)}>Contractor Portal</Link>
-        <Link href="/claim" onClick={() => setMobileOpen(false)}>Report a Claim</Link>
+        <Link href="/claim" onClick={() => setMobileOpen(false)}>Lodge a claim</Link>
         <Link href="/claim" className="ag-btn-emergency" onClick={() => setMobileOpen(false)}>
           Make a Claim
         </Link>
