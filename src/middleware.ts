@@ -213,7 +213,11 @@ export async function middleware(request: NextRequest) {
   } else if (path.match(/\.(css|js)$/)) {
     response.headers.set('Cache-Control', 'public, max-age=2592000, immutable');
   } else if (path.startsWith('/api/')) {
-    // No-op: do not override the route's own Cache-Control.
+    // No-op: do not override the route's own Cache-Control. A prior blanket
+    // Cache-Control here cached /api/auth/* responses for 25 hours, which broke
+    // next-auth in production with CLIENT_FETCH_ERROR (fixed in #298). If someone
+    // "cleans up" this comment, the middleware-cache-policy regression guard
+    // fails LOUD — that is intentional.
   } else {
     response.headers.set(
       'Cache-Control',
