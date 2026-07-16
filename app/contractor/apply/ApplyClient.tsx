@@ -519,8 +519,8 @@ function ContractorApplicationContent() {
       setCurrentStep(progress.currentStep || 1);
     }
 
-    // Check if auto-demo should run
-    if (searchParams.get('demo') === 'auto') {
+    // Auto-demo is a local/dev tooling surface only — never in production.
+    if (process.env.NODE_ENV !== 'production' && searchParams.get('demo') === 'auto') {
       runAutoDemo();
     }
   }, []);
@@ -1135,30 +1135,32 @@ function ContractorApplicationContent() {
           </div>
         </div>
 
-        {/* Quick fill: select a preset and the form fills immediately */}
-        <div className="mb-6 flex justify-end">
-          <div className="inline-flex flex-col items-stretch gap-2 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-left">
-            <label
-              htmlFor="quick-fill"
-              className="text-sm font-medium text-slate-300 whitespace-nowrap"
-            >
-              Quick fill
-            </label>
-            <select
-              id="quick-fill"
-              value={quickFillSelection}
-              onChange={(e) => handleQuickFillChange(e.target.value)}
-              className="min-w-[200px] max-w-[280px] px-3 py-2 rounded-lg bg-slate-700/80 border border-slate-600 text-white text-sm text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              aria-label="Fill form with sample data"
-            >
-              {QUICK_FILL_PRESETS.map((preset) => (
-                <option key={preset.id || 'blank'} value={preset.id}>
-                  {preset.label}
-                </option>
-              ))}
-            </select>
+        {/* Quick fill — development only (never shipped to production UI) */}
+        {process.env.NODE_ENV !== 'production' && (
+          <div className="mb-6 flex justify-end">
+            <div className="inline-flex flex-col items-stretch gap-2 rounded-xl border border-slate-700/50 bg-slate-800/50 p-3 text-left">
+              <label
+                htmlFor="quick-fill"
+                className="whitespace-nowrap text-sm font-medium text-slate-300"
+              >
+                Quick fill (dev)
+              </label>
+              <select
+                id="quick-fill"
+                value={quickFillSelection}
+                onChange={(e) => handleQuickFillChange(e.target.value)}
+                className="min-w-[200px] max-w-[280px] rounded-lg border border-slate-600 bg-slate-700/80 px-3 py-2 text-left text-sm text-white focus:outline-none focus:ring-2 focus:ring-[var(--ag-secondary-blue)]"
+                aria-label="Fill form with sample data (development only)"
+              >
+                {QUICK_FILL_PRESETS.map((preset) => (
+                  <option key={preset.id || 'blank'} value={preset.id}>
+                    {preset.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Step content card */}
         <div className="max-w-5xl mx-auto">
