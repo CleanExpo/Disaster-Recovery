@@ -152,18 +152,69 @@ function ClaimPageSSRFallback() {
                 />
               </div>
               <div>
-                <label htmlFor="postcode" className="block text-sm font-medium text-slate-700 mb-1">
-                  Property postcode
+                <label
+                  htmlFor="propertyAddress"
+                  className="block text-sm font-medium text-slate-700 mb-1"
+                >
+                  Property address
                 </label>
                 <input
                   type="text"
-                  id="postcode"
-                  name="postcode"
+                  id="propertyAddress"
+                  name="propertyAddress"
                   required
-                  pattern="[0-9]{4}"
-                  maxLength={4}
+                  autoComplete="street-address"
                   className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <label htmlFor="suburb" className="block text-sm font-medium text-slate-700 mb-1">
+                    Suburb
+                  </label>
+                  <input
+                    type="text"
+                    id="suburb"
+                    name="suburb"
+                    required
+                    className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="state" className="block text-sm font-medium text-slate-700 mb-1">
+                    State
+                  </label>
+                  <select
+                    id="state"
+                    name="state"
+                    required
+                    className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="QLD"
+                  >
+                    <option value="ACT">ACT</option>
+                    <option value="NSW">NSW</option>
+                    <option value="NT">NT</option>
+                    <option value="QLD">QLD</option>
+                    <option value="SA">SA</option>
+                    <option value="TAS">TAS</option>
+                    <option value="VIC">VIC</option>
+                    <option value="WA">WA</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="postcode" className="block text-sm font-medium text-slate-700 mb-1">
+                    Postcode
+                  </label>
+                  <input
+                    type="text"
+                    id="postcode"
+                    name="postcode"
+                    required
+                    pattern="[0-9]{4}"
+                    maxLength={4}
+                    className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
               </div>
               <div>
                 <label
