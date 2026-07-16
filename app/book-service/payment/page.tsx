@@ -1,23 +1,6 @@
-import { Metadata } from 'next';
-import PaymentPage from './PaymentClient';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Secure Payment',
-  description: 'Complete your restoration service booking with our secure payment system. Stripe-powered checkout with full payment protection.',
-  robots: {
-    index: false,
-    follow: false,
-  },
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/book-service',
-  },
-  openGraph: {
-    title: 'Secure Payment',
-    description: 'Complete your restoration service booking with secure Stripe-powered checkout.',
-    type: 'website',
-  },
-};
-
-export default function PaymentPageWrapper() {
-  return <PaymentPage />;
+/** Path B payment surface retired — ADR-014. */
+export default function BookServicePaymentRedirect() {
+  redirect('/claim');
 }

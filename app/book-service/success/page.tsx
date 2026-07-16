@@ -1,23 +1,6 @@
-import { Metadata } from 'next';
-import BookingSuccessPage from './SuccessClient';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Booking Confirmed',
-  description: 'Your restoration service booking is confirmed. A certified contractor will contact you to schedule your service.',
-  robots: {
-    index: false,
-    follow: false,
-  },
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/book-service',
-  },
-  openGraph: {
-    title: 'Booking Confirmed',
-    description: 'Your restoration service booking is confirmed. A certified contractor will be in touch to schedule your service.',
-    type: 'website',
-  },
-};
-
-export default function BookingSuccessPageWrapper() {
-  return <BookingSuccessPage />;
+/** Path B “payment held / KPI release” success surface retired — ADR-014. */
+export default function BookServiceSuccessRedirect() {
+  redirect('/claim');
 }
