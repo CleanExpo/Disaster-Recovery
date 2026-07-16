@@ -1,19 +1,27 @@
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Lodge a Claim | Disaster Recovery',
-  description:
-    'Submit your property damage claim online 24/7. Matched with IICRC-certified restoration contractors across Australia.',
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/claim',
-  },
+  title: 'Start a Claim | Disaster Recovery',
+  robots: { index: false, follow: false },
 };
 
 /**
- * ADR-002: canonical claim intake is `/claim`.
- * Keep this route for bookmarks/SEO; permanently redirect to the single intake.
+ * ADR-002 — canonical claim intake is `/claim`.
+ * Keep this route as a permanent redirect so old links and demos still land correctly.
+ * Demo autofill (`?demo=auto`) is handled on ClaimFormClient in development only.
  */
-export default function ClaimStartRedirect() {
-  redirect('/claim');
+export default async function ClaimStartPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = (await searchParams) ?? {};
+  const qs = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value === 'string') qs.set(key, value);
+    else if (Array.isArray(value) && value[0]) qs.set(key, value[0]);
+  }
+  const suffix = qs.toString() ? `?${qs.toString()}` : '';
+  redirect(`/claim${suffix}`);
 }
