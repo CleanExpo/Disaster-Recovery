@@ -143,6 +143,7 @@ export default function AdminApplicationDetailPage() {
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [updateError, setUpdateError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -169,16 +170,39 @@ export default function AdminApplicationDetailPage() {
 
   const updateStatus = async (newStatus: string) => {
     setUpdateError(null);
+    setSuccessMessage(null);
     setUpdating(true);
     try {
       const res = await fetch(`/api/admin/contractor-applications/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ status: newStatus }),
       });
-      if (!res.ok) throw new Error('Update failed');
-      const updated = await res.json();
+      const updated = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setUpdateError(updated.error || 'Failed to update status');
+        return;
+      }
       setApplication(updated);
+      if (newStatus === 'APPROVED') {
+        if (updated.activationSent) {
+          setUpdateError(null);
+          setSuccessMessage(
+            'Approved. An activation email with a secure link has been sent to the applicant.',
+          );
+        } else if (updated.warning) {
+          setSuccessMessage(updated.warning);
+        } else {
+          setSuccessMessage(
+            'Approved and contractor linked. The account may already be activated.',
+          );
+        }
+      } else if (newStatus === 'REJECTED') {
+        setSuccessMessage('Application rejected.');
+      } else {
+        setSuccessMessage(`Status updated to ${newStatus.replace('_', ' ').toLowerCase()}.`);
+      }
     } catch {
       setUpdateError('Failed to update status');
     } finally {
@@ -388,7 +412,16 @@ export default function AdminApplicationDetailPage() {
             </div>
             {updateError && (
               <div className="border-t border-gray-100 px-6 pb-4">
-                <p className="text-sm text-red-600">{updateError}</p>
+                <p className="text-sm text-red-600" role="alert">
+                  {updateError}
+                </p>
+              </div>
+            )}
+            {successMessage && !updateError && (
+              <div className="border-t border-gray-100 px-6 pb-4">
+                <p className="text-sm text-emerald-700" role="status">
+                  {successMessage}
+                </p>
               </div>
             )}
             <div className="border-t border-gray-100 px-6 py-4 text-xs text-gray-500">
