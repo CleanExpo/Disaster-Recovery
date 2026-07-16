@@ -64,7 +64,7 @@ interface JobKPI {
   };
   status: 'completed' | 'in_progress' | 'pending';
   completedAt?: string;
-  paymentReleased: number;
+  paymentReleased: number; // Path A: indicative billed-to-client amount (not DR escrow release)
 }
 
 function KPITrackingPageOriginal() {
@@ -133,7 +133,7 @@ function KPITrackingPageOriginal() {
     },
     {
       id: 'payment-release',
-      name: 'Payment Release Rate',
+      name: 'On-time completion rate',
       value: 94,
       target: 90,
       unit: '%',
@@ -428,7 +428,8 @@ function KPITrackingPageOriginal() {
                     KPIs Met
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Payment
+                    Job value
+                      <span className="block normal-case font-normal text-gray-500">(client bill)</span>
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                     Status

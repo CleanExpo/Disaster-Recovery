@@ -1,8 +1,11 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
+import {
+  AntigravityNavbar,
+  AntigravityFooter,
+  AgStepProgress,
+} from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
@@ -26,6 +29,14 @@ import {
   Camera,
   AlertCircle
 } from 'lucide-react';
+
+const BOOK_STEPS = [
+  { id: 1, label: 'Service details' },
+  { id: 2, label: 'Property' },
+  { id: 3, label: 'Contact' },
+  { id: 4, label: 'Insurance' },
+  { id: 5, label: 'Confirm' },
+];
 
 type ServiceType = 'water' | 'fire' | 'mould' | 'storm' | 'other';
 type PropertyType = 'residential' | 'commercial' | 'industrial';
@@ -344,101 +355,39 @@ function BookServicePageOriginal() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="ag-page-elevated min-h-screen">
       {/* Header */}
-      <div className="bg-white border-b sticky top-0 z-40 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+      <div className="bg-white border-b sticky top-0 z-40 shadow-sm border-[var(--ag-border-grey)]">
+        <div className="ag-container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Book Restoration Service</h1>
-              <p className="text-sm text-gray-700">Professional disaster recovery services nationwide</p>
+              <h1 className="text-2xl font-bold text-[var(--ag-primary-blue)]">
+                Book restoration service
+              </h1>
+              <p className="text-sm text-[var(--ag-text-grey)]">
+                Matched with an IICRC-certified contractor — they bill you directly
+              </p>
             </div>
             <div className="hidden lg:flex items-center gap-4">
               <div className="text-right">
-                <p className="text-sm text-gray-700">Initial Assessment Fee</p>
-                <p className="text-2xl font-bold text-gray-900">$2,750</p>
+                <p className="text-sm text-[var(--ag-text-grey)]">Indicative make-safe from</p>
+                <p className="text-2xl font-bold text-[var(--ag-primary-blue)]">~$550</p>
               </div>
-              <Shield className="h-10 w-10 text-blue-600" />
+              <Shield className="h-10 w-10 text-[var(--ag-secondary-blue)]" aria-hidden="true" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Progress Bar */}
-      <div className="bg-white border-b" role="navigation" aria-label="Form progress">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            {[1, 2, 3, 4, 5].map((step) => (
-              <div key={step} className="flex-1">
-                <div className="flex items-center">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
-                      step < currentStep
-                        ? 'bg-green-500 text-white ring-2 ring-green-200'
-                        : step === currentStep
-                        ? 'bg-blue-600 text-white ring-4 ring-blue-200 scale-110'
-                        : 'bg-gray-200 text-gray-600'
-                    }`}
-                    role="progressbar"
-                    aria-valuenow={step}
-                    aria-valuemin={1}
-                    aria-valuemax={5}
-                    aria-label={`Step ${step}: ${
-                      step === 1 ? 'Service Details' :
-                      step === 2 ? 'Property Info' :
-                      step === 3 ? 'Contact' :
-                      step === 4 ? 'Insurance' :
-                      'Payment'
-                    } ${step < currentStep ? '(Completed)' : step === currentStep ? '(Current)' : '(Not started)'}`}
-                  >
-                    {step < currentStep ? <CheckCircle className="h-6 w-6" /> : step}
-                  </div>
-                  {step < 5 && (
-                    <div className={`flex-1 h-2 mx-2 rounded-full transition-all duration-500 ${
-                      step < currentStep ? 'bg-green-500' : 'bg-gray-200'
-                    }`} />
-                  )}
-                </div>
-                <p className={`text-xs mt-1 font-medium ${
-                  step === currentStep ? 'text-blue-600' : 
-                  step < currentStep ? 'text-green-600' : 'text-gray-600'
-                }`}>
-                  {step === 1 && 'Service Details'}
-                  {step === 2 && 'Property Info'}
-                  {step === 3 && 'Contact'}
-                  {step === 4 && 'Insurance'}
-                  {step === 5 && 'Payment'}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-2 text-center">
-            <div className="text-sm text-gray-700">
-              Step {currentStep} of 5
-            </div>
-            <div className="mt-2">
-              <div className="flex items-center justify-center gap-2">
-                <div className="text-lg font-semibold text-blue-600">
-                  {calculateCompletionPercentage()}% Complete
-                </div>
-                {calculateCompletionPercentage() === 100 && (
-                  <CheckCircle className="h-5 w-5 text-green-500" />
-                )}
-              </div>
-              <div className="mt-2 w-full max-w-md mx-auto">
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
-                    style={{ width: `${calculateCompletionPercentage()}%` }}
-                    role="progressbar"
-                    aria-valuenow={calculateCompletionPercentage()}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-label={`Form ${calculateCompletionPercentage()}% complete`}
-                  />
-                </div>
-              </div>
-            </div>
+      {/* Progress */}
+      <div className="bg-white border-b border-[var(--ag-border-grey)]">
+        <div className="ag-container mx-auto px-4 py-4">
+          <AgStepProgress steps={BOOK_STEPS} current={currentStep} />
+          <div className="mt-3 text-center text-sm text-[var(--ag-text-grey)]">
+            Step {currentStep} of {BOOK_STEPS.length}
+            {calculateCompletionPercentage() === 100 && (
+              <CheckCircle className="inline h-4 w-4 text-emerald-600 ms-2" aria-hidden="true" />
+            )}
           </div>
         </div>
       </div>
@@ -447,17 +396,17 @@ function BookServicePageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
           {/* Info Banner */}
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mb-6 p-4 bg-[var(--ag-background-light)] border border-[var(--ag-border-grey)] rounded-lg">
             <div className="flex items-start gap-3">
-              <Info className="h-5 w-5 text-blue-600 mt-0.5" />
+              <Info className="h-5 w-5 text-[var(--ag-secondary-blue)] mt-0.5" />
               <div>
-                <h3 className="font-semibold text-blue-900">How It Works</h3>
-                <p className="text-sm text-blue-800 mt-1">
+                <h3 className="font-semibold text-[var(--ag-primary-blue)]">How it works</h3>
+                <p className="text-sm text-[var(--ag-text-dark)] mt-1">
                   1. Complete this form with your damage details<br />
-                  2. Pay the $2,750 initial assessment fee<br />
-                  3. A qualified contractor will contact you to confirm your appointment<br />
-                  4. Contractor performs assessment and provides detailed quote<br />
-                  5. $2,200 credited toward your restoration work
+                  2. We match you with an IICRC-certified NRPG contractor<br />
+                  3. That contractor contacts you to confirm the appointment<br />
+                  4. They perform the assessment and provide a firm Scope of Works<br />
+                  5. The contractor bills you directly — Disaster Recovery does not invoice you
                 </p>
               </div>
             </div>
@@ -958,14 +907,16 @@ function BookServicePageOriginal() {
               </div>
             )}
 
-            {/* Step 5: Review & Payment */}
+            {/* Step 5: Review & confirm */}
             {currentStep === 5 && (
               <div className="space-y-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Step 5: Review & Payment</h2>
+                <h2 className="text-xl font-semibold text-[var(--ag-primary-blue)] mb-6">
+                  Step 5: Review & confirm
+                </h2>
 
                 {/* Summary */}
-                <div className="bg-gray-50 rounded-lg p-6 space-y-4">
-                  <h3 className="font-semibold text-gray-900">Booking Summary</h3>
+                <div className="bg-[var(--ag-background-light)] rounded-lg p-6 space-y-4 border border-[var(--ag-border-grey)]">
+                  <h3 className="font-semibold text-[var(--ag-primary-blue)]">Booking summary</h3>
                   
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -989,33 +940,19 @@ function BookServicePageOriginal() {
                   </div>
                 </div>
 
-                {/* Pricing Breakdown */}
-                <div className="bg-blue-50 rounded-lg p-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">Payment Details</h3>
-                  
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-700">Initial Assessment Fee:</span>
-                      <span className="font-semibold">$2,750.00</span>
-                    </div>
-                    
-                    <div className="border-t pt-3">
-                      <div className="flex justify-between">
-                        <span className="font-semibold">Total Due Now:</span>
-                        <span className="text-xl font-bold text-blue-600">$2,750.00</span>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white rounded p-3 text-sm">
-                      <p className="text-gray-700">
-                        <CheckCircle className="h-4 w-4 text-green-500 inline mr-1" />
-                        $2,200 will be credited toward your restoration work
-                      </p>
-                      <p className="text-gray-700 mt-1">
-                        <Shield className="h-4 w-4 text-blue-500 inline mr-1" />
-                        IICRC-certified service standard
-                      </p>
-                    </div>
+                {/* Path A billing note */}
+                <div className="rounded-lg p-6 border border-[var(--ag-border-grey)] bg-white">
+                  <h3 className="font-semibold text-[var(--ag-primary-blue)] mb-4">Billing</h3>
+                  <div className="space-y-3 text-sm text-[var(--ag-text-dark)]">
+                    <p>
+                      No payment is taken on this form. Your matched contractor will provide a firm
+                      Scope of Works on-site and bill you directly for assessment and restoration.
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <Shield className="h-4 w-4 text-[var(--ag-secondary-blue)] mt-0.5 shrink-0" />
+                      IICRC-certified NRPG contractor standard — Disaster Recovery is a network
+                      orchestrator and does not hold client funds.
+                    </p>
                   </div>
                 </div>
 
@@ -1029,7 +966,9 @@ function BookServicePageOriginal() {
                       className="mt-1 mr-3"
                     />
                     <span className="text-sm text-gray-700">
-                      I accept the <a href="/terms" className="text-blue-600 hover:underline">Terms and Conditions</a> and understand that the $2,750 initial assessment fee will be charged to secure my booking. $2,200 of this fee will be credited toward the final restoration work.
+                      I accept the <a href="/terms" className="text-blue-600 hover:underline">Terms and Conditions</a> and
+                      understand that my matched contractor will contact me to confirm the booking
+                      and bill me directly for work performed.
                     </span>
                   </label>
                   {errors.termsAccepted && (
@@ -1044,7 +983,10 @@ function BookServicePageOriginal() {
                       className="mt-1 mr-3"
                     />
                     <span className="text-sm text-gray-700">
-                      I authorise the payment of $2,750 for the initial assessment and understand a qualified contractor will contact me within the specified timeframe.
+                      I authorise continuation of my booking request and understand a qualified
+                      contractor will contact me within the specified timeframe. The contractor
+                      bills me directly for assessment and restoration — Disaster Recovery does not
+                      hold client funds.
                     </span>
                   </label>
                   {errors.paymentAuthorized && (
@@ -1052,13 +994,16 @@ function BookServicePageOriginal() {
                   )}
                 </div>
 
-                {/* Secure Payment Notice */}
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                {/* Path A notice */}
+                <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
                   <div className="flex items-center gap-3">
-                    <Shield className="h-5 w-5 text-green-600" />
+                    <Shield className="h-5 w-5 text-emerald-600" />
                     <div>
-                      <p className="font-medium text-green-900">Secure Payment Processing</p>
-                      <p className="text-sm text-green-800">Your payment information is encrypted and secure. Processed by Stripe.</p>
+                      <p className="font-medium text-emerald-900">No payment on this form</p>
+                      <p className="text-sm text-emerald-800">
+                        Your contractor quotes and bills you directly. Prefer the primary claim
+                        intake? <a href="/claim" className="underline font-semibold">Lodge a claim</a>.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1082,7 +1027,8 @@ function BookServicePageOriginal() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center gap-2"
+                  className="ml-auto px-6 py-3 text-white rounded-lg hover:opacity-90 transition-colours flex items-center gap-2"
+                  style={{ background: 'var(--ag-primary-blue)' }}
                 >
                   Next
                   <ArrowRight className="h-4 w-4" />
@@ -1091,17 +1037,18 @@ function BookServicePageOriginal() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="ml-auto px-8 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colours flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="ml-auto px-8 py-3 text-white rounded-lg hover:opacity-90 transition-colours flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ background: 'var(--ag-emergency-red)' }}
                 >
                   {isProcessing ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                      Processing...
+                      Submitting…
                     </>
                   ) : (
                     <>
-                      <CreditCard className="h-5 w-5" />
-                      Proceed to Payment ($2,750)
+                      <CheckCircle className="h-5 w-5" />
+                      Submit booking request
                     </>
                   )}
                 </button>

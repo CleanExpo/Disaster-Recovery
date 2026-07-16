@@ -19,6 +19,7 @@ import {
   Inbox,
 } from 'lucide-react';
 import { AdminDashboardCharts } from '@/components/admin/AdminDashboardCharts';
+import { AdminKpiCard } from '@/components/admin/AdminKpiCard';
 import type { ApplicationsTrendPoint, StatusBreakdownItem } from '@/components/admin/AdminDashboardCharts';
 
 interface ApplicationSummary {
@@ -148,69 +149,35 @@ export default function AdminApplicationsListPage() {
       <section className="mb-8">
         <h2 className="sr-only">Application metrics</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Pending review</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
-                  {statsLoading ? '—' : pendingCount}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10">
-                <Clock className="h-5 w-5 text-amber-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Approved</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">
-                  {statsLoading ? '—' : (stats?.kpis?.approved ?? 0)}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Rejected</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-red-600">
-                  {statsLoading ? '—' : (stats?.kpis?.rejected ?? 0)}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-500/10">
-                <XCircle className="h-5 w-5 text-red-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Total</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
-                  {statsLoading ? '—' : (stats?.kpis?.total ?? 0)}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-500/10">
-                <Inbox className="h-5 w-5 text-gray-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-5 shadow-sm lg:col-span-1">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-700">Filter</p>
-                <p className="mt-1 text-sm font-semibold text-orange-900">
-                  {statusFilter ? STATUS_CONFIG[statusFilter]?.label ?? statusFilter : 'All statuses'}
-                </p>
-              </div>
-              <Filter className="h-5 w-5 text-orange-500" />
-            </div>
-          </div>
+          <AdminKpiCard
+            label="Pending review"
+            value={statsLoading ? '—' : pendingCount}
+            tone="warning"
+            icon={<Clock className="h-5 w-5 text-amber-600" />}
+          />
+          <AdminKpiCard
+            label="Approved"
+            value={statsLoading ? '—' : (stats?.kpis?.approved ?? 0)}
+            tone="success"
+            icon={<CheckCircle2 className="h-5 w-5 text-emerald-600" />}
+          />
+          <AdminKpiCard
+            label="Rejected"
+            value={statsLoading ? '—' : (stats?.kpis?.rejected ?? 0)}
+            tone="danger"
+            icon={<XCircle className="h-5 w-5 text-red-600" />}
+          />
+          <AdminKpiCard
+            label="Total"
+            value={statsLoading ? '—' : (stats?.kpis?.total ?? 0)}
+            icon={<Inbox className="h-5 w-5 text-[var(--ag-primary-blue)]" />}
+          />
+          <AdminKpiCard
+            label="Filter"
+            value={statusFilter ? STATUS_CONFIG[statusFilter]?.label ?? statusFilter : 'All statuses'}
+            tone="accent"
+            icon={<Filter className="h-5 w-5 text-[var(--ag-secondary-blue)]" />}
+          />
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession, type Session } from 'next-auth';
+import { getSessionFromRequest } from '@/lib/auth/session';
+import { isAdminRole } from '@/lib/admin-constants';
 import { prisma } from '@/lib/prisma';
 import { ONBOARDING_MODULE_COUNT } from '@/lib/onboarding/program-constants';
 
@@ -7,18 +8,15 @@ import { ONBOARDING_MODULE_COUNT } from '@/lib/onboarding/program-constants';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
-  // ── Auth gate (fail closed) ───────────────────────────────────────────────
-  // If session resolution throws (e.g. NEXTAUTH_SECRET missing in a preview
-  // environment), treat the caller as unauthenticated rather than surfacing a
-  // 500. This endpoint must never return internal data without a valid session.
-  let session: Session | null = null;
+  // Cookie JWT session — fail closed
+  let session = null;
   try {
-    session = await getServerSession();
+    session = await getSessionFromRequest(req);
   } catch {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
 
-  if (!session?.user) {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
 

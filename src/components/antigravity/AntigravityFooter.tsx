@@ -4,6 +4,7 @@
  */
 
 import Link from 'next/link';
+import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
 
 export function AntigravityFooter() {
   const currentYear = new Date().getFullYear();
@@ -33,7 +34,7 @@ export function AntigravityFooter() {
               <text
                 x="40"
                 y="26"
-                fontFamily="Inter, sans-serif"
+                fontFamily="ui-sans-serif, system-ui, sans-serif"
                 fontWeight="900"
                 fontSize="24"
                 fill="var(--ag-emergency-red)"
@@ -43,7 +44,7 @@ export function AntigravityFooter() {
               <text
                 x="58"
                 y="26"
-                fontFamily="Inter, sans-serif"
+                fontFamily="ui-sans-serif, system-ui, sans-serif"
                 fontWeight="900"
                 fontSize="24"
                 fill="#a0aab2"
@@ -110,7 +111,7 @@ export function AntigravityFooter() {
           <Link href="/about">About NRPG</Link>
           <Link href="/how-it-works">How It Works</Link>
           <Link href="/blog">Blog &amp; Resources</Link>
-          <Link href="/claim">Make a Claim</Link>
+          <Link href="/claim">Lodge a claim</Link>
           <Link href="/rates">Rate Schedule</Link>
         </nav>
 
@@ -145,6 +146,15 @@ export function AntigravityFooter() {
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/settings/language">Choose your language</Link>
         </nav>
+      </div>
+
+      {/* APP 3 / APP 5 — quiet legal fine print (DR-770 / GAP-093) */}
+      <div
+        className="ag-container ag-footer-privacy"
+        role="region"
+        aria-label="Privacy collection notice"
+      >
+        <App3CollectionNotice className="ag-footer-privacy-notice" />
       </div>
     </footer>
   );

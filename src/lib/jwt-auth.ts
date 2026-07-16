@@ -2,26 +2,34 @@ import { SignJWT, jwtVerify } from 'jose';
 import { NextRequest } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { clientLogger } from '@/lib/observability/client-logger';
+import { getSessionFromRequest, type SessionUser } from '@/lib/auth/session';
+import type { AppRole } from '@/lib/auth/roles';
 
-// Secret key for JWT signing (in production, use environment variable)
 const getJwtSecretKey = () => {
-  const secret = process.env.JWT_SECRET_KEY;
+  const secret =
+    process.env.JWT_SECRET_KEY ||
+    process.env.NEXTAUTH_SECRET ||
+    (process.env.NODE_ENV !== 'production' ? 'dev-only-jwt-secret-change-me' : undefined);
   if (!secret) {
-    throw new Error('JWT_SECRET_KEY environment variable is not set');
+    throw new Error('JWT_SECRET_KEY or NEXTAUTH_SECRET environment variable is not set');
   }
   return new TextEncoder().encode(secret);
 };
 
-// Token expiry times
-const ACCESS_TOKEN_EXPIRY = '15m'; // 15 minutes
-const REFRESH_TOKEN_EXPIRY = '7d'; // 7 days
+const ACCESS_TOKEN_EXPIRY = '15m';
+const REFRESH_TOKEN_EXPIRY = '7d';
 
-// User roles and permissions
+/**
+ * Legacy role strings used by older JWT payloads and hasRole() checks.
+ * Prefer AppRole (CLIENT | CONTRACTOR | ADMIN | SUPER_ADMIN) for new code.
+ */
 export enum UserRole {
   ADMIN = 'admin',
   TECHNICIAN = 'technician',
   CONTRACTOR = 'contractor',
-  CUSTOMER = 'customer' }
+  CUSTOMER = 'customer',
+  SUPER_ADMIN = 'super_admin',
+}
 
 export interface User {
   id: string;
@@ -38,119 +46,141 @@ export interface TokenPayload {
   email: string;
   role: UserRole;
   permissions: string[];
+  contractorId?: string;
   exp?: number;
   iat?: number;
   nbf?: number;
 }
 
-/**
- * Hash a password using bcrypt
- */
-export async function hashPassword(password: string): Promise<string> {
-  const saltRounds = 12;
-  return bcrypt.hash(password, saltRounds);
+function mapAppRoleToUserRole(role: AppRole): UserRole {
+  switch (role) {
+    case 'ADMIN':
+    case 'SUPER_ADMIN':
+      return UserRole.ADMIN;
+    case 'CONTRACTOR':
+      return UserRole.CONTRACTOR;
+    case 'CLIENT':
+    default:
+      return UserRole.CUSTOMER;
+  }
 }
 
-/**
- * Verify a password against a hash
- */
+function sessionToTokenPayload(session: SessionUser): TokenPayload {
+  const role = mapAppRoleToUserRole(session.role);
+  const id =
+    session.role === 'CONTRACTOR' && session.contractorId
+      ? session.contractorId
+      : session.userId;
+  return {
+    id,
+    userId: id,
+    email: session.email,
+    role,
+    permissions: getRolePermissions(role),
+    contractorId: session.contractorId ?? undefined,
+  };
+}
+
+export async function hashPassword(password: string): Promise<string> {
+  return bcrypt.hash(password, 12);
+}
+
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
   return bcrypt.compare(password, hash);
 }
 
-/**
- * Generate a JWT access token
- */
 export async function generateAccessToken(user: User): Promise<string> {
-  const token = await new SignJWT({
+  return new SignJWT({
     userId: user.id,
+    id: user.id,
     email: user.email,
     role: user.role,
-    permissions: user.permissions })
+    permissions: user.permissions,
+  })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
     .setExpirationTime(ACCESS_TOKEN_EXPIRY)
     .setNotBefore(0)
     .sign(getJwtSecretKey());
-  
-  return token;
 }
 
-/**
- * Generate a JWT refresh token
- */
 export async function generateRefreshToken(userId: string): Promise<string> {
-  const token = await new SignJWT({ userId, type: 'refresh' })
+  return new SignJWT({ userId, type: 'refresh' })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
     .setExpirationTime(REFRESH_TOKEN_EXPIRY)
     .setNotBefore(0)
     .sign(getJwtSecretKey());
-  
-  return token;
 }
 
-/**
- * Verify and decode a JWT token
- */
 export async function verifyToken(token: string): Promise<TokenPayload> {
   try {
     const { payload } = await jwtVerify(token, getJwtSecretKey());
-    return payload as unknown as TokenPayload;
-  } catch (error) {
+    const p = payload as Record<string, unknown>;
+    const userId = String(p.userId || p.sub || '');
+    return {
+      id: String(p.id || userId),
+      userId,
+      email: String(p.email || ''),
+      role: p.role as UserRole,
+      permissions: (p.permissions as string[]) || [],
+      contractorId: p.contractorId ? String(p.contractorId) : undefined,
+      exp: p.exp as number | undefined,
+      iat: p.iat as number | undefined,
+    };
+  } catch {
     throw new Error('Invalid or expired token');
   }
 }
 
-/**
- * Extract token from Authorisation header
- */
 export function extractTokenFromHeader(request: NextRequest): string | null {
-  const authHeader = request.headers.get('authorisation');
+  const authHeader =
+    request.headers.get('authorisation') || request.headers.get('authorization');
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return null;
   }
   return authHeader.substring(7);
 }
 
-/**
- * Middleware to verify authentication
- */
+/** Prefer httpOnly cookie session; fall back to Bearer JWT (legacy localStorage). */
 export async function verifyAuth(request: NextRequest): Promise<TokenPayload | null> {
   try {
-    const token = extractTokenFromHeader(request);
-    if (!token) {
-      return null;
+    const session = await getSessionFromRequest(request);
+    if (session) {
+      return sessionToTokenPayload(session);
     }
-    
-    const payload = await verifyToken(token);
-    return payload;
+
+    const token = extractTokenFromHeader(request);
+    if (!token) return null;
+
+    return await verifyToken(token);
   } catch (error) {
     clientLogger.error('Auth verification error:', { source: 'lib/jwt-auth' }, error);
     return null;
   }
 }
 
-/**
- * Check if user has required permission
- */
 export function hasPermission(userPermissions: string[], requiredPermission: string): boolean {
   return userPermissions.includes(requiredPermission) || userPermissions.includes('admin:all');
 }
 
-/**
- * Check if user has required role
- */
-export function hasRole(userRole: UserRole, allowedRoles: UserRole[]): boolean {
-  return allowedRoles.includes(userRole);
+export function hasRole(userRole: UserRole | string, allowedRoles: UserRole[]): boolean {
+  const normalised = String(userRole).toLowerCase();
+  return allowedRoles.some((r) => r === userRole || String(r).toLowerCase() === normalised);
 }
 
-/**
- * Get role-based permissions
- */
 export function getRolePermissions(role: UserRole): string[] {
   const permissions: Record<UserRole, string[]> = {
     [UserRole.ADMIN]: [
+      'admin:all',
+      'users:read',
+      'users:write',
+      'users:delete',
+      'bookings:all',
+      'reports:all',
+      'settings:all',
+    ],
+    [UserRole.SUPER_ADMIN]: [
       'admin:all',
       'users:read',
       'users:write',
@@ -179,64 +209,37 @@ export function getRolePermissions(role: UserRole): string[] {
       'invoices:read:own',
       'profile:read:own',
       'profile:update:own',
-    ] };
-  
+    ],
+  };
+
   return permissions[role] || [];
 }
 
-/**
- * Validate password strength
- */
 export function validatePasswordStrength(password: string): {
   isValid: boolean;
   errors: string[];
 } {
   const errors: string[] = [];
-  
-  if (password.length < 8) {
-    errors.push('Password must be at least 8 characters long');
-  }
-  
-  if (!/[A-Z]/.test(password)) {
-    errors.push('Password must contain at least one uppercase letter');
-  }
-  
-  if (!/[a-z]/.test(password)) {
-    errors.push('Password must contain at least one lowercase letter');
-  }
-  
-  if (!/[0-9]/.test(password)) {
-    errors.push('Password must contain at least one number');
-  }
-  
+  if (password.length < 8) errors.push('Password must be at least 8 characters long');
+  if (!/[A-Z]/.test(password)) errors.push('Password must contain at least one uppercase letter');
+  if (!/[a-z]/.test(password)) errors.push('Password must contain at least one lowercase letter');
+  if (!/[0-9]/.test(password)) errors.push('Password must contain at least one number');
   if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
     errors.push('Password must contain at least one special character');
   }
-  
-  return {
-    isValid: errors.length === 0,
-    errors };
+  return { isValid: errors.length === 0, errors };
 }
 
-/**
- * Generate a secure random password
- */
 export function generateSecurePassword(): string {
   const length = 16;
-  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-={}[]|:;<>?,.';
-  let password = '';
-  
-  // Ensure at least one of each required character type
-  password += 'A'; // Uppercase
-  password += 'a'; // Lowercase
-  password += '1'; // Number
-  password += '!'; // Special character
-  
-  // Fill the rest randomly
+  const charset =
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-={}[]|:;<>?,.';
+  let password = 'Aa1!';
   for (let i = 4; i < length; i++) {
     password += charset.charAt(Math.floor(Math.random() * charset.length));
   }
-  
-  // Shuffle the password
-  return password.split('').sort(() => Math.random() - 0.5).join('');
+  return password
+    .split('')
+    .sort(() => Math.random() - 0.5)
+    .join('');
 }

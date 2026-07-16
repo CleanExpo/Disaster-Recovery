@@ -1,19 +1,19 @@
-import { Metadata } from 'next';
-import ClaimStartPage from './ClaimStartClient';
+import { redirect } from 'next/navigation';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Start Your Claim',
-  description: 'Begin your emergency property damage claim. 24/7 online submission with photo upload. Certified contractors respond as soon as a certified contractor is confirmed for your area.',
+  title: 'Lodge a Claim | Disaster Recovery',
+  description:
+    'Submit your property damage claim online 24/7. Matched with IICRC-certified restoration contractors across Australia.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/claim',
   },
-  openGraph: {
-    title: 'Start Your Claim',
-    description: 'Begin your emergency property damage claim. 24/7 online submission with certified contractor response as soon as a certified contractor is confirmed for your area.',
-    type: 'website',
-  },
 };
 
-export default function ClaimStartPageWrapper() {
-  return <ClaimStartPage />;
+/**
+ * ADR-002: canonical claim intake is `/claim`.
+ * Keep this route for bookmarks/SEO; permanently redirect to the single intake.
+ */
+export default function ClaimStartRedirect() {
+  redirect('/claim');
 }

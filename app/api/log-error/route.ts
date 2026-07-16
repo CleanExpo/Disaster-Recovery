@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession, type Session } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { getSessionFromRequest } from '@/lib/auth/session';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function POST(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/log-error' });
@@ -26,12 +26,8 @@ export async function POST(req: NextRequest) {
 
   try {
     // Session is optional — attach user if we have one, don't fail the log if we don't.
-    let session: Session | null = null;
-    try {
-      session = await getServerSession(authOptions);
-    } catch {
-      session = null;
-    }
+    const session = await getSessionFromRequest(req).catch(() => null);
+    const actorEmail = session?.email ?? null;
 
     const validLevels = ['error', 'warning', 'info'];
     const sanitisedLevel = validLevels.includes(level) ? level : 'error';
@@ -51,7 +47,7 @@ export async function POST(req: NextRequest) {
           stack: stack ? String(stack).slice(0, 5000) : null,
           metadata: metadata ? JSON.stringify(metadata).slice(0, 5000) : null,
           source: source ? String(source).slice(0, 100) : 'frontend',
-          userId: session?.user?.email ?? null,
+          userId: actorEmail,
           ipAddress,
           userAgent: userAgent.slice(0, 500),
         },
@@ -68,7 +64,7 @@ export async function POST(req: NextRequest) {
               message: message.slice(0, 500),
               source,
             }),
-            userId: session?.user?.email ?? null,
+            userId: actorEmail,
             ipAddress,
             userAgent: userAgent.slice(0, 500),
           },
@@ -122,11 +118,8 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   const log = requestLogger(req, { route: '/api/log-error' });
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
-    }
+    const sessionOrError = await requireAdmin();
+    if (sessionOrError instanceof NextResponse) return sessionOrError;
 
     const { searchParams } = new URL(req.url);
     const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10), 200);

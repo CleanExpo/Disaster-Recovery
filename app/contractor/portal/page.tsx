@@ -1,11 +1,15 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
+import {
+  AntigravityNavbar,
+  AntigravityFooter,
+  AgLoadingState,
+  AgEmptyState,
+} from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { contractorFetch, contractorLogout, getContractorProfile } from '@/lib/contractor-auth';
+import { contractorFetch, contractorLogout, getContractorProfile, setContractorAuth } from '@/lib/contractor-auth';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -68,14 +72,54 @@ function ContractorPortalPageOriginal() {
   }>({ activeJobs: 0, completedThisMonth: 0, earningsThisMonth: 0 });
 
   useEffect(() => {
-    const profile = getContractorProfile();
-    if (!profile) {
-      router.push('/contractor/login');
-      return;
+    let cancelled = false;
+
+    async function bootstrap() {
+      try {
+        const meRes = await fetch('/api/auth/me', { credentials: 'include' });
+        if (!meRes.ok) {
+          router.push('/contractor/login');
+          return;
+        }
+        const me = (await meRes.json()) as {
+          authenticated?: boolean;
+          user?: {
+            id?: string;
+            email?: string;
+            name?: string;
+            role?: string;
+            contractorId?: string;
+          };
+        };
+        if (!me.authenticated || me.user?.role !== 'CONTRACTOR') {
+          router.push('/contractor/login');
+          return;
+        }
+
+        const cached = getContractorProfile();
+        const profile = {
+          id: me.user.contractorId || me.user.id,
+          email: me.user.email,
+          username: me.user.name || cached?.username,
+          name: me.user.name,
+          role: 'CONTRACTOR',
+          ...(cached ?? {}),
+        };
+        setContractorAuth(profile);
+        if (!cancelled) {
+          setContractor(profile);
+          loadJobs();
+          loadDashboard();
+        }
+      } catch {
+        if (!cancelled) router.push('/contractor/login');
+      }
     }
-    setContractor(profile);
-    loadJobs();
-    loadDashboard();
+
+    void bootstrap();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const loadJobs = async () => {
@@ -191,11 +235,8 @@ function ContractorPortalPageOriginal() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-700">Loading portal...</p>
-        </div>
+      <div className="ag-page-elevated min-h-screen flex items-center justify-center">
+        <AgLoadingState label="Loading portal…" />
       </div>
     );
   }
@@ -205,27 +246,40 @@ function ContractorPortalPageOriginal() {
   const completedJobs = jobs.filter(j => j.status === 'completed');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="ag-page-elevated min-h-screen">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-sm border-b border-[var(--ag-border-grey)]">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{ background: 'var(--ag-primary-blue)' }}
+              >
                 <Building className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-base sm:text-xl font-bold">Contractor Portal</h1>
-                <p className="text-xs sm:text-sm text-gray-700 truncate max-w-[150px] sm:max-w-none">{contractor?.company || 'Premium Restoration Services'}</p>
+                <h1 className="text-base sm:text-xl font-bold text-[var(--ag-primary-blue)]">
+                  Contractor portal
+                </h1>
+                <p className="text-xs sm:text-sm text-[var(--ag-text-grey)] truncate max-w-[150px] sm:max-w-none">
+                  {contractor?.company || 'Your company'}
+                </p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon">
+            <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-end">
+              <Link
+                href="/contractor/kpi-tracking"
+                className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[var(--ag-secondary-blue)] hover:underline"
+              >
+                KPIs
+              </Link>
+              <Button variant="ghost" size="icon" aria-label="Notifications">
                 <BellRing className="h-5 w-5" />
               </Button>
               <Button variant="ghost" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
-                Logout
+                Log out
               </Button>
             </div>
           </div>
@@ -233,79 +287,85 @@ function ContractorPortalPageOriginal() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Available Jobs</p>
-                  <p className="text-2xl font-bold">{availableJobs.length}</p>
+        {/* Stats Overview — AG KPI tiles (no shadcn Card) */}
+        <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[
+            {
+              label: 'Available jobs',
+              value: availableJobs.length,
+              icon: <Briefcase className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />,
+            },
+            {
+              label: 'Active jobs',
+              value: acceptedJobs.length,
+              icon: <Clock className="h-5 w-5 text-amber-600" />,
+            },
+            {
+              label: 'Completed',
+              value: completedJobs.length,
+              icon: <CheckCircle2 className="h-5 w-5 text-emerald-600" />,
+            },
+            {
+              label: 'Client bill (month)',
+              value: `$${dashboardStats.earningsThisMonth.toLocaleString()}`,
+              icon: <DollarSign className="h-5 w-5 text-emerald-600" />,
+            },
+          ].map((kpi) => (
+            <div
+              key={kpi.label}
+              className="rounded-2xl border border-[var(--ag-border-grey)] bg-white p-5 shadow-sm"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-[var(--ag-text-grey)]">{kpi.label}</p>
+                  <p className="mt-1 text-2xl font-bold tabular-nums text-[var(--ag-primary-blue)]">
+                    {kpi.value}
+                  </p>
                 </div>
-                <Briefcase className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Active Jobs</p>
-                  <p className="text-2xl font-bold">{acceptedJobs.length}</p>
+                <div
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+                  style={{ background: 'color-mix(in srgb, var(--ag-primary-blue) 12%, white)' }}
+                >
+                  {kpi.icon}
                 </div>
-                <Clock className="h-8 w-8 text-orange-600" />
               </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Completed</p>
-                  <p className="text-2xl font-bold">{completedJobs.length}</p>
-                </div>
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Earnings</p>
-                  <p className="text-2xl font-bold">${dashboardStats.earningsThisMonth.toLocaleString()}</p>
-                </div>
-                <DollarSign className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          ))}
         </div>
 
         {/* Benefits — Equipment finance */}
-        <Card className="mb-6 border-blue-200 bg-gradient-to-r from-blue-50 to-sky-50">
-          <CardContent className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                <Truck className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Equipment finance — NRPG contractor benefit</p>
-                <p className="text-sm text-slate-700">
-                  Commercial equipment finance for trucks, drying rigs, thermal cameras and HEPA gear through Equipped Commercial Finance. DR is a Reg 25 referrer, not the lender.
-                </p>
-              </div>
-            </div>
-            <Link
-              href="/contractor/equipment-finance"
-              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 whitespace-nowrap"
+        <div
+          className="mb-6 flex flex-col gap-4 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between"
+          style={{
+            background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
+            borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg"
+              style={{ background: 'var(--ag-primary-blue)' }}
             >
-              Learn more
-            </Link>
-          </CardContent>
-        </Card>
+              <Truck className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-[var(--ag-primary-blue)]">
+                Equipment finance — NRPG contractor benefit
+              </p>
+              <p className="text-sm text-[var(--ag-text-grey)]">
+                Commercial equipment finance for trucks, drying rigs, thermal cameras and HEPA gear
+                through Equipped Commercial Finance. DR is a Reg 25 referrer, not the lender.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/contractor/equipment-finance"
+            className="inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-white"
+            style={{ background: 'var(--ag-primary-blue)' }}
+          >
+            Learn more
+          </Link>
+        </div>
 
         {/* 60-Minute Alert */}
         {availableJobs.some(job => job.urgency === 'emergency') && (
@@ -337,10 +397,12 @@ function ContractorPortalPageOriginal() {
 
           <TabsContent value="available" className="space-y-4 mt-6">
             {availableJobs.length === 0 ? (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <Briefcase className="h-12 w-12 text-gray-700 mx-auto mb-4" />
-                  <p className="text-gray-700">No available jobs at the moment</p>
+              <Card className="border-[var(--ag-border-grey)]">
+                <CardContent className="py-8">
+                  <AgEmptyState
+                    title="No available jobs"
+                    description="New matched jobs will appear here when leads are assigned to your territory."
+                  />
                 </CardContent>
               </Card>
             ) : (

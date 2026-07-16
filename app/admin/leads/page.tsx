@@ -23,6 +23,7 @@ import {
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useState } from 'react';
+import { AdminKpiCard } from '@/components/admin/AdminKpiCard';
 
 // C5 CWV win: recharts (~200 KB+) is split out via `next/dynamic({ ssr: false })`.
 // The parent admin route bundle no longer ships recharts; it loads in a separate
@@ -140,6 +141,10 @@ export default function AdminLeadsPage() {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [loading, setLoading] = useState(true);
   const [statsLoading, setStatsLoading] = useState(true);
+  const [partners, setPartners] = useState<Array<{ id: string; businessName: string }>>([]);
+  const [assignPartnerId, setAssignPartnerId] = useState('');
+  const [assigning, setAssigning] = useState(false);
+  const [assignError, setAssignError] = useState('');
 
   const fetchLeads = async (page = 1) => {
     setLoading(true);
@@ -180,11 +185,24 @@ export default function AdminLeadsPage() {
 
   useEffect(() => {
     fetchStats();
+    fetch('/api/admin/leads?partners=1')
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data.partners)) setPartners(data.partners);
+      })
+      .catch(() => setPartners([]));
   }, []);
 
   useEffect(() => {
     fetchLeads(1);
   }, [filterStatus, filterUrgency]);
+
+  useEffect(() => {
+    if (selectedLead) {
+      setAssignPartnerId('');
+      setAssignError('');
+    }
+  }, [selectedLead]);
 
   const handleSearch = () => {
     fetchLeads(1);
@@ -197,6 +215,34 @@ export default function AdminLeadsPage() {
   const handleRefresh = () => {
     fetchLeads(pagination.page);
     fetchStats();
+  };
+
+  const handleAssign = async () => {
+    if (!selectedLead || !assignPartnerId) {
+      setAssignError('Select a partner to assign.');
+      return;
+    }
+    setAssigning(true);
+    setAssignError('');
+    try {
+      const res = await fetch('/api/admin/leads', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leadId: selectedLead.id, partnerId: assignPartnerId }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setAssignError(data.error || 'Assignment failed');
+        return;
+      }
+      setSelectedLead(null);
+      await fetchLeads(pagination.page);
+      await fetchStats();
+    } catch {
+      setAssignError('Assignment failed. Please try again.');
+    } finally {
+      setAssigning(false);
+    }
   };
 
   const kpis = stats?.kpis ?? {
@@ -262,97 +308,46 @@ export default function AdminLeadsPage() {
       <section className="mb-8">
         <h2 className="sr-only">Lead metrics</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Total leads</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
-                  {statsLoading ? '—' : kpis.total}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-500/10">
-                <Inbox className="h-5 w-5 text-gray-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">New</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-blue-600">
-                  {statsLoading ? '—' : kpis.new}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
-                <FileText className="h-5 w-5 text-blue-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Assigned</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-violet-600">
-                  {statsLoading ? '—' : kpis.assigned}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10">
-                <User className="h-5 w-5 text-violet-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Completed</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-emerald-600">
-                  {statsLoading ? '—' : kpis.completed}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Revenue</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
-                  ${kpis.revenue.toLocaleString()}
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
-                <DollarSign className="h-5 w-5 text-emerald-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500">Conversion</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
-                  {kpis.conversionRate.toFixed(1)}%
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
-                <TrendingUp className="h-5 w-5 text-blue-600" />
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-5 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-700">Avg response</p>
-                <p className="mt-1 text-2xl font-bold tabular-nums text-orange-900">
-                  {kpis.avgResponseTime} min
-                </p>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10">
-                <Clock className="h-5 w-5 text-orange-600" />
-              </div>
-            </div>
-          </div>
+          <AdminKpiCard
+            label="Total leads"
+            value={statsLoading ? '—' : kpis.total}
+            icon={<Inbox className="h-5 w-5 text-[var(--ag-primary-blue)]" />}
+          />
+          <AdminKpiCard
+            label="New"
+            value={statsLoading ? '—' : kpis.new}
+            tone="accent"
+            icon={<FileText className="h-5 w-5 text-[var(--ag-secondary-blue)]" />}
+          />
+          <AdminKpiCard
+            label="Assigned"
+            value={statsLoading ? '—' : kpis.assigned}
+            icon={<User className="h-5 w-5 text-[var(--ag-primary-blue)]" />}
+          />
+          <AdminKpiCard
+            label="Completed"
+            value={statsLoading ? '—' : kpis.completed}
+            tone="success"
+            icon={<CheckCircle2 className="h-5 w-5 text-emerald-600" />}
+          />
+          <AdminKpiCard
+            label="Revenue"
+            value={`$${kpis.revenue.toLocaleString()}`}
+            tone="success"
+            icon={<DollarSign className="h-5 w-5 text-emerald-600" />}
+          />
+          <AdminKpiCard
+            label="Conversion"
+            value={`${kpis.conversionRate.toFixed(1)}%`}
+            tone="accent"
+            icon={<TrendingUp className="h-5 w-5 text-[var(--ag-secondary-blue)]" />}
+          />
+          <AdminKpiCard
+            label="Avg response"
+            value={`${kpis.avgResponseTime} min`}
+            tone="warning"
+            icon={<Timer className="h-5 w-5 text-amber-600" />}
+          />
         </div>
       </section>
 
@@ -699,22 +694,47 @@ export default function AdminLeadsPage() {
                 </div>
               )}
             </div>
-            <div className="flex justify-end gap-3 border-t border-gray-100 bg-gray-50/50 px-6 py-4">
-              <button
-                type="button"
-                onClick={() => setSelectedLead(null)}
-                className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90"
-                style={{ backgroundColor: '#059669' }}
-              >
-                <Send className="h-4 w-4" />
-                Assign contractor
-              </button>
+            <div className="flex flex-col gap-3 border-t border-gray-100 bg-gray-50/50 px-6 py-4">
+              {assignError && (
+                <p className="text-sm text-red-600" role="alert">
+                  {assignError}
+                </p>
+              )}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                <label htmlFor="assign-partner" className="sr-only">
+                  Partner
+                </label>
+                <select
+                  id="assign-partner"
+                  value={assignPartnerId}
+                  onChange={(e) => setAssignPartnerId(e.target.value)}
+                  className="flex-1 rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-sm"
+                >
+                  <option value="">Select partner…</option>
+                  {partners.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.businessName}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={() => setSelectedLead(null)}
+                  className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAssign}
+                  disabled={assigning || !assignPartnerId}
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+                  style={{ backgroundColor: 'var(--ag-primary-blue, #0F2942)' }}
+                >
+                  <Send className="h-4 w-4" />
+                  {assigning ? 'Assigning…' : 'Assign partner'}
+                </button>
+              </div>
             </div>
           </div>
         </div>

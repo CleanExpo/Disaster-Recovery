@@ -67,7 +67,7 @@ const RATES: Record<string, Array<{ 'Service Item': string; Unit: string; Rate: 
   ],
 };
 
-const CATEGORY_COLORS = ['#0ea5e9', '#22c55e', '#f59e0b', '#8b5cf6', '#ef4444'];
+const CATEGORY_COLORS = ['#1A4674', '#16a34a', '#f59e0b', '#0F2942', '#dc2626'];
 
 const MIN_CHARGE = 2750;
 
@@ -98,7 +98,7 @@ export default function RatesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="ag-page-elevated min-h-screen">
       <AntigravityNavbar />
 
       <div className="mx-auto max-w-7xl px-4 py-8">
@@ -106,22 +106,26 @@ export default function RatesPage() {
         <header className="mb-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/25">
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-lg"
+                style={{ background: 'var(--ag-primary-blue)' }}
+              >
                 <Receipt className="h-7 w-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                  NRPG Professional Rate Schedule
+                <h1 className="text-2xl font-bold tracking-tight text-[var(--ag-primary-blue)] sm:text-3xl">
+                  NRPG professional rate schedule
                 </h1>
-                <p className="mt-1 text-sm text-gray-500">
-                  Transparent pricing for contractors and insurers — all rates AUD ex GST
+                <p className="mt-1 text-sm text-[var(--ag-text-grey)]">
+                  Transparent pricing for contractors and insurers — all rates AUD ex GST. Contractors
+                  bill clients directly; Disaster Recovery does not invoice for restoration.
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/tools/cost-estimator"
-                className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--ag-border-grey)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--ag-primary-blue)] shadow-sm hover:bg-[var(--ag-background-light)]"
               >
                 <Calculator className="h-4 w-4" />
                 Get cost estimate
@@ -129,7 +133,7 @@ export default function RatesPage() {
               <Link
                 href="/claim"
                 className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90"
-                style={{ backgroundColor: '#dc2626' }}
+                style={{ backgroundColor: 'var(--ag-emergency-red)' }}
               >
                 Lodge a claim
                 <ArrowRight className="h-4 w-4" />

@@ -20,6 +20,7 @@ export { AntigravityContractorNetworkCTA } from './AntigravityContractorNetworkC
 
 // Homepage Composition
 export { AntigravityHomePage } from './AntigravityHomePage';
+export { AntigravityAdvocacyStrip } from './AntigravityAdvocacyStrip';
 
 // Service Page Template
 export { AntigravityServicePageTemplate } from './AntigravityServicePageTemplate';
@@ -60,6 +61,17 @@ export type { BreadcrumbItem } from './AgBreadcrumbNav';
 export { AgAccordion } from './AgAccordion';
 export type { AccordionItem } from './AgAccordion';
 export { AgCardGrid } from './AgCardGrid';
+
+// Form elevation primitives
+export {
+  AgStepProgress,
+  AgFormShell,
+  AgFieldCluster,
+  AgEmptyState,
+  AgLoadingState,
+  AgErrorState,
+} from './AgFormPrimitives';
+export type { AgStep } from './AgFormPrimitives';
 
 // Types
 export type {

@@ -43,8 +43,17 @@ export async function GET(request: NextRequest) {
     // Validate filters
     const validatedFilters = jobFilterSchema.parse(filters);
 
-    // Build Prisma where clause
+    // Build Prisma where clause — contractors only see their own jobs (+ unassigned pool for accept)
     const where: Record<string, unknown> = {};
+    const isAdmin = hasRole(user.role as UserRole, [UserRole.ADMIN]);
+
+    if (!isAdmin) {
+      // Path A ops: contractor sees unassigned pending jobs OR jobs already claimed by them
+      where.OR = [
+        { contractorId: user.id },
+        { contractorId: null, status: { in: ['pending', 'assigned'] } },
+      ];
+    }
 
     if (validatedFilters.status) {
       where.status = validatedFilters.status;
@@ -55,11 +64,18 @@ export async function GET(request: NextRequest) {
     }
 
     if (validatedFilters.location) {
-      where.OR = [
+      const locationOr = [
         { suburb: { contains: validatedFilters.location, mode: 'insensitive' } },
         { state: { contains: validatedFilters.location, mode: 'insensitive' } },
         { address: { contains: validatedFilters.location, mode: 'insensitive' } },
       ];
+      if (where.OR) {
+        // Combine contractor scope with location: (scope) AND (location)
+        where.AND = [{ OR: where.OR }, { OR: locationOr }];
+        delete where.OR;
+      } else {
+        where.OR = locationOr;
+      }
     }
 
     if (validatedFilters.dateFrom || validatedFilters.dateTo) {
@@ -193,18 +209,42 @@ export async function POST(request: NextRequest) {
       }, { status: 404 });
     }
 
+    const isAdmin = hasRole(user.role as UserRole, [UserRole.ADMIN]);
+    const ownedByCaller = existingJob.contractorId === user.id;
+    const unassigned = !existingJob.contractorId;
+
+    if (!isAdmin) {
+      if (action === 'accept' && !unassigned && !ownedByCaller) {
+        return NextResponse.json(
+          { success: false, message: 'Job is already assigned to another contractor' },
+          { status: 403 },
+        );
+      }
+      if (action !== 'accept' && !ownedByCaller) {
+        return NextResponse.json(
+          { success: false, message: 'You can only update jobs assigned to you' },
+          { status: 403 },
+        );
+      }
+    }
+
     // Build update payload based on action
     let updateData: Record<string, unknown> = {};
     let message = '';
 
     switch (action) {
       case 'accept':
-        updateData = { status: 'in_progress', acceptedAt: new Date() };
+        updateData = {
+          status: 'in_progress',
+          acceptedAt: new Date(),
+          contractorId: user.id,
+          assignedAt: existingJob.assignedAt ?? new Date(),
+        };
         message = `Job ${jobId} accepted successfully`;
         break;
 
       case 'decline':
-        updateData = { status: 'pending', contractorId: null };
+        updateData = { status: 'pending', contractorId: null, acceptedAt: null };
         message = `Job ${jobId} declined`;
         break;
 

@@ -1,7 +1,10 @@
-export default function ContractorPortalLayout({
-  children,
+import { redirect } from 'next/navigation';
+
+/** Nested mock contractor-portal routes → real portal */
+export default function ContractorPortalLegacyLayout({
+  children: _children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  return <>{children}</>
+  redirect('/contractor/portal');
 }

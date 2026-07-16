@@ -8,7 +8,7 @@ export async function GET() {
   const sessionOrError = await requireAdmin();
   if (sessionOrError instanceof NextResponse) return sessionOrError;
 
-  const [byStatus, byUrgency, total, paidBilling, responseTimes] = await Promise.all([
+  const [byStatus, byUrgency, total, paidBilling, responseTimes, claimEnquiryOpen] = await Promise.all([
     prisma.lead.groupBy({
       by: ['status'],
       _count: { id: true },
@@ -32,15 +32,19 @@ export async function GET() {
         acceptedAt: true,
       },
     }),
+    prisma.enquiry.count({
+      where: { source: 'public_claim_submit', responded: false },
+    }),
   ]);
 
   const statusCounts = Object.fromEntries(byStatus.map((r) => [r.status, r._count.id])) as Record<string, number>;
-  const newCount = statusCounts.NEW ?? 0;
+  const newCount = (statusCounts.NEW ?? 0) + claimEnquiryOpen;
   const assignedCount = (statusCounts.ASSIGNED ?? 0) + (statusCounts.ACCEPTED ?? 0);
   const completedCount = statusCounts.COMPLETED ?? 0;
 
   const revenue = paidBilling._sum.amount ?? 0;
-  const conversionRate = total ? (completedCount / total) * 100 : 0;
+  const totalWithEnquiries = total + claimEnquiryOpen;
+  const conversionRate = totalWithEnquiries ? (completedCount / totalWithEnquiries) * 100 : 0;
 
   const times = responseTimes
     .filter((r) => r.assignedAt && r.acceptedAt)
@@ -73,13 +77,14 @@ export async function GET() {
 
   return NextResponse.json({
     kpis: {
-      total,
+      total: totalWithEnquiries,
       new: newCount,
       assigned: assignedCount,
       completed: completedCount,
       revenue,
       conversionRate,
       avgResponseTime,
+      claimEnquiriesOpen: claimEnquiryOpen,
     },
     statusData,
     urgencyData,

@@ -1,10 +1,8 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { getSessionFromCookies } from '@/lib/auth/session';
+import { normaliseRole } from '@/lib/auth/roles';
 
 /**
- * The set of roles that can be present on a session user.
- * Matches the values stored in the User.role column (see admin-constants.ts
- * for the full admin-role list and the prisma schema for the DB enum).
+ * Roles present on a session user (legacy lowercase + AppRole enums).
  */
 export type SessionRole =
   | 'admin'
@@ -12,43 +10,39 @@ export type SessionRole =
   | 'contractor'
   | 'client'
   | 'user'
-  | 'public';
+  | 'public'
+  | 'ADMIN'
+  | 'SUPER_ADMIN'
+  | 'CONTRACTOR'
+  | 'CLIENT';
 
 export interface CallerIdentity {
-  /** Role derived from the validated server session, or 'public' when unauthenticated. */
   role: SessionRole;
-  /** The authenticated user's DB id, or null when unauthenticated. */
   userId: string | null;
-  /** The authenticated user's email, or null when unauthenticated. */
   email: string | null;
 }
 
 /**
- * Resolves the caller's identity from the NextAuth server session.
- *
- * This replaces the trivially-forgeable x-caller-role / x-caller-id request
- * headers that were used as a placeholder (DR-521). The JWT is validated
- * server-side by next-auth — callers cannot forge their role.
- *
- * Usage in a Route Handler:
- *   const { role, userId } = await getCallerIdentity();
- *   const canRead = role === 'admin' || role === 'contractor';
+ * Resolves the caller's identity from the jose cookie session.
  */
 export async function getCallerIdentity(): Promise<CallerIdentity> {
-  const session = await getServerSession(authOptions);
+  const session = await getSessionFromCookies();
 
-  if (!session?.user) {
+  if (!session) {
     return { role: 'public', userId: null, email: null };
   }
 
-  // session.user.role is typed as string via next-auth.d.ts augmentation.
-  // Cast to SessionRole after narrowing — the value is written by our own
-  // JWT callback so the set of possible strings is known and controlled.
-  const rawRole = (session.user.role ?? 'user') as SessionRole;
+  const appRole = normaliseRole(session.role) ?? 'CLIENT';
+  const legacyMap: Record<string, SessionRole> = {
+    ADMIN: 'admin',
+    SUPER_ADMIN: 'super_admin',
+    CONTRACTOR: 'contractor',
+    CLIENT: 'client',
+  };
 
   return {
-    role: rawRole,
-    userId: session.user.id ?? null,
-    email: session.user.email ?? null,
+    role: legacyMap[appRole] ?? 'user',
+    userId: session.userId,
+    email: session.email,
   };
 }
