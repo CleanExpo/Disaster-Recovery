@@ -36,7 +36,6 @@ import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-sto
 import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
 import { enqueueClaim, replayQueue, isOfflineQueueEnabled } from '@/lib/offline-queue';
 import { useSearchParams } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -52,7 +51,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   AlertCircle,
-  CreditCard,
+  ClipboardList,
   CheckCircle2,
   Info,
   Phone,
@@ -753,35 +752,42 @@ function OnlineClaimPageOriginal() {
         {/* Pricing Indicator Banner — Path A (DR-789, ADR-011 Accepted) */}
         {/* DR is a network orchestrator. Your IICRC-certified contractor */}
         {/* will quote and bill you directly on-site, not via Disaster Recovery. */}
-        <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-blue-600" />
-            Emergency Make-Safe — Indicative Cost
+        <div
+          className="mb-8 rounded-xl border p-6"
+          style={{
+            background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
+            borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
+          }}
+        >
+          <h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-[var(--ag-primary-blue)]">
+            <DollarSign className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />
+            Emergency make-safe — indicative cost
           </h2>
-          <div className="space-y-1.5 text-sm text-gray-700 ms-7">
+          <div className="ms-7 space-y-1.5 text-sm text-[var(--ag-text-dark)]">
             <div className="flex items-center gap-2">
-              <span className="text-blue-500">├─</span>
+              <span style={{ color: 'var(--ag-secondary-blue)' }}>├─</span>
               <span>
                 <strong>From ~${PLATFORM_FEE.toFixed(0)}</strong> — typical emergency make-safe
                 callout, varies by job type and severity
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-blue-500">├─</span>
+              <span style={{ color: 'var(--ag-secondary-blue)' }}>├─</span>
               <span>
                 Your assigned <strong>IICRC-certified contractor</strong> will give you a firm Scope
                 of Works on-site and bill you directly
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-blue-500">└─</span>
+              <span style={{ color: 'var(--ag-secondary-blue)' }}>└─</span>
               <span>
                 Payment plans available via{' '}
                 <a
                   href="https://equippedcf.com.au"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 font-medium hover:underline"
+                  className="font-medium hover:underline"
+                  style={{ color: 'var(--ag-primary-blue)' }}
                 >
                   Equipped Commercial Finance
                 </a>{' '}
@@ -824,16 +830,17 @@ function OnlineClaimPageOriginal() {
           </AlertDescription>
         </Alert>
 
-        <Card className="border-[var(--ag-border-grey)] shadow-sm">
-          <CardHeader>
-            <CardTitle>
-              {step === 1 && 'Property & damage information'}
-              {step === 2 && 'Insurance & documentation'}
-              {step === 3 && 'Authorisations & terms'}
-              {step === 4 && 'Final review & submit'}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+        <AgFormShell
+          title={
+            step === 1
+              ? 'Property & damage information'
+              : step === 2
+                ? 'Insurance & documentation'
+                : step === 3
+                  ? 'Authorisations & terms'
+                  : 'Final review & submit'
+          }
+        >
             {/* Step 1: Property & Damage */}
             {step === 1 && (
               <div className="space-y-6">
@@ -1451,8 +1458,8 @@ function OnlineClaimPageOriginal() {
                 </Alert>
 
                 <div className="bg-white border-2 border-[var(--ag-border-grey)] rounded-lg p-6">
-                  <h3 className="font-semibold mb-4 flex items-center gap-2">
-                    <CreditCard className="h-5 w-5" />
+                  <h3 className="font-semibold mb-4 flex items-center gap-2 text-[var(--ag-primary-blue)]">
+                    <ClipboardList className="h-5 w-5" />
                     Submission summary
                   </h3>
                   <div className="space-y-2">
@@ -1503,15 +1510,22 @@ function OnlineClaimPageOriginal() {
                   </AlertDescription>
                 </Alert>
 
-                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
-                  <p className="text-sm text-indigo-900">
+                <div
+                  className="rounded-lg border p-4"
+                  style={{
+                    background: 'color-mix(in srgb, var(--ag-secondary-blue) 8%, white)',
+                    borderColor: 'color-mix(in srgb, var(--ag-secondary-blue) 25%, white)',
+                  }}
+                >
+                  <p className="text-sm text-[var(--ag-text-dark)]">
                     <strong>Need to spread the cost?</strong> Flexible payment plans available
                     through{' '}
                     <a
                       href="https://equippedcf.com.au"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-indigo-600 font-semibold hover:underline"
+                      className="font-semibold hover:underline"
+                      style={{ color: 'var(--ag-primary-blue)' }}
                     >
                       Equipped Commercial Finance
                     </a>
@@ -1537,8 +1551,7 @@ function OnlineClaimPageOriginal() {
                 </div>
               </div>
             )}
-          </CardContent>
-        </Card>
+        </AgFormShell>
       </div>
     </div>
   );
