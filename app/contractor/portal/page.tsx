@@ -1,8 +1,12 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
+import {
+  AntigravityNavbar,
+  AntigravityFooter,
+  AgLoadingState,
+  AgEmptyState,
+} from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { contractorFetch, contractorLogout, getContractorProfile } from '@/lib/contractor-auth';
@@ -191,11 +195,8 @@ function ContractorPortalPageOriginal() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-700">Loading portal...</p>
-        </div>
+      <div className="ag-page-elevated min-h-screen flex items-center justify-center">
+        <AgLoadingState label="Loading portal…" />
       </div>
     );
   }
@@ -205,27 +206,46 @@ function ContractorPortalPageOriginal() {
   const completedJobs = jobs.filter(j => j.status === 'completed');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="ag-page-elevated min-h-screen">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-sm border-b border-[var(--ag-border-grey)]">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{ background: 'var(--ag-primary-blue)' }}
+              >
                 <Building className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-base sm:text-xl font-bold">Contractor Portal</h1>
-                <p className="text-xs sm:text-sm text-gray-700 truncate max-w-[150px] sm:max-w-none">{contractor?.company || 'Premium Restoration Services'}</p>
+                <h1 className="text-base sm:text-xl font-bold text-[var(--ag-primary-blue)]">
+                  Contractor portal
+                </h1>
+                <p className="text-xs sm:text-sm text-[var(--ag-text-grey)] truncate max-w-[150px] sm:max-w-none">
+                  {contractor?.company || 'Premium Restoration Services'}
+                </p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon">
+            <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-end">
+              <Link
+                href="/contractor/training/demo"
+                className="hidden sm:inline text-sm font-medium text-[var(--ag-secondary-blue)] hover:underline"
+              >
+                Training
+              </Link>
+              <Link
+                href="/contractor/kpi-tracking"
+                className="hidden sm:inline text-sm font-medium text-[var(--ag-secondary-blue)] hover:underline"
+              >
+                KPIs
+              </Link>
+              <Button variant="ghost" size="icon" aria-label="Notifications">
                 <BellRing className="h-5 w-5" />
               </Button>
               <Button variant="ghost" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
-                Logout
+                Log out
               </Button>
             </div>
           </div>
@@ -337,10 +357,12 @@ function ContractorPortalPageOriginal() {
 
           <TabsContent value="available" className="space-y-4 mt-6">
             {availableJobs.length === 0 ? (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <Briefcase className="h-12 w-12 text-gray-700 mx-auto mb-4" />
-                  <p className="text-gray-700">No available jobs at the moment</p>
+              <Card className="border-[var(--ag-border-grey)]">
+                <CardContent className="py-8">
+                  <AgEmptyState
+                    title="No available jobs"
+                    description="New matched jobs will appear here when leads are assigned to your territory."
+                  />
                 </CardContent>
               </Card>
             ) : (
