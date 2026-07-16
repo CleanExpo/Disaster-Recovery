@@ -952,7 +952,7 @@ function ContractorApplicationContent() {
   // ── Eligibility gate — renders before the main wizard ──────────────────────
   if (!eligibilityConfirmed) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      <div className="min-h-screen ag-page-elevated" style={{ background: 'linear-gradient(160deg, var(--ag-primary-blue) 0%, #1A4674 55%, #0F2942 100%)' }}>
         <header className="border-b border-slate-700/50 bg-black/30 backdrop-blur-sm sticky top-0 z-40">
           <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex items-center justify-between gap-2">
@@ -976,7 +976,7 @@ function ContractorApplicationContent() {
           </div>
         </header>
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-10 max-w-3xl">
-          <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
+          <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl shadow-xl overflow-hidden">
             <div className="p-6 sm:p-8 md:p-10">
               <Step0Eligibility onConfirmed={handleEligibilityConfirmed} />
             </div>
@@ -987,9 +987,9 @@ function ContractorApplicationContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <div className="min-h-screen ag-page-elevated" style={{ background: 'linear-gradient(160deg, var(--ag-primary-blue) 0%, #1A4674 55%, #0F2942 100%)' }}>
       {/* Header */}
-      <header className="border-b border-slate-700/50 bg-black/30 backdrop-blur-sm sticky top-0 z-40">
+      <header className="border-b border-white/10 bg-black/20 backdrop-blur-sm sticky top-0 z-40">
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between gap-2">
             <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -1033,10 +1033,34 @@ function ContractorApplicationContent() {
         </div>
       </header>
 
-      <div className=" container mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-10">
+        {/* Mobile compact step rail */}
+        <div className="sm:hidden mb-6 px-1">
+          <p className="text-xs text-blue-100 mb-2">
+            Step {currentStep} of {ONBOARDING_STEPS.length} —{' '}
+            {ONBOARDING_STEPS[currentStep - 1]?.shortName}
+          </p>
+          <div className="flex gap-1.5" role="list" aria-label="Application progress">
+            {ONBOARDING_STEPS.map((s) => (
+              <div
+                key={s.id}
+                role="listitem"
+                className={`h-1.5 flex-1 rounded-full ${
+                  completedSteps.includes(s.id)
+                    ? 'bg-emerald-400'
+                    : currentStep === s.id
+                      ? 'bg-white'
+                      : 'bg-white/25'
+                }`}
+                aria-label={`${s.shortName}${completedSteps.includes(s.id) ? ' complete' : currentStep === s.id ? ' current' : ''}`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Step indicator */}
-        <div className="mb-10 sm:mb-14">
-          <p className="text-slate-400 text-sm  mb-4 sm:mb-6">
+        <div className="mb-10 sm:mb-14 hidden sm:block">
+          <p className="text-slate-300 text-sm mb-4 sm:mb-6">
             Step {currentStep} of {ONBOARDING_STEPS.length}
           </p>
           <div className="flex items-center mx-auto">
