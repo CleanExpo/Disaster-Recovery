@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { getSessionFromRequest } from '@/lib/auth/session';
+import { isAdminRole } from '@/lib/admin-constants';
 import { requestLogger, captureException } from '@/lib/observability';
 
 /**
@@ -29,8 +29,8 @@ import { requestLogger, captureException } from '@/lib/observability';
 export async function GET(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/kpi/job-outcomes' });
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
+    const session = await getSessionFromRequest(request);
+    if (!session || !isAdminRole(session.role)) {
       return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
     }
 
