@@ -223,20 +223,14 @@ function ContractorPortalPageOriginal() {
                   Contractor portal
                 </h1>
                 <p className="text-xs sm:text-sm text-[var(--ag-text-grey)] truncate max-w-[150px] sm:max-w-none">
-                  {contractor?.company || 'Premium Restoration Services'}
+                  {contractor?.company || 'Your company'}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-end">
               <Link
-                href="/contractor/training/demo"
-                className="hidden sm:inline text-sm font-medium text-[var(--ag-secondary-blue)] hover:underline"
-              >
-                Training
-              </Link>
-              <Link
                 href="/contractor/kpi-tracking"
-                className="hidden sm:inline text-sm font-medium text-[var(--ag-secondary-blue)] hover:underline"
+                className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[var(--ag-secondary-blue)] hover:underline"
               >
                 KPIs
               </Link>
@@ -253,79 +247,85 @@ function ContractorPortalPageOriginal() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Available Jobs</p>
-                  <p className="text-2xl font-bold">{availableJobs.length}</p>
+        {/* Stats Overview — AG KPI tiles (no shadcn Card) */}
+        <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[
+            {
+              label: 'Available jobs',
+              value: availableJobs.length,
+              icon: <Briefcase className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />,
+            },
+            {
+              label: 'Active jobs',
+              value: acceptedJobs.length,
+              icon: <Clock className="h-5 w-5 text-amber-600" />,
+            },
+            {
+              label: 'Completed',
+              value: completedJobs.length,
+              icon: <CheckCircle2 className="h-5 w-5 text-emerald-600" />,
+            },
+            {
+              label: 'Client bill (month)',
+              value: `$${dashboardStats.earningsThisMonth.toLocaleString()}`,
+              icon: <DollarSign className="h-5 w-5 text-emerald-600" />,
+            },
+          ].map((kpi) => (
+            <div
+              key={kpi.label}
+              className="rounded-2xl border border-[var(--ag-border-grey)] bg-white p-5 shadow-sm"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-[var(--ag-text-grey)]">{kpi.label}</p>
+                  <p className="mt-1 text-2xl font-bold tabular-nums text-[var(--ag-primary-blue)]">
+                    {kpi.value}
+                  </p>
                 </div>
-                <Briefcase className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Active Jobs</p>
-                  <p className="text-2xl font-bold">{acceptedJobs.length}</p>
+                <div
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+                  style={{ background: 'color-mix(in srgb, var(--ag-primary-blue) 12%, white)' }}
+                >
+                  {kpi.icon}
                 </div>
-                <Clock className="h-8 w-8 text-orange-600" />
               </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Completed</p>
-                  <p className="text-2xl font-bold">{completedJobs.length}</p>
-                </div>
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-700">Earnings</p>
-                  <p className="text-2xl font-bold">${dashboardStats.earningsThisMonth.toLocaleString()}</p>
-                </div>
-                <DollarSign className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          ))}
         </div>
 
         {/* Benefits — Equipment finance */}
-        <Card className="mb-6 border-blue-200 bg-gradient-to-r from-blue-50 to-sky-50">
-          <CardContent className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                <Truck className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Equipment finance — NRPG contractor benefit</p>
-                <p className="text-sm text-slate-700">
-                  Commercial equipment finance for trucks, drying rigs, thermal cameras and HEPA gear through Equipped Commercial Finance. DR is a Reg 25 referrer, not the lender.
-                </p>
-              </div>
-            </div>
-            <Link
-              href="/contractor/equipment-finance"
-              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 whitespace-nowrap"
+        <div
+          className="mb-6 flex flex-col gap-4 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between"
+          style={{
+            background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
+            borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg"
+              style={{ background: 'var(--ag-primary-blue)' }}
             >
-              Learn more
-            </Link>
-          </CardContent>
-        </Card>
+              <Truck className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-[var(--ag-primary-blue)]">
+                Equipment finance — NRPG contractor benefit
+              </p>
+              <p className="text-sm text-[var(--ag-text-grey)]">
+                Commercial equipment finance for trucks, drying rigs, thermal cameras and HEPA gear
+                through Equipped Commercial Finance. DR is a Reg 25 referrer, not the lender.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/contractor/equipment-finance"
+            className="inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-white"
+            style={{ background: 'var(--ag-primary-blue)' }}
+          >
+            Learn more
+          </Link>
+        </div>
 
         {/* 60-Minute Alert */}
         {availableJobs.some(job => job.urgency === 'emergency') && (
