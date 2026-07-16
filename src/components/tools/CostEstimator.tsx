@@ -434,13 +434,17 @@ export default function CostEstimator() {
                   {/* CTA */}
                   <Link
                     href={`/claim?damageType=${encodeURIComponent(damageType)}&propertyType=${encodeURIComponent(propertyType)}&urgency=${encodeURIComponent(urgency)}&estimateLow=${result.low}&estimateHigh=${result.high}`}
-                    className="block w-full bg-gradient-to-r from-red-500 to-red-600 !text-white hover:!text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:shadow-xl hover:shadow-red-500/30 transition-all"
+                    className="block w-full ag-btn-primary-navy !text-white hover:!text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:opacity-90 transition-all"
+                    style={{ background: 'var(--ag-emergency-red)', borderRadius: '0.75rem' }}
                   >
                     <span className="inline-flex items-center gap-2 !text-white">
-                      Lodge a Claim
+                      Lodge a claim
                       <ArrowRight className="h-5 w-5 shrink-0" />
                     </span>
                   </Link>
+                  <p className="mt-3 text-center text-sm text-slate-200">
+                    Indicative only — your matched contractor quotes and bills you directly on-site.
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
