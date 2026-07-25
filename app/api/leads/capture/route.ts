@@ -12,47 +12,77 @@ import { logComplianceEvent, hashIdentifier } from '@/lib/compliance/events';
 // created and no downstream billing/notification is re-triggered.
 const DEDUPE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 
+// Known value sets — kept in lock-step with the LeadCaptureForm <SelectItem>
+// options so the schema rejects anything the real UI cannot produce.
+const PROPERTY_TYPES = ['residential', 'commercial', 'industrial', 'strata', 'government'] as const;
+const STATES = ['QLD', 'NSW', 'VIC', 'SA', 'WA', 'TAS', 'NT', 'ACT'] as const;
+const URGENCY_LEVELS = ['emergency', 'urgent', 'soon', 'planning'] as const;
+const AREAS_AFFECTED = [
+  'single_room',
+  'multiple_rooms',
+  'entire_floor',
+  'entire_property',
+  'commercial_large',
+] as const;
+const READINESS = ['immediately', 'within_week', 'within_month', 'planning'] as const;
+const DAMAGE_TYPES = [
+  'Water/Flood Damage',
+  'Fire/Smoke Damage',
+  'Storm/Wind Damage',
+  'Mould Growth',
+  'Sewage Backup',
+  'Biohazard/Trauma',
+  'Hail Damage',
+  'Structural Damage',
+] as const;
+
 // Strict input contract for the public, unauthenticated capture endpoint.
-// Unknown keys are stripped by zod's default object behaviour; every accepted
-// field is length-bounded to prevent oversized-payload abuse.
+// Unknown keys are stripped by zod's default object behaviour. Free-text fields
+// are non-empty and length-bounded; every field with a fixed UI value set is an
+// enum, and numeric-ish fields carry a format so empty/garbage cannot pass.
 export const leadCaptureSchema = z.object({
   // Contact Information
-  fullName: z.string().min(1).max(120),
-  phone: z.string().min(5).max(30),
-  email: z.string().email().max(200),
+  fullName: z.string().trim().min(2).max(120),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^(?:\+?61|0)[\s-]?[2-478][\d\s-]{7,12}$/, 'Invalid Australian phone number'),
+  email: z.string().trim().email().max(200),
 
   // Property Information
-  propertyType: z.string().min(1).max(60),
-  propertyAddress: z.string().min(1).max(300),
-  suburb: z.string().min(1).max(120),
-  state: z.string().min(1).max(60),
-  postcode: z.string().min(1).max(12),
+  propertyType: z.enum(PROPERTY_TYPES),
+  propertyAddress: z.string().trim().min(3).max(300),
+  suburb: z.string().trim().min(1).max(120),
+  state: z.enum(STATES),
+  postcode: z.string().trim().regex(/^\d{4}$/, 'Invalid Australian postcode'),
 
   // Damage Information
-  damageType: z.array(z.string().max(100)).min(1).max(20),
+  damageType: z.array(z.enum(DAMAGE_TYPES)).min(1).max(DAMAGE_TYPES.length),
   damageDate: z
     .string()
+    .trim()
+    .min(1)
     .max(40)
     .refine((d) => !Number.isNaN(Date.parse(d)), 'Invalid damageDate'),
-  damageDescription: z.string().min(1).max(5000),
-  estimatedAreaAffected: z.string().min(1).max(60),
+  damageDescription: z.string().trim().min(1).max(5000),
+  estimatedAreaAffected: z.enum(AREAS_AFFECTED),
 
   // Insurance Information
   hasInsurance: z.boolean(),
-  insuranceCompany: z.string().max(160).optional(),
-  claimNumber: z.string().max(120).optional(),
-  excessAmount: z.string().max(40).optional(),
+  insuranceCompany: z.string().trim().max(160).optional(),
+  claimNumber: z.string().trim().max(120).optional(),
+  excessAmount: z.string().trim().regex(/^\d{1,9}$/).optional(),
 
   // Value Indicators
-  urgencyLevel: z.string().min(1).max(40),
-  propertyValue: z.string().max(20),
+  urgencyLevel: z.enum(URGENCY_LEVELS),
+  propertyValue: z.string().trim().regex(/^\d{4,9}$/, 'Invalid property value'),
   isBusinessProperty: z.boolean(),
   requiresAccommodation: z.boolean(),
 
   // Lead Quality
   hasPhotos: z.boolean(),
-  readyToStart: z.string().min(1).max(40),
-  budget: z.string().max(40).optional(),
+  readyToStart: z.enum(READINESS),
+  budget: z.string().trim().regex(/^\d{1,9}$/).optional(),
   decisionMaker: z.boolean(),
 
   // Tracking (client-supplied, optional)
@@ -80,14 +110,16 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = leadCaptureSchema.parse(body);
 
-    // Idempotency: collapse duplicate submissions (same contact within the
-    // window) so a replay/flood cannot mint a second lead or re-bill/re-notify.
+    // Idempotency signature: same contact within the same time-bucket collapses
+    // to one lead. A UNIQUE index on dedupeKey (see migration) makes this atomic,
+    // so even two *concurrent* identical submits (e.g. a double-click) can only
+    // ever create one billable lead — the loser hits P2002 below.
+    const bucket = Math.floor(Date.now() / DEDUPE_WINDOW_MS);
+    const dedupeKey = hashIdentifier(`${data.email}|${data.phone}|${bucket}`);
+
+    // Fast path: short-circuit an already-seen submission before doing any work.
     const existing = await prisma.lead.findFirst({
-      where: {
-        email: data.email,
-        phone: data.phone,
-        createdAt: { gte: new Date(Date.now() - DEDUPE_WINDOW_MS) },
-      },
+      where: { dedupeKey },
       orderBy: { createdAt: 'desc' },
       select: { id: true },
     });
@@ -124,8 +156,12 @@ export async function POST(request: NextRequest) {
       state: data.state
     });
     
-    // Create lead in database
-    const lead = await prisma.lead.create({
+    // Create lead in database. If a concurrent request already inserted the same
+    // dedupeKey, the UNIQUE index rejects this one (P2002) — we treat that as an
+    // idempotent duplicate and return WITHOUT assigning/billing/emailing again.
+    let lead;
+    try {
+      lead = await prisma.lead.create({
       data: {
         // Contact Information
         fullName: data.fullName,
@@ -170,10 +206,30 @@ export async function POST(request: NextRequest) {
         ipAddress: ipAddress,
         userAgent: data.userAgent,
         status: 'NEW',
-        qualityStatus: leadScore >= 80 ? 'HIGH_VALUE' : leadScore >= 60 ? 'QUALIFIED' : 'STANDARD'
+        qualityStatus: leadScore >= 80 ? 'HIGH_VALUE' : leadScore >= 60 ? 'QUALIFIED' : 'STANDARD',
+
+        // Atomic idempotency guard (UNIQUE) — see dedupeKey above.
+        dedupeKey,
       }
     });
-    
+    } catch (createError) {
+      if (createError && typeof createError === 'object' && (createError as { code?: string }).code === 'P2002') {
+        const dup = await prisma.lead.findFirst({
+          where: { dedupeKey },
+          orderBy: { createdAt: 'desc' },
+          select: { id: true },
+        });
+        log.info('concurrent duplicate lead submission collapsed', { leadId: dup?.id ?? null });
+        return NextResponse.json({
+          success: true,
+          duplicate: true,
+          leadId: dup?.id ?? null,
+          message: 'Lead already received',
+        });
+      }
+      throw createError;
+    }
+
     // Find and assign to partner
     const partner = await assignLeadToPartner({
       state: data.state,

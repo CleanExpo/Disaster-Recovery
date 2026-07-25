@@ -72,6 +72,21 @@ export async function queueEmail(
 
 // ── HTML wrapper ───────────────────────────────────────────────────────────
 
+/**
+ * Escape user-supplied values before interpolating them into email HTML.
+ * Lead fields (name, email, address, …) are attacker-controllable via the
+ * public capture endpoint; without escaping, a value like `<script>` or a
+ * broken tag would inject markup into the partner/admin notification.
+ */
+function esc(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function wrap(body: string): string {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -119,20 +134,20 @@ export const emailTemplates = {
   // ── Lead notifications ─────────────────────────────────────────────────
 
   leadNotification: (leadData: Record<string, unknown>) => ({
-    subject: `New Lead: ${leadData.fullName} — ${leadData.serviceType}`,
+    subject: `New Lead: ${esc(leadData.fullName)} — ${esc(leadData.serviceType)}`,
     html: wrap(`
       <h2>New Lead Received</h2>
       <table style="width:100%;border-collapse:collapse;font-size:14px">
-        <tr><td style="padding:6px 0;color:#666"><strong>Name</strong></td><td>${leadData.fullName}</td></tr>
-        <tr><td style="padding:6px 0;color:#666"><strong>Email</strong></td><td>${leadData.email}</td></tr>
-        <tr><td style="padding:6px 0;color:#666"><strong>Service</strong></td><td>${leadData.serviceType}</td></tr>
-        <tr><td style="padding:6px 0;color:#666"><strong>Location</strong></td><td>${leadData.suburb}, ${leadData.state} ${leadData.postcode}</td></tr>
-        <tr><td style="padding:6px 0;color:#666"><strong>Property</strong></td><td>${leadData.propertyType}</td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Name</strong></td><td>${esc(leadData.fullName)}</td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Email</strong></td><td>${esc(leadData.email)}</td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Service</strong></td><td>${esc(leadData.serviceType)}</td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Location</strong></td><td>${esc(leadData.suburb)}, ${esc(leadData.state)} ${esc(leadData.postcode)}</td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Property</strong></td><td>${esc(leadData.propertyType)}</td></tr>
         <tr><td style="padding:6px 0;color:#666"><strong>Insurance</strong></td><td>${leadData.hasInsurance ? 'Yes' : 'No'}</td></tr>
-        <tr><td style="padding:6px 0;color:#666"><strong>Lead Score</strong></td><td>${leadData.leadScore}/100</td></tr>
-        <tr><td style="padding:6px 0;color:#666"><strong>Lead Value</strong></td><td><strong>$${leadData.leadValue}</strong></td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Lead Score</strong></td><td>${esc(leadData.leadScore)}/100</td></tr>
+        <tr><td style="padding:6px 0;color:#666"><strong>Lead Value</strong></td><td><strong>$${esc(leadData.leadValue)}</strong></td></tr>
       </table>
-      <a class="btn" href="${SITE_URL}/partner-portal/leads/${leadData.id}">View Lead in Portal</a>
+      <a class="btn" href="${SITE_URL}/partner-portal/leads/${esc(leadData.id)}">View Lead in Portal</a>
     `),
   }),
 
@@ -294,22 +309,22 @@ export const emailTemplates = {
     partnerData: Record<string, unknown>,
     leadData: Record<string, unknown>,
   ) => ({
-    subject: `New $${leadData.leadValue} Lead Assignment — ${leadData.suburb}`,
+    subject: `New $${esc(leadData.leadValue)} Lead Assignment — ${esc(leadData.suburb)}`,
     html: wrap(`
       <h2>New Lead Assignment</h2>
-      <p>Hello ${partnerData.businessName}, a new lead has been assigned to you.</p>
+      <p>Hello ${esc(partnerData.businessName)}, a new lead has been assigned to you.</p>
       <div class="callout warn">
         <strong>Response Required:</strong>
         ${leadData.urgencyLevel === 'emergency' ? '30 MINUTES' : '2–4 HOURS'}
       </div>
       <table style="width:100%;border-collapse:collapse;font-size:14px">
-        <tr><td style="padding:6px 0"><strong>Customer</strong></td><td>${leadData.fullName}</td></tr>
-        <tr><td style="padding:6px 0"><strong>Service</strong></td><td>${leadData.serviceType}</td></tr>
-        <tr><td style="padding:6px 0"><strong>Location</strong></td><td>${leadData.address}</td></tr>
+        <tr><td style="padding:6px 0"><strong>Customer</strong></td><td>${esc(leadData.fullName)}</td></tr>
+        <tr><td style="padding:6px 0"><strong>Service</strong></td><td>${esc(leadData.serviceType)}</td></tr>
+        <tr><td style="padding:6px 0"><strong>Location</strong></td><td>${esc(leadData.address)}</td></tr>
         <tr><td style="padding:6px 0"><strong>Insurance</strong></td><td>${leadData.hasInsurance ? 'Yes' : 'No'}</td></tr>
-        <tr><td style="padding:6px 0"><strong>Lead Value</strong></td><td><strong>$${leadData.leadValue}</strong></td></tr>
+        <tr><td style="padding:6px 0"><strong>Lead Value</strong></td><td><strong>$${esc(leadData.leadValue)}</strong></td></tr>
       </table>
-      <a class="btn" href="${SITE_URL}/partner-portal/leads/${leadData.id}/accept">Accept Lead</a>
+      <a class="btn" href="${SITE_URL}/partner-portal/leads/${esc(leadData.id)}/accept">Accept Lead</a>
     `),
   }),
 

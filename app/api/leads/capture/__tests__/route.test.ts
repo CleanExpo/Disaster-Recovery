@@ -4,10 +4,12 @@
  * This endpoint is unauthenticated and triggers billable/notifying downstream
  * actions (PartnerBilling.create + partner/admin emails). These tests encode the
  * hardening contract:
- *   (a) malformed / oversized / missing-field payloads are rejected with 400
- *   (b) rapid repeated submissions from the same IP are rate-limited (429)
- *   (c) a duplicate submission (same email+phone within the dedupe window) does
- *       NOT create a second lead and does NOT re-trigger the downstream billing/email
+ *   (a) malformed / oversized / missing-field / out-of-enum payloads -> 400
+ *   (b) rapid repeated submissions from the same IP are rate-limited (429), and
+ *       the rate-limited request performs NO downstream side effects
+ *   (c) a duplicate submission does NOT create a second lead / re-bill / re-email,
+ *       including the CONCURRENT case where both requests pass the pre-check and
+ *       the DB unique index (P2002) is the only thing that saves us
  *
  * All I/O collaborators are mocked so a real DB / email call would surface loudly.
  */
@@ -17,7 +19,7 @@ import { NextRequest } from 'next/server';
 // --- Mock collaborators -----------------------------------------------------
 const leadCreate = vi.fn(async (args: any) => ({ id: 'lead_new_1', ...args.data }));
 const leadUpdate = vi.fn(async () => ({}));
-const leadFindFirst = vi.fn(async () => null); // no prior lead by default
+const leadFindFirst = vi.fn(async () => null as any);
 const partnerBillingCreate = vi.fn(async () => ({}));
 const leadTrackingCreate = vi.fn(async () => ({}));
 
@@ -42,7 +44,7 @@ vi.mock('@/lib/email', () => ({
   },
 }));
 
-const assignLeadToPartner = vi.fn(async () => null); // unassigned by default
+const assignLeadToPartner = vi.fn(async () => null as any);
 vi.mock('@/lib/lead-management', () => ({
   calculateLeadValue: () => 500,
   assignLeadToPartner: (...a: any[]) => assignLeadToPartner(...a),
@@ -66,8 +68,6 @@ vi.mock('@/lib/compliance/events', () => ({
 import { POST } from '../route';
 
 // --- Helpers ----------------------------------------------------------------
-// A payload that scores >= 50 so it passes the existing quality gate and
-// reaches the create path (lets us prove dedupe short-circuits it).
 function validPayload(overrides: Record<string, unknown> = {}) {
   return {
     fullName: 'Jane Smith',
@@ -107,6 +107,7 @@ function makeRequest(body: unknown, ip: string) {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  leadCreate.mockImplementation(async (args: any) => ({ id: 'lead_new_1', ...args.data }));
   leadFindFirst.mockResolvedValue(null);
   assignLeadToPartner.mockResolvedValue(null);
 });
@@ -120,7 +121,6 @@ describe('input validation', () => {
     expect(json.success).toBe(false);
     expect(Array.isArray(json.errors)).toBe(true);
     expect(json.errors.length).toBeGreaterThan(0);
-    // must never reach the DB create on invalid input
     expect(leadCreate).not.toHaveBeenCalled();
   });
 
@@ -137,48 +137,108 @@ describe('input validation', () => {
     expect(res.status).toBe(400);
     expect(leadCreate).not.toHaveBeenCalled();
   });
+
+  it('rejects empty / out-of-enum values that previously passed', async () => {
+    const cases: Array<Record<string, unknown>> = [
+      { propertyValue: '' }, // empty numeric string
+      { damageType: [''] }, // empty damage entry
+      { state: 'ZZ' }, // not a real state
+      { urgencyLevel: 'whenever' }, // not an urgency enum
+      { propertyType: 'castle' }, // not a property enum
+      { readyToStart: 'someday' }, // not a readiness enum
+      { postcode: 'ABCD' }, // not 4 digits
+      { phone: '123' }, // not an AU phone
+    ];
+    let i = 0;
+    for (const patch of cases) {
+      const res = await POST(makeRequest(validPayload(patch), `10.1.0.${i++}`));
+      expect(res.status, `expected 400 for ${JSON.stringify(patch)}`).toBe(400);
+    }
+    expect(leadCreate).not.toHaveBeenCalled();
+  });
 });
 
 // --- (b) rate limiting ------------------------------------------------------
 describe('rate limiting', () => {
-  it('returns 429 after the per-IP request quota is exceeded', async () => {
+  it('returns 429 after the quota and performs no side effects on the blocked request', async () => {
     const ip = '10.9.9.9';
-    // The shared limiter allows 5 requests / 60s / IP. Fire 5 (allowed),
-    // vary the email so dedupe never short-circuits, then the 6th must 429.
+    assignLeadToPartner.mockResolvedValue({ id: 'p1', email: 'p@x.com', businessName: 'P' });
     for (let i = 0; i < 5; i++) {
       const res = await POST(makeRequest(validPayload({ email: `flood${i}@example.com` }), ip));
       expect(res.status).not.toBe(429);
     }
+    // Snapshot side-effect counts, then fire the request that must be blocked.
+    const createsBefore = leadCreate.mock.calls.length;
+    const billingBefore = partnerBillingCreate.mock.calls.length;
+    const emailsBefore = sendEmail.mock.calls.length;
+
     const blocked = await POST(makeRequest(validPayload({ email: 'flood-final@example.com' }), ip));
     expect(blocked.status).toBe(429);
     expect(blocked.headers.get('Retry-After')).toBeTruthy();
+    // No lead, no billing, no email for the rate-limited request.
+    expect(leadCreate.mock.calls.length).toBe(createsBefore);
+    expect(partnerBillingCreate.mock.calls.length).toBe(billingBefore);
+    expect(sendEmail.mock.calls.length).toBe(emailsBefore);
   });
 });
 
 // --- (c) idempotency / dedupe ----------------------------------------------
 describe('duplicate submission dedupe', () => {
-  it('does not create a second lead or re-trigger downstream billing/email for a duplicate', async () => {
+  it('sequential replay: short-circuits before create, no downstream', async () => {
     const ip = '10.5.5.5';
-    // First submission: no prior lead -> creates + downstream runs.
     assignLeadToPartner.mockResolvedValue({ id: 'p1', email: 'p@x.com', businessName: 'P' });
     const first = await POST(makeRequest(validPayload(), ip));
     expect(first.status).toBe(200);
     expect(leadCreate).toHaveBeenCalledTimes(1);
-    const emailCallsAfterFirst = sendEmail.mock.calls.length;
-    const billingCallsAfterFirst = partnerBillingCreate.mock.calls.length;
-    expect(billingCallsAfterFirst).toBeGreaterThan(0);
+    const emailsAfterFirst = sendEmail.mock.calls.length;
+    const billingAfterFirst = partnerBillingCreate.mock.calls.length;
+    expect(billingAfterFirst).toBeGreaterThan(0);
 
-    // Second, identical submission within the window: the route should find the
-    // prior lead and short-circuit.
-    leadFindFirst.mockResolvedValue({ id: 'lead_new_1', createdAt: new Date() });
+    // Pre-check now finds the prior lead by dedupeKey.
+    leadFindFirst.mockResolvedValue({ id: 'lead_new_1' });
     const second = await POST(makeRequest(validPayload(), ip));
     const json: any = await second.json();
     expect(second.status).toBe(200);
     expect(json.duplicate).toBe(true);
     expect(json.leadId).toBe('lead_new_1');
-    // No second create, no additional billing, no additional emails.
     expect(leadCreate).toHaveBeenCalledTimes(1);
-    expect(partnerBillingCreate.mock.calls.length).toBe(billingCallsAfterFirst);
-    expect(sendEmail.mock.calls.length).toBe(emailCallsAfterFirst);
+    expect(partnerBillingCreate.mock.calls.length).toBe(billingAfterFirst);
+    expect(sendEmail.mock.calls.length).toBe(emailsAfterFirst);
+  });
+
+  it('concurrent double-submit: DB unique violation yields exactly one lead/bill/email', async () => {
+    const ip = '10.6.6.6';
+    assignLeadToPartner.mockResolvedValue({ id: 'p1', email: 'p@x.com', businessName: 'P' });
+
+    // Both requests pass the pre-check (neither sees the other), then the P2002
+    // lookup returns the winning lead.
+    leadFindFirst
+      .mockResolvedValueOnce(null) // req1 pre-check
+      .mockResolvedValueOnce(null) // req2 pre-check
+      .mockResolvedValueOnce({ id: 'lead_new_1' }); // req2 P2002 lookup
+
+    // req1 create succeeds; req2 create loses the race with a unique violation.
+    leadCreate
+      .mockImplementationOnce(async (args: any) => ({ id: 'lead_new_1', ...args.data }))
+      .mockImplementationOnce(async () => {
+        throw { code: 'P2002', message: 'Unique constraint failed on dedupeKey' };
+      });
+
+    const first = await POST(makeRequest(validPayload(), ip));
+    expect(first.status).toBe(200);
+    const billingAfterFirst = partnerBillingCreate.mock.calls.length;
+    const emailsAfterFirst = sendEmail.mock.calls.length;
+    expect(billingAfterFirst).toBe(1);
+
+    const second = await POST(makeRequest(validPayload(), ip));
+    const json: any = await second.json();
+    expect(second.status).toBe(200);
+    expect(json.duplicate).toBe(true);
+    expect(json.leadId).toBe('lead_new_1');
+
+    // Both creates were ATTEMPTED, but only one billable row + one email set.
+    expect(leadCreate).toHaveBeenCalledTimes(2);
+    expect(partnerBillingCreate.mock.calls.length).toBe(billingAfterFirst);
+    expect(sendEmail.mock.calls.length).toBe(emailsAfterFirst);
   });
 });

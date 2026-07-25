@@ -1,12 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { rateLimit } from '@/lib/rate-limit';
+import { demoFormsEnabled } from '../../../demo/forms/gate';
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Professional male voice for investor pitches
 
 export async function POST(request: NextRequest) {
   const log = requestLogger(request, { route: '/api/elevenlabs/narrate' });
+
+  // Billing boundary. This endpoint performs a paid ElevenLabs call and its only
+  // callers are the demo/investor-pitch surfaces. Enforce the SAME gate as the
+  // demo pages HERE (a direct POST bypasses the page), and rate-limit per IP —
+  // both BEFORE any request-body parse or paid fetch, so the endpoint cannot be
+  // used as a metered-cost abuse primitive.
+  if (!demoFormsEnabled(process.env)) {
+    log.warn('narrate rejected: demo surface disabled');
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown';
+  const limit = await rateLimit(ip, 'elevenlabs-narrate');
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429, headers: { 'Retry-After': String(limit.retryAfter ?? 60) } },
+    );
+  }
+
   try {
     // Check for API key
     if (!ELEVENLABS_API_KEY) {
