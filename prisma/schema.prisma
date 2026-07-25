@@ -181,12 +181,6 @@ model Lead {
   rejectedAt  DateTime?
   completedAt DateTime?
 
-  // Idempotency: sha256 of (email|phone|time-bucket). A UNIQUE index makes
-  // duplicate capture atomic at the database — two concurrent identical
-  // submissions can only ever insert one billable lead (the loser hits P2002).
-  // Nullable so historical rows (and any non-capture inserts) are unaffected.
-  dedupeKey String? @unique
-
   // Metadata
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -35,6 +35,11 @@ const DAMAGE_TYPES = [
   'Hail Damage',
   'Structural Damage',
 ] as const;
+// Numeric selects expose FIXED range buckets in the UI — pin to them so a probe
+// cannot inject an arbitrary value that skews scoring / bill value.
+const PROPERTY_VALUES = ['250000', '500000', '750000', '1000000', '2000000', '5000000'] as const;
+const EXCESS_AMOUNTS = ['500', '1000', '2000', '5000', '10000'] as const;
+const BUDGETS = ['5000', '10000', '25000', '50000', '100000', '200000'] as const;
 
 // Strict input contract for the public, unauthenticated capture endpoint.
 // Unknown keys are stripped by zod's default object behaviour. Free-text fields
@@ -71,18 +76,18 @@ export const leadCaptureSchema = z.object({
   hasInsurance: z.boolean(),
   insuranceCompany: z.string().trim().max(160).optional(),
   claimNumber: z.string().trim().max(120).optional(),
-  excessAmount: z.string().trim().regex(/^\d{1,9}$/).optional(),
+  excessAmount: z.enum(EXCESS_AMOUNTS).optional(),
 
   // Value Indicators
   urgencyLevel: z.enum(URGENCY_LEVELS),
-  propertyValue: z.string().trim().regex(/^\d{4,9}$/, 'Invalid property value'),
+  propertyValue: z.enum(PROPERTY_VALUES),
   isBusinessProperty: z.boolean(),
   requiresAccommodation: z.boolean(),
 
   // Lead Quality
   hasPhotos: z.boolean(),
   readyToStart: z.enum(READINESS),
-  budget: z.string().trim().regex(/^\d{1,9}$/).optional(),
+  budget: z.enum(BUDGETS).optional(),
   decisionMaker: z.boolean(),
 
   // Tracking (client-supplied, optional)
@@ -110,29 +115,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = leadCaptureSchema.parse(body);
 
-    // Idempotency signature: same contact within the same time-bucket collapses
-    // to one lead. A UNIQUE index on dedupeKey (see migration) makes this atomic,
-    // so even two *concurrent* identical submits (e.g. a double-click) can only
-    // ever create one billable lead — the loser hits P2002 below.
-    const bucket = Math.floor(Date.now() / DEDUPE_WINDOW_MS);
-    const dedupeKey = hashIdentifier(`${data.email}|${data.phone}|${bucket}`);
-
-    // Fast path: short-circuit an already-seen submission before doing any work.
-    const existing = await prisma.lead.findFirst({
-      where: { dedupeKey },
-      orderBy: { createdAt: 'desc' },
-      select: { id: true },
-    });
-    if (existing) {
-      log.info('duplicate lead submission ignored', { leadId: existing.id });
-      return NextResponse.json({
-        success: true,
-        duplicate: true,
-        leadId: existing.id,
-        message: 'Lead already received',
-      });
-    }
-
     // Lead quality scoring
     const leadScore = calculateLeadScore(data);
     
@@ -156,79 +138,90 @@ export async function POST(request: NextRequest) {
       state: data.state
     });
     
-    // Create lead in database. If a concurrent request already inserted the same
-    // dedupeKey, the UNIQUE index rejects this one (P2002) — we treat that as an
-    // idempotent duplicate and return WITHOUT assigning/billing/emailing again.
-    let lead;
-    try {
-      lead = await prisma.lead.create({
-      data: {
-        // Contact Information
-        fullName: data.fullName,
-        phone: data.phone,
-        email: data.email,
-        
-        // Property Information
-        propertyType: data.propertyType,
-        propertyAddress: data.propertyAddress,
-        suburb: data.suburb,
-        state: data.state,
-        postcode: data.postcode,
-        
-        // Damage Information
-        damageType: JSON.stringify(data.damageType),
-        damageDate: new Date(data.damageDate),
-        damageDescription: data.damageDescription,
-        estimatedAreaAffected: data.estimatedAreaAffected,
-        
-        // Insurance Information
-        hasInsurance: data.hasInsurance,
-        insuranceCompany: data.insuranceCompany,
-        claimNumber: data.claimNumber,
-        excessAmount: data.excessAmount,
-        
-        // Value Indicators
-        urgencyLevel: data.urgencyLevel,
-        propertyValue: data.propertyValue,
-        isBusinessProperty: data.isBusinessProperty,
-        requiresAccommodation: data.requiresAccommodation,
-        
-        // Lead Quality
-        leadScore: leadScore,
-        leadValue: leadValue,
-        hasPhotos: data.hasPhotos,
-        readyToStart: data.readyToStart,
-        budget: data.budget,
-        decisionMaker: data.decisionMaker,
-        
-        // Tracking
-        source: data.source,
-        ipAddress: ipAddress,
-        userAgent: data.userAgent,
-        status: 'NEW',
-        qualityStatus: leadScore >= 80 ? 'HIGH_VALUE' : leadScore >= 60 ? 'QUALIFIED' : 'STANDARD',
+    // Atomic idempotency. A transaction-scoped Postgres advisory lock keyed on
+    // (email|phone) serialises concurrent submissions from the same person, so a
+    // double-click / retry burst can only ever create ONE billable lead —
+    // regardless of wall-clock timing (there is no time-bucket boundary to
+    // straddle). Inside the lock we look for a lead from the same contact within
+    // the recent window: if one exists we return it WITHOUT billing/emailing;
+    // otherwise we create it. A genuine re-lead after the window is still allowed.
+    const dedupeSince = new Date(Date.now() - DEDUPE_WINDOW_MS);
+    const lockKey = `${data.email.trim().toLowerCase()}|${data.phone.trim()}`;
+    const outcome = await prisma.$transaction(async (tx) => {
+      // pg_advisory_xact_lock auto-releases at commit and is safe under
+      // transaction-mode pooling (unlike session-level advisory locks).
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${lockKey}))`;
 
-        // Atomic idempotency guard (UNIQUE) — see dedupeKey above.
-        dedupeKey,
+      const prior = await tx.lead.findFirst({
+        where: { email: data.email, phone: data.phone, createdAt: { gte: dedupeSince } },
+        orderBy: { createdAt: 'desc' },
+        select: { id: true },
+      });
+      if (prior) {
+        return { duplicate: true, leadId: prior.id, lead: null };
       }
+
+      const created = await tx.lead.create({
+        data: {
+          // Contact Information
+          fullName: data.fullName,
+          phone: data.phone,
+          email: data.email,
+
+          // Property Information
+          propertyType: data.propertyType,
+          propertyAddress: data.propertyAddress,
+          suburb: data.suburb,
+          state: data.state,
+          postcode: data.postcode,
+
+          // Damage Information
+          damageType: JSON.stringify(data.damageType),
+          damageDate: new Date(data.damageDate),
+          damageDescription: data.damageDescription,
+          estimatedAreaAffected: data.estimatedAreaAffected,
+
+          // Insurance Information
+          hasInsurance: data.hasInsurance,
+          insuranceCompany: data.insuranceCompany,
+          claimNumber: data.claimNumber,
+          excessAmount: data.excessAmount,
+
+          // Value Indicators
+          urgencyLevel: data.urgencyLevel,
+          propertyValue: data.propertyValue,
+          isBusinessProperty: data.isBusinessProperty,
+          requiresAccommodation: data.requiresAccommodation,
+
+          // Lead Quality
+          leadScore: leadScore,
+          leadValue: leadValue,
+          hasPhotos: data.hasPhotos,
+          readyToStart: data.readyToStart,
+          budget: data.budget,
+          decisionMaker: data.decisionMaker,
+
+          // Tracking
+          source: data.source,
+          ipAddress: ipAddress,
+          userAgent: data.userAgent,
+          status: 'NEW',
+          qualityStatus: leadScore >= 80 ? 'HIGH_VALUE' : leadScore >= 60 ? 'QUALIFIED' : 'STANDARD',
+        },
+      });
+      return { duplicate: false, leadId: created.id, lead: created };
     });
-    } catch (createError) {
-      if (createError && typeof createError === 'object' && (createError as { code?: string }).code === 'P2002') {
-        const dup = await prisma.lead.findFirst({
-          where: { dedupeKey },
-          orderBy: { createdAt: 'desc' },
-          select: { id: true },
-        });
-        log.info('concurrent duplicate lead submission collapsed', { leadId: dup?.id ?? null });
-        return NextResponse.json({
-          success: true,
-          duplicate: true,
-          leadId: dup?.id ?? null,
-          message: 'Lead already received',
-        });
-      }
-      throw createError;
+
+    if (outcome.duplicate || !outcome.lead) {
+      log.info('duplicate lead submission ignored', { leadId: outcome.leadId });
+      return NextResponse.json({
+        success: true,
+        duplicate: true,
+        leadId: outcome.leadId,
+        message: 'Lead already received',
+      });
     }
+    const lead = outcome.lead;
 
     // Find and assign to partner
     const partner = await assignLeadToPartner({
