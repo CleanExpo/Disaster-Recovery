@@ -90,7 +90,10 @@ test.describe('Tier 2: Critical Paths', () => {
 
   test('Homepage renders the APP 3 privacy collection notice (DR-782)', async ({ page }) => {
     await page.goto('/');
-    const notice = page.getByRole('region', { name: 'Privacy collection notice' });
+    // Footer also exposes a privacy region; pin the APP 3 collection notice.
+    const notice = page
+      .getByRole('region', { name: 'Privacy collection notice' })
+      .filter({ hasText: /APP\s*3/i });
     await expect(notice).toBeVisible({ timeout: 10_000 });
   });
 

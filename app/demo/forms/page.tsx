@@ -2,6 +2,8 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
+import { demoFormsEnabled } from './gate';
 
 // Lazy-loaded: demo page ships framer-motion + audio cues and is non-critical traffic.
 const FormDemonstration = dynamic(() => import('@/components/demo/FormDemonstration'));
@@ -29,6 +31,9 @@ function FormDemoPageOriginal() {
   );
 }
 export default function FormDemoPage() {
+  if (!demoFormsEnabled(process.env)) {
+    notFound();
+  }
   return (
     <>
       <AntigravityNavbar />
