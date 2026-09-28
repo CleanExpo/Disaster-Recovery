@@ -69,7 +69,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
         { label: 'Territory Map', href: '/contractor/territories', icon: <Globe className="h-4 w-4" /> },
         { label: 'Contractor Portal', href: '/contractor/portal', icon: <Building2 className="h-4 w-4" /> },
         { label: 'NRPG Network', href: 'https://nrpg.business', icon: <ExternalLink className="h-4 w-4" /> },
-        { label: 'Trade Hall', href: '/trade-hall', icon: <Building2 className="h-4 w-4" /> },
+        { label: 'Trade Hall', href: '/trade-hall', icon: <Building2 className="h-4 w-4" />, fullPageLoad: true },
       ]
     },
     {
@@ -252,19 +252,24 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
 
                     {/* Dropdown Items */}
                     <div className="p-2">
-                      {option.subItems.map((item, idx) => (
-                        <Link
-                          key={idx}
-                          href={item.href}
-                          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
-                        >
-                          <div className="text-blue-600">{item.icon}</div>
-                          <span className="text-white group-hover:text-blue-700 transition-colors">
-                            {item.label}
-                          </span>
-                          <ArrowRight className="h-4 w-4 text-gray-300 ml-auto group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
-                        </Link>
-                      ))}
+                      {option.subItems.map((item, idx) => {
+                        // /trade-hall redirects off-site: a plain <a> loads it in full, avoiding a
+                        // client-side fetch that the connect-src CSP would block.
+                        const ItemLink = 'fullPageLoad' in item && item.fullPageLoad ? 'a' : Link;
+                        return (
+                          <ItemLink
+                            key={idx}
+                            href={item.href}
+                            className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
+                          >
+                            <div className="text-blue-600">{item.icon}</div>
+                            <span className="text-white group-hover:text-blue-700 transition-colors">
+                              {item.label}
+                            </span>
+                            <ArrowRight className="h-4 w-4 text-gray-300 ml-auto group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                          </ItemLink>
+                        );
+                      })}
                     </div>
 
                     {/* Quick Action */}
