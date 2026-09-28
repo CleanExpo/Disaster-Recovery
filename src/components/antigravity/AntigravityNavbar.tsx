@@ -70,6 +70,7 @@ export function AntigravityNavbar() {
           <Link href="/locations">Locations</Link>
           <Link href="/for-business">For Business</Link>
           <Link href="/about">About NRPG</Link>
+          <a href="/trade-hall">Trade Hall</a>
         </div>
 
         <div className="ag-emergency-action">
@@ -105,6 +106,7 @@ export function AntigravityNavbar() {
         <Link href="/locations" onClick={() => setMobileOpen(false)}>Locations</Link>
         <Link href="/for-business" onClick={() => setMobileOpen(false)}>For Business</Link>
         <Link href="/about" onClick={() => setMobileOpen(false)}>About NRPG</Link>
+        <a href="/trade-hall" onClick={() => setMobileOpen(false)}>Trade Hall</a>
         <Link href="/contractor/login" onClick={() => setMobileOpen(false)}>Contractor Portal</Link>
         <Link href="/claim" onClick={() => setMobileOpen(false)}>Lodge a claim</Link>
         <Link href="/claim" className="ag-btn-emergency" onClick={() => setMobileOpen(false)}>

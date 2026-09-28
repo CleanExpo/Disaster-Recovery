@@ -7,6 +7,9 @@ const nextConfig = {
   compress: true,
   async redirects() {
     return [
+      // CleanExpo247 Trade Hall lives in its own Vercel project. Redirect (not proxy) so no
+      // disasterrecovery.com.au cookies reach it. Temporary so the target can change later.
+      { source: '/trade-hall', destination: 'https://cleanexpo247-hall.vercel.app/trade-hall', permanent: false },
       { source: '/for/:path*', destination: '/for-business/:path*', permanent: true },
       { source: '/contractors/join', destination: '/contractors/apply', permanent: true },
       { source: '/help-center', destination: '/contact', permanent: true },
