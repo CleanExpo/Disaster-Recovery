@@ -69,6 +69,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
         { label: 'Territory Map', href: '/contractor/territories', icon: <Globe className="h-4 w-4" /> },
         { label: 'Contractor Portal', href: '/contractor/portal', icon: <Building2 className="h-4 w-4" /> },
         { label: 'NRPG Network', href: 'https://nrpg.business', icon: <ExternalLink className="h-4 w-4" /> },
+        { label: 'Trade Hall', href: '/trade-hall', icon: <Building2 className="h-4 w-4" /> },
       ]
     },
     {
