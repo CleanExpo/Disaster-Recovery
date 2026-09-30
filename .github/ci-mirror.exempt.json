@@ -1,0 +1,41 @@
+{
+  "_comment": "Steps GitHub runs on Disaster-Recovery PRs that cannot be reproduced on a laptop by the pr-release-gate CI mirror. Every entry says why. GitHub still runs every one of these on the PR, and the PR stays draft until those checks are green. Written 30/09/2026 from the ci-mirror report for c239675e; every ci.yml and pre-build-check.yml step ran and passed locally.",
+  "exempt": [
+    {
+      "workflow": "auto-merge.yml",
+      "job": "auto-merge",
+      "step": "Attempt merge (on PR event)",
+      "reason": "actions/github-script merging an open PR through GITHUB_TOKEN; there is no PR before push, and it only acts on PRs carrying the auto-merge label."
+    },
+    {
+      "workflow": "gitleaks.yml",
+      "job": "gitleaks",
+      "step": "gitleaks/gitleaks-action@v2",
+      "reason": "Third-party action. Substitute run locally: gitleaks 8.30.1 `gitleaks git --log-opts=<base>..<head>` over the branch commits, with a positive control (planted ghp_ token in a scratch repo reported 1 leak)."
+    },
+    {
+      "workflow": "lighthouse.yml",
+      "job": "lighthouse",
+      "step": "Run Lighthouse CI",
+      "reason": "Third-party action (treosh/lighthouse-ci-action) auditing deployed URLs; needs the live site or a preview deployment, which does not exist before push."
+    },
+    {
+      "workflow": "managed-agent-ci.yml",
+      "job": "managed-agent-pipeline",
+      "step": "Trigger Managed Agent Pipeline",
+      "reason": "Calls the metered Anthropic API with secrets.ANTHROPIC_API_KEY; the repository secret is not available locally and must not be copied here."
+    },
+    {
+      "workflow": "preview-deploy.yml",
+      "job": "deploy-preview",
+      "step": "*",
+      "reason": "Creates a Vercel preview deployment with secrets.VERCEL_TOKEN / VERCEL_ORG_ID; a deployment is an outbound action that only GitHub performs."
+    },
+    {
+      "workflow": "preview-deploy.yml",
+      "job": "smoke-test",
+      "step": "*",
+      "reason": "Smoke-tests the preview URL produced by deploy-preview, which does not exist before push."
+    }
+  ]
+}
