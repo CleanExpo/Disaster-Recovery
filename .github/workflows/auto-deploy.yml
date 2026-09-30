@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      rehearse_rollback:
+        description: 'Rehearsal: deploy, force the smoke test to fail, and prove rollback lands on the recorded deployment'
+        type: boolean
+        default: false
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -38,23 +43,22 @@ jobs:
         SKIP_ENV_VALIDATION: 'true'
         NEXT_TELEMETRY_DISABLED: '1'
 
-  # ── Gate 2: Database migration (only enforced when actually needed) ──
+  # ── Gate 2: Database migration ──
   #
-  # The gate was previously blocking every push regardless of whether any
-  # migration files had changed. Result: a credential rotation in May 2026
-  # silently froze production for 20 days while no schema change was
-  # actually pending. Now we only fail the deploy when there is a real new
-  # migration file relative to main's parent commit. If schema is unchanged
-  # AND `prisma migrate deploy` fails (eg. stale creds), the job emits a
-  # loud warning annotation but does not block the deploy — there is
-  # nothing to apply, so blocking is pure noise.
+  # Asks the production database which migrations it is missing
+  # (`prisma migrate status`), applies them, and blocks the deploy unless the
+  # database then reports up to date. The previous version only diffed
+  # the last commit (parent vs HEAD), so a database missing an OLDER migration sailed through, and
+  # a failed migrate was downgraded to a warning. An unreadable database (eg.
+  # stale DATABASE_URL) now blocks: it is not proof that nothing is pending.
   migrate:
     needs: validate
     runs-on: ubuntu-latest
+    outputs:
+      applied_count: ${{ steps.gate.outputs.applied_count }}
+      applied_names: ${{ steps.gate.outputs.applied_names }}
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 2  # need parent commit for the diff below
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -62,46 +66,15 @@ jobs:
         node-version: '20'
         cache: 'npm'
 
-    - name: Detect new migration files
-      id: detect
-      run: |
-        # Migration files added or modified in this push (vs. parent commit).
-        # On the first push to a fresh branch there may be no parent — fall
-        # back to "no new migrations" rather than erroring, since the
-        # validate gate already covers correctness for that case.
-        if git rev-parse HEAD^ >/dev/null 2>&1; then
-          NEW=$(git diff --name-only HEAD^..HEAD -- prisma/migrations/ | grep -cE '\.sql$' || true)
-        else
-          NEW=0
-        fi
-        echo "new_migrations=$NEW" >> "$GITHUB_OUTPUT"
-        if [ "$NEW" -gt 0 ]; then
-          echo "::notice::$NEW new migration file(s) detected — migrate gate will enforce."
-        else
-          echo "::notice::No new migration files in this push — migrate gate is informational only."
-        fi
-
     - name: Install dependencies
       run: npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps
 
-    - name: Run database migrations (enforced when new migrations present)
-      id: run_migrate
-      continue-on-error: true
-      run: npx prisma migrate deploy
+    - name: Migration gate (status against target DB, apply, re-check)
+      id: gate
+      run: bash scripts/ci/migrate-gate.sh
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         DIRECT_URL: ${{ secrets.DIRECT_URL }}
-
-    - name: Enforce gate only when new migrations exist
-      if: steps.detect.outputs.new_migrations != '0' && steps.run_migrate.outcome == 'failure'
-      run: |
-        echo "::error::prisma migrate deploy FAILED and this push includes ${{ steps.detect.outputs.new_migrations }} new migration file(s). Refusing to promote a Vercel build whose schema would diverge from production."
-        exit 1
-
-    - name: Warn (non-blocking) when no-op migrate fails
-      if: steps.detect.outputs.new_migrations == '0' && steps.run_migrate.outcome == 'failure'
-      run: |
-        echo "::warning::prisma migrate deploy failed but no new migration files are in this push — proceeding with deploy. Most likely cause: stale DATABASE_URL / DIRECT_URL secrets. Rotate them in repo Settings → Secrets when convenient."
 
   # ── Gate 3: Deploy to Vercel production ──
   deploy:
@@ -109,6 +82,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.deploy.outputs.url }}
+      previous_id: ${{ steps.previous.outputs.id }}
+      previous_url: ${{ steps.previous.outputs.url }}
     steps:
     - uses: actions/checkout@v4
 
@@ -129,15 +104,15 @@ jobs:
 
     - name: Record previous deployment (for rollback)
       id: previous
-      run: |
-        PREV_URL=$(vercel ls --prod --token=${{ secrets.VERCEL_TOKEN }} 2>/dev/null | head -3 | tail -1 | awk '{print $2}')
-        echo "url=$PREV_URL" >> $GITHUB_OUTPUT
+      run: bash scripts/ci/vercel-rollback.sh record
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
     - name: Deploy to Vercel Production
       id: deploy
       run: |
         URL=$(vercel deploy --prebuilt --prod --archive=tgz --token=${{ secrets.VERCEL_TOKEN }})
-        echo "url=$URL" >> $GITHUB_OUTPUT
+        echo "url=$URL" >> "$GITHUB_OUTPUT"
 
   # ── Gate 4: Smoke test the live deployment ──
   smoke-test:
@@ -149,6 +124,12 @@ jobs:
     steps:
     - name: Wait for deployment propagation
       run: sleep 30
+
+    - name: Rehearsal — force smoke failure
+      if: github.event_name == 'workflow_dispatch' && inputs.rehearse_rollback
+      run: |
+        echo "::warning::Rollback rehearsal: failing the smoke test on purpose."
+        exit 1
 
     - name: Smoke test — homepage
       run: |
@@ -199,36 +180,36 @@ jobs:
 
   # ── Gate 5: Auto-rollback if smoke test failed ──
   rollback-on-failure:
-    needs: [deploy, smoke-test]
+    needs: [migrate, deploy, smoke-test]
     if: failure() && needs.deploy.result == 'success' && needs.smoke-test.result == 'failure'
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
 
-    - name: Auto-rollback to previous deployment
-      run: |
-        echo "Smoke test failed — initiating automatic rollback..."
-        vercel rollback --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
-
-    - name: Verify rollback
-      run: |
-        sleep 20
-        STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://disasterrecovery.com.au)
-        echo "HTTP Status after rollback: $STATUS"
-        if [ "$STATUS" != "200" ]; then
-          echo "::error::Rollback smoke test failed — manual intervention required"
-          exit 1
-        fi
-        echo "Rollback successful — site returning HTTP 200"
+    - name: Roll back to the recorded deployment and verify it is served
+      run: bash scripts/ci/vercel-rollback.sh rollback
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        PREVIOUS_ID: ${{ needs.deploy.outputs.previous_id }}
+        PREVIOUS_URL: ${{ needs.deploy.outputs.previous_url }}
+        APPLIED_COUNT: ${{ needs.migrate.outputs.applied_count }}
+        APPLIED_NAMES: ${{ needs.migrate.outputs.applied_names }}
 
     - name: Comment on commit (rollback)
       uses: actions/github-script@v7
+      env:
+        PREVIOUS_ID: ${{ needs.deploy.outputs.previous_id }}
+        APPLIED_COUNT: ${{ needs.migrate.outputs.applied_count }}
       with:
         script: |
+          const applied = process.env.APPLIED_COUNT || '0';
           github.rest.repos.createCommitComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
             commit_sha: context.sha,
-            body: '⚠️ Smoke test failed after deploy. Automatic rollback to previous deployment was triggered and verified.'
+            body: `⚠️ Smoke test failed after deploy. Rolled back to ${process.env.PREVIOUS_ID} and verified the production alias serves it.` +
+              (applied !== '0' ? ` Schema NOT rolled back: ${applied} migration(s) were applied this run.` : '')
           })
