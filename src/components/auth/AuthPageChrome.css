@@ -1,0 +1,21 @@
+/* The repeated class outweighs legacy input[type] rules in ui-fixes.css,
+   including their hover states, without changing forms on dark surfaces. */
+.ag-auth-input.ag-auth-input,
+.ag-auth-input.ag-auth-input:hover {
+  color-scheme: light;
+  color: var(--ag-text-dark, #1e232a);
+  background-color: var(--ag-surface-white, #ffffff);
+  border: 1px solid var(--ag-text-muted, #5c6a79);
+  caret-color: var(--ag-text-dark, #1e232a);
+}
+
+.ag-auth-input.ag-auth-input::placeholder {
+  color: var(--ag-text-muted, #5c6a79);
+  opacity: 1;
+}
+
+.ag-auth-input.ag-auth-input:focus {
+  border-color: var(--ag-secondary-blue, #1a4674);
+  outline: 2px solid var(--ag-secondary-blue, #1a4674);
+  outline-offset: 2px;
+}
