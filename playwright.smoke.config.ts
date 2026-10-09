@@ -21,7 +21,8 @@ if (!baseURL) {
 }
 
 export default defineConfig({
-  testDir: './tests/smoke',
+  testDir: './tests',
+  testMatch: ['smoke/**/*.{spec,test}.{ts,js}', 'e2e/auth-input-contrast.spec.ts'],
   fullyParallel: false,
   forbidOnly: true,
   retries: 1,
