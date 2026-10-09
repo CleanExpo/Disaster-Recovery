@@ -64,7 +64,9 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
-const PLATFORM_FEE = 2750.0;
+// Indicative contractor callout cost (AUD), retained from ADR-011 / ADR-014.
+// This is not a platform fee charged to the homeowner.
+const INDICATIVE_MAKE_SAFE_COST = 2750.0;
 
 // Clear selected/unselected checkbox style
 const CHECKBOX_CLASS =
@@ -246,7 +248,7 @@ function OnlineClaimPageOriginal() {
     // Payment
     paymentMethod: 'card',
     paymentConfirmed: false,
-    paymentAmount: PLATFORM_FEE,
+    paymentAmount: INDICATIVE_MAKE_SAFE_COST,
 
     // Terms
     understandPlatformRole: false,
@@ -796,54 +798,6 @@ function OnlineClaimPageOriginal() {
           </Alert>
         )}
 
-        {/* Pricing Indicator Banner — Path A (DR-789, ADR-011 Accepted) */}
-        {/* DR is a network orchestrator. Your IICRC-certified contractor */}
-        {/* will quote and bill you directly on-site, not via Disaster Recovery. */}
-        <div
-          className="mb-8 rounded-xl border p-6"
-          style={{
-            background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
-            borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
-          }}
-        >
-          <h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-[var(--ag-primary-blue)]">
-            <DollarSign className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />
-            Emergency make-safe — indicative cost
-          </h2>
-          <div className="ms-7 space-y-1.5 text-sm text-[var(--ag-text-dark)]">
-            <div className="flex items-center gap-2">
-              <span style={{ color: 'var(--ag-secondary-blue)' }}>├─</span>
-              <span>
-                <strong>From ~${PLATFORM_FEE.toFixed(0)}</strong> — typical emergency make-safe
-                callout, varies by job type and severity
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span style={{ color: 'var(--ag-secondary-blue)' }}>├─</span>
-              <span>
-                Your assigned <strong>IICRC-certified contractor</strong> will give you a firm Scope
-                of Works on-site and bill you directly
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span style={{ color: 'var(--ag-secondary-blue)' }}>└─</span>
-              <span>
-                Payment plans available via{' '}
-                <a
-                  href="https://equippedcf.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium hover:underline"
-                  style={{ color: 'var(--ag-primary-blue)' }}
-                >
-                  Equipped Commercial Finance
-                </a>{' '}
-                if you need them
-              </span>
-            </div>
-          </div>
-        </div>
-
         {/* Cost Estimate Banner (shown when arriving from cost estimator) */}
         {estimate && (
           <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-5">
@@ -856,8 +810,7 @@ function OnlineClaimPageOriginal() {
                 </p>
                 <p className="text-sm text-emerald-700 mt-1">
                   Your assigned IICRC-certified contractor will give you a firm Scope of Works
-                  on-site and bill you directly. Indicative emergency make-safe callouts start from
-                  around ${PLATFORM_FEE.toFixed(0)}.
+                  on-site and bill you directly.
                 </p>
               </div>
             </div>
@@ -1496,6 +1449,54 @@ function OnlineClaimPageOriginal() {
             {/* Step 4: Final Review */}
             {step === 4 && (
               <div className="space-y-6">
+                {/* Pricing Indicator Banner — Path A (DR-789, ADR-011 Accepted) */}
+                {/* DR is a network orchestrator. Your IICRC-certified contractor */}
+                {/* will quote and bill you directly on-site, not via Disaster Recovery. */}
+                <div
+                  className="mb-8 rounded-xl border p-6"
+                  style={{
+                    background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
+                    borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
+                  }}
+                >
+                  <h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-[var(--ag-primary-blue)]">
+                    <DollarSign className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />
+                    Emergency make-safe — indicative cost
+                  </h2>
+                  <div className="ms-7 space-y-1.5 text-sm text-[var(--ag-text-dark)]">
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: 'var(--ag-secondary-blue)' }}>├─</span>
+                      <span>
+                        <strong>From ~${INDICATIVE_MAKE_SAFE_COST.toFixed(0)}</strong> — typical emergency make-safe
+                        callout, varies by job type and severity
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: 'var(--ag-secondary-blue)' }}>├─</span>
+                      <span>
+                        Your assigned <strong>IICRC-certified contractor</strong> will give you a firm Scope
+                        of Works on-site and bill you directly
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: 'var(--ag-secondary-blue)' }}>└─</span>
+                      <span>
+                        Payment plans available via{' '}
+                        <a
+                          href="https://equippedcf.com.au"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium hover:underline"
+                          style={{ color: 'var(--ag-primary-blue)' }}
+                        >
+                          Equipped Commercial Finance
+                        </a>{' '}
+                        if you need them
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 <Alert className="bg-blue-50 border-blue-200">
                   <DollarSign className="h-4 w-4 text-blue-600" />
                   <AlertDescription className="text-blue-800">
@@ -1524,7 +1525,7 @@ function OnlineClaimPageOriginal() {
                     )}
                     <div className="flex justify-between">
                       <span>Indicative emergency make-safe (contractor quote)</span>
-                      <span className="font-semibold">From ~${PLATFORM_FEE.toFixed(0)}</span>
+                      <span className="font-semibold">From ~${INDICATIVE_MAKE_SAFE_COST.toFixed(0)}</span>
                     </div>
                     <div className="text-xs text-gray-500 ps-1">
                       No payment is taken when you submit this form. Your matched contractor will
