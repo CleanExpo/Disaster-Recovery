@@ -105,15 +105,54 @@ async function getCookieSession(request: NextRequest) {
   }
 }
 
+/**
+ * Canonical path for access-control decisions: percent-decoded (repeatedly,
+ * so `%2563` cannot hide a segment), backslashes and repeated slashes
+ * collapsed, dot segments resolved, lower-cased, trailing slash removed.
+ * Returns null when the path cannot be decoded — callers must reject it.
+ */
+export function canonicalPath(raw: string): string | null {
+  let p = raw;
+  try {
+    for (let i = 0; i < 5 && /%[0-9a-f]{2}/i.test(p); i++) p = decodeURIComponent(p);
+  } catch {
+    return null;
+  }
+  if (/%[0-9a-f]{2}/i.test(p)) return null;
+  p = p.replace(/\\/g, '/').replace(/\/{2,}/g, '/');
+  p = new URL(p.startsWith('/') ? p : `/${p}`, 'http://canonical.invalid').pathname;
+  p = p.toLowerCase();
+  if (p.length > 1) p = p.replace(/\/+$/, '');
+  return p || '/';
+}
+
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  const cpath = canonicalPath(path);
+  if (cpath === null) {
+    return new NextResponse('Bad Request', { status: 400 });
+  }
 
-  if (ALWAYS_PUBLIC.includes(path)) {
+  if (ALWAYS_PUBLIC.includes(cpath)) {
     return NextResponse.next();
   }
 
+  // Access decisions use the canonical path so case, encoding, slash and
+  // dot-segment variants of a protected path cannot escape the guard.
+  const isAdminPage = cpath.startsWith('/admin');
+  const isAdminApi = cpath.startsWith('/api/admin');
+  const isAnalyticsApi = cpath.startsWith('/api/analytics');
+  const isAccountPage = cpath.startsWith('/account');
+  const isPublicContractorPage =
+    PUBLIC_CONTRACTOR_PATHS.has(cpath) || cpath.startsWith('/contractor/activate/');
+  const isContractorPage = cpath.startsWith('/contractor') && !isPublicContractorPage;
+  const isProtected =
+    isAdminPage || isAdminApi || isAnalyticsApi || isContractorPage || isAccountPage;
+
+  // Crawler shortcut only for unprotected pages: the User-Agent header is
+  // client-controlled and must never bypass authentication.
   const ua = request.headers.get('user-agent') ?? '';
-  if (CRAWLER_UA_RE.test(ua) && !path.startsWith('/api/')) {
+  if (!isProtected && CRAWLER_UA_RE.test(ua) && !cpath.startsWith('/api/')) {
     return NextResponse.next();
   }
 
@@ -130,7 +169,7 @@ export async function middleware(request: NextRequest) {
     request.headers.get('x-real-ip') ??
     'unknown';
 
-  const rl = checkRateLimit(path, clientIp, request.method);
+  const rl = checkRateLimit(cpath, clientIp, request.method);
   if (rl.limited) {
     return new NextResponse(
       JSON.stringify({ error: 'Too many requests. Please try again later.' }),
@@ -139,23 +178,12 @@ export async function middleware(request: NextRequest) {
         headers: {
           'Content-Type': 'application/json',
           'Retry-After': String(rl.retryAfter ?? 60),
-          'X-RateLimit-Limit': String(RATE_LIMIT_RULES[path]?.maxRequests ?? 10),
+          'X-RateLimit-Limit': String(RATE_LIMIT_RULES[cpath]?.maxRequests ?? 10),
           'X-RateLimit-Remaining': '0',
         },
       },
     );
   }
-
-  const isAdminPage = path.startsWith('/admin');
-  const isAdminApi = path.startsWith('/api/admin');
-  const isAnalyticsApi = path.startsWith('/api/analytics');
-  const isAccountPage = path.startsWith('/account');
-  const isPublicContractorPage =
-    PUBLIC_CONTRACTOR_PATHS.has(path) || path.startsWith('/contractor/activate/');
-  const isContractorPage =
-    path.startsWith('/contractor') && !path.startsWith('/api/') && !isPublicContractorPage;
-  const isProtected =
-    isAdminPage || isAdminApi || isAnalyticsApi || isContractorPage || isAccountPage;
 
   if (isProtected) {
     const session = await getCookieSession(request);
@@ -165,10 +193,7 @@ export async function middleware(request: NextRequest) {
       if (isApi) {
         return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
       }
-      const loginUrl = new URL(
-        isContractorPage ? '/contractor/login' : '/login',
-        request.url,
-      );
+      const loginUrl = new URL(isContractorPage ? '/contractor/login' : '/login', request.url);
       loginUrl.searchParams.set('callbackUrl', path);
       loginUrl.searchParams.set('reason', 'session_expired');
       return NextResponse.redirect(loginUrl);
