@@ -170,3 +170,57 @@ describe('middleware — Unicode lookalikes of protected prefixes fail closed', 
     });
   });
 });
+
+// Review of 97dd451d: matrix parameters and lookalikes outside the
+// confusables map must fail closed; the non-ASCII rule makes it complete.
+describe('middleware — matrix parameters and any non-ASCII namespace fail closed', () => {
+  const UAS: [string, string | undefined][] = [
+    ['normal UA', undefined],
+    ['Googlebot UA', CRAWLER_UAS[0]],
+    ['bingbot UA', CRAWLER_UAS[1]],
+  ];
+  const pages: [string, string][] = [
+    ['/admin;role=public', '/login'],
+    ['/account;role=public', '/login'],
+    ['/contractor;role=public/portal', '/contractor/login'],
+    ['/contractor-portal;role=public/earnings', '/contractor/login'],
+    ['/con%CF%84ractor/portal', '/contractor/login'], // Greek tau
+    ['/acco%CF%85nt', '/login'], // Greek upsilon
+    ['/%CF%B2ontractor/portal', '/contractor/login'], // Greek lunate sigma
+    ['/%E2%98%83%E2%9C%93/anything', '/login'], // arbitrary non-ASCII first segment
+    // ASCII originals still guarded
+    ['/admin', '/login'],
+    ['/account', '/login'],
+    ['/contractor/portal', '/contractor/login'],
+    ['/contractor-portal/earnings', '/contractor/login'],
+  ];
+  const apis = [
+    '/api/admin;role=public/stats',
+    '/api/analytics;role=public/summary',
+    '/api/analy%CF%84ics/summary', // Greek tau
+    '/api/%E2%98%83/stats', // arbitrary non-ASCII second segment
+    '/api/admin/stats',
+    '/api/analytics/summary',
+  ];
+
+  describe.each(UAS)('%s', (_label, ua) => {
+    it.each(pages)('%s redirects to %s', async (path, login) => {
+      const res = await get(path, ua);
+      expect(res.status).toBe(307);
+      expect(redirectPath(res)).toBe(login);
+    });
+
+    it.each(apis)('%s returns 401', async (path) => {
+      expect((await get(path, ua)).status).toBe(401);
+    });
+
+    it.each(['/contractors', '/contractors/apply', '/contractors;ref=ad'])(
+      '%s stays public',
+      async (path) => {
+        const res = await get(path, ua);
+        expect(res.status).toBe(200);
+        expect(redirectPath(res)).toBeNull();
+      },
+    );
+  });
+});

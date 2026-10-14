@@ -130,8 +130,8 @@ export function canonicalPath(raw: string): string | null {
 }
 
 // Cyrillic/Greek letters that render like the Latin letters used in the
-// protected prefixes. Used for CLASSIFICATION ONLY — the request URL is never
-// rewritten; a folded match fails closed.
+// protected prefixes. A fast path only: the non-ASCII rule in classifyPath is
+// what makes lookalike handling complete.
 const CONFUSABLES: Readonly<Record<string, string>> = {
   а: 'a',
   е: 'e',
@@ -149,11 +149,59 @@ const CONFUSABLES: Readonly<Record<string, string>> = {
   ρ: 'p',
 };
 
-export function classificationPath(canonical: string): string {
-  return canonical
-    .normalize('NFKC')
-    .toLowerCase()
-    .replace(/[аеорсіѕухοαινρ]/g, (ch) => CONFUSABLES[ch] ?? ch);
+const CONFUSABLE_RE = /[аеорсіѕухοαινρ]/g;
+const NON_ASCII_RE = /[^\x00-\x7f]/;
+
+export interface Classification {
+  /** Path used for namespace matching (never used to serve the request). */
+  kpath: string;
+  /**
+   * True when a namespace-deciding segment (the first, and for /api/* also
+   * the second) contains any non-ASCII code point after NFKC. No real route
+   * has one, so such requests are treated as protected and fail closed.
+   */
+  nonAsciiNamespace: boolean;
+  /** True when the first segment is, or resembles, a contractor namespace. */
+  contractorLike: boolean;
+}
+
+/**
+ * Code-point skeleton match: equal length, and every character either equals
+ * the target's or is non-ASCII (an unknown lookalike). Picks the login page
+ * for a fail-closed redirect only; never grants access.
+ */
+function resembles(segment: string, target: string): boolean {
+  const chars = Array.from(segment);
+  return (
+    chars.length === target.length &&
+    chars.every((ch, i) => ch === target[i] || NON_ASCII_RE.test(ch))
+  );
+}
+
+/**
+ * CLASSIFICATION ONLY — the request URL is never rewritten.
+ * Cuts each segment at its first ';' (matrix parameters), re-resolves dot
+ * segments, then folds with NFKC, lower-case and the confusables map.
+ */
+export function classifyPath(canonical: string): Classification {
+  const segments: string[] = [];
+  for (const raw of canonical.split('/')) {
+    const segment = raw.split(';')[0].normalize('NFKC').toLowerCase();
+    if (segment === '' || segment === '.') continue;
+    if (segment === '..') segments.pop();
+    else segments.push(segment);
+  }
+  const deciding = segments[0] === 'api' ? segments.slice(0, 2) : segments.slice(0, 1);
+  const nonAsciiNamespace = deciding.some((segment) => NON_ASCII_RE.test(segment));
+  const folded = segments.map((segment) =>
+    segment.replace(CONFUSABLE_RE, (ch) => CONFUSABLES[ch] ?? ch),
+  );
+  const first = segments[0] ?? '';
+  const contractorLike =
+    (folded[0] ?? '').startsWith('contractor') ||
+    resembles(first, 'contractor') ||
+    resembles(first, 'contractor-portal');
+  return { kpath: `/${folded.join('/')}`, nonAsciiNamespace, contractorLike };
 }
 
 /** Segment-boundary match: `/contractor` and `/contractor/x`, never `/contractors`. */
@@ -167,15 +215,27 @@ export async function middleware(request: NextRequest) {
   if (cpath === null) {
     return new NextResponse('Bad Request', { status: 400 });
   }
-  const kpath = classificationPath(cpath);
+  const { kpath, nonAsciiNamespace, contractorLike } = classifyPath(cpath);
 
   if (ALWAYS_PUBLIC.includes(cpath)) {
     return NextResponse.next();
   }
 
-  // Access decisions use the folded canonical path so case, encoding, slash,
-  // dot-segment and lookalike-letter variants cannot escape the guard. The
-  // explicit public allow-list is applied before the protected namespaces.
+  // Lookalike namespace (non-ASCII deciding segment): no real route exists,
+  // so fail closed before anything else, with or without a session.
+  if (nonAsciiNamespace) {
+    if (kpath.startsWith('/api/')) {
+      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+    }
+    const loginUrl = new URL(contractorLike ? '/contractor/login' : '/login', request.url);
+    loginUrl.searchParams.set('reason', 'session_expired');
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // Access decisions use the classification path so case, encoding, slash,
+  // dot-segment, matrix-parameter and lookalike variants cannot escape the
+  // guard. The explicit public allow-list is applied before the protected
+  // namespaces.
   const isAdminPage = inNamespace(kpath, '/admin');
   const isAdminApi = inNamespace(kpath, '/api/admin');
   const isAnalyticsApi = inNamespace(kpath, '/api/analytics');
