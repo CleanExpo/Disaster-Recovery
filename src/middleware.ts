@@ -109,7 +109,8 @@ async function getCookieSession(request: NextRequest) {
  * Canonical path for access-control decisions: percent-decoded (repeatedly,
  * so `%2563` cannot hide a segment), backslashes and repeated slashes
  * collapsed, dot segments resolved, lower-cased, trailing slash removed.
- * Returns null when the path cannot be decoded — callers must reject it.
+ * Decoded characters are kept (not re-encoded) so lookalike folding sees
+ * them. Returns null when the path cannot be decoded — callers must reject it.
  */
 export function canonicalPath(raw: string): string | null {
   let p = raw;
@@ -119,11 +120,45 @@ export function canonicalPath(raw: string): string | null {
     return null;
   }
   if (/%[0-9a-f]{2}/i.test(p)) return null;
-  p = p.replace(/\\/g, '/').replace(/\/{2,}/g, '/');
-  p = new URL(p.startsWith('/') ? p : `/${p}`, 'http://canonical.invalid').pathname;
-  p = p.toLowerCase();
-  if (p.length > 1) p = p.replace(/\/+$/, '');
-  return p || '/';
+  const segments: string[] = [];
+  for (const segment of p.replace(/\\/g, '/').split('/')) {
+    if (segment === '' || segment === '.') continue;
+    if (segment === '..') segments.pop();
+    else segments.push(segment);
+  }
+  return `/${segments.join('/')}`.toLowerCase();
+}
+
+// Cyrillic/Greek letters that render like the Latin letters used in the
+// protected prefixes. Used for CLASSIFICATION ONLY — the request URL is never
+// rewritten; a folded match fails closed.
+const CONFUSABLES: Readonly<Record<string, string>> = {
+  а: 'a',
+  е: 'e',
+  о: 'o',
+  р: 'p',
+  с: 'c',
+  і: 'i',
+  ѕ: 's',
+  у: 'y',
+  х: 'x',
+  ο: 'o',
+  α: 'a',
+  ι: 'i',
+  ν: 'v',
+  ρ: 'p',
+};
+
+export function classificationPath(canonical: string): string {
+  return canonical
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[аеорсіѕухοαινρ]/g, (ch) => CONFUSABLES[ch] ?? ch);
+}
+
+/** Segment-boundary match: `/contractor` and `/contractor/x`, never `/contractors`. */
+function inNamespace(path: string, namespace: string): boolean {
+  return path === namespace || path.startsWith(`${namespace}/`);
 }
 
 export async function middleware(request: NextRequest) {
@@ -132,27 +167,31 @@ export async function middleware(request: NextRequest) {
   if (cpath === null) {
     return new NextResponse('Bad Request', { status: 400 });
   }
+  const kpath = classificationPath(cpath);
 
   if (ALWAYS_PUBLIC.includes(cpath)) {
     return NextResponse.next();
   }
 
-  // Access decisions use the canonical path so case, encoding, slash and
-  // dot-segment variants of a protected path cannot escape the guard.
-  const isAdminPage = cpath.startsWith('/admin');
-  const isAdminApi = cpath.startsWith('/api/admin');
-  const isAnalyticsApi = cpath.startsWith('/api/analytics');
-  const isAccountPage = cpath.startsWith('/account');
+  // Access decisions use the folded canonical path so case, encoding, slash,
+  // dot-segment and lookalike-letter variants cannot escape the guard. The
+  // explicit public allow-list is applied before the protected namespaces.
+  const isAdminPage = inNamespace(kpath, '/admin');
+  const isAdminApi = inNamespace(kpath, '/api/admin');
+  const isAnalyticsApi = inNamespace(kpath, '/api/analytics');
+  const isAccountPage = inNamespace(kpath, '/account');
   const isPublicContractorPage =
-    PUBLIC_CONTRACTOR_PATHS.has(cpath) || cpath.startsWith('/contractor/activate/');
-  const isContractorPage = cpath.startsWith('/contractor') && !isPublicContractorPage;
+    PUBLIC_CONTRACTOR_PATHS.has(kpath) || kpath.startsWith('/contractor/activate/');
+  const isContractorPage =
+    (inNamespace(kpath, '/contractor') || inNamespace(kpath, '/contractor-portal')) &&
+    !isPublicContractorPage;
   const isProtected =
     isAdminPage || isAdminApi || isAnalyticsApi || isContractorPage || isAccountPage;
 
   // Crawler shortcut only for unprotected pages: the User-Agent header is
   // client-controlled and must never bypass authentication.
   const ua = request.headers.get('user-agent') ?? '';
-  if (!isProtected && CRAWLER_UA_RE.test(ua) && !cpath.startsWith('/api/')) {
+  if (!isProtected && CRAWLER_UA_RE.test(ua) && !kpath.startsWith('/api/')) {
     return NextResponse.next();
   }
 

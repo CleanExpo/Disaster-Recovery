@@ -7,6 +7,9 @@
  *    a session. The User-Agent is client-controlled; it must never bypass auth.
  * 2. Access checks ran on the raw path, so case, percent-encoding, slash and
  *    dot-segment variants of a protected path escaped the guard.
+ * 3. Unicode lookalikes (Cyrillic/Greek letters, full-width forms) of a
+ *    protected prefix must fail closed, and prefix matching must respect
+ *    segment boundaries so public /contractors pages stay public.
  */
 
 import { describe, it, expect } from 'vitest';
@@ -39,6 +42,7 @@ const PROTECTED_PAGES: [string, string][] = [
   ['/account', '/login'],
   ['/contractor/portal', '/contractor/login'],
   ['/contractor/dashboard', '/contractor/login'],
+  ['/contractor-portal/earnings', '/contractor/login'],
 ];
 const PROTECTED_APIS = ['/api/admin/stats', '/api/analytics/summary'];
 
@@ -114,4 +118,55 @@ describe('middleware — hostile path variants of protected routes', () => {
       expect(redirectPath(res)).toBeNull();
     },
   );
+});
+
+describe('middleware — public /contractors pages stay public (segment boundary)', () => {
+  it.each(['/contractors', '/contractors/apply', '/Contractors'])(
+    '%s is public with a normal User-Agent',
+    async (path) => {
+      const res = await get(path);
+      expect(res.status).toBe(200);
+      expect(redirectPath(res)).toBeNull();
+    },
+  );
+
+  it.each(['/contractors', '/contractors/apply'])('%s is public for Googlebot', async (path) => {
+    const res = await get(path, CRAWLER_UAS[0]);
+    expect(res.status).toBe(200);
+    expect(redirectPath(res)).toBeNull();
+  });
+});
+
+describe('middleware — Unicode lookalikes of protected prefixes fail closed', () => {
+  const pages: [string, string][] = [
+    ['/admin', '/login'],
+    ['/%D0%B0dmin', '/login'], // Cyrillic а
+    ['/%EF%BD%81dmin', '/login'], // full-width ａ (NFKC)
+    ['/account', '/login'],
+    ['/acc%D0%BEunt', '/login'], // Cyrillic о
+    ['/contractor/portal', '/contractor/login'],
+    ['/c%D0%BEntractor/portal', '/contractor/login'], // Cyrillic о
+    ['/c%CE%BFntractor/portal', '/contractor/login'], // Greek ο
+  ];
+  const apis = [
+    '/api/admin/stats',
+    '/api/%D0%B0dmin/stats', // Cyrillic а
+    '/api/analytics/summary',
+    '/api/analyt%D1%96cs/summary', // Cyrillic і
+  ];
+
+  describe.each([
+    ['normal UA', undefined],
+    ['Googlebot UA', CRAWLER_UAS[0]],
+  ])('%s', (_label, ua) => {
+    it.each(pages)('%s redirects to %s', async (path, login) => {
+      const res = await get(path, ua);
+      expect(res.status).toBe(307);
+      expect(redirectPath(res)).toBe(login);
+    });
+
+    it.each(apis)('%s returns 401', async (path) => {
+      expect((await get(path, ua)).status).toBe(401);
+    });
+  });
 });
