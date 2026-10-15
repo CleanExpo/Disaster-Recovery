@@ -20,6 +20,13 @@
       "reason": "Third-party action (treosh/lighthouse-ci-action) auditing deployed URLs; needs the live site or a preview deployment, which does not exist before push."
     },
     {
+      "workflow": "lighthouse-agentic.yml",
+      "job": "agentic-audit",
+      "step": "*",
+      "test_gap": true,
+      "reason": "Audits a deployed site: the Vercel preview URL found through GitHub's deployments API with github.token, or the production alias. Neither exists for an unpushed head. A declared test gap: GitHub runs it on the PR."
+    },
+    {
       "workflow": "managed-agent-ci.yml",
       "job": "managed-agent-pipeline",
       "step": "Trigger Managed Agent Pipeline",
@@ -35,7 +42,8 @@
       "workflow": "preview-deploy.yml",
       "job": "smoke-test",
       "step": "*",
-      "reason": "Smoke-tests the preview URL produced by deploy-preview, which does not exist before push."
+      "test_gap": true,
+      "reason": "Playwright smoke tests against the preview URL produced by deploy-preview, which does not exist before push. A declared test gap: GitHub runs it on the PR."
     }
   ]
 }
