@@ -39,7 +39,7 @@ function wrapHtml(body: string): string {
 <div class="wrap">
   <div class="hdr">
     <h1>Disaster Recovery</h1>
-    <p>National Recovery Partners Group</p>
+    <p>National Restoration Professionals Group</p>
   </div>
   <div class="body">${body}</div>
   <div class="footer">

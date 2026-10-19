@@ -16,7 +16,7 @@ export function CarsiSection({ control }: Step0SectionProps) {
       subtitle="Cleaning and Restoration Science Institute — NRPG's primary training partner."
       satisfied={satisfied}
       links={[
-        { href: 'https://carsi.com.au/membership/', label: 'Subscribe to CARSI' },
+        { href: 'https://carsi.com.au/subscribe', label: 'Subscribe to CARSI' },
         { href: 'https://carsi.com.au/', label: 'CARSI login' },
       ]}
     >

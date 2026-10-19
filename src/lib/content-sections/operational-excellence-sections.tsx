@@ -677,11 +677,11 @@ const executivePartnersData: OEPageData = {
       ),
     },
     {
-      heading: 'NRPG — National Restoration Partners Group',
+      heading: 'NRPG — National Restoration Professionals Group',
       body: (
         <>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-            The National Restoration Partners Group (NRPG) is the backbone of the Disaster Recovery
+            The National Restoration Professionals Group (NRPG) is the backbone of the Disaster Recovery
             network. NRPG connects vetted, certified restoration contractors across every state and
             territory in Australia, as well as New Zealand and the Pacific region.
           </p>
@@ -724,7 +724,7 @@ const executivePartnersData: OEPageData = {
     },
     {
       question: 'How does the NRPG network benefit property owners?',
-      answer: 'The National Restoration Partners Group (NRPG) connects vetted, certified contractors across Australia and New Zealand. This means Disaster Recovery can deploy qualified technicians to any location — from capital cities to remote communities — with rapid response times even during catastrophic events.',
+      answer: 'The National Restoration Professionals Group (NRPG) connects vetted, certified contractors across Australia and New Zealand. This means Disaster Recovery can deploy qualified technicians to any location — from capital cities to remote communities — with rapid response times even during catastrophic events.',
     },
     {
       question: 'What is RestoreAssist?',

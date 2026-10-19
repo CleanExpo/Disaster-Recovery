@@ -112,7 +112,7 @@ export function OperationalExcellenceSchema({
             '@type': 'Organization',
             name: 'NRPG',
             description:
-              'National Restoration Partners Group — connecting vetted, certified restoration contractors across Australia and New Zealand.',
+              'National Restoration Professionals Group — connecting vetted, certified restoration contractors across Australia and New Zealand.',
           },
         ]
       : [];

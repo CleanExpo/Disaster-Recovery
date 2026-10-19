@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'NRPG Expertise & Authority | IICRC-Certified Restoration Network',
   description:
-    'National Restoration Property Group — IICRC S500/S520/S700 certified network connecting Australian policyholders with vetted restoration contractors. Policyholder-first, always.',
+    'National Restoration Professionals Group — IICRC S500/S520/S700 certified network connecting Australian policyholders with vetted restoration contractors. Policyholder-first, always.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/about/nrpg-expertise',
   },
@@ -23,7 +23,7 @@ const articleSchema = JSON.stringify({
   '@type': 'Article',
   headline: 'NRPG Expertise & Authority — IICRC-Certified Restoration Network',
   description:
-    'National Restoration Property Group connects Australian policyholders with IICRC-certified contractors for water, fire, mould, and storm restoration. Independent from insurers.',
+    'National Restoration Professionals Group connects Australian policyholders with IICRC-certified contractors for water, fire, mould, and storm restoration. Independent from insurers.',
   url: 'https://disasterrecovery.com.au/about/nrpg-expertise',
   dateModified: '2026-04-14',
   datePublished: '2024-01-01',
@@ -270,7 +270,7 @@ export default function NRPGExpertisePage() {
               <span className="text-blue-200">IICRC-Certified Restoration Network, Australia</span>
             </h1>
             <p className="text-lg text-blue-100 mb-6 max-w-2xl">
-              National Restoration Property Group connects policyholders with IICRC-certified
+              National Restoration Professionals Group connects policyholders with IICRC-certified
               contractors. Independent from insurers. Policyholder-first — from first contact
               through documentation and completion.
             </p>
@@ -313,7 +313,7 @@ export default function NRPGExpertisePage() {
             </h2>
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
               <p className="text-gray-700 leading-relaxed">
-                National Restoration Property Group (NRPG) is Australia&apos;s IICRC-certified
+                National Restoration Professionals Group (NRPG) is Australia&apos;s IICRC-certified
                 contractor network for property damage restoration. NRPG connects policyholders,
                 tenants, and property managers with independently operating contractors who hold
                 IICRC certification, current public liability insurance, and the specialist licences

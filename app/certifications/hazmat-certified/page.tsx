@@ -77,12 +77,12 @@ export default function HAZMATCertifiedPage() {
                 (Cleaning and Restoration Skills Institute) and include:
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li><a href="https://carsi.com.au/product/safety-procedures/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Work Safety Management</a> — Workplace safety procedures and hazard identification</li>
-                <li><a href="https://carsi.com.au/product/risk-assessment-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Risk Management</a> — Risk identification and control measures</li>
-                <li><a href="https://carsi.com.au/product/safe-work-method-statements-swms-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">SWMS Management</a> — Safe Work Method Statements for high-risk work</li>
-                <li><a href="https://carsi.com.au/product/safety-data-sheet-sds-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">SDS Management</a> — Safety Data Sheet interpretation for chemicals</li>
-                <li><a href="https://carsi.com.au/product/standard-operating-procedures-sop-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">SOP Management</a> — Standard Operating Procedures for consistent outcomes</li>
-                <li><a href="https://carsi.com.au/product/asbestos/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Asbestos Awareness</a> — Identification and safe work around asbestos-containing materials</li>
+                <li><a href="https://carsi.com.au/courses/introduction-to-safety-procedures-for-water-damage-work" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Work Safety Management</a> — Workplace safety procedures and hazard identification</li>
+                <li><a href="https://carsi.com.au/courses/risk-assessment-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Risk Management</a> — Risk identification and control measures</li>
+                <li><a href="https://carsi.com.au/courses/safe-work-method-statements-swms-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">SWMS Management</a> — Safe Work Method Statements for high-risk work</li>
+                <li><a href="https://carsi.com.au/courses/safety-data-sheet-sds-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">SDS Management</a> — Safety Data Sheet interpretation for chemicals</li>
+                <li><a href="https://carsi.com.au/courses/standard-operating-procedures-sop-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">SOP Management</a> — Standard Operating Procedures for consistent outcomes</li>
+                <li><a href="https://carsi.com.au/courses/introduction-to-asbestos-asbestos-awareness" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Asbestos Awareness</a> — Identification and safe work around asbestos-containing materials</li>
               </ul>
               <p className="mt-2">
                 These prerequisites ensure every HAZMAT technician has a solid foundation in workplace safety before undertaking specialist hazardous materials training.

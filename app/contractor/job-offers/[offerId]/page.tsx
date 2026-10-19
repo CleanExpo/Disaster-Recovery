@@ -213,7 +213,7 @@ export default function JobOfferPage() {
             <ArrowLeft className="w-4 h-4" />
             Dashboard
           </Link>
-          <span className="text-sm text-gray-500">National Recovery Partners Group</span>
+          <span className="text-sm text-gray-500">National Restoration Professionals Group</span>
         </div>
       </header>
 

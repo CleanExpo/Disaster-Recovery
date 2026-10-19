@@ -49,7 +49,7 @@ const NRPG_SUB_CONTRACTOR_AGREEMENT = `
 NRPG SUB-CONTRACTOR AGREEMENT
 
 This Sub-Contractor Agreement ("Agreement") is entered into between:
-- National Recovery Platform Group (NRPG) and its network members ("NRPG Network")
+- National Restoration Professionals Group (NRPG) and its network members ("NRPG Network")
 - The sub-contractor identified below ("Sub-Contractor")
 
 1. ENGAGEMENT

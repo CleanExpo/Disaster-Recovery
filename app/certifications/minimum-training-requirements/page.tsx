@@ -54,27 +54,27 @@ export default function MinimumTrainingRequirementsPage() {
                 <div className="p-4 rounded-lg border border-gray-200 bg-white">
                   <h3 className="font-bold text-[var(--ag-primary-blue,#0F2942)] mb-1">Work Safety Management</h3>
                   <p className="text-sm text-gray-600 mb-2">Foundational workplace safety procedures, hazard identification, and incident reporting for restoration environments.</p>
-                  <a href="https://carsi.com.au/product/safety-procedures/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
+                  <a href="https://carsi.com.au/courses/introduction-to-safety-procedures-for-water-damage-work" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
                 </div>
                 <div className="p-4 rounded-lg border border-gray-200 bg-white">
                   <h3 className="font-bold text-[var(--ag-primary-blue,#0F2942)] mb-1">Risk Management</h3>
                   <p className="text-sm text-gray-600 mb-2">Risk identification, assessment, and control measures aligned with AS/NZS ISO 31000 for disaster recovery sites.</p>
-                  <a href="https://carsi.com.au/product/risk-assessment-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
+                  <a href="https://carsi.com.au/courses/risk-assessment-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
                 </div>
                 <div className="p-4 rounded-lg border border-gray-200 bg-white">
                   <h3 className="font-bold text-[var(--ag-primary-blue,#0F2942)] mb-1">SWMS Management</h3>
                   <p className="text-sm text-gray-600 mb-2">Developing and implementing Safe Work Method Statements for high-risk construction and restoration work.</p>
-                  <a href="https://carsi.com.au/product/safe-work-method-statements-swms-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
+                  <a href="https://carsi.com.au/courses/safe-work-method-statements-swms-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
                 </div>
                 <div className="p-4 rounded-lg border border-gray-200 bg-white">
                   <h3 className="font-bold text-[var(--ag-primary-blue,#0F2942)] mb-1">SDS Management</h3>
                   <p className="text-sm text-gray-600 mb-2">Reading, interpreting, and applying Safety Data Sheets for chemicals used in restoration and remediation.</p>
-                  <a href="https://carsi.com.au/product/safety-data-sheet-sds-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
+                  <a href="https://carsi.com.au/courses/safety-data-sheet-sds-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
                 </div>
                 <div className="p-4 rounded-lg border border-gray-200 bg-white">
                   <h3 className="font-bold text-[var(--ag-primary-blue,#0F2942)] mb-1">SOP Management</h3>
                   <p className="text-sm text-gray-600 mb-2">Creating and following Standard Operating Procedures to ensure consistent, compliant restoration outcomes.</p>
-                  <a href="https://carsi.com.au/product/standard-operating-procedures-sop-course/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
+                  <a href="https://carsi.com.au/courses/standard-operating-procedures-sop-course" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
                 </div>
               </div>
             </div>
@@ -91,7 +91,7 @@ export default function MinimumTrainingRequirementsPage() {
               <div className="p-4 rounded-lg border border-gray-200 bg-white">
                 <h3 className="font-bold text-[var(--ag-primary-blue,#0F2942)] mb-1">Asbestos Awareness</h3>
                 <p className="text-sm text-gray-600 mb-2">Identification of asbestos-containing materials, safe work practices around asbestos, and legal obligations under Australian WHS regulations.</p>
-                <a href="https://carsi.com.au/product/asbestos/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
+                <a href="https://carsi.com.au/courses/introduction-to-asbestos-asbestos-awareness" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm font-medium">View course at CARSI &rarr;</a>
               </div>
               <p>
                 <strong>Why this is mandatory:</strong> Asbestos was used extensively in Australian building materials until the late 1980s. Any property built before 1990 may contain asbestos in wall sheeting, insulation, flooring, roofing, and pipe lagging. Disturbing asbestos-containing materials without proper training is illegal under the{' '}

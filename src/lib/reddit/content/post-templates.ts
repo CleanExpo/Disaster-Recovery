@@ -1329,7 +1329,7 @@ Certified contractors gain access to insurance panel work via [DisasterRecovery.
     'network',
     ['nrpg', 'disaster-recovery', 'carsi', 'restore-assist'],
     'hero-banner',
-    `With 15,387 suburbs and towns across Australia and annual disaster costs reaching $38 billion, geographic coverage is everything. When a burst pipe floods a home in Coober Pedy, the response needs to be just as professional as in Sydney CBD. The [National Recovery Partners Group (NRPG)](https://nrpg.business) was built to solve exactly this problem.
+    `With 15,387 suburbs and towns across Australia and annual disaster costs reaching $38 billion, geographic coverage is everything. When a burst pipe floods a home in Coober Pedy, the response needs to be just as professional as in Sydney CBD. The [National Restoration Professionals Group (NRPG)](https://nrpg.business) was built to solve exactly this problem.
 
 ## The National Coverage Challenge
 

@@ -113,7 +113,7 @@ function wrap(body: string): string {
 <div class="wrap">
   <div class="hdr">
     <h1>Disaster Recovery</h1>
-    <p>National Recovery Partners Group</p>
+    <p>National Restoration Professionals Group</p>
   </div>
   <div class="body">${body}</div>
   <div class="ftr">
@@ -240,7 +240,7 @@ export const emailTemplates = {
   }),
 
   contractorWelcome: (name: string, applicationId: string) => ({
-    subject: 'Application Received — Welcome to National Recovery Partners Group',
+    subject: 'Application Received — Welcome to National Restoration Professionals Group',
     html: wrap(`
       <h2>Welcome to NRPG, ${name}!</h2>
       <p>Your contractor application has been received. Your profile has been created.</p>

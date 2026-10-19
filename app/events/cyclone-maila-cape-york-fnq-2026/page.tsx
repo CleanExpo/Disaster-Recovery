@@ -102,7 +102,7 @@ const eventSchema = {
   },
   organizer: {
     '@type': 'Organization',
-    name: 'National Restoration Property Group (NRPG)',
+    name: 'National Restoration Professionals Group (NRPG)',
     url: 'https://disasterrecovery.com.au',
   },
   description:
