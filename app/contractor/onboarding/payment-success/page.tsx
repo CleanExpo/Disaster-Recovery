@@ -205,7 +205,7 @@ function PaymentSuccessPageContent() {
                   .total{font-weight:bold;font-size:18px;border-top:2px solid #000;}
                   .footer{color:#666;font-size:12px;margin-top:40px;}</style></head>
                   <body>
-                  <h1>National Restoration Professionals Group — Payment Receipt</h1>
+                  <h1>National Recovery Partners Group — Payment Receipt</h1>
                   <p><strong>Date:</strong> ${new Date().toLocaleDateString('en-AU')}</p>
                   <p><strong>ABN:</strong> 47 674 581 410</p>
                   <table>
