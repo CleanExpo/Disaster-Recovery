@@ -20,6 +20,9 @@ interface StubStore {
 
 // Fault switches so tests can make one IndexedDB operation fail on purpose.
 const faults = { delete: false, getAll: false, put: false, abort: false };
+// When set, the next put waits for this promise before it runs, holding its
+// transaction open: how a slow write from another tab looks.
+let holdNextPut: Promise<void> | null = null;
 
 function createIdbStub() {
   const stores = new Map<string, StubStore>();
@@ -54,7 +57,7 @@ function createIdbStub() {
         t.oncomplete?.();
       }, 0);
     }
-    function request<T>(run: () => T) {
+    function request<T>(run: () => T, wait: Promise<void> | null = null) {
       const req = {
         onsuccess: null as null | (() => void),
         onerror: null as null | (() => void),
@@ -62,7 +65,7 @@ function createIdbStub() {
         error: null as unknown,
       };
       pending += 1;
-      queueMicrotask(() => {
+      const go = () => {
         try {
           req.result = run();
           req.onsuccess?.();
@@ -73,17 +76,21 @@ function createIdbStub() {
         }
         pending -= 1;
         settle();
-      });
+      };
+      if (wait) void wait.then(go);
+      else queueMicrotask(go);
       return req as unknown as IDBRequest<T>;
     }
     const objectStore = {
       put(value: Record<string, unknown>) {
+        const wait = holdNextPut;
+        holdNextPut = null;
         return request(() => {
           if (faults.put) throw new Error('put failed');
           const key = value[store.keyPath] as string;
           working.set(key, value);
           return key;
-        });
+        }, wait);
       },
       delete(key: string) {
         return request(() => {
@@ -152,6 +159,7 @@ beforeEach(() => {
   faults.getAll = false;
   faults.put = false;
   faults.abort = false;
+  holdNextPut = null;
   localStorage.clear();
   // Fresh IDB per test — drops every store.
   (globalThis as unknown as { indexedDB: unknown }).indexedDB = createIdbStub();
@@ -626,6 +634,85 @@ describe('offline-queue', () => {
       expect(fetchImpl).toHaveBeenCalledTimes(1);
       expect(fetchImpl.mock.calls[0][1].headers['x-offline-claim-id']).toEqual(expect.any(String));
       expect(await tabB.getQueueSize()).toBe(0);
+    } finally {
+      delete (navigator as unknown as { locks?: unknown }).locks;
+    }
+  });
+
+  // A shared exclusive lock, as navigator.locks gives every tab of a site.
+  function installLocks() {
+    let tail: Promise<unknown> = Promise.resolve();
+    const locks = {
+      request: (_name: string, _opts: unknown, cb: () => Promise<unknown>) => {
+        const run = tail.then(() => cb());
+        tail = run.catch(() => undefined);
+        return run;
+      },
+    };
+    Object.defineProperty(navigator, 'locks', { value: locks, configurable: true });
+  }
+
+  async function twoTabsWithOneHeldClaim() {
+    const tabA = await loadQueue();
+    await tabA.enqueueClaim({ fullName: 'Held Claim', paymentConfirmed: false });
+    const held = await tabA.readHeldClaims();
+    const id = held.ok ? held.items[0]!.id : '';
+    vi.resetModules();
+    const tabB = await loadQueue();
+    return { tabA, tabB, id };
+  }
+
+  it('R2 a slow acknowledgement in another tab never brings back a claim already sent', async () => {
+    installLocks();
+    try {
+      const { tabA, tabB, id } = await twoTabsWithOneHeldClaim();
+      const fetchImpl = vi
+        .fn()
+        .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+      let releaseB: () => void = () => {};
+      holdNextPut = new Promise<void>((r) => {
+        releaseB = r;
+      });
+      // Tab B's acknowledgement is slow to write; tab A acknowledges and sends.
+      const b = tabB.acknowledgeHeldClaim(id);
+      const a = tabA.acknowledgeHeldClaim(id).then(() => tabA.replayQueue({ fetchImpl }));
+      await new Promise((r) => setTimeout(r, 20));
+      releaseB();
+      await Promise.all([a, b]);
+      await tabB.replayQueue({ fetchImpl });
+      await tabA.replayQueue({ fetchImpl });
+
+      expect(fetchImpl).toHaveBeenCalledTimes(1);
+      expect(await tabA.getQueueSize()).toBe(0);
+    } finally {
+      delete (navigator as unknown as { locks?: unknown }).locks;
+    }
+  });
+
+  it('R6 a removal never reports success for a claim another tab is sending', async () => {
+    installLocks();
+    try {
+      const { tabA, tabB, id } = await twoTabsWithOneHeldClaim();
+      const fetchImpl = vi
+        .fn()
+        .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+      let releaseB: () => void = () => {};
+      holdNextPut = new Promise<void>((r) => {
+        releaseB = r;
+      });
+      // Tab B ticks and is slow to write; tab A, still showing it held, removes it.
+      const b = tabB.acknowledgeHeldClaim(id);
+      const removed = tabA.removeQueuedClaim(id);
+      await new Promise((r) => setTimeout(r, 20));
+      releaseB();
+      const [acknowledged, wasRemoved] = await Promise.all([b, removed]);
+      await tabB.replayQueue({ fetchImpl });
+
+      // Exactly one of the two choices took effect, and the page told the truth.
+      expect(acknowledged).toBe(true);
+      expect(wasRemoved).toBe(false);
+      expect(fetchImpl).toHaveBeenCalledTimes(1);
+      expect(await tabA.getQueueSize()).toBe(0);
     } finally {
       delete (navigator as unknown as { locks?: unknown }).locks;
     }

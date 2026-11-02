@@ -372,6 +372,48 @@ describe('saved-claim lifecycle', () => {
     expect(saveDraft).not.toHaveBeenCalled();
   });
 
+  it('R3 sending a claim started without saving never deletes the earlier saved claim', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 201,
+      json: async () => ({ success: true, claimId: 'claim-sent' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    vi.mocked(useSearchParams).mockReturnValue(
+      new URLSearchParams('demo=auto') as unknown as ReturnType<typeof useSearchParams>,
+    );
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
+    vi.mocked(clearDraft).mockRejectedValueOnce(new Error('transaction aborted'));
+    try {
+      render(<ClaimFormClient />);
+      fireEvent.click(await screen.findByRole('button', { name: 'Start a new claim' }));
+      fireEvent.click(
+        await screen.findByRole('button', { name: 'Continue without saving on this device' }),
+      );
+      await screen.findByLabelText('Full Name *');
+      fireEvent.click(screen.getByRole('button', { name: 'Next Step' }));
+      fireEvent.click(await screen.findByRole('button', { name: 'Next Step' }));
+      for (const id of [
+        'understandPlatformRole',
+        'acceptContractorCommunication',
+        'agreeToTerms',
+      ]) {
+        fireEvent.click(document.getElementById(id)!);
+      }
+      fireEvent.click(screen.getByRole('checkbox', { name: /collection notice|privacy/i }));
+      fireEvent.click(screen.getByRole('button', { name: 'Proceed to Final Review' }));
+      await submitAtReview();
+      expect(
+        await screen.findByRole('region', { name: 'Claim submitted successfully' }),
+      ).toBeVisible();
+      // Only the one failed "Start a new claim" removal ever ran.
+      expect(clearDraft).toHaveBeenCalledTimes(1);
+      expect(saveDraft).not.toHaveBeenCalled();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it('R5 typing is saved after starting a new claim', async () => {
     vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
     render(<ClaimFormClient />);

@@ -79,7 +79,9 @@ Rules:
    visit with no typing writes nothing, so an untouched visit can no longer create or
    overwrite a draft.
 3. **`closed` is terminal.** The pending autosave timer is cancelled, autosave stops, and the
-   slot is cleared. The page shows the success screen (server accepted) or the "saved on this
+   slot is cleared, except after "Continue without saving": that form never wrote the slot,
+   and the claim saved there is a different one, so it is left for the homeowner (review round
+   5 on 3fa0f13d). The page shows the success screen (server accepted) or the "saved on this
    device" screen (queued). Neither screen has form fields.
 4. **Draft reads and writes report the truth.** `loadDraft` resolves null only when there is
    no IndexedDB on the device or the slot is empty; a failed open or read rejects. `saveDraft`
@@ -143,14 +145,14 @@ Rules:
 2. **The tick turns a held item into an ordinary queued item.** Recovery is "acknowledge, then
    replay", so a held claim gets exactly the same send, retry and dead-letter handling as any
    queued claim. If the device is offline when ticked, it is sent on the next replay.
-3. **Replay is single-flight, across tabs.** The page-load replay, the `online` handler, the
-   banner's "Retry now" and the panel can all call `replayQueue`. Only one run happens at a
-   time; a call during a run waits for it and then runs once more, so an item acknowledged
-   mid-run is still sent and no item is posted twice by overlapping runs. Each run also holds
-   the Web Locks API lock `dr-offline-queue-replay`, so a second tab of the site waits and then
-   reads the queue afresh (added after review round 3 on ca3bbb5b: two tabs could each post
-   the same claim). Where `navigator.locks` is missing, runs are single-flight within the
-   page only.
+3. **Every queue change runs one at a time, across tabs.** Replay, acknowledging a held
+   claim and removing one all run through one exclusive section: a promise chain orders them
+   in this page, and the Web Locks API lock `dr-offline-queue` orders them across every tab of
+   the site. A replay call during a run waits for it and then runs once more, so an item
+   acknowledged mid-run is still sent and no item is posted twice by overlapping runs. Added
+   after review rounds 3 and 5: two tabs could each post the same claim, and a slow
+   acknowledgement in one tab could write back a claim the other had already sent or removed.
+   Where `navigator.locks` is missing, only this page is ordered.
 4. **An accepted claim is never sent twice.** On a 2xx the item's id is first written to an
    accepted marker held outside IndexedDB (localStorage, plus memory for the page), then the
    item is deleted. If the delete fails, the item is also marked `acceptedAt` where possible.
@@ -166,13 +168,17 @@ Rules:
 5. **A failed read is not an empty read.** The panel uses `readHeldClaims()`, which returns
    `{ ok: false }` on an IndexedDB error. The panel then says it could not check, instead of
    showing nothing.
-6. **Every queue write resolves on commit.** The shared transaction helper and `deleteExisting` resolve
+6. **A write to an existing item reads and writes it in one transaction.** Acknowledging,
+   removing, and replay's retry and accepted marks read the item and change it in one
+   readwrite transaction, and do nothing if it has gone. A stale copy read earlier is never
+   written back, so a write cannot bring back a claim that was sent or removed.
+7. **Every queue write resolves on commit.** The shared transaction helper and `deleteExisting` resolve
    only when the transaction commits, not at request success. A write whose transaction aborts is not
    recorded as done; this also makes "removed" and the accepted-marker cleanup truthful.
 
-7. **Queue writes report the truth.** `acknowledgeHeldClaim` and `removeQueuedClaim` return
-   `false` when the flag is off, IndexedDB is unavailable, the item is not on the device
-   (checked in the same transaction as the delete), or the write fails. The panel only says "removed" or "sending" on `true`.
+8. **Queue writes report the truth.** `acknowledgeHeldClaim` and `removeQueuedClaim` return
+   `false` when the flag is off, IndexedDB is unavailable, the item is not on the device or is
+   no longer held (checked in the same transaction as the write), or the write fails. The panel only says "removed" or "sending" on `true`.
 
 Failures:
 

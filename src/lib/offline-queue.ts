@@ -123,15 +123,51 @@ async function putItem(storeName: string, item: QueuedClaim): Promise<void> {
   await tx<IDBValidKey>(storeName, 'readwrite', (s) => s.put(item));
 }
 
+/**
+ * Change one item only if it is still there, reading and writing it in ONE
+ * readwrite transaction, so a stale copy read earlier can never be written
+ * back over a delete. `change` returns the new item, or null to leave it.
+ * Resolves true only once the write has committed.
+ */
+function updateExisting(
+  storeName: string,
+  id: string,
+  change: (item: QueuedClaim) => QueuedClaim | null,
+): Promise<boolean> {
+  return openDb().then(
+    (db) =>
+      new Promise<boolean>((resolve, reject) => {
+        const t = db.transaction(storeName, 'readwrite');
+        const store = t.objectStore(storeName);
+        let written = false;
+        const get = store.get(id);
+        get.onsuccess = () => {
+          const current = get.result as QueuedClaim | undefined;
+          const next = current ? change(current) : null;
+          if (!next) return;
+          written = true;
+          store.put(next);
+        };
+        t.oncomplete = () => resolve(written);
+        t.onabort = () => reject(t.error ?? new Error('IDB transaction aborted'));
+        t.onerror = () => reject(t.error ?? new Error('IDB transaction failed'));
+      }),
+  );
+}
+
 async function deleteItem(storeName: string, id: string): Promise<void> {
   await tx<undefined>(storeName, 'readwrite', (s) => s.delete(id));
 }
 
 /**
- * Delete one item only if it exists, in one transaction. Resolves true only
- * once the delete has committed; false when the item was not there.
+ * Delete one item only if it exists (and passes `keep`), in one transaction.
+ * Resolves true only once the delete has committed; false otherwise.
  */
-function deleteExisting(storeName: string, id: string): Promise<boolean> {
+function deleteExisting(
+  storeName: string,
+  id: string,
+  only: (item: QueuedClaim) => boolean = () => true,
+): Promise<boolean> {
   return openDb().then(
     (db) =>
       new Promise<boolean>((resolve, reject) => {
@@ -140,7 +176,7 @@ function deleteExisting(storeName: string, id: string): Promise<boolean> {
         let found = false;
         const get = store.get(id);
         get.onsuccess = () => {
-          if (get.result === undefined) return;
+          if (get.result === undefined || !only(get.result as QueuedClaim)) return;
           found = true;
           store.delete(id);
         };
@@ -308,19 +344,22 @@ export async function readHeldClaims(): Promise<
 export async function acknowledgeHeldClaim(id: string): Promise<boolean> {
   if (!FLAG_ENABLED || !hasIDB()) return false;
   try {
-    const item = (await listItems(STORE_PENDING)).find((i) => i.id === id);
-    if (!item || !isHeld(item)) return false;
-    await putItem(STORE_PENDING, {
-      ...item,
-      payload: {
-        ...item.payload,
-        // A legacy payload may carry the old platform fee; never send it.
-        paymentConfirmed: false,
-        paymentAmount: 0,
-        calloutFeeAcknowledged: true,
-      },
-    });
-    return true;
+    return await exclusive(() =>
+      updateExisting(STORE_PENDING, id, (item) =>
+        isHeld(item)
+          ? {
+              ...item,
+              payload: {
+                ...item.payload,
+                // A legacy payload may carry the old platform fee; never send it.
+                paymentConfirmed: false,
+                paymentAmount: 0,
+                calloutFeeAcknowledged: true,
+              },
+            }
+          : null,
+      ),
+    );
   } catch {
     return false;
   }
@@ -333,7 +372,7 @@ export async function acknowledgeHeldClaim(id: string): Promise<boolean> {
 export async function removeQueuedClaim(id: string): Promise<boolean> {
   if (!FLAG_ENABLED || !hasIDB()) return false;
   try {
-    if (!(await deleteExisting(STORE_PENDING, id))) return false;
+    if (!(await exclusive(() => deleteExisting(STORE_PENDING, id, isHeld)))) return false;
   } catch {
     return false;
   }
@@ -390,12 +429,14 @@ export type ReplayResult = {
 let replayRunning: Promise<ReplayResult> | null = null;
 let replayFollowUp: Promise<ReplayResult> | null = null;
 
-// One replay at a time across every tab of this site, not just this page:
-// two tabs replaying together would each post the same claim. The Web Locks
-// API queues the second tab until the first has finished; it then reads the
-// queue afresh and finds the claim gone or marked accepted. Where the API is
-// missing, replay is single-flight within the page only (plan doc rule 3).
-const REPLAY_LOCK = 'dr-offline-queue-replay';
+// Every change to the queue (replay, acknowledge, remove) runs one at a time,
+// in this page and across every tab of the site. Two tabs replaying together
+// would each post the same claim, and an acknowledgement or removal landing in
+// the middle of a replay could bring back a claim already sent (review rounds
+// 3 and 5). The Web Locks API queues other tabs; a promise chain queues this
+// page. Where Web Locks are missing, only this page is ordered (plan doc rule 3).
+const QUEUE_LOCK = 'dr-offline-queue';
+let pageChain: Promise<unknown> = Promise.resolve();
 
 function acrossTabs<T>(run: () => Promise<T>): Promise<T> {
   const locks =
@@ -403,7 +444,13 @@ function acrossTabs<T>(run: () => Promise<T>): Promise<T> {
       ? (navigator as Navigator & { locks?: LockManager }).locks
       : undefined;
   if (!locks || typeof locks.request !== 'function') return run();
-  return locks.request(REPLAY_LOCK, { mode: 'exclusive' }, () => run()) as Promise<T>;
+  return locks.request(QUEUE_LOCK, { mode: 'exclusive' }, () => run()) as Promise<T>;
+}
+
+function exclusive<T>(run: () => Promise<T>): Promise<T> {
+  const next = pageChain.then(() => acrossTabs(run));
+  pageChain = next.catch(() => undefined);
+  return next;
 }
 
 /**
@@ -414,7 +461,7 @@ function acrossTabs<T>(run: () => Promise<T>): Promise<T> {
  */
 export function replayQueue(deps: ReplayDeps = {}): Promise<ReplayResult> {
   if (!replayRunning) {
-    replayRunning = acrossTabs(() => runReplay(deps)).finally(() => {
+    replayRunning = exclusive(() => runReplay(deps)).finally(() => {
       replayRunning = null;
     });
     return replayRunning;
@@ -505,7 +552,11 @@ async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
         markAccepted(item.id);
         await deleteItem(STORE_PENDING, item.id).then(
           () => forgetAccepted([item.id]),
-          () => putItem(STORE_PENDING, { ...item, acceptedAt: replayedAt }).catch(() => undefined),
+          () =>
+            updateExisting(STORE_PENDING, item.id, (current) => ({
+              ...current,
+              acceptedAt: replayedAt,
+            })).catch(() => false),
         );
         successes += 1;
         const remaining = await getQueueSize();
@@ -529,21 +580,21 @@ async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
       }
 
       // 5xx or unexpected — transient, keep for next cycle.
-      await putItem(STORE_PENDING, {
-        ...item,
+      await updateExisting(STORE_PENDING, item.id, (current) => ({
+        ...current,
         attempts: item.attempts + 1,
         lastError: `HTTP ${res.status}`,
-      });
+      }));
       failures += 1;
       emit({ type: 'replay-retry', id: item.id, error: `HTTP ${res.status}` });
     } catch (err) {
       // Network failure — keep in queue, do not dead-letter.
       const msg = err instanceof Error ? err.message : 'network-error';
-      await putItem(STORE_PENDING, {
-        ...item,
+      await updateExisting(STORE_PENDING, item.id, (current) => ({
+        ...current,
         attempts: item.attempts + 1,
         lastError: msg,
-      });
+      })).catch(() => false);
       failures += 1;
       emit({ type: 'replay-retry', id: item.id, error: msg });
     }

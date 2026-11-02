@@ -312,6 +312,7 @@ function OnlineClaimPageOriginal() {
   // False only when the homeowner chose to continue without saving on this
   // device, after a removal failed or stalled. Autosave then writes nothing.
   const [saveOnDevice, setSaveOnDevice] = useState(true);
+  const saveOnDeviceRef = useRef(true);
   const lookupRef = useRef(0);
   // Form and step when the slot became owned. Autosave writes only after a change
   // from this, so an untouched visit never creates or overwrites a draft.
@@ -531,6 +532,7 @@ function OnlineClaimPageOriginal() {
   // claim, but nothing is written on this device, so no saved claim is replaced.
   const continueWithoutSaving = () => {
     if (!choosing()) return;
+    saveOnDeviceRef.current = false;
     setSaveOnDevice(false);
     offeredDraftRef.current = null;
     setOfferedSavedAt(null);
@@ -544,6 +546,9 @@ function OnlineClaimPageOriginal() {
   const closeSlot = () => {
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     setSlot('closed');
+    // A form opened with "Continue without saving" never wrote the slot, and
+    // the saved claim there is not this one: leave it for the homeowner.
+    if (!saveOnDeviceRef.current) return;
     // Best-effort: the claim has gone. If this fails, the next visit offers the
     // draft and the homeowner chooses (plan doc, draft-slot failures).
     void clearDraft().catch(() => undefined);
