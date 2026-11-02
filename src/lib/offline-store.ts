@@ -105,26 +105,25 @@ export function clearDraft(): Promise<void> {
   return serialise(removeDraft);
 }
 
+// Resolves only once the delete has committed; rejects if storage cannot be
+// opened or the transaction aborts, so a caller never reports a draft as
+// deleted when it is still on the device.
 async function removeDraft(): Promise<void> {
-  try {
-    const db = await openDB();
-    await new Promise<void>((resolve, reject) => {
-      const tx = db.transaction(STORE_NAME, 'readwrite');
-      const store = tx.objectStore(STORE_NAME);
-      const req = store.delete('current');
+  const db = await openDB();
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    const store = tx.objectStore(STORE_NAME);
+    const req = store.delete('current');
 
-      tx.oncomplete = () => {
-        db.close();
-        resolve();
-      };
-      tx.onabort = tx.onerror = () => {
-        db.close();
-        reject(tx.error ?? req.error ?? new Error('draft clear failed'));
-      };
-    });
-  } catch {
-    // Silently fail — clearing is best-effort
-  }
+    tx.oncomplete = () => {
+      db.close();
+      resolve();
+    };
+    tx.onabort = tx.onerror = () => {
+      db.close();
+      reject(tx.error ?? req.error ?? new Error('draft clear failed'));
+    };
+  });
 }
 
 export async function getUnsynced(): Promise<ClaimDraft[]> {

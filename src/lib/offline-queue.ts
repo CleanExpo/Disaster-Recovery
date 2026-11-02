@@ -390,6 +390,22 @@ export type ReplayResult = {
 let replayRunning: Promise<ReplayResult> | null = null;
 let replayFollowUp: Promise<ReplayResult> | null = null;
 
+// One replay at a time across every tab of this site, not just this page:
+// two tabs replaying together would each post the same claim. The Web Locks
+// API queues the second tab until the first has finished; it then reads the
+// queue afresh and finds the claim gone or marked accepted. Where the API is
+// missing, replay is single-flight within the page only (plan doc rule 3).
+const REPLAY_LOCK = 'dr-offline-queue-replay';
+
+function acrossTabs<T>(run: () => Promise<T>): Promise<T> {
+  const locks =
+    typeof navigator !== 'undefined'
+      ? (navigator as Navigator & { locks?: LockManager }).locks
+      : undefined;
+  if (!locks || typeof locks.request !== 'function') return run();
+  return locks.request(REPLAY_LOCK, { mode: 'exclusive' }, () => run()) as Promise<T>;
+}
+
 /**
  * Single-flight: only one replay runs at a time, so overlapping callers
  * (page load, the online event, the banner retry, the held-claim panel) never
@@ -398,7 +414,7 @@ let replayFollowUp: Promise<ReplayResult> | null = null;
  */
 export function replayQueue(deps: ReplayDeps = {}): Promise<ReplayResult> {
   if (!replayRunning) {
-    replayRunning = runReplay(deps).finally(() => {
+    replayRunning = acrossTabs(() => runReplay(deps)).finally(() => {
       replayRunning = null;
     });
     return replayRunning;
@@ -474,6 +490,9 @@ async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
         headers: {
           'Content-Type': 'application/json',
           'x-offline-replay': '1',
+          // Stable per queued claim, so the server can refuse a repeat once it
+          // records this key (follow-up: server-side idempotency).
+          'x-offline-claim-id': item.id,
           'x-offline-queued-at': String(item.queuedAt),
           'x-offline-replayed-at': String(replayedAt),
         },

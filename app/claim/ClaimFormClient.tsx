@@ -80,6 +80,24 @@ import {
 type DraftSlot = 'checking' | 'slow' | 'offered' | 'owned' | 'closed';
 // How long the page waits for the saved-draft lookup before showing the form.
 const DRAFT_LOOKUP_LIMIT_MS = 3000;
+// A saved-claim removal that has not committed by then is reported as failed.
+const DRAFT_CLEAR_LIMIT_MS = 5000;
+
+function withinLimit<T>(work: Promise<T>, ms: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = window.setTimeout(() => reject(new Error('timed out')), ms);
+    work.then(
+      (value) => {
+        window.clearTimeout(timer);
+        resolve(value);
+      },
+      (err: unknown) => {
+        window.clearTimeout(timer);
+        reject(err);
+      },
+    );
+  });
+}
 const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 const CHECKBOX_CLASS =
@@ -297,6 +315,10 @@ function OnlineClaimPageOriginal() {
   const slotRef = useRef<DraftSlot>('checking');
   const offeredDraftRef = useRef<ClaimDraft | null>(null);
   const [offeredSavedAt, setOfferedSavedAt] = useState<number | null>(null);
+  // "Start a new claim" removes the saved claim first; the form opens only once
+  // that removal has committed, so the page never says it is gone when it is not.
+  const [clearing, setClearing] = useState<'idle' | 'clearing' | 'failed'>('idle');
+  const clearingRef = useRef(false);
   // Form and step when the slot became owned. Autosave writes only after a change
   // from this, so an untouched visit never creates or overwrites a draft.
   const baselineRef = useRef<{ formData: unknown; step: number } | null>(null);
@@ -466,10 +488,24 @@ function OnlineClaimPageOriginal() {
   };
 
   // The homeowner's explicit choice is the only way a waiting draft is deleted.
-  const startNewClaim = () => {
+  const startNewClaim = async () => {
+    if (clearingRef.current) return;
+    clearingRef.current = true;
+    setClearing('clearing');
+    const removed = await withinLimit(clearDraft(), DRAFT_CLEAR_LIMIT_MS).then(
+      () => true,
+      () => false,
+    );
+    clearingRef.current = false;
+    if (slotRef.current !== 'offered' && slotRef.current !== 'slow') return;
+    if (!removed) {
+      // Keep the choice on screen; nothing has been deleted or replaced.
+      setClearing('failed');
+      return;
+    }
+    setClearing('idle');
     offeredDraftRef.current = null;
     setOfferedSavedAt(null);
-    void clearDraft();
     takeOwnership();
   };
 
@@ -478,7 +514,9 @@ function OnlineClaimPageOriginal() {
   const closeSlot = () => {
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     setSlot('closed');
-    void clearDraft();
+    // Best-effort: the claim has gone. If this fails, the next visit offers the
+    // draft and the homeowner chooses (plan doc, draft-slot failures).
+    void clearDraft().catch(() => undefined);
   };
 
   const formatDraftTime = (ts: number) => {
@@ -895,6 +933,13 @@ function OnlineClaimPageOriginal() {
           </div>
         )}
 
+        {(slot === 'slow' || slot === 'offered') && clearing === 'failed' && (
+          <p role="alert" className="mb-4 text-sm text-red-700">
+            We couldn&rsquo;t remove the saved claim from this device, so a new claim hasn&rsquo;t
+            been started. Please try again, or call 1300 309 361.
+          </p>
+        )}
+
         {slot === 'slow' && (
           <section
             aria-label="Still checking for a saved claim"
@@ -909,6 +954,7 @@ function OnlineClaimPageOriginal() {
               <button
                 type="button"
                 onClick={startNewClaim}
+                disabled={clearing === 'clearing'}
                 className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
               >
                 Start a new claim
@@ -937,6 +983,7 @@ function OnlineClaimPageOriginal() {
               <button
                 type="button"
                 onClick={resumeDraft}
+                disabled={clearing === 'clearing'}
                 className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 Resume
@@ -944,6 +991,7 @@ function OnlineClaimPageOriginal() {
               <button
                 type="button"
                 onClick={startNewClaim}
+                disabled={clearing === 'clearing'}
                 className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
               >
                 Start a new claim

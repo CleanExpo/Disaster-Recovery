@@ -73,10 +73,14 @@ Rules:
    device" screen (queued). Neither screen has form fields.
 4. **Draft writes resolve on commit.** `saveDraft` and `clearDraft` resolve only when
    the transaction commits, never at request success, so an aborted write is reported as failed.
-
+   `clearDraft` also rejects when storage cannot be opened.
 5. **Draft writes are serialised.** `saveDraft` and `clearDraft` run one after another in call
    order inside `offline-store`, so a save started before a clear can never land after it.
 6. **Resume uses the draft read at page load,** not a second read, so it cannot be raced.
+7. **"Start a new claim" opens the form only after the saved claim is removed.** The page
+   waits for `clearDraft` to commit (5 s limit). If it fails or runs out of time, the choice
+   stays on screen with "We couldn't remove the saved claim from this device…", nothing is
+   replaced, and Resume still works. Added after review round 3 on ca3bbb5b.
 
 Failures:
 
@@ -87,6 +91,7 @@ Failures:
 | Read slower than 3 s (timeout)         | `slow`: no form; the page says it is taking longer and offers "Start a new claim" (which replaces any saved claim) and the phone line | nothing can be typed and lost (5416ace0), and nothing is written over a draft the homeowner did not choose to discard (round 2 on 0515f787) |
 | Read answers while `slow`              | same as answering in `checking`: offer the draft, or own the slot                                                                     | the homeowner has not chosen yet                                                                                                            |
 | Read answers after "Start a new claim" | ignored                                                                                                                               | the homeowner explicitly chose to replace what was saved                                                                                    |
+| Clear fails on "Start a new claim"     | the choice stays, with an error and the phone line; retry is allowed                                                                  | the page never says a saved claim is gone when it is not (round 3 on ca3bbb5b)                                                              |
 | `clearDraft` fails after acceptance    | slot may still hold the sent claim                                                                                                    | best-effort, as on main; the success screen still shows. Logged as a follow-up, not hidden                                                  |
 | Save after close                       | impossible: timer cancelled and writer checks `closed` first                                                                          | rule 3                                                                                                                                      |
 
@@ -121,10 +126,14 @@ Rules:
 2. **The tick turns a held item into an ordinary queued item.** Recovery is "acknowledge, then
    replay", so a held claim gets exactly the same send, retry and dead-letter handling as any
    queued claim. If the device is offline when ticked, it is sent on the next replay.
-3. **Replay is single-flight.** The page-load replay, the `online` handler, the banner's
-   "Retry now" and the panel can all call `replayQueue`. Only one run happens at a time; a
-   call during a run waits for it and then runs once more, so an item acknowledged
-   mid-run is still sent and no item is posted twice by overlapping runs.
+3. **Replay is single-flight, across tabs.** The page-load replay, the `online` handler, the
+   banner's "Retry now" and the panel can all call `replayQueue`. Only one run happens at a
+   time; a call during a run waits for it and then runs once more, so an item acknowledged
+   mid-run is still sent and no item is posted twice by overlapping runs. Each run also holds
+   the Web Locks API lock `dr-offline-queue-replay`, so a second tab of the site waits and then
+   reads the queue afresh (added after review round 3 on ca3bbb5b: two tabs could each post
+   the same claim). Where `navigator.locks` is missing, runs are single-flight within the
+   page only.
 4. **An accepted claim is never sent twice.** On a 2xx the item's id is first written to an
    accepted marker held outside IndexedDB (localStorage, plus memory for the page), then the
    item is deleted. If the delete fails, the item is also marked `acceptedAt` where possible.
@@ -133,8 +142,10 @@ Rules:
    read never removes one. The run counts it as a success, so the homeowner is told it was
    sent, and it is not counted as waiting. Added after review round 1 on 02d100d2 (both
    cleanup writes failing let a reload resend the claim). Residual: if IndexedDB and
-   localStorage both fail and the page reloads, the claim can be sent again; only a
-   server-side idempotency key closes that, recorded as a follow-up.
+   localStorage both fail and the page reloads, or the page closes between the server's 2xx
+   and the marker write, the claim can be sent again. Every replay now sends the queue id as
+   `x-offline-claim-id`; a server that records that key with a unique constraint would close
+   the gap. That needs a database migration, so it is a founder-gated follow-up.
 5. **A failed read is not an empty read.** The panel uses `readHeldClaims()`, which returns
    `{ ok: false }` on an IndexedDB error. The panel then says it could not check, instead of
    showing nothing.

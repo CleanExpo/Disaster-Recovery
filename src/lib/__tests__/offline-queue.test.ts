@@ -591,6 +591,46 @@ describe('offline-queue', () => {
     expect(await mod.getQueueSize()).toBe(0);
   });
 
+  it('R2 two tabs replaying at once post each claim once', async () => {
+    // A shared exclusive lock, as navigator.locks gives every tab of a site.
+    let tail: Promise<unknown> = Promise.resolve();
+    const locks = {
+      request: (_name: string, _opts: unknown, cb: () => Promise<unknown>) => {
+        const run = tail.then(() => cb());
+        tail = run.catch(() => undefined);
+        return run;
+      },
+    };
+    Object.defineProperty(navigator, 'locks', { value: locks, configurable: true });
+    try {
+      const tabA = await loadQueue();
+      await tabA.enqueueClaim({ fullName: 'One Claim', ...ACK });
+      vi.resetModules();
+      const tabB = await loadQueue();
+      expect(tabB).not.toBe(tabA);
+      let release: () => void = () => {};
+      const gate = new Promise<void>((r) => {
+        release = r;
+      });
+      const fetchImpl = vi.fn().mockImplementation(async () => {
+        await gate;
+        return new Response(JSON.stringify({ success: true }), { status: 201 });
+      });
+
+      const a = tabA.replayQueue({ fetchImpl });
+      const b = tabB.replayQueue({ fetchImpl });
+      await new Promise((r) => setTimeout(r, 20));
+      release();
+      await Promise.all([a, b]);
+
+      expect(fetchImpl).toHaveBeenCalledTimes(1);
+      expect(fetchImpl.mock.calls[0][1].headers['x-offline-claim-id']).toEqual(expect.any(String));
+      expect(await tabB.getQueueSize()).toBe(0);
+    } finally {
+      delete (navigator as unknown as { locks?: unknown }).locks;
+    }
+  });
+
   it('isOfflineQueueEnabled reflects the feature flag', async () => {
     const mod = await loadQueue();
     expect(mod.isOfflineQueueEnabled()).toBe(true);

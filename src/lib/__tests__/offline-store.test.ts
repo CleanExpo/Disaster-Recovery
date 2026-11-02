@@ -119,6 +119,16 @@ describe('offline-store draft slot', () => {
     expect(await store.loadDraft()).toBeNull();
   });
 
+  it('R1 a draft clear whose transaction aborts is reported as failed and keeps the draft', async () => {
+    stub = createDraftIdbStub([0, 0, 0]);
+    vi.stubGlobal('indexedDB', stub);
+    const store = await import('../offline-store');
+    await store.saveDraft({ formData: { fullName: 'Saved' }, step: 1 });
+    stub.state.abortNext = true;
+    await expect(store.clearDraft()).rejects.toThrow('transaction aborted');
+    expect((await store.loadDraft())?.formData).toMatchObject({ fullName: 'Saved' });
+  });
+
   it('R1 a failed save does not block the clear behind it', async () => {
     stub = createDraftIdbStub([0, 0]);
     vi.stubGlobal('indexedDB', stub);

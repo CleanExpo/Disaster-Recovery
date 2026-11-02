@@ -294,6 +294,26 @@ describe('saved-claim lifecycle', () => {
     expect(await screen.findByLabelText('Full Name *')).toHaveValue('');
   });
 
+  it('R3 a saved claim that could not be removed is never shown as replaced', async () => {
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
+    vi.mocked(clearDraft).mockRejectedValueOnce(new Error('transaction aborted'));
+    render(<ClaimFormClient />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Start a new claim' }));
+    expect(await screen.findByText(/couldn.t remove the saved claim/)).toHaveAttribute(
+      'role',
+      'alert',
+    );
+    // The choice stays: no new form, and the saved claim can still be resumed.
+    expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Resume' })).toBeEnabled();
+    expect(saveDraft).not.toHaveBeenCalled();
+
+    // Trying again once storage works opens an empty form.
+    fireEvent.click(screen.getByRole('button', { name: 'Start a new claim' }));
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('');
+    expect(clearDraft).toHaveBeenCalledTimes(2);
+  });
+
   it('R5 typing is saved after starting a new claim', async () => {
     vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
     render(<ClaimFormClient />);
