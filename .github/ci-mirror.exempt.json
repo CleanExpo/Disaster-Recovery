@@ -44,6 +44,24 @@
       "step": "*",
       "test_gap": true,
       "reason": "Playwright smoke tests against the preview URL produced by deploy-preview, which does not exist before push. A declared test gap: GitHub runs it on the PR."
+    },
+    {
+      "workflow": "ci.yml",
+      "job": "test",
+      "step": "Install dependencies",
+      "reason": "Runs `npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps`; the mirror will not run a compound setup line because the fallback could rewrite this machine's install. Dependencies are already installed for the exact head by `pr_release_gate.py provision` (npm ci --legacy-peer-deps from package-lock.json), so the job's later steps still run locally. GitHub runs this step on the PR."
+    },
+    {
+      "workflow": "ci.yml",
+      "job": "format",
+      "step": "Install dependencies",
+      "reason": "Runs `npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps`; the mirror will not run a compound setup line because the fallback could rewrite this machine's install. Dependencies are already installed for the exact head by `pr_release_gate.py provision` (npm ci --legacy-peer-deps from package-lock.json), so the job's later steps still run locally. GitHub runs this step on the PR."
+    },
+    {
+      "workflow": "lighthouse.yml",
+      "job": "lighthouse",
+      "step": "Upload Lighthouse reports",
+      "reason": "Uploads the artefacts of the already-exempt 'Run Lighthouse CI' step under a name built from ${{ github.run_number }}, which only exists on GitHub. Nothing to upload before push; GitHub runs it on the PR."
     }
   ]
 }
