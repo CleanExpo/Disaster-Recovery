@@ -11,6 +11,41 @@ export interface ClaimDraft {
   step: number;
   savedAt: number; // unix timestamp ms
   synced: boolean;
+  owner?: string; // page that last wrote the slot (absent on drafts saved before DR-966)
+}
+
+/**
+ * Which page a saved draft belongs to. Drafts saved before owners existed are
+ * identified by their save time.
+ */
+export function draftOwner(draft: ClaimDraft): string {
+  return draft.owner ?? `legacy:${draft.savedAt}`;
+}
+
+/**
+ * How a page proves the slot is still the one it read. `me` is this page's own
+ * id; `expect()` is the owner the page believes holds the slot (null: the slot
+ * was empty when this page took it). Read inside the write's own transaction,
+ * so another tab's write in between is always seen (review round 7).
+ */
+export interface DraftGuard {
+  me: string;
+  expect: () => string | null;
+}
+
+/** The slot no longer holds what this page read: another tab changed it. */
+export class DraftConflictError extends Error {
+  constructor() {
+    super('the saved claim was changed in another tab');
+    this.name = 'DraftConflictError';
+  }
+}
+
+function mayWrite(current: ClaimDraft | undefined, guard: DraftGuard): boolean {
+  const holder = current ? draftOwner(current) : null;
+  const expected = guard.expect();
+  if (holder === null) return expected === null;
+  return holder === guard.me || holder === expected;
 }
 
 function openDB(): Promise<IDBDatabase> {
@@ -44,19 +79,29 @@ function serialise<T>(run: () => Promise<T>): Promise<T> {
   return next;
 }
 
+/**
+ * Save the draft only if the slot still holds what this page read (see
+ * DraftGuard), checked and written in one readwrite transaction. Rejects with
+ * DraftConflictError, writing nothing, when another tab has saved over or
+ * cleared it, so a stale page can never overwrite a newer claim or bring back
+ * one that was sent.
+ */
 export function saveDraft(
   draft: Partial<ClaimDraft> & { formData: Record<string, unknown>; step: number },
+  guard: DraftGuard,
 ): Promise<void> {
-  return serialise(() => writeDraft(draft));
+  return serialise(() => writeDraft(draft, guard));
 }
 
 async function writeDraft(
   draft: Partial<ClaimDraft> & { formData: Record<string, unknown>; step: number },
+  guard: DraftGuard,
 ): Promise<void> {
   const db = await openDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readwrite');
     const store = tx.objectStore(STORE_NAME);
+    let conflict = false;
 
     const record: ClaimDraft = {
       id: draft.id ?? 'current',
@@ -64,17 +109,26 @@ async function writeDraft(
       step: draft.step,
       savedAt: draft.savedAt ?? Date.now(),
       synced: draft.synced ?? false,
+      owner: guard.me,
     };
 
-    const req = store.put(record);
+    const get = store.get('current');
+    get.onsuccess = () => {
+      if (!mayWrite(get.result as ClaimDraft | undefined, guard)) {
+        conflict = true;
+        return;
+      }
+      store.put(record);
+    };
     // Resolve on commit, not request success: an aborted write has not happened.
     tx.oncomplete = () => {
       db.close();
-      resolve();
+      if (conflict) reject(new DraftConflictError());
+      else resolve();
     };
     tx.onabort = tx.onerror = () => {
       db.close();
-      reject(tx.error ?? req.error ?? new Error('draft save failed'));
+      reject(tx.error ?? get.error ?? new Error('draft save failed'));
     };
   });
 }
@@ -101,27 +155,53 @@ export async function loadDraft(): Promise<ClaimDraft | null> {
   });
 }
 
-export function clearDraft(): Promise<void> {
-  return serialise(removeDraft);
+/**
+ * Which saved draft a clear may remove: one owned by `me` or by `expect()`, or
+ * with `expect: 'any'` whatever is there (the homeowner chose to replace a
+ * claim the page could not read).
+ */
+export interface ClearGuard {
+  me: string;
+  expect: () => string | null | 'any';
 }
 
-// Resolves only once the delete has committed; rejects if storage cannot be
-// opened or the transaction aborts, so a caller never reports a draft as
-// deleted when it is still on the device.
-async function removeDraft(): Promise<void> {
+/**
+ * Remove the saved draft, checked and deleted in one readwrite transaction.
+ * Resolves 'removed' once the slot is empty (deleted now, or already gone),
+ * 'changed' when it now holds another tab's claim, which is left in place.
+ * Rejects if storage cannot be opened or the transaction aborts, so a caller
+ * never reports a draft as deleted when it is still on the device.
+ */
+export function clearDraft(guard: ClearGuard): Promise<'removed' | 'changed'> {
+  return serialise(() => removeDraft(guard));
+}
+
+async function removeDraft(guard: ClearGuard): Promise<'removed' | 'changed'> {
   const db = await openDB();
-  await new Promise<void>((resolve, reject) => {
+  return new Promise<'removed' | 'changed'>((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readwrite');
     const store = tx.objectStore(STORE_NAME);
-    const req = store.delete('current');
+    let outcome: 'removed' | 'changed' = 'removed';
 
+    const get = store.get('current');
+    get.onsuccess = () => {
+      const current = get.result as ClaimDraft | undefined;
+      if (!current) return;
+      const expected = guard.expect();
+      const holder = draftOwner(current);
+      if (expected !== 'any' && holder !== guard.me && holder !== expected) {
+        outcome = 'changed';
+        return;
+      }
+      store.delete('current');
+    };
     tx.oncomplete = () => {
       db.close();
-      resolve();
+      resolve(outcome);
     };
     tx.onabort = tx.onerror = () => {
       db.close();
-      reject(tx.error ?? req.error ?? new Error('draft clear failed'));
+      reject(tx.error ?? get.error ?? new Error('draft clear failed'));
     };
   });
 }

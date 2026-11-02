@@ -22,8 +22,9 @@ vi.mock('@/lib/language-context', () => ({
 vi.mock('@/lib/offline-store', () => ({
   loadDraft: vi.fn(),
   saveDraft: vi.fn().mockResolvedValue(undefined),
-  clearDraft: vi.fn().mockResolvedValue(undefined),
+  clearDraft: vi.fn().mockResolvedValue('removed'),
   getUnsynced: vi.fn().mockResolvedValue([]),
+  draftOwner: (d: { owner?: string; savedAt: number }) => d.owner ?? `legacy:${d.savedAt}`,
 }));
 const queue = vi.hoisted(() => ({
   enabled: false,
@@ -115,7 +116,7 @@ beforeEach(() => {
   queue.enqueueClaim.mockReset().mockResolvedValue({ ok: false, reason: 'flag-off' });
   queue.online = true;
   vi.mocked(saveDraft).mockClear().mockResolvedValue(undefined);
-  vi.mocked(clearDraft).mockClear().mockResolvedValue(undefined);
+  vi.mocked(clearDraft).mockClear().mockResolvedValue('removed');
 });
 
 afterEach(() => {
@@ -336,8 +337,8 @@ describe('saved-claim lifecycle', () => {
     vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
     let finish: () => void = () => {};
     vi.mocked(clearDraft).mockReturnValueOnce(
-      new Promise<void>((resolve) => {
-        finish = resolve;
+      new Promise<'removed'>((resolve) => {
+        finish = () => resolve('removed');
       }),
     );
     render(<ClaimFormClient />);
@@ -355,6 +356,47 @@ describe('saved-claim lifecycle', () => {
     });
     expect(await screen.findByLabelText('Full Name *')).toHaveValue('');
   }, 12_000);
+
+  it('R3 when another tab saved a newer claim, "Start a new claim" deletes nothing and offers the newer one', async () => {
+    vi.mocked(loadDraft).mockResolvedValueOnce({
+      ...savedDraft({ fullName: 'Earlier Claim' }),
+      owner: 'page-first',
+    });
+    vi.mocked(clearDraft).mockResolvedValueOnce('changed');
+    render(<ClaimFormClient />);
+    const start = await screen.findByRole('button', { name: 'Start a new claim' });
+    // The page reads the slot again and finds the other tab's claim.
+    vi.mocked(loadDraft).mockResolvedValueOnce({
+      ...savedDraft({ fullName: 'Newer Claim' }),
+      owner: 'page-b',
+    });
+    fireEvent.click(start);
+    // The clear was limited to the claim this page offered.
+    const guard = vi.mocked(clearDraft).mock.calls[0][0];
+    expect(guard.expect()).toBe('page-first');
+    fireEvent.click(await screen.findByRole('button', { name: 'Resume' }));
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('Newer Claim');
+    expect(clearDraft).toHaveBeenCalledTimes(1);
+  });
+
+  it('R1 when another tab changed the saved claim, this page stops saving and says so', async () => {
+    const conflict = Object.assign(new Error('the saved claim was changed in another tab'), {
+      name: 'DraftConflictError',
+    });
+    vi.mocked(saveDraft).mockRejectedValueOnce(conflict);
+    render(<ClaimFormClient />);
+    await typeFullName('First Typing');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(saveDraft).toHaveBeenCalledTimes(1);
+    expect(await screen.findByText(/changed in another tab or window/)).toBeVisible();
+    await typeFullName('More Typing');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(saveDraft).toHaveBeenCalledTimes(1);
+  });
 
   it('R5 continuing without saving on this device never writes over the saved claim', async () => {
     vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));

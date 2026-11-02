@@ -39,6 +39,7 @@ import {
   saveDraft,
   loadDraft,
   clearDraft,
+  draftOwner,
   getUnsynced,
   type ClaimDraft,
 } from '@/lib/offline-store';
@@ -313,6 +314,15 @@ function OnlineClaimPageOriginal() {
   // device, after a removal failed or stalled. Autosave then writes nothing.
   const [saveOnDevice, setSaveOnDevice] = useState(true);
   const saveOnDeviceRef = useRef(true);
+  // Set when another tab changed the saved claim under this page.
+  const [otherTab, setOtherTab] = useState(false);
+  // Draft ownership across tabs (review round 7): this page's id, and the owner
+  // it believes holds the slot (null: the slot was empty when it took it). Every
+  // save and clear checks these in its own transaction.
+  const pageIdRef = useRef(
+    `page_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`,
+  );
+  const expectRef = useRef<string | null>(null);
   const lookupRef = useRef(0);
   // Form and step when the slot became owned. Autosave writes only after a change
   // from this, so an untouched visit never creates or overwrites a draft.
@@ -334,7 +344,9 @@ function OnlineClaimPageOriginal() {
     );
   }, []);
 
+  // The page takes an empty slot: nothing saved belongs to anyone else.
   const takeOwnership = useCallback(() => {
+    expectRef.current = null;
     baselineRef.current = { ...latestRef.current };
     setSlot('owned');
   }, [setSlot]);
@@ -464,18 +476,31 @@ function OnlineClaimPageOriginal() {
     saveTimerRef.current = setTimeout(() => {
       if (slotRef.current !== 'owned') return;
       // Exclude non-serialisable fields (File[]) — use keys from formData directly
-      saveDraft({
-        id: 'current',
-        formData: formData as Record<string, unknown>,
-        step,
-        savedAt: Date.now(),
-        synced: false,
-      })
+      saveDraft(
+        {
+          id: 'current',
+          formData: formData as Record<string, unknown>,
+          step,
+          savedAt: Date.now(),
+          synced: false,
+        },
+        { me: pageIdRef.current, expect: () => expectRef.current },
+      )
         .then(() => {
+          // The slot is now this page's: an empty slot later means another tab
+          // cleared it, and this page must not write it back.
+          expectRef.current = pageIdRef.current;
           if (isOffline) setSavedLocally(true);
         })
-        .catch(() => {
-          // Silently ignore save errors
+        .catch((err: unknown) => {
+          if (err instanceof Error && err.name === 'DraftConflictError') {
+            // Another tab saved over or cleared this claim. Stop saving here
+            // rather than overwrite it, and say so.
+            saveOnDeviceRef.current = false;
+            setSaveOnDevice(false);
+            setOtherTab(true);
+          }
+          // Other save errors are ignored, as before.
         });
     }, 500);
     return () => {
@@ -490,6 +515,7 @@ function OnlineClaimPageOriginal() {
     offeredDraftRef.current = null;
     setOfferedSavedAt(null);
     if (draft) {
+      expectRef.current = draftOwner(draft);
       setFormData((prev) => ({ ...prev, ...draft.formData }));
       setStep(draft.step);
     }
@@ -509,14 +535,27 @@ function OnlineClaimPageOriginal() {
     setClearing('clearing');
     setClearSlow(false);
     const slowTimer = window.setTimeout(() => setClearSlow(true), DRAFT_CLEAR_SLOW_MS);
-    const removed = await clearDraft().then(
-      () => true,
-      () => false,
+    // A claim the page read may only be removed while it is still that claim;
+    // one it could not read is replaced, as the page told the homeowner.
+    const offered = offeredDraftRef.current;
+    const expected = offered ? draftOwner(offered) : 'any';
+    const outcome = await clearDraft({ me: pageIdRef.current, expect: () => expected }).then(
+      (result) => result,
+      () => 'failed' as const,
     );
+    const removed = outcome === 'removed';
     window.clearTimeout(slowTimer);
     clearingRef.current = false;
     setClearSlow(false);
     if (!choosing()) return;
+    if (outcome === 'changed') {
+      // Another tab saved a different claim: show that one, delete nothing.
+      setClearing('idle');
+      offeredDraftRef.current = null;
+      setOfferedSavedAt(null);
+      lookUpDraft();
+      return;
+    }
     if (!removed) {
       // Keep the choice on screen; nothing has been deleted or replaced.
       setClearing('failed');
@@ -551,7 +590,10 @@ function OnlineClaimPageOriginal() {
     if (!saveOnDeviceRef.current) return;
     // Best-effort: the claim has gone. If this fails, the next visit offers the
     // draft and the homeowner chooses (plan doc, draft-slot failures).
-    void clearDraft().catch(() => undefined);
+    // Only this page's claim is removed; one another tab saved is left.
+    void clearDraft({ me: pageIdRef.current, expect: () => expectRef.current }).catch(
+      () => undefined,
+    );
   };
 
   const formatDraftTime = (ts: number) => {
@@ -1090,8 +1132,9 @@ function OnlineClaimPageOriginal() {
           <>
             {!saveOnDevice && (
               <p role="status" className="mb-6 text-sm text-amber-900">
-                This claim isn&rsquo;t being saved on this device. Please send it before you close
-                this page.
+                {otherTab
+                  ? 'This claim was changed in another tab or window, so changes here aren\u2019t being saved on this device. Please send it before you close this page.'
+                  : 'This claim isn\u2019t being saved on this device. Please send it before you close this page.'}
               </p>
             )}
             <AgStepProgress steps={CLAIM_STEPS} current={step} className="mb-8" />

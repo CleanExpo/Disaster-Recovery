@@ -99,6 +99,16 @@ Rules:
    nothing to this device, so no saved claim is replaced. Added after review rounds 3 and 4.
 8. **Only the latest lookup, answering before the homeowner chooses, is acted on.** "Try
    again" starts a new lookup; an older answer, or any answer after a choice, is ignored.
+9. **Two tabs never write over each other's claim.** Every saved draft records the page that
+   wrote it (`owner`; drafts saved before this change are identified by their save time).
+   Each page remembers which owner it expects in the slot: none when it took an empty slot,
+   the offered draft's owner when it resumed, its own id after its first save. Every save and
+   clear reads the slot and writes it in the same readwrite transaction, and only goes ahead
+   when the slot holds what the page expects. A save that finds another tab's claim, or an
+   empty slot after this page saved, writes nothing and rejects with `DraftConflictError`;
+   the page then stops saving on this device and says the claim was changed in another tab
+   or window. "Start a new claim" on a claim another tab has since saved over deletes nothing
+   and offers the newer claim. Added after review round 7.
 
 Failures:
 
@@ -113,6 +123,8 @@ Failures:
 | Removal still running after 5 s                | the page says so; Resume stays off; "Continue without saving on this device" is offered; the form opens if the removal later commits  | no timer decides the outcome, and a late removal cannot follow Resume (round 4 on f5a997a5)                   |
 | `clearDraft` fails after acceptance            | slot may still hold the sent claim; the next visit offers it and the homeowner chooses                                                | best-effort, as on main; the success screen still shows. Logged as a follow-up, not hidden                    |
 | Save after close                               | impossible: timer cancelled and writer checks `closed` first                                                                          | rule 3                                                                                                        |
+| Another tab sent or replaced the claim         | this page's next save writes nothing; the page stops saving here and says why                                                         | a late save cannot bring back a sent claim or overwrite a newer one (rule 9)                                  |
+| Another tab saved over an offered claim        | "Start a new claim" deletes nothing; the page reads the slot again and offers the newer claim                                         | a stale choice cannot delete a claim the homeowner never saw (rule 9)                                         |
 
 Readers and writers of the draft slot after this change:
 
@@ -121,8 +133,8 @@ Readers and writers of the draft slot after this change:
 | Page-load effect        | `loadDraft` (again on "Try again")      | —                                                                     |
 | Autosave effect         | —                                       | `saveDraft` (owned, after a change, unless "Continue without saving") |
 | Resume                  | in-memory draft                         | — (autosave then saves it)                                            |
-| Start a new claim       | —                                       | `clearDraft`                                                          |
-| Submit success / queued | —                                       | `clearDraft` (then closed)                                            |
+| Start a new claim       | — (owner checked inside `clearDraft`)   | `clearDraft`, only the offered claim (or any, if it was unreadable)   |
+| Submit success / queued | — (owner checked inside `clearDraft`)   | `clearDraft`, only this page's claim (then closed)                    |
 | `online` handler        | `getUnsynced` (unchanged, display only) | —                                                                     |
 
 ## Machine 2: a queue item
@@ -210,3 +222,7 @@ Each earlier finding gets a test that fails on the code that had the defect's sh
 | R8   | 5416ace0: after the 3 s timeout the form is editable with autosave off      |
 | R9   | main: autosave overwrites the saved draft before the homeowner chooses      |
 | R10  | new: held-claim tick-and-resend panel; single-flight replay                 |
+
+Round 7 (two tabs sharing the draft slot) adds R1, R3 and R5 cases in
+`src/lib/__tests__/offline-store.test.ts` ("across tabs", two module instances over one
+store) and two form tests (the 'changed' outcome and the other-tab notice).
