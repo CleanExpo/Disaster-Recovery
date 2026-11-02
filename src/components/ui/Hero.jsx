@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Button from './Button';
+import Button from './LegacyButton';
 import Container from './Container';
 
 /**
