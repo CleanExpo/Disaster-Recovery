@@ -2,7 +2,7 @@ import React from 'react';
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useSearchParams } from 'next/navigation';
-import { loadDraft } from '@/lib/offline-store';
+import { clearDraft, loadDraft, saveDraft } from '@/lib/offline-store';
 import ClaimFormClient from './ClaimFormClient';
 import { CALLOUT_FEE_ACK_LABEL, CALLOUT_FEE_EXPLAINER } from '@/lib/claims/callout-fee-notice';
 
@@ -33,11 +33,15 @@ const queue = vi.hoisted(() => ({
     queuedAt: number;
     attempts: number;
   }>,
+  readHeldClaims: vi.fn(),
   removeQueuedClaim: vi.fn(),
+  enqueueClaim: vi.fn(),
+  online: true,
 }));
 vi.mock('@/lib/offline-queue', () => ({
   isOfflineQueueEnabled: () => queue.enabled,
-  listUnacknowledgedClaims: async () => queue.held,
+  // The form must never call these; they exist so a regression is visible.
+  readHeldClaims: () => queue.readHeldClaims(),
   removeQueuedClaim: (id: string) => queue.removeQueuedClaim(id),
   replayQueue: async () => ({
     successes: 0,
@@ -45,12 +49,12 @@ vi.mock('@/lib/offline-queue', () => ({
     deadLettered: 0,
     held: queue.held.length,
   }),
-  enqueueClaim: async () => ({ ok: false, reason: 'flag-off' }),
+  enqueueClaim: (payload: Record<string, unknown>) => queue.enqueueClaim(payload),
 }));
 vi.mock('@/lib/native-bridge', () => ({
   mediumTap: vi.fn(),
   heavyTap: vi.fn(),
-  isOnline: () => true,
+  isOnline: async () => queue.online,
 }));
 
 const FEE_PATTERN = /2750|2,750|From ~\$/;
@@ -106,7 +110,12 @@ beforeEach(() => {
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
   queue.enabled = false;
   queue.held = [];
-  queue.removeQueuedClaim.mockReset().mockResolvedValue(undefined);
+  queue.removeQueuedClaim.mockReset().mockResolvedValue(true);
+  queue.readHeldClaims.mockReset().mockResolvedValue({ ok: true, items: queue.held });
+  queue.enqueueClaim.mockReset().mockResolvedValue({ ok: false, reason: 'flag-off' });
+  queue.online = true;
+  vi.mocked(saveDraft).mockClear().mockResolvedValue(undefined);
+  vi.mocked(clearDraft).mockClear().mockResolvedValue(undefined);
 });
 
 afterEach(() => {
@@ -115,9 +124,11 @@ afterEach(() => {
 });
 
 describe('claim form shows no Disaster Recovery fee', () => {
-  it('shows no fee before a customer starts the form', () => {
+  it('shows no fee before a customer starts the form', async () => {
     render(<ClaimFormClient />);
-    expect(screen.getByRole('region', { name: 'Property & damage information' })).toBeVisible();
+    expect(
+      await screen.findByRole('region', { name: 'Property & damage information' }),
+    ).toBeVisible();
     expect(screen.queryByText(FEE_PATTERN)).not.toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(FEE_PATTERN);
   });
@@ -188,75 +199,204 @@ describe('call-out fee explainer and required tick box', () => {
   });
 });
 
-describe('claim queued offline before the call-out fee acknowledgement', () => {
-  it('restores it at final review, requires the tick, then sends it and clears the queue item', async () => {
-    queue.enabled = true;
-    queue.held = [
-      {
-        id: 'q_legacy',
-        queuedAt: Date.now() - 60_000,
-        attempts: 0,
-        // Shape the pre-02/11/2026 form queued: formData + paymentConfirmed/paymentAmount.
-        payload: { ...completeDraft, paymentConfirmed: false, paymentAmount: 2750 },
-      },
-    ];
+// ── Saved-claim lifecycle (DR-966) ──────────────────────────────────────
+// docs/plans/2026-11-02-saved-claim-lifecycle.md. Each R test pins one earlier
+// review finding (or main's own draft-overwrite bug) so it cannot come back.
+
+const AUTOSAVE_WAIT_MS = 700; // the form debounces autosave by 500 ms
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function savedNames(): unknown[] {
+  return vi
+    .mocked(saveDraft)
+    .mock.calls.map(([draft]) => (draft.formData as { fullName?: unknown }).fullName);
+}
+
+function savedDraft(formData: Record<string, unknown>, step = 1) {
+  return { id: 'current', formData, step, savedAt: Date.now(), synced: false };
+}
+
+async function typeFullName(value: string) {
+  const input = await screen.findByLabelText('Full Name *');
+  fireEvent.change(input, { target: { value } });
+  return input;
+}
+
+async function submitAtReview() {
+  const review = screen.getByRole('region', { name: 'Final review & submit' });
+  fireEvent.click(within(review).getByRole('checkbox', { name: CALLOUT_FEE_ACK_LABEL }));
+  await act(async () => {
+    fireEvent.click(within(review).getByRole('button', { name: 'Submit Claim' }));
+  });
+}
+
+describe('saved-claim lifecycle', () => {
+  it('R1 a claim the server accepted is never autosaved back as a draft', async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
       status: 201,
-      json: async () => ({ success: true, claimId: 'claim-legacy' }),
+      json: async () => ({ success: true, claimId: 'claim-sent' }),
     });
     vi.stubGlobal('fetch', fetchMock);
     try {
-      render(<ClaimFormClient />);
-      const review = await screen.findByRole('region', { name: 'Final review & submit' });
-      expect(within(review).getByText(/Your saved claim has not been sent yet/)).toBeVisible();
-      const submit = within(review).getByRole('button', { name: 'Submit Claim' });
-      expect(submit).toBeDisabled();
-      expect(fetchMock).not.toHaveBeenCalled();
-      expect(document.body.textContent).not.toMatch(FEE_PATTERN);
-
-      fireEvent.click(within(review).getByRole('checkbox', { name: CALLOUT_FEE_ACK_LABEL }));
+      await resumeAtStep(4, completeDraft);
+      await sleep(AUTOSAVE_WAIT_MS);
+      await submitAtReview();
+      expect(
+        await screen.findByRole('region', { name: 'Claim submitted successfully' }),
+      ).toBeVisible();
+      const savesAtSuccess = vi.mocked(saveDraft).mock.calls.length;
       await act(async () => {
-        fireEvent.click(submit);
+        await sleep(AUTOSAVE_WAIT_MS);
       });
-
-      const submitCall = fetchMock.mock.calls.find(([url]) => url === '/api/claims/submit');
-      expect(submitCall).toBeDefined();
-      const body = JSON.parse(String(submitCall![1].body));
-      expect(body).toMatchObject({
-        fullName: 'Joe Smith',
-        propertyAddress: '42 Smith St',
-        calloutFeeAcknowledged: true,
-      });
-      expect(JSON.stringify(body)).not.toMatch(/2750/);
-      expect(queue.removeQueuedClaim).toHaveBeenCalledWith('q_legacy');
+      expect(vi.mocked(saveDraft).mock.calls.length).toBe(savesAtSuccess);
+      expect(clearDraft).toHaveBeenCalled();
     } finally {
       vi.unstubAllGlobals();
     }
   });
 
-  it('keeps the held queue item when the resubmission fails', async () => {
+  it('R1 a claim queued offline is never autosaved back, and no form is left to type into', async () => {
+    queue.enabled = true;
+    queue.online = false;
+    queue.enqueueClaim.mockResolvedValue({ ok: true, id: 'q_new' });
+    await resumeAtStep(4, completeDraft);
+    await submitAtReview();
+    expect(await screen.findByText(/your claim is saved on this device/i)).toBeVisible();
+    expect(queue.enqueueClaim).toHaveBeenCalledWith(
+      expect.objectContaining({ fullName: 'Joe Smith', calloutFeeAcknowledged: true }),
+    );
+    const savesAtQueue = vi.mocked(saveDraft).mock.calls.length;
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(vi.mocked(saveDraft).mock.calls.length).toBe(savesAtQueue);
+    expect(clearDraft).toHaveBeenCalled();
+    expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
+  });
+
+  it('R3 a waiting draft is only deleted by the homeowner choosing to start a new claim', async () => {
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
+    render(<ClaimFormClient />);
+    expect(await screen.findByRole('button', { name: 'Resume' })).toBeVisible();
+    // No form to fill (and so nothing to submit) while the choice is open.
+    expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(clearDraft).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Start a new claim' }));
+    expect(clearDraft).toHaveBeenCalledTimes(1);
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('');
+  });
+
+  it('R5 typing is saved after starting a new claim', async () => {
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
+    render(<ClaimFormClient />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Start a new claim' }));
+    await typeFullName('New Claim Name');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(savedNames()).toContain('New Claim Name');
+  });
+
+  it('R5 typing is saved when there was no draft', async () => {
+    render(<ClaimFormClient />);
+    await typeFullName('Fresh Claim Name');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(savedNames()).toContain('Fresh Claim Name');
+  });
+
+  it('R7 the form never reads or deletes held queue items, and typing is never replaced', async () => {
     queue.enabled = true;
     queue.held = [
-      { id: 'q_legacy', queuedAt: Date.now(), attempts: 0, payload: { ...completeDraft } },
+      { id: 'q_legacy', queuedAt: Date.now(), attempts: 0, payload: { fullName: 'Held Claim' } },
     ];
-    const fetchMock = vi.fn().mockResolvedValue({
-      ok: false,
-      status: 503,
-      json: async () => ({ success: false, code: 'CLAIM_PERSISTENCE_FAILED' }),
+    render(<ClaimFormClient />);
+    const input = await typeFullName('Typed Name');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
     });
-    vi.stubGlobal('fetch', fetchMock);
-    try {
-      render(<ClaimFormClient />);
-      const review = await screen.findByRole('region', { name: 'Final review & submit' });
-      fireEvent.click(within(review).getByRole('checkbox', { name: CALLOUT_FEE_ACK_LABEL }));
-      await act(async () => {
-        fireEvent.click(within(review).getByRole('button', { name: 'Submit Claim' }));
-      });
-      expect(fetchMock).toHaveBeenCalled();
-      expect(queue.removeQueuedClaim).not.toHaveBeenCalled();
-    } finally {
-      vi.unstubAllGlobals();
-    }
+    expect(input).toHaveValue('Typed Name');
+    expect(screen.getByRole('region', { name: 'Property & damage information' })).toBeVisible();
+    expect(queue.readHeldClaims).not.toHaveBeenCalled();
+    expect(queue.removeQueuedClaim).not.toHaveBeenCalled();
+    expect(savedNames()).not.toContain('Held Claim');
+  });
+
+  it('R7 a draft lookup that answers after the time limit never replaces typing', async () => {
+    let answer: (d: ReturnType<typeof savedDraft>) => void = () => {};
+    vi.mocked(loadDraft).mockReturnValue(
+      new Promise((resolve) => {
+        answer = resolve;
+      }),
+    );
+    render(<ClaimFormClient />);
+    const input = await screen.findByLabelText('Full Name *', {}, { timeout: 4000 });
+    fireEvent.change(input, { target: { value: 'Typed After Timeout' } });
+    await act(async () => {
+      answer(savedDraft({ fullName: 'Late Draft' }));
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(screen.getByLabelText('Full Name *')).toHaveValue('Typed After Timeout');
+    expect(screen.queryByRole('button', { name: 'Resume' })).not.toBeInTheDocument();
+    expect(savedNames()).toContain('Typed After Timeout');
+  }, 10_000);
+
+  it('R7 a late draft lookup is still offered if nothing has been typed', async () => {
+    let answer: (d: ReturnType<typeof savedDraft>) => void = () => {};
+    vi.mocked(loadDraft).mockReturnValue(
+      new Promise((resolve) => {
+        answer = resolve;
+      }),
+    );
+    render(<ClaimFormClient />);
+    await screen.findByLabelText('Full Name *', {}, { timeout: 4000 });
+    await act(async () => {
+      answer(savedDraft({ fullName: 'Late Draft' }));
+    });
+    fireEvent.click(await screen.findByRole('button', { name: 'Resume' }));
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('Late Draft');
+  }, 10_000);
+
+  it('R8 after the 3 s lookup limit the form is editable and autosave is on', async () => {
+    vi.mocked(loadDraft).mockReturnValue(new Promise(() => {}));
+    render(<ClaimFormClient />);
+    expect(screen.getByRole('status')).toHaveTextContent(/Checking this device/);
+    expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
+    const input = await screen.findByLabelText('Full Name *', {}, { timeout: 4000 });
+    fireEvent.change(input, { target: { value: 'Typed After Timeout' } });
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(savedNames()).toContain('Typed After Timeout');
+  }, 10_000);
+
+  it('R9 the saved draft is not overwritten before the homeowner chooses, and Resume restores it', async () => {
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Saved Earlier' }));
+    render(<ClaimFormClient />);
+    const resume = await screen.findByRole('button', { name: 'Resume' });
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(saveDraft).not.toHaveBeenCalled();
+    fireEvent.click(resume);
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('Saved Earlier');
+  });
+
+  it('R9 an untouched visit writes nothing to the draft slot', async () => {
+    render(<ClaimFormClient />);
+    await screen.findByLabelText('Full Name *');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(saveDraft).not.toHaveBeenCalled();
   });
 });

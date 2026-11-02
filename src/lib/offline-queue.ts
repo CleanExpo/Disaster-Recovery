@@ -34,6 +34,11 @@ export interface QueuedClaim {
   queuedAt: number;
   attempts: number;
   lastError?: string;
+  /**
+   * Set when the server accepted this item but deleting it afterwards failed.
+   * Replay never sends an accepted item again; it only retries the delete.
+   */
+  acceptedAt?: number;
 }
 
 export type QueueEvent =
@@ -195,16 +200,68 @@ export function needsCalloutFeeAcknowledgement(item: QueuedClaim): boolean {
   return item.payload?.calloutFeeAcknowledged !== true;
 }
 
-/** Pending items held for the homeowner's call-out fee acknowledgement, oldest first. */
-export async function listUnacknowledgedClaims(): Promise<QueuedClaim[]> {
-  return (await peekQueue()).filter(needsCalloutFeeAcknowledgement);
+function isHeld(item: QueuedClaim): boolean {
+  return item.acceptedAt === undefined && needsCalloutFeeAcknowledgement(item);
 }
 
-/** Remove one pending item, e.g. once its resubmission has succeeded. */
-export async function removeQueuedClaim(id: string): Promise<void> {
-  if (!FLAG_ENABLED || !hasIDB()) return;
-  await deleteItem(STORE_PENDING, id);
+/**
+ * Pending items held for the homeowner's call-out fee acknowledgement, oldest
+ * first. A failed read is reported as `{ ok: false }`, never as an empty list,
+ * so the caller can tell "none saved" apart from "could not check".
+ */
+export async function readHeldClaims(): Promise<
+  { ok: true; items: QueuedClaim[] } | { ok: false; reason: string }
+> {
+  if (!FLAG_ENABLED) return { ok: true, items: [] };
+  if (!hasIDB()) return { ok: false, reason: 'no-idb' };
+  try {
+    const items = await listItems(STORE_PENDING);
+    return { ok: true, items: items.filter(isHeld).sort((a, b) => a.queuedAt - b.queuedAt) };
+  } catch (err) {
+    return { ok: false, reason: err instanceof Error ? err.message : 'idb-read-failed' };
+  }
+}
+
+/**
+ * Record the homeowner's call-out fee acknowledgement on one held item. The
+ * item then becomes an ordinary queued claim and the next replay sends it.
+ * Returns false (and changes nothing) if the item is not held or the write
+ * fails. Consent is only ever set here, from an explicit tick.
+ */
+export async function acknowledgeHeldClaim(id: string): Promise<boolean> {
+  if (!FLAG_ENABLED || !hasIDB()) return false;
+  try {
+    const item = (await listItems(STORE_PENDING)).find((i) => i.id === id);
+    if (!item || !isHeld(item)) return false;
+    await putItem(STORE_PENDING, {
+      ...item,
+      payload: {
+        ...item.payload,
+        // A legacy payload may carry the old platform fee; never send it.
+        paymentConfirmed: false,
+        paymentAmount: 0,
+        calloutFeeAcknowledged: true,
+      },
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Remove one pending item (the homeowner chose to delete a held claim).
+ * Returns true only when the item was deleted.
+ */
+export async function removeQueuedClaim(id: string): Promise<boolean> {
+  if (!FLAG_ENABLED || !hasIDB()) return false;
+  try {
+    await deleteItem(STORE_PENDING, id);
+  } catch {
+    return false;
+  }
   emit({ type: 'removed', id, remaining: await getQueueSize() });
+  return true;
 }
 
 /** Returns all pending items — used for UI rendering / tests. */
@@ -246,9 +303,41 @@ interface ReplayDeps {
  * any schema change. If the server ignores the field, the metadata
  * is still available in the response audit trail.
  */
-export async function replayQueue(
-  deps: ReplayDeps = {},
-): Promise<{ successes: number; failures: number; deadLettered: number; held: number }> {
+export type ReplayResult = {
+  successes: number;
+  failures: number;
+  deadLettered: number;
+  held: number;
+};
+
+let replayRunning: Promise<ReplayResult> | null = null;
+let replayFollowUp: Promise<ReplayResult> | null = null;
+
+/**
+ * Single-flight: only one replay runs at a time, so overlapping callers
+ * (page load, the online event, the banner retry, the held-claim panel) never
+ * post the same item twice. A call made during a run waits for it and then
+ * runs once more, so an item acknowledged mid-run is still sent.
+ */
+export function replayQueue(deps: ReplayDeps = {}): Promise<ReplayResult> {
+  if (!replayRunning) {
+    replayRunning = runReplay(deps).finally(() => {
+      replayRunning = null;
+    });
+    return replayRunning;
+  }
+  if (!replayFollowUp) {
+    replayFollowUp = replayRunning
+      .catch(() => undefined)
+      .then(() => {
+        replayFollowUp = null;
+        return replayQueue(deps);
+      });
+  }
+  return replayFollowUp;
+}
+
+async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
   if (!FLAG_ENABLED) return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
   if (!hasIDB()) return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
 
@@ -256,12 +345,17 @@ export async function replayQueue(
   const now = deps.now ?? Date.now;
 
   const all = await peekQueue();
-  const items = all.filter((item) => !needsCalloutFeeAcknowledgement(item));
-  const held = all.length - items.length;
+  // Accepted by the server earlier but not yet deleted: retry the delete only.
   for (const item of all) {
-    if (needsCalloutFeeAcknowledgement(item)) {
-      emit({ type: 'replay-held', id: item.id, reason: 'callout-fee-acknowledgement-missing' });
+    if (item.acceptedAt !== undefined) {
+      await deleteItem(STORE_PENDING, item.id).catch(() => undefined);
     }
+  }
+  const items = all.filter((item) => item.acceptedAt === undefined && !isHeld(item));
+  const heldItems = all.filter(isHeld);
+  const held = heldItems.length;
+  for (const item of heldItems) {
+    emit({ type: 'replay-held', id: item.id, reason: 'callout-fee-acknowledgement-missing' });
   }
   if (items.length === 0) return { successes: 0, failures: 0, deadLettered: 0, held };
 
@@ -296,7 +390,11 @@ export async function replayQueue(
       });
 
       if (res.ok) {
-        await deleteItem(STORE_PENDING, item.id);
+        // The server has the claim. If the delete fails, mark the item
+        // accepted so no later replay sends it again.
+        await deleteItem(STORE_PENDING, item.id).catch(() =>
+          putItem(STORE_PENDING, { ...item, acceptedAt: replayedAt }).catch(() => undefined),
+        );
         successes += 1;
         const remaining = await getQueueSize();
         emit({ type: 'replay-success', id: item.id, remaining });

@@ -24,6 +24,9 @@ const OfflineBanner = dynamic(() => import('@/components/claim/OfflineBanner'), 
 const OfflineQueueBanner = dynamic(() => import('@/components/claim/OfflineQueueBanner'), {
   ssr: false,
 });
+const HeldClaimsPanel = dynamic(() => import('@/components/claim/HeldClaimsPanel'), {
+  ssr: false,
+});
 const UseCurrentLocationButton = dynamic(
   () => import('@/components/claim/UseCurrentLocationButton'),
   { ssr: false },
@@ -32,15 +35,15 @@ const VoiceWidget = dynamic(
   () => import('@/components/voice/VoiceWidget').then((m) => ({ default: m.VoiceWidget })),
   { ssr: false },
 );
-import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
-import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
 import {
-  enqueueClaim,
-  replayQueue,
-  isOfflineQueueEnabled,
-  listUnacknowledgedClaims,
-  removeQueuedClaim,
-} from '@/lib/offline-queue';
+  saveDraft,
+  loadDraft,
+  clearDraft,
+  getUnsynced,
+  type ClaimDraft,
+} from '@/lib/offline-store';
+import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
+import { enqueueClaim, replayQueue, isOfflineQueueEnabled } from '@/lib/offline-queue';
 import { useSearchParams } from 'next/navigation';
 import { CALLOUT_FEE_ACK_LABEL, CALLOUT_FEE_EXPLAINER } from '@/lib/claims/callout-fee-notice';
 import { Button } from '@/components/ui/button';
@@ -74,6 +77,11 @@ import {
 } from 'lucide-react';
 
 // Clear selected/unselected checkbox style
+type DraftSlot = 'checking' | 'offered' | 'owned' | 'closed';
+// How long the page waits for the saved-draft lookup before showing the form.
+const DRAFT_LOOKUP_LIMIT_MS = 3000;
+const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+
 const CHECKBOX_CLASS =
   'h-5 w-5 rounded border-2 border-gray-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600 data-[state=checked]:text-white shrink-0';
 
@@ -274,46 +282,75 @@ function OnlineClaimPageOriginal() {
 
   // ── Offline persistence ──────────────────────────────────────────────────
   const [isOffline, setIsOffline] = useState<boolean>(false);
-  const [draftBanner, setDraftBanner] = useState<{ savedAt: number } | null>(null);
   const [savedLocally, setSavedLocally] = useState<boolean>(false);
-  // Offline-queued claim saved before the call-out fee acknowledgement existed.
-  // Held in the queue (never sent) until the homeowner ticks the box and resubmits.
-  const [heldQueuedClaimId, setHeldQueuedClaimId] = useState<string | null>(null);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Load draft on mount
+  // Draft slot state machine (DR-966, docs/plans/2026-11-02-saved-claim-lifecycle.md):
+  //   checking → offered | owned;  offered → owned;  owned → closed.
+  // The form is only shown, and autosave only writes, while the slot is owned.
+  // Claims held in the offline queue are handled by HeldClaimsPanel; the form
+  // never reads or writes them.
+  const [slot, setSlotState] = useState<DraftSlot>('checking');
+  const slotRef = useRef<DraftSlot>('checking');
+  const offeredDraftRef = useRef<ClaimDraft | null>(null);
+  const [offeredSavedAt, setOfferedSavedAt] = useState<number | null>(null);
+  // Form and step when the slot became owned. Autosave writes only after a change
+  // from this, so an untouched visit never creates or overwrites a draft.
+  const baselineRef = useRef<{ formData: unknown; step: number } | null>(null);
+  const latestRef = useRef<{ formData: unknown; step: number }>({ formData, step });
+  latestRef.current = { formData, step };
+
+  const setSlot = useCallback((next: DraftSlot) => {
+    slotRef.current = next;
+    setSlotState(next);
+  }, []);
+
+  const isPristine = useCallback(() => {
+    const baseline = baselineRef.current;
+    return (
+      baseline !== null &&
+      baseline.formData === latestRef.current.formData &&
+      baseline.step === latestRef.current.step
+    );
+  }, []);
+
+  const takeOwnership = useCallback(() => {
+    baselineRef.current = { ...latestRef.current };
+    setSlot('owned');
+  }, [setSlot]);
+
+  const offerDraft = useCallback(
+    (draft: ClaimDraft) => {
+      offeredDraftRef.current = draft;
+      setOfferedSavedAt(draft.savedAt);
+      setSlot('offered');
+    },
+    [setSlot],
+  );
+
+  // Look up the saved draft once, on mount
   useEffect(() => {
-    loadDraft().then((draft) => {
-      if (!draft) return;
-      const ageMs = Date.now() - draft.savedAt;
-      const hours24 = 24 * 60 * 60 * 1000;
-      if (ageMs < hours24) {
-        setDraftBanner({ savedAt: draft.savedAt });
-      }
-    });
+    let timedOut = false;
+    const limit = window.setTimeout(() => {
+      if (slotRef.current !== 'checking') return;
+      timedOut = true;
+      takeOwnership();
+    }, DRAFT_LOOKUP_LIMIT_MS);
+    loadDraft()
+      .catch(() => null)
+      .then((draft) => {
+        window.clearTimeout(limit);
+        const fresh = draft && Date.now() - draft.savedAt < DRAFT_MAX_AGE_MS ? draft : null;
+        if (slotRef.current === 'checking') {
+          if (fresh) offerDraft(fresh);
+          else takeOwnership();
+          return;
+        }
+        // Answer arrived after the time limit. Offer it only if the homeowner
+        // has not changed anything yet; never overwrite what they typed.
+        if (timedOut && fresh && slotRef.current === 'owned' && isPristine()) offerDraft(fresh);
+      });
     setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
-    // Restore the oldest claim queued before the call-out fee acknowledgement
-    // existed, so the homeowner can read the explainer, tick and resubmit it.
-    if (isOfflineQueueEnabled()) {
-      listUnacknowledgedClaims()
-        .then((held) => {
-          const oldest = held[0];
-          if (!oldest) return;
-          const {
-            _offlineMeta: _meta,
-            paymentConfirmed: _paid,
-            paymentAmount: _amount,
-            calloutFeeAcknowledged: _ack,
-            ...saved
-          } = oldest.payload;
-          setFormData((prev) => ({ ...prev, ...saved, calloutFeeAcknowledged: false }));
-          setHeldQueuedClaimId(oldest.id);
-          setStep(4);
-        })
-        .catch(() => {
-          /* ignore — the held item stays queued and is retried next open */
-        });
-    }
     // Once-on-mount replay: if the app was killed mid-queue last session, drain now.
     if (isOfflineQueueEnabled() && typeof navigator !== 'undefined' && navigator.onLine) {
       replayQueue()
@@ -327,6 +364,9 @@ function OnlineClaimPageOriginal() {
           /* ignore — banner surfaces any residual items */
         });
     }
+    return () => window.clearTimeout(limit);
+    // Mount-only: the lookup runs once per page load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Demo autofill — development only (mirrors contractor apply ?demo=auto).
@@ -384,10 +424,13 @@ function OnlineClaimPageOriginal() {
     };
   }, []);
 
-  // Debounced auto-save on formData / step change
+  // Debounced auto-save on formData / step change — only while the slot is
+  // owned and only after the homeowner has changed something.
   useEffect(() => {
+    if (slot !== 'owned' || isPristine()) return;
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(() => {
+      if (slotRef.current !== 'owned') return;
       // Exclude non-serialisable fields (File[]) — use keys from formData directly
       saveDraft({
         id: 'current',
@@ -407,20 +450,36 @@ function OnlineClaimPageOriginal() {
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData, step]);
+  }, [formData, step, slot]);
 
-  const resumeDraft = async () => {
-    const draft = await loadDraft();
+  // Resume uses the draft read at page load, so no second read can race it.
+  const resumeDraft = () => {
+    const draft = offeredDraftRef.current;
+    offeredDraftRef.current = null;
+    setOfferedSavedAt(null);
     if (draft) {
       setFormData((prev) => ({ ...prev, ...draft.formData }));
       setStep(draft.step);
     }
-    setDraftBanner(null);
+    // No baseline: the resumed claim is saved back so the slot stays current.
+    baselineRef.current = null;
+    setSlot('owned');
   };
 
-  const discardDraft = async () => {
-    await clearDraft();
-    setDraftBanner(null);
+  // The homeowner's explicit choice is the only way a waiting draft is deleted.
+  const startNewClaim = () => {
+    offeredDraftRef.current = null;
+    setOfferedSavedAt(null);
+    void clearDraft();
+    takeOwnership();
+  };
+
+  // Terminal: the claim was accepted or queued. Stop autosave before clearing,
+  // so the sent claim can never be written back as a draft.
+  const closeSlot = () => {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    setSlot('closed');
+    void clearDraft();
   };
 
   const formatDraftTime = (ts: number) => {
@@ -498,13 +557,8 @@ function OnlineClaimPageOriginal() {
         });
         setSubmitting(false);
         if (enq.ok) {
-          if (heldQueuedClaimId) {
-            await removeQueuedClaim(heldQueuedClaimId);
-            setHeldQueuedClaimId(null);
-          }
+          closeSlot();
           setQueuedOffline(true);
-          setReplayToast('Saved offline — we\u2019ll send it as soon as you\u2019re back online.');
-          window.setTimeout(() => setReplayToast(null), 6000);
           return;
         }
         // Enqueue failed — fall through to the normal online path as a
@@ -540,12 +594,8 @@ function OnlineClaimPageOriginal() {
       const result = await response.json().catch(() => ({}));
 
       if (response.ok && result.success) {
-        if (heldQueuedClaimId) {
-          await removeQueuedClaim(heldQueuedClaimId);
-          setHeldQueuedClaimId(null);
-        }
+        closeSlot();
         setClaimId(result.claimId);
-        await clearDraft();
         // Phase 2 PR #6 — Medium haptic on submit success (RA-1633). No-op on web.
         void mediumTap();
         setStep(5); // Success step
@@ -608,15 +658,35 @@ function OnlineClaimPageOriginal() {
 
   const showQuickFill = process.env.NODE_ENV !== 'production';
 
+  if (queuedOffline) {
+    return (
+      <div className="ag-page-elevated">
+        <div className="ag-container py-12 max-w-2xl mx-auto px-4">
+          <AgFormShell title="Claim saved on this device">
+            <Alert role="status" className="bg-blue-50 border-blue-200">
+              <Info className="h-4 w-4 text-blue-600" />
+              <AlertDescription className="text-blue-900">
+                You&rsquo;re offline, so your claim is saved on this device. We&rsquo;ll send it
+                automatically as soon as you&rsquo;re back online. Keep this app installed until
+                then. If it&rsquo;s urgent, call 1300 309 361.
+              </AlertDescription>
+            </Alert>
+            {replayToast && (
+              <p role="status" aria-live="polite" className="mt-4 text-sm text-emerald-900">
+                {replayToast}
+              </p>
+            )}
+          </AgFormShell>
+        </div>
+      </div>
+    );
+  }
   if (step === 5 && claimId) {
     return (
       <div className="ag-page-elevated">
         <AntigravityNavbar />
         <div className="ag-container py-12 max-w-2xl mx-auto px-4">
-          <AgFormShell
-            title="Claim submitted successfully"
-            subtitle={`Your claim ID: ${claimId}`}
-          >
+          <AgFormShell title="Claim submitted successfully" subtitle={`Your claim ID: ${claimId}`}>
             <div className="space-y-6">
               <div className="flex justify-center">
                 <CheckCircle2 className="h-16 w-16 text-emerald-600" aria-hidden="true" />
@@ -746,9 +816,7 @@ function OnlineClaimPageOriginal() {
           </div>
           {showQuickFill && (
             <div className="bg-green-50 border border-green-200 rounded-lg p-3 md:max-w-sm w-full">
-              <Label className="text-xs font-semibold text-green-900">
-                Quick fill (dev only)
-              </Label>
+              <Label className="text-xs font-semibold text-green-900">Quick fill (dev only)</Label>
               <div className="mt-2 flex gap-2">
                 <Select value={selectedScenario} onValueChange={setSelectedScenario}>
                   <SelectTrigger className="bg-white" aria-label="Quick fill scenario">
@@ -778,6 +846,9 @@ function OnlineClaimPageOriginal() {
         {/* Offline queue status — only renders when queue/dead-letter > 0. */}
         <OfflineQueueBanner />
 
+        {/* Claims queued offline before the call-out fee tick existed (DR-966). */}
+        <HeldClaimsPanel />
+
         {/* Transient toast — queue replayed / item queued. */}
         {replayToast && (
           <div
@@ -789,48 +860,11 @@ function OnlineClaimPageOriginal() {
           </div>
         )}
 
-        {queuedOffline && !replayToast && (
-          <div
-            role="status"
-            aria-live="polite"
-            className="mb-4 rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm text-blue-900"
-          >
-            Your claim is saved on this device and will be sent automatically when you&rsquo;re back
-            online.
-          </div>
-        )}
-
         {/* Saved locally indicator (when offline) */}
         {isOffline && savedLocally && (
           <div className="mb-4 px-3 py-2 bg-amber-100 border border-amber-300 rounded-md text-xs text-amber-800 flex items-center gap-2">
             <span className="font-semibold">Saved locally</span> — your progress is stored on this
             device.
-          </div>
-        )}
-
-        {/* Draft resume banner */}
-        {draftBanner && (
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <p className="text-sm text-blue-900">
-              You have a saved claim draft from{' '}
-              <strong>{formatDraftTime(draftBanner.savedAt)}</strong>. Continue?
-            </p>
-            <div className="flex gap-2 shrink-0">
-              <button
-                type="button"
-                onClick={resumeDraft}
-                className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Resume
-              </button>
-              <button
-                type="button"
-                onClick={discardDraft}
-                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
-              >
-                Start Fresh
-              </button>
-            </div>
           </div>
         )}
 
@@ -862,784 +896,829 @@ function OnlineClaimPageOriginal() {
           </div>
         )}
 
-        <AgStepProgress steps={CLAIM_STEPS} current={step} className="mb-8" />
+        {slot === 'checking' && (
+          <p role="status" className="mb-8 text-sm text-[var(--ag-text-grey)]">
+            Checking this device for a claim you saved earlier&hellip;
+          </p>
+        )}
 
-        {/* Platform Role Disclaimer — Path A */}
-        <Alert className="mb-6 bg-amber-50 border-amber-200">
-          <AlertTriangle className="h-4 w-4 text-amber-600" />
-          <AlertDescription>
-            <strong>Important:</strong> Disaster Recovery connects you with certified NRPG
-            contractors who handle all work, communication, and service delivery. Your contractor
-            bills you directly — Disaster Recovery does not hold client funds or invoice for
-            restoration.
-          </AlertDescription>
-        </Alert>
+        {slot === 'offered' && (
+          <section
+            aria-label="Saved claim found"
+            className="mb-8 rounded-xl border border-blue-200 bg-blue-50 p-5"
+          >
+            <p className="text-sm text-blue-900">
+              You have a claim saved on this device from{' '}
+              <strong>{offeredSavedAt !== null ? formatDraftTime(offeredSavedAt) : ''}</strong> that
+              has not been sent. Would you like to continue it?
+            </p>
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={resumeDraft}
+                className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Resume
+              </button>
+              <button
+                type="button"
+                onClick={startNewClaim}
+                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Start a new claim
+              </button>
+            </div>
+            <p className="mt-3 text-xs text-blue-900">
+              Starting a new claim deletes the saved one from this device.
+            </p>
+          </section>
+        )}
 
-        <AgFormShell
-          title={
-            step === 1
-              ? 'Property & damage information'
-              : step === 2
-                ? 'Insurance & documentation'
-                : step === 3
-                  ? 'Authorisations & terms'
-                  : 'Final review & submit'
-          }
-        >
-            {/* Step 1: Property & Damage */}
-            {step === 1 && (
-              <div className="space-y-6">
-                <div className="space-y-4">
-                  <h3 className="font-semibold flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    Contact Information
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="claim-fullName">Full Name *</Label>
-                      <Input
-                        id="claim-fullName"
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="claim-phone">Phone Number *</Label>
-                      <Input
-                        id="claim-phone"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="claim-email">Email Address *</Label>
-                      <Input
-                        id="claim-email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="!bg-white !border-gray-300 !text-gray-900 placeholder:!text-gray-500"
-                        required
-                        style={{
-                          backgroundColor: 'white',
-                          borderColor: '#e2e8f0',
-                          color: '#1f2937',
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <Label>Preferred Contact Method</Label>
-                      <Select
-                        value={formData.preferredContact}
-                        onValueChange={(value) =>
-                          setFormData({ ...formData, preferredContact: value })
-                        }
-                      >
-                        <SelectTrigger aria-label="Preferred contact method">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="phone">Phone</SelectItem>
-                          <SelectItem value="email">Email</SelectItem>
-                          <SelectItem value="both">Both</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                </div>
+        {slot === 'owned' && (
+          <>
+            <AgStepProgress steps={CLAIM_STEPS} current={step} className="mb-8" />
 
-                <div className="space-y-4">
-                  <h3 className="font-semibold flex items-center gap-2">
-                    <Home className="h-4 w-4" />
-                    Property Information
-                  </h3>
-                  <UseCurrentLocationButton
-                    onAutofill={(fields) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        propertyAddress: fields.address || prev.propertyAddress,
-                        suburb: fields.suburb || prev.suburb,
-                        state: fields.state || prev.state,
-                        postcode: fields.postcode || prev.postcode,
-                      }))
-                    }
-                  />
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="md:col-span-2">
-                      <Label htmlFor="claim-propertyAddress">Property Address *</Label>
-                      <Input
-                        id="claim-propertyAddress"
-                        value={formData.propertyAddress}
-                        onChange={(e) =>
-                          setFormData({ ...formData, propertyAddress: e.target.value })
-                        }
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="claim-suburb">Suburb *</Label>
-                      <Input
-                        id="claim-suburb"
-                        value={formData.suburb}
-                        onChange={(e) => setFormData({ ...formData, suburb: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label>State *</Label>
-                      <Select
-                        value={formData.state}
-                        onValueChange={(value) => setFormData({ ...formData, state: value })}
-                      >
-                        <SelectTrigger aria-label="State">
-                          <SelectValue placeholder="Select state" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="NSW">NSW</SelectItem>
-                          <SelectItem value="VIC">VIC</SelectItem>
-                          <SelectItem value="QLD">QLD</SelectItem>
-                          <SelectItem value="SA">SA</SelectItem>
-                          <SelectItem value="WA">WA</SelectItem>
-                          <SelectItem value="TAS">TAS</SelectItem>
-                          <SelectItem value="NT">NT</SelectItem>
-                          <SelectItem value="ACT">ACT</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="claim-postcode">Postcode *</Label>
-                      <Input
-                        id="claim-postcode"
-                        value={formData.postcode}
-                        onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
-                        maxLength={4}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label>Property Type *</Label>
-                      <Select
-                        value={formData.propertyType}
-                        onValueChange={(value) => setFormData({ ...formData, propertyType: value })}
-                      >
-                        <SelectTrigger aria-label="Property type">
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="house">House</SelectItem>
-                          <SelectItem value="apartment">Apartment</SelectItem>
-                          <SelectItem value="townhouse">Townhouse</SelectItem>
-                          <SelectItem value="commercial">Commercial</SelectItem>
-                          <SelectItem value="industrial">Industrial</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="claim-accessInstructions">
-                      Access Instructions (gate codes, etc.)
-                    </Label>
-                    <Textarea
-                      id="claim-accessInstructions"
-                      value={formData.accessInstructions}
-                      onChange={(e) =>
-                        setFormData({ ...formData, accessInstructions: e.target.value })
-                      }
-                      placeholder="Any special instructions for accessing the property..."
-                    />
-                  </div>
-                </div>
+            {/* Platform Role Disclaimer — Path A */}
+            <Alert className="mb-6 bg-amber-50 border-amber-200">
+              <AlertTriangle className="h-4 w-4 text-amber-600" />
+              <AlertDescription>
+                <strong>Important:</strong> Disaster Recovery connects you with certified NRPG
+                contractors who handle all work, communication, and service delivery. Your
+                contractor bills you directly — Disaster Recovery does not hold client funds or
+                invoice for restoration.
+              </AlertDescription>
+            </Alert>
 
-                <div className="space-y-4">
-                  <h3 className="font-semibold flex items-center gap-2">
-                    <AlertCircle className="h-4 w-4" />
-                    Damage Information
-                  </h3>
-                  <div>
-                    <Label>Type of Damage (select all that apply) *</Label>
-                    <div className="grid md:grid-cols-2 gap-2 mt-2">
-                      {damageTypeOptions.map((type) => (
-                        <div key={type} className="flex items-center gap-3 py-1">
-                          <Checkbox
-                            id={`damage-${type}`}
-                            className={CHECKBOX_CLASS}
-                            checked={formData.damageTypes.includes(type)}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                setFormData({
-                                  ...formData,
-                                  damageTypes: [...formData.damageTypes, type],
-                                });
-                              } else {
-                                setFormData({
-                                  ...formData,
-                                  damageTypes: formData.damageTypes.filter((t) => t !== type),
-                                });
-                              }
-                            }}
-                          />
-                          <Label htmlFor={`damage-${type}`} className="font-normal cursor-pointer">
-                            {type}
-                          </Label>
-                        </div>
-                      ))}
+            <AgFormShell
+              title={
+                step === 1
+                  ? 'Property & damage information'
+                  : step === 2
+                    ? 'Insurance & documentation'
+                    : step === 3
+                      ? 'Authorisations & terms'
+                      : 'Final review & submit'
+              }
+            >
+              {/* Step 1: Property & Damage */}
+              {step === 1 && (
+                <div className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="font-semibold flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      Contact Information
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="claim-fullName">Full Name *</Label>
+                        <Input
+                          id="claim-fullName"
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="claim-phone">Phone Number *</Label>
+                        <Input
+                          id="claim-phone"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="claim-email">Email Address *</Label>
+                        <Input
+                          id="claim-email"
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="!bg-white !border-gray-300 !text-gray-900 placeholder:!text-gray-500"
+                          required
+                          style={{
+                            backgroundColor: 'white',
+                            borderColor: '#e2e8f0',
+                            color: '#1f2937',
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <Label>Preferred Contact Method</Label>
+                        <Select
+                          value={formData.preferredContact}
+                          onValueChange={(value) =>
+                            setFormData({ ...formData, preferredContact: value })
+                          }
+                        >
+                          <SelectTrigger aria-label="Preferred contact method">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="phone">Phone</SelectItem>
+                            <SelectItem value="email">Email</SelectItem>
+                            <SelectItem value="both">Both</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                   </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="claim-damageDate">
-                        Date Damage Occurred
-                        <span className="text-xs text-gray-500 font-normal ms-1">
-                          (approximate is fine)
-                        </span>
-                      </Label>
-                      <Input
-                        id="claim-damageDate"
-                        type="date"
-                        value={formData.damageDate}
-                        onChange={(e) => setFormData({ ...formData, damageDate: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <Label>Urgency Level *</Label>
-                      <Select
-                        value={formData.urgencyLevel}
-                        onValueChange={(value) => setFormData({ ...formData, urgencyLevel: value })}
-                      >
-                        <SelectTrigger aria-label="Urgency level">
-                          <SelectValue placeholder="Select urgency" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="emergency">Emergency - Immediate</SelectItem>
-                          <SelectItem value="urgent">Urgent - Within 24 hours</SelectItem>
-                          <SelectItem value="standard">Standard - Within 48 hours</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="claim-damageDescription">Describe the Damage *</Label>
-                    <Textarea
-                      id="claim-damageDescription"
-                      value={formData.damageDescription}
-                      onChange={(e) =>
-                        setFormData({ ...formData, damageDescription: e.target.value })
-                      }
-                      rows={4}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label>Safety Hazards Present</Label>
-                    <div className="grid md:grid-cols-2 gap-2 mt-2">
-                      {hazardOptions.map((hazard) => (
-                        <div key={hazard} className="flex items-center gap-3 py-1">
-                          <Checkbox
-                            id={`hazard-${hazard}`}
-                            className={CHECKBOX_CLASS}
-                            checked={formData.hazards.includes(hazard)}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                setFormData({
-                                  ...formData,
-                                  hazards: [...formData.hazards, hazard],
-                                });
-                              } else {
-                                setFormData({
-                                  ...formData,
-                                  hazards: formData.hazards.filter((h) => h !== hazard),
-                                });
-                              }
-                            }}
-                          />
-                          <Label
-                            htmlFor={`hazard-${hazard}`}
-                            className="font-normal cursor-pointer"
-                          >
-                            {hazard}
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
 
-                <div className="flex justify-end">
-                  <Button
-                    onClick={() => setStep(2)}
-                    className="bg-blue-600 hover:bg-blue-700"
-                    disabled={!step1Complete}
-                  >
-                    Next Step
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 2: Insurance & Documentation */}
-            {step === 2 && (
-              <div className="space-y-6">
-                <div className="space-y-4">
-                  <h3 className="font-semibold flex items-center gap-2">
-                    <Shield className="h-4 w-4" />
-                    Insurance Information
-                  </h3>
-                  <div className="flex items-center gap-3 py-1">
-                    <Checkbox
-                      id="hasInsurance"
-                      className={CHECKBOX_CLASS}
-                      checked={formData.hasInsurance}
-                      onCheckedChange={(checked) =>
-                        setFormData({ ...formData, hasInsurance: checked as boolean })
+                  <div className="space-y-4">
+                    <h3 className="font-semibold flex items-center gap-2">
+                      <Home className="h-4 w-4" />
+                      Property Information
+                    </h3>
+                    <UseCurrentLocationButton
+                      onAutofill={(fields) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          propertyAddress: fields.address || prev.propertyAddress,
+                          suburb: fields.suburb || prev.suburb,
+                          state: fields.state || prev.state,
+                          postcode: fields.postcode || prev.postcode,
+                        }))
                       }
                     />
-                    <Label htmlFor="hasInsurance" className="cursor-pointer">
-                      I have insurance coverage for this damage
-                    </Label>
-                  </div>
-                  {formData.hasInsurance && (
-                    <div className="grid md:grid-cols-2 gap-4 mt-4">
-                      <div>
-                        <Label htmlFor="claim-insuranceCompany">Insurance Company</Label>
-                        <Input
-                          id="claim-insuranceCompany"
-                          value={formData.insuranceCompany}
-                          onChange={(e) =>
-                            setFormData({ ...formData, insuranceCompany: e.target.value })
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="claim-policyNumber">Policy Number</Label>
-                        <Input
-                          id="claim-policyNumber"
-                          value={formData.policyNumber}
-                          onChange={(e) =>
-                            setFormData({ ...formData, policyNumber: e.target.value })
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="claim-insuranceClaimNumber">Insurance Claim Number</Label>
-                        <Input
-                          id="claim-insuranceClaimNumber"
-                          value={formData.insuranceClaimNumber}
-                          onChange={(e) =>
-                            setFormData({ ...formData, insuranceClaimNumber: e.target.value })
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="claim-excessAmount">Excess Amount</Label>
-                        <Input
-                          id="claim-excessAmount"
-                          type="number"
-                          value={formData.excessAmount}
-                          onChange={(e) =>
-                            setFormData({ ...formData, excessAmount: e.target.value })
-                          }
-                        />
-                      </div>
+                    <div className="grid md:grid-cols-2 gap-4">
                       <div className="md:col-span-2">
-                        <Label htmlFor="claim-assessorDetails">
-                          Assessor Details (if applicable)
-                        </Label>
-                        <Textarea
-                          id="claim-assessorDetails"
-                          value={formData.assessorDetails}
+                        <Label htmlFor="claim-propertyAddress">Property Address *</Label>
+                        <Input
+                          id="claim-propertyAddress"
+                          value={formData.propertyAddress}
                           onChange={(e) =>
-                            setFormData({ ...formData, assessorDetails: e.target.value })
+                            setFormData({ ...formData, propertyAddress: e.target.value })
                           }
-                          placeholder="Name, contact, appointment time..."
+                          required
                         />
                       </div>
+                      <div>
+                        <Label htmlFor="claim-suburb">Suburb *</Label>
+                        <Input
+                          id="claim-suburb"
+                          value={formData.suburb}
+                          onChange={(e) => setFormData({ ...formData, suburb: e.target.value })}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label>State *</Label>
+                        <Select
+                          value={formData.state}
+                          onValueChange={(value) => setFormData({ ...formData, state: value })}
+                        >
+                          <SelectTrigger aria-label="State">
+                            <SelectValue placeholder="Select state" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="NSW">NSW</SelectItem>
+                            <SelectItem value="VIC">VIC</SelectItem>
+                            <SelectItem value="QLD">QLD</SelectItem>
+                            <SelectItem value="SA">SA</SelectItem>
+                            <SelectItem value="WA">WA</SelectItem>
+                            <SelectItem value="TAS">TAS</SelectItem>
+                            <SelectItem value="NT">NT</SelectItem>
+                            <SelectItem value="ACT">ACT</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="claim-postcode">Postcode *</Label>
+                        <Input
+                          id="claim-postcode"
+                          value={formData.postcode}
+                          onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
+                          maxLength={4}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label>Property Type *</Label>
+                        <Select
+                          value={formData.propertyType}
+                          onValueChange={(value) =>
+                            setFormData({ ...formData, propertyType: value })
+                          }
+                        >
+                          <SelectTrigger aria-label="Property type">
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="house">House</SelectItem>
+                            <SelectItem value="apartment">Apartment</SelectItem>
+                            <SelectItem value="townhouse">Townhouse</SelectItem>
+                            <SelectItem value="commercial">Commercial</SelectItem>
+                            <SelectItem value="industrial">Industrial</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
-                  )}
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="font-semibold flex items-center gap-2">
-                    <FileText className="h-4 w-4" />
-                    Documentation
-                  </h3>
-
-                  {/* Camera / media capture */}
-                  <DamageMediaCapture
-                    label="Damage Photos & Videos"
-                    description="Optionally capture photos or short videos for your own records. They stay on this device for now — your matched contractor will collect evidence when they contact you."
-                    maxFiles={10}
-                    onChange={(files) => {
-                      setCapturedPhotos(files);
-                      setFormData((prev) => ({
-                        ...prev,
-                        hasPhotos: files.length > 0,
-                      }));
-                    }}
-                  />
-
-                  {capturedPhotos.length === 0 && (
-                    <Alert>
-                      <Info className="h-4 w-4" />
-                      <AlertDescription>
-                        Photos are optional at this stage. Your assigned contractor will also
-                        request documentation directly when they contact you.
-                      </AlertDescription>
-                    </Alert>
-                  )}
-                </div>
-
-                <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => setStep(1)}
-                    className="w-full sm:w-auto min-h-[44px]"
-                  >
-                    Previous
-                  </Button>
-                  <Button
-                    onClick={() => setStep(3)}
-                    className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
-                  >
-                    Next Step
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 3: Authorisations & Terms */}
-            {step === 3 && (
-              <div className="space-y-6">
-                <Alert className="bg-orange-50 border-orange-200">
-                  <AlertTriangle className="h-4 w-4 text-orange-600" />
-                  <AlertDescription className="text-orange-800">
-                    <strong>Platform Role:</strong> Disaster Recovery connects you with contractors.
-                    The contractor handles ALL work, communication, and service delivery.
-                  </AlertDescription>
-                </Alert>
-
-                <div className="space-y-4">
-                  <h3 className="font-semibold">Work Authorisations</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 py-1">
-                      <Checkbox
-                        id="authorizePropertyAccess"
-                        className={CHECKBOX_CLASS}
-                        checked={formData.authorizePropertyAccess}
-                        onCheckedChange={(checked) =>
-                          setFormData({ ...formData, authorizePropertyAccess: checked as boolean })
-                        }
-                      />
-                      <Label
-                        htmlFor="authorizePropertyAccess"
-                        className="font-normal cursor-pointer leading-snug"
-                      >
-                        I authorise the assigned contractor to access my property for inspection and
-                        make-safe works
+                    <div>
+                      <Label htmlFor="claim-accessInstructions">
+                        Access Instructions (gate codes, etc.)
                       </Label>
-                    </div>
-                    <div className="flex items-start gap-3 py-1">
-                      <Checkbox
-                        id="authorizeInsuranceLiaison"
-                        className={CHECKBOX_CLASS}
-                        checked={formData.authorizeInsuranceLiaison}
-                        onCheckedChange={(checked) =>
-                          setFormData({
-                            ...formData,
-                            authorizeInsuranceLiaison: checked as boolean,
-                          })
+                      <Textarea
+                        id="claim-accessInstructions"
+                        value={formData.accessInstructions}
+                        onChange={(e) =>
+                          setFormData({ ...formData, accessInstructions: e.target.value })
                         }
+                        placeholder="Any special instructions for accessing the property..."
                       />
-                      <Label
-                        htmlFor="authorizeInsuranceLiaison"
-                        className="font-normal cursor-pointer leading-snug"
-                      >
-                        I authorise the contractor to liaise with my insurance company on my behalf
-                      </Label>
-                    </div>
-                    <div className="flex items-start gap-3 py-1">
-                      <Checkbox
-                        id="authorizeWorkCommencement"
-                        className={CHECKBOX_CLASS}
-                        checked={formData.authorizeWorkCommencement}
-                        onCheckedChange={(checked) =>
-                          setFormData({
-                            ...formData,
-                            authorizeWorkCommencement: checked as boolean,
-                          })
-                        }
-                      />
-                      <Label
-                        htmlFor="authorizeWorkCommencement"
-                        className="font-normal cursor-pointer leading-snug"
-                      >
-                        I authorise the contractor to commence emergency make-safe works as required
-                      </Label>
                     </div>
                   </div>
-                </div>
 
-                <PrivacyCollectionNoticeSection
-                  checked={formData.privacyCollectionNotice}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, privacyCollectionNotice: checked })
-                  }
-                />
-
-                <div className="space-y-4">
-                  <h3 className="font-semibold">Understanding & Agreement</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 py-1">
-                      <Checkbox
-                        id="understandPlatformRole"
-                        className={CHECKBOX_CLASS}
-                        checked={formData.understandPlatformRole}
-                        onCheckedChange={(checked) =>
-                          setFormData({ ...formData, understandPlatformRole: checked as boolean })
-                        }
-                        required
-                      />
-                      <Label
-                        htmlFor="understandPlatformRole"
-                        className="font-normal cursor-pointer leading-snug"
-                      >
-                        I understand that Disaster Recovery is a network orchestrator that connects
-                        me with certified NRPG contractors. My matched contractor will quote and
-                        bill me directly for restoration work — Disaster Recovery does not hold
-                        client funds or invoice me for that work.
-                      </Label>
+                  <div className="space-y-4">
+                    <h3 className="font-semibold flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4" />
+                      Damage Information
+                    </h3>
+                    <div>
+                      <Label>Type of Damage (select all that apply) *</Label>
+                      <div className="grid md:grid-cols-2 gap-2 mt-2">
+                        {damageTypeOptions.map((type) => (
+                          <div key={type} className="flex items-center gap-3 py-1">
+                            <Checkbox
+                              id={`damage-${type}`}
+                              className={CHECKBOX_CLASS}
+                              checked={formData.damageTypes.includes(type)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setFormData({
+                                    ...formData,
+                                    damageTypes: [...formData.damageTypes, type],
+                                  });
+                                } else {
+                                  setFormData({
+                                    ...formData,
+                                    damageTypes: formData.damageTypes.filter((t) => t !== type),
+                                  });
+                                }
+                              }}
+                            />
+                            <Label
+                              htmlFor={`damage-${type}`}
+                              className="font-normal cursor-pointer"
+                            >
+                              {type}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex items-start gap-3 py-1">
-                      <Checkbox
-                        id="acceptContractorCommunication"
-                        className={CHECKBOX_CLASS}
-                        checked={formData.acceptContractorCommunication}
-                        onCheckedChange={(checked) =>
-                          setFormData({
-                            ...formData,
-                            acceptContractorCommunication: checked as boolean,
-                          })
-                        }
-                        required
-                      />
-                      <Label
-                        htmlFor="acceptContractorCommunication"
-                        className="font-normal cursor-pointer leading-snug"
-                      >
-                        I understand that all communication regarding work, scheduling, and claims
-                        will be directly with the assigned contractor, not Disaster Recovery.
-                      </Label>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="claim-damageDate">
+                          Date Damage Occurred
+                          <span className="text-xs text-gray-500 font-normal ms-1">
+                            (approximate is fine)
+                          </span>
+                        </Label>
+                        <Input
+                          id="claim-damageDate"
+                          type="date"
+                          value={formData.damageDate}
+                          onChange={(e) => setFormData({ ...formData, damageDate: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label>Urgency Level *</Label>
+                        <Select
+                          value={formData.urgencyLevel}
+                          onValueChange={(value) =>
+                            setFormData({ ...formData, urgencyLevel: value })
+                          }
+                        >
+                          <SelectTrigger aria-label="Urgency level">
+                            <SelectValue placeholder="Select urgency" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="emergency">Emergency - Immediate</SelectItem>
+                            <SelectItem value="urgent">Urgent - Within 24 hours</SelectItem>
+                            <SelectItem value="standard">Standard - Within 48 hours</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-3 py-1">
-                      <Checkbox
-                        id="agreeToTerms"
-                        className={CHECKBOX_CLASS}
-                        checked={formData.agreeToTerms}
-                        onCheckedChange={(checked) =>
-                          setFormData({ ...formData, agreeToTerms: checked as boolean })
+                    <div>
+                      <Label htmlFor="claim-damageDescription">Describe the Damage *</Label>
+                      <Textarea
+                        id="claim-damageDescription"
+                        value={formData.damageDescription}
+                        onChange={(e) =>
+                          setFormData({ ...formData, damageDescription: e.target.value })
                         }
+                        rows={4}
                         required
                       />
-                      <Label
-                        htmlFor="agreeToTerms"
-                        className="font-normal cursor-pointer leading-snug"
-                      >
-                        I agree to the terms of service and understand that contractors follow NRPG
-                        standards and guidelines but are independent service providers.
-                      </Label>
+                    </div>
+                    <div>
+                      <Label>Safety Hazards Present</Label>
+                      <div className="grid md:grid-cols-2 gap-2 mt-2">
+                        {hazardOptions.map((hazard) => (
+                          <div key={hazard} className="flex items-center gap-3 py-1">
+                            <Checkbox
+                              id={`hazard-${hazard}`}
+                              className={CHECKBOX_CLASS}
+                              checked={formData.hazards.includes(hazard)}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setFormData({
+                                    ...formData,
+                                    hazards: [...formData.hazards, hazard],
+                                  });
+                                } else {
+                                  setFormData({
+                                    ...formData,
+                                    hazards: formData.hazards.filter((h) => h !== hazard),
+                                  });
+                                }
+                              }}
+                            />
+                            <Label
+                              htmlFor={`hazard-${hazard}`}
+                              className="font-normal cursor-pointer"
+                            >
+                              {hazard}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">Contractor Responsibilities:</h4>
-                  <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="font-bold text-blue-700">
-                      • Initial phone contact once a certified contractor is confirmed for your area
-                    </li>
-                    <li>• Schedule and conduct property inspection</li>
-                    <li>• Perform emergency make-safe works</li>
-                    <li>• Document all damage thoroughly</li>
-                    <li>• Assist you in liaising with your insurance carrier</li>
-                    <li>• Coordinate all re-attendances and additional work</li>
-                    <li>• Provide complete claim documentation</li>
-                  </ul>
-                </div>
-
-                <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => setStep(2)}
-                    className="w-full sm:w-auto min-h-[44px]"
-                  >
-                    Previous
-                  </Button>
-                  <Button
-                    onClick={() => setStep(4)}
-                    className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
-                    disabled={
-                      !formData.privacyCollectionNotice ||
-                      !formData.understandPlatformRole ||
-                      !formData.acceptContractorCommunication ||
-                      !formData.agreeToTerms
-                    }
-                  >
-                    Proceed to Final Review
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 4: Final Review */}
-            {step === 4 && (
-              <div className="space-y-6">
-                {heldQueuedClaimId && (
-                  <Alert className="bg-amber-50 border-amber-200">
-                    <AlertTriangle className="h-4 w-4 text-amber-700" />
-                    <AlertDescription className="text-amber-900">
-                      <strong>Your saved claim has not been sent yet.</strong> We kept the
-                      details you entered while you were offline. Please read what happens next,
-                      tick the box below and submit it.
-                    </AlertDescription>
-                  </Alert>
-                )}
-
-                {/* What happens next — homeowners pay nothing to DR. The NRPG */}
-                {/* contractor sets and collects their own call-out fee. */}
-                <div
-                  className="mb-8 rounded-xl border p-6"
-                  style={{
-                    background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
-                    borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
-                  }}
-                >
-                  <h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-[var(--ag-primary-blue)]">
-                    <Info className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />
-                    What happens next
-                  </h2>
-                  <p className="text-sm leading-relaxed text-[var(--ag-text-dark)]">
-                    {CALLOUT_FEE_EXPLAINER}
-                  </p>
-                  <div className="mt-4 flex items-start gap-3 py-1">
-                    <Checkbox
-                      id="calloutFeeAcknowledged"
-                      className={CHECKBOX_CLASS}
-                      checked={formData.calloutFeeAcknowledged}
-                      onCheckedChange={(checked) =>
-                        setFormData({ ...formData, calloutFeeAcknowledged: checked === true })
-                      }
-                      required
-                      aria-required="true"
-                    />
-                    <Label
-                      htmlFor="calloutFeeAcknowledged"
-                      className="font-normal cursor-pointer leading-snug"
+                  <div className="flex justify-end">
+                    <Button
+                      onClick={() => setStep(2)}
+                      className="bg-blue-600 hover:bg-blue-700"
+                      disabled={!step1Complete}
                     >
-                      {CALLOUT_FEE_ACK_LABEL}
-                    </Label>
+                      Next Step
+                    </Button>
                   </div>
                 </div>
+              )}
 
-                <Alert className="bg-blue-50 border-blue-200">
-                  <Info className="h-4 w-4 text-blue-600" />
-                  <AlertDescription className="text-blue-800">
-                    <strong>Claim Review:</strong> Submit now and your claim is sent immediately for
-                    contractor matching.
-                  </AlertDescription>
-                </Alert>
-
-                <div className="bg-white border-2 border-[var(--ag-border-grey)] rounded-lg p-6">
-                  <h3 className="font-semibold mb-4 flex items-center gap-2 text-[var(--ag-primary-blue)]">
-                    <ClipboardList className="h-5 w-5" />
-                    Submission summary
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span>Claim intake &amp; contractor matching</span>
-                      <span className="font-semibold">Included</span>
+              {/* Step 2: Insurance & Documentation */}
+              {step === 2 && (
+                <div className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="font-semibold flex items-center gap-2">
+                      <Shield className="h-4 w-4" />
+                      Insurance Information
+                    </h3>
+                    <div className="flex items-center gap-3 py-1">
+                      <Checkbox
+                        id="hasInsurance"
+                        className={CHECKBOX_CLASS}
+                        checked={formData.hasInsurance}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, hasInsurance: checked as boolean })
+                        }
+                      />
+                      <Label htmlFor="hasInsurance" className="cursor-pointer">
+                        I have insurance coverage for this damage
+                      </Label>
                     </div>
-                    {capturedPhotos.length > 0 && (
-                      <div className="flex justify-between text-sm text-gray-600">
-                        <span>Damage photos attached</span>
-                        <span className="font-medium text-green-700">
-                          {capturedPhotos.length} file{capturedPhotos.length !== 1 ? 's' : ''}
-                        </span>
+                    {formData.hasInsurance && (
+                      <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                          <Label htmlFor="claim-insuranceCompany">Insurance Company</Label>
+                          <Input
+                            id="claim-insuranceCompany"
+                            value={formData.insuranceCompany}
+                            onChange={(e) =>
+                              setFormData({ ...formData, insuranceCompany: e.target.value })
+                            }
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="claim-policyNumber">Policy Number</Label>
+                          <Input
+                            id="claim-policyNumber"
+                            value={formData.policyNumber}
+                            onChange={(e) =>
+                              setFormData({ ...formData, policyNumber: e.target.value })
+                            }
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="claim-insuranceClaimNumber">Insurance Claim Number</Label>
+                          <Input
+                            id="claim-insuranceClaimNumber"
+                            value={formData.insuranceClaimNumber}
+                            onChange={(e) =>
+                              setFormData({ ...formData, insuranceClaimNumber: e.target.value })
+                            }
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="claim-excessAmount">Excess Amount</Label>
+                          <Input
+                            id="claim-excessAmount"
+                            type="number"
+                            value={formData.excessAmount}
+                            onChange={(e) =>
+                              setFormData({ ...formData, excessAmount: e.target.value })
+                            }
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <Label htmlFor="claim-assessorDetails">
+                            Assessor Details (if applicable)
+                          </Label>
+                          <Textarea
+                            id="claim-assessorDetails"
+                            value={formData.assessorDetails}
+                            onChange={(e) =>
+                              setFormData({ ...formData, assessorDetails: e.target.value })
+                            }
+                            placeholder="Name, contact, appointment time..."
+                          />
+                        </div>
                       </div>
                     )}
-                    <div className="text-xs text-gray-500 ps-1">
-                      No payment is taken when you submit this form. Your matched contractor will
-                      contact you, provide a firm Scope of Works on-site, and bill you directly.
-                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="font-semibold flex items-center gap-2">
+                      <FileText className="h-4 w-4" />
+                      Documentation
+                    </h3>
+
+                    {/* Camera / media capture */}
+                    <DamageMediaCapture
+                      label="Damage Photos & Videos"
+                      description="Optionally capture photos or short videos for your own records. They stay on this device for now — your matched contractor will collect evidence when they contact you."
+                      maxFiles={10}
+                      onChange={(files) => {
+                        setCapturedPhotos(files);
+                        setFormData((prev) => ({
+                          ...prev,
+                          hasPhotos: files.length > 0,
+                        }));
+                      }}
+                    />
+
+                    {capturedPhotos.length === 0 && (
+                      <Alert>
+                        <Info className="h-4 w-4" />
+                        <AlertDescription>
+                          Photos are optional at this stage. Your assigned contractor will also
+                          request documentation directly when they contact you.
+                        </AlertDescription>
+                      </Alert>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
+                    <Button
+                      variant="outline"
+                      onClick={() => setStep(1)}
+                      className="w-full sm:w-auto min-h-[44px]"
+                    >
+                      Previous
+                    </Button>
+                    <Button
+                      onClick={() => setStep(3)}
+                      className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
+                    >
+                      Next Step
+                    </Button>
                   </div>
                 </div>
+              )}
 
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">What you get</h4>
-                  <ul className="text-sm space-y-1">
-                    <li>✓ Immediate contractor matching based on location and damage type</li>
-                    <li>
-                      ✓ Contractor contacts you promptly to schedule emergency make-safe works
-                    </li>
-                    <li>✓ Full claims documentation for your insurer</li>
-                    <li>✓ Contractor provides a formal contract with clear terms</li>
-                    <li>✓ Contractor bills you directly — not via Disaster Recovery</li>
-                  </ul>
-                </div>
+              {/* Step 3: Authorisations & Terms */}
+              {step === 3 && (
+                <div className="space-y-6">
+                  <Alert className="bg-orange-50 border-orange-200">
+                    <AlertTriangle className="h-4 w-4 text-orange-600" />
+                    <AlertDescription className="text-orange-800">
+                      <strong>Platform Role:</strong> Disaster Recovery connects you with
+                      contractors. The contractor handles ALL work, communication, and service
+                      delivery.
+                    </AlertDescription>
+                  </Alert>
 
-                <Alert>
-                  <Info className="h-4 w-4" />
-                  <AlertDescription>
-                    <strong>How billing works:</strong> Your IICRC-certified contractor bills you
-                    directly for restoration work. Disaster Recovery is a network orchestrator and
-                    does not invoice you or hold client funds. Contractors can usually start
-                    make-safe works without waiting for insurer approval; keep documentation for
-                    reimbursement where your policy covers it.
-                  </AlertDescription>
-                </Alert>
+                  <div className="space-y-4">
+                    <h3 className="font-semibold">Work Authorisations</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3 py-1">
+                        <Checkbox
+                          id="authorizePropertyAccess"
+                          className={CHECKBOX_CLASS}
+                          checked={formData.authorizePropertyAccess}
+                          onCheckedChange={(checked) =>
+                            setFormData({
+                              ...formData,
+                              authorizePropertyAccess: checked as boolean,
+                            })
+                          }
+                        />
+                        <Label
+                          htmlFor="authorizePropertyAccess"
+                          className="font-normal cursor-pointer leading-snug"
+                        >
+                          I authorise the assigned contractor to access my property for inspection
+                          and make-safe works
+                        </Label>
+                      </div>
+                      <div className="flex items-start gap-3 py-1">
+                        <Checkbox
+                          id="authorizeInsuranceLiaison"
+                          className={CHECKBOX_CLASS}
+                          checked={formData.authorizeInsuranceLiaison}
+                          onCheckedChange={(checked) =>
+                            setFormData({
+                              ...formData,
+                              authorizeInsuranceLiaison: checked as boolean,
+                            })
+                          }
+                        />
+                        <Label
+                          htmlFor="authorizeInsuranceLiaison"
+                          className="font-normal cursor-pointer leading-snug"
+                        >
+                          I authorise the contractor to liaise with my insurance company on my
+                          behalf
+                        </Label>
+                      </div>
+                      <div className="flex items-start gap-3 py-1">
+                        <Checkbox
+                          id="authorizeWorkCommencement"
+                          className={CHECKBOX_CLASS}
+                          checked={formData.authorizeWorkCommencement}
+                          onCheckedChange={(checked) =>
+                            setFormData({
+                              ...formData,
+                              authorizeWorkCommencement: checked as boolean,
+                            })
+                          }
+                        />
+                        <Label
+                          htmlFor="authorizeWorkCommencement"
+                          className="font-normal cursor-pointer leading-snug"
+                        >
+                          I authorise the contractor to commence emergency make-safe works as
+                          required
+                        </Label>
+                      </div>
+                    </div>
+                  </div>
 
-                <div
-                  className="rounded-lg border p-4"
-                  style={{
-                    background: 'color-mix(in srgb, var(--ag-secondary-blue) 8%, white)',
-                    borderColor: 'color-mix(in srgb, var(--ag-secondary-blue) 25%, white)',
-                  }}
-                >
-                  <p className="text-sm text-[var(--ag-text-dark)]">
-                    <strong>Need to spread the cost?</strong> Flexible payment plans available
-                    through{' '}
-                    <a
-                      href="https://equippedcf.com.au"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold hover:underline"
-                      style={{ color: 'var(--ag-primary-blue)' }}
+                  <PrivacyCollectionNoticeSection
+                    checked={formData.privacyCollectionNotice}
+                    onCheckedChange={(checked) =>
+                      setFormData({ ...formData, privacyCollectionNotice: checked })
+                    }
+                  />
+
+                  <div className="space-y-4">
+                    <h3 className="font-semibold">Understanding & Agreement</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3 py-1">
+                        <Checkbox
+                          id="understandPlatformRole"
+                          className={CHECKBOX_CLASS}
+                          checked={formData.understandPlatformRole}
+                          onCheckedChange={(checked) =>
+                            setFormData({ ...formData, understandPlatformRole: checked as boolean })
+                          }
+                          required
+                        />
+                        <Label
+                          htmlFor="understandPlatformRole"
+                          className="font-normal cursor-pointer leading-snug"
+                        >
+                          I understand that Disaster Recovery is a network orchestrator that
+                          connects me with certified NRPG contractors. My matched contractor will
+                          quote and bill me directly for restoration work — Disaster Recovery does
+                          not hold client funds or invoice me for that work.
+                        </Label>
+                      </div>
+                      <div className="flex items-start gap-3 py-1">
+                        <Checkbox
+                          id="acceptContractorCommunication"
+                          className={CHECKBOX_CLASS}
+                          checked={formData.acceptContractorCommunication}
+                          onCheckedChange={(checked) =>
+                            setFormData({
+                              ...formData,
+                              acceptContractorCommunication: checked as boolean,
+                            })
+                          }
+                          required
+                        />
+                        <Label
+                          htmlFor="acceptContractorCommunication"
+                          className="font-normal cursor-pointer leading-snug"
+                        >
+                          I understand that all communication regarding work, scheduling, and claims
+                          will be directly with the assigned contractor, not Disaster Recovery.
+                        </Label>
+                      </div>
+                      <div className="flex items-start gap-3 py-1">
+                        <Checkbox
+                          id="agreeToTerms"
+                          className={CHECKBOX_CLASS}
+                          checked={formData.agreeToTerms}
+                          onCheckedChange={(checked) =>
+                            setFormData({ ...formData, agreeToTerms: checked as boolean })
+                          }
+                          required
+                        />
+                        <Label
+                          htmlFor="agreeToTerms"
+                          className="font-normal cursor-pointer leading-snug"
+                        >
+                          I agree to the terms of service and understand that contractors follow
+                          NRPG standards and guidelines but are independent service providers.
+                        </Label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">Contractor Responsibilities:</h4>
+                    <ul className="text-sm space-y-1 text-gray-700">
+                      <li className="font-bold text-blue-700">
+                        • Initial phone contact once a certified contractor is confirmed for your
+                        area
+                      </li>
+                      <li>• Schedule and conduct property inspection</li>
+                      <li>• Perform emergency make-safe works</li>
+                      <li>• Document all damage thoroughly</li>
+                      <li>• Assist you in liaising with your insurance carrier</li>
+                      <li>• Coordinate all re-attendances and additional work</li>
+                      <li>• Provide complete claim documentation</li>
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
+                    <Button
+                      variant="outline"
+                      onClick={() => setStep(2)}
+                      className="w-full sm:w-auto min-h-[44px]"
                     >
-                      Equipped Commercial Finance
-                    </a>
-                    .
-                  </p>
+                      Previous
+                    </Button>
+                    <Button
+                      onClick={() => setStep(4)}
+                      className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
+                      disabled={
+                        !formData.privacyCollectionNotice ||
+                        !formData.understandPlatformRole ||
+                        !formData.acceptContractorCommunication ||
+                        !formData.agreeToTerms
+                      }
+                    >
+                      Proceed to Final Review
+                    </Button>
+                  </div>
                 </div>
+              )}
 
-                <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={() => setStep(3)}
-                    className="w-full sm:w-auto min-h-[44px]"
+              {/* Step 4: Final Review */}
+              {step === 4 && (
+                <div className="space-y-6">
+                  {/* What happens next — homeowners pay nothing to DR. The NRPG */}
+                  {/* contractor sets and collects their own call-out fee. */}
+                  <div
+                    className="mb-8 rounded-xl border p-6"
+                    style={{
+                      background: 'color-mix(in srgb, var(--ag-primary-blue) 5%, white)',
+                      borderColor: 'color-mix(in srgb, var(--ag-primary-blue) 18%, white)',
+                    }}
                   >
-                    Previous
-                  </Button>
-                  <Button
-                    onClick={handleSubmit}
-                    className="w-full sm:w-auto min-h-[44px] bg-green-600 hover:bg-green-800"
-                    disabled={submitting || !formData.calloutFeeAcknowledged}
+                    <h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-[var(--ag-primary-blue)]">
+                      <Info className="h-5 w-5" style={{ color: 'var(--ag-secondary-blue)' }} />
+                      What happens next
+                    </h2>
+                    <p className="text-sm leading-relaxed text-[var(--ag-text-dark)]">
+                      {CALLOUT_FEE_EXPLAINER}
+                    </p>
+                    <div className="mt-4 flex items-start gap-3 py-1">
+                      <Checkbox
+                        id="calloutFeeAcknowledged"
+                        className={CHECKBOX_CLASS}
+                        checked={formData.calloutFeeAcknowledged}
+                        onCheckedChange={(checked) =>
+                          setFormData({ ...formData, calloutFeeAcknowledged: checked === true })
+                        }
+                        required
+                        aria-required="true"
+                      />
+                      <Label
+                        htmlFor="calloutFeeAcknowledged"
+                        className="font-normal cursor-pointer leading-snug"
+                      >
+                        {CALLOUT_FEE_ACK_LABEL}
+                      </Label>
+                    </div>
+                  </div>
+
+                  <Alert className="bg-blue-50 border-blue-200">
+                    <Info className="h-4 w-4 text-blue-600" />
+                    <AlertDescription className="text-blue-800">
+                      <strong>Claim Review:</strong> Submit now and your claim is sent immediately
+                      for contractor matching.
+                    </AlertDescription>
+                  </Alert>
+
+                  <div className="bg-white border-2 border-[var(--ag-border-grey)] rounded-lg p-6">
+                    <h3 className="font-semibold mb-4 flex items-center gap-2 text-[var(--ag-primary-blue)]">
+                      <ClipboardList className="h-5 w-5" />
+                      Submission summary
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <span>Claim intake &amp; contractor matching</span>
+                        <span className="font-semibold">Included</span>
+                      </div>
+                      {capturedPhotos.length > 0 && (
+                        <div className="flex justify-between text-sm text-gray-600">
+                          <span>Damage photos attached</span>
+                          <span className="font-medium text-green-700">
+                            {capturedPhotos.length} file{capturedPhotos.length !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                      )}
+                      <div className="text-xs text-gray-500 ps-1">
+                        No payment is taken when you submit this form. Your matched contractor will
+                        contact you, provide a firm Scope of Works on-site, and bill you directly.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">What you get</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>✓ Immediate contractor matching based on location and damage type</li>
+                      <li>
+                        ✓ Contractor contacts you promptly to schedule emergency make-safe works
+                      </li>
+                      <li>✓ Full claims documentation for your insurer</li>
+                      <li>✓ Contractor provides a formal contract with clear terms</li>
+                      <li>✓ Contractor bills you directly — not via Disaster Recovery</li>
+                    </ul>
+                  </div>
+
+                  <Alert>
+                    <Info className="h-4 w-4" />
+                    <AlertDescription>
+                      <strong>How billing works:</strong> Your IICRC-certified contractor bills you
+                      directly for restoration work. Disaster Recovery is a network orchestrator and
+                      does not invoice you or hold client funds. Contractors can usually start
+                      make-safe works without waiting for insurer approval; keep documentation for
+                      reimbursement where your policy covers it.
+                    </AlertDescription>
+                  </Alert>
+
+                  <div
+                    className="rounded-lg border p-4"
+                    style={{
+                      background: 'color-mix(in srgb, var(--ag-secondary-blue) 8%, white)',
+                      borderColor: 'color-mix(in srgb, var(--ag-secondary-blue) 25%, white)',
+                    }}
                   >
-                    {submitting ? 'Submitting Claim...' : 'Submit Claim'}
-                  </Button>
+                    <p className="text-sm text-[var(--ag-text-dark)]">
+                      <strong>Need to spread the cost?</strong> Flexible payment plans available
+                      through{' '}
+                      <a
+                        href="https://equippedcf.com.au"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold hover:underline"
+                        style={{ color: 'var(--ag-primary-blue)' }}
+                      >
+                        Equipped Commercial Finance
+                      </a>
+                      .
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
+                    <Button
+                      variant="outline"
+                      onClick={() => setStep(3)}
+                      className="w-full sm:w-auto min-h-[44px]"
+                    >
+                      Previous
+                    </Button>
+                    <Button
+                      onClick={handleSubmit}
+                      className="w-full sm:w-auto min-h-[44px] bg-green-600 hover:bg-green-800"
+                      disabled={submitting || !formData.calloutFeeAcknowledged}
+                    >
+                      {submitting ? 'Submitting Claim...' : 'Submit Claim'}
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            )}
-        </AgFormShell>
+              )}
+            </AgFormShell>
+          </>
+        )}
       </div>
     </div>
   );

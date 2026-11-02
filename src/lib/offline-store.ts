@@ -33,7 +33,26 @@ function openDB(): Promise<IDBDatabase> {
   });
 }
 
-export async function saveDraft(draft: Partial<ClaimDraft> & { formData: Record<string, unknown>; step: number }): Promise<void> {
+// Draft writes run strictly in call order. Each call opens its own connection,
+// so without this a save issued before a clear could commit after it and put a
+// sent claim back in the slot (DR-966).
+let writeChain: Promise<unknown> = Promise.resolve();
+
+function serialise<T>(run: () => Promise<T>): Promise<T> {
+  const next = writeChain.then(run, run);
+  writeChain = next.catch(() => undefined);
+  return next;
+}
+
+export function saveDraft(
+  draft: Partial<ClaimDraft> & { formData: Record<string, unknown>; step: number },
+): Promise<void> {
+  return serialise(() => writeDraft(draft));
+}
+
+async function writeDraft(
+  draft: Partial<ClaimDraft> & { formData: Record<string, unknown>; step: number },
+): Promise<void> {
   const db = await openDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readwrite');
@@ -81,7 +100,11 @@ export async function loadDraft(): Promise<ClaimDraft | null> {
   }
 }
 
-export async function clearDraft(): Promise<void> {
+export function clearDraft(): Promise<void> {
+  return serialise(removeDraft);
+}
+
+async function removeDraft(): Promise<void> {
   try {
     const db = await openDB();
     return new Promise((resolve, reject) => {

@@ -18,6 +18,9 @@ interface StubStore {
   data: Map<string, unknown>;
 }
 
+// Fault switches so tests can make one IndexedDB operation fail on purpose.
+const faults = { delete: false, getAll: false, put: false };
+
 function createIdbStub() {
   const stores = new Map<string, StubStore>();
 
@@ -71,6 +74,7 @@ function createIdbStub() {
                 return {
                   put(value: Record<string, unknown>) {
                     return makeRequest(() => {
+                      if (faults.put) throw new Error('put failed');
                       const key = value[store.keyPath] as string;
                       store.data.set(key, value);
                       return key;
@@ -78,6 +82,7 @@ function createIdbStub() {
                   },
                   delete(key: string) {
                     return makeRequest(() => {
+                      if (faults.delete) throw new Error('delete failed');
                       store.data.delete(key);
                       return undefined;
                     });
@@ -89,7 +94,10 @@ function createIdbStub() {
                     });
                   },
                   getAll() {
-                    return makeRequest(() => Array.from(store.data.values()));
+                    return makeRequest(() => {
+                      if (faults.getAll) throw new Error('read failed');
+                      return Array.from(store.data.values());
+                    });
                   },
                 };
               },
@@ -109,6 +117,9 @@ function createIdbStub() {
 
 beforeEach(() => {
   vi.stubEnv('NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED', 'true');
+  faults.delete = false;
+  faults.getAll = false;
+  faults.put = false;
   // Fresh IDB per test — drops every store.
   (globalThis as unknown as { indexedDB: unknown }).indexedDB = createIdbStub();
   vi.resetModules();
@@ -263,9 +274,9 @@ describe('offline-queue', () => {
     expect(result).toMatchObject({ successes: 1, deadLettered: 0, held: 1 });
     expect(events).toContain('replay-held');
     expect(await mod.getDeadLetterSize()).toBe(0);
-    const held = await mod.listUnacknowledgedClaims();
-    expect(held).toHaveLength(1);
-    expect(held[0]?.payload).toMatchObject({ fullName: 'Legacy Claim' });
+    const held = await mod.readHeldClaims();
+    expect(held.ok && held.items).toHaveLength(1);
+    expect(held.ok && held.items[0]?.payload).toMatchObject({ fullName: 'Legacy Claim' });
 
     // A second replay still does not send or dead-letter it.
     const again = await mod.replayQueue({ fetchImpl });
@@ -274,14 +285,133 @@ describe('offline-queue', () => {
     expect(await mod.getQueueSize()).toBe(1);
   });
 
-  it('removeQueuedClaim deletes a held claim once it has been resubmitted', async () => {
+  it('removeQueuedClaim deletes a held claim and reports it', async () => {
     const mod = await loadQueue();
     await mod.enqueueClaim({ fullName: 'Legacy Claim' });
-    const [held] = await mod.listUnacknowledgedClaims();
-    expect(held).toBeDefined();
-    await mod.removeQueuedClaim(held!.id);
+    const held = await mod.readHeldClaims();
+    const id = held.ok ? held.items[0]?.id : undefined;
+    expect(id).toBeDefined();
+    expect(await mod.removeQueuedClaim(id!)).toBe(true);
     expect(await mod.getQueueSize()).toBe(0);
-    expect(await mod.listUnacknowledgedClaims()).toHaveLength(0);
+    expect(await mod.readHeldClaims()).toEqual({ ok: true, items: [] });
+  });
+
+  it('R2 a claim the server accepted is never sent again when deleting it fails', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+    faults.delete = true;
+    const first = await mod.replayQueue({ fetchImpl });
+    expect(first.successes).toBe(1);
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    // Still on the device (delete failed) but marked accepted, not held.
+    expect(await mod.getQueueSize()).toBe(1);
+    expect(await mod.readHeldClaims()).toEqual({ ok: true, items: [] });
+
+    const second = await mod.replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(second.successes).toBe(0);
+
+    // Once IndexedDB recovers, the next replay finishes the cleanup without sending.
+    faults.delete = false;
+    await mod.replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(await mod.getQueueSize()).toBe(0);
+  });
+
+  it('R4 a failed queue read is reported as a failure, not as no held claims', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Legacy Claim' });
+    faults.getAll = true;
+    const result = await mod.readHeldClaims();
+    expect(result.ok).toBe(false);
+    faults.getAll = false;
+    const recovered = await mod.readHeldClaims();
+    expect(recovered.ok && recovered.items).toHaveLength(1);
+  });
+
+  it('R4 readHeldClaims reports failure when IndexedDB is unavailable', async () => {
+    const mod = await loadQueue();
+    (globalThis as unknown as { indexedDB: unknown }).indexedDB = undefined;
+    expect((await mod.readHeldClaims()).ok).toBe(false);
+  });
+
+  it('R6 queue writes report false when IndexedDB is unavailable or the write fails', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Legacy Claim' });
+    const held = await mod.readHeldClaims();
+    const id = held.ok ? held.items[0]!.id : '';
+
+    faults.delete = true;
+    expect(await mod.removeQueuedClaim(id)).toBe(false);
+    faults.delete = false;
+    faults.put = true;
+    expect(await mod.acknowledgeHeldClaim(id)).toBe(false);
+    faults.put = false;
+
+    const saved = (globalThis as unknown as { indexedDB: unknown }).indexedDB;
+    (globalThis as unknown as { indexedDB: unknown }).indexedDB = undefined;
+    expect(await mod.removeQueuedClaim(id)).toBe(false);
+    expect(await mod.acknowledgeHeldClaim(id)).toBe(false);
+    (globalThis as unknown as { indexedDB: unknown }).indexedDB = saved;
+
+    // Nothing was lost: the held claim is still there.
+    expect(await mod.getQueueSize()).toBe(1);
+    expect(await mod.acknowledgeHeldClaim('missing-id')).toBe(false);
+  });
+
+  it('R10 acknowledging a held claim makes the next replay send it, with the tick and no fee', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({
+      fullName: 'Legacy Claim',
+      paymentConfirmed: false,
+      paymentAmount: 2750,
+    });
+    const held = await mod.readHeldClaims();
+    const id = held.ok ? held.items[0]!.id : '';
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+
+    expect(await mod.acknowledgeHeldClaim(id)).toBe(true);
+    expect(await mod.readHeldClaims()).toEqual({ ok: true, items: [] });
+    const result = await mod.replayQueue({ fetchImpl });
+
+    expect(result).toMatchObject({ successes: 1, held: 0 });
+    const body = JSON.parse(fetchImpl.mock.calls[0][1].body);
+    expect(body).toMatchObject({ fullName: 'Legacy Claim', calloutFeeAcknowledged: true });
+    expect(body.paymentAmount).toBe(0);
+    expect(JSON.stringify(body)).not.toMatch(/2750/);
+    expect(await mod.getQueueSize()).toBe(0);
+    // Acknowledging twice is refused: it is no longer held.
+    expect(await mod.acknowledgeHeldClaim(id)).toBe(false);
+  });
+
+  it('R10 overlapping replays post each claim once, and a call during a run is not lost', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'First', ...ACK });
+    let release: () => void = () => {};
+    const gate = new Promise<void>((r) => {
+      release = r;
+    });
+    const fetchImpl = vi.fn().mockImplementation(async () => {
+      await gate;
+      return new Response(JSON.stringify({ success: true }), { status: 201 });
+    });
+
+    const a = mod.replayQueue({ fetchImpl });
+    const b = mod.replayQueue({ fetchImpl });
+    const c = mod.replayQueue({ fetchImpl });
+    // Queued while the first run is in flight: must still be sent.
+    await mod.enqueueClaim({ fullName: 'Second', ...ACK });
+    release();
+    await Promise.all([a, b, c]);
+
+    const names = fetchImpl.mock.calls.map((call) => JSON.parse(call[1].body).fullName);
+    expect(names.sort()).toEqual(['First', 'Second']);
+    expect(await mod.getQueueSize()).toBe(0);
   });
 
   it('isOfflineQueueEnabled reflects the feature flag', async () => {
