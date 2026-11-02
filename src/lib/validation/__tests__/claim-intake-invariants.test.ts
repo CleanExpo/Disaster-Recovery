@@ -19,6 +19,7 @@ const validClaim = {
   propertyAddress: '42 Smith St',
   damageTypes: ['Water/Flood Damage'],
   damageDescription: 'burst pipe in kitchen',
+  calloutFeeAcknowledged: true as const,
 };
 
 describe('claimSubmitSchema — audit invariants', () => {

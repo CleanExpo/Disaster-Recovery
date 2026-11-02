@@ -41,6 +41,14 @@ export const claimSubmitSchema = z.object({
   insuranceClaimNumber: z.string().max(100).optional(),
   accessInstructions: z.string().max(500).optional(),
   paymentConfirmed: z.boolean().optional(),
+  // Homeowner confirms the NRPG contractor quotes a call-out fee that is paid
+  // to the contractor, not to Disaster Recovery. Required: a claim without it
+  // is refused (see src/lib/claims/callout-fee-notice.ts).
+  calloutFeeAcknowledged: z.literal(true, {
+    errorMap: () => ({
+      message: 'Please confirm you understand the contractor will quote a call-out fee.',
+    }),
+  }),
   bookingId: z.string().max(100).optional(),
   clientId: z.string().max(254).optional(),
   tenantId: z.string().max(100).optional(),

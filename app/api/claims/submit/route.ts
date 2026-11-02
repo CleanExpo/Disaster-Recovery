@@ -11,9 +11,6 @@ import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
 import { prisma } from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Fixed platform fee (optional at submission stage)
-const PLATFORM_FEE = 2750.0;
-
 type TrackClaimPayload = {
   id: string;
   status: string;
@@ -321,9 +318,6 @@ export async function POST(request: NextRequest) {
       urgency: body.urgencyLevel,
     });
 
-    // Platform fee is server-authoritative — never trust client-supplied amount
-    const totalClaimAmount = PLATFORM_FEE;
-
     const normalizedPolicyNumber =
       typeof body.policyNumber === 'string' && body.policyNumber.trim().length > 0
         ? body.policyNumber.trim()
@@ -334,8 +328,6 @@ export async function POST(request: NextRequest) {
         ? body.insuranceCompany.trim()
         : 'SELF_MANAGED';
 
-    const paymentConfirmed = Boolean(body.paymentConfirmed);
-    const paymentAmount = paymentConfirmed ? PLATFORM_FEE : 0;
     const createdAtIso = new Date().toISOString();
     let trackClaim: TrackClaimPayload | null = null;
 
@@ -401,8 +393,11 @@ export async function POST(request: NextRequest) {
           insuranceProviderId: normalizedProvider,
           policyNumber: normalizedPolicyNumber,
           claimNumber: body.insuranceClaimNumber || null,
-          totalClaimAmountAUD: totalClaimAmount,
-          paymentAmountAUD: paymentAmount,
+          // Homeowners pay nothing to DR; the NRPG contractor quotes and
+          // collects their own call-out fee. The column is NOT NULL in the
+          // schema, so record 0 (no amount claimed through DR) rather than a fee.
+          totalClaimAmountAUD: 0,
+          paymentAmountAUD: null,
           status: 'SUBMITTED',
           damageDescription: body.damageDescription,
           damagePhotos: Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
@@ -513,6 +508,7 @@ export async function POST(request: NextRequest) {
         damage_types: body.damageTypes,
         urgency: body.urgencyLevel,
         payment_confirmed: false,
+        callout_fee_acknowledged: body.calloutFeeAcknowledged,
         client_id_bound: Boolean(session.role === 'client' && session.userId),
       },
     });
@@ -544,9 +540,7 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         claimId: trackClaim.id,
-        message: paymentConfirmed
-          ? 'Claim submitted successfully.'
-          : 'Claim submitted successfully.',
+        message: 'Claim submitted successfully.',
         nextSteps: [
           'Your claim is being matched with a certified NRPG contractor',
           'A verified contractor will review your claim and contact you directly',
