@@ -97,23 +97,24 @@ function openDb(): Promise<IDBDatabase> {
   });
 }
 
+/**
+ * Run one request in its own transaction. Resolves only when the transaction
+ * COMMITS (oncomplete), never at request success: a write whose transaction
+ * then aborts has not happened, and must not be reported as done (DR-966).
+ */
 function tx<T>(
   storeName: string,
   mode: IDBTransactionMode,
-  run: (store: IDBObjectStore) => IDBRequest<T> | Promise<T>,
+  run: (store: IDBObjectStore) => IDBRequest<T>,
 ): Promise<T> {
   return openDb().then(
     (db) =>
       new Promise<T>((resolve, reject) => {
         const t = db.transaction(storeName, mode);
-        const store = t.objectStore(storeName);
-        const result = run(store);
-        if (result instanceof Promise) {
-          result.then(resolve, reject);
-          return;
-        }
-        result.onsuccess = () => resolve(result.result);
-        result.onerror = () => reject(result.error);
+        const request = run(t.objectStore(storeName));
+        t.oncomplete = () => resolve(request.result);
+        t.onabort = () => reject(t.error ?? request.error ?? new Error('IDB transaction aborted'));
+        t.onerror = () => reject(t.error ?? request.error ?? new Error('IDB transaction failed'));
       }),
   );
 }
@@ -126,23 +127,26 @@ async function deleteItem(storeName: string, id: string): Promise<void> {
   await tx<undefined>(storeName, 'readwrite', (s) => s.delete(id));
 }
 
-/** Delete one item only if it exists, in one transaction. True when something was deleted. */
+/**
+ * Delete one item only if it exists, in one transaction. Resolves true only
+ * once the delete has committed; false when the item was not there.
+ */
 function deleteExisting(storeName: string, id: string): Promise<boolean> {
   return openDb().then(
     (db) =>
       new Promise<boolean>((resolve, reject) => {
-        const store = db.transaction(storeName, 'readwrite').objectStore(storeName);
+        const t = db.transaction(storeName, 'readwrite');
+        const store = t.objectStore(storeName);
+        let found = false;
         const get = store.get(id);
-        get.onerror = () => reject(get.error);
         get.onsuccess = () => {
-          if (get.result === undefined) {
-            resolve(false);
-            return;
-          }
-          const del = store.delete(id);
-          del.onerror = () => reject(del.error);
-          del.onsuccess = () => resolve(true);
+          if (get.result === undefined) return;
+          found = true;
+          store.delete(id);
         };
+        t.oncomplete = () => resolve(found);
+        t.onabort = () => reject(t.error ?? new Error('IDB transaction aborted'));
+        t.onerror = () => reject(t.error ?? new Error('IDB transaction failed'));
       }),
   );
 }

@@ -10,39 +10,64 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 function createDraftIdbStub(openDelays: number[]) {
-  const data = new Map<string, unknown>();
+  const state = { data: new Map<string, unknown>(), abortNext: false };
   let opens = 0;
 
-  function request<T>(run: () => T) {
-    const req = {
-      onsuccess: null as null | (() => void),
+  // Writes land on a copy that is committed when the transaction completes and
+  // discarded if it aborts, as in real IndexedDB.
+  function transaction() {
+    const working = new Map(state.data);
+    const t = {
+      oncomplete: null as null | (() => void),
+      onabort: null as null | (() => void),
       onerror: null as null | (() => void),
-      result: undefined as T | undefined,
       error: null as unknown,
     };
-    queueMicrotask(() => {
-      req.result = run();
-      req.onsuccess?.();
+    function request<T>(run: () => T) {
+      const req = {
+        onsuccess: null as null | (() => void),
+        onerror: null as null | (() => void),
+        result: undefined as T | undefined,
+        error: null as unknown,
+      };
+      queueMicrotask(() => {
+        req.result = run();
+        req.onsuccess?.();
+        setTimeout(() => {
+          if (state.abortNext) {
+            state.abortNext = false;
+            t.error = new Error('transaction aborted');
+            t.onabort?.();
+            return;
+          }
+          state.data = working;
+          t.oncomplete?.();
+        }, 0);
+      });
+      return req;
+    }
+    return Object.assign(t, {
+      objectStore: () => ({
+        put: (value: { id: string }) => request(() => working.set(value.id, value)),
+        delete: (key: string) => request(() => working.delete(key)),
+        get: (key: string) => request(() => working.get(key)),
+        getAll: () => request(() => Array.from(working.values())),
+      }),
     });
-    return req;
   }
 
   const db = {
     objectStoreNames: { contains: () => true },
     createObjectStore: () => ({}),
     close: () => {},
-    transaction: () => ({
-      objectStore: () => ({
-        put: (value: { id: string }) => request(() => data.set(value.id, value)),
-        delete: (key: string) => request(() => data.delete(key)),
-        get: (key: string) => request(() => data.get(key)),
-        getAll: () => request(() => Array.from(data.values())),
-      }),
-    }),
+    transaction,
   };
 
   return {
-    data,
+    state,
+    get data() {
+      return state.data;
+    },
     open() {
       const delay = openDelays[opens] ?? 0;
       opens += 1;
@@ -80,6 +105,17 @@ describe('offline-store draft slot', () => {
     await Promise.all([save, clear]);
 
     expect(stub.data.has('current')).toBe(false);
+    expect(await store.loadDraft()).toBeNull();
+  });
+
+  it('R1 a draft save whose transaction aborts is reported as failed and changes nothing', async () => {
+    stub = createDraftIdbStub([0, 0]);
+    vi.stubGlobal('indexedDB', stub);
+    const store = await import('../offline-store');
+    stub.state.abortNext = true;
+    await expect(store.saveDraft({ formData: { fullName: 'Typed' }, step: 1 })).rejects.toThrow(
+      'transaction aborted',
+    );
     expect(await store.loadDraft()).toBeNull();
   });
 

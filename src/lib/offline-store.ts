@@ -67,13 +67,14 @@ async function writeDraft(
     };
 
     const req = store.put(record);
-    req.onsuccess = () => {
+    // Resolve on commit, not request success: an aborted write has not happened.
+    tx.oncomplete = () => {
       db.close();
       resolve();
     };
-    req.onerror = () => {
+    tx.onabort = tx.onerror = () => {
       db.close();
-      reject(req.error);
+      reject(tx.error ?? req.error ?? new Error('draft save failed'));
     };
   });
 }
@@ -107,18 +108,18 @@ export function clearDraft(): Promise<void> {
 async function removeDraft(): Promise<void> {
   try {
     const db = await openDB();
-    return new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       const tx = db.transaction(STORE_NAME, 'readwrite');
       const store = tx.objectStore(STORE_NAME);
       const req = store.delete('current');
 
-      req.onsuccess = () => {
+      tx.oncomplete = () => {
         db.close();
         resolve();
       };
-      req.onerror = () => {
+      tx.onabort = tx.onerror = () => {
         db.close();
-        reject(req.error);
+        reject(tx.error ?? req.error ?? new Error('draft clear failed'));
       };
     });
   } catch {

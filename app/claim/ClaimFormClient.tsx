@@ -77,7 +77,7 @@ import {
 } from 'lucide-react';
 
 // Clear selected/unselected checkbox style
-type DraftSlot = 'checking' | 'offered' | 'owned' | 'closed';
+type DraftSlot = 'checking' | 'slow' | 'offered' | 'owned' | 'closed';
 // How long the page waits for the saved-draft lookup before showing the form.
 const DRAFT_LOOKUP_LIMIT_MS = 3000;
 const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000;
@@ -286,8 +286,11 @@ function OnlineClaimPageOriginal() {
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Draft slot state machine (DR-966, docs/plans/2026-11-02-saved-claim-lifecycle.md):
-  //   checking → offered | owned;  offered → owned;  owned → closed.
+  //   checking → offered | owned | slow;  slow → offered | owned;
+  //   offered → owned;  owned → closed.
   // The form is only shown, and autosave only writes, while the slot is owned.
+  // The slot only becomes owned with no lookup answer by the homeowner's own
+  // "Start a new claim" choice, so a draft they did not discard is never replaced.
   // Claims held in the offline queue are handled by HeldClaimsPanel; the form
   // never reads or writes them.
   const [slot, setSlotState] = useState<DraftSlot>('checking');
@@ -330,25 +333,21 @@ function OnlineClaimPageOriginal() {
 
   // Look up the saved draft once, on mount
   useEffect(() => {
-    let timedOut = false;
+    // Taking too long: say so and offer an explicit way on. Never open the
+    // form on our own while a saved draft might still be there.
     const limit = window.setTimeout(() => {
-      if (slotRef.current !== 'checking') return;
-      timedOut = true;
-      takeOwnership();
+      if (slotRef.current === 'checking') setSlot('slow');
     }, DRAFT_LOOKUP_LIMIT_MS);
     loadDraft()
       .catch(() => null)
       .then((draft) => {
         window.clearTimeout(limit);
         const fresh = draft && Date.now() - draft.savedAt < DRAFT_MAX_AGE_MS ? draft : null;
-        if (slotRef.current === 'checking') {
-          if (fresh) offerDraft(fresh);
-          else takeOwnership();
-          return;
-        }
-        // Answer arrived after the time limit. Offer it only if the homeowner
-        // has not changed anything yet; never overwrite what they typed.
-        if (timedOut && fresh && slotRef.current === 'owned' && isPristine()) offerDraft(fresh);
+        // Once the homeowner has chosen to start a new claim, a late answer is
+        // ignored: they already chose to replace whatever was saved.
+        if (slotRef.current !== 'checking' && slotRef.current !== 'slow') return;
+        if (fresh) offerDraft(fresh);
+        else takeOwnership();
       });
     setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
     // Once-on-mount replay: if the app was killed mid-queue last session, drain now.
@@ -894,6 +893,28 @@ function OnlineClaimPageOriginal() {
               </div>
             </div>
           </div>
+        )}
+
+        {slot === 'slow' && (
+          <section
+            aria-label="Still checking for a saved claim"
+            className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-5"
+          >
+            <p role="status" className="text-sm text-amber-900">
+              Checking this device for a claim you saved earlier is taking longer than usual. You
+              can keep waiting, or start a new claim now. If you saved a claim on this device
+              before, starting a new one replaces it. If it&rsquo;s urgent, call 1300 309 361.
+            </p>
+            <div className="mt-4">
+              <button
+                type="button"
+                onClick={startNewClaim}
+                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Start a new claim
+              </button>
+            </div>
+          </section>
         )}
 
         {slot === 'checking' && (

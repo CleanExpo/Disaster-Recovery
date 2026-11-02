@@ -51,7 +51,9 @@ States, held in `slot` (a ref plus state for rendering):
 ```
 checking ──(no draft, expired draft, or read error)──▶ owned
 checking ──(draft < 24 h)───────────────────────────▶ offered
-checking ──(3 s timeout)────────────────────────────▶ owned (late result handled below)
+checking ──(3 s, no answer yet)────────────────────▶ slow    (no form; "Start a new claim" offered)
+slow     ──(answer arrives)────────────────────────▶ offered | owned, exactly as from checking
+slow     ──(Start a new claim)─────────────────────▶ owned   (slot cleared, form empty)
 offered  ──(Resume)─────────────────────────────────▶ owned   (form = saved draft)
 offered  ──(Start a new claim)──────────────────────▶ owned   (slot cleared, form empty)
 owned    ──(server accepted claim, or claim queued)─▶ closed  (slot cleared)
@@ -69,21 +71,24 @@ Rules:
 3. **`closed` is terminal.** The pending autosave timer is cancelled, autosave stops, and the
    slot is cleared. The page shows the success screen (server accepted) or the "saved on this
    device" screen (queued). Neither screen has form fields.
-4. **Draft writes are serialised.** `saveDraft` and `clearDraft` run one after another in call
+4. **Draft writes resolve on commit.** `saveDraft` and `clearDraft` resolve only when
+   the transaction commits, never at request success, so an aborted write is reported as failed.
+
+5. **Draft writes are serialised.** `saveDraft` and `clearDraft` run one after another in call
    order inside `offline-store`, so a save started before a clear can never land after it.
-5. **Resume uses the draft read at page load,** not a second read, so it cannot be raced.
+6. **Resume uses the draft read at page load,** not a second read, so it cannot be raced.
 
 Failures:
 
-| Failure                                 | What happens                                                              | Why it is safe                                                                                                                                   |
-| --------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| IndexedDB unavailable                   | `loadDraft` returns null → `owned`; saves fail silently as today          | nothing can be overwritten; the form works online                                                                                                |
-| Read error                              | same as unavailable                                                       | same                                                                                                                                             |
-| Read slower than 3 s (timeout)          | `owned`: form editable, autosave on                                       | typing is always saved (the 5416ace0 finding)                                                                                                    |
-| Late read after timeout, form untouched | switch to `offered`                                                       | no typing exists to lose                                                                                                                         |
-| Late read after timeout, form changed   | ignored; the homeowner's current typing wins and replaces the older draft | the only data choice left; documented trade-off. IndexedDB's version is fixed at 1, so the "blocked" upgrade that causes long hangs cannot occur |
-| `clearDraft` fails after acceptance     | slot may still hold the sent claim                                        | best-effort, as on main; the success screen still shows. Logged as a follow-up, not hidden                                                       |
-| Save after close                        | impossible: timer cancelled and writer checks `closed` first              | rule 3                                                                                                                                           |
+| Failure                                | What happens                                                                                                                          | Why it is safe                                                                                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| IndexedDB unavailable                  | `loadDraft` returns null → `owned`; saves fail silently as today                                                                      | nothing can be overwritten; the form works online                                                                                           |
+| Read error                             | same as unavailable                                                                                                                   | same                                                                                                                                        |
+| Read slower than 3 s (timeout)         | `slow`: no form; the page says it is taking longer and offers "Start a new claim" (which replaces any saved claim) and the phone line | nothing can be typed and lost (5416ace0), and nothing is written over a draft the homeowner did not choose to discard (round 2 on 0515f787) |
+| Read answers while `slow`              | same as answering in `checking`: offer the draft, or own the slot                                                                     | the homeowner has not chosen yet                                                                                                            |
+| Read answers after "Start a new claim" | ignored                                                                                                                               | the homeowner explicitly chose to replace what was saved                                                                                    |
+| `clearDraft` fails after acceptance    | slot may still hold the sent claim                                                                                                    | best-effort, as on main; the success screen still shows. Logged as a follow-up, not hidden                                                  |
+| Save after close                       | impossible: timer cancelled and writer checks `closed` first                                                                          | rule 3                                                                                                                                      |
 
 Readers and writers of the draft slot after this change:
 
@@ -133,7 +138,11 @@ Rules:
 5. **A failed read is not an empty read.** The panel uses `readHeldClaims()`, which returns
    `{ ok: false }` on an IndexedDB error. The panel then says it could not check, instead of
    showing nothing.
-6. **Queue writes report the truth.** `acknowledgeHeldClaim` and `removeQueuedClaim` return
+6. **Every queue write resolves on commit.** The shared transaction helper and `deleteExisting` resolve
+   only when the transaction commits, not at request success. A write whose transaction aborts is not
+   recorded as done; this also makes "removed" and the accepted-marker cleanup truthful.
+
+7. **Queue writes report the truth.** `acknowledgeHeldClaim` and `removeQueuedClaim` return
    `false` when the flag is off, IndexedDB is unavailable, the item is not on the device
    (checked in the same transaction as the delete), or the write fails. The panel only says "removed" or "sending" on `true`.
 

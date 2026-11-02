@@ -331,7 +331,7 @@ describe('saved-claim lifecycle', () => {
     expect(savedNames()).not.toContain('Held Claim');
   });
 
-  it('R7 a draft lookup that answers after the time limit never replaces typing', async () => {
+  it('R7 after the homeowner chose to start a new claim, a late draft lookup never replaces typing', async () => {
     let answer: (d: ReturnType<typeof savedDraft>) => void = () => {};
     vi.mocked(loadDraft).mockReturnValue(
       new Promise((resolve) => {
@@ -339,18 +339,20 @@ describe('saved-claim lifecycle', () => {
       }),
     );
     render(<ClaimFormClient />);
-    const input = await screen.findByLabelText('Full Name *', {}, { timeout: 4000 });
-    fireEvent.change(input, { target: { value: 'Typed After Timeout' } });
+    fireEvent.click(
+      await screen.findByRole('button', { name: 'Start a new claim' }, { timeout: 4000 }),
+    );
+    const input = await typeFullName('Typed After Choice');
     await act(async () => {
       answer(savedDraft({ fullName: 'Late Draft' }));
       await sleep(AUTOSAVE_WAIT_MS);
     });
-    expect(screen.getByLabelText('Full Name *')).toHaveValue('Typed After Timeout');
+    expect(input).toHaveValue('Typed After Choice');
     expect(screen.queryByRole('button', { name: 'Resume' })).not.toBeInTheDocument();
-    expect(savedNames()).toContain('Typed After Timeout');
+    expect(savedNames()).toContain('Typed After Choice');
   }, 10_000);
 
-  it('R7 a late draft lookup is still offered if nothing has been typed', async () => {
+  it('R7 a draft lookup that answers while the page is still waiting is offered as normal', async () => {
     let answer: (d: ReturnType<typeof savedDraft>) => void = () => {};
     vi.mocked(loadDraft).mockReturnValue(
       new Promise((resolve) => {
@@ -358,7 +360,7 @@ describe('saved-claim lifecycle', () => {
       }),
     );
     render(<ClaimFormClient />);
-    await screen.findByLabelText('Full Name *', {}, { timeout: 4000 });
+    await screen.findByRole('button', { name: 'Start a new claim' }, { timeout: 4000 });
     await act(async () => {
       answer(savedDraft({ fullName: 'Late Draft' }));
     });
@@ -366,17 +368,28 @@ describe('saved-claim lifecycle', () => {
     expect(await screen.findByLabelText('Full Name *')).toHaveValue('Late Draft');
   }, 10_000);
 
-  it('R8 after the 3 s lookup limit the form is editable and autosave is on', async () => {
+  it('R8 after the 3 s lookup limit nothing is editable until the homeowner chooses, then typing is saved', async () => {
     vi.mocked(loadDraft).mockReturnValue(new Promise(() => {}));
     render(<ClaimFormClient />);
     expect(screen.getByRole('status')).toHaveTextContent(/Checking this device/);
+    const start = await screen.findByRole(
+      'button',
+      { name: 'Start a new claim' },
+      { timeout: 4000 },
+    );
+    expect(screen.getByText(/taking longer than usual/)).toBeVisible();
+    // No form, so nothing can be typed and lost, and nothing has been written.
     expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
-    const input = await screen.findByLabelText('Full Name *', {}, { timeout: 4000 });
-    fireEvent.change(input, { target: { value: 'Typed After Timeout' } });
+    expect(saveDraft).not.toHaveBeenCalled();
+    expect(clearDraft).not.toHaveBeenCalled();
+
+    fireEvent.click(start);
+    expect(clearDraft).toHaveBeenCalledTimes(1);
+    await typeFullName('Typed After Choice');
     await act(async () => {
       await sleep(AUTOSAVE_WAIT_MS);
     });
-    expect(savedNames()).toContain('Typed After Timeout');
+    expect(savedNames()).toContain('Typed After Choice');
   }, 10_000);
 
   it('R9 the saved draft is not overwritten before the homeowner chooses, and Resume restores it', async () => {

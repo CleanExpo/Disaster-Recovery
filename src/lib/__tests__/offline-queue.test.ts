@@ -19,33 +19,96 @@ interface StubStore {
 }
 
 // Fault switches so tests can make one IndexedDB operation fail on purpose.
-const faults = { delete: false, getAll: false, put: false };
+const faults = { delete: false, getAll: false, put: false, abort: false };
 
 function createIdbStub() {
   const stores = new Map<string, StubStore>();
 
-  function makeRequest<T = unknown>(
-    run: () => T,
-  ): IDBRequest<T> & { onsuccess: null | (() => void); onerror: null | (() => void) } {
-    const req = {
-      onsuccess: null as null | (() => void),
+  // Transactional like real IndexedDB: a transaction works on a copy of the
+  // store, commits it when its last request settles, and on abort discards
+  // every write it made. faults.abort makes the next transaction abort AFTER
+  // its requests have succeeded, which is how a commit failure looks.
+  function makeTransaction(store: StubStore) {
+    const working = new Map(store.data);
+    let pending = 0;
+    let done = false;
+    let failed: unknown = null;
+    const t = {
+      oncomplete: null as null | (() => void),
+      onabort: null as null | (() => void),
       onerror: null as null | (() => void),
-      result: undefined as T,
       error: null as unknown,
     };
-    queueMicrotask(() => {
-      try {
-        req.result = run();
-        req.onsuccess?.();
-      } catch (err) {
-        req.error = err;
-        req.onerror?.();
-      }
-    });
-    return req as unknown as IDBRequest<T> & {
-      onsuccess: null | (() => void);
-      onerror: null | (() => void);
+    function settle() {
+      setTimeout(() => {
+        if (done || pending > 0) return;
+        done = true;
+        // A failed request aborts its transaction, as in real IndexedDB.
+        if (failed !== null || faults.abort) {
+          if (failed === null) faults.abort = false;
+          t.error = failed ?? new Error('transaction aborted');
+          t.onabort?.();
+          return;
+        }
+        store.data = working;
+        t.oncomplete?.();
+      }, 0);
+    }
+    function request<T>(run: () => T) {
+      const req = {
+        onsuccess: null as null | (() => void),
+        onerror: null as null | (() => void),
+        result: undefined as T,
+        error: null as unknown,
+      };
+      pending += 1;
+      queueMicrotask(() => {
+        try {
+          req.result = run();
+          req.onsuccess?.();
+        } catch (err) {
+          req.error = err;
+          failed = err;
+          req.onerror?.();
+        }
+        pending -= 1;
+        settle();
+      });
+      return req as unknown as IDBRequest<T>;
+    }
+    const objectStore = {
+      put(value: Record<string, unknown>) {
+        return request(() => {
+          if (faults.put) throw new Error('put failed');
+          const key = value[store.keyPath] as string;
+          working.set(key, value);
+          return key;
+        });
+      },
+      delete(key: string) {
+        return request(() => {
+          if (faults.delete) throw new Error('delete failed');
+          working.delete(key);
+          return undefined;
+        });
+      },
+      clear() {
+        return request(() => {
+          working.clear();
+          return undefined;
+        });
+      },
+      get(key: string) {
+        return request(() => working.get(key));
+      },
+      getAll() {
+        return request(() => {
+          if (faults.getAll) throw new Error('read failed');
+          return Array.from(working.values());
+        });
+      },
     };
+    return Object.assign(t, { objectStore: () => objectStore });
   }
 
   return {
@@ -68,43 +131,8 @@ function createIdbStub() {
           },
           transaction(storeName: string, _mode: string) {
             const store = stores.get(storeName);
-            if (!store) throw new Error(`Unknown store: ${storeName}`);
-            return {
-              objectStore() {
-                return {
-                  put(value: Record<string, unknown>) {
-                    return makeRequest(() => {
-                      if (faults.put) throw new Error('put failed');
-                      const key = value[store.keyPath] as string;
-                      store.data.set(key, value);
-                      return key;
-                    });
-                  },
-                  delete(key: string) {
-                    return makeRequest(() => {
-                      if (faults.delete) throw new Error('delete failed');
-                      store.data.delete(key);
-                      return undefined;
-                    });
-                  },
-                  clear() {
-                    return makeRequest(() => {
-                      store.data.clear();
-                      return undefined;
-                    });
-                  },
-                  get(key: string) {
-                    return makeRequest(() => store.data.get(key));
-                  },
-                  getAll() {
-                    return makeRequest(() => {
-                      if (faults.getAll) throw new Error('read failed');
-                      return Array.from(store.data.values());
-                    });
-                  },
-                };
-              },
-            };
+            if (!store) throw new Error('Unknown store: ' + storeName);
+            return makeTransaction(store);
           },
         };
         req.result = db;
@@ -123,6 +151,7 @@ beforeEach(() => {
   faults.delete = false;
   faults.getAll = false;
   faults.put = false;
+  faults.abort = false;
   localStorage.clear();
   // Fresh IDB per test — drops every store.
   (globalThis as unknown as { indexedDB: unknown }).indexedDB = createIdbStub();
@@ -131,8 +160,19 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.unstubAllEnvs();
+  vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
+
+// localStorage that refuses every write, as in a full or blocked store.
+const brokenStorage = {
+  getItem: () => null,
+  setItem: () => {
+    throw new Error('quota');
+  },
+  removeItem: () => {},
+  clear: () => {},
+};
 
 // Claims queued after 02/11/2026 carry the call-out fee acknowledgement.
 const ACK = { calloutFeeAcknowledged: true } as const;
@@ -360,9 +400,7 @@ describe('offline-queue', () => {
       .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
     faults.delete = true;
     faults.put = true;
-    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
-      throw new Error('quota');
-    });
+    vi.stubGlobal('localStorage', brokenStorage);
     await mod.replayQueue({ fetchImpl });
     await mod.replayQueue({ fetchImpl });
     expect(fetchImpl).toHaveBeenCalledTimes(1);
@@ -388,6 +426,76 @@ describe('offline-queue', () => {
   it('R6 removing a claim that is not on the device reports false', async () => {
     const mod = await loadQueue();
     expect(await mod.removeQueuedClaim('does-not-exist')).toBe(false);
+  });
+
+  it('R6 a removal whose transaction aborts after the delete request succeeded reports false', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Legacy Claim' });
+    const held = await mod.readHeldClaims();
+    const id = held.ok ? held.items[0]!.id : '';
+    faults.abort = true;
+    expect(await mod.removeQueuedClaim(id)).toBe(false);
+    const after = await mod.readHeldClaims();
+    expect(after.ok && after.items.map((i) => i.id)).toEqual([id]);
+  });
+
+  it('R2 an accepted claim whose delete transaction aborts after success is not sent again', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+    // The fetch resolves, then the delete's transaction aborts; the acceptedAt
+    // fallback put commits normally.
+    fetchImpl.mockImplementationOnce(async () => {
+      faults.abort = true;
+      return new Response(JSON.stringify({ success: true }), { status: 201 });
+    });
+    expect((await mod.replayQueue({ fetchImpl })).successes).toBe(1);
+    await mod.replayQueue({ fetchImpl });
+    vi.resetModules();
+    await (await loadQueue()).replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('R2 an accepted claim is not sent again when every cleanup transaction aborts', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    let abortAll = false;
+    const fetchImpl = vi.fn().mockImplementation(async () => {
+      abortAll = true;
+      return new Response(JSON.stringify({ success: true }), { status: 201 });
+    });
+    // Re-arm the abort before every transaction once the server has accepted.
+    const realSetTimeout = globalThis.setTimeout;
+    vi.spyOn(globalThis, 'setTimeout').mockImplementation(((fn: () => void, ms?: number) => {
+      if (abortAll) faults.abort = true;
+      return realSetTimeout(fn, ms);
+    }) as typeof setTimeout);
+    await mod.replayQueue({ fetchImpl });
+    abortAll = false;
+    faults.abort = false;
+    vi.restoreAllMocks();
+    vi.resetModules();
+    await (await loadQueue()).replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('R2 an accepted claim is not sent again after a reload when localStorage and the delete both fail', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+    faults.delete = true;
+    vi.stubGlobal('localStorage', brokenStorage);
+    await mod.replayQueue({ fetchImpl });
+    vi.unstubAllGlobals();
+    // Reload: page memory is gone, localStorage never held the marker; only
+    // the acceptedAt mark written to IndexedDB remains.
+    vi.resetModules();
+    await (await loadQueue()).replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
   });
 
   it('R4 a failed queue read is reported as a failure, not as no held claims', async () => {
