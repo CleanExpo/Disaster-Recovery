@@ -3,6 +3,8 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import OnlineClaimPage from './ClaimFormClient';
 import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
+import { DrPhoneLink } from '@/components/contact/DrPhoneLink';
+import { DR_PHONE_DISPLAY } from '@/config/contact';
 import {
   CALLOUT_FEE_ACK_FIELD,
   CALLOUT_FEE_ACK_LABEL,
@@ -88,21 +90,17 @@ function ClaimPageSSRFallback() {
 
           {/* DR-542 — Prefer-to-call fallback. Prominent so users who can't type
               one-handed on mobile have an immediate voice option. */}
-          <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div>
-              <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
-              <p className="text-xs text-blue-800">
-                Our 24/7 intake line will take your claim over the phone.
-              </p>
+          {DR_PHONE_DISPLAY && (
+            <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
+                <p className="text-xs text-blue-800">
+                  Our 24/7 intake line will take your claim over the phone.
+                </p>
+              </div>
+              <DrPhoneLink className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300" />
             </div>
-            <a
-              href="tel:1300309361"
-              className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
-              aria-label="Call Disaster Recovery on 1300 309 361"
-            >
-              Call 1300 309 361
-            </a>
-          </div>
+          )}
 
           {/* APP 3 Collection Notice — full statutory version, rendered on server */}
           <div className="mb-8">

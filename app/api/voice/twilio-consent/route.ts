@@ -3,7 +3,7 @@
  *
  * Twilio Programmable Voice entry webhook. DR-707.
  *
- * When an inbound call lands on the 1300 number, Twilio POSTs to this URL.
+ * When an inbound call lands on the DR Twilio number, Twilio POSTs to this URL.
  * We respond with TwiML that plays the DR-713 consent utterance then
  * <Gather>s DTMF or speech. On consent, control passes to the `/handle`
  * sub-route which either bridges to Sarah or falls back to a human.
@@ -13,7 +13,7 @@
  * straight to the human queue. That way we can exercise the wire path in
  * staging with zero risk of bridging to ElevenLabs.
  *
- * Refs: DR-706 (epic), DR-707 (1300 + Twilio), DR-713 (consent utterance).
+ * Refs: DR-706 (epic), DR-707 (DR Twilio number), DR-713 (consent utterance).
  */
 
 import { NextResponse } from 'next/server';
