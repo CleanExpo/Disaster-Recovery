@@ -77,27 +77,14 @@ import {
 } from 'lucide-react';
 
 // Clear selected/unselected checkbox style
-type DraftSlot = 'checking' | 'slow' | 'offered' | 'owned' | 'closed';
-// How long the page waits for the saved-draft lookup before showing the form.
+type DraftSlot = 'checking' | 'slow' | 'unreadable' | 'offered' | 'owned' | 'closed';
+// After this long the page says the saved-draft lookup is slow. It never opens
+// the form on its own: only storage's answer or the homeowner's choice does.
 const DRAFT_LOOKUP_LIMIT_MS = 3000;
-// A saved-claim removal that has not committed by then is reported as failed.
-const DRAFT_CLEAR_LIMIT_MS = 5000;
-
-function withinLimit<T>(work: Promise<T>, ms: number): Promise<T> {
-  return new Promise<T>((resolve, reject) => {
-    const timer = window.setTimeout(() => reject(new Error('timed out')), ms);
-    work.then(
-      (value) => {
-        window.clearTimeout(timer);
-        resolve(value);
-      },
-      (err: unknown) => {
-        window.clearTimeout(timer);
-        reject(err);
-      },
-    );
-  });
-}
+// After this long a removal still running is described as slow and the
+// homeowner is offered a form that does not save on this device. The removal
+// itself is never treated as failed or done until storage says so.
+const DRAFT_CLEAR_SLOW_MS = 5000;
 const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 const CHECKBOX_CLASS =
@@ -317,8 +304,15 @@ function OnlineClaimPageOriginal() {
   const [offeredSavedAt, setOfferedSavedAt] = useState<number | null>(null);
   // "Start a new claim" removes the saved claim first; the form opens only once
   // that removal has committed, so the page never says it is gone when it is not.
+  // While a removal is running, Resume is off, so a late removal can never
+  // delete a claim the homeowner has just resumed.
   const [clearing, setClearing] = useState<'idle' | 'clearing' | 'failed'>('idle');
+  const [clearSlow, setClearSlow] = useState(false);
   const clearingRef = useRef(false);
+  // False only when the homeowner chose to continue without saving on this
+  // device, after a removal failed or stalled. Autosave then writes nothing.
+  const [saveOnDevice, setSaveOnDevice] = useState(true);
+  const lookupRef = useRef(0);
   // Form and step when the slot became owned. Autosave writes only after a change
   // from this, so an untouched visit never creates or overwrites a draft.
   const baselineRef = useRef<{ formData: unknown; step: number } | null>(null);
@@ -353,24 +347,40 @@ function OnlineClaimPageOriginal() {
     [setSlot],
   );
 
-  // Look up the saved draft once, on mount
-  useEffect(() => {
+  // Look up the saved draft. A failed read is not "no draft": the page says it
+  // could not check, and the form stays closed until the homeowner chooses.
+  const lookUpDraft = useCallback(() => {
+    const lookup = ++lookupRef.current;
+    setSlot('checking');
     // Taking too long: say so and offer an explicit way on. Never open the
     // form on our own while a saved draft might still be there.
     const limit = window.setTimeout(() => {
-      if (slotRef.current === 'checking') setSlot('slow');
+      if (lookup === lookupRef.current && slotRef.current === 'checking') setSlot('slow');
     }, DRAFT_LOOKUP_LIMIT_MS);
-    loadDraft()
-      .catch(() => null)
-      .then((draft) => {
+    // Only an answer to the latest lookup, arriving before the homeowner has
+    // chosen, is acted on.
+    const waiting = () =>
+      lookup === lookupRef.current &&
+      (slotRef.current === 'checking' || slotRef.current === 'slow');
+    loadDraft().then(
+      (draft) => {
         window.clearTimeout(limit);
+        if (!waiting()) return;
         const fresh = draft && Date.now() - draft.savedAt < DRAFT_MAX_AGE_MS ? draft : null;
-        // Once the homeowner has chosen to start a new claim, a late answer is
-        // ignored: they already chose to replace whatever was saved.
-        if (slotRef.current !== 'checking' && slotRef.current !== 'slow') return;
         if (fresh) offerDraft(fresh);
         else takeOwnership();
-      });
+      },
+      () => {
+        window.clearTimeout(limit);
+        if (waiting()) setSlot('unreadable');
+      },
+    );
+    return () => window.clearTimeout(limit);
+  }, [offerDraft, setSlot, takeOwnership]);
+
+  // Look up the saved draft once, on mount
+  useEffect(() => {
+    const stopLookup = lookUpDraft();
     setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
     // Once-on-mount replay: if the app was killed mid-queue last session, drain now.
     if (isOfflineQueueEnabled() && typeof navigator !== 'undefined' && navigator.onLine) {
@@ -385,7 +395,7 @@ function OnlineClaimPageOriginal() {
           /* ignore — banner surfaces any residual items */
         });
     }
-    return () => window.clearTimeout(limit);
+    return stopLookup;
     // Mount-only: the lookup runs once per page load.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -448,7 +458,7 @@ function OnlineClaimPageOriginal() {
   // Debounced auto-save on formData / step change — only while the slot is
   // owned and only after the homeowner has changed something.
   useEffect(() => {
-    if (slot !== 'owned' || isPristine()) return;
+    if (slot !== 'owned' || !saveOnDevice || isPristine()) return;
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(() => {
       if (slotRef.current !== 'owned') return;
@@ -471,7 +481,7 @@ function OnlineClaimPageOriginal() {
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData, step, slot]);
+  }, [formData, step, slot, saveOnDevice]);
 
   // Resume uses the draft read at page load, so no second read can race it.
   const resumeDraft = () => {
@@ -487,17 +497,25 @@ function OnlineClaimPageOriginal() {
     setSlot('owned');
   };
 
+  const choosing = () =>
+    slotRef.current === 'offered' || slotRef.current === 'slow' || slotRef.current === 'unreadable';
+
   // The homeowner's explicit choice is the only way a waiting draft is deleted.
+  // The form opens only when storage confirms the removal.
   const startNewClaim = async () => {
     if (clearingRef.current) return;
     clearingRef.current = true;
     setClearing('clearing');
-    const removed = await withinLimit(clearDraft(), DRAFT_CLEAR_LIMIT_MS).then(
+    setClearSlow(false);
+    const slowTimer = window.setTimeout(() => setClearSlow(true), DRAFT_CLEAR_SLOW_MS);
+    const removed = await clearDraft().then(
       () => true,
       () => false,
     );
+    window.clearTimeout(slowTimer);
     clearingRef.current = false;
-    if (slotRef.current !== 'offered' && slotRef.current !== 'slow') return;
+    setClearSlow(false);
+    if (!choosing()) return;
     if (!removed) {
       // Keep the choice on screen; nothing has been deleted or replaced.
       setClearing('failed');
@@ -508,6 +526,18 @@ function OnlineClaimPageOriginal() {
     setOfferedSavedAt(null);
     takeOwnership();
   };
+
+  // Storage would not confirm the removal. The homeowner may still lodge a
+  // claim, but nothing is written on this device, so no saved claim is replaced.
+  const continueWithoutSaving = () => {
+    if (!choosing()) return;
+    setSaveOnDevice(false);
+    offeredDraftRef.current = null;
+    setOfferedSavedAt(null);
+    takeOwnership();
+  };
+
+  const stuck = clearing === 'failed' || (clearing === 'clearing' && clearSlow);
 
   // Terminal: the claim was accepted or queued. Stop autosave before clearing,
   // so the sent claim can never be written back as a draft.
@@ -933,11 +963,59 @@ function OnlineClaimPageOriginal() {
           </div>
         )}
 
-        {(slot === 'slow' || slot === 'offered') && clearing === 'failed' && (
-          <p role="alert" className="mb-4 text-sm text-red-700">
-            We couldn&rsquo;t remove the saved claim from this device, so a new claim hasn&rsquo;t
-            been started. Please try again, or call 1300 309 361.
-          </p>
+        {(slot === 'slow' || slot === 'unreadable' || slot === 'offered') && stuck && (
+          <section
+            aria-label="Saved claim not removed"
+            className="mb-4 rounded-xl border border-red-200 bg-red-50 p-5"
+          >
+            <p role="alert" className="text-sm text-red-700">
+              {clearing === 'failed'
+                ? 'We couldn\u2019t remove the saved claim from this device, so a new claim hasn\u2019t been started.'
+                : 'Removing the saved claim from this device is taking longer than usual.'}{' '}
+              You can try again, call 1300 309 361, or continue without saving on this device. If
+              you continue, your new claim is not kept if you close this page before sending it.
+            </p>
+            <div className="mt-4">
+              <button
+                type="button"
+                onClick={continueWithoutSaving}
+                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Continue without saving on this device
+              </button>
+            </div>
+          </section>
+        )}
+
+        {slot === 'unreadable' && (
+          <section
+            aria-label="Could not check for a saved claim"
+            className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-5"
+          >
+            <p role="status" className="text-sm text-amber-900">
+              We couldn&rsquo;t check this device for a claim you saved earlier. You can try again,
+              or start a new claim. If you saved a claim on this device before, starting a new one
+              replaces it. If it&rsquo;s urgent, call 1300 309 361.
+            </p>
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => lookUpDraft()}
+                disabled={clearing === 'clearing'}
+                className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Try again
+              </button>
+              <button
+                type="button"
+                onClick={startNewClaim}
+                disabled={clearing === 'clearing'}
+                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Start a new claim
+              </button>
+            </div>
+          </section>
         )}
 
         {slot === 'slow' && (
@@ -1005,6 +1083,12 @@ function OnlineClaimPageOriginal() {
 
         {slot === 'owned' && (
           <>
+            {!saveOnDevice && (
+              <p role="status" className="mb-6 text-sm text-amber-900">
+                This claim isn&rsquo;t being saved on this device. Please send it before you close
+                this page.
+              </p>
+            )}
             <AgStepProgress steps={CLAIM_STEPS} current={step} className="mb-8" />
 
             {/* Platform Role Disclaimer — Path A */}

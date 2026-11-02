@@ -49,62 +49,79 @@ never touches the form or the draft slot.
 States, held in `slot` (a ref plus state for rendering):
 
 ```
-checking ──(no draft, expired draft, or read error)──▶ owned
-checking ──(draft < 24 h)───────────────────────────▶ offered
-checking ──(3 s, no answer yet)────────────────────▶ slow    (no form; "Start a new claim" offered)
-slow     ──(answer arrives)────────────────────────▶ offered | owned, exactly as from checking
-slow     ──(Start a new claim)─────────────────────▶ owned   (slot cleared, form empty)
-offered  ──(Resume)─────────────────────────────────▶ owned   (form = saved draft)
-offered  ──(Start a new claim)──────────────────────▶ owned   (slot cleared, form empty)
-owned    ──(server accepted claim, or claim queued)─▶ closed  (slot cleared)
+checking   ──(no draft, or expired draft)──────────────▶ owned
+checking   ──(draft < 24 h)─────────────────────────────▶ offered
+checking   ──(read fails)───────────────────────────────▶ unreadable (no form; "Try again", "Start a new claim")
+checking   ──(3 s, no answer yet)──────────────────────▶ slow       (no form; "Start a new claim")
+slow       ──(answer arrives)──────────────────────────▶ offered | owned | unreadable, as from checking
+unreadable ──(Try again)────────────────────────────────▶ checking
+offered    ──(Resume)───────────────────────────────────▶ owned      (form = saved draft)
+offered | slow | unreadable ──(Start a new claim, removal commits)──▶ owned (slot cleared, form empty)
+offered | slow | unreadable ──(removal fails or is slow, homeowner
+                               picks "Continue without saving")────▶ owned, nothing saved on this device
+owned      ──(server accepted claim, or claim queued)──▶ closed     (slot cleared)
 ```
+
+The governing rule, after four review rounds found variants of one root cause: **the page
+never treats an unknown storage result as an answer.** A failed read is not "no draft", a
+removal still running is neither done nor failed, and no timer ever decides what storage has
+not confirmed. Timers only change what the page says.
 
 Rules:
 
-1. **The form is only editable in `owned`.** In `checking` the page shows "Checking for a
-   saved claim on this device…" instead of the form. In `offered` it shows the choice
-   instead of the form. There is never an editable form whose typing is not saved, and never
-   a form that can be submitted while an unread or undecided draft sits in the slot.
-2. **Autosave writes only in `owned`, and only after a change.** The baseline is the form and
-   step at the moment the slot became `owned`. A page visit with no typing writes nothing, so
-   an untouched visit can no longer create or overwrite a draft.
+1. **The form is only editable in `owned`.** In `checking`, `slow` and `unreadable` the page
+   says what it is doing instead of showing the form; in `offered` it shows the choice. The
+   form is never shown while an unread or undecided draft sits in the slot. The only form whose
+   typing is not saved is the one the homeowner explicitly chose with "Continue without saving
+   on this device", which says so on screen.
+2. **Autosave writes only in `owned`, only after a change, and never after "Continue without
+   saving".** The baseline is the form and step at the moment the slot became `owned`. A page
+   visit with no typing writes nothing, so an untouched visit can no longer create or
+   overwrite a draft.
 3. **`closed` is terminal.** The pending autosave timer is cancelled, autosave stops, and the
    slot is cleared. The page shows the success screen (server accepted) or the "saved on this
    device" screen (queued). Neither screen has form fields.
-4. **Draft writes resolve on commit.** `saveDraft` and `clearDraft` resolve only when
-   the transaction commits, never at request success, so an aborted write is reported as failed.
-   `clearDraft` also rejects when storage cannot be opened.
+4. **Draft reads and writes report the truth.** `loadDraft` resolves null only when there is
+   no IndexedDB on the device or the slot is empty; a failed open or read rejects. `saveDraft`
+   and `clearDraft` resolve only when the transaction commits and reject on abort or when
+   storage cannot be opened.
 5. **Draft writes are serialised.** `saveDraft` and `clearDraft` run one after another in call
    order inside `offline-store`, so a save started before a clear can never land after it.
 6. **Resume uses the draft read at page load,** not a second read, so it cannot be raced.
-7. **"Start a new claim" opens the form only after the saved claim is removed.** The page
-   waits for `clearDraft` to commit (5 s limit). If it fails or runs out of time, the choice
-   stays on screen with "We couldn't remove the saved claim from this device…", nothing is
-   replaced, and Resume still works. Added after review round 3 on ca3bbb5b.
+   Resume is off while a removal is running, so a late removal can never delete a claim the
+   homeowner has just resumed (review round 4 on f5a997a5).
+7. **"Start a new claim" opens the form only after the removal commits.** There is no time
+   limit on the removal itself. After 5 s the page says it is taking longer; on failure it says
+   the saved claim was not removed. In both cases it offers the phone line, a retry (on
+   failure) and "Continue without saving on this device", which opens a form that writes
+   nothing to this device, so no saved claim is replaced. Added after review rounds 3 and 4.
+8. **Only the latest lookup, answering before the homeowner chooses, is acted on.** "Try
+   again" starts a new lookup; an older answer, or any answer after a choice, is ignored.
 
 Failures:
 
-| Failure                                | What happens                                                                                                                          | Why it is safe                                                                                                                              |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| IndexedDB unavailable                  | `loadDraft` returns null → `owned`; saves fail silently as today                                                                      | nothing can be overwritten; the form works online                                                                                           |
-| Read error                             | same as unavailable                                                                                                                   | same                                                                                                                                        |
-| Read slower than 3 s (timeout)         | `slow`: no form; the page says it is taking longer and offers "Start a new claim" (which replaces any saved claim) and the phone line | nothing can be typed and lost (5416ace0), and nothing is written over a draft the homeowner did not choose to discard (round 2 on 0515f787) |
-| Read answers while `slow`              | same as answering in `checking`: offer the draft, or own the slot                                                                     | the homeowner has not chosen yet                                                                                                            |
-| Read answers after "Start a new claim" | ignored                                                                                                                               | the homeowner explicitly chose to replace what was saved                                                                                    |
-| Clear fails on "Start a new claim"     | the choice stays, with an error and the phone line; retry is allowed                                                                  | the page never says a saved claim is gone when it is not (round 3 on ca3bbb5b)                                                              |
-| `clearDraft` fails after acceptance    | slot may still hold the sent claim                                                                                                    | best-effort, as on main; the success screen still shows. Logged as a follow-up, not hidden                                                  |
-| Save after close                       | impossible: timer cancelled and writer checks `closed` first                                                                          | rule 3                                                                                                                                      |
+| Failure                                        | What happens                                                                                                                          | Why it is safe                                                                                                |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| No IndexedDB on the device                     | `loadDraft` returns null → `owned`; saves fail silently as today                                                                      | nothing can have been saved here, so nothing can be overwritten                                               |
+| Read error (open or get fails)                 | `unreadable`: no form; "Try again", "Start a new claim" and the phone line                                                            | a claim that could not be read is never treated as absent and overwritten (round 4 on f5a997a5)               |
+| Read slower than 3 s                           | `slow`: no form; the page says it is taking longer and offers "Start a new claim" (which replaces any saved claim) and the phone line | nothing can be typed and lost (5416ace0), and nothing is written over an unchosen draft (round 2 on 0515f787) |
+| Read answers while `slow`                      | same as answering in `checking`                                                                                                       | the homeowner has not chosen yet                                                                              |
+| Read answers after a choice, or a stale lookup | ignored                                                                                                                               | rule 8                                                                                                        |
+| Removal fails on "Start a new claim"           | the choice stays, with an error, the phone line, retry, and "Continue without saving on this device"                                  | the page never says a saved claim is gone when it is not (round 3 on ca3bbb5b)                                |
+| Removal still running after 5 s                | the page says so; Resume stays off; "Continue without saving on this device" is offered; the form opens if the removal later commits  | no timer decides the outcome, and a late removal cannot follow Resume (round 4 on f5a997a5)                   |
+| `clearDraft` fails after acceptance            | slot may still hold the sent claim; the next visit offers it and the homeowner chooses                                                | best-effort, as on main; the success screen still shows. Logged as a follow-up, not hidden                    |
+| Save after close                               | impossible: timer cancelled and writer checks `closed` first                                                                          | rule 3                                                                                                        |
 
 Readers and writers of the draft slot after this change:
 
-| Code                    | Reads                                   | Writes                                   |
-| ----------------------- | --------------------------------------- | ---------------------------------------- |
-| Page-load effect        | `loadDraft` once                        | —                                        |
-| Autosave effect         | —                                       | `saveDraft` (owned only, after a change) |
-| Resume                  | in-memory draft                         | — (autosave then saves it)               |
-| Start a new claim       | —                                       | `clearDraft`                             |
-| Submit success / queued | —                                       | `clearDraft` (then closed)               |
-| `online` handler        | `getUnsynced` (unchanged, display only) | —                                        |
+| Code                    | Reads                                   | Writes                                                                |
+| ----------------------- | --------------------------------------- | --------------------------------------------------------------------- |
+| Page-load effect        | `loadDraft` (again on "Try again")      | —                                                                     |
+| Autosave effect         | —                                       | `saveDraft` (owned, after a change, unless "Continue without saving") |
+| Resume                  | in-memory draft                         | — (autosave then saves it)                                            |
+| Start a new claim       | —                                       | `clearDraft`                                                          |
+| Submit success / queued | —                                       | `clearDraft` (then closed)                                            |
+| `online` handler        | `getUnsynced` (unchanged, display only) | —                                                                     |
 
 ## Machine 2: a queue item
 

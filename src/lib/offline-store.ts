@@ -79,26 +79,26 @@ async function writeDraft(
   });
 }
 
+// Resolves null only when there is truly no draft: no IndexedDB on this device
+// (so nothing can have been saved) or an empty slot. A failed open or read
+// rejects, so a caller never mistakes "could not check" for "nothing saved".
 export async function loadDraft(): Promise<ClaimDraft | null> {
-  try {
-    const db = await openDB();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(STORE_NAME, 'readonly');
-      const store = tx.objectStore(STORE_NAME);
-      const req = store.get('current');
+  if (typeof window === 'undefined' || !window.indexedDB) return null;
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readonly');
+    const store = tx.objectStore(STORE_NAME);
+    const req = store.get('current');
 
-      req.onsuccess = () => {
-        db.close();
-        resolve((req.result as ClaimDraft) ?? null);
-      };
-      req.onerror = () => {
-        db.close();
-        reject(req.error);
-      };
-    });
-  } catch {
-    return null;
-  }
+    req.onsuccess = () => {
+      db.close();
+      resolve((req.result as ClaimDraft) ?? null);
+    };
+    req.onerror = () => {
+      db.close();
+      reject(req.error ?? new Error('draft read failed'));
+    };
+  });
 }
 
 export function clearDraft(): Promise<void> {

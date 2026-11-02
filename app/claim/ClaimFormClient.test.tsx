@@ -314,6 +314,64 @@ describe('saved-claim lifecycle', () => {
     expect(clearDraft).toHaveBeenCalledTimes(2);
   });
 
+  it('R3 a failed draft read never opens a form that could overwrite the saved claim', async () => {
+    vi.mocked(loadDraft).mockRejectedValueOnce(new Error('read failed'));
+    render(<ClaimFormClient />);
+    expect(await screen.findByText(/couldn.t check this device/)).toBeVisible();
+    expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(saveDraft).not.toHaveBeenCalled();
+    expect(clearDraft).not.toHaveBeenCalled();
+
+    // Trying again reads the saved claim and offers it as normal.
+    vi.mocked(loadDraft).mockResolvedValueOnce(savedDraft({ fullName: 'Waiting Draft' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Resume' }));
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('Waiting Draft');
+  });
+
+  it('R3 while a removal is still running, Resume stays off so it cannot delete a resumed claim', async () => {
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
+    let finish: () => void = () => {};
+    vi.mocked(clearDraft).mockReturnValueOnce(
+      new Promise<void>((resolve) => {
+        finish = resolve;
+      }),
+    );
+    render(<ClaimFormClient />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Start a new claim' }));
+    expect(screen.getByRole('button', { name: 'Resume' })).toBeDisabled();
+    // Slow removal: described as slow, never as failed, and Resume stays off.
+    expect(
+      await screen.findByText(/taking longer than usual/, {}, { timeout: 7000 }),
+    ).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Resume' })).toBeDisabled();
+    expect(screen.queryByLabelText('Full Name *')).not.toBeInTheDocument();
+
+    await act(async () => {
+      finish();
+    });
+    expect(await screen.findByLabelText('Full Name *')).toHaveValue('');
+  }, 12_000);
+
+  it('R5 continuing without saving on this device never writes over the saved claim', async () => {
+    vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
+    vi.mocked(clearDraft).mockRejectedValueOnce(new Error('transaction aborted'));
+    render(<ClaimFormClient />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Start a new claim' }));
+    fireEvent.click(
+      await screen.findByRole('button', { name: 'Continue without saving on this device' }),
+    );
+    expect(await screen.findByText(/isn.t being saved on this device/)).toBeVisible();
+    await typeFullName('Unsaved Claim');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(saveDraft).not.toHaveBeenCalled();
+  });
+
   it('R5 typing is saved after starting a new claim', async () => {
     vi.mocked(loadDraft).mockResolvedValue(savedDraft({ fullName: 'Waiting Draft' }));
     render(<ClaimFormClient />);

@@ -129,6 +129,16 @@ describe('offline-store draft slot', () => {
     expect((await store.loadDraft())?.formData).toMatchObject({ fullName: 'Saved' });
   });
 
+  it('R4 a draft read that fails rejects instead of reporting no draft', async () => {
+    stub = createDraftIdbStub([0]);
+    vi.stubGlobal('indexedDB', stub);
+    const store = await import('../offline-store');
+    stub.open = () => {
+      throw new Error('open failed');
+    };
+    await expect(store.loadDraft()).rejects.toThrow('open failed');
+  });
+
   it('R1 a failed save does not block the clear behind it', async () => {
     stub = createDraftIdbStub([0, 0]);
     vi.stubGlobal('indexedDB', stub);
