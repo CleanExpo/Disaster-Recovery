@@ -120,15 +120,22 @@ Rules:
    "Retry now" and the panel can all call `replayQueue`. Only one run happens at a time; a
    call during a run waits for it and then runs once more, so an item acknowledged
    mid-run is still sent and no item is posted twice by overlapping runs.
-4. **An accepted claim is never sent twice.** After a 2xx the item is deleted. If the delete
-   fails, the item is marked `acceptedAt` and every later replay skips it (and retries the
-   delete). The run counts it as a success, so the homeowner is told it was sent.
+4. **An accepted claim is never sent twice.** On a 2xx the item's id is first written to an
+   accepted marker held outside IndexedDB (localStorage, plus memory for the page), then the
+   item is deleted. If the delete fails, the item is also marked `acceptedAt` where possible.
+   Every later replay skips a marked item and only retries the delete. A marker is removed
+   only after a confirmed delete, or when a successful read shows the item gone; a failed
+   read never removes one. The run counts it as a success, so the homeowner is told it was
+   sent, and it is not counted as waiting. Added after review round 1 on 02d100d2 (both
+   cleanup writes failing let a reload resend the claim). Residual: if IndexedDB and
+   localStorage both fail and the page reloads, the claim can be sent again; only a
+   server-side idempotency key closes that, recorded as a follow-up.
 5. **A failed read is not an empty read.** The panel uses `readHeldClaims()`, which returns
    `{ ok: false }` on an IndexedDB error. The panel then says it could not check, instead of
    showing nothing.
 6. **Queue writes report the truth.** `acknowledgeHeldClaim` and `removeQueuedClaim` return
-   `false` when the flag is off, IndexedDB is unavailable, the item is gone, or the write
-   fails. The panel only says "removed" or "sending" on `true`.
+   `false` when the flag is off, IndexedDB is unavailable, the item is not on the device
+   (checked in the same transaction as the delete), or the write fails. The panel only says "removed" or "sending" on `true`.
 
 Failures:
 
@@ -139,7 +146,7 @@ Failures:
 | Offline when ticked                 | item is queued; panel says it will be sent when back online                           |
 | Server 5xx / network error          | item stays queued; panel says it will retry                                           |
 | Server 4xx                          | item moves to dead-letter; the existing `OfflineQueueBanner` shows it                 |
-| Delete fails after 2xx              | item marked accepted; never resent; panel says sent                                   |
+| Delete fails after 2xx              | accepted marker written first; never resent; panel says sent                          |
 | Remove fails                        | panel shows an error; item stays                                                      |
 
 ## Regression tests

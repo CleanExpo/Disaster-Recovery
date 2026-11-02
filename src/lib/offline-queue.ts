@@ -126,6 +126,77 @@ async function deleteItem(storeName: string, id: string): Promise<void> {
   await tx<undefined>(storeName, 'readwrite', (s) => s.delete(id));
 }
 
+/** Delete one item only if it exists, in one transaction. True when something was deleted. */
+function deleteExisting(storeName: string, id: string): Promise<boolean> {
+  return openDb().then(
+    (db) =>
+      new Promise<boolean>((resolve, reject) => {
+        const store = db.transaction(storeName, 'readwrite').objectStore(storeName);
+        const get = store.get(id);
+        get.onerror = () => reject(get.error);
+        get.onsuccess = () => {
+          if (get.result === undefined) {
+            resolve(false);
+            return;
+          }
+          const del = store.delete(id);
+          del.onerror = () => reject(del.error);
+          del.onsuccess = () => resolve(true);
+        };
+      }),
+  );
+}
+
+// ── Accepted-claim markers ──────────────────────────────────────────────
+// When the server accepts a replayed claim but IndexedDB cannot delete or
+// mark it, the claim must still never be sent again. The marker is written
+// BEFORE the delete, to storage independent of IndexedDB (localStorage, plus
+// memory for this page), and removed only after a delete is confirmed or a
+// successful read shows the item gone. A failed read never removes a marker.
+
+const ACCEPTED_KEY = 'dr-offline-queue-accepted';
+const acceptedThisPage = new Set<string>();
+
+function readAccepted(): Set<string> {
+  const ids = new Set(acceptedThisPage);
+  try {
+    const raw = localStorage.getItem(ACCEPTED_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    if (Array.isArray(parsed)) {
+      parsed.forEach((id) => {
+        if (typeof id === 'string') ids.add(id);
+      });
+    }
+  } catch {
+    /* localStorage unavailable or corrupt: the memory set still applies */
+  }
+  return ids;
+}
+
+function writeAccepted(ids: Set<string>): void {
+  try {
+    if (ids.size === 0) localStorage.removeItem(ACCEPTED_KEY);
+    else localStorage.setItem(ACCEPTED_KEY, JSON.stringify([...ids]));
+  } catch {
+    /* best effort; the memory set still guards this page */
+  }
+}
+
+function markAccepted(id: string): void {
+  acceptedThisPage.add(id);
+  const ids = readAccepted();
+  ids.add(id);
+  writeAccepted(ids);
+}
+
+function forgetAccepted(remove: string[]): void {
+  if (remove.length === 0) return;
+  remove.forEach((id) => acceptedThisPage.delete(id));
+  const ids = readAccepted();
+  remove.forEach((id) => ids.delete(id));
+  writeAccepted(ids);
+}
+
 async function listItems(storeName: string): Promise<QueuedClaim[]> {
   return tx<QueuedClaim[]>(storeName, 'readonly', (s) => s.getAll() as IDBRequest<QueuedClaim[]>);
 }
@@ -171,7 +242,9 @@ export async function getQueueSize(): Promise<number> {
   if (!FLAG_ENABLED || !hasIDB()) return 0;
   try {
     const items = await listItems(STORE_PENDING);
-    return items.length;
+    // A claim the server already accepted is not waiting to send.
+    const accepted = readAccepted();
+    return items.filter((i) => i.acceptedAt === undefined && !accepted.has(i.id)).length;
   } catch {
     return 0;
   }
@@ -256,7 +329,7 @@ export async function acknowledgeHeldClaim(id: string): Promise<boolean> {
 export async function removeQueuedClaim(id: string): Promise<boolean> {
   if (!FLAG_ENABLED || !hasIDB()) return false;
   try {
-    await deleteItem(STORE_PENDING, id);
+    if (!(await deleteExisting(STORE_PENDING, id))) return false;
   } catch {
     return false;
   }
@@ -344,14 +417,28 @@ async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
   const fetchImpl = deps.fetchImpl ?? fetch;
   const now = deps.now ?? Date.now;
 
-  const all = await peekQueue();
+  let all: QueuedClaim[];
+  try {
+    all = (await listItems(STORE_PENDING)).sort((a, b) => a.queuedAt - b.queuedAt);
+  } catch {
+    // Could not read the queue: send nothing, and leave every marker alone.
+    return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
+  }
+  const acceptedIds = readAccepted();
+  const isAccepted = (item: QueuedClaim) =>
+    item.acceptedAt !== undefined || acceptedIds.has(item.id);
+  // A successful read shows these markers' items are gone: drop the markers.
+  const present = new Set(all.map((item) => item.id));
+  forgetAccepted([...acceptedIds].filter((id) => !present.has(id)));
   // Accepted by the server earlier but not yet deleted: retry the delete only.
   for (const item of all) {
-    if (item.acceptedAt !== undefined) {
-      await deleteItem(STORE_PENDING, item.id).catch(() => undefined);
-    }
+    if (!isAccepted(item)) continue;
+    await deleteItem(STORE_PENDING, item.id).then(
+      () => forgetAccepted([item.id]),
+      () => undefined,
+    );
   }
-  const items = all.filter((item) => item.acceptedAt === undefined && !isHeld(item));
+  const items = all.filter((item) => !isAccepted(item) && !isHeld(item));
   const heldItems = all.filter(isHeld);
   const held = heldItems.length;
   for (const item of heldItems) {
@@ -390,10 +477,12 @@ async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
       });
 
       if (res.ok) {
-        // The server has the claim. If the delete fails, mark the item
-        // accepted so no later replay sends it again.
-        await deleteItem(STORE_PENDING, item.id).catch(() =>
-          putItem(STORE_PENDING, { ...item, acceptedAt: replayedAt }).catch(() => undefined),
+        // The server has the claim. Mark it accepted before cleanup, so no
+        // later replay sends it again whatever the delete does.
+        markAccepted(item.id);
+        await deleteItem(STORE_PENDING, item.id).then(
+          () => forgetAccepted([item.id]),
+          () => putItem(STORE_PENDING, { ...item, acceptedAt: replayedAt }).catch(() => undefined),
         );
         successes += 1;
         const remaining = await getQueueSize();

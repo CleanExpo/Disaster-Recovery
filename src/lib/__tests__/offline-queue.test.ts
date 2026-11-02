@@ -93,6 +93,9 @@ function createIdbStub() {
                       return undefined;
                     });
                   },
+                  get(key: string) {
+                    return makeRequest(() => store.data.get(key));
+                  },
                   getAll() {
                     return makeRequest(() => {
                       if (faults.getAll) throw new Error('read failed');
@@ -120,6 +123,7 @@ beforeEach(() => {
   faults.delete = false;
   faults.getAll = false;
   faults.put = false;
+  localStorage.clear();
   // Fresh IDB per test — drops every store.
   (globalThis as unknown as { indexedDB: unknown }).indexedDB = createIdbStub();
   vi.resetModules();
@@ -306,8 +310,8 @@ describe('offline-queue', () => {
     const first = await mod.replayQueue({ fetchImpl });
     expect(first.successes).toBe(1);
     expect(fetchImpl).toHaveBeenCalledTimes(1);
-    // Still on the device (delete failed) but marked accepted, not held.
-    expect(await mod.getQueueSize()).toBe(1);
+    // Still on the device (delete failed) but accepted: not counted as waiting, not held.
+    expect(await mod.getQueueSize()).toBe(0);
     expect(await mod.readHeldClaims()).toEqual({ ok: true, items: [] });
 
     const second = await mod.replayQueue({ fetchImpl });
@@ -319,6 +323,71 @@ describe('offline-queue', () => {
     await mod.replayQueue({ fetchImpl });
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     expect(await mod.getQueueSize()).toBe(0);
+  });
+
+  it('R2 an accepted claim is not sent again after a reload when both cleanup writes failed', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+    faults.delete = true;
+    faults.put = true;
+    expect((await mod.replayQueue({ fetchImpl })).successes).toBe(1);
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+
+    // Same page: still not resent.
+    faults.put = false;
+    await mod.replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+
+    // Page reload (fresh module, same device storage), IndexedDB recovered.
+    faults.delete = false;
+    vi.resetModules();
+    const reloaded = await loadQueue();
+    await reloaded.replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(await reloaded.getQueueSize()).toBe(0);
+    // The marker is dropped only once the delete is confirmed.
+    expect(localStorage.getItem('dr-offline-queue-accepted')).toBeNull();
+  });
+
+  it('R2 an accepted claim is not sent again in the same page even when no storage works', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+    faults.delete = true;
+    faults.put = true;
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('quota');
+    });
+    await mod.replayQueue({ fetchImpl });
+    await mod.replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('R2 an accepted marker survives a failed delete and a failed read', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Accepted Claim', ...ACK });
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 201 }));
+    faults.delete = true;
+    faults.put = true;
+    await mod.replayQueue({ fetchImpl });
+    faults.getAll = true;
+    await mod.replayQueue({ fetchImpl }).catch(() => undefined);
+    faults.getAll = false;
+    await mod.replayQueue({ fetchImpl });
+    expect(localStorage.getItem('dr-offline-queue-accepted')).not.toBeNull();
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('R6 removing a claim that is not on the device reports false', async () => {
+    const mod = await loadQueue();
+    expect(await mod.removeQueuedClaim('does-not-exist')).toBe(false);
   });
 
   it('R4 a failed queue read is reported as a failure, not as no held claims', async () => {
