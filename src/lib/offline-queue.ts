@@ -26,8 +26,7 @@ const STORE_DEAD = 'deadletter';
 const CLAIM_SUBMIT_URL = '/api/claims/submit';
 
 const FLAG_ENABLED =
-  typeof process !== 'undefined' &&
-  process.env.NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED === 'true';
+  typeof process !== 'undefined' && process.env.NEXT_PUBLIC_IOS_NATIVE_BRIDGE_ENABLED === 'true';
 
 export interface QueuedClaim {
   id: string;
@@ -43,6 +42,8 @@ export type QueueEvent =
   | { type: 'replay-success'; id: string; remaining: number }
   | { type: 'replay-retry'; id: string; error: string }
   | { type: 'replay-deadletter'; id: string; error: string }
+  | { type: 'replay-held'; id: string; reason: 'callout-fee-acknowledgement-missing' }
+  | { type: 'removed'; id: string; remaining: number }
   | { type: 'replay-complete'; successes: number; failures: number };
 
 type EventListener = (event: QueueEvent) => void;
@@ -182,6 +183,30 @@ export async function getDeadLetterSize(): Promise<number> {
   }
 }
 
+/**
+ * A queued claim saved before the call-out fee acknowledgement existed
+ * (02/11/2026) lacks `calloutFeeAcknowledged: true`. The server refuses it
+ * with 400, which would dead-letter it and lose the homeowner's claim, and
+ * consent must never be inferred. Such items are held in the pending store
+ * (never sent, never dead-lettered) until the homeowner ticks the box in the
+ * claim form and resubmits.
+ */
+export function needsCalloutFeeAcknowledgement(item: QueuedClaim): boolean {
+  return item.payload?.calloutFeeAcknowledged !== true;
+}
+
+/** Pending items held for the homeowner's call-out fee acknowledgement, oldest first. */
+export async function listUnacknowledgedClaims(): Promise<QueuedClaim[]> {
+  return (await peekQueue()).filter(needsCalloutFeeAcknowledgement);
+}
+
+/** Remove one pending item, e.g. once its resubmission has succeeded. */
+export async function removeQueuedClaim(id: string): Promise<void> {
+  if (!FLAG_ENABLED || !hasIDB()) return;
+  await deleteItem(STORE_PENDING, id);
+  emit({ type: 'removed', id, remaining: await getQueueSize() });
+}
+
 /** Returns all pending items — used for UI rendering / tests. */
 export async function peekQueue(): Promise<QueuedClaim[]> {
   if (!FLAG_ENABLED || !hasIDB()) return [];
@@ -223,15 +248,22 @@ interface ReplayDeps {
  */
 export async function replayQueue(
   deps: ReplayDeps = {},
-): Promise<{ successes: number; failures: number; deadLettered: number }> {
-  if (!FLAG_ENABLED) return { successes: 0, failures: 0, deadLettered: 0 };
-  if (!hasIDB()) return { successes: 0, failures: 0, deadLettered: 0 };
+): Promise<{ successes: number; failures: number; deadLettered: number; held: number }> {
+  if (!FLAG_ENABLED) return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
+  if (!hasIDB()) return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
 
   const fetchImpl = deps.fetchImpl ?? fetch;
   const now = deps.now ?? Date.now;
 
-  const items = await peekQueue();
-  if (items.length === 0) return { successes: 0, failures: 0, deadLettered: 0 };
+  const all = await peekQueue();
+  const items = all.filter((item) => !needsCalloutFeeAcknowledgement(item));
+  const held = all.length - items.length;
+  for (const item of all) {
+    if (needsCalloutFeeAcknowledgement(item)) {
+      emit({ type: 'replay-held', id: item.id, reason: 'callout-fee-acknowledgement-missing' });
+    }
+  }
+  if (items.length === 0) return { successes: 0, failures: 0, deadLettered: 0, held };
 
   emit({ type: 'replay-start', size: items.length });
 
@@ -308,7 +340,7 @@ export async function replayQueue(
   }
 
   emit({ type: 'replay-complete', successes, failures });
-  return { successes, failures, deadLettered };
+  return { successes, failures, deadLettered, held };
 }
 
 /** Clear a single dead-letter item (used when the user taps "discard"). */

@@ -119,6 +119,9 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
+// Claims queued after 02/11/2026 carry the call-out fee acknowledgement.
+const ACK = { calloutFeeAcknowledged: true } as const;
+
 // Helper — dynamic import so module picks up the stubbed env var.
 async function loadQueue() {
   return await import('../offline-queue');
@@ -146,9 +149,9 @@ describe('offline-queue', () => {
 
   it('replayQueue drains pending items in FIFO order on 2xx', async () => {
     const mod = await loadQueue();
-    await mod.enqueueClaim({ fullName: 'First' });
+    await mod.enqueueClaim({ fullName: 'First', ...ACK });
     await new Promise((r) => setTimeout(r, 5)); // ensure different queuedAt
-    await mod.enqueueClaim({ fullName: 'Second' });
+    await mod.enqueueClaim({ fullName: 'Second', ...ACK });
 
     const fetchImpl = vi
       .fn()
@@ -170,10 +173,8 @@ describe('offline-queue', () => {
 
   it('replayQueue moves items to dead-letter on persistent 4xx', async () => {
     const mod = await loadQueue();
-    await mod.enqueueClaim({ fullName: 'BadPayload' });
-    const fetchImpl = vi
-      .fn()
-      .mockResolvedValue(new Response('bad', { status: 400 }));
+    await mod.enqueueClaim({ fullName: 'BadPayload', ...ACK });
+    const fetchImpl = vi.fn().mockResolvedValue(new Response('bad', { status: 400 }));
     const result = await mod.replayQueue({ fetchImpl });
     expect(result.deadLettered).toBe(1);
     expect(await mod.getQueueSize()).toBe(0);
@@ -182,7 +183,7 @@ describe('offline-queue', () => {
 
   it('replayQueue keeps items in the pending queue on 5xx / network error', async () => {
     const mod = await loadQueue();
-    await mod.enqueueClaim({ fullName: 'TransientCase' });
+    await mod.enqueueClaim({ fullName: 'TransientCase', ...ACK });
 
     const fetch5xx = vi.fn().mockResolvedValue(new Response('nope', { status: 503 }));
     const r1 = await mod.replayQueue({ fetchImpl: fetch5xx });
@@ -200,7 +201,7 @@ describe('offline-queue', () => {
     const mod = await loadQueue();
     const events: string[] = [];
     const off = mod.onQueueEvent((e) => events.push(e.type));
-    await mod.enqueueClaim({ fullName: 'Casey Morgan' });
+    await mod.enqueueClaim({ fullName: 'Casey Morgan', ...ACK });
     const fetchImpl = vi
       .fn()
       .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 200 }));
@@ -214,7 +215,7 @@ describe('offline-queue', () => {
 
   it('retryDeadLetter moves an item back to pending', async () => {
     const mod = await loadQueue();
-    await mod.enqueueClaim({ fullName: 'Retry Me' });
+    await mod.enqueueClaim({ fullName: 'Retry Me', ...ACK });
     const fetchImpl = vi.fn().mockResolvedValue(new Response('bad', { status: 422 }));
     await mod.replayQueue({ fetchImpl });
     expect(await mod.getDeadLetterSize()).toBe(1);
@@ -241,6 +242,46 @@ describe('offline-queue', () => {
     expect(ok).toBe(true);
     expect(await mod.getDeadLetterSize()).toBe(0);
     expect(await mod.getQueueSize()).toBe(1);
+  });
+
+  it('holds a claim queued without the call-out fee acknowledgement: never sent, never dead-lettered', async () => {
+    const mod = await loadQueue();
+    // Shape the pre-02/11/2026 claim form queued: no calloutFeeAcknowledged.
+    await mod.enqueueClaim({ fullName: 'Legacy Claim', paymentConfirmed: false, paymentAmount: 0 });
+    await mod.enqueueClaim({ fullName: 'Acknowledged Claim', ...ACK });
+    const events: string[] = [];
+    const off = mod.onQueueEvent((e) => events.push(e.type));
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ success: true }), { status: 200 }));
+
+    const result = await mod.replayQueue({ fetchImpl });
+    off();
+
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(fetchImpl.mock.calls[0][1].body).fullName).toBe('Acknowledged Claim');
+    expect(result).toMatchObject({ successes: 1, deadLettered: 0, held: 1 });
+    expect(events).toContain('replay-held');
+    expect(await mod.getDeadLetterSize()).toBe(0);
+    const held = await mod.listUnacknowledgedClaims();
+    expect(held).toHaveLength(1);
+    expect(held[0]?.payload).toMatchObject({ fullName: 'Legacy Claim' });
+
+    // A second replay still does not send or dead-letter it.
+    const again = await mod.replayQueue({ fetchImpl });
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(again.held).toBe(1);
+    expect(await mod.getQueueSize()).toBe(1);
+  });
+
+  it('removeQueuedClaim deletes a held claim once it has been resubmitted', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Legacy Claim' });
+    const [held] = await mod.listUnacknowledgedClaims();
+    expect(held).toBeDefined();
+    await mod.removeQueuedClaim(held!.id);
+    expect(await mod.getQueueSize()).toBe(0);
+    expect(await mod.listUnacknowledgedClaims()).toHaveLength(0);
   });
 
   it('isOfflineQueueEnabled reflects the feature flag', async () => {

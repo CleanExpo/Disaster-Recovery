@@ -25,7 +25,28 @@ vi.mock('@/lib/offline-store', () => ({
   clearDraft: vi.fn().mockResolvedValue(undefined),
   getUnsynced: vi.fn().mockResolvedValue([]),
 }));
-vi.mock('@/lib/offline-queue', () => ({ isOfflineQueueEnabled: () => false }));
+const queue = vi.hoisted(() => ({
+  enabled: false,
+  held: [] as Array<{
+    id: string;
+    payload: Record<string, unknown>;
+    queuedAt: number;
+    attempts: number;
+  }>,
+  removeQueuedClaim: vi.fn(),
+}));
+vi.mock('@/lib/offline-queue', () => ({
+  isOfflineQueueEnabled: () => queue.enabled,
+  listUnacknowledgedClaims: async () => queue.held,
+  removeQueuedClaim: (id: string) => queue.removeQueuedClaim(id),
+  replayQueue: async () => ({
+    successes: 0,
+    failures: 0,
+    deadLettered: 0,
+    held: queue.held.length,
+  }),
+  enqueueClaim: async () => ({ ok: false, reason: 'flag-off' }),
+}));
 vi.mock('@/lib/native-bridge', () => ({
   mediumTap: vi.fn(),
   heavyTap: vi.fn(),
@@ -83,6 +104,9 @@ beforeEach(() => {
   );
   vi.mocked(loadDraft).mockResolvedValue(null);
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+  queue.enabled = false;
+  queue.held = [];
+  queue.removeQueuedClaim.mockReset().mockResolvedValue(undefined);
 });
 
 afterEach(() => {
@@ -158,6 +182,79 @@ describe('call-out fee explainer and required tick box', () => {
       const body = JSON.parse(String(submitCall![1].body));
       expect(body.calloutFeeAcknowledged).toBe(true);
       expect(JSON.stringify(body)).not.toMatch(/2750/);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+});
+
+describe('claim queued offline before the call-out fee acknowledgement', () => {
+  it('restores it at final review, requires the tick, then sends it and clears the queue item', async () => {
+    queue.enabled = true;
+    queue.held = [
+      {
+        id: 'q_legacy',
+        queuedAt: Date.now() - 60_000,
+        attempts: 0,
+        // Shape the pre-02/11/2026 form queued: formData + paymentConfirmed/paymentAmount.
+        payload: { ...completeDraft, paymentConfirmed: false, paymentAmount: 2750 },
+      },
+    ];
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 201,
+      json: async () => ({ success: true, claimId: 'claim-legacy' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    try {
+      render(<ClaimFormClient />);
+      const review = await screen.findByRole('region', { name: 'Final review & submit' });
+      expect(within(review).getByText(/Your saved claim has not been sent yet/)).toBeVisible();
+      const submit = within(review).getByRole('button', { name: 'Submit Claim' });
+      expect(submit).toBeDisabled();
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(document.body.textContent).not.toMatch(FEE_PATTERN);
+
+      fireEvent.click(within(review).getByRole('checkbox', { name: CALLOUT_FEE_ACK_LABEL }));
+      await act(async () => {
+        fireEvent.click(submit);
+      });
+
+      const submitCall = fetchMock.mock.calls.find(([url]) => url === '/api/claims/submit');
+      expect(submitCall).toBeDefined();
+      const body = JSON.parse(String(submitCall![1].body));
+      expect(body).toMatchObject({
+        fullName: 'Joe Smith',
+        propertyAddress: '42 Smith St',
+        calloutFeeAcknowledged: true,
+      });
+      expect(JSON.stringify(body)).not.toMatch(/2750/);
+      expect(queue.removeQueuedClaim).toHaveBeenCalledWith('q_legacy');
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('keeps the held queue item when the resubmission fails', async () => {
+    queue.enabled = true;
+    queue.held = [
+      { id: 'q_legacy', queuedAt: Date.now(), attempts: 0, payload: { ...completeDraft } },
+    ];
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 503,
+      json: async () => ({ success: false, code: 'CLAIM_PERSISTENCE_FAILED' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    try {
+      render(<ClaimFormClient />);
+      const review = await screen.findByRole('region', { name: 'Final review & submit' });
+      fireEvent.click(within(review).getByRole('checkbox', { name: CALLOUT_FEE_ACK_LABEL }));
+      await act(async () => {
+        fireEvent.click(within(review).getByRole('button', { name: 'Submit Claim' }));
+      });
+      expect(fetchMock).toHaveBeenCalled();
+      expect(queue.removeQueuedClaim).not.toHaveBeenCalled();
     } finally {
       vi.unstubAllGlobals();
     }

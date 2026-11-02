@@ -34,7 +34,13 @@ const VoiceWidget = dynamic(
 );
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 import { mediumTap, heavyTap, isOnline as bridgeIsOnline } from '@/lib/native-bridge';
-import { enqueueClaim, replayQueue, isOfflineQueueEnabled } from '@/lib/offline-queue';
+import {
+  enqueueClaim,
+  replayQueue,
+  isOfflineQueueEnabled,
+  listUnacknowledgedClaims,
+  removeQueuedClaim,
+} from '@/lib/offline-queue';
 import { useSearchParams } from 'next/navigation';
 import { CALLOUT_FEE_ACK_LABEL, CALLOUT_FEE_EXPLAINER } from '@/lib/claims/callout-fee-notice';
 import { Button } from '@/components/ui/button';
@@ -268,6 +274,9 @@ function OnlineClaimPageOriginal() {
   const [isOffline, setIsOffline] = useState<boolean>(false);
   const [draftBanner, setDraftBanner] = useState<{ savedAt: number } | null>(null);
   const [savedLocally, setSavedLocally] = useState<boolean>(false);
+  // Offline-queued claim saved before the call-out fee acknowledgement existed.
+  // Held in the queue (never sent) until the homeowner ticks the box and resubmits.
+  const [heldQueuedClaimId, setHeldQueuedClaimId] = useState<string | null>(null);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Load draft on mount
@@ -281,6 +290,28 @@ function OnlineClaimPageOriginal() {
       }
     });
     setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
+    // Restore the oldest claim queued before the call-out fee acknowledgement
+    // existed, so the homeowner can read the explainer, tick and resubmit it.
+    if (isOfflineQueueEnabled()) {
+      listUnacknowledgedClaims()
+        .then((held) => {
+          const oldest = held[0];
+          if (!oldest) return;
+          const {
+            _offlineMeta: _meta,
+            paymentConfirmed: _paid,
+            paymentAmount: _amount,
+            calloutFeeAcknowledged: _ack,
+            ...saved
+          } = oldest.payload;
+          setFormData((prev) => ({ ...prev, ...saved, calloutFeeAcknowledged: false }));
+          setHeldQueuedClaimId(oldest.id);
+          setStep(4);
+        })
+        .catch(() => {
+          /* ignore — the held item stays queued and is retried next open */
+        });
+    }
     // Once-on-mount replay: if the app was killed mid-queue last session, drain now.
     if (isOfflineQueueEnabled() && typeof navigator !== 'undefined' && navigator.onLine) {
       replayQueue()
@@ -465,6 +496,10 @@ function OnlineClaimPageOriginal() {
         });
         setSubmitting(false);
         if (enq.ok) {
+          if (heldQueuedClaimId) {
+            await removeQueuedClaim(heldQueuedClaimId);
+            setHeldQueuedClaimId(null);
+          }
           setQueuedOffline(true);
           setReplayToast('Saved offline — we\u2019ll send it as soon as you\u2019re back online.');
           window.setTimeout(() => setReplayToast(null), 6000);
@@ -503,6 +538,10 @@ function OnlineClaimPageOriginal() {
       const result = await response.json().catch(() => ({}));
 
       if (response.ok && result.success) {
+        if (heldQueuedClaimId) {
+          await removeQueuedClaim(heldQueuedClaimId);
+          setHeldQueuedClaimId(null);
+        }
         setClaimId(result.claimId);
         await clearDraft();
         // Phase 2 PR #6 — Medium haptic on submit success (RA-1633). No-op on web.
@@ -1457,6 +1496,17 @@ function OnlineClaimPageOriginal() {
             {/* Step 4: Final Review */}
             {step === 4 && (
               <div className="space-y-6">
+                {heldQueuedClaimId && (
+                  <Alert className="bg-amber-50 border-amber-200">
+                    <AlertTriangle className="h-4 w-4 text-amber-700" />
+                    <AlertDescription className="text-amber-900">
+                      <strong>Your saved claim has not been sent yet.</strong> We kept the
+                      details you entered while you were offline. Please read what happens next,
+                      tick the box below and submit it.
+                    </AlertDescription>
+                  </Alert>
+                )}
+
                 {/* What happens next — homeowners pay nothing to DR. The NRPG */}
                 {/* contractor sets and collects their own call-out fee. */}
                 <div
