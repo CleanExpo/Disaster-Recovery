@@ -141,7 +141,9 @@ Readers and writers of the draft slot after this change:
 Rules:
 
 1. **Consent is never inferred.** An item is `held` while `payload.calloutFeeAcknowledged !== true`.
-   Replay skips it. Only the panel's tick, per claim, sets it to `true`.
+   Replay skips it. Only the panel's tick, per claim, sets it to `true`. A held item is not
+   counted by `getQueueSize`, so `OfflineQueueBanner` never says it will be sent
+   automatically; only the panel speaks for it (review round 6 on c8c6a7f5).
 2. **The tick turns a held item into an ordinary queued item.** Recovery is "acknowledge, then
    replay", so a held claim gets exactly the same send, retry and dead-letter handling as any
    queued claim. If the device is offline when ticked, it is sent on the next replay.

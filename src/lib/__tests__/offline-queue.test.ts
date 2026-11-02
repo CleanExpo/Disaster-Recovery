@@ -202,7 +202,7 @@ describe('offline-queue', () => {
 
   it('enqueueClaim persists a payload and increments the queue size', async () => {
     const mod = await loadQueue();
-    const res = await mod.enqueueClaim({ fullName: 'Jordan Lee', suburb: 'Brisbane' });
+    const res = await mod.enqueueClaim({ fullName: 'Jordan Lee', suburb: 'Brisbane', ...ACK });
     expect(res.ok).toBe(true);
     expect(await mod.getQueueSize()).toBe(1);
     const items = await mod.peekQueue();
@@ -334,7 +334,9 @@ describe('offline-queue', () => {
     const again = await mod.replayQueue({ fetchImpl });
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     expect(again.held).toBe(1);
-    expect(await mod.getQueueSize()).toBe(1);
+    // Not counted as waiting to send: OfflineQueueBanner promises automatic
+    // sending for every claim in this count, and a held claim waits for a tick.
+    expect(await mod.getQueueSize()).toBe(0);
   });
 
   it('removeQueuedClaim deletes a held claim and reports it', async () => {
@@ -542,8 +544,9 @@ describe('offline-queue', () => {
     expect(await mod.acknowledgeHeldClaim(id)).toBe(false);
     (globalThis as unknown as { indexedDB: unknown }).indexedDB = saved;
 
-    // Nothing was lost: the held claim is still there.
-    expect(await mod.getQueueSize()).toBe(1);
+    // Nothing was lost: the held claim is still there, and still held.
+    const after = await mod.readHeldClaims();
+    expect(after.ok && after.items.map((i) => i.id)).toEqual([id]);
     expect(await mod.acknowledgeHeldClaim('missing-id')).toBe(false);
   });
 
@@ -715,6 +718,26 @@ describe('offline-queue', () => {
       expect(await tabA.getQueueSize()).toBe(0);
     } finally {
       delete (navigator as unknown as { locks?: unknown }).locks;
+    }
+  });
+
+  it('R10 the offline banner never promises to send a held claim automatically', async () => {
+    const mod = await loadQueue();
+    await mod.enqueueClaim({ fullName: 'Legacy Claim', paymentConfirmed: false });
+    const { render, screen, waitFor, cleanup } = await import('@testing-library/react');
+    const { createElement } = await import('react');
+    const { default: OfflineQueueBanner } = await import('@/components/claim/OfflineQueueBanner');
+    try {
+      render(createElement(OfflineQueueBanner));
+      // Let the banner read the queue, then confirm it said nothing.
+      await new Promise((r) => setTimeout(r, 30));
+      expect(screen.queryByText(/send (it|them) automatically/)).not.toBeInTheDocument();
+
+      // Positive control: a claim with its tick is announced.
+      await mod.enqueueClaim({ fullName: 'Ticked Claim', ...ACK });
+      await waitFor(() => expect(screen.getByText(/1 claim queued offline/)).toBeVisible());
+    } finally {
+      cleanup();
     }
   });
 

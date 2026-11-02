@@ -277,14 +277,19 @@ export async function enqueueClaim(
   }
 }
 
-/** Count of pending items waiting to replay. */
+/**
+ * Count of pending items that replay will send. A claim the server already
+ * accepted is not waiting, and a held claim is not sent until the homeowner
+ * ticks it in HeldClaimsPanel, so neither is counted: OfflineQueueBanner says
+ * "we'll send it automatically" for every claim in this count.
+ */
 export async function getQueueSize(): Promise<number> {
   if (!FLAG_ENABLED || !hasIDB()) return 0;
   try {
     const items = await listItems(STORE_PENDING);
-    // A claim the server already accepted is not waiting to send.
     const accepted = readAccepted();
-    return items.filter((i) => i.acceptedAt === undefined && !accepted.has(i.id)).length;
+    return items.filter((i) => i.acceptedAt === undefined && !accepted.has(i.id) && !isHeld(i))
+      .length;
   } catch {
     return 0;
   }
