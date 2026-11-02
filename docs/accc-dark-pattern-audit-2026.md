@@ -8,6 +8,19 @@
 
 ---
 
+> **Update 2 November 2026 — Recommendation 1 resolved.** The claim form no
+> longer shows any fee. Homeowners pay nothing to Disaster Recovery: the
+> `$2,750` constant, the "From ~$2750" indicative-cost box and the Step 4
+> summary price line are removed. In their place, Step 4 explains that the
+> assigned NRPG contractor tells the homeowner their call-out and make-safe
+> fee before starting, that the homeowner pays it directly to the contractor
+> once they agree, and that further work is quoted after inspection. A
+> required, unticked-by-default box ("I understand the contractor will quote
+> a call-out fee that I pay to them.") must be ticked before submit, and
+> `/api/claims/submit` refuses a claim without it. The drip-pricing category
+> below is therefore no longer REVIEW NEEDED for the fee mismatch. The rest
+> of this audit is kept as the 8 April 2026 record.
+
 ## Executive Summary
 
 This audit reviewed the Disaster Recovery Australia online claim intake form (`/claim`) against nine ACCC-identified dark pattern categories. The form serves disaster-affected consumers at a moment of acute distress, placing it within the ACCC's stated 2026–27 enforcement priority of **vulnerable consumer harm in digital markets**.
@@ -45,6 +58,8 @@ No pre-ticked checkboxes, no countdown timers, no confirmshaming, no forced cont
 ### Recommendation 1 — Priority: HIGH
 **Reconcile the $2,750 pricing disclosure with Step 4 "Total Due: $0.00"**
 
+**Status (2 November 2026): RESOLVED** — fee disclosure removed entirely; see the update note at the top.
+
 The form prominently discloses a $2,750 fee upfront (the ACCC-compliant approach), then presents "Total Due: $0.00 (submit now)" in Step 4. Before enabling Stripe payment, the Step 4 summary must accurately reflect the amount charged. Options:
 - If the form is intentionally a "claim intake only" (no immediate payment), remove the "Emergency Make-Safe Fee: $2,750.00" pricing banner, or replace it with language explaining that payment is arranged separately after contractor matching.
 - If payment is charged at submission, the Step 4 "Total Due" must show $2,750.00.
@@ -72,7 +87,7 @@ The form requires `privacyCollectionNotice` acceptance to proceed. Once a claim 
 
 | Category | Status |
 |----------|--------|
-| Drip pricing | REVIEW NEEDED |
+| Drip pricing | REVIEW NEEDED (8 April 2026); fee mismatch RESOLVED 2 November 2026 |
 | False urgency | PASS |
 | Pre-ticked checkboxes | PASS |
 | Obscured unsubscribe/cancel | PASS |

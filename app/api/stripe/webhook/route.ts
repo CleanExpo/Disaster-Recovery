@@ -141,6 +141,12 @@ async function handleWebhook(req: NextRequest) {
         // DR-712 — consumer platform-fee payment. Discriminated by dr_fee_type metadata
         // set by /api/payments/create-session. Logs the fee-received compliance event
         // with hashed customer email; does NOT touch contractor tables.
+        //
+        // Not flag-gated on purpose (02/11/2026): homeowners pay no fee to DR and
+        // /api/payments/create-session only creates sessions when
+        // NEXT_PUBLIC_CONSUMER_PAYMENTS_ENABLED === 'true' (default off). This branch
+        // only writes an audit record for a payment Stripe says already happened;
+        // gating it would drop that record silently instead of preventing a charge.
         if (session.metadata?.dr_fee_type === 'platform_fee') {
           const claimId = session.metadata.dr_claim_id ?? 'unknown';
           const customerEmail = session.customer_details?.email ?? session.customer_email ?? '';

@@ -23,17 +23,10 @@ export const PRICING_CONSTANTS = {
     TIER_100KM: 129500, // $1,295.00 — 100km+ Rural
   },
 
-  // Callout / Emergency Make-Safe fee — INDICATIVE RANGE ONLY
-  // Path A (ADR-011 Accepted 2026-04-26) — DR is NOT in the funds path
-  // between client and contractor. The contractor quotes and bills the
-  // client directly on-site. These constants exist for marketing copy
-  // (indicative pricing on /claim, /guides/water-damage/cost, etc.) —
-  // NOT for charging via Stripe. Do NOT reintroduce client-side Stripe
-  // Checkout that settles into DR's account; that's the rejected
-  // Path B model. See `.claude/rules/business-rules.md §2`.
-  CALLOUT_FEE: 275000, // $2,750.00 — indicative typical callout
-  PLATFORM_FEE: 55000, // $550.00 — indicative platform-coverage portion
-  CONTRACTOR_ENTITLEMENT: 220000, // $2,200.00 — indicative contractor portion
+  // No consumer (homeowner) fee constants live here. Homeowners pay nothing
+  // to Disaster Recovery; the NRPG contractor sets and collects their own
+  // call-out and make-safe fee (founder decision 02/11/2026, Path A /
+  // ADR-014). Everything below is contractor-side.
 
   // Bond amounts
   PERFORMANCE_BOND: 500000, // $5,000.00 in cents

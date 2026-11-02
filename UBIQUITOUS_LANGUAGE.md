@@ -118,14 +118,18 @@ operational paths; historical references stay allowlisted via
 | Footer / public copy                 | "platform fee" (lowercase, unless paragraph-leading) |
 | Contractor invoices                  | "Platform Fee — [period]"                            |
 
-**NOT to be confused with** the consumer-facing **minimum service
-fee** ($2,200) that the contractor charges the client — that's a
-separate concept handled by the contractor under the customer
-contract. "Platform fee" is the contractor → DR side; "service fee"
-(or "minimum callout") is the contractor → client side.
+**NOT to be confused with** the **call-out fee** (also "call-out and
+make-safe fee"): the fee the assigned NRPG contractor sets, tells the
+homeowner before starting, and collects directly from them once they
+agree. Disaster Recovery does not set, quote, display or collect it, and
+homeowners pay nothing to Disaster Recovery (founder decision, 2
+November 2026). Any further work is quoted by the contractor after
+inspection, through RestoreAssist. "Platform fee" is only ever the
+contractor → DR side; never use it for anything the homeowner pays.
 
-`PLATFORM_FEE` constant in `app/api/claims/submit/route.ts` carries
-this convention.
+There is no consumer fee constant in code. The claim form carries the
+homeowner wording in `src/lib/claims/callout-fee-notice.ts`, and the
+required acknowledgement is stored as `calloutFeeAcknowledged`.
 
 ### 3. Urgency tiers — two-way split
 

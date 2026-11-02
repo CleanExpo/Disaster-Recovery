@@ -17,6 +17,12 @@
  *   5. Return the hosted Checkout URL for the caller to SMS or redirect.
  *
  * Refs: DR-706 (epic), DR-712.
+ *
+ * DORMANT (02/11/2026): homeowners pay no fee to Disaster Recovery; the NRPG
+ * contractor sets and collects their own call-out fee. Keep
+ * NEXT_PUBLIC_CONSUMER_PAYMENTS_ENABLED unset/false. Kept rather than deleted
+ * because the webhook audit branch and existing tests reference its metadata;
+ * removal is a separate, founder-approved change.
  */
 
 import { NextResponse } from 'next/server';

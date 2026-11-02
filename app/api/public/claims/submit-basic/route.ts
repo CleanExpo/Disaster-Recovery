@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { CALLOUT_FEE_ACK_FIELD } from '@/lib/claims/callout-fee-notice';
 
 /**
  * Noscript / progressive-enhancement target for the claim page SSR form.
@@ -25,6 +26,9 @@ export async function POST(request: Request) {
       hasInsurance: false,
       paymentConfirmed: false,
       paymentAmount: 0,
+      // Unticked checkbox is omitted from the form body; the canonical route
+      // then refuses the claim (required acknowledgement).
+      calloutFeeAcknowledged: form.get(CALLOUT_FEE_ACK_FIELD) === 'true',
     };
   } else {
     try {

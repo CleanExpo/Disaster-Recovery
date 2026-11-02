@@ -3,6 +3,11 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import OnlineClaimPage from './ClaimFormClient';
 import { App3CollectionNotice } from '@/components/privacy/App3CollectionNotice';
+import {
+  CALLOUT_FEE_ACK_FIELD,
+  CALLOUT_FEE_ACK_LABEL,
+  CALLOUT_FEE_EXPLAINER,
+} from '@/lib/claims/callout-fee-notice';
 
 export const metadata: Metadata = {
   title: 'Lodge a Claim | Disaster Recovery',
@@ -252,6 +257,21 @@ function ClaimPageSSRFallback() {
                   required
                   className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+              <div className="rounded-lg border border-slate-300 bg-slate-50 p-4">
+                <p className="mb-3 text-sm leading-relaxed text-slate-700">
+                  {CALLOUT_FEE_EXPLAINER}
+                </p>
+                <label className="flex items-start gap-3 text-sm text-slate-800">
+                  <input
+                    type="checkbox"
+                    name={CALLOUT_FEE_ACK_FIELD}
+                    value="true"
+                    required
+                    className="mt-0.5 h-5 w-5 shrink-0"
+                  />
+                  <span>{CALLOUT_FEE_ACK_LABEL}</span>
+                </label>
               </div>
               <button
                 type="submit"

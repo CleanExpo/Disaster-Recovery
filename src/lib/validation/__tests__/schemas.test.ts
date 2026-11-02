@@ -28,6 +28,7 @@ const validSubmit = {
   damageTypes: ['Water/Flood Damage'],
   damageDescription: 'burst pipe in kitchen',
   urgencyLevel: 'urgent' as const,
+  calloutFeeAcknowledged: true as const,
 };
 
 // Nested output shape — matches GET /api/claims/submit response.
@@ -79,6 +80,23 @@ describe('claimSubmitSchema (flat wire shape)', () => {
     const res = claimSubmitSchema.safeParse({ ...validSubmit, state: 'XX' });
     expect(res.success).toBe(false);
   });
+
+  it('rejects a claim without the call-out fee acknowledgement', () => {
+    const { calloutFeeAcknowledged: _drop, ...rest } = validSubmit;
+    const res = claimSubmitSchema.safeParse(rest);
+    expect(res.success).toBe(false);
+    if (!res.success) {
+      expect(res.error.issues.some((i) => i.path[0] === 'calloutFeeAcknowledged')).toBe(true);
+    }
+  });
+
+  it.each([false, 'true', 1, null])(
+    'rejects a call-out fee acknowledgement that is not literally true (%s)',
+    (value) => {
+      const res = claimSubmitSchema.safeParse({ ...validSubmit, calloutFeeAcknowledged: value });
+      expect(res.success).toBe(false);
+    },
+  );
 });
 
 describe('claimTrackingSchema (nested output shape)', () => {
