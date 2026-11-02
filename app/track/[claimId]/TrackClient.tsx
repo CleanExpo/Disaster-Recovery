@@ -26,6 +26,8 @@ import {
 } from 'lucide-react';
 
 import type { ClaimTracking } from '@/lib/validation/schemas';
+import { DrPhoneLink } from '@/components/contact/DrPhoneLink';
+import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 type ClaimData = ClaimTracking;
 type LoadState = 'loading' | 'ready' | 'not_found' | 'error';
@@ -180,7 +182,7 @@ function TrackClaimPageOriginal() {
               {retrying ? 'Retrying…' : 'Try again'}
             </Button>
             <Button variant="outline" asChild className="min-h-[44px]">
-              <a href="tel:1300309361">Call 1300 309 361</a>
+              {DR_PHONE_DISPLAY ? <DrPhoneLink /> : <Link href="/claim">Lodge a claim</Link>}
             </Button>
           </div>
         </div>
@@ -205,9 +207,11 @@ function TrackClaimPageOriginal() {
             <Button variant="outline" asChild className="min-h-[44px]">
               <Link href="/account">Go to account</Link>
             </Button>
-            <Button variant="outline" asChild className="min-h-[44px]">
-              <a href="tel:1300309361">Call 1300 309 361</a>
-            </Button>
+            {DR_PHONE_DISPLAY && (
+              <Button variant="outline" asChild className="min-h-[44px]">
+                <DrPhoneLink />
+              </Button>
+            )}
           </div>
         </div>
       </div>

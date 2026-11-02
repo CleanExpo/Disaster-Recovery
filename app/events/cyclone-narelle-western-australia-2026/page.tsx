@@ -16,6 +16,7 @@
 
 import type { Metadata } from 'next'
 import DisasterEventPage from '@/components/events/DisasterEventPage'
+import { DR_PHONE_DISPLAY } from '@/config/contact';
 import { deadlineStatusText } from '@/lib/deadlines'
 
 export const metadata: Metadata = {
@@ -92,7 +93,7 @@ export default function CycloneNarelleWA2026Page() {
       ]}
       governmentApplicationUrl="https://www.dfes.wa.gov.au/recovery"
       governmentApplicationLabel="WA Disaster Recovery"
-      claimsHotline="1300 309 361"
+      claimsHotline={DR_PHONE_DISPLAY ?? undefined}
     />
   );
 }

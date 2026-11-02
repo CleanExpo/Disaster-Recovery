@@ -10,6 +10,7 @@
 
 import type { Metadata } from 'next';
 import DisasterEventPage from '@/components/events/DisasterEventPage';
+import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 export const metadata: Metadata = {
   title: 'Victoria Bushfires 2025 — Disaster Recovery & Insurance Claims | Disaster Recovery',
@@ -86,7 +87,7 @@ export default function VictoriaBushfires2025Page() {
           applicationUrl: 'https://www.ica.com.au',
         },
       ]}
-      claimsHotline="1300 309 361"
+      claimsHotline={DR_PHONE_DISPLAY ?? undefined}
     />
   );
 }

@@ -9,6 +9,7 @@
 
 import type { Metadata } from 'next';
 import DisasterEventPage from '@/components/events/DisasterEventPage';
+import { DR_PHONE_DISPLAY } from '@/config/contact';
 import type { FinancialAssistanceItem } from '@/components/events/DisasterEventPage';
 
 export const metadata: Metadata = {
@@ -95,7 +96,7 @@ export default function CycloneMailaQLD2026Page() {
       financialAssistance={financialAssistanceItems}
       governmentApplicationUrl="https://www.disaster.qld.gov.au/"
       governmentApplicationLabel="Queensland Disaster Hub"
-      claimsHotline="1300 309 361"
+      claimsHotline={DR_PHONE_DISPLAY ?? undefined}
     />
   );
 }
