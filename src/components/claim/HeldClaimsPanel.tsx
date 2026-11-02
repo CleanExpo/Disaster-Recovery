@@ -29,19 +29,18 @@ import {
   type QueuedClaim,
 } from '@/lib/offline-queue';
 import { CALLOUT_FEE_ACK_LABEL, CALLOUT_FEE_EXPLAINER } from '@/lib/claims/callout-fee-notice';
+import { DR_CALL_CLAUSE } from '@/config/contact';
 
 type Outcome = 'sent' | 'waiting' | 'not-accepted' | 'removed';
 
 const OUTCOME_TEXT: Record<Outcome, string> = {
   sent: 'Claim sent. A contractor will be in touch.',
   waiting: 'Saved with your tick. We’ll send it as soon as you’re back online.',
-  'not-accepted':
-    'We couldn’t send this claim. Please check the notice above, or call 1300 309 361.',
+  'not-accepted': `We couldn’t send this claim. Please check the notice above${DR_CALL_CLAUSE}.`,
   removed: 'Claim removed from this device.',
 };
 
-const WRITE_FAILED =
-  'We couldn’t update this claim on your device. Please try again, or call 1300 309 361.';
+const WRITE_FAILED = `We couldn’t update this claim on your device. Please try again${DR_CALL_CLAUSE}.`;
 
 function text(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
@@ -160,8 +159,8 @@ export default function HeldClaimsPanel(): JSX.Element | null {
         role="status"
         className="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900"
       >
-        We couldn&rsquo;t check this device for claims saved earlier. Reload the page to try again,
-        or call 1300 309 361.
+        We couldn&rsquo;t check this device for claims saved earlier. Reload the page to try again
+        {DR_CALL_CLAUSE}.
       </div>
     );
   }

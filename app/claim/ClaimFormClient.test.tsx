@@ -574,4 +574,133 @@ describe('saved-claim lifecycle', () => {
     });
     expect(saveDraft).not.toHaveBeenCalled();
   });
+
+  // Review round 8: a draft older than 24 h is not offered, but it is still in
+  // the slot. Every path that opens the form must expect whatever the slot
+  // holds, or the first save is refused as "changed in another tab".
+  // slotStore() answers saveDraft / clearDraft with the same ownership rule as
+  // src/lib/offline-store.ts (mayWrite), over one slot that still holds data.
+  const DAY_MS = 24 * 60 * 60 * 1000;
+
+  function slotStore(initial: Record<string, unknown> | null) {
+    const slot = { current: initial as null | Record<string, unknown> };
+    const holder = () =>
+      slot.current
+        ? ((slot.current.owner as string | undefined) ?? `legacy:${slot.current.savedAt}`)
+        : null;
+    vi.mocked(saveDraft).mockImplementation(async (draft, guard) => {
+      const held = holder();
+      const expected = guard.expect();
+      const ok = held === null ? expected === null : held === guard.me || held === expected;
+      if (!ok) {
+        throw Object.assign(new Error('the saved claim was changed in another tab'), {
+          name: 'DraftConflictError',
+        });
+      }
+      slot.current = { ...draft, id: 'current', owner: guard.me };
+    });
+    vi.mocked(clearDraft).mockImplementation(async (guard) => {
+      const held = holder();
+      if (held === null) return 'removed';
+      const expected = guard.expect();
+      if (expected !== 'any' && held !== guard.me && held !== expected) return 'changed';
+      slot.current = null;
+      return 'removed';
+    });
+    return slot;
+  }
+
+  function expiredDraft(fullName: string, owner?: string) {
+    return {
+      ...savedDraft({ fullName }),
+      savedAt: Date.now() - DAY_MS - 60 * 60 * 1000,
+      ...(owner ? { owner } : {}),
+    };
+  }
+
+  it.each([
+    ['saved by an earlier page', 'page_old'],
+    ['saved before owners existed', undefined],
+  ])('R10 a draft too old to offer (%s) never stops typing being saved', async (_label, owner) => {
+    const old = expiredDraft('Old Claim', owner);
+    const slot = slotStore(old);
+    vi.mocked(loadDraft).mockResolvedValue(old);
+    render(<ClaimFormClient />);
+    await typeFullName('New Claim Name');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(screen.queryByText(/changed in another tab or window/)).not.toBeInTheDocument();
+    expect(slot.current?.formData).toMatchObject({ fullName: 'New Claim Name' });
+    await typeFullName('More Typing');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(slot.current?.formData).toMatchObject({ fullName: 'More Typing' });
+  });
+
+  it('R10 a late lookup that finds a draft too old to offer still lets typing be saved', async () => {
+    const old = expiredDraft('Old Claim', 'page_old');
+    const slot = slotStore(old);
+    let answer: (d: typeof old) => void = () => {};
+    vi.mocked(loadDraft).mockReturnValue(
+      new Promise((resolve) => {
+        answer = resolve;
+      }),
+    );
+    render(<ClaimFormClient />);
+    await screen.findByRole('button', { name: 'Start a new claim' }, { timeout: 4000 });
+    await act(async () => {
+      answer(old);
+    });
+    await typeFullName('New Claim Name');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(screen.queryByText(/changed in another tab or window/)).not.toBeInTheDocument();
+    expect(slot.current?.formData).toMatchObject({ fullName: 'New Claim Name' });
+  }, 10_000);
+
+  it('R10 a draft too old to offer is still protected from another tab that saved over it', async () => {
+    const old = expiredDraft('Old Claim', 'page_old');
+    const slot = slotStore(old);
+    vi.mocked(loadDraft).mockResolvedValue(old);
+    render(<ClaimFormClient />);
+    await screen.findByLabelText('Full Name *');
+    // Another tab saves a newer claim before this page writes anything.
+    slot.current = { ...savedDraft({ fullName: 'Other Tab Claim' }), owner: 'page_other' };
+    await typeFullName('This Tab Typing');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(slot.current?.formData).toMatchObject({ fullName: 'Other Tab Claim' });
+    expect(await screen.findByText(/changed in another tab or window/)).toBeVisible();
+  });
+
+  it('R10 every way the form opens saves typing into a slot that held data', async () => {
+    // Start a new claim over a fresh draft: the removal commits, then typing saves.
+    const fresh = { ...savedDraft({ fullName: 'Waiting Draft' }), owner: 'page_old' };
+    const slot = slotStore(fresh);
+    vi.mocked(loadDraft).mockResolvedValue(fresh);
+    render(<ClaimFormClient />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Start a new claim' }));
+    await typeFullName('After Start New');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(screen.queryByText(/changed in another tab or window/)).not.toBeInTheDocument();
+    expect(slot.current?.formData).toMatchObject({ fullName: 'After Start New' });
+    cleanup();
+
+    // Resume a fresh draft: typing saves over it.
+    const slot2 = slotStore(fresh);
+    render(<ClaimFormClient />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Resume' }));
+    await typeFullName('After Resume');
+    await act(async () => {
+      await sleep(AUTOSAVE_WAIT_MS);
+    });
+    expect(screen.queryByText(/changed in another tab or window/)).not.toBeInTheDocument();
+    expect(slot2.current?.formData).toMatchObject({ fullName: 'After Resume' });
+  });
 });

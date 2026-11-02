@@ -49,7 +49,7 @@ never touches the form or the draft slot.
 States, held in `slot` (a ref plus state for rendering):
 
 ```
-checking   ──(no draft, or expired draft)──────────────▶ owned
+checking   ──(no draft, or expired draft kept in slot)─▶ owned      (expects the expired draft's owner)
 checking   ──(draft < 24 h)─────────────────────────────▶ offered
 checking   ──(read fails)───────────────────────────────▶ unreadable (no form; "Try again", "Start a new claim")
 checking   ──(3 s, no answer yet)──────────────────────▶ slow       (no form; "Start a new claim")
@@ -101,8 +101,12 @@ Rules:
    again" starts a new lookup; an older answer, or any answer after a choice, is ignored.
 9. **Two tabs never write over each other's claim.** Every saved draft records the page that
    wrote it (`owner`; drafts saved before this change are identified by their save time).
-   Each page remembers which owner it expects in the slot: none when it took an empty slot,
-   the offered draft's owner when it resumed, its own id after its first save. Every save and
+   Each page remembers which owner it expects in the slot: none only when storage showed the
+   slot empty (no draft read, or "Start a new claim" committed its removal), the expired
+   draft's owner when it opened over a draft too old to offer (that draft is still in the
+   slot; the first save replaces it, review round 8), the offered draft's owner when it
+   resumed, its own id after its first save. "Continue without saving" expects none and
+   writes nothing. Every save and
    clear reads the slot and writes it in the same readwrite transaction, and only goes ahead
    when the slot holds what the page expects. A save that finds another tab's claim, or an
    empty slot after this page saved, writes nothing and rejects with `DraftConflictError`;

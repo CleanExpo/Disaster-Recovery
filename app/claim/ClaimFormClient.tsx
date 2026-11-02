@@ -344,12 +344,18 @@ function OnlineClaimPageOriginal() {
     );
   }, []);
 
-  // The page takes an empty slot: nothing saved belongs to anyone else.
-  const takeOwnership = useCallback(() => {
-    expectRef.current = null;
-    baselineRef.current = { ...latestRef.current };
-    setSlot('owned');
-  }, [setSlot]);
+  // The page takes the slot. `holder` is the owner of whatever the slot still
+  // holds as the form opens: null only when storage showed it empty. A draft
+  // the page does not offer (too old) is still there, so the page expects it
+  // and its first save replaces it (review round 8).
+  const takeOwnership = useCallback(
+    (holder: string | null) => {
+      expectRef.current = holder;
+      baselineRef.current = { ...latestRef.current };
+      setSlot('owned');
+    },
+    [setSlot],
+  );
 
   const offerDraft = useCallback(
     (draft: ClaimDraft) => {
@@ -381,7 +387,7 @@ function OnlineClaimPageOriginal() {
         if (!waiting()) return;
         const fresh = draft && Date.now() - draft.savedAt < DRAFT_MAX_AGE_MS ? draft : null;
         if (fresh) offerDraft(fresh);
-        else takeOwnership();
+        else takeOwnership(draft ? draftOwner(draft) : null);
       },
       () => {
         window.clearTimeout(limit);
@@ -564,7 +570,8 @@ function OnlineClaimPageOriginal() {
     setClearing('idle');
     offeredDraftRef.current = null;
     setOfferedSavedAt(null);
-    takeOwnership();
+    // The removal committed with the slot empty.
+    takeOwnership(null);
   };
 
   // Storage would not confirm the removal. The homeowner may still lodge a
@@ -575,7 +582,9 @@ function OnlineClaimPageOriginal() {
     setSaveOnDevice(false);
     offeredDraftRef.current = null;
     setOfferedSavedAt(null);
-    takeOwnership();
+    // Nothing is written or cleared from here (autosave and closeSlot both
+    // check saveOnDevice), so no owner is expected.
+    takeOwnership(null);
   };
 
   const stuck = clearing === 'failed' || (clearing === 'clearing' && clearSlow);
@@ -782,7 +791,8 @@ function OnlineClaimPageOriginal() {
               <AlertDescription className="text-blue-900">
                 You&rsquo;re offline, so your claim is saved on this device. We&rsquo;ll send it
                 automatically as soon as you&rsquo;re back online. Keep this app installed until
-                then. If it&rsquo;s urgent, call 1300 309 361.
+                then.
+                {DR_PHONE_DISPLAY && <> If it&rsquo;s urgent, call {DR_PHONE_DISPLAY}.</>}
               </AlertDescription>
             </Alert>
             {replayToast && (
@@ -1019,8 +1029,9 @@ function OnlineClaimPageOriginal() {
               {clearing === 'failed'
                 ? 'We couldn\u2019t remove the saved claim from this device, so a new claim hasn\u2019t been started.'
                 : 'Removing the saved claim from this device is taking longer than usual.'}{' '}
-              You can try again, call 1300 309 361, or continue without saving on this device. If
-              you continue, your new claim is not kept if you close this page before sending it.
+              You can try again, {DR_PHONE_DISPLAY && <>call {DR_PHONE_DISPLAY}, </>}or continue
+              without saving on this device. If you continue, your new claim is not kept if you
+              close this page before sending it.
             </p>
             <div className="mt-4">
               <button
@@ -1042,7 +1053,8 @@ function OnlineClaimPageOriginal() {
             <p role="status" className="text-sm text-amber-900">
               We couldn&rsquo;t check this device for a claim you saved earlier. You can try again,
               or start a new claim. If you saved a claim on this device before, starting a new one
-              replaces it. If it&rsquo;s urgent, call 1300 309 361.
+              replaces it.
+              {DR_PHONE_DISPLAY && <> If it&rsquo;s urgent, call {DR_PHONE_DISPLAY}.</>}
             </p>
             <div className="mt-4 flex flex-col gap-2 sm:flex-row">
               <button
@@ -1073,7 +1085,8 @@ function OnlineClaimPageOriginal() {
             <p role="status" className="text-sm text-amber-900">
               Checking this device for a claim you saved earlier is taking longer than usual. You
               can keep waiting, or start a new claim now. If you saved a claim on this device
-              before, starting a new one replaces it. If it&rsquo;s urgent, call 1300 309 361.
+              before, starting a new one replaces it.
+              {DR_PHONE_DISPLAY && <> If it&rsquo;s urgent, call {DR_PHONE_DISPLAY}.</>}
             </p>
             <div className="mt-4">
               <button

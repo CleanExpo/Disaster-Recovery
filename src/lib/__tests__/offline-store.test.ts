@@ -264,6 +264,30 @@ describe('offline-store draft slot across tabs', () => {
     expect((await tabA.loadDraft())?.formData).toMatchObject({ fullName: 'Tab B Claim' });
   });
 
+  it('R10 a page opening over a draft too old to offer saves only when it expects that draft', async () => {
+    const { tabA } = await twoTabs();
+    stub.data.set('current', {
+      id: 'current',
+      formData: { fullName: 'Old' },
+      step: 1,
+      savedAt: Date.now() - 25 * 60 * 60 * 1000,
+      synced: false,
+      owner: 'page_old',
+    });
+    const expired = (await tabA.loadDraft())!;
+    // Expecting an empty slot (the round-8 bug) is refused and writes nothing.
+    const blind = pageGuard('page-a');
+    await expect(
+      tabA.saveDraft({ formData: { fullName: 'New' }, step: 1 }, blind),
+    ).rejects.toMatchObject({ name: 'DraftConflictError' });
+    expect((await tabA.loadDraft())?.formData).toMatchObject({ fullName: 'Old' });
+    // Expecting the draft that is still there replaces it.
+    const a = pageGuard('page-a');
+    a.holds(tabA.draftOwner(expired));
+    await tabA.saveDraft({ formData: { fullName: 'New' }, step: 1 }, a);
+    expect((await tabA.loadDraft())?.formData).toMatchObject({ fullName: 'New' });
+  });
+
   it('R1 a claim saved before owners existed can still be resumed, saved and cleared', async () => {
     const { tabA } = await twoTabs();
     stub.data.set('current', {
