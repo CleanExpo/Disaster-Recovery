@@ -213,3 +213,25 @@ jobs:
             body: `⚠️ Smoke test failed after deploy. Rolled back to ${process.env.PREVIOUS_ID} and verified the production alias serves it.` +
               (applied !== '0' ? ` Schema NOT rolled back: ${applied} migration(s) were applied this run.` : '')
           })
+
+  report-blocked-deploy:
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [validate, migrate, deploy, smoke-test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    concurrency:
+      group: report-blocked-deploy-main
+      cancel-in-progress: false
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Report blocked deployment or recovery
+      run: bash scripts/ci/report-blocked-deploy.sh
+      env:
+        GH_TOKEN: ${{ github.token }}
+        VALIDATE_RESULT: ${{ needs.validate.result }}
+        MIGRATE_RESULT: ${{ needs.migrate.result }}
+        DEPLOY_RESULT: ${{ needs.deploy.result }}
+        SMOKE_TEST_RESULT: ${{ needs.smoke-test.result }}

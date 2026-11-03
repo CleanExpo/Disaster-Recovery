@@ -20,6 +20,8 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '../../..');
 const MIGRATE_GATE = path.join(ROOT, 'scripts/ci/migrate-gate.sh');
+const REPORT = path.join(ROOT, 'scripts/ci/report-blocked-deploy.sh');
+const FAKE_URL = 'postgresql://ci-fake-user:ci-fake-pass@example.invalid:5432/db';
 const ROLLBACK = path.join(ROOT, 'scripts/ci/vercel-rollback.sh');
 const WORKFLOW = readFileSync(path.join(ROOT, '.github/workflows/auto-deploy.yml'), 'utf8');
 
@@ -40,7 +42,9 @@ function run(script: string, args: string[], env: Record<string, string>): Promi
     execFile(
       'bash',
       [script, ...args],
-      { env: { PATH: process.env.PATH ?? '', GITHUB_OUTPUT: ghOut, ...env } },
+      {
+        env: { PATH: process.env.PATH ?? '', GITHUB_OUTPUT: ghOut, DATABASE_URL: FAKE_URL, ...env },
+      },
       (err, stdout, stderr) => {
         const code = err ? ((err as { code?: number }).code ?? 1) : 0;
         resolve({ code, out: stdout + stderr, githubOutput: readFileSync(ghOut, 'utf8') });
@@ -140,6 +144,171 @@ describe('migrate-gate.sh', () => {
     const prisma = fakePrisma([FAILED]);
     const r = await run(MIGRATE_GATE, [], { PRISMA: prisma });
     expect(r.code).not.toBe(0);
+  });
+});
+
+describe('database secret preflight', () => {
+  const defects = [
+    ['empty', ''],
+    ['leading or trailing whitespace or a newline', ` ${FAKE_URL}`],
+    ['leading or trailing whitespace or a newline', `${FAKE_URL}\t`],
+    ['leading or trailing whitespace or a newline', `${FAKE_URL}\n`],
+    ['leading or trailing whitespace or a newline', FAKE_URL.replace('example', 'exam\nple')],
+    ['wrapped in single or double quotes', `'${FAKE_URL}'`],
+    ['wrapped in single or double quotes', `"${FAKE_URL}"`],
+    ['starts with its own name followed by =', 'ENV_LINE'],
+    ['does not start with postgresql:// or postgres://', 'https://example.invalid/db'],
+  ];
+  for (const variable of ['DATABASE_URL', 'DIRECT_URL']) {
+    it.each(defects)(
+      `${variable} blocks %s without calling prisma or leaking the secret (%#)`,
+      async (defect, value) => {
+        const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+        const r = await run(MIGRATE_GATE, [], {
+          PRISMA: prisma,
+          [variable]: value === 'ENV_LINE' ? `${variable}=${FAKE_URL}` : value,
+        });
+        expect(r.code).toBe(1);
+        expect(r.out).toContain(`::error::${variable}: ${defect}`);
+        expect(r.out).toContain(
+          're-save the secret as the bare connection string, starting postgresql://',
+        );
+        expect(r.out).not.toContain('ci-fake-pass');
+        expect(r.out).not.toContain('ci-fake-user');
+        expect(r.out).not.toContain(FAKE_URL);
+        expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+        expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+      },
+    );
+  }
+
+  it('requires DATABASE_URL even when DIRECT_URL is valid', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    const wrapper = path.join(dir, 'unset-database.sh');
+    writeFileSync(wrapper, `unset DATABASE_URL\nbash "${MIGRATE_GATE}"\n`);
+    const r = await run(wrapper, [], { PRISMA: prisma, DIRECT_URL: FAKE_URL });
+    expect(r.code).toBe(1);
+    expect(r.out).toContain('::error::DATABASE_URL: empty');
+    expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+  });
+
+  it.each(['postgresql://', 'postgres://'])(
+    'passes a valid %s URL to prisma with DIRECT_URL unset',
+    async (scheme) => {
+      const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+      const r = await run(MIGRATE_GATE, [], {
+        PRISMA: prisma,
+        DATABASE_URL: FAKE_URL.replace('postgresql://', scheme),
+      });
+      expect(r.code).toBe(0);
+      expect(readFileSync(path.join(dir, 'status-calls'), 'utf8').trim()).toBe('2');
+    },
+  );
+
+  it('accepts a valid DIRECT_URL and reports both bad variables in one pass', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    expect((await run(MIGRATE_GATE, [], { PRISMA: prisma, DIRECT_URL: FAKE_URL })).code).toBe(0);
+    const r = await run(MIGRATE_GATE, [], { PRISMA: prisma, DATABASE_URL: '', DIRECT_URL: '' });
+    expect(r.code).toBe(1);
+    expect(r.out).toContain('::error::DATABASE_URL: empty');
+    expect(r.out).toContain('::error::DIRECT_URL: empty');
+  });
+});
+
+function fakeGh(issues: string, labelExists = true): string {
+  const bin = path.join(dir, 'gh');
+  writeFileSync(
+    bin,
+    `#!/usr/bin/env bash
+printf '%s\\n' "$*" >> "${dir}/gh-calls"
+case "$1 $2" in
+  'issue list') printf '%s\\n' '${issues}' ;;
+  'label list') ${labelExists ? 'echo deploy-blocked' : ':'} ;;
+  'label create'|'issue create'|'issue comment'|'issue close') ;;
+  *) exit 99 ;;
+esac
+`,
+  );
+  chmodSync(bin, 0o755);
+  return bin;
+}
+const REPORT_ENV = {
+  GITHUB_REPOSITORY: 'CleanExpo/Disaster-Recovery',
+  GITHUB_SERVER_URL: 'https://github.com',
+  GITHUB_RUN_ID: '12345',
+  GITHUB_SHA: 'abc123deadbeef',
+  VALIDATE_RESULT: 'success',
+  MIGRATE_RESULT: 'success',
+  DEPLOY_RESULT: 'success',
+  SMOKE_TEST_RESULT: 'success',
+};
+
+describe('report-blocked-deploy.sh', () => {
+  it('opens one issue and creates the missing label when a gate failed', async () => {
+    const r = await run(REPORT, [], {
+      ...REPORT_ENV,
+      GH: fakeGh('', false),
+      MIGRATE_RESULT: 'failure',
+      DEPLOY_RESULT: 'skipped',
+      SMOKE_TEST_RESULT: 'skipped',
+    });
+    expect(r.code).toBe(0);
+    const calls = readFileSync(path.join(dir, 'gh-calls'), 'utf8');
+    expect(calls).toContain('label create deploy-blocked');
+    expect(calls).toContain(
+      'issue create --title Production deploy blocked on main --label deploy-blocked',
+    );
+    expect(calls).toContain('https://github.com/CleanExpo/Disaster-Recovery/actions/runs/12345');
+    expect(calls).toContain('abc123deadbeef');
+    expect(calls).toContain('Failed jobs: migrate');
+    expect(calls).not.toContain('issue comment');
+  });
+
+  it.each(['VALIDATE_RESULT', 'MIGRATE_RESULT', 'DEPLOY_RESULT', 'SMOKE_TEST_RESULT'])(
+    'comments on the open issue for %s failure without creating another',
+    async (failed) => {
+      const r = await run(REPORT, [], { ...REPORT_ENV, GH: fakeGh('42'), [failed]: 'failure' });
+      expect(r.code).toBe(0);
+      const calls = readFileSync(path.join(dir, 'gh-calls'), 'utf8');
+      expect(calls).toContain('issue comment 42 --body');
+      expect(calls).toContain('abc123deadbeef');
+      expect(calls).toContain('/actions/runs/12345');
+      expect(calls).toContain(
+        `Failed jobs: ${{ VALIDATE_RESULT: 'validate', MIGRATE_RESULT: 'migrate', DEPLOY_RESULT: 'deploy', SMOKE_TEST_RESULT: 'smoke-test' }[failed]}`,
+      );
+      expect(calls).not.toContain('issue create');
+      expect(calls).not.toContain('issue close');
+      expect(calls).not.toContain('label create');
+    },
+  );
+
+  it('closes all open deploy-blocked issues with the SHA now live when every gate succeeded', async () => {
+    const r = await run(REPORT, [], { ...REPORT_ENV, GH: fakeGh('42\n43') });
+    expect(r.code).toBe(0);
+    const calls = readFileSync(path.join(dir, 'gh-calls'), 'utf8');
+    expect(calls).toContain('issue close 42 --comment');
+    expect(calls).toContain('issue close 43 --comment');
+    expect(calls).toContain('abc123deadbeef is now live');
+    expect(calls).not.toContain('issue create');
+  });
+
+  it('does nothing extra on success when no issue is open', async () => {
+    const r = await run(REPORT, [], { ...REPORT_ENV, GH: fakeGh('') });
+    expect(r.code).toBe(0);
+    const calls = readFileSync(path.join(dir, 'gh-calls'), 'utf8').trim().split('\n');
+    expect(calls).toHaveLength(1);
+    expect(calls[0]).toContain('issue list');
+    expect(calls[0]).toContain('--state open --label deploy-blocked');
+  });
+
+  it('does not announce recovery when a gate was cancelled or skipped', async () => {
+    const r = await run(REPORT, [], {
+      ...REPORT_ENV,
+      GH: fakeGh('42'),
+      SMOKE_TEST_RESULT: 'cancelled',
+    });
+    expect(r.code).toBe(0);
+    expect(existsSync(path.join(dir, 'gh-calls'))).toBe(false);
   });
 });
 
@@ -303,6 +472,20 @@ describe('auto-deploy.yml wiring', () => {
     if (!m) throw new Error(`job ${name} not found`);
     return m[1];
   };
+
+  it('reports blocked deploys only for pushes to main with issue write permission and all gate results', () => {
+    const report = job('report-blocked-deploy');
+    expect(report).toContain(
+      "if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'",
+    );
+    expect(report).toContain('needs: [validate, migrate, deploy, smoke-test]');
+    expect(report).toMatch(/permissions:\s*\n\s+contents: read\s*\n\s+issues: write/);
+    expect(report).toContain('scripts/ci/report-blocked-deploy.sh');
+    expect(report).toContain('GH_TOKEN: ${{ github.token }}');
+    for (const name of ['validate', 'migrate', 'deploy', 'smoke-test']) {
+      expect(report).toContain(`needs.${name}.result`);
+    }
+  });
 
   it('no longer decides migrations from the last commit only', () => {
     expect(WORKFLOW).not.toContain('HEAD^..HEAD');
