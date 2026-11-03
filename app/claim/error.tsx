@@ -3,8 +3,6 @@
 import { AgErrorState } from '@/components/antigravity';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { DrPhoneLink } from '@/components/contact/DrPhoneLink';
-import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 export default function ClaimError({
   error,
@@ -28,16 +26,10 @@ export default function ClaimError({
         }
       />
       <p className="text-sm text-[var(--ag-text-grey)]">
-        {DR_PHONE_DISPLAY ? (
-          <>
-            Prefer to speak with someone?{' '}
-            <DrPhoneLink className="font-semibold text-[var(--ag-primary-blue)] underline" />
-          </>
-        ) : (
-          <Link href="/claim" className="font-semibold text-[var(--ag-primary-blue)] underline">
-            Back to the claim form
-          </Link>
-        )}
+        Prefer to speak with someone?{' '}
+        <a href="tel:1300309361" className="font-semibold text-[var(--ag-primary-blue)] underline">
+          Call 1300 309 361
+        </a>
         {' · '}
         <Link href="/" className="underline">
           Return home

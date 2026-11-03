@@ -9,7 +9,7 @@
  *  - Server Component by default (static HTML). The only interactivity is
  *    the `tel:` links, which work without JavaScript.
  *  - Copy follows the DR-542 life-safety pattern on `/claim` — same 000
- *    button, plus the DR phone number when one is configured.
+ *    button + 1300 309 361 fallback.
  *  - Inlines a short APP 3 collection notice (we cannot fetch the full
  *    component at runtime when offline).
  *  - Australian English only.
@@ -17,14 +17,11 @@
 
 import type { Metadata } from 'next';
 import OfflineDial000Button from '@/components/offline/OfflineDial000Button';
-import { DrPhoneLink } from '@/components/contact/DrPhoneLink';
-import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 export const metadata: Metadata = {
   title: 'Offline | Disaster Recovery',
-  description: DR_PHONE_DISPLAY
-    ? `Offline life-safety shell. Call 000 in an emergency, or ${DR_PHONE_DISPLAY} to speak to Disaster Recovery.`
-    : 'Offline life-safety shell. Call 000 in an emergency.',
+  description:
+    'Offline life-safety shell. Call 000 in an emergency, or 1300 309 361 to speak to Disaster Recovery.',
   robots: { index: false, follow: false },
   alternates: { canonical: 'https://disasterrecovery.com.au/offline' },
 };
@@ -82,15 +79,19 @@ export default function OfflinePage() {
         </div>
 
         {/* DR-542 — Prefer-to-call fallback. Same canonical number as /claim. */}
-        {DR_PHONE_DISPLAY && (
-          <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
-            <p className="text-sm font-semibold text-blue-900 mb-1">Prefer to talk to a person?</p>
-            <p className="text-xs text-blue-900 mb-3">
-              Our 24/7 intake line will take your claim over the phone.
-            </p>
-            <DrPhoneLink className="inline-flex items-center justify-center min-h-[48px] w-full px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300" />
-          </div>
-        )}
+        <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <p className="text-sm font-semibold text-blue-900 mb-1">Prefer to talk to a person?</p>
+          <p className="text-xs text-blue-900 mb-3">
+            Our 24/7 intake line will take your claim over the phone.
+          </p>
+          <a
+            href="tel:1300309361"
+            className="inline-flex items-center justify-center min-h-[48px] w-full px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            aria-label="Call Disaster Recovery on 1300 309 361"
+          >
+            Call 1300 309 361
+          </a>
+        </div>
 
         {/* APP 3 short-form notice — inlined because the full component
             cannot be fetched at runtime when offline. Keeps the statutory
