@@ -35,19 +35,6 @@ Any **one** of the following on a confirmed incident:
 
 ---
 
-## 2A. DR phone line and routing
-
-The 1300 number is retired. Do not publish it or route calls to it. Older notes in `planning/` and `docs/` still mention it as history only.
-
-Target routing, not live until Phill approves the cutover:
-
-- The DR Twilio number is imported into ElevenLabs through its native integration and assigned to the Margot guardrails agent.
-- The `/api/voice/twilio-consent` webhook stays as a fallback path only.
-- That webhook checks Twilio signatures, so `TWILIO_AUTH_TOKEN` must be set wherever the fallback is used, or every webhook gets a 403.
-- The website shows the number from `NEXT_PUBLIC_DR_PHONE_DISPLAY` and `NEXT_PUBLIC_DR_PHONE_E164`. If either is missing the site shows no phone number. Redeploy after changing them, and bump `NEXT_PUBLIC_SW_CACHE_VERSION` so installed offline pages drop the old copy.
-
----
-
 ## 3. The 5 layers — exact commands
 
 ### Layer 1 — Twilio number reroute  *(target: <60s)*
@@ -55,7 +42,7 @@ Target routing, not live until Phill approves the cutover:
 Fastest for active call-volume incidents. Preserves caller experience via the human fallback queue.
 
 1. `console.twilio.com` → **Phone Numbers** → **Active Numbers**.
-2. Select the **DR Twilio number**.
+2. Select the **DR 1300** number.
 3. **Voice Configuration** → **"A call comes in"**.
 4. Switch the target from the ElevenLabs SIP destination to the TwiML Bin **`dr-human-queue-fallback`**.
 5. **Save**.

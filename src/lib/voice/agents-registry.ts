@@ -10,8 +10,6 @@
  * dispatch to the correct extractor (ClaimIntake vs SupportInteraction).
  */
 
-import { DR_PHONE_DISPLAY } from '@/config/contact';
-
 export type AgentRole = 'claims-intake' | 'support-chat' | 'contractor-onboarding';
 
 export interface AgentSpec {
@@ -38,7 +36,7 @@ export const SARAH: AgentSpec = {
   role: 'claims-intake',
   channel: 'voice',
   description:
-    '24/7 voice claims intake assistant. Answers the DR Twilio number, triages the caller, captures the structured ClaimIntake the dispatcher needs.',
+    '24/7 voice claims intake assistant. Answers 1300 309 361, triages the caller, captures the structured ClaimIntake the dispatcher needs.',
   dataCollectionFields: [
     'service',
     'urgency',
@@ -51,7 +49,7 @@ export const SARAH: AgentSpec = {
     'policy_number',
   ],
   webhookPath: '/api/voice/elevenlabs/webhook',
-  inboundNumber: DR_PHONE_DISPLAY ?? undefined,
+  inboundNumber: '1300 309 361',
   talkToUrl: 'https://elevenlabs.io/app/talk-to?agent_id=agent_8601kpnzctztf4xvh3chdhw60dcz',
 };
 

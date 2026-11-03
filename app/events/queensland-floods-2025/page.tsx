@@ -12,7 +12,6 @@
 
 import type { Metadata } from 'next';
 import DisasterEventPage from '@/components/events/DisasterEventPage';
-import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 export const metadata: Metadata = {
   title: 'Queensland Floods 2025 — Insurance Claims & Recovery | Disaster Recovery',
@@ -109,7 +108,7 @@ export default function QueenslandFloods2025Page() {
       ]}
       governmentApplicationUrl="https://www.qld.gov.au/community/disasters-emergencies/disasters/money-finance/eligibility-apply"
       governmentApplicationLabel="Queensland Flood Financial Assistance — QLD Government"
-      claimsHotline={DR_PHONE_DISPLAY ?? undefined}
+      claimsHotline="1300 309 361"
     />
   );
 }

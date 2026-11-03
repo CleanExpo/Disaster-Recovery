@@ -56,11 +56,11 @@ describe('analytics/track', () => {
   });
 
   it('trackEmergencyCall emits an emergency_call event with the number', () => {
-    trackEmergencyCall('0255501234');
+    trackEmergencyCall('1300309361');
     expect(gtag).toHaveBeenCalledWith(
       'event',
       'emergency_call',
-      expect.objectContaining({ phone_number: '0255501234', content_name: 'phone_cta' }),
+      expect.objectContaining({ phone_number: '1300309361', content_name: 'phone_cta' }),
     );
   });
 

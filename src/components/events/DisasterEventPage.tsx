@@ -298,7 +298,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               {/* DR-750: NRPG claims hotline — separate label from gov hotline */}
               {claimsHotline && (
                 <a
-                  href={`tel:${claimsHotline.replace(/[^\d+]/g, '')}`}
+                  href={`tel:${claimsHotline.replace(/\s/g, '')}`}
                   className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg transition-colors text-lg border border-white/20"
                 >
                   Call {claimsHotline}

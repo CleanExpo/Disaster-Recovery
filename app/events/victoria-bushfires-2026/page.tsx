@@ -20,7 +20,6 @@
 
 import type { Metadata } from 'next';
 import DisasterEventPage from '@/components/events/DisasterEventPage';
-import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 export const metadata: Metadata = {
   title: 'Victoria Bushfires 2026 — Insurance Claims & Recovery | Disaster Recovery',
@@ -130,7 +129,7 @@ export default function VictoriaBushfires2026Page() {
       ]}
       governmentApplicationUrl="https://emergency.vic.gov.au/relief-and-recovery/1154"
       governmentApplicationLabel="Emergency Recovery Victoria — January 2026 Bushfires"
-      claimsHotline={DR_PHONE_DISPLAY ?? undefined}
+      claimsHotline="1300 309 361"
     />
   );
 }

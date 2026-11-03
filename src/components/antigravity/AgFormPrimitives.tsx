@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { CheckCircle2, Inbox, AlertCircle, Loader2 } from 'lucide-react';
-import { DR_PHONE_DISPLAY } from '@/config/contact';
 
 export type AgStep = {
   id: number;
@@ -124,9 +123,7 @@ type AgErrorStateProps = {
 
 export function AgErrorState({
   title = 'Something went wrong',
-  description = DR_PHONE_DISPLAY
-    ? `Please try again. If the problem continues, call ${DR_PHONE_DISPLAY}.`
-    : 'Please try again.',
+  description = 'Please try again. If the problem continues, call 1300 309 361.',
   action,
 }: AgErrorStateProps) {
   return (

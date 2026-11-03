@@ -56,8 +56,6 @@ import {
 } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { DrPhoneLink } from '@/components/contact/DrPhoneLink';
-import { DR_CALL_CLAUSE, DR_PHONE_DISPLAY } from '@/config/contact';
 import {
   AlertCircle,
   ClipboardList,
@@ -345,7 +343,7 @@ function OnlineClaimPageOriginal() {
     if (!searchParams) return;
     if (searchParams.get('error') === 'submit_failed') {
       setSubmissionError(
-        `We could not submit your claim. Please complete the form again${DR_CALL_CLAUSE}.`,
+        'We could not submit your claim. Please complete the form again, or call 1300 309 361.',
       );
     }
   }, [searchParams]);
@@ -552,7 +550,7 @@ function OnlineClaimPageOriginal() {
       } else if (response.status === 503 || result.code === 'CLAIM_PERSISTENCE_FAILED') {
         setSubmissionError(
           result.error ||
-            `We could not save your claim right now. Please try again shortly${DR_CALL_CLAUSE}.`,
+            'We could not save your claim right now. Please try again shortly, or call 1300 309 361.',
         );
       } else if (response.status === 400) {
         setSubmissionError(
@@ -696,18 +694,22 @@ function OnlineClaimPageOriginal() {
 
         {/* DR-542 — Prefer-to-call fallback. Voice option for users who can't
             complete a multi-step form one-handed on a mobile in active distress. */}
-        {DR_PHONE_DISPLAY && (
-          <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div>
-              <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
-              <p className="text-xs text-blue-800">
-                Our 24/7 intake line will take your claim over the phone. A contractor will call you
-                back shortly after.
-              </p>
-            </div>
-            <DrPhoneLink className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 whitespace-nowrap" />
+        <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-blue-900">Prefer to talk to a person?</p>
+            <p className="text-xs text-blue-800">
+              Our 24/7 intake line will take your claim over the phone. A contractor will call you
+              back shortly after.
+            </p>
           </div>
-        )}
+          <a
+            href="tel:1300309361"
+            className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 whitespace-nowrap"
+            aria-label="Call Disaster Recovery on 1300 309 361"
+          >
+            Call 1300 309 361
+          </a>
+        </div>
 
         {/* Who First trust signal — GAP-073 */}
         <div className="mb-6 bg-blue-900 text-white rounded-xl px-6 py-4 flex items-center gap-4">
