@@ -70,6 +70,10 @@ if [[ "${VERCEL_ENV_FILE+x}" == x ]]; then
         if [[ "$value" == \"*\" && "${#value}" -ge 2 ]]; then
           value="${value:1:${#value}-2}"
         fi
+        # Values pulled from Vercel are not GitHub secrets, so the runner does not mask them on its own.
+        if [[ "${GITHUB_ACTIONS-}" == true && -n "$value" ]]; then
+          printf '::add-mask::%s\n' "$value"
+        fi
         export "$name=$value"
         ;;
     esac
