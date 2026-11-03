@@ -67,6 +67,7 @@ function fakePrisma(statuses: Array<{ rc: number; out: string }>, deployRc = 0):
     bin,
     `#!/usr/bin/env bash
 D="${dir}"
+printf '%s\\n' "$DATABASE_URL" "\${DIRECT_URL-}" > "$D/prisma-env"
 if [ "$1 $2" = "migrate status" ]; then
   n=$(cat "$D/status-calls" 2>/dev/null || echo 0)
   echo $((n+1)) > "$D/status-calls"
@@ -212,6 +213,96 @@ describe('database secret preflight', () => {
     expect(r.code).toBe(1);
     expect(r.out).toContain('::error::DATABASE_URL: empty');
     expect(r.out).toContain('::error::DIRECT_URL: empty');
+  });
+});
+
+describe('Vercel production database environment', () => {
+  const password = 'onehome-planted-password';
+  const database = `postgresql://user:${password}@example.invalid:6543/db?pgbouncer=true`;
+  const direct = `postgresql://user:${password}@example.invalid:5432/db`;
+
+  function envFile(contents: string): string {
+    const file = path.join(dir, 'vercel-production.env');
+    writeFileSync(file, contents);
+    return file;
+  }
+
+  function expectNoSecrets(r: Run) {
+    expect(r.out.includes(password)).toBe(false);
+    expect(r.githubOutput.includes(password)).toBe(false);
+  }
+
+  it('exports both quoted URLs from the file to prisma, overriding stale environment values', async () => {
+    const prisma = fakePrisma([pending('20260101000000_old'), UP_TO_DATE]);
+    const file = envFile(`DATABASE_URL="${database}"\nDIRECT_URL="${direct}"\n`);
+    const r = await run(MIGRATE_GATE, [], {
+      PRISMA: prisma,
+      VERCEL_ENV_FILE: file,
+      DATABASE_URL: 'stale',
+      DIRECT_URL: 'stale',
+    });
+    expectNoSecrets(r);
+    expect(r.code).toBe(0);
+    expect(readFileSync(path.join(dir, 'prisma-env'), 'utf8') === `${database}\n${direct}\n`).toBe(
+      true,
+    );
+    expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(true);
+  });
+
+  it('fails closed with an error when the requested environment file is missing', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    const r = await run(MIGRATE_GATE, [], {
+      PRISMA: prisma,
+      VERCEL_ENV_FILE: path.join(dir, 'missing.env'),
+      DATABASE_URL: database,
+    });
+    expectNoSecrets(r);
+    expect(r.code).toBe(1);
+    expect(r.out).toContain('::error::VERCEL_ENV_FILE is missing');
+    expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+  });
+
+  it('fails with the Sensitive hint when DATABASE_URL is absent, even with an inherited URL', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    const r = await run(MIGRATE_GATE, [], {
+      PRISMA: prisma,
+      VERCEL_ENV_FILE: envFile(`DIRECT_URL="${direct}"\n`),
+      DATABASE_URL: database,
+    });
+    expectNoSecrets(r);
+    expect(r.code).toBe(1);
+    expect(r.out).toContain(
+      '::error::DATABASE_URL is not in the Vercel production environment (or is marked Sensitive, which vercel pull cannot read)',
+    );
+    expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+  });
+
+  it('ignores unrelated shell metacharacters and preserves URL metacharacters literally', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    const marker = path.join(dir, 'pwned-test');
+    const literal = `${database}&literal=$(touch ${marker})`;
+    const file = envFile(
+      `UNRELATED="$(touch ${marker})"\n DATABASE_URL="ignored"\nDATABASE_URL="${literal}"\nDIRECT_URL="${direct}"`,
+    );
+    const r = await run(MIGRATE_GATE, [], { PRISMA: prisma, VERCEL_ENV_FILE: file });
+    expectNoSecrets(r);
+    expect(existsSync(marker)).toBe(false);
+    expect(r.code).toBe(0);
+    expect(readFileSync(path.join(dir, 'prisma-env'), 'utf8') === `${literal}\n${direct}\n`).toBe(
+      true,
+    );
+  });
+
+  it('uses an unquoted DATABASE_URL and does not inherit DIRECT_URL when absent from the file', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    const r = await run(MIGRATE_GATE, [], {
+      PRISMA: prisma,
+      VERCEL_ENV_FILE: envFile(`DATABASE_URL=${database}\n`),
+      DIRECT_URL: 'stale',
+    });
+    expectNoSecrets(r);
+    expect(r.code).toBe(0);
+    expect(readFileSync(path.join(dir, 'prisma-env'), 'utf8') === `${database}\n\n`).toBe(true);
   });
 });
 
@@ -489,6 +580,21 @@ describe('auto-deploy.yml wiring', () => {
 
   it('no longer decides migrations from the last commit only', () => {
     expect(WORKFLOW).not.toContain('HEAD^..HEAD');
+  });
+
+  it('pulls Vercel production before the migration gate and uses that file as the single home', () => {
+    const migrate = job('migrate');
+    const install = 'npm install --global vercel@latest';
+    const pull = 'vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}';
+    const gate = migrate.indexOf('run: bash scripts/ci/migrate-gate.sh');
+    expect(migrate).toContain(install);
+    expect(migrate).toContain(pull);
+    expect(migrate.indexOf(install)).toBeLessThan(migrate.indexOf(pull));
+    expect(migrate.indexOf(pull)).toBeLessThan(gate);
+    const gateStep = migrate.slice(migrate.lastIndexOf('    - name:', gate));
+    expect(gateStep).toContain('VERCEL_ENV_FILE: .vercel/.env.production.local');
+    expect(gateStep).not.toContain('secrets.DATABASE_URL');
+    expect(gateStep).not.toContain('secrets.DIRECT_URL');
   });
 
   it('migrate job runs the status gate and cannot be skipped by continue-on-error', () => {

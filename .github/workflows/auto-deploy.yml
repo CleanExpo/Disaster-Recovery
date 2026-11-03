@@ -45,6 +45,7 @@ jobs:
 
   # ── Gate 2: Database migration ──
   #
+  # The database URLs' single home is Vercel production.
   # Asks the production database which migrations it is missing
   # (`prisma migrate status`), applies them, and blocks the deploy unless the
   # database then reports up to date. The previous version only diffed
@@ -69,12 +70,17 @@ jobs:
     - name: Install dependencies
       run: npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps
 
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+
+    - name: Pull Vercel Environment
+      run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
     - name: Migration gate (status against target DB, apply, re-check)
       id: gate
       run: bash scripts/ci/migrate-gate.sh
       env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        DIRECT_URL: ${{ secrets.DIRECT_URL }}
+        VERCEL_ENV_FILE: .vercel/.env.production.local
 
   # ── Gate 3: Deploy to Vercel production ──
   deploy:

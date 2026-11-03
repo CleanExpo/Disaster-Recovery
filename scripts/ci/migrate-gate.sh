@@ -55,6 +55,31 @@ check_secret_shape() {
   fi
 }
 
+# Read only the two database keys as literal text, never as shell code.
+if [[ "${VERCEL_ENV_FILE+x}" == x ]]; then
+  if [[ ! -f "$VERCEL_ENV_FILE" ]]; then
+    printf '::error::VERCEL_ENV_FILE is missing; cannot read the Vercel production environment.\n'
+    exit 1
+  fi
+  unset DATABASE_URL DIRECT_URL
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    case "$line" in
+      DATABASE_URL=*|DIRECT_URL=*)
+        name="${line%%=*}"
+        value="${line#*=}"
+        if [[ "$value" == \"*\" && "${#value}" -ge 2 ]]; then
+          value="${value:1:${#value}-2}"
+        fi
+        export "$name=$value"
+        ;;
+    esac
+  done < "$VERCEL_ENV_FILE"
+  if [[ "${DATABASE_URL+x}" != x ]]; then
+    printf '::error::DATABASE_URL is not in the Vercel production environment (or is marked Sensitive, which vercel pull cannot read)\n'
+    exit 1
+  fi
+fi
+
 PREFLIGHT_RC=0
 check_secret_shape DATABASE_URL "${DATABASE_URL-}" || PREFLIGHT_RC=1
 if [[ "${DIRECT_URL+x}" == x ]]; then
