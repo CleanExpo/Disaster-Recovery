@@ -34,6 +34,11 @@ export interface QueuedClaim {
   queuedAt: number;
   attempts: number;
   lastError?: string;
+  /**
+   * Set when the server accepted this item but deleting it afterwards failed.
+   * Replay never sends an accepted item again; it only retries the delete.
+   */
+  acceptedAt?: number;
 }
 
 export type QueueEvent =
@@ -92,23 +97,24 @@ function openDb(): Promise<IDBDatabase> {
   });
 }
 
+/**
+ * Run one request in its own transaction. Resolves only when the transaction
+ * COMMITS (oncomplete), never at request success: a write whose transaction
+ * then aborts has not happened, and must not be reported as done (DR-966).
+ */
 function tx<T>(
   storeName: string,
   mode: IDBTransactionMode,
-  run: (store: IDBObjectStore) => IDBRequest<T> | Promise<T>,
+  run: (store: IDBObjectStore) => IDBRequest<T>,
 ): Promise<T> {
   return openDb().then(
     (db) =>
       new Promise<T>((resolve, reject) => {
         const t = db.transaction(storeName, mode);
-        const store = t.objectStore(storeName);
-        const result = run(store);
-        if (result instanceof Promise) {
-          result.then(resolve, reject);
-          return;
-        }
-        result.onsuccess = () => resolve(result.result);
-        result.onerror = () => reject(result.error);
+        const request = run(t.objectStore(storeName));
+        t.oncomplete = () => resolve(request.result);
+        t.onabort = () => reject(t.error ?? request.error ?? new Error('IDB transaction aborted'));
+        t.onerror = () => reject(t.error ?? request.error ?? new Error('IDB transaction failed'));
       }),
   );
 }
@@ -117,8 +123,118 @@ async function putItem(storeName: string, item: QueuedClaim): Promise<void> {
   await tx<IDBValidKey>(storeName, 'readwrite', (s) => s.put(item));
 }
 
+/**
+ * Change one item only if it is still there, reading and writing it in ONE
+ * readwrite transaction, so a stale copy read earlier can never be written
+ * back over a delete. `change` returns the new item, or null to leave it.
+ * Resolves true only once the write has committed.
+ */
+function updateExisting(
+  storeName: string,
+  id: string,
+  change: (item: QueuedClaim) => QueuedClaim | null,
+): Promise<boolean> {
+  return openDb().then(
+    (db) =>
+      new Promise<boolean>((resolve, reject) => {
+        const t = db.transaction(storeName, 'readwrite');
+        const store = t.objectStore(storeName);
+        let written = false;
+        const get = store.get(id);
+        get.onsuccess = () => {
+          const current = get.result as QueuedClaim | undefined;
+          const next = current ? change(current) : null;
+          if (!next) return;
+          written = true;
+          store.put(next);
+        };
+        t.oncomplete = () => resolve(written);
+        t.onabort = () => reject(t.error ?? new Error('IDB transaction aborted'));
+        t.onerror = () => reject(t.error ?? new Error('IDB transaction failed'));
+      }),
+  );
+}
+
 async function deleteItem(storeName: string, id: string): Promise<void> {
   await tx<undefined>(storeName, 'readwrite', (s) => s.delete(id));
+}
+
+/**
+ * Delete one item only if it exists (and passes `keep`), in one transaction.
+ * Resolves true only once the delete has committed; false otherwise.
+ */
+function deleteExisting(
+  storeName: string,
+  id: string,
+  only: (item: QueuedClaim) => boolean = () => true,
+): Promise<boolean> {
+  return openDb().then(
+    (db) =>
+      new Promise<boolean>((resolve, reject) => {
+        const t = db.transaction(storeName, 'readwrite');
+        const store = t.objectStore(storeName);
+        let found = false;
+        const get = store.get(id);
+        get.onsuccess = () => {
+          if (get.result === undefined || !only(get.result as QueuedClaim)) return;
+          found = true;
+          store.delete(id);
+        };
+        t.oncomplete = () => resolve(found);
+        t.onabort = () => reject(t.error ?? new Error('IDB transaction aborted'));
+        t.onerror = () => reject(t.error ?? new Error('IDB transaction failed'));
+      }),
+  );
+}
+
+// ── Accepted-claim markers ──────────────────────────────────────────────
+// When the server accepts a replayed claim but IndexedDB cannot delete or
+// mark it, the claim must still never be sent again. The marker is written
+// BEFORE the delete, to storage independent of IndexedDB (localStorage, plus
+// memory for this page), and removed only after a delete is confirmed or a
+// successful read shows the item gone. A failed read never removes a marker.
+
+const ACCEPTED_KEY = 'dr-offline-queue-accepted';
+const acceptedThisPage = new Set<string>();
+
+function readAccepted(): Set<string> {
+  const ids = new Set(acceptedThisPage);
+  try {
+    const raw = localStorage.getItem(ACCEPTED_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    if (Array.isArray(parsed)) {
+      parsed.forEach((id) => {
+        if (typeof id === 'string') ids.add(id);
+      });
+    }
+  } catch {
+    /* localStorage unavailable or corrupt: the memory set still applies */
+  }
+  return ids;
+}
+
+function writeAccepted(ids: Set<string>): void {
+  try {
+    if (ids.size === 0) localStorage.removeItem(ACCEPTED_KEY);
+    else localStorage.setItem(ACCEPTED_KEY, JSON.stringify([...ids]));
+  } catch {
+    /* best effort; the memory set still guards this page */
+  }
+}
+
+function markAccepted(id: string): void {
+  acceptedThisPage.add(id);
+  const ids = readAccepted();
+  ids.add(id);
+  writeAccepted(ids);
+}
+
+function forgetAccepted(remove: string[]): void {
+  if (remove.length === 0) return;
+  remove.forEach((id) => acceptedThisPage.delete(id));
+  const ids = readAccepted();
+  remove.forEach((id) => ids.delete(id));
+  writeAccepted(ids);
 }
 
 async function listItems(storeName: string): Promise<QueuedClaim[]> {
@@ -161,12 +277,19 @@ export async function enqueueClaim(
   }
 }
 
-/** Count of pending items waiting to replay. */
+/**
+ * Count of pending items that replay will send. A claim the server already
+ * accepted is not waiting, and a held claim is not sent until the homeowner
+ * ticks it in HeldClaimsPanel, so neither is counted: OfflineQueueBanner says
+ * "we'll send it automatically" for every claim in this count.
+ */
 export async function getQueueSize(): Promise<number> {
   if (!FLAG_ENABLED || !hasIDB()) return 0;
   try {
     const items = await listItems(STORE_PENDING);
-    return items.length;
+    const accepted = readAccepted();
+    return items.filter((i) => i.acceptedAt === undefined && !accepted.has(i.id) && !isHeld(i))
+      .length;
   } catch {
     return 0;
   }
@@ -195,16 +318,71 @@ export function needsCalloutFeeAcknowledgement(item: QueuedClaim): boolean {
   return item.payload?.calloutFeeAcknowledged !== true;
 }
 
-/** Pending items held for the homeowner's call-out fee acknowledgement, oldest first. */
-export async function listUnacknowledgedClaims(): Promise<QueuedClaim[]> {
-  return (await peekQueue()).filter(needsCalloutFeeAcknowledgement);
+function isHeld(item: QueuedClaim): boolean {
+  return item.acceptedAt === undefined && needsCalloutFeeAcknowledgement(item);
 }
 
-/** Remove one pending item, e.g. once its resubmission has succeeded. */
-export async function removeQueuedClaim(id: string): Promise<void> {
-  if (!FLAG_ENABLED || !hasIDB()) return;
-  await deleteItem(STORE_PENDING, id);
+/**
+ * Pending items held for the homeowner's call-out fee acknowledgement, oldest
+ * first. A failed read is reported as `{ ok: false }`, never as an empty list,
+ * so the caller can tell "none saved" apart from "could not check".
+ */
+export async function readHeldClaims(): Promise<
+  { ok: true; items: QueuedClaim[] } | { ok: false; reason: string }
+> {
+  if (!FLAG_ENABLED) return { ok: true, items: [] };
+  if (!hasIDB()) return { ok: false, reason: 'no-idb' };
+  try {
+    const items = await listItems(STORE_PENDING);
+    return { ok: true, items: items.filter(isHeld).sort((a, b) => a.queuedAt - b.queuedAt) };
+  } catch (err) {
+    return { ok: false, reason: err instanceof Error ? err.message : 'idb-read-failed' };
+  }
+}
+
+/**
+ * Record the homeowner's call-out fee acknowledgement on one held item. The
+ * item then becomes an ordinary queued claim and the next replay sends it.
+ * Returns false (and changes nothing) if the item is not held or the write
+ * fails. Consent is only ever set here, from an explicit tick.
+ */
+export async function acknowledgeHeldClaim(id: string): Promise<boolean> {
+  if (!FLAG_ENABLED || !hasIDB()) return false;
+  try {
+    return await exclusive(() =>
+      updateExisting(STORE_PENDING, id, (item) =>
+        isHeld(item)
+          ? {
+              ...item,
+              payload: {
+                ...item.payload,
+                // A legacy payload may carry the old platform fee; never send it.
+                paymentConfirmed: false,
+                paymentAmount: 0,
+                calloutFeeAcknowledged: true,
+              },
+            }
+          : null,
+      ),
+    );
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Remove one pending item (the homeowner chose to delete a held claim).
+ * Returns true only when the item was deleted.
+ */
+export async function removeQueuedClaim(id: string): Promise<boolean> {
+  if (!FLAG_ENABLED || !hasIDB()) return false;
+  try {
+    if (!(await exclusive(() => deleteExisting(STORE_PENDING, id, isHeld)))) return false;
+  } catch {
+    return false;
+  }
   emit({ type: 'removed', id, remaining: await getQueueSize() });
+  return true;
 }
 
 /** Returns all pending items — used for UI rendering / tests. */
@@ -246,22 +424,97 @@ interface ReplayDeps {
  * any schema change. If the server ignores the field, the metadata
  * is still available in the response audit trail.
  */
-export async function replayQueue(
-  deps: ReplayDeps = {},
-): Promise<{ successes: number; failures: number; deadLettered: number; held: number }> {
+export type ReplayResult = {
+  successes: number;
+  failures: number;
+  deadLettered: number;
+  held: number;
+};
+
+let replayRunning: Promise<ReplayResult> | null = null;
+let replayFollowUp: Promise<ReplayResult> | null = null;
+
+// Every change to the queue (replay, acknowledge, remove) runs one at a time,
+// in this page and across every tab of the site. Two tabs replaying together
+// would each post the same claim, and an acknowledgement or removal landing in
+// the middle of a replay could bring back a claim already sent (review rounds
+// 3 and 5). The Web Locks API queues other tabs; a promise chain queues this
+// page. Where Web Locks are missing, only this page is ordered (plan doc rule 3).
+const QUEUE_LOCK = 'dr-offline-queue';
+let pageChain: Promise<unknown> = Promise.resolve();
+
+function acrossTabs<T>(run: () => Promise<T>): Promise<T> {
+  const locks =
+    typeof navigator !== 'undefined'
+      ? (navigator as Navigator & { locks?: LockManager }).locks
+      : undefined;
+  if (!locks || typeof locks.request !== 'function') return run();
+  return locks.request(QUEUE_LOCK, { mode: 'exclusive' }, () => run()) as Promise<T>;
+}
+
+function exclusive<T>(run: () => Promise<T>): Promise<T> {
+  const next = pageChain.then(() => acrossTabs(run));
+  pageChain = next.catch(() => undefined);
+  return next;
+}
+
+/**
+ * Single-flight: only one replay runs at a time, so overlapping callers
+ * (page load, the online event, the banner retry, the held-claim panel) never
+ * post the same item twice. A call made during a run waits for it and then
+ * runs once more, so an item acknowledged mid-run is still sent.
+ */
+export function replayQueue(deps: ReplayDeps = {}): Promise<ReplayResult> {
+  if (!replayRunning) {
+    replayRunning = exclusive(() => runReplay(deps)).finally(() => {
+      replayRunning = null;
+    });
+    return replayRunning;
+  }
+  if (!replayFollowUp) {
+    replayFollowUp = replayRunning
+      .catch(() => undefined)
+      .then(() => {
+        replayFollowUp = null;
+        return replayQueue(deps);
+      });
+  }
+  return replayFollowUp;
+}
+
+async function runReplay(deps: ReplayDeps): Promise<ReplayResult> {
   if (!FLAG_ENABLED) return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
   if (!hasIDB()) return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
 
   const fetchImpl = deps.fetchImpl ?? fetch;
   const now = deps.now ?? Date.now;
 
-  const all = await peekQueue();
-  const items = all.filter((item) => !needsCalloutFeeAcknowledgement(item));
-  const held = all.length - items.length;
+  let all: QueuedClaim[];
+  try {
+    all = (await listItems(STORE_PENDING)).sort((a, b) => a.queuedAt - b.queuedAt);
+  } catch {
+    // Could not read the queue: send nothing, and leave every marker alone.
+    return { successes: 0, failures: 0, deadLettered: 0, held: 0 };
+  }
+  const acceptedIds = readAccepted();
+  const isAccepted = (item: QueuedClaim) =>
+    item.acceptedAt !== undefined || acceptedIds.has(item.id);
+  // A successful read shows these markers' items are gone: drop the markers.
+  const present = new Set(all.map((item) => item.id));
+  forgetAccepted([...acceptedIds].filter((id) => !present.has(id)));
+  // Accepted by the server earlier but not yet deleted: retry the delete only.
   for (const item of all) {
-    if (needsCalloutFeeAcknowledgement(item)) {
-      emit({ type: 'replay-held', id: item.id, reason: 'callout-fee-acknowledgement-missing' });
-    }
+    if (!isAccepted(item)) continue;
+    await deleteItem(STORE_PENDING, item.id).then(
+      () => forgetAccepted([item.id]),
+      () => undefined,
+    );
+  }
+  const items = all.filter((item) => !isAccepted(item) && !isHeld(item));
+  const heldItems = all.filter(isHeld);
+  const held = heldItems.length;
+  for (const item of heldItems) {
+    emit({ type: 'replay-held', id: item.id, reason: 'callout-fee-acknowledgement-missing' });
   }
   if (items.length === 0) return { successes: 0, failures: 0, deadLettered: 0, held };
 
@@ -289,6 +542,9 @@ export async function replayQueue(
         headers: {
           'Content-Type': 'application/json',
           'x-offline-replay': '1',
+          // Stable per queued claim, so the server can refuse a repeat once it
+          // records this key (follow-up: server-side idempotency).
+          'x-offline-claim-id': item.id,
           'x-offline-queued-at': String(item.queuedAt),
           'x-offline-replayed-at': String(replayedAt),
         },
@@ -296,7 +552,17 @@ export async function replayQueue(
       });
 
       if (res.ok) {
-        await deleteItem(STORE_PENDING, item.id);
+        // The server has the claim. Mark it accepted before cleanup, so no
+        // later replay sends it again whatever the delete does.
+        markAccepted(item.id);
+        await deleteItem(STORE_PENDING, item.id).then(
+          () => forgetAccepted([item.id]),
+          () =>
+            updateExisting(STORE_PENDING, item.id, (current) => ({
+              ...current,
+              acceptedAt: replayedAt,
+            })).catch(() => false),
+        );
         successes += 1;
         const remaining = await getQueueSize();
         emit({ type: 'replay-success', id: item.id, remaining });
@@ -319,21 +585,21 @@ export async function replayQueue(
       }
 
       // 5xx or unexpected — transient, keep for next cycle.
-      await putItem(STORE_PENDING, {
-        ...item,
+      await updateExisting(STORE_PENDING, item.id, (current) => ({
+        ...current,
         attempts: item.attempts + 1,
         lastError: `HTTP ${res.status}`,
-      });
+      }));
       failures += 1;
       emit({ type: 'replay-retry', id: item.id, error: `HTTP ${res.status}` });
     } catch (err) {
       // Network failure — keep in queue, do not dead-letter.
       const msg = err instanceof Error ? err.message : 'network-error';
-      await putItem(STORE_PENDING, {
-        ...item,
+      await updateExisting(STORE_PENDING, item.id, (current) => ({
+        ...current,
         attempts: item.attempts + 1,
         lastError: msg,
-      });
+      })).catch(() => false);
       failures += 1;
       emit({ type: 'replay-retry', id: item.id, error: msg });
     }
