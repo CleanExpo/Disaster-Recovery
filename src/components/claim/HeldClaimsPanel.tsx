@@ -29,7 +29,7 @@ import {
   type QueuedClaim,
 } from '@/lib/offline-queue';
 import { CALLOUT_FEE_ACK_LABEL, CALLOUT_FEE_EXPLAINER } from '@/lib/claims/callout-fee-notice';
-import { DR_CALL_CLAUSE } from '@/config/contact';
+const DR_CALL_CLAUSE = ', or call 1300 309 361';
 
 type Outcome = 'sent' | 'waiting' | 'not-accepted' | 'removed';
 

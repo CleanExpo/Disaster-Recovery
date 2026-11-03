@@ -790,7 +790,7 @@ function OnlineClaimPageOriginal() {
                 You&rsquo;re offline, so your claim is saved on this device. We&rsquo;ll send it
                 automatically as soon as you&rsquo;re back online. Keep this app installed until
                 then.
-                {DR_PHONE_DISPLAY && <> If it&rsquo;s urgent, call {DR_PHONE_DISPLAY}.</>}
+                 If it&rsquo;s urgent, call 1300 309 361.
               </AlertDescription>
             </Alert>
             {replayToast && (
@@ -1031,7 +1031,7 @@ function OnlineClaimPageOriginal() {
               {clearing === 'failed'
                 ? 'We couldn\u2019t remove the saved claim from this device, so a new claim hasn\u2019t been started.'
                 : 'Removing the saved claim from this device is taking longer than usual.'}{' '}
-              You can try again, {DR_PHONE_DISPLAY && <>call {DR_PHONE_DISPLAY}, </>}or continue
+              You can try again, call 1300 309 361, or continue
               without saving on this device. If you continue, your new claim is not kept if you
               close this page before sending it.
             </p>
@@ -1056,7 +1056,7 @@ function OnlineClaimPageOriginal() {
               We couldn&rsquo;t check this device for a claim you saved earlier. You can try again,
               or start a new claim. If you saved a claim on this device before, starting a new one
               replaces it.
-              {DR_PHONE_DISPLAY && <> If it&rsquo;s urgent, call {DR_PHONE_DISPLAY}.</>}
+               If it&rsquo;s urgent, call 1300 309 361.
             </p>
             <div className="mt-4 flex flex-col gap-2 sm:flex-row">
               <button
@@ -1088,7 +1088,7 @@ function OnlineClaimPageOriginal() {
               Checking this device for a claim you saved earlier is taking longer than usual. You
               can keep waiting, or start a new claim now. If you saved a claim on this device
               before, starting a new one replaces it.
-              {DR_PHONE_DISPLAY && <> If it&rsquo;s urgent, call {DR_PHONE_DISPLAY}.</>}
+               If it&rsquo;s urgent, call 1300 309 361.
             </p>
             <div className="mt-4">
               <button
