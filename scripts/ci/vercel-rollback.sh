@@ -63,7 +63,7 @@ case "${1:-}" in
       exit 1
     fi
     echo "Rolling back $PROD_ALIAS to $PREVIOUS_ID ($PREVIOUS_URL)..."
-    if ! $VERCEL rollback "$PREVIOUS_URL" --token="${VERCEL_TOKEN:-}" --scope="${VERCEL_ORG_ID:-}"; then
+    if ! "$VERCEL" rollback "$PREVIOUS_URL" --token="${VERCEL_TOKEN:-}" --scope="${VERCEL_ORG_ID:-}"; then
       echo "::error::vercel rollback failed."
       exit 1
     fi
