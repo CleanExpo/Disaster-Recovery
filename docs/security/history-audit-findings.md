@@ -4,6 +4,21 @@
 **Method:** `git log --all -p -- .env*` → line-by-line value inspection, not just key-name matching.
 **Note:** Secret *values* are never reproduced here — only commit SHAs, file paths, and a value-shape classification.
 
+## Correction, 09/11/2026 — this audit missed a live service-role key
+
+The 24/04/2026 pass below only inspected `.env*` files. A full-history scan on 09/11/2026 (gitleaks 8.30.1 over all refs, plus GitHub secret scanning) found secrets in other files, including one that was **live**. Two statements in "What's NOT leaked" were wrong and are struck through below.
+
+| GitHub alert | Type | Where (commit) | Status on 09/11/2026 | Evidence |
+|---|---|---|---|---|
+| #3 | Supabase key, `role=service_role`, project `lccqasmurmsisnnjqqmr` (the canonical project) | `scripts/run-migration-via-rest.js`, `scripts/check-tables-quick.js` (`e1138f33`) | **Was LIVE.** Legacy JWT keys disabled and new keys issued by the founder about 14:29 AEST; leaked key now rejected | REST probe HTTP 200 before, HTTP 401 after; alert closed as revoked |
+| #2 | Supabase key, `role=service_role`, same project | `.env.supabase` (`d844f12d`) | Dead | REST probe HTTP 401; alert closed as revoked |
+| #1 | Google API key (the Gemini key from finding 2) | `.env.local` (`8c7bf154`, `1d9e0901`) and docs (`b6757b93` and others) | Dead | Google returned HTTP 400 `API_KEY_INVALID`; alert closed as revoked |
+| #4 | Aiven service password | `prisma.config.ts` (`bf6b72e5`), `prisma/schema.prisma` (`32ca9ab7`) | Not in use by production | Absent from the current Vercel `DATABASE_URL` / `DIRECT_URL` in every environment (compared without printing). Not probed against Aiven directly. Alert closed as revoked |
+
+Why it was missed: the scope was `.env*` files only, so committed scripts and Prisma files were never read, and the JWT pattern count ran only over `.env*` files. `.env.supabase` (alert #2) also did not appear in the April table. Future audits must scan every file in full history (`gitleaks git --log-opts='--all'`) and cross-check GitHub's secret-scanning alerts.
+
+Still unverified: the Supabase DB password for project `xoomalxa...` (finding 1, `916e2a5b`).
+
 ## Executive summary
 
 Of 6 commits initially flagged by variable-name match, **only 2 contain real secrets**. The other 4 are documentation / placeholder files committed as templates.
@@ -37,9 +52,9 @@ Of 6 commits initially flagged by variable-name match, **only 2 contain real sec
 - **Zero** `rk_live_...` patterns (no Stripe restricted live keys)
 - **Zero** `whsec_[real value]` patterns (one `whsec_your_stripe_test_webhook_secret` placeholder, correctly allowlisted)
 - **Zero** PEM private-key markers (`BEGIN PRIVATE KEY` variants)
-- **Zero** JWT-shape tokens (`eyJ....eyJ....sig`)
+- ~~Zero JWT-shape tokens~~ **Wrong (corrected 09/11/2026):** true only for `.env*` files. Service-role JWTs were committed in `scripts/` at `e1138f33` and in `.env.supabase` at `d844f12d`. See the correction at the top.
 - **Zero** real NextAuth secrets (all historical NEXTAUTH_SECRET values are placeholders like `local-development-secret-change-in-production-12345678` or `generate-new-secret-for-staging-use-openssl-rand-base64-32`)
-- **Zero** real Supabase service-role keys (the one flagged in `dc5bb1c6` was the literal string `your_staging_supabase_service_role_key`)
+- ~~Zero real Supabase service-role keys~~ **Wrong (corrected 09/11/2026):** the `dc5bb1c6` value was a placeholder, but a real, live service-role key for `lccqasmurmsisnnjqqmr` was in `scripts/` at `e1138f33`. It was rotated on 09/11/2026. See the correction at the top.
 - **Zero** real Stripe secret keys (the one in `dc5bb1c6` was `sk_test_your_stripe_test_secret_key` — and note it's `sk_test_`, not `sk_live_`)
 
 ## Placeholder false-positives — for the record
@@ -73,11 +88,13 @@ done
 ## Residual actions
 
 1. Verify Supabase project `xoomalxa...` status (abandoned vs active). If active, rotate DB password.
-2. Rotate the Gemini API key from commit `8c7bf154`.
+2. ~~Rotate the Gemini API key from commit `8c7bf154`.~~ Done: confirmed dead on 09/11/2026 (Google HTTP 400 `API_KEY_INVALID`).
 3. Accept history as-is. **Do not** rewrite git history. The two live secrets above, once rotated, are inert in history; rewriting would invalidate every fork and PR reference for zero additional security gain.
 4. Run a full-head gitleaks scan at end of sprint: `gitleaks detect --config .gitleaks.toml --source .`
-5. Run a full-history gitleaks scan once: `gitleaks detect --log-opts='--all'`
+5. ~~Run a full-history gitleaks scan once: `gitleaks detect --log-opts='--all'`~~ Done on 09/11/2026; results in the correction at the top.
 
 ## Summary line for the board
 
-**The .gitignore discipline held. Two real secrets existed historically (one Supabase DB password on a project that appears dead, one Gemini API key). Rotate both when email is back; no history rewrite needed.**
+~~The .gitignore discipline held. Two real secrets existed historically (one Supabase DB password on a project that appears dead, one Gemini API key). Rotate both when email is back; no history rewrite needed.~~
+
+**Corrected 09/11/2026:** the April summary was wrong. A live service-role key for the canonical Supabase project sat in public history in `scripts/` until it was rotated on 09/11/2026. The Gemini key and the other leaked Supabase key are dead, and the Aiven password is not used by production. All four GitHub secret-scanning alerts are closed. Still open: verify the `xoomalxa...` DB password. Still no history rewrite: rotation is what neutralises a leak in public history.

@@ -5,18 +5,21 @@
       "workflow": "auto-merge.yml",
       "job": "auto-merge",
       "step": "Attempt merge (on PR event)",
+      "test_gap": true,
       "reason": "actions/github-script merging an open PR through GITHUB_TOKEN; there is no PR before push, and it only acts on PRs carrying the auto-merge label."
     },
     {
       "workflow": "gitleaks.yml",
       "job": "gitleaks",
       "step": "gitleaks/gitleaks-action@v2",
+      "test_gap": true,
       "reason": "Third-party action. Substitute run locally: gitleaks 8.30.1 `gitleaks git --log-opts=<base>..<head>` over the branch commits, with a positive control (planted ghp_ token in a scratch repo reported 1 leak)."
     },
     {
       "workflow": "lighthouse.yml",
       "job": "lighthouse",
       "step": "Run Lighthouse CI",
+      "test_gap": true,
       "reason": "Third-party action (treosh/lighthouse-ci-action) auditing deployed URLs; needs the live site or a preview deployment, which does not exist before push."
     },
     {
@@ -30,12 +33,14 @@
       "workflow": "managed-agent-ci.yml",
       "job": "managed-agent-pipeline",
       "step": "Trigger Managed Agent Pipeline",
+      "test_gap": true,
       "reason": "Calls the metered Anthropic API with secrets.ANTHROPIC_API_KEY; the repository secret is not available locally and must not be copied here."
     },
     {
       "workflow": "preview-deploy.yml",
       "job": "deploy-preview",
       "step": "*",
+      "test_gap": true,
       "reason": "Creates a Vercel preview deployment with secrets.VERCEL_TOKEN / VERCEL_ORG_ID; a deployment is an outbound action that only GitHub performs."
     },
     {
@@ -49,12 +54,14 @@
       "workflow": "ci.yml",
       "job": "test",
       "step": "Install dependencies",
+      "test_gap": true,
       "reason": "Runs `npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps`; the mirror will not run a compound setup line because the fallback could rewrite this machine's install. Dependencies are already installed for the exact head by `pr_release_gate.py provision` (npm ci --legacy-peer-deps from package-lock.json), so the job's later steps still run locally. GitHub runs this step on the PR."
     },
     {
       "workflow": "ci.yml",
       "job": "format",
       "step": "Install dependencies",
+      "test_gap": true,
       "reason": "Runs `npm ci --legacy-peer-deps || npm install --force --legacy-peer-deps`; the mirror will not run a compound setup line because the fallback could rewrite this machine's install. Dependencies are already installed for the exact head by `pr_release_gate.py provision` (npm ci --legacy-peer-deps from package-lock.json), so the job's later steps still run locally. GitHub runs this step on the PR."
     },
     {
