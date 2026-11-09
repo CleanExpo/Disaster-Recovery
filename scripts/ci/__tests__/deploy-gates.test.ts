@@ -29,7 +29,9 @@ type Run = { code: number; out: string; githubOutput: string };
 
 let dir: string;
 beforeEach(() => {
-  dir = mkdtempSync(path.join(tmpdir(), 'deploy-gates-'));
+  // The space is deliberate (DR-973): every fake CLI lives under a path with a
+  // space, so a script that word-splits a command override fails here in CI.
+  dir = mkdtempSync(path.join(tmpdir(), 'deploy gates-'));
 });
 afterEach(() => {
   rmSync(dir, { recursive: true, force: true });

@@ -14,7 +14,8 @@
 #
 # Env: VERCEL_TOKEN, VERCEL_ORG_ID, PROD_ALIAS (default disasterrecovery.com.au)
 #      rollback: PREVIOUS_ID, PREVIOUS_URL, APPLIED_COUNT, APPLIED_NAMES
-#      VERCEL (CLI command), VERCEL_API, VERIFY_ATTEMPTS, VERIFY_INTERVAL
+#      VERCEL (path to the CLI, run quoted; default `vercel`), VERCEL_API,
+#      VERIFY_ATTEMPTS, VERIFY_INTERVAL
 set -uo pipefail
 
 PROD_ALIAS="${PROD_ALIAS:-disasterrecovery.com.au}"
@@ -63,7 +64,7 @@ case "${1:-}" in
       exit 1
     fi
     echo "Rolling back $PROD_ALIAS to $PREVIOUS_ID ($PREVIOUS_URL)..."
-    if ! $VERCEL rollback "$PREVIOUS_URL" --token="${VERCEL_TOKEN:-}" --scope="${VERCEL_ORG_ID:-}"; then
+    if ! "$VERCEL" rollback "$PREVIOUS_URL" --token="${VERCEL_TOKEN:-}" --scope="${VERCEL_ORG_ID:-}"; then
       echo "::error::vercel rollback failed."
       exit 1
     fi

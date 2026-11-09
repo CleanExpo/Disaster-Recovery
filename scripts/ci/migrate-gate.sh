@@ -13,14 +13,20 @@
 #   applied_count  number of migrations this run applied
 #   applied_names  their names, space-separated
 #
-# PRISMA overrides the prisma command (tests use a fake binary).
+# PRISMA overrides the prisma executable (tests use a fake binary). It is one
+# path, run quoted, so a path containing spaces works; it is never word-split.
+# Unset, the gate runs `npx prisma`.
 set -uo pipefail
 
-PRISMA="${PRISMA:-npx prisma}"
+if [ -n "${PRISMA:-}" ]; then
+  PRISMA_CMD=("$PRISMA")
+else
+  PRISMA_CMD=(npx prisma)
+fi
 OUT="${GITHUB_OUTPUT:-/dev/null}"
 
 status() {
-  STATUS_OUT="$($PRISMA migrate status 2>&1)"
+  STATUS_OUT="$("${PRISMA_CMD[@]}" migrate status 2>&1)"
   STATUS_RC=$?
   printf '%s\n' "$STATUS_OUT"
 }
@@ -110,7 +116,7 @@ if [ -n "$PENDING" ]; then
   COUNT="$(printf '%s\n' "$PENDING" | grep -c .)"
   NAMES="$(printf '%s\n' "$PENDING" | paste -sd' ' -)"
   echo "::notice::$COUNT pending migration(s) on the target database: $NAMES"
-  if ! $PRISMA migrate deploy; then
+  if ! "${PRISMA_CMD[@]}" migrate deploy; then
     echo "::error::prisma migrate deploy failed with $COUNT pending migration(s). Refusing to deploy."
     exit 1
   fi
