@@ -5,6 +5,9 @@ on:
     branches: [main]
   push:
     branches: [main, 'hotfix/**', 'wave1/**']
+  # Lets the PR release gate run these checks on a feature branch before the PR exists
+  # (declared in .github/pr-release-gate-dispatch; DR-974).
+  workflow_dispatch:
 
 jobs:
   lint:

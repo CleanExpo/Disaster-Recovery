@@ -1,0 +1,6 @@
+# Workflows the PR release gate may start by hand on a feature branch
+# (gh workflow run <file> --ref <branch>) so GitHub runs the real PR checks on the exact
+# head before the PR is opened. One workflow file name per line. DR-974.
+ci.yml
+pre-build-check.yml
+gitleaks.yml
