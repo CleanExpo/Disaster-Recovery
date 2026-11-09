@@ -14,7 +14,8 @@
 #
 # Env: VERCEL_TOKEN, VERCEL_ORG_ID, PROD_ALIAS (default disasterrecovery.com.au)
 #      rollback: PREVIOUS_ID, PREVIOUS_URL, APPLIED_COUNT, APPLIED_NAMES
-#      VERCEL (CLI command), VERCEL_API, VERIFY_ATTEMPTS, VERIFY_INTERVAL
+#      VERCEL (path to the CLI, run quoted; default `vercel`), VERCEL_API,
+#      VERIFY_ATTEMPTS, VERIFY_INTERVAL
 set -uo pipefail
 
 PROD_ALIAS="${PROD_ALIAS:-disasterrecovery.com.au}"
