@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# The release gate opens every pull request as a draft and marks it ready only after
+# GitHub's checks pass. CodeRabbit's default skips draft pull requests and did not
+# review them when they were later marked ready (PR #400, #401), so the merge-ready
+# check reported "CodeRabbit did not review head" on every gated PR (DR-976).
+# Reviewing drafts lets CodeRabbit review the head as soon as the PR opens.
+reviews:
+  auto_review:
+    enabled: true
+    drafts: true
