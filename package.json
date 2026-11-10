@@ -4,6 +4,9 @@
   "description": "Modern SaaS starter for local/trades agencies. Built for SMBs, ready for local dev, and scalable as you grow.",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "postinstall": "prisma generate && partytown copylib public/~partytown",
     "copy-partytown": "partytown copylib public/~partytown",
