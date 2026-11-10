@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useSearchParams } from 'next/navigation';
 import { clearDraft, loadDraft, saveDraft } from '@/lib/offline-store';
@@ -362,7 +362,11 @@ describe('saved-claim lifecycle', () => {
       ...savedDraft({ fullName: 'Earlier Claim' }),
       owner: 'page-first',
     });
-    vi.mocked(clearDraft).mockResolvedValueOnce('changed');
+    // The removal takes a moment, as real storage does, so the test always passes through
+    // the window in which the first offer's Resume is switched off.
+    vi.mocked(clearDraft).mockImplementationOnce(
+      () => new Promise((resolve) => setTimeout(() => resolve('changed'), 50)),
+    );
     render(<ClaimFormClient />);
     const start = await screen.findByRole('button', { name: 'Start a new claim' });
     // The page reads the slot again and finds the other tab's claim.
@@ -374,7 +378,15 @@ describe('saved-claim lifecycle', () => {
     // The clear was limited to the claim this page offered.
     const guard = vi.mocked(clearDraft).mock.calls[0][0];
     expect(guard.expect()).toBe('page-first');
-    fireEvent.click(await screen.findByRole('button', { name: 'Resume' }));
+    // While the removal runs, the first offer's Resume is still on screen but switched off.
+    // Clicking it does nothing, so wait for the enabled Resume of the newer claim's offer
+    // (DR-978: CI clicked the switched-off one and the form never opened).
+    const resume = await waitFor(() => {
+      const button = screen.getByRole('button', { name: 'Resume' });
+      expect(button).toBeEnabled();
+      return button;
+    });
+    fireEvent.click(resume);
     expect(await screen.findByLabelText('Full Name *')).toHaveValue('Newer Claim');
     expect(clearDraft).toHaveBeenCalledTimes(1);
   });
