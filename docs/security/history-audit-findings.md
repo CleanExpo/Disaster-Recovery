@@ -90,7 +90,7 @@ done
 
 ## Residual actions
 
-1. Verify Supabase project `xoomalxa...` status. Checked as far as access allows: hosts do not resolve in DNS (09/11/2026); not visible from Phill's current Supabase login (10/11/2026); Phill recalls closing it from an older account. Rotation was not possible from the current login. Reopen only if the older account turns up and still lists the project.
+1. Verify Supabase project `xoomalxa...` status. Checked as far as access allows: hosts do not resolve in DNS (09/11/2026); not visible from Phill's current Supabase login (10/11/2026); Phill recalls closing it from an older account. Rotation was not possible from the current login. Open, owner Phill: a further check needs the older Supabase account he recalls closing the project from. Not verified: that account, any other access path, and the password itself.
 2. ~~Rotate the Gemini API key from commit `8c7bf154`.~~ Done: confirmed dead on 09/11/2026 (Google HTTP 400 `API_KEY_INVALID`).
 3. Accept history as-is. **Do not** rewrite git history. The one confirmed live secret (the service-role key, alert #3) was rotated on 09/11/2026, the Gemini key and the other Supabase key are dead, the `xoomalxa...` project is not visible from the current Supabase login and its hosts do not resolve in DNS (its password was never tested or rotated), and the Aiven password is not used by production (not probed against Aiven itself). Rotation, not rewriting, is what neutralises a leak that is already public; rewriting would invalidate every fork and PR reference and cannot recall copies that were already cloned or forked.
 4. Run a full-head gitleaks scan at end of sprint: `gitleaks detect --config .gitleaks.toml --source .`
