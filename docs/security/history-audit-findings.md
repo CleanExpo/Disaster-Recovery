@@ -17,7 +17,7 @@ The 24/04/2026 pass below only inspected `.env*` files. A full-history scan on 0
 
 Why it was missed: the scope was `.env*` files only, so committed scripts and Prisma files were never read, and the JWT pattern count ran only over `.env*` files. `.env.supabase` (alert #2) also did not appear in the April table. Future audits must scan every file in full history (`gitleaks git --log-opts='--all'`) and cross-check GitHub's secret-scanning alerts.
 
-The Supabase DB password for project `xoomalxa...` (finding 1, `916e2a5b`) was not tested directly. Observed on 09/11/2026: `xoomalxaybjjcxschhrf.supabase.co` and `db.xoomalxaybjjcxschhrf.supabase.co` do not resolve in DNS, while the canonical project's host does (control). Project console status not checked, and no other access path was checked. Action unchanged: if the project still exists, rotate its password.
+The Supabase DB password for project `xoomalxa...` (finding 1, `916e2a5b`) was not tested directly. Observed on 09/11/2026: `xoomalxaybjjcxschhrf.supabase.co` and `db.xoomalxaybjjcxschhrf.supabase.co` do not resolve in DNS, while the canonical project's host does (control). Observed 10/11/2026: the Supabase dashboard does not open project `xoomalxaybjjcxschhrf` from Phill's current login, which sees six organisations; the canonical project `lccqasmurmsisnnjqqmr` opens by the same kind of link (control). Phill recalls shutting down and closing this project from an older Supabase account during an earlier clean-up; that is his recollection, and the older account was not checked. The password itself was never tested.
 
 ## Executive summary
 
@@ -28,7 +28,7 @@ Of 6 commits initially flagged by variable-name match, **only 2 contain real sec
 | `.env.staging` + `.env.production` CRM commit | `dc5bb1c6` | **PLACEHOLDER** (e.g. `SUPABASE_SERVICE_ROLE_KEY=your_staging_supabase_service_role_key`) | None required |
 | `.env.local` auth-setup commit | `81a5c4e8` | **PLACEHOLDER** (localhost creds + `change-in-production` notes) | None required |
 | `.env.local` DB-URL add commit | `04c0a8f3` | **PLACEHOLDER** (literal `PASSWORD_FROM_SUPABASE`) | None required |
-| `.env.local` DB-URL change commit | `916e2a5b` | **REAL** Supabase DB password for project `xoomalxa...` | Hosts do not resolve in DNS (09/11/2026); console status not checked. Rotate if the project still exists |
+| `.env.local` DB-URL change commit | `916e2a5b` | **REAL** Supabase DB password for project `xoomalxa...` | Hosts do not resolve in DNS (09/11/2026); not visible from Phill's current Supabase login (10/11/2026); Phill recalls closing it |
 | `.env.local` Gemini commit | `8c7bf154` | **REAL** Gemini API key (`AIza...` prefix, 39 chars) | ~~Rotate when email back~~ Superseded 09/11/2026: key is dead |
 | `.env.lock` / `.env.browserbase` / `.env.local.sqlite` / `.env.production` build-fix / `.env.local` T5Gemma | misc | Not inspected deeply — all low-signal file names; none flagged by full gitleaks scan | Reconfirm at end of sprint |
 
@@ -37,11 +37,11 @@ Of 6 commits initially flagged by variable-name match, **only 2 contain real sec
 ### 1. `.env.local` — commit `916e2a5b` (Supabase DB password)
 **Message:** "Change DATABASE_URL in .env.local"
 **Real leak:** a Supabase DB connection string containing a 16-character alphanumeric password and a project subdomain.
-**Context matters:** the current canonical Supabase is `lccqasmurmsisnnjqqmr` (per `MEMORY.md`). The project leaked here has a different subdomain — **it is likely an abandoned / deleted project**. If so, the password has nothing to unlock. Verify in the Supabase console:
-- If the project still exists → rotate the password
-- If deleted → no action (dead key)
+**Context matters:** the current canonical Supabase is `lccqasmurmsisnnjqqmr` (per `MEMORY.md`). The project leaked here has a different subdomain (`xoomalxaybjjcxschhrf`).
 
-**09/11/2026:** the project's two hosts do not resolve in DNS. Project console status not checked, so the check above still stands.
+**09/11/2026:** the project's two hosts do not resolve in DNS; the canonical host does (control).
+
+**10/11/2026:** the Supabase dashboard does not open this project from Phill's current login (six organisations visible); the canonical project opens by the same kind of link (control). Phill recalls shutting down and closing it from an older Supabase account during an earlier clean-up. That is his recollection; the older account was not checked, and the password was never tested.
 
 ### 2. `.env.local` — commit `8c7bf154` (Gemini API key)
 **Message:** "feat: Integrate Google Gemini (Veo 3.1 + Nano Banana Pro) for asset generation"
@@ -90,9 +90,9 @@ done
 
 ## Residual actions
 
-1. Verify Supabase project `xoomalxa...` status (abandoned vs active). If active, rotate DB password. Still open. Observed 09/11/2026: the project's hosts do not resolve in DNS; console status not checked.
+1. Verify Supabase project `xoomalxa...` status. Checked as far as access allows: hosts do not resolve in DNS (09/11/2026); not visible from Phill's current Supabase login (10/11/2026); Phill recalls closing it from an older account. Rotation was not possible from the current login. Open, owner Phill: a further check needs the older Supabase account he recalls closing the project from. Not verified: that account, any other access path, and the password itself.
 2. ~~Rotate the Gemini API key from commit `8c7bf154`.~~ Done: confirmed dead on 09/11/2026 (Google HTTP 400 `API_KEY_INVALID`).
-3. Accept history as-is. **Do not** rewrite git history. The one confirmed live secret (the service-role key, alert #3) was rotated on 09/11/2026, the Gemini key and the other Supabase key are dead, the `xoomalxa...` project's hosts do not resolve in DNS (console status not checked), and the Aiven password is not used by production (not probed against Aiven itself). Rotation, not rewriting, is what neutralises a leak that is already public; rewriting would invalidate every fork and PR reference for zero additional security gain.
+3. Accept history as-is. **Do not** rewrite git history. The one confirmed live secret (the service-role key, alert #3) was rotated on 09/11/2026, the Gemini key and the other Supabase key are dead, the `xoomalxa...` project is not visible from the current Supabase login and its hosts do not resolve in DNS (its password was never tested or rotated), and the Aiven password is not used by production (not probed against Aiven itself). Rotation, not rewriting, is what neutralises a leak that is already public; rewriting would invalidate every fork and PR reference and cannot recall copies that were already cloned or forked.
 4. Run a full-head gitleaks scan at end of sprint: `gitleaks detect --config .gitleaks.toml --source .`
 5. ~~Run a full-history gitleaks scan once: `gitleaks detect --log-opts='--all'`~~ Done on 09/11/2026; results in the correction at the top.
 
@@ -100,4 +100,4 @@ done
 
 ~~The .gitignore discipline held. Two real secrets existed historically (one Supabase DB password on a project that appears dead, one Gemini API key). Rotate both when email is back; no history rewrite needed.~~
 
-**Corrected 09/11/2026:** the April summary was wrong. A live service-role key for the canonical Supabase project sat in public history in `scripts/` until it was rotated on 09/11/2026. The Gemini key and the other leaked Supabase key are dead, and the Aiven password is not used by production. All four GitHub secret-scanning alerts are closed. The `xoomalxa...` project's hosts do not resolve in DNS; its console status not checked. Still no history rewrite: rotation is what neutralises a leak in public history.
+**Corrected 09/11/2026:** the April summary was wrong. A live service-role key for the canonical Supabase project sat in public history in `scripts/` until it was rotated on 09/11/2026. The Gemini key and the other leaked Supabase key are dead, and the Aiven password is not used by production. All four GitHub secret-scanning alerts are closed. The `xoomalxa...` project's hosts do not resolve in DNS and it is not visible from Phill's current Supabase login; Phill recalls closing it from an older account. Still no history rewrite: rotation is what neutralises a leak in public history.
