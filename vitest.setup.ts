@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { configure } from '@testing-library/react';
+import { configure } from '@testing-library/dom';
 import { expect } from 'vitest';
 import { toHaveNoViolations } from 'jest-axe';
 
