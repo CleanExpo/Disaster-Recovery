@@ -6,8 +6,6 @@ on:
   pull_request:
   push:
     branches: [main]
-  # Lets the PR release gate run this on a feature branch before the PR exists (DR-974).
-  workflow_dispatch:
 jobs:
   gitleaks:
     runs-on: ubuntu-latest
