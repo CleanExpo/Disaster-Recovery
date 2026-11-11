@@ -13,4 +13,17 @@ describe('app sitemap', () => {
     expect(urls).toContain('https://disasterrecovery.com.au/for-business');
     expect(urls).not.toContain('https://disasterrecovery.com.au/for');
   });
+
+  it('leaves out pages that are marked noindex', () => {
+    for (const route of [
+      '/claim/start',
+      '/finance/handoff',
+      '/finance/thank-you',
+      '/offline',
+      '/reviews/submit',
+      '/restoreassist/delete-account',
+    ]) {
+      expect(urls).not.toContain(`https://disasterrecovery.com.au${route}`);
+    }
+  });
 });

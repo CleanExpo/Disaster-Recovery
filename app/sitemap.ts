@@ -76,6 +76,13 @@ const EXCLUDED_EXACT_ROUTES = new Set([
   '/book-service/error',
   '/book-service/payment',
   '/book-service/success',
+  // DR-984: pages that set robots index:false stay out of the sitemap
+  '/claim/start',
+  '/finance/handoff',
+  '/finance/thank-you',
+  '/offline',
+  '/restoreassist/delete-account',
+  '/reviews/submit',
   '/cyclone-alfred-queensland-2026',
   '/contractor/onboarding/payment-success',
   '/request-submitted',
