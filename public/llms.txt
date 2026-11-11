@@ -1,6 +1,6 @@
 # Disaster Recovery
 
-> Australia's national network of disaster restoration contractors. 24/7 emergency response for water damage, fire damage, mould remediation, storm damage, and biohazard cleanup across all Australian states and territories.
+> Disaster Recovery is an Australian claims distribution platform that connects property owners with independent restoration contractors for water damage, fire damage, mould, storm damage and biohazard cleanup. Emergency claims can be lodged online at any time.
 
 ## Business Identity
 
@@ -8,13 +8,12 @@
 - Trading As: Disaster Recovery (brand), NRPG (abbreviation)
 - ABN: 85 151 794 142
 - Website: https://disasterrecovery.com.au
-- Coverage: Australia-wide (all states and territories)
 
 ## What We Do
 
-Disaster Recovery is a claims distribution platform connecting property owners with restoration contractors. We operate 24/7 and coordinate emergency response for all types of disaster recovery work across Australia.
+Disaster Recovery is a claims distribution platform connecting property owners with restoration contractors. Claims can be lodged online at any time at https://disasterrecovery.com.au/claim.
 
-We are NOT a direct service provider. We connect insurance claims to vetted contractors who perform the restoration work.
+We are NOT a direct service provider. We connect insurance claims to independent contractors who perform the restoration work.
 
 ## Services
 
@@ -28,7 +27,9 @@ We are NOT a direct service provider. We connect insurance claims to vetted cont
 - Structural Drying and Dehumidification
 - Commercial and Industrial Restoration
 
-## Coverage Areas
+## Location Pages
+
+The site publishes location pages for these cities.
 
 ### Major Cities
 Sydney, Melbourne, Brisbane, Perth, Adelaide, Darwin, Hobart, Canberra
@@ -38,10 +39,9 @@ Newcastle, Wollongong, Geelong, Gold Coast, Sunshine Coast, Townsville, Cairns, 
 
 ## Key Facts
 
-- Network of restoration contractors across Australia
-- 24/7 emergency response capability
+- Works with independent restoration contractors in Australia
 - Contractors bill the property owner directly
-- Payment plans available through Equipped Commercial Finance (https://equippedcf.com.au)
+- Business customers can be referred to Equipped Commercial Finance (https://equippedcf.com.au), subject to that lender's assessment. A household consumer finance pathway is not open yet.
 
 ## Billing Model
 

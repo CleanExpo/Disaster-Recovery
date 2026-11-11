@@ -74,6 +74,26 @@ describe('public/robots.txt', () => {
     }
   });
 
+  it('never allows a path the "*" group disallows', () => {
+    const blocked = star!.lines
+      .filter((l) => l.startsWith('Disallow:'))
+      .map((l) => l.slice('Disallow:'.length).trim())
+      .filter(Boolean);
+    for (const g of named) {
+      const allows = g.lines
+        .filter((l) => l.startsWith('Allow:'))
+        .map((l) => l.slice('Allow:'.length).trim());
+      for (const a of allows) {
+        for (const d of blocked) {
+          expect(
+            a.startsWith(d),
+            `${g.agents.join(',')} allows "${a}" under disallowed "${d}"`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
   it('lists the sitemap once', () => {
     expect(text.split('\n').filter((l) => /^sitemap:/i.test(l.trim()))).toHaveLength(1);
   });
