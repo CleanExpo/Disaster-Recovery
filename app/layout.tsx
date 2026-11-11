@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: 'Disaster Recovery',
     title: 'Disaster Recovery | 24/7 IICRC-Certified Emergency Restoration',
     description:
-      'Network of IICRC-certified restoration contractors across Australia. 24/7 emergency response for water, fire, mould and storm damage.',
+      'Network of restoration contractors across Australia. 24/7 emergency response for water, fire, mould and storm damage.',
     images: [
       {
         url: '/images/disaster-recovery-og.jpg',
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Disaster Recovery | 24/7 Emergency Restoration',
     description:
-      'IICRC-certified disaster recovery. 24/7 emergency response for water, fire and mould damage.',
+      'Disaster recovery across Australia. 24/7 emergency response for water, fire and mould damage.',
     images: ['/images/disaster-recovery-twitter.jpg'],
     creator: '@DisasterRecovAU',
   },

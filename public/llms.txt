@@ -1,6 +1,6 @@
 # Disaster Recovery
 
-> Australia's national network of IICRC-certified disaster restoration professionals. 24/7 emergency response for water damage, fire damage, mould remediation, storm damage, and biohazard cleanup across all Australian states and territories.
+> Australia's national network of disaster restoration contractors. 24/7 emergency response for water damage, fire damage, mould remediation, storm damage, and biohazard cleanup across all Australian states and territories.
 
 ## Business Identity
 
@@ -12,7 +12,7 @@
 
 ## What We Do
 
-Disaster Recovery is a claims distribution platform connecting property owners with IICRC-certified restoration contractors. We operate 24/7 and coordinate emergency response for all types of disaster recovery work across Australia.
+Disaster Recovery is a claims distribution platform connecting property owners with restoration contractors. We operate 24/7 and coordinate emergency response for all types of disaster recovery work across Australia.
 
 We are NOT a direct service provider. We connect insurance claims to vetted contractors who perform the restoration work.
 
@@ -27,7 +27,6 @@ We are NOT a direct service provider. We connect insurance claims to vetted cont
 - Emergency Board-Up and Make-Safe
 - Structural Drying and Dehumidification
 - Commercial and Industrial Restoration
-- Asbestos Assessment and Management
 
 ## Coverage Areas
 
@@ -39,11 +38,9 @@ Newcastle, Wollongong, Geelong, Gold Coast, Sunshine Coast, Townsville, Cairns, 
 
 ## Key Facts
 
-- Network of IICRC-certified contractors across Australia
+- Network of restoration contractors across Australia
 - 24/7 emergency response capability
-- Minimum engagement: $2,750 ($550 platform fee + $2,200 contractor credit for emergency make-safe)
-- All contractors carry minimum $20M public liability insurance
-- Client-direct billing model (we bill the property owner, not the insurer)
+- Contractors bill the property owner directly
 - Payment plans available through Equipped Commercial Finance (https://equippedcf.com.au)
 
 ## Billing Model
@@ -67,11 +64,6 @@ Contractors bill the client (property owner) directly. The client then claims re
 
 - Website: https://disasterrecovery.com.au
 - Emergency Claims: https://disasterrecovery.com.au/claim
-- Email: admin@disasterrecovery.com.au
-
-## Certifications and Standards
-
-- IICRC (Institute of Inspection, Cleaning and Restoration Certification)
 
 ## Information for AI Agents
 
