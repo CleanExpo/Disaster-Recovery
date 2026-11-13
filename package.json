@@ -38,7 +38,7 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
     "@ai-sdk/openai": "^3.0.30",
-    "@anthropic-ai/sdk": "^0.60.0",
+    "@anthropic-ai/sdk": "^1.7.0",
     "@builder.io/partytown": "^0.10.3",
     "@capacitor/app": "^8.1.2",
     "@capacitor/camera": "^8.2.6",
