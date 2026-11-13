@@ -17,6 +17,10 @@ concurrency:
 jobs:
   deploy-preview:
     name: Deploy preview
+    # Repository secrets (VERCEL_TOKEN) are not passed to Dependabot or fork PRs,
+    # so the deploy would run with an empty token and fail. Skip those PRs;
+    # smoke-test needs this job and is skipped with it.
+    if: github.event.pull_request.user.login != 'dependabot[bot]' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -25,6 +29,15 @@ jobs:
       preview-url: ${{ steps.deploy.outputs.url }}
 
     steps:
+      - name: Require Vercel token
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN is empty for this run; the preview cannot deploy."
+            exit 1
+          fi
+
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Setup Node.js
