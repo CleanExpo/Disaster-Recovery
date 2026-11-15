@@ -109,14 +109,6 @@ export const metadata: Metadata = {
       'msvalidate.01': 'F73BE1B1E698FD592FE2EA8D27992837',
     },
   },
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au',
-    languages: {
-      'en-AU': 'https://disasterrecovery.com.au',
-      'en-NZ': 'https://disasterrecovery.com.au',
-      'x-default': 'https://disasterrecovery.com.au',
-    },
-  },
   category: 'Disaster Recovery Services',
 };
 
@@ -146,8 +138,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://api.stripe.com" />
-        <link rel="alternate" hrefLang="en-AU" href="https://disasterrecovery.com.au" />
-        <link rel="alternate" hrefLang="x-default" href="https://disasterrecovery.com.au" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
