@@ -7,6 +7,7 @@ import { calculateCoolingOffPeriod } from '@/lib/utils/australian-compliance';
 import { prisma } from '@/lib/prisma';
 import { requestLogger, captureException } from '@/lib/observability';
 import { logComplianceEvent } from '@/lib/compliance/events';
+import { requireAdmin } from '@/lib/admin-auth';
 
 // Initialize Stripe or use mock. The mock is a partial implementation
 // of the Stripe SDK surface used by this route — `as unknown as Stripe`
@@ -33,9 +34,38 @@ export interface RefundRequest {
 }
 
 export async function POST(request: NextRequest) {
+  const sessionOrError = await requireAdmin();
+  if (sessionOrError instanceof NextResponse) return sessionOrError;
+
   const log = requestLogger(request, { route: '/api/payments/refund' });
   try {
     const refundData: RefundRequest = await request.json();
+
+    // The payment must exist and belong to the named booking before any money moves.
+    if (
+      typeof refundData.paymentIntentId !== 'string' ||
+      refundData.paymentIntentId.trim() === '' ||
+      typeof refundData.bookingId !== 'string' ||
+      refundData.bookingId.trim() === ''
+    ) {
+      return NextResponse.json(
+        { success: false, message: 'paymentIntentId and bookingId are required' },
+        { status: 400 },
+      );
+    }
+    const payment = await prisma.payment.findFirst({
+      where: {
+        stripePaymentIntentId: refundData.paymentIntentId,
+        bookingId: refundData.bookingId,
+      },
+      select: { id: true },
+    });
+    if (!payment) {
+      return NextResponse.json(
+        { success: false, message: 'Payment not found for this booking' },
+        { status: 404 },
+      );
+    }
 
     // Validate cooling-off period for consumer protection
     const coolingOff = calculateCoolingOffPeriod(new Date(refundData.bookingDate));
