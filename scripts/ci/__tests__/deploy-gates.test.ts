@@ -274,9 +274,10 @@ describe('Vercel production database environment', () => {
     expectNoSecrets(r);
     expect(r.code).toBe(1);
     expect(r.out).toContain(
-      '::error::DATABASE_URL is not in the Vercel production environment (or is saved as a write-only Secret, which vercel pull cannot read; re-save it as a Config variable)',
+      '::error::DATABASE_URL is not in the Vercel production environment (or is saved as a write-only Secret, which vercel pull cannot read). A Secret cannot be changed to Config in place: get the original connection string, remove the Production Secret, then add the same name again as Config (`vercel env rm DATABASE_URL production`, then `vercel env add DATABASE_URL production --type config`).',
     );
     expect(r.out).not.toContain('Sensitive');
+    expect(r.out).not.toContain('re-save it as a Config variable');
     expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
   });
 
@@ -299,9 +300,10 @@ describe('Vercel production database environment', () => {
       expect(r.githubOutput.includes(placeholder)).toBe(false);
       expect(r.code).toBe(1);
       expect(r.out).toContain(
-        `::error::${variable}: does not start with postgresql:// or postgres://. It is most likely saved as a write-only Secret in Vercel Production, which vercel pull cannot read. Re-save it as a Config variable (dashboard Type: Config, or \`vercel env add ${variable} production --type config\`).`,
+        `::error::${variable}: does not start with postgresql:// or postgres://. It is most likely saved as a write-only Secret in Vercel Production, which vercel pull cannot read. A Secret cannot be changed to Config in place: get the original connection string, remove the Production Secret, then add the same name again as Config (\`vercel env rm ${variable} production\`, then \`vercel env add ${variable} production --type config\`).`,
       );
       expect(r.out).not.toContain('re-save the secret as the bare connection string');
+      expect(r.out).not.toContain('dashboard Type: Config');
       expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
       expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
     });
