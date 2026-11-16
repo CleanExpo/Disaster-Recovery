@@ -16,7 +16,17 @@
 # PRISMA overrides the prisma executable (tests use a fake binary). It is one
 # path, run quoted, so a path containing spaces works; it is never word-split.
 # Unset, the gate runs `npx prisma`.
+# --check-only reads status once and never applies migrations or writes applied
+# outputs: exit 0 is up to date, 2 is pending, and 1 is an unreadable state.
 set -uo pipefail
+
+# A diagnostic run must never reach migrate deploy, even when work is pending.
+CHECK_ONLY=false
+case "$#:${1-}" in
+  0:) ;;
+  1:--check-only) CHECK_ONLY=true ;;
+  *) echo "::error::Usage: migrate-gate.sh [--check-only]"; exit 1 ;;
+esac
 
 if [ -n "${PRISMA:-}" ]; then
   PRISMA_CMD=("$PRISMA")
@@ -100,6 +110,10 @@ if [[ "$PREFLIGHT_RC" -ne 0 ]]; then
 fi
 
 status
+if [[ "$STATUS_RC" -ne 0 && "$STATUS_OUT" == *"P1000"* ]]; then
+  echo "::error::Could not read migration state: database authentication was rejected (P1000). Check the effective migration credential: Prisma uses DIRECT_URL when configured, otherwise DATABASE_URL. With VERCEL_ENV_FILE, these come from the pulled Vercel production environment. An operator must verify the intended database, role and credential; no migrations or deployment were attempted by this gate."
+  exit 1
+fi
 if [ "$STATUS_RC" -eq 0 ]; then
   PENDING=""
 elif printf '%s\n' "$STATUS_OUT" | grep -qE 'have failed|are different|not managed by Prisma Migrate'; then
@@ -108,6 +122,15 @@ elif printf '%s\n' "$STATUS_OUT" | grep -qE 'have failed|are different|not manag
 elif ! PENDING="$(pending_names)"; then
   echo "::error::Could not read migration state from the target database (see output above). Refusing to deploy: an unreadable database is not proof that nothing is pending. Check credentials, connectivity and migration history for DATABASE_URL / DIRECT_URL."
   exit 1
+fi
+
+if [[ "$CHECK_ONLY" == true ]]; then
+  if [[ -n "$PENDING" ]]; then
+    echo "::warning::Read-only migration check: migrations are pending; none were applied."
+    exit 2
+  fi
+  echo "Read-only migration check passed: database is up to date; no migrations were applied."
+  exit 0
 fi
 
 COUNT=0
