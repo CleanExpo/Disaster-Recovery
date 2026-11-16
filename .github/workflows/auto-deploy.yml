@@ -20,10 +20,10 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: Setup Node.js
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
         node-version-file: '.nvmrc'
         cache: 'npm'
@@ -59,10 +59,10 @@ jobs:
       applied_count: ${{ steps.gate.outputs.applied_count }}
       applied_names: ${{ steps.gate.outputs.applied_names }}
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: Setup Node.js
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
         node-version-file: '.nvmrc'
         cache: 'npm'
@@ -91,10 +91,10 @@ jobs:
       previous_id: ${{ steps.previous.outputs.id }}
       previous_url: ${{ steps.previous.outputs.url }}
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: Setup Node.js
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
         node-version-file: '.nvmrc'
         cache: 'npm'
@@ -159,7 +159,7 @@ jobs:
 
     - name: Comment on commit
       if: success()
-      uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
       with:
         script: |
           github.rest.repos.createCommitComment({
@@ -171,7 +171,7 @@ jobs:
 
     - name: Update deployment status
       if: always()
-      uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
       with:
         script: |
           const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
@@ -190,7 +190,7 @@ jobs:
     if: failure() && needs.deploy.result == 'success' && needs.smoke-test.result == 'failure'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
@@ -205,7 +205,7 @@ jobs:
         APPLIED_NAMES: ${{ needs.migrate.outputs.applied_names }}
 
     - name: Comment on commit (rollback)
-      uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
       env:
         PREVIOUS_ID: ${{ needs.deploy.outputs.previous_id }}
         APPLIED_COUNT: ${{ needs.migrate.outputs.applied_count }}
@@ -231,7 +231,7 @@ jobs:
       group: report-blocked-deploy-main
       cancel-in-progress: false
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: Report blocked deployment or recovery
       run: bash scripts/ci/report-blocked-deploy.sh
