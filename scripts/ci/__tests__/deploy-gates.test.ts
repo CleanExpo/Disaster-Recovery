@@ -630,3 +630,57 @@ describe('auto-deploy.yml wiring', () => {
     expect(job('smoke-test')).toContain('inputs.rehearse_rollback');
   });
 });
+
+describe('UNI-3425 read-only migration diagnosis', () => {
+  it('checks an up-to-date database once without claiming migrations were applied', async () => {
+    const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+    const r = await run(MIGRATE_GATE, ['--check-only'], { PRISMA: prisma });
+    expect(r.code).toBe(0);
+    expect(readFileSync(path.join(dir, 'status-calls'), 'utf8').trim()).toBe('1');
+    expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+    expect(r.githubOutput).toBe('');
+  });
+
+  it('reports pending migrations with a distinct nonzero exit and never applies them', async () => {
+    const prisma = fakePrisma([pending('20260101000000_old'), UP_TO_DATE]);
+    const r = await run(MIGRATE_GATE, ['--check-only'], { PRISMA: prisma });
+    expect(r.code).toBe(2);
+    expect(r.out).toContain('none were applied');
+    expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+    expect(readFileSync(path.join(dir, 'status-calls'), 'utf8').trim()).toBe('1');
+    expect(r.githubOutput).toBe('');
+  });
+
+  for (const state of [FAILED, { rc: 1, out: 'Unexpected status response\n' }]) {
+    it(`fails closed in check-only mode for ${state.out.trim()}`, async () => {
+      const prisma = fakePrisma([state]);
+      const r = await run(MIGRATE_GATE, ['--check-only'], { PRISMA: prisma });
+      expect(r.code).toBe(1);
+      expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+      expect(r.githubOutput).toBe('');
+    });
+  }
+
+  for (const args of [[], ['--check-only']]) {
+    it(`explains P1000 credential precedence and fails closed in ${args.length ? 'check' : 'normal'} mode`, async () => {
+      const prisma = fakePrisma([UNREACHABLE]);
+      const r = await run(MIGRATE_GATE, args, { PRISMA: prisma });
+      expect(r.code).toBe(1);
+      expect(r.out).toContain('Prisma uses DIRECT_URL when configured, otherwise DATABASE_URL');
+      expect(r.out).toContain('pulled Vercel production environment');
+      expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+      expect(r.githubOutput).toBe('');
+    });
+  }
+
+  for (const args of [['--check-onyl'], ['--check-only', 'extra'], [''], ['', '--check-only']]) {
+    it(`rejects invalid arguments before accessing Prisma: ${args.join(' ')}`, async () => {
+      const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+      const r = await run(MIGRATE_GATE, args, { PRISMA: prisma });
+      expect(r.code).toBe(1);
+      expect(r.out).toContain('Usage:');
+      expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+      expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+    });
+  }
+});
