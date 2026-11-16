@@ -92,7 +92,7 @@
     "@radix-ui/react-toggle-group": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.4.1",
     "@react-google-maps/api": "^2.20.7",
-    "@stripe/stripe-js": "^4.10.0",
+    "@stripe/stripe-js": "^10.2.1",
     "@supabase/supabase-js": "^2.119.0",
     "@types/inquirer": "^9.0.9",
     "@types/nodemailer": "^6.4.19",
