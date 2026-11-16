@@ -264,7 +264,7 @@ describe('Vercel production database environment', () => {
     expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
   });
 
-  it('fails with the Sensitive hint when DATABASE_URL is absent, even with an inherited URL', async () => {
+  it('fails with the Secret hint when DATABASE_URL is absent, even with an inherited URL', async () => {
     const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
     const r = await run(MIGRATE_GATE, [], {
       PRISMA: prisma,
@@ -274,10 +274,58 @@ describe('Vercel production database environment', () => {
     expectNoSecrets(r);
     expect(r.code).toBe(1);
     expect(r.out).toContain(
-      '::error::DATABASE_URL is not in the Vercel production environment (or is marked Sensitive, which vercel pull cannot read)',
+      '::error::DATABASE_URL is not in the Vercel production environment (or is saved as a write-only Secret, which vercel pull cannot read; re-save it as a Config variable)',
     );
+    expect(r.out).not.toContain('Sensitive');
     expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
   });
+
+  // DR-1005: a Vercel Secret (write-only) variable comes back from `vercel pull`
+  // as a non-address placeholder. The error must name that cause, not send the
+  // reader to re-check the connection string itself.
+  const placeholder = 'planted-vercel-placeholder-7f3a';
+  for (const variable of ['DATABASE_URL', 'DIRECT_URL'] as const) {
+    it(`${variable} placeholder from the Vercel file names the write-only Secret and the Config fix`, async () => {
+      const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+      const values = { DATABASE_URL: database, DIRECT_URL: direct, [variable]: placeholder };
+      const r = await run(MIGRATE_GATE, [], {
+        PRISMA: prisma,
+        VERCEL_ENV_FILE: envFile(
+          `DATABASE_URL="${values.DATABASE_URL}"\nDIRECT_URL="${values.DIRECT_URL}"\n`,
+        ),
+      });
+      expectNoSecrets(r);
+      expect(r.out.includes(placeholder)).toBe(false);
+      expect(r.githubOutput.includes(placeholder)).toBe(false);
+      expect(r.code).toBe(1);
+      expect(r.out).toContain(
+        `::error::${variable}: does not start with postgresql:// or postgres://. It is most likely saved as a write-only Secret in Vercel Production, which vercel pull cannot read. Re-save it as a Config variable (dashboard Type: Config, or \`vercel env add ${variable} production --type config\`).`,
+      );
+      expect(r.out).not.toContain('re-save the secret as the bare connection string');
+      expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+      expect(existsSync(path.join(dir, 'deploy-calls'))).toBe(false);
+    });
+
+    it(`${variable} placeholder from a GitHub secret (no VERCEL_ENV_FILE) keeps the original message`, async () => {
+      const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);
+      const r = await run(MIGRATE_GATE, [], {
+        PRISMA: prisma,
+        DATABASE_URL: database,
+        DIRECT_URL: direct,
+        [variable]: placeholder,
+      });
+      expectNoSecrets(r);
+      expect(r.out.includes(placeholder)).toBe(false);
+      expect(r.githubOutput.includes(placeholder)).toBe(false);
+      expect(r.code).toBe(1);
+      expect(r.out).toContain(
+        `::error::${variable}: does not start with postgresql:// or postgres://; re-save the secret as the bare connection string, starting postgresql://.`,
+      );
+      expect(r.out).not.toContain('Secret');
+      expect(r.out).not.toContain('Config');
+      expect(existsSync(path.join(dir, 'status-calls'))).toBe(false);
+    });
+  }
 
   it('ignores unrelated shell metacharacters and preserves URL metacharacters literally', async () => {
     const prisma = fakePrisma([UP_TO_DATE, UP_TO_DATE]);

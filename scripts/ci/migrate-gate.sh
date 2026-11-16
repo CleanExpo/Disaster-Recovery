@@ -54,6 +54,11 @@ check_secret_shape() {
     defect="starts with its own name followed by ="
   elif [[ "$value" != postgresql://* && "$value" != postgres://* ]]; then
     defect="does not start with postgresql:// or postgres://"
+    # A write-only Vercel Secret comes back from `vercel pull` as a placeholder, not an address.
+    if [[ "$FROM_VERCEL_ENV_FILE" == 1 ]]; then
+      printf '::error::%s: %s. It is most likely saved as a write-only Secret in Vercel Production, which vercel pull cannot read. Re-save it as a Config variable (dashboard Type: Config, or `vercel env add %s production --type config`).\n' "$name" "$defect" "$name"
+      return 1
+    fi
   fi
   if [[ -n "$defect" ]]; then
     printf '::error::%s: %s; re-save the secret as the bare connection string, starting postgresql://.\n' "$name" "$defect"
@@ -62,7 +67,9 @@ check_secret_shape() {
 }
 
 # Read only the two database keys as literal text, never as shell code.
+FROM_VERCEL_ENV_FILE=0
 if [[ "${VERCEL_ENV_FILE+x}" == x ]]; then
+  FROM_VERCEL_ENV_FILE=1
   if [[ ! -f "$VERCEL_ENV_FILE" ]]; then
     printf '::error::VERCEL_ENV_FILE is missing; cannot read the Vercel production environment.\n'
     exit 1
@@ -85,7 +92,7 @@ if [[ "${VERCEL_ENV_FILE+x}" == x ]]; then
     esac
   done < "$VERCEL_ENV_FILE"
   if [[ "${DATABASE_URL+x}" != x ]]; then
-    printf '::error::DATABASE_URL is not in the Vercel production environment (or is marked Sensitive, which vercel pull cannot read)\n'
+    printf '::error::DATABASE_URL is not in the Vercel production environment (or is saved as a write-only Secret, which vercel pull cannot read; re-save it as a Config variable)\n'
     exit 1
   fi
 fi
