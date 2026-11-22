@@ -210,7 +210,7 @@
     "playwright": "^1.55.0",
     "postcss": "^8.5.33",
     "prettier": "^3.10.1",
-    "prisma": "^5.22.0",
+    "prisma": "^7.10.1",
     "puppeteer": "^24.17.0",
     "tailwindcss": "^3.4.7",
     "tsx": "^4.23.15",
