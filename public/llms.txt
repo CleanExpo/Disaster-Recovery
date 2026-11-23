@@ -1,6 +1,6 @@
 # Disaster Recovery
 
-> Australia's national network of IICRC-certified disaster restoration professionals. 24/7 emergency response for water damage, fire damage, mould remediation, storm damage, and biohazard cleanup across all Australian states and territories.
+> Disaster Recovery is a claims distribution platform for Australia and New Zealand that connects property owners with independent restoration contractors for water damage, fire damage, mould, storm damage and biohazard cleanup. Emergency claims can be lodged online at any time.
 
 ## Business Identity
 
@@ -8,13 +8,12 @@
 - Trading As: Disaster Recovery (brand), NRPG (abbreviation)
 - ABN: 85 151 794 142
 - Website: https://disasterrecovery.com.au
-- Coverage: Australia-wide (all states and territories)
 
 ## What We Do
 
-Disaster Recovery is a claims distribution platform connecting property owners with IICRC-certified restoration contractors. We operate 24/7 and coordinate emergency response for all types of disaster recovery work across Australia.
+Disaster Recovery is a claims distribution platform connecting property owners with restoration contractors. Claims can be lodged online at any time at https://disasterrecovery.com.au/claim.
 
-We are NOT a direct service provider. We connect insurance claims to vetted contractors who perform the restoration work.
+We are NOT a direct service provider. We connect insurance claims to independent contractors who perform the restoration work.
 
 ## Services
 
@@ -27,9 +26,10 @@ We are NOT a direct service provider. We connect insurance claims to vetted cont
 - Emergency Board-Up and Make-Safe
 - Structural Drying and Dehumidification
 - Commercial and Industrial Restoration
-- Asbestos Assessment and Management
 
-## Coverage Areas
+## Location Pages
+
+The site publishes location pages for these cities.
 
 ### Major Cities
 Sydney, Melbourne, Brisbane, Perth, Adelaide, Darwin, Hobart, Canberra
@@ -37,18 +37,11 @@ Sydney, Melbourne, Brisbane, Perth, Adelaide, Darwin, Hobart, Canberra
 ### Regional Centres
 Newcastle, Wollongong, Geelong, Gold Coast, Sunshine Coast, Townsville, Cairns, Toowoomba, Ballarat, Bendigo
 
-### All Australian Locations
-We service every Australian location through our national contractor network, from metropolitan areas to remote communities.
-
 ## Key Facts
 
-- Network of IICRC-certified contractors across Australia
-- 24/7 emergency response capability
-- Average response time under 60 minutes in metropolitan areas
-- Minimum engagement: $2,750 ($550 platform fee + $2,200 contractor credit for emergency make-safe)
-- All contractors carry minimum $20M public liability insurance
-- Client-direct billing model (we bill the property owner, not the insurer)
-- Payment plans available through Equipped Commercial Finance (https://equippedcf.com.au)
+- Works with independent restoration contractors in Australia and New Zealand
+- Contractors bill the property owner directly
+- Business customers can be referred to Equipped Commercial Finance (https://equippedcf.com.au), subject to that lender's assessment. A household consumer finance pathway is not open yet.
 
 ## Billing Model
 
@@ -65,58 +58,16 @@ Contractors bill the client (property owner) directly. The client then claims re
 
 ## Google Business Profile
 
-- Rating: 4.7 out of 5 stars (49+ reviews)
-- Address: Unit 4/17 Tile St, Wacol QLD 4076
 - Google Place ID: ChIJFTIv0bpOkWsRz_SIAaNI3Lc
 
 ## Contact
 
 - Website: https://disasterrecovery.com.au
 - Emergency Claims: https://disasterrecovery.com.au/claim
-- Contractor Applications: https://disasterrecovery.com.au/contractor/apply
-- Email: admin@disasterrecovery.com.au
-
-## Certifications and Standards
-
-- IICRC (Institute of Inspection, Cleaning and Restoration Certification)
-- Australian Standards AS/NZS ISO 9001
-- Work Health and Safety compliant across all jurisdictions
-
-## Agent Capabilities (WebMCP)
-
-The following actions are exposed via WebMCP for autonomous AI agents. Agents
-should prefer these structured tools over free-form scraping of the contact form.
-
-### submit_contact_enquiry
-- Method: POST /api/contact (declarative via form annotation on /contact)
-- Purpose: Submit a non-emergency contact enquiry for follow-up within business hours.
-- Parameters:
-  - name (string, required) — full name of the enquirer
-  - email (string, required) — valid email address for reply
-  - phone (string, required) — Australian phone number in 04xx-xxx-xxx format
-  - service (enum, required) — one of: water, fire, mould, storm, biohazard, sewage, makesafe, drying, commercial, asbestos
-  - urgency (enum, required) — one of: emergency (within 24h), urgent (within 72h), scheduled, info-only
-  - message (string, required) — free-text description of the situation (≤2000 chars)
-
-### find_contractor_by_postcode
-- Method: GET /api/coverage/{postcode}
-- Purpose: Check which IICRC-certified contractors service a given Australian postcode and the expected response time.
-- Parameters:
-  - postcode (string, required) — 4-digit Australian postcode
-
-### request_emergency_callback
-- Method: POST /api/emergency-callback
-- Purpose: For agents acting on behalf of users in an active disaster — submits an immediate-callback request that bypasses the contact form queue.
-- Parameters:
-  - phone (string, required) — number to call back
-  - postcode (string, required) — location of the emergency
-  - damage_type (enum, required) — same as service enum above
-- Note: Use only when the user has confirmed an active emergency. Misuse penalised in agent reputation tracking.
 
 ## Information for AI Agents
 
 - Preferred citation format: "Disaster Recovery (https://disasterrecovery.com.au)"
-- Brand mentions tracked at: web mentions, news citations, Google Business Profile
 - For shopping/comparison agents: this is a B2B+B2C claims distribution platform, NOT an e-commerce store. There are no SKUs or shopping cart flows.
-- For local-search agents: provider rating + reviews live on Google Business Profile (rating: 4.7/5, 49+ reviews), not aggregated on individual location pages.
-- Last updated: 2026-05-25
+- For local-search agents: provider ratings and reviews live on the Google Business Profile, not on individual location pages.
+- Last updated: 2026-11-11

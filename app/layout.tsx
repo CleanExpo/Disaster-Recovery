@@ -12,7 +12,6 @@ import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
 import { ConsentModeInit } from '@/components/analytics/ConsentModeInit';
 import { PhoneCallTracker } from '@/components/analytics/PhoneCallTracker';
 import { LayoutChrome } from '@/components/LayoutChrome';
-import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema';
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema';
 import RegisterServiceWorker from './register-sw';
 import { DirectionProvider } from '@/components/providers/DirectionProvider';
@@ -69,7 +68,7 @@ export const metadata: Metadata = {
     siteName: 'Disaster Recovery',
     title: 'Disaster Recovery | 24/7 IICRC-Certified Emergency Restoration',
     description:
-      "Australia's elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.",
+      'Connects property owners with restoration contractors in Australia and New Zealand. Lodge an emergency claim online any time for water, fire, mould and storm damage.',
     images: [
       {
         url: '/images/disaster-recovery-og.jpg',
@@ -83,7 +82,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Disaster Recovery | 24/7 Emergency Restoration',
     description:
-      'IICRC-certified disaster recovery. 24-48hr critical response window. Water, fire, mould damage specialists.',
+      'Disaster recovery claims in Australia and New Zealand. Lodge online any time for water, fire and mould damage.',
     images: ['/images/disaster-recovery-twitter.jpg'],
     creator: '@DisasterRecovAU',
   },
@@ -489,7 +488,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
-        <GlobalFAQSchema />
         <DynamicBreadcrumbSchema />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>

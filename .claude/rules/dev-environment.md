@@ -34,8 +34,8 @@ _Last updated: 2026-04-24 (Foundation Sprint Day 10)._
   `next.config.js` (e.g. `/locations/:loc`) will eat real pages unless
   guarded by a negative-lookahead regex.
   - If you add new location pages, update the negative lookahead in
-    `next.config.js` (~line 215) AND add the path to `PAGES_WITH_OWN_FAQ`
-    in `src/components/seo/GlobalFAQSchema.tsx`.
+    `next.config.js` (~line 215). FAQPage schema belongs on the page that
+    renders the visible FAQ; there is no site-wide FAQ schema (DR-984).
 - **Canonical URLs:** near-100% coverage; dynamic routes use
   `generateMetadata()`. If you add a page, add a canonical.
 - **`'use client'` pages + metadata:** client components can't export

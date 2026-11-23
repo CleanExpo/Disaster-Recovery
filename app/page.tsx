@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 // HowTo schema data — all trusted static content, safe to stringify
-// Organization and FAQPage schemas are provided by layout.tsx and GlobalFAQSchema — no duplicates here
+// Organization schema is provided by layout.tsx — no duplicates here. This page renders no FAQ, so it emits no FAQPage schema.
 const howToSchemaData = JSON.stringify(generateHowToSchema());
 
 export default function HomePageWrapper() {
