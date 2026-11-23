@@ -1,6 +1,6 @@
 # Disaster Recovery
 
-> Disaster Recovery is an Australian claims distribution platform that connects property owners with independent restoration contractors for water damage, fire damage, mould, storm damage and biohazard cleanup. Emergency claims can be lodged online at any time.
+> Disaster Recovery is a claims distribution platform for Australia and New Zealand that connects property owners with independent restoration contractors for water damage, fire damage, mould, storm damage and biohazard cleanup. Emergency claims can be lodged online at any time.
 
 ## Business Identity
 
@@ -39,7 +39,7 @@ Newcastle, Wollongong, Geelong, Gold Coast, Sunshine Coast, Townsville, Cairns, 
 
 ## Key Facts
 
-- Works with independent restoration contractors in Australia
+- Works with independent restoration contractors in Australia and New Zealand
 - Contractors bill the property owner directly
 - Business customers can be referred to Equipped Commercial Finance (https://equippedcf.com.au), subject to that lender's assessment. A household consumer finance pathway is not open yet.
 
